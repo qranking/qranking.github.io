@@ -25,27 +25,290 @@
 <h1>Qiitaいいね数ランキング (takeharu さんの投稿分)</h1>
 </div><!--class="headerContainer"-->
 <p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
 <table border="1">
 <tr>
 	<td rowspan="3"><center>takeharuさんの<br />1位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1467</kbd>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1470</kbd>
 		<a target="_blank" href="https://qiita.com/takeharu/items/9935ce476a17d6258e27">JavaScriptの「this」は「4種類」？？</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-04-09 21:57:39</center>
 	</td>
 	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
+		@takeharu<br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Node.js]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Node.js]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="javascriptのthisは4種類" class="fragment"></span><a href="#javascript%E3%81%AEthis%E3%81%AF4%E7%A8%AE%E9%A1%9E"><i class="fa fa-link"></i></a>javascriptの「this」は「4種類」？？</h1>
+
+<p>この記事ではベースとなる４種類の「this」を紹介します。</p>
+
+<p>実際は４種類ではないのですが、<br>
+このベースの４種類を理解できれば他もすぐに理解できます。</p>
+
+<h1>
+<span id="thisの４種類のパターン" class="fragment"></span><a href="#this%E3%81%AE%EF%BC%94%E7%A8%AE%E9%A1%9E%E3%81%AE%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3"><i class="fa fa-link"></i></a>thisの４種類のパターン</h1>
+
+<p>１：メソッド呼び出しパターン<br>
+２：関数呼び出しパターン<br>
+３：コンストラクタ呼び出しパターン<br>
+４：apply,call呼び出しパターン</p>
+
+<p>ここで重要なのは「呼び出し元」をみることです。<br>
+なぜなら「呼び出し元」に「this」は左右されるからです。</p>
+
+<h1>
+<span id="メソッド呼び出しパターン" class="fragment"></span><a href="#%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E5%91%BC%E3%81%B3%E5%87%BA%E3%81%97%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3"><i class="fa fa-link"></i></a>メソッド呼び出しパターン</h1>
+
+<p>これはもう一番直感的にわかりやすいです。<br>
+説明はいらないんじゃないかという感じなのですが、<br>
+一応ソースを。。</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">メソッド呼び出しパターン</span></div>
+<div class="highlight"><pre><span></span><span class="c1">//メソッド呼び出しパターン</span>
+<span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">value</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">myObject</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span> <span class="c1">// 10</span>
+</pre></div>
+</div>
+
+<p>かなり直感的ですね。<br>
+thisにはmyObjectが入っています。</p>
+
+<h1>
+<span id="関数呼び出しパターン" class="fragment"></span><a href="#%E9%96%A2%E6%95%B0%E5%91%BC%E3%81%B3%E5%87%BA%E3%81%97%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3"><i class="fa fa-link"></i></a>関数呼び出しパターン</h1>
+
+<p>関数とメソッドと二つの呼び方をしてるのが、<br>
+ややこしく聞こえるかもしれません。</p>
+
+<p>ただコードを見たらすぐに理解できます。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="nx">myObject</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span> <span class="c1">// メソッド呼び出し</span>
+<span class="nx">show</span><span class="p">();</span> <span class="c1">// 関数呼び出し</span>
+</pre></div></div>
+
+<p>「.」で呼ばれているかどうかの違いのみですね。</p>
+
+<p>では関数呼び出しパターンの「this」はいかに…</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">関数呼び出しパターン</span></div>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">show</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 注１</span>
+<span class="p">}</span>
+<span class="nx">show</span><span class="p">();</span> <span class="c1">// thisはグローバルオブジェクトをさす</span>
+</pre></div>
+</div>
+
+<p>この場合は「this」は「グローバルオブジェクト」を指してしまいます。<br>
+なので、注１の「value」は「グローバル変数」となります。</p>
+
+<p>これを抑えておくのがポイントです。<br>
+次の例を考えてみましょう。</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">関数呼び出しパターン</span></div>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">value</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 注１</span>
+
+    <span class="kd">function</span> <span class="nx">show</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 注２</span>
+    <span class="p">}</span>
+    <span class="nx">show</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">myObject</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+</pre></div>
+</div>
+
+<p>ここで注１と注２の答えはわかりましたか？</p>
+
+<p>注１の「this.value」は「１」<br>
+注２の「this.value」は「undefind」</p>
+
+<p>注１は一つ目のメソッド呼び出しパターンですね。<br>
+注２が最初紛らわしいです。。</p>
+
+<p>メソッド呼び出しの中で関数呼び出しされているので、<br>
+あくまで注2の「this」はグローバルを指してしまいます。</p>
+
+<p>メソッド内で関数呼び出しになっているっていうのが落とし穴ですね。<br>
+でもこれも簡単に解決できます。</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">関数呼び出しパターン</span></div>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">value</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 1</span>
+
+    <span class="kd">function</span> <span class="nx">show</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 1</span>
+    <span class="p">}</span>
+    <span class="nx">show</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">myObject</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+</pre></div>
+</div>
+
+<p>「this」を別の変数で持っておきます。この手法はよく使われます。<br>
+慣用的に変数は「self」, 「that」, 「_this」のどれかが使われる事が多いです。</p>
+
+<h1>
+<span id="コンストラクタ呼び出しパターン" class="fragment"></span><a href="#%E3%82%B3%E3%83%B3%E3%82%B9%E3%83%88%E3%83%A9%E3%82%AF%E3%82%BF%E5%91%BC%E3%81%B3%E5%87%BA%E3%81%97%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3"><i class="fa fa-link"></i></a>コンストラクタ呼び出しパターン</h1>
+
+<p>次はコンストラクタ呼び出しパターンです。</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">コンストラクタ呼び出しパターン</span></div>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">MyObject</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">increment</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyObject</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObject</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 0</span>
+
+<span class="nx">myObject</span><span class="p">.</span><span class="nx">increment</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObject</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 1</span>
+</pre></div>
+</div>
+
+<p>これもこれだけみるとわりと直感的ですね。</p>
+
+<p>「new」をつけてインスタンス生成ってことですね。<br>
+そしてその生成されるインスタンス自身が「this」にsetされます。</p>
+
+<p>ただ気をつけたいのが、これはただの「関数」です。。</p>
+
+<p>「new」をつけなかった場合,<br>
+MyObject(0);</p>
+
+<p>これは関数呼び出しなので、<br>
+「this」はグローバルオブジェクトを指してしまいます。。</p>
+
+<p>この場合はvalueとincrementは<br>
+二つともグローバル変数として定義されることになります。</p>
+
+<p>コンストラクタ呼び出しを期待する場合は、<br>
+最初の文字を大きくするのが慣例ですので、この場合は「new」は必ずつけましょう！</p>
+
+<h1>
+<span id="apply-call呼び出しパターン" class="fragment"></span><a href="#apply-call%E5%91%BC%E3%81%B3%E5%87%BA%E3%81%97%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3"><i class="fa fa-link"></i></a>apply, call呼び出しパターン</h1>
+
+<p>これは「this」を好き勝手に設定できますよっていうことです。<br>
+ライブラリとかを自作するときは非常に重宝します。</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">apply,call呼び出しパターン</span></div>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">value</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">yourObject</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">value</span><span class="o">:</span> <span class="mi">3</span>
+<span class="p">};</span>
+
+<span class="nx">myObject</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span> <span class="c1">// 1</span>
+
+<span class="nx">myObject</span><span class="p">.</span><span class="nx">show</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">yourObject</span><span class="p">);</span> <span class="c1">// 3</span>
+<span class="nx">myObject</span><span class="p">.</span><span class="nx">show</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">yourObject</span><span class="p">);</span> <span class="c1">// 3</span>
+</pre></div>
+</div>
+
+<p>「apply」と「call」を使うと「強制的にthisを束縛」できます。<br>
+「apply」と「call」の第一引数は「this」にsetしたいオブジェクトです。</p>
+
+<p>あれ？…じゃあ「apply」と「call」は何が違うのかって、<br>
+それは第二引数以降の取り方が変わってきます。</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">apply,call呼び出しパターン</span></div>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value1</span><span class="p">,</span> <span class="nx">value2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">+</span> <span class="nx">value1</span> <span class="o">+</span> <span class="nx">value2</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">yourObject</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">value</span><span class="o">:</span> <span class="mi">3</span>
+<span class="p">};</span>
+
+<span class="nx">myObject</span><span class="p">.</span><span class="nx">add</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">yourObject</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">]);</span> <span class="c1">// 15</span>
+<span class="nx">myObject</span><span class="p">.</span><span class="nx">add</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">yourObject</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span> <span class="c1">// 15</span>
+</pre></div>
+</div>
+
+<p>「apply」は第二引数に配列をとり、配列の中身が引数として渡されます。<br>
+「call」は直感的で、第二引数以降がそのまま渡されます。</p>
+
+<p>二つとも第一引数は「this」で、その後の引数の取り方が違うだけです。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>「呼び出し元」に気をつけろ！<br>
+覚えるべきベースは４種類。</p>
+
+<p>１：メソッド呼び出しパターン<br>
+２：関数呼び出しパターン<br>
+３：コンストラクタ呼び出しパターン<br>
+４：apply,call呼び出しパターン</p>
+
+<p>てな感じです。<br>
+あっさりまとめたので、わからないところがあれば聞いてください♪</p>
+
+<p>それからコンストラクタについて詳しく知りたい方はこちら<br>
+<a href="http://qiita.com/items/010752b1427773558f7c">JavaScriptのクラス？コンストラクタ？</a></p>
+
+<h1>
+<span id="外部アカウント" class="fragment"></span><a href="#%E5%A4%96%E9%83%A8%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>外部アカウント</h1>
+
+<p>技術情報のみつぶやくアカウント作成しました。JavaScriptは最新情報も追っていきます。<br>
+<a href="https://twitter.com/takeharumikami" rel="nofollow noopener" target="_blank">Twitterはこちら</a><br>
+<a href="http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fqiita.com%2Ftakeharu%2Ffeed" rel="nofollow noopener" target="_blank">Feedlyのフォローはこちら</a></p>
+
+<h1>
+<span id="おすすめの記事" class="fragment"></span><a href="#%E3%81%8A%E3%81%99%E3%81%99%E3%82%81%E3%81%AE%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>おすすめの記事</h1>
+
+<p>もういい時期です。そろそろ始めましょう。ECMAScript6。<br>
+<a href="http://qiita.com/takeharu/items/cbbe017bbdd120015ca0" id="reference-7cd6421af341218ce3a1">もうはじめよう、ES6~ECMAScript6の基本構文まとめ(JavaScript)</a></p>
+
+<p>JavaScriptはオブジェクト指向？プロトタイプベースのオブジェクト指向を学ぶなら。<br>
+<a href="http://qiita.com/takeharu/items/809114f943208aaf55b3" id="reference-8fbfa3e044cb805ecb06">JavaScriptのプロトタイプからオブジェクト指向を学ぶ</a></p>
+
+<p>JavaScriptでは関数はすべてクロージャ。<br>
+<a href="http://qiita.com/takeharu/items/4975031faf6f7baf077a" id="reference-93f0edee5555e8539a14">そもそもクロージャって？JavaScriptでクロージャ入門</a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -53,23 +316,196 @@
 <tr>
 	<td rowspan="3"><center>takeharuさんの<br />2位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1094</kbd>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1095</kbd>
 		<a target="_blank" href="https://qiita.com/takeharu/items/809114f943208aaf55b3">JavaScriptのプロトタイプからオブジェクト指向を学ぶ</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-04-11 22:34:50</center>
 	</td>
 	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
+		@takeharu<br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Node.js]</b> <b>[オブジェクト指向]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Node.js]</b> <b>[オブジェクト指向]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="javascriptのプロトタイプ入門" class="fragment"></span><a href="#javascript%E3%81%AE%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%97%E5%85%A5%E9%96%80"><i class="fa fa-link"></i></a>JavaScriptの「プロトタイプ入門」</h1>
+
+<p>JavaScriptはオブジェクト指向です。</p>
+
+<p>クラスという概念はないため、<br>
+擬似的なクラスの表現を使ったパターンがあります。</p>
+
+<p>ただ今回はそちらではなくプロトタイプベースの説明をします。</p>
+
+<p>その前にコンストラクタについて知らない人はこちらへ。<br>
+<a href="http://qiita.com/items/010752b1427773558f7c">JavaScriptのクラス？コンストラクタ？</a></p>
+
+<h1>
+<span id="プロトタイプって" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%97%E3%81%A3%E3%81%A6"><i class="fa fa-link"></i></a>プロトタイプって？</h1>
+
+<p>そもそもプロトタイプってなに？</p>
+
+<p>実は、、プロトタイプとは「オブジェクト」のことなんです。<br>
+そして感覚としては親だと思って大丈夫です。</p>
+
+<p>親の能力は子にも受け継がれている。。的なニュアンスですね。<br>
+（まぁ意味合いはちがいますがw）</p>
+
+<h1>
+<span id="prototypeプロパティ" class="fragment"></span><a href="#prototype%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3"><i class="fa fa-link"></i></a>prototypeプロパティ</h1>
+
+<p>ここで新規に関数を生成してみましょう。<br>
+そうするとprototypeプロパティが自動で作成されます。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">proto</span><span class="p">()</span> <span class="p">{}</span> <span class="c1">//proto.prototypeは自動で生成</span>
+</pre></div></div>
+
+<p>このように関数を生成した時点で、<br>
+proto.prototypeプロパティが自動で生成されます。</p>
+
+<p>そしてそれは新たな空オブジェクトへの参照を持っているんですね。<br>
+そしてprototypeプロパティは自分の親への参照だと思って下さい。</p>
+
+<p>ここは非常に重要です。。。<br>
+ということで見るより慣れろ！</p>
+
+<p>先に実用例をチェックします。</p>
+
+<h1>
+<span id="実用例" class="fragment"></span><a href="#%E5%AE%9F%E7%94%A8%E4%BE%8B"><i class="fa fa-link"></i></a>実用例</h1>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Dog</span><span class="p">()</span> <span class="p">{}</span>
+<span class="nx">Dog</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">bark</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'わんわん'</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">dog</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">();</span>
+<span class="nx">dog</span><span class="p">.</span><span class="nx">bark</span><span class="p">();</span> <span class="c1">//'わんわん';</span>
+</pre></div></div>
+
+<p>といった感じです。。<br>
+dog自体は何も持っていませんが、<br>
+親がbark関数を持っているので、あたかも自分のようにつかえちゃいます。</p>
+
+<p>あれ、でもこれって…下と何が違うの？？</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Dog</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">bark</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'わんわん'</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">dog</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">();</span>
+<span class="nx">dog</span><span class="p">.</span><span class="nx">bark</span><span class="p">();</span> <span class="c1">//'わんわん';</span>
+</pre></div></div>
+
+<p>ふーむ、挙動は一緒ですね。<br>
+ただ前者のほうがbetterです。</p>
+
+<p>実は後者だと毎回毎回関数が生成されちゃうんです！</p>
+
+<p>・・・？？</p>
+
+<p>前記事でも説明しましたが、<br>
+newはこんな暗黙のルールをもっています！</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Dog</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// var this = {};</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">bark</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'わんわん'</span><span class="p">);</span>
+  <span class="p">};</span>
+  <span class="c1">// return this;</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>なのでこれでは毎回空オブジェクトを作成し、<br>
+毎回新しくbark関数を定義しちゃっていますね。。</p>
+
+<p>そこでプロトタイプの出番です！<br>
+そしてプロトタイプは親だと思ってください。<br>
+そして子は親のプロパティを共通で使えちゃいます！</p>
+
+<p>ここでも実践例！</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Dog</span><span class="p">(</span><span class="nx">cry</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">cry</span> <span class="o">=</span> <span class="nx">cry</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">Dog</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">bark</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">cry</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">chiwawa</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">(</span><span class="s1">'きゃんきゃん'</span><span class="p">);</span>
+<span class="nx">chiwawa</span><span class="p">.</span><span class="nx">bark</span><span class="p">();</span> <span class="c1">//'きゃんきゃん';</span>
+
+<span class="kd">var</span> <span class="nx">shiba</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">(</span><span class="s1">'わんわん'</span><span class="p">);</span>
+<span class="nx">shiba</span><span class="p">.</span><span class="nx">bark</span><span class="p">();</span> <span class="c1">//'わんわん';</span>
+</pre></div></div>
+
+<p>といった感じです。</p>
+
+<p>これだと関数は無駄に生成されていませんね♪<br>
+なぜならnewを使った挙動は下記だからですね。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Dog</span><span class="p">(</span><span class="nx">cry</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// var this = {};</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">cry</span> <span class="o">=</span> <span class="nx">cry</span><span class="p">;</span>
+  <span class="c1">// return this;</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>そしてポイントです！<br>
+newを使った場合のthisのプロトタイプは、<br>
+Dogのプロトタイプと同じ参照を持っています！</p>
+
+<p>すなわちこれによって生成されたインスタンスはbark関数が使えちゃいます。</p>
+
+<h1>
+<span id="実践のポイントは一点のみ" class="fragment"></span><a href="#%E5%AE%9F%E8%B7%B5%E3%81%AE%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%81%AF%E4%B8%80%E7%82%B9%E3%81%AE%E3%81%BF"><i class="fa fa-link"></i></a>実践のポイントは一点のみ</h1>
+
+<p>単純にプロトタイプを使用したい場合は、<br>
+ポイントは一点のみ！</p>
+
+<p>・汎用的な関数はprototypeに定義</p>
+
+<p>これだけです！</p>
+
+<p>プロトタイプ（親）に汎用的な関数を定義し、<br>
+あとはインスタンス（子）はみんなで仲良くその一つを使うわけですね。</p>
+
+<p>そして関数以外は上のcryのように子自身に定義しちゃいます。</p>
+
+<p>とまぁ、入門としてはこの使い方ができれば十分だと思います。<br>
+ではでは、おさらばです♪</p>
+
+<h1>
+<span id="外部アカウント" class="fragment"></span><a href="#%E5%A4%96%E9%83%A8%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>外部アカウント</h1>
+
+<p>技術情報のみつぶやくアカウント作成しました。JavaScriptは最新情報も追っていきます。<br>
+<a href="https://twitter.com/takeharumikami" rel="nofollow noopener" target="_blank">Twitterはこちら</a><br>
+<a href="http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fqiita.com%2Ftakeharu%2Ffeed" rel="nofollow noopener" target="_blank">Feedlyのフォローはこちら</a></p>
+
+<h1>
+<span id="おすすめの記事" class="fragment"></span><a href="#%E3%81%8A%E3%81%99%E3%81%99%E3%82%81%E3%81%AE%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>おすすめの記事</h1>
+
+<p>入門者がつまづく、thisの挙動を4種類に分けて簡単に学ぶならこれ。Apply, callの挙動までわかる。<br>
+<a href="http://qiita.com/takeharu/items/9935ce476a17d6258e27" id="reference-7fe9a865df364ae18c4f">JavaScriptの「this」は「4種類」？」</a></p>
+
+<p>JavaScriptでは関数はすべてクロージャ。<br>
+<a href="http://qiita.com/takeharu/items/4975031faf6f7baf077a" id="reference-f3a42b1a898379585e1c">そもそもクロージャって？JavaScriptでクロージャ入門</a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -78,22 +514,469 @@
 	<td rowspan="3"><center>takeharuさんの<br />3位</center></td>
 	<td colspan="3">
 		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>974</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/bb154a4bc198fb102ff3">【毎日自動更新】Qiitaのデイリーストックランキング！ウィークリーもあるよ</a>
+		<a target="_blank" href="https://qiita.com/takeharu/items/9d1c3577f8868f7b07b5">【入門】Vimで高速で移動~プラグインなしでの移動まとめ~</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-12-22 11:00:09</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-03-19 19:46:27</center>
 	</td>
 	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
+		@takeharu<br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
 	</td>
-	<td style="width:300px;"><b>[Qiita]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>最近聞かれたので、<br>
+自分がよく使う<code>Vim</code>の移動コマンドをまとめてみました。</p>
+
+<p>プラグインいらずの素の<code>Vim</code>ですが、<br>
+プラグインなしで十分高速に移動できます。</p>
+
+<p>特に一行一文字検索の<code>f</code>コマンドとか、<br>
+変更してきた箇所をもどれる<code>g;</code>コマンドとかが使えてくると本当に便利です。<br>
+あっ、この記事は主にファイル内の移動に限っています。</p>
+
+<h2>
+<span id="基本移動" class="fragment"></span><a href="#%E5%9F%BA%E6%9C%AC%E7%A7%BB%E5%8B%95"><i class="fa fa-link"></i></a>基本移動</h2>
+
+<p>初心者はまず、矢印キーを脱却して、<code>h, j, k, l</code>へ。<br>
+<code>10j</code>のように数字を先に打つと、一気に数字分移動できる</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">コマンド</th>
+<th style="text-align: center">移動内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">h</td>
+<td style="text-align: center">左へひとつ</td>
+</tr>
+<tr>
+<td style="text-align: center">j</td>
+<td style="text-align: center">下へひとつ</td>
+</tr>
+<tr>
+<td style="text-align: center">k</td>
+<td style="text-align: center">上へひとつ</td>
+</tr>
+<tr>
+<td style="text-align: center">l</td>
+<td style="text-align: center">右へひとつ</td>
+</tr>
+</tbody>
+</table>
+
+<h5>
+<span id="ステップアップ" class="fragment"></span><a href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E3%82%A2%E3%83%83%E3%83%97"><i class="fa fa-link"></i></a>ステップアップ</h5>
+
+<p>表示上の行移動</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">コマンド</th>
+<th style="text-align: center">移動内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">gj</td>
+<td style="text-align: center">下へひとつ</td>
+</tr>
+<tr>
+<td style="text-align: center">gk</td>
+<td style="text-align: center">上へひとつ</td>
+</tr>
+</tbody>
+</table>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>115 abcdefg
+    hijklmn
+116 abcd
+</pre></div></div>
+
+<p>115行目のbにカーソルがある場合、</p>
+
+<p>通常の<code>j</code>移動だと、<code>b➡b</code><br>
+表示行の<code>gj</code>移動だと、<code>b➡i</code></p>
+
+<h2>
+<span id="行移動" class="fragment"></span><a href="#%E8%A1%8C%E7%A7%BB%E5%8B%95"><i class="fa fa-link"></i></a>行移動</h2>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">コマンド</th>
+<th style="text-align: center">移動内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">0</td>
+<td style="text-align: center">行の先頭へ(インデント無視して先頭へ)</td>
+</tr>
+<tr>
+<td style="text-align: center">^</td>
+<td style="text-align: center">行の先頭へ</td>
+</tr>
+<tr>
+<td style="text-align: center">$</td>
+<td style="text-align: center">行の末尾へ</td>
+</tr>
+<tr>
+<td style="text-align: center">+</td>
+<td style="text-align: center">下の行の先頭へ</td>
+</tr>
+<tr>
+<td style="text-align: center">-</td>
+<td style="text-align: center">上の行の先頭へ</td>
+</tr>
+</tbody>
+</table>
+
+<h5>
+<span id="ステップアップ-1" class="fragment"></span><a href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E3%82%A2%E3%83%83%E3%83%97-1"><i class="fa fa-link"></i></a>ステップアップ</h5>
+
+<p>前述同様<code>g</code>をつけると表示上の移動へ（直感的）</p>
+
+<h2>
+<span id="ページ移動" class="fragment"></span><a href="#%E3%83%9A%E3%83%BC%E3%82%B8%E7%A7%BB%E5%8B%95"><i class="fa fa-link"></i></a>ページ移動</h2>
+
+<p>ガッと移動したい場合</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">コマンド</th>
+<th style="text-align: center">移動内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">ctrl + u</td>
+<td style="text-align: center">半画面分 上へ</td>
+</tr>
+<tr>
+<td style="text-align: center">ctrl + d</td>
+<td style="text-align: center">半画面分 下へ</td>
+</tr>
+<tr>
+<td style="text-align: center">ctrl + b</td>
+<td style="text-align: center">一画面分 上へ</td>
+</tr>
+<tr>
+<td style="text-align: center">ctrl + f</td>
+<td style="text-align: center">一画面分 下へ</td>
+</tr>
+<tr>
+<td style="text-align: center">{</td>
+<td style="text-align: center">段落毎に上へ</td>
+</tr>
+<tr>
+<td style="text-align: center">}</td>
+<td style="text-align: center">段落毎に下へ</td>
+</tr>
+<tr>
+<td style="text-align: center">gg</td>
+<td style="text-align: center">そのファイルの先頭へ</td>
+</tr>
+<tr>
+<td style="text-align: center">G</td>
+<td style="text-align: center">そのファイルの末尾へ</td>
+</tr>
+</tbody>
+</table>
+
+<p>他には<code>:100</code>で行指定で移動できる。<br>
+この場合だと、100行目に移動。</p>
+
+<h2>
+<span id="単語移動" class="fragment"></span><a href="#%E5%8D%98%E8%AA%9E%E7%A7%BB%E5%8B%95"><i class="fa fa-link"></i></a>単語移動</h2>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">コマンド</th>
+<th style="text-align: center">移動内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">w</td>
+<td style="text-align: center">単語の先頭に進む</td>
+</tr>
+<tr>
+<td style="text-align: center">b</td>
+<td style="text-align: center">単語の先頭に戻る</td>
+</tr>
+<tr>
+<td style="text-align: center">e</td>
+<td style="text-align: center">単語の末尾に進む</td>
+</tr>
+<tr>
+<td style="text-align: center">ge</td>
+<td style="text-align: center">単語の末尾に戻る</td>
+</tr>
+</tbody>
+</table>
+
+<p>単語分を進むか戻るか、さらに大文字もある。</p>
+
+<h5>
+<span id="ステップアップ-2" class="fragment"></span><a href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E3%82%A2%E3%83%83%E3%83%97-2"><i class="fa fa-link"></i></a>ステップアップ</h5>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">コマンド</th>
+<th style="text-align: center">移動内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">W</td>
+<td style="text-align: center">単語の先頭に進む</td>
+</tr>
+<tr>
+<td style="text-align: center">B</td>
+<td style="text-align: center">単語の先頭に戻る</td>
+</tr>
+<tr>
+<td style="text-align: center">E</td>
+<td style="text-align: center">単語の末尾に進む</td>
+</tr>
+<tr>
+<td style="text-align: center">gE</td>
+<td style="text-align: center">単語の末尾に戻る</td>
+</tr>
+</tbody>
+</table>
+
+<p>違いは次のような単語を一語とみるかどうか</p>
+
+<p><code>abc.def.ghi</code></p>
+
+<p>小文字なら5単語 <code>abc . def . ghi</code><br>
+大文字なら1単語 <code>abc.def.ghi</code></p>
+
+<p><code>a➡i</code>に行きたい場合、<br>
+<code>e</code>移動なら5回 <code>a➡c➡.➡f➡.➡i</code><br>
+<code>E</code>移動なら1回 <code>a➡i</code></p>
+
+<h2>
+<span id="一行一文字検索" class="fragment"></span><a href="#%E4%B8%80%E8%A1%8C%E4%B8%80%E6%96%87%E5%AD%97%E6%A4%9C%E7%B4%A2"><i class="fa fa-link"></i></a>一行一文字検索</h2>
+
+<p>これホント便利。多用してます。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">コマンド</th>
+<th style="text-align: center">移動内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">f</td>
+<td style="text-align: center">その行の順方向に一文字検索</td>
+</tr>
+<tr>
+<td style="text-align: center">F</td>
+<td style="text-align: center">その行の逆方向に一文字検索</td>
+</tr>
+<tr>
+<td style="text-align: center">t</td>
+<td style="text-align: center">その行の順方向に一文字検索(カーソルは文字の手前)</td>
+</tr>
+<tr>
+<td style="text-align: center">T</td>
+<td style="text-align: center">その行の逆方向に一文字検索(カーソルは文字の手前)</td>
+</tr>
+</tbody>
+</table>
+
+<p><code>abcdefg hijklmn</code></p>
+
+<p><code>a</code>にカーソルがある場合、<br>
+<code>fi</code>で一気に<code>i</code>に移動。</p>
+
+<h5>
+<span id="ステップアップ-3" class="fragment"></span><a href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E3%82%A2%E3%83%83%E3%83%97-3"><i class="fa fa-link"></i></a>ステップアップ</h5>
+
+<p>これとfキーの組み合わせが、本当に便利。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">コマンド</th>
+<th style="text-align: center">移動内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">;</td>
+<td style="text-align: center">順方向に繰り返し検索</td>
+</tr>
+<tr>
+<td style="text-align: center">,</td>
+<td style="text-align: center">逆方向に繰り返し検索</td>
+</tr>
+</tbody>
+</table>
+
+<p><code>abcdefg abcdefg abcdefg</code></p>
+
+<p><code>a</code>から三つ目の<code>e</code>に行く場合、<br>
+<code>fe</code> <code>;</code> <code>;</code><br>
+そこから二つ目の<code>e</code>に戻る場合<br>
+<code>,</code></p>
+
+<h2>
+<span id="検索移動" class="fragment"></span><a href="#%E6%A4%9C%E7%B4%A2%E7%A7%BB%E5%8B%95"><i class="fa fa-link"></i></a>検索移動</h2>
+
+<p>一般的なページ内文字列検索</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">コマンド</th>
+<th style="text-align: center">移動内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">/</td>
+<td style="text-align: center">順方向に文字列検索</td>
+</tr>
+<tr>
+<td style="text-align: center">?</td>
+<td style="text-align: center">逆方向に文字列検索</td>
+</tr>
+<tr>
+<td style="text-align: center">n</td>
+<td style="text-align: center">順方向に繰り返し検索</td>
+</tr>
+<tr>
+<td style="text-align: center">N</td>
+<td style="text-align: center">逆方向に繰り返し検索</td>
+</tr>
+</tbody>
+</table>
+
+<p><code>abcde abced abcedf</code></p>
+
+<p>この場合、<code>/edf</code>で末尾の<code>edf</code>に移動。<br>
+複数行にわたって検索可能。</p>
+
+<h2>
+<span id="括弧移動" class="fragment"></span><a href="#%E6%8B%AC%E5%BC%A7%E7%A7%BB%E5%8B%95"><i class="fa fa-link"></i></a>括弧移動</h2>
+
+<p>これは<code>d</code>の削除とか<code>y</code>のコピーと合わせて使うと便利。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">コマンド</th>
+<th style="text-align: center">移動内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">%</td>
+<td style="text-align: center">対となる括弧へ移動</td>
+</tr>
+</tbody>
+</table>
+
+<p><code>(abc)</code></p>
+
+<p>カーソルが<code>(</code>から<code>%</code>コマンドで<code>)</code>へ移動</p>
+
+<h2>
+<span id="tips" class="fragment"></span><a href="#tips"><i class="fa fa-link"></i></a>TIPS</h2>
+
+<h4>
+<span id="ジャンプリストを辿る" class="fragment"></span><a href="#%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97%E3%83%AA%E3%82%B9%E3%83%88%E3%82%92%E8%BE%BF%E3%82%8B"><i class="fa fa-link"></i></a>ジャンプリストを辿る</h4>
+
+<p>ファイル内も移動できるけど、ファイル間の移動に便利。<br>
+直前に編集していたファイルに戻りたいとか。<br>
+今回の記事にはそぐわないかな。。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">コマンド</th>
+<th style="text-align: center">移動内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">ctrl + o</td>
+<td style="text-align: center">ジャンプしてきた箇所に戻る</td>
+</tr>
+<tr>
+<td style="text-align: center">ctrl + i</td>
+<td style="text-align: center">ジャンプしてきた箇所に進む</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<span id="変更リストを辿る" class="fragment"></span><a href="#%E5%A4%89%E6%9B%B4%E3%83%AA%E3%82%B9%E3%83%88%E3%82%92%E8%BE%BF%E3%82%8B"><i class="fa fa-link"></i></a>変更リストを辿る</h4>
+
+<p>自分がしたファイルの変更履歴をたどれる。便利。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">コマンド</th>
+<th style="text-align: center">移動内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">g;</td>
+<td style="text-align: center">変更してきた箇所に戻る</td>
+</tr>
+<tr>
+<td style="text-align: center">g,</td>
+<td style="text-align: center">変更してきた箇所に進む</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<span id="マーク移動" class="fragment"></span><a href="#%E3%83%9E%E3%83%BC%E3%82%AF%E7%A7%BB%E5%8B%95"><i class="fa fa-link"></i></a>マーク移動</h4>
+
+<p>あんまり使っていないから、要望があるまでカット。</p>
+
+<h2>
+<span id="最後に" class="fragment"></span><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB"><i class="fa fa-link"></i></a>最後に</h2>
+
+<p>この移動と組み合わせて削除とかコピーとかいろいろできることが、<br>
+vimの移動の便利なところですね。</p>
+
+<h1>
+<span id="外部アカウント" class="fragment"></span><a href="#%E5%A4%96%E9%83%A8%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>外部アカウント</h1>
+
+<p>技術情報のみつぶやくアカウント作成しました。VimやNeoVimの最新情報も発信していきます。<br>
+<a href="https://twitter.com/takeharumikami" rel="nofollow noopener" target="_blank">Twitterはこちら</a><br>
+<a href="http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fqiita.com%2Ftakeharu%2Ffeed" rel="nofollow noopener" target="_blank">Feedlyのフォローはこちら</a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -101,23 +984,153 @@
 <tr>
 	<td rowspan="3"><center>takeharuさんの<br />4位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>974</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/9d1c3577f8868f7b07b5">【入門】Vimで高速で移動~プラグインなしでの移動まとめ~</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>543</kbd>
+		<a target="_blank" href="https://qiita.com/takeharu/items/4975031faf6f7baf077a">JavaScriptでクロージャ入門。関数はすべてクロージャ？</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-03-19 19:46:27</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-07-22 21:53:01</center>
 	</td>
 	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
+		@takeharu<br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Node.js]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>JavaScriptでは関数はすべてクロージャです。<br>
+ではそもそもクロージャってなんなんでしょうか。</p>
+
+<h1>
+<span id="クロージャ" class="fragment"></span><a href="#%E3%82%AF%E3%83%AD%E3%83%BC%E3%82%B8%E3%83%A3"><i class="fa fa-link"></i></a>クロージャ？？</h1>
+
+<p>クロージャの簡単な定義として<br>
+「自分を囲むスコープにある変数を参照できる関数」<br>
+が挙げられます。</p>
+
+<p>言葉ではパッとしないかもしれませんが、コードを一つづつ追っていくと、<br>
+入門としてのクロージャは簡単に理解できます。</p>
+
+<h1>
+<span id="スコープ" class="fragment"></span><a href="#%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97"><i class="fa fa-link"></i></a>スコープ</h1>
+
+<p>まずJavaScriptは関数ごとにスコープが作られます。<br>
+スコープとは変数を参照できる範囲のことです。<br>
+その範囲外では変数は参照できません。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">func</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">func</span><span class="p">();</span> <span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// undefined</span>
+</pre></div></div>
+
+<h1>
+<span id="クロージャの例" class="fragment"></span><a href="#%E3%82%AF%E3%83%AD%E3%83%BC%E3%82%B8%E3%83%A3%E3%81%AE%E4%BE%8B"><i class="fa fa-link"></i></a>クロージャの例</h1>
+
+<p>ここでクロージャの例を見てみましょう</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">func</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+  <span class="kd">function</span> <span class="nx">innerFunc</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">innerFunc</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="nx">func</span><span class="p">();</span> <span class="c1">// 1</span>
+</pre></div></div>
+
+<p>先ほどの定義を思い出してみましょう。<br>
+「自分を囲むスコープにある変数を参照できる関数」</p>
+
+<p>内側の関数が外側の関数の変数を参照できています。<br>
+ここで重要なのは、値のコピーではなく、参照ができていることです。</p>
+
+<p>ですから、ここでは下記のようにvalueの変更が可能です。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">func</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+  <span class="kd">function</span> <span class="nx">innerFunc</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">value</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">innerFunc</span><span class="p">();</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 2</span>
+<span class="p">}</span>
+<span class="nx">func</span><span class="p">();</span>
+</pre></div></div>
+
+<h1>
+<span id="クロージャの実践例" class="fragment"></span><a href="#%E3%82%AF%E3%83%AD%E3%83%BC%E3%82%B8%E3%83%A3%E3%81%AE%E5%AE%9F%E8%B7%B5%E4%BE%8B"><i class="fa fa-link"></i></a>クロージャの実践例</h1>
+
+<p>ここで基本的なクロージャの実践例として一つ、<br>
+「モジュールパターン」を紹介します。</p>
+
+<p>クロージャの一つの利点として、<br>
+変数をプライベートな変数として扱う事ができるようになります。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">module</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">increment</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+<span class="p">})();</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span> <span class="c1">// 0</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">increment</span><span class="p">();</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span> <span class="c1">// 1</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span> <span class="c1">// undefined</span>
+</pre></div></div>
+
+<p>即時関数を用いてオブジェクトを生成しています。<br>
+moduleにはreturnされているオブジェクトが代入されます。</p>
+
+<p>ここで重要な事として、<br>
+即時関数内のcountに関しては内側からしか参照できないという事です。<br>
+外側からアクセスしようとした場合にはもちろん「undefined」となります。</p>
+
+<p>これによりプライペードな変数として扱う事が可能になります。</p>
+
+<h1>
+<span id="外部アカウント" class="fragment"></span><a href="#%E5%A4%96%E9%83%A8%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>外部アカウント</h1>
+
+<p>技術情報のみつぶやくアカウント作成しました。JavaScriptは最新情報も追っていきます。<br>
+<a href="https://twitter.com/takeharumikami" rel="nofollow noopener" target="_blank">Twitterはこちら</a><br>
+<a href="http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fqiita.com%2Ftakeharu%2Ffeed" rel="nofollow noopener" target="_blank">Feedlyのフォローはこちら</a></p>
+
+<h1>
+<span id="おすすめの記事" class="fragment"></span><a href="#%E3%81%8A%E3%81%99%E3%81%99%E3%82%81%E3%81%AE%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>おすすめの記事</h1>
+
+<p>JavaScriptはオブジェクト指向？プロトタイプベースのオブジェクト指向を学ぶなら。<br>
+<a href="http://qiita.com/takeharu/items/809114f943208aaf55b3" id="reference-85b1c96d17ae03e42963">JavaScriptのプロトタイプからオブジェクト指向を学ぶ</a></p>
+
+<p>JavaScriptでは関数型言語の一部の機能？実践的なJavaScriptの関数型とは。<br>
+<a href="http://qiita.com/takeharu/items/cf98d352ff574c5ac536" id="reference-f6288842ecf17cbc7c4d">JavaScriptで関数型プログラミングの入門</a></p>
+
+<p>関数型プログラミングを強力に後押しするライブラリ、Underscore.jsとlodashとは。<br>
+<a href="http://qiita.com/takeharu/items/7d4ead780710c627172e" id="reference-5665db4c98fd1ea3cafa">JavaScriptで関数型プログラミングを強力に後押しするUnderscore.jsのおすすめメソッド12選(lodashもあるよ)</a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -125,23 +1138,153 @@
 <tr>
 	<td rowspan="3"><center>takeharuさんの<br />5位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>817</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/7d4ead780710c627172e">JavaScriptで関数型プログラミングを強力に後押しするUnderscore.jsのおすすめメソッド12選（lodashもあるよ）</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>540</kbd>
+		<a target="_blank" href="https://qiita.com/takeharu/items/010752b1427773558f7c">JavaScriptのクラス？コンストラクタ？？</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-08 08:20:01</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-04-10 20:04:28</center>
 	</td>
 	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
+		@takeharu<br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Node.js]</b> <b>[関数型言語]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Node.js]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="javascriptのクラスコンストラクタ" class="fragment"></span><a href="#javascript%E3%81%AE%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%B3%E3%83%B3%E3%82%B9%E3%83%88%E3%83%A9%E3%82%AF%E3%82%BF"><i class="fa fa-link"></i></a>JavaScriptのクラス？コンストラクタ？？</h1>
+
+<p>最初に、JavaScriptにはクラスはありません。<br>
+コンストラクタからインスタンスを生成します。</p>
+
+<p>なんだかなぁ・・と言う人は、<br>
+とりあえず単語は置いておいてコードから理解してください。</p>
+
+<h1>
+<span id="コンストラクタの基本" class="fragment"></span><a href="#%E3%82%B3%E3%83%B3%E3%82%B9%E3%83%88%E3%83%A9%E3%82%AF%E3%82%BF%E3%81%AE%E5%9F%BA%E6%9C%AC"><i class="fa fa-link"></i></a>コンストラクタの基本</h1>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">コンストラクタ</span></div>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Dog</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">cry</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">bark</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cry</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">dog</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">(</span><span class="s1">'きなこ'</span><span class="p">,</span> <span class="s1">'わんわん'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dog</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// きなこ</span>
+<span class="nx">dog</span><span class="p">.</span><span class="nx">bark</span><span class="p">();</span> <span class="c1">// わんわん</span>
+</pre></div>
+</div>
+
+<p>もし「new」を忘れたら、関数呼び出しになってしまって一大事です。<br>
+これがわからない方はこちらの記事へ。<br>
+<a href="http://qiita.com/items/9935ce476a17d6258e27">「JavaScript」の「this」は「４種類」？？</a></p>
+
+<h1>
+<span id="newの挙動" class="fragment"></span><a href="#new%E3%81%AE%E6%8C%99%E5%8B%95"><i class="fa fa-link"></i></a>newの挙動</h1>
+
+<p>もし「new」をつけた場合は何がおこっているのか。<br>
+実は暗黙のルールで二行加わっています。</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">コンストラクタ</span></div>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Dog</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">cry</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// var this = {};</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">bark</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cry</span><span class="p">);</span>
+  <span class="p">};</span>
+  <span class="c1">// return this;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>このように「new」をつけた場合は上の挙動になります。</p>
+
+<p>これを見たら理解は簡単ですね。<br>
+毎回新しい空オブジェクトを生成して、<br>
+それに初期プロパティを加えて「return」しています。</p>
+
+<p>newをつけた場合の暗黙のルールとして…</p>
+
+<p>んっ、なら明示的に書いた場合はどうなるの？？<br>
+ってことで別の書き方も身につけましょう。</p>
+
+<h1>
+<span id="newなしパターンは" class="fragment"></span><a href="#new%E3%81%AA%E3%81%97%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%81%AF"><i class="fa fa-link"></i></a>newなしパターンは??</h1>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Dog</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">cry</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="nx">self</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="nx">self</span><span class="p">.</span><span class="nx">bark</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cry</span><span class="p">);</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="nx">self</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>この場合はさっきのthisの暗黙のルールは適用されなくなります。<br>
+なぜなら明示的にローカル変数「self」を「return」してるからです。</p>
+
+<p>なので、「new」をつけてもつけなくても挙動は一緒になります・<br>
+暗黙のルールの「return this;」がないからです。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Dog</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">cry</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="nx">name</span><span class="p">,</span>
+    <span class="nx">bark</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cry</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>これはさっきのselfとまったく同じです。</p>
+
+<p>これも単純に関数なのですが、<br>
+基本的には最初を大文字として<br>
+コンストラクタ呼び出しを期待するのがbetterです。</p>
+
+<p>そしてもし「new」をつけ忘れたとしても大丈夫。<br>
+バグは発生せず、期待通りの動きをしてくれます。</p>
+
+<h1>
+<span id="注意点" class="fragment"></span><a href="#%E6%B3%A8%E6%84%8F%E7%82%B9"><i class="fa fa-link"></i></a>注意点</h1>
+
+<p>ここでメモリを気にする方は関数の生成についても考えたいですね☆<br>
+上記の欠点としてはプロトタイプへのリンクがきれてしまうことです。</p>
+
+<p>はて、プロトタイプって？<br>
+<a href="http://qiita.com/items/809114f943208aaf55b3">JavaScriptのプロトタイプ入門</a></p>
+
+<h1>
+<span id="外部アカウント" class="fragment"></span><a href="#%E5%A4%96%E9%83%A8%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>外部アカウント</h1>
+
+<p>技術情報のみつぶやくアカウント作成しました。JavaScriptは最新情報も追っていきます。<br>
+<a href="https://twitter.com/takeharumikami" rel="nofollow noopener" target="_blank">Twitterはこちら</a><br>
+<a href="http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fqiita.com%2Ftakeharu%2Ffeed" rel="nofollow noopener" target="_blank">Feedlyのフォローはこちら</a></p>
+
+<h1>
+<span id="おすすめの記事" class="fragment"></span><a href="#%E3%81%8A%E3%81%99%E3%81%99%E3%82%81%E3%81%AE%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>おすすめの記事</h1>
+
+<p>入門者がつまづく、thisの挙動を4種類に分けて簡単に学ぶならこれ。Apply, callの挙動までわかる。<br>
+<a href="http://qiita.com/takeharu/items/9935ce476a17d6258e27" id="reference-bed1cbe4a74dc9b50627">JavaScriptの「this」は「4種類」？」</a></p>
+
+<p>JavaScriptでは関数はすべてクロージャ。<br>
+<a href="http://qiita.com/takeharu/items/4975031faf6f7baf077a" id="reference-ee8e115c175cc949f428">そもそもクロージャって？JavaScriptでクロージャ入門</a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -149,23 +1292,294 @@
 <tr>
 	<td rowspan="3"><center>takeharuさんの<br />6位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>781</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/cbbe017bbdd120015ca0">もうはじめよう、ES6~ECMAScript6の基本構文まとめ(JavaScript)~</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>224</kbd>
+		<a target="_blank" href="https://qiita.com/takeharu/items/84ffbee23b8edcbb2e21">JavaScriptのasync.jsでwaterfallとseries、parallelの違い</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-12-04 09:14:48</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-08-07 10:03:43</center>
 	</td>
 	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
+		@takeharu<br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Node.js]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Node.js]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="asyncjs" class="fragment"></span><a href="#asyncjs"><i class="fa fa-link"></i></a>async.js</h1>
+
+<p>主にnodeで使用されている、javascriptの非同期処理を扱うライブラリです。<br>
+フロントエンドでもゲーム作り等では重宝するんです。</p>
+
+<p>その中でも使用率がかなり高い、waterfallとseries、そしてparallelの三つについて簡単にまとめました。</p>
+
+<p>さらに、ECMAScript6からは非同期処理を扱うためのPromiseオブジェクトが標準で使用できます。<br>
+<a href="http://qiita.com/takeharu/items/c23998d22903e6d3c1d9" id="reference-ec1f6aeed751b2d0d3d7">ECMAScript6のアロー関数とPromiseまとめ - JavaScript</a></p>
+
+<p>技術情報のみつぶやくアカウント作成しました。JavaScriptなどの最新情報も追っていきます。<br>
+Twitter: <a href="https://twitter.com/takeharumikami" rel="nofollow noopener" target="_blank">@takeharumikami</a></p>
+
+<p>RSSはこちら<br>
+Feedly: <a href="http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fqiita.com%2Ftakeharu%2Ffeed" rel="nofollow noopener" target="_blank">Feedlyをフォロー</a><br>
+RSS: <a href="http://qiita.com/takeharu/feed" class="autolink">http://qiita.com/takeharu/feed</a></p>
+
+<h1>
+<span id="waterfall" class="fragment"></span><a href="#waterfall"><i class="fa fa-link"></i></a>waterfall</h1>
+
+<p>まず、waterfallについてです。<br>
+配列の順番で、この場合は上の関数から実行されていきます。</p>
+
+<p>この際に引数に与えられたcallbackの関数が実行されるまで、<br>
+次の関数の処理には移行しません。</p>
+
+<p>そしてcallbackの関数の第一引数にはerrorを、<br>
+第二引数以降は次の関数に渡したい引数を選ぶ事ができます。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="nx">async</span><span class="p">.</span><span class="nx">waterfall</span><span class="p">([</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'1'</span><span class="p">);</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'1 done'</span><span class="p">);</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">arg1</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// arg1 === 1</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'2'</span><span class="p">);</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'2 done'</span><span class="p">);</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">50</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// arg1 === 1, arg2 === 2</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'3'</span><span class="p">);</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'3 done'</span><span class="p">);</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">,</span> <span class="nx">arg3</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// arg1 === 1, arg2 === 2, arg3 === 3</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'all done.'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">,</span> <span class="nx">arg3</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">//出力結果</span>
+<span class="mi">1</span>
+<span class="mi">1</span> <span class="nx">done</span>
+<span class="mi">2</span>
+<span class="mi">2</span> <span class="nx">done</span>
+<span class="mi">3</span>
+<span class="mi">3</span> <span class="nx">done</span>
+<span class="nx">all</span> <span class="nx">done</span>
+<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+</pre></div></div>
+
+<h1>
+<span id="series" class="fragment"></span><a href="#series"><i class="fa fa-link"></i></a>series</h1>
+
+<p>seriesの流れはwatarfallの制御の流れと同じです。</p>
+
+<p>配列の順番に、この場合は上から順次実行されていきます。<br>
+そして、次の関数に処理が移るにはcallbackが呼ばれる必要があります。</p>
+
+<p>違いはcallbackの引数に渡した値ですが、<br>
+最後にまとめてこの配列の順番のまま、配列に値が代入されています。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="nx">async</span><span class="p">.</span><span class="nx">series</span><span class="p">([</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'1'</span><span class="p">);</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'1 done'</span><span class="p">);</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'2'</span><span class="p">);</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'2 done'</span><span class="p">);</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">50</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'3'</span><span class="p">);</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'3 done'</span><span class="p">);</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'all done'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">//出力結果</span>
+<span class="mi">1</span>
+<span class="mi">1</span> <span class="nx">done</span>
+<span class="mi">2</span>
+<span class="mi">2</span> <span class="nx">done</span>
+<span class="mi">3</span>
+<span class="mi">3</span> <span class="nx">done</span>
+<span class="nx">all</span> <span class="nx">done</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</pre></div></div>
+
+<h1>
+<span id="parallel" class="fragment"></span><a href="#parallel"><i class="fa fa-link"></i></a>parallel</h1>
+
+<p>最後にparallelです。<br>
+seriesやwaterfallと違い、並列に処理されます。<br>
+（厳密には並列ではないですが）</p>
+
+<p>ですから引数に渡されたcallbackでは次の関数が呼ばれません。</p>
+
+<p>callbackに渡した引数はまとめて最後に配列となって、<br>
+この順番通りに代入されています。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="nx">async</span><span class="p">.</span><span class="nx">parallel</span><span class="p">([</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'1'</span><span class="p">);</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'1 done'</span><span class="p">);</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'2'</span><span class="p">);</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'2 done'</span><span class="p">);</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">50</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'3'</span><span class="p">);</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'3 done'</span><span class="p">);</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'all done'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">//出力結果</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">3</span> <span class="nx">done</span>
+<span class="mi">2</span> <span class="nx">done</span>
+<span class="mi">1</span> <span class="nx">done</span>
+<span class="nx">all</span> <span class="nx">done</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> 
+</pre></div></div>
+
+<p>parallelは並列処理なので、<br>
+配列に関数を代入しなくてもいいです。</p>
+
+<p>そこで別パターンとしてオブジェクトの各valueに関数を代入する方法があります。</p>
+
+<p>この場合の違いは二点です。</p>
+
+<p>１：並列処理の開始が保証されない<br>
+２：callbackに渡した値が、最後にまとめてオブジェクトに代入されている</p>
+
+<p>１は配列の時と違い、どこから実行されるか保証されていないということです。<br>
+配列のときは要素の0から実行されていきます。</p>
+
+<p>２は下記を見てもらえればわかるのですが、<br>
+同じkeyに対応して渡された値が代入されています。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="nx">async</span><span class="p">.</span><span class="nx">parallel</span><span class="p">({</span>
+  <span class="nx">first</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'1'</span><span class="p">);</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'1 done'</span><span class="p">);</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">second</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'2'</span><span class="p">);</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'2 done'</span><span class="p">);</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">50</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">third</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'3'</span><span class="p">);</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'3 done'</span><span class="p">);</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'all done'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// 出力結果</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">3</span> <span class="nx">done</span>
+<span class="mi">2</span> <span class="nx">done</span>
+<span class="mi">1</span> <span class="nx">done</span>
+<span class="nx">all</span> <span class="nx">done</span>
+<span class="p">{</span> <span class="nx">third</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span> <span class="nx">second</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">first</span><span class="o">:</span> <span class="mi">1</span> <span class="p">}</span>
+</pre></div></div>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>コールバック処理はjavascriptでは重要な要素ですよね。</p>
+
+<p>asyncを使うとスパゲッティにもなりづらいですし、<br>
+うまく扱えるとかなり重宝しますので、ぜひぜひおすすめです。</p>
+
+<h1>
+<span id="アカウント" class="fragment"></span><a href="#%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>アカウント</h1>
+
+<p>技術情報のみつぶやくアカウント作成しました。JavaScriptなどの最新情報も追っていきます。<br>
+Twitter: <a href="https://twitter.com/takeharumikami" rel="nofollow noopener" target="_blank">@takeharumikami</a></p>
+
+<p>RSSはこちら<br>
+Feedly: <a href="http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fqiita.com%2Ftakeharu%2Ffeed" rel="nofollow noopener" target="_blank">Feedlyをフォロー</a><br>
+RSS: <a href="http://qiita.com/takeharu/feed" class="autolink">http://qiita.com/takeharu/feed</a></p>
+
+<h1>
+<span id="おすすめの記事" class="fragment"></span><a href="#%E3%81%8A%E3%81%99%E3%81%99%E3%82%81%E3%81%AE%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>おすすめの記事</h1>
+
+<p>ECMAScript6からは非同期処理を扱うためのPromiseオブジェクトが標準で使用できます。<br>
+<a href="http://qiita.com/takeharu/items/c23998d22903e6d3c1d9">ECMAScript6のアロー関数とPromiseまとめ - JavaScript</a></p>
+
+<p>入門者がつまづく、thisの挙動を4種類に分けて簡単に学ぶならこれ。Apply, callの挙動までわかる。<br>
+<a href="http://qiita.com/takeharu/items/9935ce476a17d6258e27" id="reference-e5d4cbb0bba42ea22036">JavaScriptの「this」は「4種類」？」</a></p>
+
+<p>JavaScriptでは関数型言語の一部の機能？実践的なJavaScriptの関数型とは。<br>
+<a href="http://qiita.com/takeharu/items/cf98d352ff574c5ac536" id="reference-e4931229f818de806ab8">JavaScriptで関数型プログラミングの入門</a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -173,23 +1587,203 @@
 <tr>
 	<td rowspan="3"><center>takeharuさんの<br />7位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>756</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/dee0972e5f39bfd4d7c8">JavaScriptのスタイルガイドまとめ(おすすめ4選)</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>80</kbd>
+		<a target="_blank" href="https://qiita.com/takeharu/items/e273313e228abde889bc">Node.js超入門</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-07 07:13:13</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-03-24 07:58:35</center>
 	</td>
 	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
+		@takeharu<br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Node.js]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Node.js]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h2>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h2>
+
+<p>Node.jsを触りたいけど、けど、<br>
+黒い画面が。。<br>
+なんてこと聞いたりするんですよね。</p>
+
+<p>そこで、何も考えずパパっとNode.jsを動かしてみようってのが、<br>
+今回の記事です。</p>
+
+<p>とりあえず、やってみてください。<br>
+本当に簡単にできちゃいますので。</p>
+
+<h2>
+<span id="nodebrewが便利" class="fragment"></span><a href="#nodebrew%E3%81%8C%E4%BE%BF%E5%88%A9"><i class="fa fa-link"></i></a>nodebrewが便利</h2>
+
+<p>nodebrew?<br>
+nodebrewっていうのは、Max/Linux向けのnodeのバージョンを管理してくれる便利toolです。<br>
+例えば、v1.0.0を入れてたけど、v1.2.0にあげたいなってときとかに、さっとバージョンの切り替えとかができます。</p>
+
+<p>まずは、インストール。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ curl -L git.io/nodebrew | perl - setup
+..
+
+Add path:
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+</pre></div></div>
+
+<p>pathを追加してくれと言われます。<br>
+pathを通して、どこでも<code>nodebrew</code>のコマンドが使えるようにします。</p>
+
+<p>とりあえず、cdで~ディレクトリに移動して、<br>
+viでエディタを開いて、追記します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ cd
+$ vi .bash_profile
+
+# nodeのpath設定
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+</pre></div></div>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ source ~/.bash_profile
+</pre></div></div>
+
+<p>このファイルをもう一度実行して、パスを通します。<br>
+これで、試しに<code>nodebrew</code>と打てば、コマンドが実行されます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ nodebrew
+</pre></div></div>
+
+<h2>
+<span id="nodeのインストール" class="fragment"></span><a href="#node%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>nodeのインストール</h2>
+
+<p>現在の安定板の最新はv0.10.26なので、それをインストールします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ nodebrew install v0.10.26
+</pre></div></div>
+
+<p>これだけです。<br>
+試しにインストールが完了し、<code>nodebrew ls</code>コマンドを実行すると、</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ nodebrew ls
+v0.10.26
+</pre></div></div>
+
+<p>今の指定したバージョンが入っていますね。<br>
+ほかにも、</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ nodebrew ls-remote
+</pre></div></div>
+
+<p>で、installできる一覧のバージョンが表示されるので、<br>
+いくつか落としてみるといいかもしれません。<br>
+落とした分だけ、<code>nodebrew ls</code>で手元にある一覧のバージョンが増えていきます。</p>
+
+<p>ちなみにインストールはバイナリですると、展開するだけなので早いです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ nodebrew install-binary v0.10.26
+</pre></div></div>
+
+<h2>
+<span id="nodeの準備" class="fragment"></span><a href="#node%E3%81%AE%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>nodeの準備</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ nodebrew use v0.10.26
+use v0.10.26
+</pre></div></div>
+
+<p>バージョンを確認します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ node -v
+v0.10.26
+</pre></div></div>
+
+<p>これでnodeの準備が完了しました。</p>
+
+<h2>
+<span id="ここからはお試しwebアプリケーション" class="fragment"></span><a href="#%E3%81%93%E3%81%93%E3%81%8B%E3%82%89%E3%81%AF%E3%81%8A%E8%A9%A6%E3%81%97web%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>ここからはお試しWebアプリケーション</h2>
+
+<p>とりあえず、あまり考えずにWebアプリケーションを立ち上げましょう。<br>
+nodeの定番フレームワーク「express」を使います。</p>
+
+<p>expressをどこでも使えるようにglobalでインストールします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ npm install -g express
+</pre></div></div>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ express TestApp
+
+   create : TestApp
+   create : TestApp/package.json
+   create : TestApp/app.js
+   create : TestApp/public
+   create : TestApp/routes
+   create : TestApp/routes/index.js
+   create : TestApp/routes/user.js
+   create : TestApp/views
+   create : TestApp/views/layout.jade
+   create : TestApp/views/index.jade
+   create : TestApp/public/javascripts
+   create : TestApp/public/images
+   create : TestApp/public/stylesheets
+   create : TestApp/public/stylesheets/style.css
+
+   install dependencies:
+     $ cd TestApp &amp;&amp; npm install
+
+   run the app:
+     $ node app
+</pre></div></div>
+
+<p>テンプレートが作成されました。<br>
+次にTestAppに移動して、<br>
+必要なモジュールをインストールします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$cd TextApp
+$npm install
+</pre></div></div>
+
+<p>あとは、起動します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$node app.js
+Express server listening on port 3000
+</pre></div></div>
+
+<p>これでできあがりです。</p>
+
+<p>デフォルトではポートが3000番で立ち上がるので、<br>
+<a href="http://localhost:3000" class="autolink" rel="nofollow noopener" target="_blank">http://localhost:3000</a><br>
+に、ブラウザからアクセスすると、<br>
+<code>Welcome to Express</code><br>
+が表示されます。</p>
+
+<h1>
+<span id="外部アカウント" class="fragment"></span><a href="#%E5%A4%96%E9%83%A8%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>外部アカウント</h1>
+
+<p>技術情報のみつぶやくアカウント作成しました。Nodejsは最新情報も追っていきます。<br>
+<a href="https://twitter.com/takeharumikami" rel="nofollow noopener" target="_blank">Twitterはこちら</a><br>
+<a href="http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fqiita.com%2Ftakeharu%2Ffeed" rel="nofollow noopener" target="_blank">Feedlyのフォローはこちら</a></p>
+
+<h1>
+<span id="おすすめの記事" class="fragment"></span><a href="#%E3%81%8A%E3%81%99%E3%81%99%E3%82%81%E3%81%AE%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>おすすめの記事</h1>
+
+<p>入門者がつまづく、thisの挙動を4種類に分けて簡単に学ぶならこれ。Apply, callの挙動までわかる。<br>
+<a href="http://qiita.com/takeharu/items/9935ce476a17d6258e27" id="reference-73e87eaa52f03ddaba0a">JavaScriptの「this」は「4種類」？」</a></p>
+
+<p>JavaScriptでは関数型言語の一部の機能？実践的なJavaScriptの関数型とは。<br>
+<a href="http://qiita.com/takeharu/items/cf98d352ff574c5ac536" id="reference-7e322bc1b5b180d4ae01">JavaScriptで関数型プログラミングの入門</a></p>
+
+<p>主にnodeで使用されている、javascriptの非同期を扱うライブラリ。フロントエンドでもゲーム作りには必須。<br>
+<a href="http://qiita.com/takeharu/items/84ffbee23b8edcbb2e21" id="reference-8b1a6173357816953b67">JavaScriptのasync.jsでwaterfallとseries、parallelの違い</a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -197,23 +1791,154 @@
 <tr>
 	<td rowspan="3"><center>takeharuさんの<br />8位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>544</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/d75f96f81ff83680013f">JavaScriptの配列の使い方まとめ。要素の追加,結合,取得,削除。</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>28</kbd>
+		<a target="_blank" href="https://qiita.com/takeharu/items/4c4d3a6d1c2bf9ea4b39">圧縮を意識したJavaScript</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-11-28 12:10:20</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-07-24 21:10:42</center>
 	</td>
 	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
+		@takeharu<br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[js]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>javascriptのソースコードを圧縮、最適化した場合はどんな感じになるの？<br>
+圧縮、最適化を意識したコードって？<br>
+っていう話です。</p>
+
+<p>簡単にできる事として、<br>
+・ローカル変数に置き換える<br>
+ことが挙げられます。</p>
+
+<h1>
+<span id="圧縮最適化ツールの代表例" class="fragment"></span><a href="#%E5%9C%A7%E7%B8%AE%E6%9C%80%E9%81%A9%E5%8C%96%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AE%E4%BB%A3%E8%A1%A8%E4%BE%8B"><i class="fa fa-link"></i></a>圧縮・最適化ツールの代表例</h1>
+
+<p>Closer CompilerやYUI Compressorの二つが挙げられます。</p>
+
+<h1>
+<span id="圧縮最適化の例" class="fragment"></span><a href="#%E5%9C%A7%E7%B8%AE%E6%9C%80%E9%81%A9%E5%8C%96%E3%81%AE%E4%BE%8B"><i class="fa fa-link"></i></a>圧縮・最適化の例</h1>
+
+<h2>
+<span id="例１" class="fragment"></span><a href="#%E4%BE%8B%EF%BC%91"><i class="fa fa-link"></i></a>例１</h2>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">show</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'a'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">show</span><span class="p">();</span>
+
+<span class="c1">// minify</span>
+<span class="kd">function</span> <span class="nx">show</span><span class="p">(){</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)}</span><span class="nx">show</span><span class="p">();</span>
+</pre></div></div>
+
+<p>これは普通ですね。<br>
+ただこれに対して即時関数を挟むと例２のようになります</p>
+
+<h2>
+<span id="例２" class="fragment"></span><a href="#%E4%BE%8B%EF%BC%92"><i class="fa fa-link"></i></a>例２</h2>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nx">show</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'a'</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">show</span><span class="p">();</span>
+<span class="p">})();</span>
+
+<span class="c1">// minify</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)})();</span>
+</pre></div></div>
+
+<p>minifyを活かすにはローカルスコープの活用が大事です。<br>
+ただ基本的にグローバル変数はminify以前に利用しない方がいいですね。</p>
+
+<h2>
+<span id="例３" class="fragment"></span><a href="#%E4%BE%8B%EF%BC%93"><i class="fa fa-link"></i></a>例３</h2>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">number</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">number</span><span class="o">++</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">number</span><span class="o">++</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">number</span><span class="o">++</span><span class="p">);</span>
+<span class="p">})();</span>
+
+<span class="c1">// minify</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="o">++</span><span class="p">);</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="o">++</span><span class="p">);</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="o">++</span><span class="p">)})();</span>
+</pre></div></div>
+
+<p>ローカル変数は変数名が大幅に簡略化されます。</p>
+
+<h2>
+<span id="例4" class="fragment"></span><a href="#%E4%BE%8B4"><i class="fa fa-link"></i></a>例4</h2>
+
+<p>ローカルスコープ内でオブジェクトのプロパティを使用する際は、<br>
+下記のようにローカル変数に代入し直してからすると、<br>
+minifyを意識した実装ができます。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">test</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">object</span><span class="p">.</span><span class="nx">number</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">object</span><span class="p">.</span><span class="nx">number</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">test</span><span class="p">({</span>
+  <span class="nx">number</span><span class="o">:</span> <span class="mi">5</span>
+<span class="p">});</span>
+
+<span class="c1">// minify</span>
+<span class="kd">function</span> <span class="nx">test</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">number</span><span class="p">);</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">number</span><span class="p">)}</span><span class="nx">test</span><span class="p">({</span><span class="nx">number</span><span class="o">:</span><span class="mi">5</span><span class="p">});</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>
+<span class="kd">function</span> <span class="nx">test</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">number</span> <span class="o">=</span> <span class="nx">object</span><span class="p">.</span><span class="nx">number</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">number</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">number</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">test</span><span class="p">({</span>
+  <span class="nx">number</span><span class="o">:</span> <span class="mi">5</span>
+<span class="p">});</span>
+
+<span class="c1">// minify</span>
+<span class="kd">function</span> <span class="nx">test</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span><span class="nx">a</span><span class="o">=</span><span class="nx">a</span><span class="p">.</span><span class="nx">number</span><span class="p">;</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)}</span><span class="nx">test</span><span class="p">({</span><span class="nx">number</span><span class="o">:</span><span class="mi">5</span><span class="p">});</span>
+</pre></div></div>
+
+<h1>
+<span id="ブラウザでminifyお試し" class="fragment"></span><a href="#%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%A7minify%E3%81%8A%E8%A9%A6%E3%81%97"><i class="fa fa-link"></i></a>ブラウザでminifyお試し</h1>
+
+<p>下記でブラウザから実際にminifyを試す事ができます。<br>
+<a href="http://closure-compiler.appspot.com/home" rel="nofollow noopener" target="_blank">closure-compiler</a></p>
+
+<h1>
+<span id="外部アカウント" class="fragment"></span><a href="#%E5%A4%96%E9%83%A8%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>外部アカウント</h1>
+
+<p>技術情報のみつぶやくアカウント作成しました。JavaScriptは最新情報も追っていきます。<br>
+<a href="https://twitter.com/takeharumikami" rel="nofollow noopener" target="_blank">Twitterはこちら</a><br>
+<a href="http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fqiita.com%2Ftakeharu%2Ffeed" rel="nofollow noopener" target="_blank">Feedlyのフォローはこちら</a></p>
+
+<h1>
+<span id="おすすめの記事" class="fragment"></span><a href="#%E3%81%8A%E3%81%99%E3%81%99%E3%82%81%E3%81%AE%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>おすすめの記事</h1>
+
+<p>入門者がつまづく、thisの挙動を4種類に分けて簡単に学ぶならこれ。Apply, callの挙動までわかる。<br>
+<a href="http://qiita.com/takeharu/items/9935ce476a17d6258e27" id="reference-30b5eedefcea87a48221">JavaScriptの「this」は「4種類」？」</a></p>
+
+<p>JavaScriptはオブジェクト指向？プロトタイプベースのオブジェクト指向を学ぶなら。<br>
+<a href="http://qiita.com/takeharu/items/809114f943208aaf55b3" id="reference-88d09617111334dd3038">JavaScriptのプロトタイプからオブジェクト指向を学ぶ</a></p>
+
+<p>関数型プログラミングを強力に後押しするライブラリ、Underscore.jsとlodashとは。<br>
+<a href="http://qiita.com/takeharu/items/7d4ead780710c627172e" id="reference-b4c855cb3996958b982c">JavaScriptで関数型プログラミングを強力に後押しするUnderscore.jsのおすすめメソッド12選(lodashもあるよ)</a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -221,239 +1946,89 @@
 <tr>
 	<td rowspan="3"><center>takeharuさんの<br />9位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>542</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/4975031faf6f7baf077a">JavaScriptでクロージャ入門。関数はすべてクロージャ？</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-07-22 21:53:01</center>
-	</td>
-	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
-	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Node.js]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>takeharuさんの<br />10位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>539</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/010752b1427773558f7c">JavaScriptのクラス？コンストラクタ？？</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-04-10 20:04:28</center>
-	</td>
-	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
-	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Node.js]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>takeharuさんの<br />11位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>437</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/cf98d352ff574c5ac536">JavaScriptで関数型プログラミングの入門</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-03-31 07:58:25</center>
-	</td>
-	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
-	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Node.js]</b> <b>[関数型言語]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>takeharuさんの<br />12位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>255</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/c23998d22903e6d3c1d9">ECMAScript6のアロー関数とPromiseまとめ - JavaScript</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-12-15 09:06:20</center>
-	</td>
-	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
-	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Node.js]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>takeharuさんの<br />13位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>224</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/84ffbee23b8edcbb2e21">JavaScriptのasync.jsでwaterfallとseries、parallelの違い</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-08-07 10:03:43</center>
-	</td>
-	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
-	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Node.js]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>takeharuさんの<br />14位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>80</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/e273313e228abde889bc">Node.js超入門</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-03-24 07:58:35</center>
-	</td>
-	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
-	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Node.js]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>takeharuさんの<br />15位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>63</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/f826492f53c1430ad372">Cocos2d-x 3.0でスプライトの生成、移動、削除、イベント</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-15 09:48:58</center>
-	</td>
-	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
-	</td>
-	<td style="width:300px;"><b>[C++]</b> <b>[cocos2d-x]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>takeharuさんの<br />16位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>29</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/f866f2b0dfc5665acb45">Dartを簡単に試してみる Try Dartlang or Dart Editor or Chrome Dev Editor</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-07-14 08:57:20</center>
-	</td>
-	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
-	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Chrome]</b> <b>[google]</b> <b>[Dart]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>takeharuさんの<br />17位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>28</kbd>
-		<a target="_blank" href="https://qiita.com/takeharu/items/4c4d3a6d1c2bf9ea4b39">圧縮を意識したJavaScript</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-07-24 21:10:42</center>
-	</td>
-	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
-	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>takeharuさんの<br />18位</center></td>
-	<td colspan="3">
 		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>15</kbd>
 		<a target="_blank" href="https://qiita.com/takeharu/items/dd65d3b266704ca57538">JavaScriptの「関数」は「オブジェクト」</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-04-12 22:18:21</center>
 	</td>
 	<td style="width:200px;">
-		@takeharu<!--(<a target="_blank" href="http://qiita.com/takeharu">Qiita内の18件の記事</a>)--><br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
+		@takeharu<br />(サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10962/profile-images/1510984508">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Node.js]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Node.js]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="javascriptの関数はオブジェクト" class="fragment"></span><a href="#javascript%E3%81%AE%E9%96%A2%E6%95%B0%E3%81%AF%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88"><i class="fa fa-link"></i></a>JavaScriptの「関数」は「オブジェクト」</h1>
+
+<p>JavaScriptでは関数もオブジェクトなんです。</p>
+
+<p>はて．．．<br>
+どういうこっちゃ。。</p>
+
+<p>関数と言えば下記ですよね。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">func</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'ABC'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">func</span><span class="p">();</span> <span class="c1">// ABC</span>
+</pre></div></div>
+
+<p>コードでみると、</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">func</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'ABC'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">func</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nx">func</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">func</span><span class="p">();</span> <span class="c1">// ABC</span>
+<span class="nx">func</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span> <span class="c1">// 1</span>
+</pre></div></div>
+
+<p>といった具合です。</p>
+
+<p>関数もオブジェクトなので、<br>
+オブジェクト同様プロパティを持ててしまいます。</p>
+
+<p>関数は実行可能なオブジェクト、<br>
+使い方によったら便利です。</p>
+
+<h1>
+<span id="外部アカウント" class="fragment"></span><a href="#%E5%A4%96%E9%83%A8%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>外部アカウント</h1>
+
+<p>技術情報のみつぶやくアカウント作成しました。JavaScriptは最新情報も追っていきます。<br>
+<a href="https://twitter.com/takeharumikami" rel="nofollow noopener" target="_blank">Twitterはこちら</a><br>
+<a href="http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fqiita.com%2Ftakeharu%2Ffeed" rel="nofollow noopener" target="_blank">Feedlyのフォローはこちら</a></p>
+
+<h1>
+<span id="おすすめの記事" class="fragment"></span><a href="#%E3%81%8A%E3%81%99%E3%81%99%E3%82%81%E3%81%AE%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>おすすめの記事</h1>
+
+<p>入門者がつまづく、thisの挙動を4種類に分けて簡単に学ぶならこれ。Apply, callの挙動までわかる。<br>
+<a href="http://qiita.com/takeharu/items/9935ce476a17d6258e27" id="reference-0fef423898fe12bc7833">JavaScriptの「this」は「4種類」？」</a></p>
+
+<p>JavaScriptはオブジェクト指向？プロトタイプベースのオブジェクト指向を学ぶなら。<br>
+<a href="http://qiita.com/takeharu/items/809114f943208aaf55b3" id="reference-1bf5e1aa4dbb4860cf2e">JavaScriptのプロトタイプからオブジェクト指向を学ぶ</a></p>
+
+<p>JavaScriptでは関数はすべてクロージャ。<br>
+<a href="http://qiita.com/takeharu/items/4975031faf6f7baf077a" id="reference-ae66281ee452ffb6ca8e">そもそもクロージャって？JavaScriptでクロージャ入門</a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />

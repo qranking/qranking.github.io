@@ -25,27 +25,682 @@
 <h1>Qiitaいいね数ランキング (kuni-nakaji さんの投稿分)</h1>
 </div><!--class="headerContainer"-->
 <p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
 <table border="1">
 <tr>
 	<td rowspan="3"><center>kuni-nakajiさんの<br />1位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2275</kbd>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2276</kbd>
 		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/5118b23bf2ea44fed96e">httpsだからというだけで安全？調べたら怖くなってきたSSLの話!？</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2014-03-14 16:18:11</center>
 	</td>
 	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
+		@kuni-nakaji<br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
 	</td>
-	<td style="width:300px;"><b>[iPhone]</b> <b>[Linux]</b> <b>[nginx]</b> <b>[CentOS]</b> <b>[Apache]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[iPhone]</b> <b>[Linux]</b> <b>[nginx]</b> <b>[CentOS]</b> <b>[Apache]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="課題" class="fragment"></span><a href="#%E8%AA%B2%E9%A1%8C"><i class="fa fa-link"></i></a>課題</h1>
+
+<p>サイトをを立ち上げるときに当然のごとくSSL証明書をベンダーから購入して設置していたが、いざセキュリティ診断等でチェックしてもらうとSSLについての指摘を何件か受けてみた。なんでだろうと思いながらも、さらに最適なSSL設定は？と聞かれてそういえばあまり昔から手を入れたことなかったなと思い調べてみた</p>
+
+<h1>
+<span id="ssl通信が確立するまでの概要フロー" class="fragment"></span><a href="#ssl%E9%80%9A%E4%BF%A1%E3%81%8C%E7%A2%BA%E7%AB%8B%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7%E3%81%AE%E6%A6%82%E8%A6%81%E3%83%95%E3%83%AD%E3%83%BC"><i class="fa fa-link"></i></a>SSL通信が確立するまでの概要フロー</h1>
+
+<p>SSL通信について再度おさらい</p>
+
+<p><a href="https://camo.qiitausercontent.com/be738ffeae068d63bc67e2c99d6968202ab2d9d0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383732362f37626164633364322d643164612d386565332d333064612d3438343730613335336437302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/be738ffeae068d63bc67e2c99d6968202ab2d9d0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383732362f37626164633364322d643164612d386565332d333064612d3438343730613335336437302e706e67" alt="ssl2.png" title="ssl2.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8726/7badc3d2-d1da-8ee3-30da-48470a353d70.png"></a></p>
+
+<h1>
+<span id="nginxを元にしたsslの設定" class="fragment"></span><a href="#nginx%E3%82%92%E5%85%83%E3%81%AB%E3%81%97%E3%81%9Fssl%E3%81%AE%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>Nginxを元にしたSSLの設定</h1>
+
+<p>nginxの<a href="http://nginx.org/ja/docs/http/configuring_https_servers.html" rel="nofollow noopener" target="_blank">HTTPS サーバの設定</a>を参考に、たった２行だけどSSLを考えてみる。書き方は違えどもapacheも概念は一緒のはず。</p>
+
+<div class="code-frame" data-lang="Nginx"><div class="highlight"><pre><span></span><span class="k">ssl_protocols</span>        <span class="s">SSLv3</span> <span class="s">TLSv1</span><span class="p">;</span>
+<span class="k">ssl_ciphers</span>          <span class="s">HIGH:!ADH:!MD5</span><span class="p">;</span>
+</pre></div></div>
+
+<h1>
+<span id="sslプロトコルの種類を確認" class="fragment"></span><a href="#ssl%E3%83%97%E3%83%AD%E3%83%88%E3%82%B3%E3%83%AB%E3%81%AE%E7%A8%AE%E9%A1%9E%E3%82%92%E7%A2%BA%E8%AA%8D"><i class="fa fa-link"></i></a>SSLプロトコルの種類を確認</h1>
+
+<p><a href="http://ja.wikipedia.org/wiki/Transport_Layer_Security" rel="nofollow noopener" target="_blank">wiki</a>よりプロトコルの種類を確認してみる。</p>
+
+<table>
+<thead>
+<tr>
+<th>略称</th>
+<th>正式名称</th>
+<th>開発元</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSL</td>
+<td>Secure Socket Layer</td>
+<td>ネットスケープコミュニケーション</td>
+</tr>
+<tr>
+<td>TLS</td>
+<td>Transport Layer Security</td>
+<td>IETF</td>
+</tr>
+</tbody>
+</table>
+
+<p>バージョン毎の概要を確認してみる。</p>
+
+<table>
+<thead>
+<tr>
+<th>バージョン</th>
+<th style="text-align: center">安全性</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSL1.0</td>
+<td style="text-align: center">✕</td>
+<td>最初のSSLとして設計したが、設計レビューの時点でプロトコルの脆弱性が発見されたため破棄されている。</td>
+</tr>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc6176" rel="nofollow noopener" target="_blank">SSL2.0</a></td>
+<td style="text-align: center">✕</td>
+<td>SSL1.0の問題を修正して設計後、1994年にSSL2.0として発表。その後、いくつか脆弱性が発見されてSSL3.0が登場するが、未使用でもSSL2.0が有効な状態の場合に提示する最弱のアルゴリズムを使用させるダウングレード攻撃などを受ける可能性があるので、明示的に無効にする必要がある。</td>
+</tr>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc7568" rel="nofollow noopener" target="_blank">SSL3.0</a></td>
+<td style="text-align: center">✕</td>
+<td>SSL2.0の問題を修正して機能追加も行い1995年にSSL3.0として発表。ただ、古くなってきている。CVE-2014-3566で脆弱性が発生したため明示的に無効にする必要がある。</td>
+</tr>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc2246" rel="nofollow noopener" target="_blank">TLS1.0</a></td>
+<td style="text-align: center">△</td>
+<td>SSL3.0とTLS1.0の両者間には正確な互換性はないがほぼ同じ。CVE-2011-3389(BEAST)による一部脆弱性を含む。</td>
+</tr>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc4346" rel="nofollow noopener" target="_blank">TLS1.1</a></td>
+<td style="text-align: center">◯</td>
+<td>TLS 1.0からの変更点は、新しく発見された攻撃手法に対する耐性の強化が中心である。</td>
+</tr>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc5246" rel="nofollow noopener" target="_blank">TLS1.2</a></td>
+<td style="text-align: center">◎</td>
+<td>ハッシュのアルゴリズムにSHA-256が追加されたほか、ブロック暗号について、従来のCBCモードだけではなく、GCM、CCMといった認証付き暗号が利用可能となった。</td>
+</tr>
+<tr>
+<td><a href="https://tlswg.github.io/tls13-spec/" rel="nofollow noopener" target="_blank">TLS1.3</a></td>
+<td style="text-align: center">?</td>
+<td>[ドラフト]インターネット環境の変化とTLS1.2までの暗号化強度不足を改善するため2016年中に仕様化完了を目指している(らしい)</td>
+</tr>
+</tbody>
+</table>
+
+<p>そのため、SSLv1 / SSLv2 / SSLv3 は脆弱性があるので、 <strong>現時点で使用できるものはTLSv1以上</strong></p>
+
+<h1>
+<span id="ssl_ciphersについて調べてみる" class="fragment"></span><a href="#ssl_ciphers%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E8%AA%BF%E3%81%B9%E3%81%A6%E3%81%BF%E3%82%8B"><i class="fa fa-link"></i></a>SSL_Ciphersについて調べてみる...</h1>
+
+<p><code>HIGH:!ADH:!MD5;</code>と書いてはあるものの、「HIGHグループでADHとMD5を使わない」という読み方であってるのか？調べてみると<a href="https://www.openssl.org/docs/apps/ciphers.html" rel="nofollow noopener" target="_blank">OpenSSL</a>で確認出来るらしい</p>
+
+<p><code>$ openssl ciphers -v 'HIGH:!ADH:!MD5;'</code></p>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">result</span></div>
+<div class="highlight"><pre><span></span>DHE-RSA-AES256-SHA      SSLv3 <span class="nv">Kx</span><span class="o">=</span>DH       <span class="nv">Au</span><span class="o">=</span>RSA  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">256</span><span class="o">)</span>  <span class="nv">Mac</span><span class="o">=</span>SHA1
+DHE-DSS-AES256-SHA      SSLv3 <span class="nv">Kx</span><span class="o">=</span>DH       <span class="nv">Au</span><span class="o">=</span>DSS  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">256</span><span class="o">)</span>  <span class="nv">Mac</span><span class="o">=</span>SHA1
+DHE-RSA-CAMELLIA256-SHA SSLv3 <span class="nv">Kx</span><span class="o">=</span>DH       <span class="nv">Au</span><span class="o">=</span>RSA  <span class="nv">Enc</span><span class="o">=</span>Camellia<span class="o">(</span><span class="m">256</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>SHA1
+DHE-DSS-CAMELLIA256-SHA SSLv3 <span class="nv">Kx</span><span class="o">=</span>DH       <span class="nv">Au</span><span class="o">=</span>DSS  <span class="nv">Enc</span><span class="o">=</span>Camellia<span class="o">(</span><span class="m">256</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>SHA1
+AES256-SHA              SSLv3 <span class="nv">Kx</span><span class="o">=</span>RSA      <span class="nv">Au</span><span class="o">=</span>RSA  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">256</span><span class="o">)</span>  <span class="nv">Mac</span><span class="o">=</span>SHA1
+CAMELLIA256-SHA         SSLv3 <span class="nv">Kx</span><span class="o">=</span>RSA      <span class="nv">Au</span><span class="o">=</span>RSA  <span class="nv">Enc</span><span class="o">=</span>Camellia<span class="o">(</span><span class="m">256</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>SHA1
+PSK-AES256-CBC-SHA      SSLv3 <span class="nv">Kx</span><span class="o">=</span>PSK      <span class="nv">Au</span><span class="o">=</span>PSK  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">256</span><span class="o">)</span>  <span class="nv">Mac</span><span class="o">=</span>SHA1
+EDH-RSA-DES-CBC3-SHA    SSLv3 <span class="nv">Kx</span><span class="o">=</span>DH       <span class="nv">Au</span><span class="o">=</span>RSA  <span class="nv">Enc</span><span class="o">=</span>3DES<span class="o">(</span><span class="m">168</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>SHA1
+EDH-DSS-DES-CBC3-SHA    SSLv3 <span class="nv">Kx</span><span class="o">=</span>DH       <span class="nv">Au</span><span class="o">=</span>DSS  <span class="nv">Enc</span><span class="o">=</span>3DES<span class="o">(</span><span class="m">168</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>SHA1
+DES-CBC3-SHA            SSLv3 <span class="nv">Kx</span><span class="o">=</span>RSA      <span class="nv">Au</span><span class="o">=</span>RSA  <span class="nv">Enc</span><span class="o">=</span>3DES<span class="o">(</span><span class="m">168</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>SHA1
+PSK-3DES-EDE-CBC-SHA    SSLv3 <span class="nv">Kx</span><span class="o">=</span>PSK      <span class="nv">Au</span><span class="o">=</span>PSK  <span class="nv">Enc</span><span class="o">=</span>3DES<span class="o">(</span><span class="m">168</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>SHA1
+KRB5-DES-CBC3-SHA       SSLv3 <span class="nv">Kx</span><span class="o">=</span>KRB5     <span class="nv">Au</span><span class="o">=</span>KRB5 <span class="nv">Enc</span><span class="o">=</span>3DES<span class="o">(</span><span class="m">168</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>SHA1
+DHE-RSA-AES128-SHA      SSLv3 <span class="nv">Kx</span><span class="o">=</span>DH       <span class="nv">Au</span><span class="o">=</span>RSA  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">128</span><span class="o">)</span>  <span class="nv">Mac</span><span class="o">=</span>SHA1
+DHE-DSS-AES128-SHA      SSLv3 <span class="nv">Kx</span><span class="o">=</span>DH       <span class="nv">Au</span><span class="o">=</span>DSS  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">128</span><span class="o">)</span>  <span class="nv">Mac</span><span class="o">=</span>SHA1
+DHE-RSA-CAMELLIA128-SHA SSLv3 <span class="nv">Kx</span><span class="o">=</span>DH       <span class="nv">Au</span><span class="o">=</span>RSA  <span class="nv">Enc</span><span class="o">=</span>Camellia<span class="o">(</span><span class="m">128</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>SHA1
+DHE-DSS-CAMELLIA128-SHA SSLv3 <span class="nv">Kx</span><span class="o">=</span>DH       <span class="nv">Au</span><span class="o">=</span>DSS  <span class="nv">Enc</span><span class="o">=</span>Camellia<span class="o">(</span><span class="m">128</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>SHA1
+AES128-SHA              SSLv3 <span class="nv">Kx</span><span class="o">=</span>RSA      <span class="nv">Au</span><span class="o">=</span>RSA  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">128</span><span class="o">)</span>  <span class="nv">Mac</span><span class="o">=</span>SHA1
+CAMELLIA128-SHA         SSLv3 <span class="nv">Kx</span><span class="o">=</span>RSA      <span class="nv">Au</span><span class="o">=</span>RSA  <span class="nv">Enc</span><span class="o">=</span>Camellia<span class="o">(</span><span class="m">128</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>SHA1
+PSK-AES128-CBC-SHA      SSLv3 <span class="nv">Kx</span><span class="o">=</span>PSK      <span class="nv">Au</span><span class="o">=</span>PSK  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">128</span><span class="o">)</span>  <span class="nv">Mac</span><span class="o">=</span>SHA1
+</pre></div>
+</div>
+
+<p>なんかいっぱい出てきた</p>
+
+<h1>
+<span id="暗号方法の内容を１つ１つ確認" class="fragment"></span><a href="#%E6%9A%97%E5%8F%B7%E6%96%B9%E6%B3%95%E3%81%AE%E5%86%85%E5%AE%B9%E3%82%92%EF%BC%91%E3%81%A4%EF%BC%91%E3%81%A4%E7%A2%BA%E8%AA%8D"><i class="fa fa-link"></i></a>暗号方法の内容を１つ１つ確認</h1>
+
+<p>まずは１行目の <code>DHE-RSA-AES256-SHA　　      SSLv3 　Kx=DH　       Au=RSA　  Enc=AES(256)　  Mac=SHA1</code> を読み解いてみる。<a href="http://nzbget.net/Choosing_a_cipher" rel="nofollow noopener" target="_blank">このサイト</a>によると下記のようだ。</p>
+
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>内容</th>
+<th>原文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DHE-RSA-AES256-SHA</td>
+<td>暗号化スイート</td>
+<td>cipher suite name</td>
+</tr>
+<tr>
+<td>kx</td>
+<td>鍵交換をする時のアルゴリズム</td>
+<td>the algorithm used for key exchange</td>
+</tr>
+<tr>
+<td>Au</td>
+<td>鍵認証のためのアルゴリズム</td>
+<td>the algorithm for authentication</td>
+</tr>
+<tr>
+<td>Enc</td>
+<td>暗号化通信に使われる一括暗号化アルゴリズム</td>
+<td>the bulk encryption algorithm</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>メッセージ認証符号</td>
+<td>the message authentication code (MAC) algorithm</td>
+</tr>
+</tbody>
+</table>
+
+<p>いろいろアルゴリズムを使ってるのはわかったもののどこで使ってるんだ？</p>
+
+<h1>
+<span id="それぞれどこで使ってるの" class="fragment"></span><a href="#%E3%81%9D%E3%82%8C%E3%81%9E%E3%82%8C%E3%81%A9%E3%81%93%E3%81%A7%E4%BD%BF%E3%81%A3%E3%81%A6%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>それぞれどこで使ってるの？</h1>
+
+<p><a href="https://camo.qiitausercontent.com/920a5aeba1effc4604078a930ed7c0091ec802bb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383732362f37333262303165342d343030342d333832632d393761662d6635396539623461633064342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/920a5aeba1effc4604078a930ed7c0091ec802bb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383732362f37333262303165342d343030342d333832632d393761662d6635396539623461633064342e706e67" alt="ssl_alg.png" title="ssl_alg.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8726/732b01e4-4004-382c-97af-f59e9b4ac0d4.png"></a></p>
+
+<h1>
+<span id="主な暗号化アルゴリズム" class="fragment"></span><a href="#%E4%B8%BB%E3%81%AA%E6%9A%97%E5%8F%B7%E5%8C%96%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0"><i class="fa fa-link"></i></a>主な暗号化アルゴリズム</h1>
+
+<p>種類がたくさんありますが、一部集めてみました。</p>
+
+<table>
+<thead>
+<tr>
+<th>アルゴリズム</th>
+<th>用途</th>
+<th>ブロック長</th>
+<th>鍵長</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://ja.wikipedia.org/wiki/RSA%E6%9A%97%E5%8F%B7" rel="nofollow noopener" target="_blank">RSA</a></td>
+<td>Au:公開鍵暗号[署名]</td>
+<td></td>
+<td>1024-4096 bit</td>
+<td>[主流] 桁数が大きい合成数の素因数分解問題が困難であることを安全性の根拠とした公開鍵暗号の一つである</td>
+</tr>
+<tr>
+<td><a href="http://ja.wikipedia.org/wiki/Digital_Signature_Algorithm" rel="nofollow noopener" target="_blank">DSA</a></td>
+<td>Au:公開鍵暗号[署名]</td>
+<td></td>
+<td>1024bit</td>
+<td>[まだ少ない?] OpensslでみるとDSSと表記されている。有限体上の離散対数問題の困難性を安全性の根拠としており、現仕様においては有効な攻撃方法が示されたことはないものの、理論上はいまだ署名としての最も高い安全性を満たすことが証明されていない。</td>
+</tr>
+<tr>
+<td><a href="http://ja.wikipedia.org/wiki/%E6%A5%95%E5%86%86%E6%9B%B2%E7%B7%9A%E6%9A%97%E5%8F%B7" rel="nofollow noopener" target="_blank">ECC</a></td>
+<td>Au:公開鍵暗号[署名]</td>
+<td></td>
+<td></td>
+<td>[注目株] EC-DLPを解く準指数関数時間アルゴリズムがまだ見つかっていないため、それが見つかるまでの間は、<a href="http://www.atmarkit.co.jp/ait/articles/1303/21/news005.html" rel="nofollow noopener" target="_blank">ベリサイン</a>によると12分の1の鍵長で、現在主流のRSA 2048の1.5倍の強度を実現できるため同レベルの安全性をより短い鍵で実現でき、処理速度も速いことをメリットとして、ポストRSA暗号として注目されている。</td>
+</tr>
+<tr>
+<td><a href="https://www.ipa.go.jp/security/rfc/RFC2631JA.html" rel="nofollow noopener" target="_blank">DH</a></td>
+<td>Kx:公開鍵暗号[鍵交換]</td>
+<td></td>
+<td></td>
+<td>[主流] DHパラメータは証明書に書かれている物を使う。よって、static DHとも呼ばれる。</td>
+</tr>
+<tr>
+<td><a href="http://en.wikipedia.org/wiki/Diffie-Hellman_key_exchange" rel="nofollow noopener" target="_blank">ECDH</a></td>
+<td>Kx:公開鍵暗号[鍵交換]</td>
+<td></td>
+<td></td>
+<td>[注目株] Elliptic curve Diffie–Hellmanの略。楕円曲線上でDiffie-Hellman(DH)鍵共有を⾏う楕円DH(ECDH)⽅式。PFS(perfect forward secrecy)をサポートしていない。</td>
+</tr>
+<tr>
+<td><a href="http://en.wikipedia.org/wiki/Elliptic_Curve_DSA" rel="nofollow noopener" target="_blank">ECDSA</a></td>
+<td>Kx:公開鍵暗号[鍵交換]</td>
+<td></td>
+<td></td>
+<td>[注目株] Elliptic Curve Digital Signature Algorithmの略。楕円曲線上でDigital Signature Algorithm(DSA)を実現する楕円DSA（ECDSA）⽅式。PFS(perfect forward secrecy)をサポートしていない。</td>
+</tr>
+<tr>
+<td><a href="http://vincent.bernat.im/en/blog/2011-ssl-perfect-forward-secrecy.html" rel="nofollow noopener" target="_blank">ECDHE</a></td>
+<td>Kx:公開鍵暗号[鍵交換]</td>
+<td></td>
+<td></td>
+<td>[注目株]  Ephemeral Elliptic curve Diffie–Hellmanの略。DHパラメータを通信時に動的に作成する。楕円曲線上でDiffie-Hellman(DH)鍵共有を⾏う楕円DH(ECDH)⽅式。EはEphemeral(一時的）を意味している。PFS(perfect forward secrecy)をサポートしている。</td>
+</tr>
+<tr>
+<td><a href="http://en.wikipedia.org/wiki/Data_Encryption_Standard" rel="nofollow noopener" target="_blank">DES</a></td>
+<td>Enc:共通鍵暗号</td>
+<td>64bit</td>
+<td>56bit</td>
+<td>[強度弱] 現代においては十分な強度とは言えなくなっています。並列処理可能なDES破り専用プロセッサも存在し、 資金さえ投入すれば数時間～数日というレベルで解読することができます。</td>
+</tr>
+<tr>
+<td><a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard" rel="nofollow noopener" target="_blank">AES</a></td>
+<td>Enc:共通鍵暗号</td>
+<td>128bit</td>
+<td>128/192/256bit</td>
+<td>[注目株] DESに代わる次世代の暗号標準。暗号強度、高速性に優れてます。</td>
+</tr>
+<tr>
+<td><a href="http://en.wikipedia.org/wiki/RC4" rel="nofollow noopener" target="_blank">RC4</a></td>
+<td>Enc:共通鍵暗号</td>
+<td>可変長</td>
+<td>ストリーム暗号</td>
+<td>[脆弱性あり] RC4はストリーム暗号としては大変広く使われていますが、同時にいろんな脆弱性があることでも知られてきている。WEPやSSL/TLSで広く使われてますが、WEPが脆弱であることが広く知られているのに比べ、SSL/TLSでのRC4はそれほど恐れられていませんでした。</td>
+</tr>
+<tr>
+<td><a href="http://en.wikipedia.org/wiki/MD5" rel="nofollow noopener" target="_blank">MD5</a></td>
+<td>Mac:ハッシュ関数</td>
+<td></td>
+<td></td>
+<td>[脆弱性あり] 任意長メッセージから128ビットの一方向ハッシュ値を生成します。SLOTH攻撃(CVE-2015-7575)による影響があります。</td>
+</tr>
+<tr>
+<td><a href="http://ja.wikipedia.org/wiki/SHA-1" rel="nofollow noopener" target="_blank">SHA-1</a></td>
+<td>Mac:ハッシュ関数</td>
+<td></td>
+<td></td>
+<td>[脆弱性あり] 160ビットメッセージダイジェストアルゴリズム。SLOTH攻撃(CVE-2015-7575)による影響があります。</td>
+</tr>
+<tr>
+<td><a href="https://jp.globalsign.com/sha256/" rel="nofollow noopener" target="_blank">SHA-2</a></td>
+<td>Mac:ハッシュ関数</td>
+<td></td>
+<td></td>
+<td>[主流] 224ビット・256ビット・384ビット・512ビットのメッセージダイジェストアルゴリズム</td>
+</tr>
+<tr>
+<td><a href="https://ja.wikipedia.org/wiki/SHA-3" rel="nofollow noopener" target="_blank">SHA-3</a></td>
+<td>Mac:ハッシュ関数</td>
+<td></td>
+<td></td>
+<td>[次世代?]米国の国立標準技術研究所(NIST)は，2012年10月2日に次世代の暗号学的ハッシュ関数の標準を決めるSHA-3として Keccak を選定した。しかし、その後、SHA-2への有望な攻撃法は2015年8月現在発表されていないため結果としてSHA-2の代替の用意が重要ではなくなるなど、状況が変化している</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="暗号化利用モード" class="fragment"></span><a href="#%E6%9A%97%E5%8F%B7%E5%8C%96%E5%88%A9%E7%94%A8%E3%83%A2%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>暗号化利用モード</h1>
+
+<p><a href="http://en.wikipedia.org/wiki/Block_cipher_modes_of_operation" rel="nofollow noopener" target="_blank">暗号化利用モード</a>とは、ブロック長よりも長いメッセージを暗号化するための方式。</p>
+
+<table>
+<thead>
+<tr>
+<th>略称</th>
+<th>名称</th>
+<th>利用モード</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ECB</td>
+<td>Electronic CodeBook</td>
+<td>秘匿用</td>
+<td>[強度弱]各ブロックを１つずつ暗号化処理をする。最もシンプルな方式</td>
+</tr>
+<tr>
+<td><a href="http://j-net21.smrj.go.jp/develop/digital/entry/001-20120229-01.html" rel="nofollow noopener" target="_blank">CBC</a></td>
+<td>Cipher Block Chaining</td>
+<td>秘匿用</td>
+<td>[脆弱性あり]各平文のブロックは暗号化される前に、前の暗号化ブロックでXORすることを繰り返す。最初のブロックは暗号と無関係なIV(Initialization Vector)を使用して暗号化する。BEAST攻撃によりデータが復号化される可能性あり。</td>
+</tr>
+<tr>
+<td>CTR</td>
+<td>CounTeR</td>
+<td>秘匿用</td>
+<td>[主流]IVではなくカウンターの値をインクリメントしつつブロック暗号処理したものに平文ブロックをXORする。</td>
+</tr>
+<tr>
+<td><a href="http://en.wikipedia.org/wiki/CCM_mode" rel="nofollow noopener" target="_blank">CCM</a></td>
+<td>Counter with CBC-MAC</td>
+<td>認証用</td>
+<td>TLS1.2で使用可能。カウンター (CTR)モードとCBC-MACモードを組み合わせたものであり、前者が暗号化に、後者が認証に用いられる。同一の鍵を暗号化と認証の双方に用いることができることができ、暗号化に用いられたカウンター値が認証で用いられる初期化ベクトルと衝突することがない</td>
+</tr>
+<tr>
+<td><a href="http://en.wikipedia.org/wiki/Galois/Counter_Mode" rel="nofollow noopener" target="_blank">GCM</a></td>
+<td>Galois/Counter Mode</td>
+<td>認証用</td>
+<td>[主流]TLS1.2で使用可能。GCMは認証付き暗号の一つであり、データ保護と認証（完全性確認）の双方に利用できる。遅延、オーバーヘッドが少ないことから、パケット化されたデータの保護に適している。</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="pfsperfect-forward-secrecyについて" class="fragment"></span><a href="#pfsperfect-forward-secrecy%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>PFS(Perfect Forward Secrecy)について</h1>
+
+<p><a href="http://vincent.bernat.im/en/blog/2011-ssl-perfect-forward-secrecy.html" rel="nofollow noopener" target="_blank">SSL/TLS &amp; Perfect Forward Secrecy</a></p>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>略称</th>
+<th>概要</th>
+<th>Kx</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Without forward secrecy</td>
+<td>-</td>
+<td>認証と同じ公開暗号を使用した場合に、攻撃者が暗号化した通信を全部記録していたとすると、後に認証に使用していた秘密鍵が漏洩してしまうと復号化が出来てしまう。</td>
+<td>FS・PFS以外</td>
+<td>AES128-SHA</td>
+</tr>
+<tr>
+<td>Forward Secrecy</td>
+<td>FS</td>
+<td>認証用の鍵と鍵交換用の鍵が異なるので、通信の漏洩の可能性が低くなります。RSA 2048bitと比べるとサーバへのCPU負荷が3.1倍程度に増加するようです。</td>
+<td>DH / ECDH</td>
+<td>DH-RSA-AES128-SHA</td>
+</tr>
+<tr>
+<td>Perfect Forward Secrecy</td>
+<td>PFS</td>
+<td>FSに比べて、一定時間後に定期的に異なる鍵交換を行うため、より漏洩の可能性を低く出来ます。また、RSA 2048bitと比べてもサーバへのCPU負荷は微増のようです。</td>
+<td>DHE / ECDHE</td>
+<td>DHE-RSA-AES128-SHA</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="暗号化方法はたくさんあるけどナニを選べばいいの" class="fragment"></span><a href="#%E6%9A%97%E5%8F%B7%E5%8C%96%E6%96%B9%E6%B3%95%E3%81%AF%E3%81%9F%E3%81%8F%E3%81%95%E3%82%93%E3%81%82%E3%82%8B%E3%81%91%E3%81%A9%E3%83%8A%E3%83%8B%E3%82%92%E9%81%B8%E3%81%B9%E3%81%B0%E3%81%84%E3%81%84%E3%81%AE"><i class="fa fa-link"></i></a>暗号化方法はたくさんあるけどナニを選べばいいの？</h1>
+
+<p><a href="https://www.ssllabs.com/projects/best-practices/index.html" rel="nofollow noopener" target="_blank">SSL/TLS Deployment Best Practices</a> というのがある</p>
+
+<blockquote>
+<p>Use Secure Protocols</p>
+
+<ul>
+<li><p>SSL v2 is insecure and must not be used.</p></li>
+<li><p>SSL v3 is very old and obsolete. Because it lacks some key features and because virtually all clients support TLS 1.0 and better, you should not support SSL v3 unless you have a very good reason.</p></li>
+<li><p>TLS v1.0 is largely still secure; we do not know of major security ﬂaws when they are used for protocols other than HTTP. When used with HTTP, it can almost be made secure with careful conﬁguration.</p></li>
+<li><p>TLS v1.1 and v1.2 are without known security issues.</p></li>
+</ul>
+</blockquote>
+
+<p><strong><em>SSLプロトコル</em></strong></p>
+
+<ul>
+<li>SSLv2は使用しない</li>
+<li>SSLv3は非常に古く廃止されています。いくつかの主要機能が不足しており、事実上すべてのクライアントがTLS1.0をサポートしている。そのため、よっぽど良い理由がない限りはSSLv3をサポートするべきではない</li>
+<li>TLS v1.0の大部分はまだ安全です。HTTPを使用するときに、キチンと設定をすればセキュアに出来る</li>
+<li>TLS v1.1 とTLS v1.2はセキュリティに関する問題が発見されていない</li>
+</ul>
+
+<blockquote>
+<p>Use Secure Cipher Suites</p>
+
+<ul>
+<li><p>Anonymous Difﬁe-Hellman (ADH) suites do not provide authentication.</p></li>
+<li><p>NULL cipher suites provide no encryption.</p></li>
+<li><p>Export key exchange suites use authentication that can easily be broken.</p></li>
+<li><p>Suites with weak ciphers (typically of 40 and 56 bits) use encryption that can easily be broken.</p></li>
+<li><p>RC4 is weaker than previously thought. You should remove support for this cipher in the near future.</p></li>
+<li><p>3DES provides only 108 bits of security (or 112, depending on the source), which is below the<br>
+recommended minimum of 128 bits. You should remove support for this cipher in the near future.</p></li>
+</ul>
+</blockquote>
+
+<p><strong><em>暗号化スイート</em></strong></p>
+
+<ul>
+<li>ADH(Anonymous Diffie-Hellman)は認証機能を提供していない</li>
+<li>Null暗号化スイートは暗号化しない</li>
+<li>Export鍵交換は簡単に解除される認証機能を使っている</li>
+<li>特に40, 56bitの弱い暗号スイートは簡単に暗号化を解除される</li>
+<li>RC4は以前考えられてたよりも弱い。近い将来、サポート対象外にするべき。</li>
+<li>3DESは108または112bitsしか提供していない。最低でも128bits以上が推奨されるので、近い将来サポート対象外にするべき。</li>
+</ul>
+
+<h1>
+<span id="セキュリティに余念のない有名企業はどうしているのか" class="fragment"></span><a href="#%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%81%AB%E4%BD%99%E5%BF%B5%E3%81%AE%E3%81%AA%E3%81%84%E6%9C%89%E5%90%8D%E4%BC%81%E6%A5%AD%E3%81%AF%E3%81%A9%E3%81%86%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>セキュリティに余念のない有名企業はどうしているのか？</h1>
+
+<p><a href="http://news.netcraft.com/archives/2013/06/25/ssl-intercepted-today-decrypted-tomorrow.html" rel="nofollow noopener" target="_blank">Netcraft</a>が2013年9月に調査した情報によると下記のような対応状況です。2014年3月にwww.facebook.comを確認したところ、ECDHE-RSA-AES128-GCM-SHAになっていたので各社変わっている可能性はありそうです。</p>
+
+<p><a href="https://camo.qiitausercontent.com/b398a12902c43ed892a419331d0d6376d32b3ed7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383732362f30393130373862622d626136362d363663342d366536362d3731626333386566333737312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b398a12902c43ed892a419331d0d6376d32b3ed7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383732362f30393130373862622d626136362d363663342d366536362d3731626333386566333737312e706e67" alt="ssl_list.png" title="ssl_list.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8726/091078bb-ba66-66c4-6e66-71bc38ef3771.png"></a></p>
+
+<h1>
+<span id="最近発生した主なsslの脆弱性" class="fragment"></span><a href="#%E6%9C%80%E8%BF%91%E7%99%BA%E7%94%9F%E3%81%97%E3%81%9F%E4%B8%BB%E3%81%AAssl%E3%81%AE%E8%84%86%E5%BC%B1%E6%80%A7"><i class="fa fa-link"></i></a>最近発生した主なSSLの脆弱性</h1>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>CVE</th>
+<th>発生日</th>
+<th>概要</th>
+<th>対応概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://blog.zoller.lu/2011/09/beast-summary-tls-cbc-countermeasures.html" rel="nofollow noopener" target="_blank">Beast</a></td>
+<td><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2011-3389" rel="nofollow noopener" target="_blank">CVE-2011-3389</a></td>
+<td>2011/9/6</td>
+<td>CBC mode脆弱性</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://d.hatena.ne.jp/Kango/20140410/1397139257" rel="nofollow noopener" target="_blank">TLS heartbleed</a></td>
+<td><a href="https://www.openssl.org/news/secadv_20140407.txt" rel="nofollow noopener" target="_blank">CVE-2014-0160</a></td>
+<td>2014/4/7</td>
+<td>TLS脆弱性</td>
+<td>opensslをupdate</td>
+</tr>
+<tr>
+<td><a href="http://d.hatena.ne.jp/Kango/touch/20140605/1401978480" rel="nofollow noopener" target="_blank">CCS injection</a></td>
+<td><a href="https://www.openssl.org/news/secadv_20140605.txt" rel="nofollow noopener" target="_blank">CVE-2014-0224</a></td>
+<td>2014/6/5</td>
+<td>CCS脆弱性</td>
+<td>opensslをupdate</td>
+</tr>
+<tr>
+<td><a href="http://googleonlinesecurity.blogspot.jp/2014/10/this-poodle-bites-exploiting-ssl-30.html" rel="nofollow noopener" target="_blank">POODLE</a></td>
+<td><a href="https://access.redhat.com/security/cve/CVE-2014-3566" rel="nofollow noopener" target="_blank">CVE-2014-3566</a></td>
+<td>2014/10/14</td>
+<td>SSLv3脆弱性</td>
+<td>SSLv3を無効にする</td>
+</tr>
+<tr>
+<td><a href="https://jvn.jp/vu/JVNVU95877131/index.html" rel="nofollow noopener" target="_blank">複数脆弱性</a></td>
+<td><a href="https://www.openssl.org/news/secadv_20150319.txt" rel="nofollow noopener" target="_blank">CVE-2015-0291等(全14個)</a></td>
+<td>2015/3/19</td>
+<td>複数脆弱性対応</td>
+<td>opensslをupdate</td>
+</tr>
+<tr>
+<td><a href="http://d.hatena.ne.jp/jovi0608/20150710/1436521488" rel="nofollow noopener" target="_blank">Altチェイン証明書偽造</a></td>
+<td><a href="https://mta.openssl.org/pipermail/openssl-announce/2015-July/000037.html" rel="nofollow noopener" target="_blank">CVE-2015-1793</a></td>
+<td>2015/7/6</td>
+<td>証明書偽造</td>
+<td>opensslをupdate</td>
+</tr>
+<tr>
+<td><a href="http://d.hatena.ne.jp/jovi0608/20160113/1452649563" rel="nofollow noopener" target="_blank">SLOTH攻撃</a></td>
+<td><a href="https://access.redhat.com/articles/2112261" rel="nofollow noopener" target="_blank">CVE-2015-7575</a></td>
+<td>2016/1/8</td>
+<td>TLS脆弱性(ハッシュ衝突)</td>
+<td><a href="https://nakedsecurity.sophos.com/2016/01/08/the-sloth-attacks-why-laziness-about-cryptography-puts-security-at-risk/" rel="nofollow noopener" target="_blank">MD5とSHA-1を使用しない</a></td>
+</tr>
+<tr>
+<td><a href="http://d.hatena.ne.jp/Kango/20160301/1456849603" rel="nofollow noopener" target="_blank">DROWN</a></td>
+<td><a href="https://mta.openssl.org/pipermail/openssl-announce/2016-March/000066.html" rel="nofollow noopener" target="_blank">CVE-2016-0800</a></td>
+<td>2016/3/1</td>
+<td>クロスプロトコル攻撃</td>
+<td>SSLv2を無効にする</td>
+</tr>
+<tr>
+<td><a href="https://sweet32.info/" rel="nofollow noopener" target="_blank">SWEET32</a></td>
+<td><a href="https://access.redhat.com/security/cve/cve-2016-2183" rel="nofollow noopener" target="_blank">CVE-2016-2183</a></td>
+<td>2016/8/24</td>
+<td><a href="https://ja.wikipedia.org/wiki/%E8%AA%95%E7%94%9F%E6%97%A5%E6%94%BB%E6%92%83" rel="nofollow noopener" target="_blank">誕生日攻撃</a></td>
+<td>3DESなど64bitsブロック暗号の停止</td>
+</tr>
+<tr>
+<td><a href="https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html" rel="nofollow noopener" target="_blank">SHAttered</a></td>
+<td><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2005-4900" rel="nofollow noopener" target="_blank">CVE-2005-4900</a></td>
+<td>2017/2/23</td>
+<td><a href="https://shattered.io/" rel="nofollow noopener" target="_blank">ハッシュ衝突攻撃</a></td>
+<td>SHA-256, SHA-3への移行</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="結局今のところどのような設定が良さそうか" class="fragment"></span><a href="#%E7%B5%90%E5%B1%80%E4%BB%8A%E3%81%AE%E3%81%A8%E3%81%93%E3%82%8D%E3%81%A9%E3%81%AE%E3%82%88%E3%81%86%E3%81%AA%E8%A8%AD%E5%AE%9A%E3%81%8C%E8%89%AF%E3%81%95%E3%81%9D%E3%81%86%E3%81%8B"><i class="fa fa-link"></i></a>結局今のところどのような設定が良さそうか</h1>
+
+<p>最初に記載したNginxの公式にサイトに書いてあったよりも、脆弱性があるまたは弱い暗号化を除いて、明示的に使用する暗号化スイートを設定するのが良さそう。 <strong><em>あくまで例なのでサイトに合ったものを設定してください。</em></strong></p>
+
+<ul>
+<li>最新版のopenssl [CVE-2014-0160 / CVE-2014-0224]</li>
+<li>128bit以上</li>
+<li>Enc: AES</li>
+<li>Au: RSA</li>
+<li>Kx: DH/ECDH/ECDHE (FS以上)</li>
+<li>暗号化利用モード: GCM</li>
+<li>SSLv3以下を無効 [CVE-2014-3566]</li>
+</ul>
+
+<div class="code-frame" data-lang="Nginx"><div class="highlight"><pre><span></span><span class="k">ssl</span> <span class="no">on</span><span class="p">;</span>
+<span class="k">ssl_prefer_server_ciphers</span> <span class="no">on</span><span class="p">;</span>
+<span class="k">ssl_protocols</span> <span class="s">TLSv1</span> <span class="s">TLSv1.1</span> <span class="s">TLSv1.2</span><span class="p">;</span>
+<span class="k">ssl_ciphers</span> <span class="s">ECDHE+RSAGCM:ECDH+AESGCM:</span>
+            <span class="s">DH+AESGCM:ECDH+AES256:DH+AES256:</span>
+            <span class="s">ECDH+AES128:DH+AES:</span>
+            <span class="s">!EXPORT:!DES:!3DES:!MD5:!DSS</span><span class="p">;</span>
+</pre></div></div>
+
+<h3>
+<span id="対応暗号スイートを確認" class="fragment"></span><a href="#%E5%AF%BE%E5%BF%9C%E6%9A%97%E5%8F%B7%E3%82%B9%E3%82%A4%E3%83%BC%E3%83%88%E3%82%92%E7%A2%BA%E8%AA%8D"><i class="fa fa-link"></i></a>対応暗号スイートを確認</h3>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$openssl ciphers -v 'ECDHE+RSAGCM:ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:!EXPORT:!DES:!3DES:!MD5:!DSS'
+</pre></div></div>
+
+<p>ローカルだとこのような感じで出てきた</p>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">result</span></div>
+<div class="highlight"><pre><span></span>ECDHE-RSA-AES256-GCM-SHA384   TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH       <span class="nv">Au</span><span class="o">=</span>RSA   <span class="nv">Enc</span><span class="o">=</span>AESGCM<span class="o">(</span><span class="m">256</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>AEAD
+ECDHE-ECDSA-AES256-GCM-SHA384 TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH       <span class="nv">Au</span><span class="o">=</span>ECDSA <span class="nv">Enc</span><span class="o">=</span>AESGCM<span class="o">(</span><span class="m">256</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>AEAD
+ECDH-RSA-AES256-GCM-SHA384    TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH/RSA   <span class="nv">Au</span><span class="o">=</span>ECDH  <span class="nv">Enc</span><span class="o">=</span>AESGCM<span class="o">(</span><span class="m">256</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>AEAD
+ECDH-ECDSA-AES256-GCM-SHA384  TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH/ECDSA <span class="nv">Au</span><span class="o">=</span>ECDH  <span class="nv">Enc</span><span class="o">=</span>AESGCM<span class="o">(</span><span class="m">256</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>AEAD
+ECDHE-RSA-AES128-GCM-SHA256   TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH       <span class="nv">Au</span><span class="o">=</span>RSA   <span class="nv">Enc</span><span class="o">=</span>AESGCM<span class="o">(</span><span class="m">128</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>AEAD
+ECDHE-ECDSA-AES128-GCM-SHA256 TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH       <span class="nv">Au</span><span class="o">=</span>ECDSA <span class="nv">Enc</span><span class="o">=</span>AESGCM<span class="o">(</span><span class="m">128</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>AEAD
+ECDH-RSA-AES128-GCM-SHA256    TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH/RSA   <span class="nv">Au</span><span class="o">=</span>ECDH  <span class="nv">Enc</span><span class="o">=</span>AESGCM<span class="o">(</span><span class="m">128</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>AEAD
+ECDH-ECDSA-AES128-GCM-SHA256  TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH/ECDSA <span class="nv">Au</span><span class="o">=</span>ECDH  <span class="nv">Enc</span><span class="o">=</span>AESGCM<span class="o">(</span><span class="m">128</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>AEAD
+DHE-RSA-AES256-GCM-SHA384     TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>DH         <span class="nv">Au</span><span class="o">=</span>RSA   <span class="nv">Enc</span><span class="o">=</span>AESGCM<span class="o">(</span><span class="m">256</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>AEAD
+DHE-RSA-AES128-GCM-SHA256     TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>DH         <span class="nv">Au</span><span class="o">=</span>RSA   <span class="nv">Enc</span><span class="o">=</span>AESGCM<span class="o">(</span><span class="m">128</span><span class="o">)</span> <span class="nv">Mac</span><span class="o">=</span>AEAD
+ECDHE-RSA-AES256-SHA384       TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH       <span class="nv">Au</span><span class="o">=</span>RSA   <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">256</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA384
+ECDHE-ECDSA-AES256-SHA384     TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH       <span class="nv">Au</span><span class="o">=</span>ECDSA <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">256</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA384
+ECDHE-RSA-AES256-SHA          SSLv3   <span class="nv">Kx</span><span class="o">=</span>ECDH       <span class="nv">Au</span><span class="o">=</span>RSA   <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">256</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA1
+ECDHE-ECDSA-AES256-SHA        SSLv3   <span class="nv">Kx</span><span class="o">=</span>ECDH       <span class="nv">Au</span><span class="o">=</span>ECDSA <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">256</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA1
+ECDH-RSA-AES256-SHA384        TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH/RSA   <span class="nv">Au</span><span class="o">=</span>ECDH  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">256</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA384
+ECDH-ECDSA-AES256-SHA384      TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH/ECDSA <span class="nv">Au</span><span class="o">=</span>ECDH  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">256</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA384
+ECDH-RSA-AES256-SHA           SSLv3   <span class="nv">Kx</span><span class="o">=</span>ECDH/RSA   <span class="nv">Au</span><span class="o">=</span>ECDH  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">256</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA1
+ECDH-ECDSA-AES256-SHA         SSLv3   <span class="nv">Kx</span><span class="o">=</span>ECDH/ECDSA <span class="nv">Au</span><span class="o">=</span>ECDH  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">256</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA1
+DHE-RSA-AES256-SHA256         TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>DH         <span class="nv">Au</span><span class="o">=</span>RSA   <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">256</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA256
+DHE-RSA-AES256-SHA            SSLv3   <span class="nv">Kx</span><span class="o">=</span>DH         <span class="nv">Au</span><span class="o">=</span>RSA   <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">256</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA1
+ECDHE-RSA-AES128-SHA256       TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH       <span class="nv">Au</span><span class="o">=</span>RSA   <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">128</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA256
+ECDHE-ECDSA-AES128-SHA256     TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH       <span class="nv">Au</span><span class="o">=</span>ECDSA <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">128</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA256
+ECDHE-RSA-AES128-SHA          SSLv3   <span class="nv">Kx</span><span class="o">=</span>ECDH       <span class="nv">Au</span><span class="o">=</span>RSA   <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">128</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA1
+ECDHE-ECDSA-AES128-SHA        SSLv3   <span class="nv">Kx</span><span class="o">=</span>ECDH       <span class="nv">Au</span><span class="o">=</span>ECDSA <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">128</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA1
+ECDH-RSA-AES128-SHA256        TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH/RSA   <span class="nv">Au</span><span class="o">=</span>ECDH  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">128</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA256
+ECDH-ECDSA-AES128-SHA256      TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>ECDH/ECDSA <span class="nv">Au</span><span class="o">=</span>ECDH  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">128</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA256
+ECDH-RSA-AES128-SHA           SSLv3   <span class="nv">Kx</span><span class="o">=</span>ECDH/RSA   <span class="nv">Au</span><span class="o">=</span>ECDH  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">128</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA1
+ECDH-ECDSA-AES128-SHA         SSLv3   <span class="nv">Kx</span><span class="o">=</span>ECDH/ECDSA <span class="nv">Au</span><span class="o">=</span>ECDH  <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">128</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA1
+DHE-RSA-AES128-SHA256         TLSv1.2 <span class="nv">Kx</span><span class="o">=</span>DH         <span class="nv">Au</span><span class="o">=</span>RSA   <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">128</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA256
+DHE-RSA-AES128-SHA            SSLv3   <span class="nv">Kx</span><span class="o">=</span>DH         <span class="nv">Au</span><span class="o">=</span>RSA   <span class="nv">Enc</span><span class="o">=</span>AES<span class="o">(</span><span class="m">128</span><span class="o">)</span>    <span class="nv">Mac</span><span class="o">=</span>SHA1
+</pre></div>
+</div>
+
+<p>Apacheの場合はこのような感じになると思う(Apache 2.4以降ではSSLv2が除外)</p>
+
+<div class="code-frame" data-lang="Apache"><div class="highlight"><pre><span></span><span class="nb">SSLProtocol</span> <span class="k">ALL</span> -SSLv3
+<span class="nb">SSLHonorCipherOrder</span> <span class="k">On</span>
+<span class="nb">SSLCipherSuite</span> ECDHE+RSAGCM:ECDH+AESGCM:
+               <span class="err">DH+AESGCM:ECDH+AES256:DH+AES256:</span>
+               <span class="err">ECDH+AES128:DH+AES:</span>
+               <span class="err">!EXPORT:!DES:!3DES:!MD5:!</span><span class="nb">DSS</span>
+</pre></div></div>
+
+<h3>
+<span id="設定を生成してくれるサービスもある" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9A%E3%82%92%E7%94%9F%E6%88%90%E3%81%97%E3%81%A6%E3%81%8F%E3%82%8C%E3%82%8B%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%82%E3%81%82%E3%82%8B"><i class="fa fa-link"></i></a>設定を生成してくれるサービスもある!</h3>
+
+<ul>
+<li><a href="https://mozilla.github.io/server-side-tls/ssl-config-generator/" rel="nofollow noopener" target="_blank">Mozilla SSL Configuration Generator</a></li>
+</ul>
+
+<h1>
+<span id="sslがキチンと設定されているかテストするには" class="fragment"></span><a href="#ssl%E3%81%8C%E3%82%AD%E3%83%81%E3%83%B3%E3%81%A8%E8%A8%AD%E5%AE%9A%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%83%86%E3%82%B9%E3%83%88%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF"><i class="fa fa-link"></i></a>SSLがキチンと設定されているかテストするには</h1>
+
+<p><a href="https://www.ssllabs.com/ssltest/" rel="nofollow noopener" target="_blank">SSL Server Test</a>または<a href="https://sslcheck.globalsign.com/ja" rel="nofollow noopener" target="_blank">GlobalSign SSL チェック</a>で暗号化強度やブラウザのサポート具合などもチェックできます。また、コンソールでチェックするのに<a href="https://testssl.sh/" rel="nofollow noopener" target="_blank">testssl.sh: Testing TLS/SSL encryption</a>も便利です。<br>
+簡易的には下記でもSSLの状態が確認出来る</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ openssl s_client -host [URL/HOST NAME] -port 443 -ssl3
+</pre></div></div>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>たかが２行設定するのにここまで色々あるとは...まだ関連する技術がありそうなので日々精進が必要そうです。ただ、今回わかったことは単にコピペで設定すると、かなりのセキュリティホールになりそうなのでちゃんとテストして設定しようと。</p>
+
+<h1>
+<span id="参考資料" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E8%B3%87%E6%96%99"><i class="fa fa-link"></i></a>参考資料</h1>
+
+<blockquote>
+<p>電子政府における調達のために参照すべき暗号のリスト（ＣＲＹＰＴＲＥＣ暗号リスト） <br>
+<a href="http://www.cryptrec.go.jp/list.html" class="autolink" rel="nofollow noopener" target="_blank">http://www.cryptrec.go.jp/list.html</a><br>
+<a href="http://search.e-gov.go.jp/servlet/PcmFileDownload?seqNo=0000097652" class="autolink" rel="nofollow noopener" target="_blank">http://search.e-gov.go.jp/servlet/PcmFileDownload?seqNo=0000097652</a></p>
+
+<p>Hardening Your Web Server’s SSL Ciphers<br>
+<a href="https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/" class="autolink" rel="nofollow noopener" target="_blank">https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/</a></p>
+
+<p>IE使うならVista以降が無難、SSLの暗号強度調査結果から<br>
+<a href="http://internet.watch.impress.co.jp/docs/event/iw2009/20091126_331592.html" class="autolink" rel="nofollow noopener" target="_blank">http://internet.watch.impress.co.jp/docs/event/iw2009/20091126_331592.html</a></p>
+
+<p>SSL/TLSでBEASTを恐れてRC4を優先するのは危ない<br>
+<a href="http://tetsutalow.hateblo.jp/entry/2013/04/02/053927" class="autolink" rel="nofollow noopener" target="_blank">http://tetsutalow.hateblo.jp/entry/2013/04/02/053927</a></p>
+</blockquote>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -53,23 +708,274 @@
 <tr>
 	<td rowspan="3"><center>kuni-nakajiさんの<br />2位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>850</kbd>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>851</kbd>
 		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/d11219e4ad7c74ece748">調べなきゃ寝れない！と調べたら余計に寝れなくなったソケットの話</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2014-03-02 15:02:53</center>
 	</td>
 	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
+		@kuni-nakaji<br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
 	</td>
-	<td style="width:300px;"><b>[Linux]</b> <b>[MySQL]</b> <b>[nginx]</b> <b>[CentOS]</b> <b>[Memcached]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Linux]</b> <b>[MySQL]</b> <b>[nginx]</b> <b>[CentOS]</b> <b>[Memcached]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="課題" class="fragment"></span><a href="#%E8%AA%B2%E9%A1%8C"><i class="fa fa-link"></i></a>課題</h1>
+
+<p>最近良く名前を聞くようになったソケット通信が速度が早くて良い的な話をしてたものの、ソケットってそんなに最近出てきたようなことだっけか？と曖昧になったので調べなきゃ寝れない！ということで調べてみた</p>
+
+<h1>
+<span id="プロトコルの種類" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%83%88%E3%82%B3%E3%83%AB%E3%81%AE%E7%A8%AE%E9%A1%9E"><i class="fa fa-link"></i></a>プロトコルの種類</h1>
+
+<p>通信といえばTCP/UDPだろうと再度確認</p>
+
+<table>
+<thead>
+<tr>
+<th>プロトコル</th>
+<th>概要</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TCP/IP</td>
+<td>信頼性が高い</td>
+<td>データグラム(電文)が届いたかどうかを誤りチェックしていて、届いていない場合は再送要求をする。<br>到着順序が保証されていて、到着したデータは並べ替えられる。<br>それらが失敗した場合はエラーになるようになっている</td>
+</tr>
+<tr>
+<td>UDP/IP</td>
+<td>基本的な通信</td>
+<td>データグラム(電文)は一方的に送信され、相手に届いたかどうかのチェック等はしない。<br>エラーの検知はしない。変な受信データもただ破棄されるのみのため、その分単純で高速。</td>
+</tr>
+</tbody>
+</table>
+
+<p>ただ、ソケットの話はここでは出てこない</p>
+
+<h1>
+<span id="ソケットはどこの話か" class="fragment"></span><a href="#%E3%82%BD%E3%82%B1%E3%83%83%E3%83%88%E3%81%AF%E3%81%A9%E3%81%93%E3%81%AE%E8%A9%B1%E3%81%8B"><i class="fa fa-link"></i></a>ソケットはどこの話か？</h1>
+
+<p>ソケットのタイプ<br>
+<a href="https://camo.qiitausercontent.com/f1c46f5df4cc2dc78cfbfae2dc9825f0fb4b4c86/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383732362f66306135366637332d623166352d393562622d386462612d3539643838396537366536322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f1c46f5df4cc2dc78cfbfae2dc9825f0fb4b4c86/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383732362f66306135366637332d623166352d393562622d386462612d3539643838396537366536322e706e67" alt="osi.png" title="osi.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8726/f0a56f73-b1f5-95bb-8dba-59d889e76e62.png"></a></p>
+
+<p>OSI参照モデルではセッション層部分。TCP/UDPより上のレイヤーだった。</p>
+
+<h1>
+<span id="あれソケットって普通の通信じゃね" class="fragment"></span><a href="#%E3%81%82%E3%82%8C%E3%82%BD%E3%82%B1%E3%83%83%E3%83%88%E3%81%A3%E3%81%A6%E6%99%AE%E9%80%9A%E3%81%AE%E9%80%9A%E4%BF%A1%E3%81%98%E3%82%83%E3%81%AD"><i class="fa fa-link"></i></a>あれ？ソケットって普通の通信じゃね？</h1>
+
+<p>ソケットにも種類があるのか調べてみた。</p>
+
+<table>
+<thead>
+<tr>
+<th>ソケット</th>
+<th>概要</th>
+<th>特定方法</th>
+<th>通信箇所</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INETドメイン</td>
+<td>ネットワーク上でマシンを越えてのプロセス間通信</td>
+<td>IPアドレス+ポート番号</td>
+<td>他マシンと通信可</td>
+</tr>
+<tr>
+<td>UNIXドメイン</td>
+<td>同じマシン上で動いているプロセスが通信を行うためのソケット。<br>アドレス・名前空間としてファイルシステムを使用している。<br>ファイルシステム内のinodeとしてプロセスから参照される。</td>
+<td>ファイル名で一致</td>
+<td>自マシンのみ</td>
+</tr>
+</tbody>
+</table>
+
+<p>なるほど、最近ソケット通信、ソケット通信と言ってるのはUNIXドメインソケットの事か！</p>
+
+<h1>
+<span id="unixドメインソケットって何がいいの" class="fragment"></span><a href="#unix%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%BD%E3%82%B1%E3%83%83%E3%83%88%E3%81%A3%E3%81%A6%E4%BD%95%E3%81%8C%E3%81%84%E3%81%84%E3%81%AE"><i class="fa fa-link"></i></a>UNIXドメインソケットって何がいいの？</h1>
+
+<p><a href="http://osnet.cs.binghamton.edu/publications/TR-20070820.pdf" rel="nofollow noopener" target="_blank">Performance Analysis of Various Mechanisms for Inter-process Communication</a>に素晴らしい検証があった。</p>
+
+<blockquote>
+<p>It was hypothesized that pipes would have the highest throughtput due to its limited functionality, since it is half-duplex, but this was not true. For almost all of the data sizes transferred, Unix domain sockets performed better than both TCP sockets and pipes, as can be seen in Figure 1 below.</p>
+
+<p>On some machines, Unix domain sockets reached transfer rates as high as 1500 MB/s. </p>
+</blockquote>
+
+<p><a href="https://camo.qiitausercontent.com/191ba4a618b4744cfe64066c25b458499c8648d7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383732362f61386162366330352d356235612d643935312d633839612d3531303438343663313963382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/191ba4a618b4744cfe64066c25b458499c8648d7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383732362f61386162366330352d356235612d643935312d633839612d3531303438343663313963382e706e67" alt="osnet_cs_binghamton_edu_publications_TR-20070820_pdf-2.png" title="osnet_cs_binghamton_edu_publications_TR-20070820_pdf-2.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8726/a8ab6c05-5b5a-d951-c89a-5104846c19c8.png"></a></p>
+
+<p>UNIXドメインソケットは、TCPソケット(INETドメインソケット)よりも遥かにスループットが優れてるらしい。Solaris(UltraSPARC processor)ではアーキテクチャの違いからUNIXドメインソケットのほうが遅いらしい。</p>
+
+<p>よし、これで寝れる</p>
+
+<p><a href="https://twitter.com/pnoordhuis/status/195614999283109888" rel="nofollow noopener" target="_blank">Redis コア開発者 @pnoordhuis のツイート</a></p>
+
+<blockquote>
+<p>TIL that "an abstract socket address is distinguished by the fact that sun_path[0] is a null byte ('\0')". Anybody knows why this exists?</p>
+</blockquote>
+
+<p>えーと、抽象名前空間ソケット？？まだ、UNIXドメインソケットにも種類があるのか？</p>
+
+<h1>
+<span id="unixドメインソケットの種類" class="fragment"></span><a href="#unix%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%BD%E3%82%B1%E3%83%83%E3%83%88%E3%81%AE%E7%A8%AE%E9%A1%9E"><i class="fa fa-link"></i></a>UNIXドメインソケットの種類</h1>
+
+<p><a href="http://man7.org/linux/man-pages/man7/unix.7.html" rel="nofollow noopener" target="_blank">unix - sockets for local interprocess communication</a></p>
+
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ファイルシステムパス名(pathname)</td>
+<td>きっと一番知られている一般的な手法。<a href="http://linuxjm.sourceforge.jp/html/LDP_man-pages/man2/bind.2.html" rel="nofollow noopener" target="_blank">bind(2)</a>を使用して、NULL終端(\0)されたファイルシステム上のパスに結びつけることができる。ファイルを使用しているため、パーミッションを調整する必要がある。サーバプロセスが終了するときには、<a href="http://linuxjm.sourceforge.jp/html/LDP_man-pages/man2/unlink.2.html" rel="nofollow noopener" target="_blank">unlink(2)</a>で名前を削除し、場合によってはそれが参照しているファイルも削除するのがお作法。</td>
+</tr>
+<tr>
+<td>無名(unnamed)</td>
+<td>
+<a href="http://linuxjm.sourceforge.jp/html/LDP_man-pages/man2/bind.2.html" rel="nofollow noopener" target="_blank">bind(2)</a>を使ってパス名に結び付けることができないストリーム型のソケットは名前を持たない。<a href="http://linuxjm.sourceforge.jp/html/LDP_man-pages/man2/socketpair.2.html" rel="nofollow noopener" target="_blank">socketpair(2)</a>を使うと、名前のついていない CONNECTED なソケットのペアが生成される。fork してファイルディスクリプターを繋ぎ直してあげれば、pipe で実現するのと同じような双方向のプロセス間通信ができる。</td>
+</tr>
+<tr>
+<td>抽象名前空間(abstract)</td>
+<td>sun_pathにファイルシステムのパスではなく、NULLバイト(\0)であることで区別される。NULLバイト以降に名前(文字列)を渡すが、ファイルパス名とは関係ない。ファイルシステムと紐付いていないので、 ファイルシステムのパーミッションなどに関係なくソケット通信できてしまう。Linuxでのみ利用可能。<a href="http://linuxjm.sourceforge.jp/html/LDP_man-pages/man2/unlink.2.html" rel="nofollow noopener" target="_blank">unlink(2)</a>で終了する必要がない。</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="どのunixドメインかを見極めるには" class="fragment"></span><a href="#%E3%81%A9%E3%81%AEunix%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%81%8B%E3%82%92%E8%A6%8B%E6%A5%B5%E3%82%81%E3%82%8B%E3%81%AB%E3%81%AF"><i class="fa fa-link"></i></a>どのUNIXドメインかを見極めるには</h1>
+
+<p><code>$netstat -al --protocol=unix</code> で確認する</p>
+
+<h3>
+<span id="ファイルシステムパス名" class="fragment"></span><a href="#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%83%91%E3%82%B9%E5%90%8D"><i class="fa fa-link"></i></a>ファイルシステムパス名</h3>
+
+<p>I-Node path部分にファイルパス名が表示されている</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Active UNIX domain sockets (only servers)
+Proto RefCnt Flags       Type       State         I-Node Path
+unix  2      [ ACC ]     STREAM     LISTENING     154823 /var/lib/mysql/mysql.sock
+</pre></div></div>
+
+<h3>
+<span id="無名" class="fragment"></span><a href="#%E7%84%A1%E5%90%8D"><i class="fa fa-link"></i></a>無名</h3>
+
+<p>I-Nodeは割り振られるが、pathは表示されない</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Active UNIX domain sockets (only servers)
+Proto RefCnt Flags       Type       State         I-Node Path
+unix  3      [ ]         STREAM     CONNECTED     175322
+</pre></div></div>
+
+<h3>
+<span id="抽象名前空間" class="fragment"></span><a href="#%E6%8A%BD%E8%B1%A1%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93"><i class="fa fa-link"></i></a>抽象名前空間</h3>
+
+<p>I-Node path部分に@がついた名前が表示される</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Active UNIX domain sockets (only servers)
+Proto RefCnt Flags       Type       State         I-Node Path
+unix  2      [ ACC ]     STREAM     LISTENING     6653   @/com/ubuntu/upstart
+</pre></div></div>
+
+<h1>
+<span id="unixドメインソケットをサポートしているサービス" class="fragment"></span><a href="#unix%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%BD%E3%82%B1%E3%83%83%E3%83%88%E3%82%92%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9"><i class="fa fa-link"></i></a>UNIXドメインソケットをサポートしているサービス</h1>
+
+<table>
+<thead>
+<tr>
+<th>ミドルウェア</th>
+<th>概要</th>
+<th>種類</th>
+<th>使用方法</th>
+<th>連携ミドルウェア</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nginx</td>
+<td>web server</td>
+<td>pathname</td>
+<td><a href="http://wiki.nginx.org/HttpUpstreamModule" rel="nofollow noopener" target="_blank">server divective</a></td>
+<td>unicorn, gunicorn, php-fpm, etc...</td>
+</tr>
+<tr>
+<td>Unicorn</td>
+<td>ap server</td>
+<td>pathname</td>
+<td><a href="http://unicorn.bogomips.org/Unicorn/Configurator.html" rel="nofollow noopener" target="_blank">Public Instance Methods</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Mysql</td>
+<td>db server</td>
+<td>pathname</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>KVS</td>
+<td>pathname</td>
+<td><a href="http://redis.io/topics/benchmarks" rel="nofollow noopener" target="_blank">How fast is Redis?</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Memcached</td>
+<td>KVS</td>
+<td>pathname</td>
+<td><a href="http://docs.oracle.com/cd/E17952_01/refman-5.6-en/ha-memcached-using.html" rel="nofollow noopener" target="_blank">Using memcached</a></td>
+<td></td>
+</tr>
+<tr>
+<td>upstart</td>
+<td>deamon</td>
+<td>abstract</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sytemd</td>
+<td>deamon</td>
+<td>abstract</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OS?</td>
+<td>kernelプロセス?</td>
+<td>unnamed</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>ソケット通信は今度からUNIXドメインソケット通信と言うこと(どのマニュアルにもちゃんと書いてあったけど笑)。TCPで接続することばっかりやってきたので、気にもしてなかったがKVSとかの接続はUNIXドメインソケット通信にしたらもう少し効率よく使えるのではないかと。まだまだ、調べたらいろいろありそうなので継続調査。</p>
+
+<p>もう寝ます笑</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -77,23 +983,137 @@
 <tr>
 	<td rowspan="3"><center>kuni-nakajiさんの<br />3位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>589</kbd>
-		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/c07004c7d9e5bb683bc2">ぜんぶTIME_WAITのせいだ！</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>59</kbd>
+		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/881cec9a505b060e02af">意外と知らない古代コマンド(pushd/popd)</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-15 02:39:18</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-02-12 11:37:46</center>
 	</td>
 	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
+		@kuni-nakaji<br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
 	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[PHP]</b> <b>[Linux]</b> <b>[nginx]</b> <b>[CentOS]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Bash]</b> <b>[Linux]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="概要" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>概要</h1>
+
+<p>昔と違ってtabで高速でパスが補完されるのでそんなに需要が減ってきた気もするが、すごい長いパスの時には使えるのではないかと思ったので1976年(<a href="http://en.wikipedia.org/wiki/Pushd_and_popd" rel="nofollow noopener" target="_blank">wikipediaより</a>)より使われているpushd/popdを上げてみる。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">command</th>
+<th style="text-align: left">summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">pushd</td>
+<td style="text-align: left">ディレクトリ位置の記憶</td>
+</tr>
+<tr>
+<td style="text-align: left">popd</td>
+<td style="text-align: left">記憶したディレクトリへ戻る</td>
+</tr>
+<tr>
+<td style="text-align: left">dirs</td>
+<td style="text-align: left">記憶したディレクトリを確認</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="実行" class="fragment"></span><a href="#%E5%AE%9F%E8%A1%8C"><i class="fa fa-link"></i></a>実行</h1>
+
+<h3>
+<span id="ディレクトリ位置の記憶pushd" class="fragment"></span><a href="#%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E4%BD%8D%E7%BD%AE%E3%81%AE%E8%A8%98%E6%86%B6pushd"><i class="fa fa-link"></i></a>ディレクトリ位置の記憶(pushd)</h3>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">pushd</span></div>
+<div class="highlight"><pre><span></span>$ <span class="nb">pwd</span>
+/home
+$ <span class="nb">cd</span> /tmp
+$ <span class="nb">pushd</span> <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+/tmp /tmp
+$ <span class="nb">dirs</span>
+/tmp /tmp
+$ <span class="nb">cd</span> /usr/local
+$ <span class="nb">pushd</span> <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+/usr/local /usr/local /tmp
+$ <span class="nb">cd</span> /var/log
+$ <span class="nb">pushd</span> <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+/var/log /var/log /usr/local /tmp
+</pre></div>
+</div>
+
+<h3>
+<span id="記憶したディレクトリへ戻るpopd" class="fragment"></span><a href="#%E8%A8%98%E6%86%B6%E3%81%97%E3%81%9F%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%81%B8%E6%88%BB%E3%82%8Bpopd"><i class="fa fa-link"></i></a>記憶したディレクトリへ戻る(popd)</h3>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">popd</span></div>
+<div class="highlight"><pre><span></span>$ <span class="nb">pwd</span>
+/var/log
+$ <span class="nb">popd</span>
+/var/log /usr/local /tmp
+$ <span class="nb">pwd</span>
+/var/log
+$ <span class="nb">popd</span>
+/usr/local /tmp
+$ <span class="nb">pwd</span>
+/usr/local
+$ <span class="nb">popd</span>
+/tmp
+$ <span class="nb">pwd</span>
+/tmp
+$ <span class="nb">dirs</span>
+/tmp
+</pre></div>
+</div>
+
+<h1>
+<span id="便利オプション" class="fragment"></span><a href="#%E4%BE%BF%E5%88%A9%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>便利オプション</h1>
+
+<p><code>-v</code> をつけることでいくつ目のディレクトリか見やすくなる</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ <span class="nb">dirs</span> -v
+ <span class="m">0</span>  /usr/local
+ <span class="m">1</span>  /usr/local
+ <span class="m">2</span>  /tmp
+</pre></div></div>
+
+<p>いっぱい記憶した時にいちいちpopdで戻るのが面倒！一気に戻りたいときには<code>pushd +[戻りたい数]</code>が便利</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ <span class="nb">dirs</span> -v
+ <span class="m">0</span>  /var/log
+ <span class="m">1</span>  /var/log
+ <span class="m">2</span>  /usr/local
+ <span class="m">3</span>  /home
+ <span class="m">4</span>  /tmp
+$ <span class="nb">pushd</span> +2
+/usr/local /home /tmp /var/log /var/log
+$ <span class="nb">pwd</span>
+/usr/local
+</pre></div></div>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>aliasもちゃんと使ってあげるともっと便利になるかもしれない</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -101,23 +1121,135 @@
 <tr>
 	<td rowspan="3"><center>kuni-nakajiさんの<br />4位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>587</kbd>
-		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/f29be14be578b5a19d4b">/tmpと/var/tmpの仁義無き戦い</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>33</kbd>
+		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/4ffbc723f2d7cf529479">ansibleのBest Practiceなディレクトリをshellで作る</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-03-30 20:37:48</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-02-19 22:04:07</center>
 	</td>
 	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
+		@kuni-nakaji<br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
 	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[PHP]</b> <b>[ShellScript]</b> <b>[Linux]</b> <b>[CentOS]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Linux]</b> <b>[CentOS]</b> <b>[Ansible]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="課題" class="fragment"></span><a href="#%E8%AA%B2%E9%A1%8C"><i class="fa fa-link"></i></a>課題</h1>
+
+<p><a href="http://docs.ansible.com/playbooks_best_practices.html#directory-layout" rel="nofollow noopener" target="_blank">anslible</a>の公式サイトでBest Practiceな構成が公開されているが、１回作ればそんなに変えるもんじゃないから頑張ってディレクトリ作りそう。。だけど、しばらくは変わらないだろうということでベースのディレクトリをただただ作るshellを作成してみた。</p>
+
+<h1>
+<span id="仕様" class="fragment"></span><a href="#%E4%BB%95%E6%A7%98"><i class="fa fa-link"></i></a>仕様</h1>
+
+<ul>
+<li>BestPracticeをコピペなのでディレクトリ名はほぼ使用できると思いますが、ファイル名は適宜修正してください。</li>
+<li>web/dbはおおよそ必要なのではないかと用意したが適宜追加してください</li>
+</ul>
+
+<h1>
+<span id="作成されるディレクトリ構成" class="fragment"></span><a href="#%E4%BD%9C%E6%88%90%E3%81%95%E3%82%8C%E3%82%8B%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90"><i class="fa fa-link"></i></a>作成されるディレクトリ構成</h1>
+
+<p><a href="http://docs.ansible.com/playbooks_best_practices.html#directory-layout" rel="nofollow noopener" target="_blank">anslible</a>の公式サイトのままですが、念のため</p>
+
+<div class="code-frame" data-lang="dir"><div class="highlight"><pre><span></span>.
+├── stage
+├── production
+├── group_vars
+│   └── group1
+├── host_vars
+│   └── hostname1
+├── roles
+│   ├── common
+│   │   ├── files
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   ├── templates
+│   │   │   └── templates.j2
+│   │   └── vars
+│   │       └── main.yml
+│   ├── dbtier
+│   │   ├── files
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   ├── templates
+│   │   │   └── templates.j2
+│   │   └── vars
+│   │       └── main.yml
+│   └── webtier
+│       ├── files
+│       ├── handlers
+│       │   └── main.yml
+│       ├── tasks
+│       │   └── main.yml
+│       ├── templates
+│       │   └── templates.j2
+│       └── vars
+│           └── main.yml
+├── site.yml
+├── dbservers.yml
+└── webservers.yml
+</pre></div></div>
+
+<h1>
+<span id="スクリプト" class="fragment"></span><a href="#%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88"><i class="fa fa-link"></i></a>スクリプト</h1>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">create_ansible_file.sh</span></div>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Create ansible Best Practice directory</span>
+<span class="c1"># http://docs.ansible.com/playbooks_best_practices.html#directory-layout</span>
+<span class="c1"># 2014/02/19</span>
+<span class="c1"># version 0.1</span>
+
+<span class="nv">CREATE_ROLES_DIR</span><span class="o">=</span><span class="s2">"common webtier dbtier"</span>
+
+<span class="nb">echo</span> <span class="s2">"# inventory file for production servers"</span> &gt; production
+<span class="nb">echo</span> <span class="s2">"# inventory file for stage environment"</span> &gt; stage
+mkdir group_vars
+<span class="nb">echo</span> <span class="s2">"# here we assign variables to particular groups"</span> &gt; group_vars/group1
+mkdir host_vars
+<span class="nb">echo</span> <span class="s2">"# if systems need specific variables, put them here"</span> &gt; host_vars/hostname1
+<span class="nb">echo</span> <span class="s2">"# master playbook"</span> &gt; site.yml
+<span class="nb">echo</span> <span class="s2">"# playbook for webserver tier"</span> &gt; webservers.yml
+<span class="nb">echo</span> <span class="s2">"# playbook for dbserver tier"</span> &gt; dbservers.yml
+
+<span class="c1"># this hierarchy represents a "role"</span>
+<span class="k">for</span> ROLES_DIR in <span class="si">${</span><span class="nv">CREATE_ROLES_DIR</span><span class="si">}</span>
+<span class="k">do</span>
+  mkdir -p roles/<span class="si">${</span><span class="nv">ROLES_DIR</span><span class="si">}</span>/<span class="o">{</span>tasks,handlers,templates,files,vars<span class="o">}</span>
+  <span class="nb">echo</span> <span class="s2">"# tasks file can include smaller files if warranted"</span> &gt; roles/<span class="si">${</span><span class="nv">ROLES_DIR</span><span class="si">}</span>/tasks/main.yml
+  <span class="nb">echo</span> <span class="s2">"# handlers file"</span> &gt; roles/<span class="si">${</span><span class="nv">ROLES_DIR</span><span class="si">}</span>/handlers/main.yml
+  <span class="nb">echo</span> <span class="s2">"# templates end in .j2"</span> &gt; roles/<span class="si">${</span><span class="nv">ROLES_DIR</span><span class="si">}</span>/templates/templates.j2
+  <span class="nb">echo</span> <span class="s2">"# variables associated with this role"</span> &gt; roles/<span class="si">${</span><span class="nv">ROLES_DIR</span><span class="si">}</span>/vars/main.yml
+<span class="k">done</span>
+
+<span class="nb">exit</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>もう少しやりようがあった気がするが。。。ちょっとした手間は省けるかもしれないです。徐々に直していきます。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -125,23 +1257,65 @@
 <tr>
 	<td rowspan="3"><center>kuni-nakajiさんの<br />5位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>89</kbd>
-		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/2977b174e6195d3227d7">究極のノマドを追求したらカギっ子管理者になってたオレオレ証明書の巻！！</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>27</kbd>
+		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/399e889227d0647e53f1">公開鍵をヨリ楽に設置する方法</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-05-14 14:51:13</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-02-18 22:05:49</center>
 	</td>
 	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
+		@kuni-nakaji<br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
 	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[iPhone]</b> <b>[Linux]</b> <b>[nginx]</b> <b>[CentOS]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Linux]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="課題" class="fragment"></span><a href="#%E8%AA%B2%E9%A1%8C"><i class="fa fa-link"></i></a>課題</h1>
+
+<p>公開鍵を何度も何度も何度も何度も、authorized_keysに入れたり.sshの配下に置いたりするのは結構大変な経験をしてる方もいると思います。chefとかansibleとかあるから、少なくなってきてますが、、、それでもchefをするためのユーザに公開鍵を！みたいなことがあると思います。</p>
+
+<h1>
+<span id="きっと今まで" class="fragment"></span><a href="#%E3%81%8D%E3%81%A3%E3%81%A8%E4%BB%8A%E3%81%BE%E3%81%A7"><i class="fa fa-link"></i></a>(きっと)今まで</h1>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">各サーバで</span></div>
+<div class="highlight"><pre><span></span>$ ssh <span class="o">[</span>SERVER<span class="o">]</span>
+$ mkdir /home/<span class="o">[</span>USER<span class="o">]</span>/.ssh
+$ cat /tmp/<span class="o">[</span>USER<span class="o">]</span>.pub &gt;&gt; /home/<span class="o">[</span>USER<span class="o">]</span>/.ssh/authorized_keys
+$ chmod <span class="m">600</span> /home/<span class="o">[</span>USER<span class="o">]</span>/.ssh/authorized_keys
+</pre></div>
+</div>
+
+<h1>
+<span id="これから" class="fragment"></span><a href="#%E3%81%93%E3%82%8C%E3%81%8B%E3%82%89"><i class="fa fa-link"></i></a>これから</h1>
+
+<div class="code-frame" data-lang="ssh-copy-id"><div class="highlight"><pre><span></span>remoteサーバから
+$ ssh-copy-id -i .ssh/[送信したい].pub [USER]@[SERVER]
+</pre></div></div>
+
+<h1>
+<span id="補足" class="fragment"></span><a href="#%E8%A3%9C%E8%B6%B3"><i class="fa fa-link"></i></a>補足</h1>
+
+<p>ssh-copy-idを複数回実行しても鍵が追記されるのでremoteサーバ側で公開鍵をpoolしておくと便利かもしれないです。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>セキュアなsshd_configにしていると少し調整が入りますが、サーバがたくさんあったりすると時間短縮になると思います。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -149,23 +1323,121 @@
 <tr>
 	<td rowspan="3"><center>kuni-nakajiさんの<br />6位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>84</kbd>
-		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/349476f98e62f575ea88">そのクロスドメインでcookie使えてますか？</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>26</kbd>
+		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/f3426bf69be947c594c4">upstartでデーモン化してみる</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-08-02 18:59:33</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-12-29 19:20:49</center>
 	</td>
 	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
+		@kuni-nakaji<br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
 	</td>
-	<td style="width:300px;"><b>[HTML]</b> <b>[JavaScript]</b> <b>[nginx]</b> <b>[Apache]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Linux]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>デーモン化するのに<a href="http://cr.yp.to/daemontools.html,%E2%80%9Ddeamontools%E2%80%9D" rel="nofollow noopener" target="_blank">deamontools</a>を使っていたが、設定が簡単そうな<a href="http://upstart.ubuntu.com/,%E2%80%9Dupstart%E2%80%9D" rel="nofollow noopener" target="_blank">upstart</a>を使ってみる</p>
+
+<h1>
+<span id="特徴" class="fragment"></span><a href="#%E7%89%B9%E5%BE%B4"><i class="fa fa-link"></i></a>特徴</h1>
+
+<ul>
+<li>タスクとサービスはイベントによって起動・停止される</li>
+<li>イベントは、タスクやサービスを起動・停止する時に生成される</li>
+<li>イベントは、システム上の他のプロセスから受ける</li>
+<li>サービスは、予期せずプロセスが死んだ時に再起動される</li>
+<li>親プロセスと別の監視と再起動デーモン</li>
+<li>D-Busを超えてinit deamonで通信</li>
+<li>ユーザがプロセスを起動・停止できる</li>
+</ul>
+
+<h1>
+<span id="対応環境" class="fragment"></span><a href="#%E5%AF%BE%E5%BF%9C%E7%92%B0%E5%A2%83"><i class="fa fa-link"></i></a>対応環境</h1>
+
+<ul>
+<li>Ubuntu 6.10 以降</li>
+<li>Red Hat Enterprise Linux 6 以降</li>
+<li>Fedora 9 ～ 14</li>
+<li>Debian 6.0（Squeeze) 以降</li>
+<li>Maemo</li>
+<li>WebOS</li>
+<li>Chromium OS</li>
+<li>Chrome OS</li>
+</ul>
+
+<h1>
+<span id="設定" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>設定</h1>
+
+<div class="code-frame" data-lang="text">
+<div class="code-lang"><span class="bold">/etc/init/upstart-sample.conf</span></div>
+<div class="highlight"><pre><span></span># nginx
+
+description "nginx http daemon"
+author “my@localhost.com”
+
+start on runlevel [2345]
+stop  on runlevel [!2345]
+
+env DAEMON=/opt/nginx-x.x.x/sbin/nginx
+env PID=/var/run/nginx.pid
+env CONFIG=/etc/nginx/nginx.conf
+
+respawn
+
+pre-start script
+  ${DAEMON} -t
+  if [ $? -ne 0 ]; then
+    exit $?
+  fi
+end script
+
+console output
+
+exec ${DAEMON} -c "${CONFIG}"
+</pre></div>
+</div>
+
+<h1>
+<span id="コマンド" class="fragment"></span><a href="#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89"><i class="fa fa-link"></i></a>コマンド</h1>
+
+<h3>
+<span id="起動" class="fragment"></span><a href="#%E8%B5%B7%E5%8B%95"><i class="fa fa-link"></i></a>起動</h3>
+
+<p><code># sudo initctl start nginx</code></p>
+
+<h3>
+<span id="確認" class="fragment"></span><a href="#%E7%A2%BA%E8%AA%8D"><i class="fa fa-link"></i></a>確認</h3>
+
+<p><code># sudo initctl list|grep nginx</code><br>
+or<br>
+<code># sudo ps auxwwf|grep nginx</code></p>
+
+<h3>
+<span id="停止" class="fragment"></span><a href="#%E5%81%9C%E6%AD%A2"><i class="fa fa-link"></i></a>停止</h3>
+
+<p><code># sudo initctl stop nginx</code></p>
+
+<h3>
+<span id="再起動" class="fragment"></span><a href="#%E5%86%8D%E8%B5%B7%E5%8B%95"><i class="fa fa-link"></i></a>再起動</h3>
+
+<p><code># sudo initctl restart nginx</code></p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>deamontoolsよりもディレクトリを作ったり設定ファイルが少なくて導入が楽かも</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -173,23 +1445,151 @@
 <tr>
 	<td rowspan="3"><center>kuni-nakajiさんの<br />7位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>74</kbd>
-		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/38d46b09f3bff1d1a973">え、サーバ増やしてませんか？ソケット設定したその後に！？</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>11</kbd>
+		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/fb7f47b66ef7a1ba3050">impalaのメモリ管理</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-11-13 17:59:31</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-02-04 13:39:57</center>
 	</td>
 	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
+		@kuni-nakaji<br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
 	</td>
-	<td style="width:300px;"><b>[Linux]</b> <b>[MySQL]</b> <b>[nginx]</b> <b>[Redis]</b> <b>[CentOS]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Linux]</b> <b>[hadoop]</b> <b>[Impala]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="現象" class="fragment"></span><a href="#%E7%8F%BE%E8%B1%A1"><i class="fa fa-link"></i></a>現象</h1>
+
+<p>物理メモリ１台16GBの環境でメモリの割り当てをデフォルトの無制限（-1)にしていたが、すぐに食い潰してswapに落ちてしまうためパフォーマンスが劣化しているように見える。</p>
+
+<h1>
+<span id="impalaに割り当てるリソース管理箇所" class="fragment"></span><a href="#impala%E3%81%AB%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%82%8B%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E7%AE%A1%E7%90%86%E7%AE%87%E6%89%80"><i class="fa fa-link"></i></a>impalaに割り当てるリソース管理箇所</h1>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">プロパティ</th>
+<th style="text-align: left">設定名</th>
+<th style="text-align: left">デフォルト</th>
+<th style="text-align: left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">impala deamon memory limit</td>
+<td style="text-align: left">mem_limit</td>
+<td style="text-align: left">null</td>
+<td style="text-align: left"></td>
+</tr>
+<tr>
+<td style="text-align: left">CPU共有</td>
+<td style="text-align: left">cpu.shares</td>
+<td style="text-align: left">1024</td>
+<td style="text-align: left"></td>
+</tr>
+<tr>
+<td style="text-align: left">Cgroup I/O weight</td>
+<td style="text-align: left">blkio.weight</td>
+<td style="text-align: left">500</td>
+<td style="text-align: left"></td>
+</tr>
+<tr>
+<td style="text-align: left">Cgroup Memory Soft limit</td>
+<td style="text-align: left">memory.soft_limit_in_bytes</td>
+<td style="text-align: left">-1MB</td>
+<td style="text-align: left"></td>
+</tr>
+<tr>
+<td style="text-align: left">メモリのハード制限</td>
+<td style="text-align: left">memory.limit_in_bytes</td>
+<td style="text-align: left">-1MB</td>
+<td style="text-align: left"></td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="cgroupとは" class="fragment"></span><a href="#cgroup%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>Cgroupとは？</h1>
+
+<p>cgroup(control group)</p>
+
+<p><a href="http://ameblo.jp/principia-ca/day-20110713.html" rel="nofollow noopener" target="_blank">Control Group、Linux Containerの紹介</a></p>
+
+<p><a href="http://d.hatena.ne.jp/enakai00/20110605/1307240161" rel="nofollow noopener" target="_blank">Control Groups (cgroups)</a></p>
+
+<p><a href="http://d.hatena.ne.jp/peo3/20110131" rel="nofollow noopener" target="_blank">cgroupsとしばらく一緒に過ごしてみた</a></p>
+
+<p><a href="https://events.linuxfoundation.org/slides/2011/linuxcon-japan/lcj2011_maya.pdf" rel="nofollow noopener" target="_blank">Performance Prediction and Optimization using Linux/cgroups</a></p>
+
+<p><a href="https://access.redhat.com/site/documentation/ja-JP/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/sec-memory.html" rel="nofollow noopener" target="_blank">Redhat カスタマーポータル：3.7. memory</a></p>
+
+<blockquote>
+<p>memory.limit_in_bytes</p>
+
+<blockquote>
+<p>ユーザーメモリーの最大値 (ファイルキャッシュを含む) を設定します。単位が指定されていない場合、その値はバイト単位と解釈されますが、より大きな単位を示すサフィックスを使用することが可能です (キロバイトには k または K、メガバイトには m または M、ギガバイトには g または G)。<br>
+root cgroup を制限するのには、memory.limit_in_bytes は使用できません。値を適用できるのは、下位階層のグループに対してのみです。<br>
+memory.limit_in_bytes に -1 と書き込み、現行の制限値を削除します。</p>
+</blockquote>
+</blockquote>
+
+<h1>
+<span id="設定" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>設定</h1>
+
+<p>ソフトリミットを設定することで、設定値内でなるべくうまく物理メモリを使ってくれて、それでもうまくいかない時はハードリミットで制限される。ハードリミットを超えてメモリ領域が必要な場合はswapに落ちるか、oom_killer等で沈静化されると解釈</p>
+
+<p>そのため、ソフトリミットのmemory.soft_limit_in_bytesとハードリミットのmemory.limit_in_bytesを設定してみた。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">プロパティ</th>
+<th style="text-align: left">値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">物理メモリ</td>
+<td style="text-align: left">24GB</td>
+</tr>
+<tr>
+<td style="text-align: left">memory.soft_limit_in_bytes</td>
+<td style="text-align: left">18GB</td>
+</tr>
+<tr>
+<td style="text-align: left">memory.limit_in_bytes</td>
+<td style="text-align: left">19GB</td>
+</tr>
+</tbody>
+</table>
+
+<p>※上記は実験値で特に推奨値なわけではありません</p>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<p>memory.soft_limit_in_bytesを設定することで(少し見難いが)activeのメモリ使用量部分が18GB付近を上限に調整するようになってくれた。</p>
+
+<p><a href="https://camo.qiitausercontent.com/909aff6b76f9f4bb23db6df5212982455ff87cdf/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383732362f39353863613738622d616639322d356362642d363939662d6461383239366237306263312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/909aff6b76f9f4bb23db6df5212982455ff87cdf/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383732362f39353863613738622d616639322d356362642d363939662d6461383239366237306263312e706e67" alt="sbit20_1.png" title="sbit20_1.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8726/958ca78b-af92-5cbd-699f-da8296b70bc1.png"></a></p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>impalaの推奨メモリが128GBとのことだが、なかなか用意するのも大変なので、安定運用や一時凌ぎには設定をしておいたほうが良い気がします。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -197,23 +1597,181 @@
 <tr>
 	<td rowspan="3"><center>kuni-nakajiさんの<br />8位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>73</kbd>
-		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/6b52d597a8570390de9a">新時代到来か！？Windows AzureでCentOSを使った時の勘所</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
+		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/750b543db9ac8888aa97">ansibleでpostfix2.11をソースで入れる</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-06-13 02:36:10</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-02-26 23:29:46</center>
 	</td>
 	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
+		@kuni-nakaji<br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
 	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[iPhone]</b> <b>[Linux]</b> <b>[CentOS]</b> <b>[Azure]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[Linux]</b> <b>[CentOS]</b> <b>[postfix]</b> <b>[Ansible]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="課題" class="fragment"></span><a href="#%E8%AA%B2%E9%A1%8C"><i class="fa fa-link"></i></a>課題</h1>
+
+<p>postfixの<a href="http://www.postfix.org/announcements.html" rel="nofollow noopener" target="_blank">公式リリースノート</a>によると、</p>
+
+<p><code>Postfix stable release 2.11.0 is available. This release ends support for Postfix 2.7.</code></p>
+
+<p>なるほど</p>
+
+<p>おもむろにデフォルトとremiのパッケージを確認してみる</p>
+
+<h4>
+<span id="centos-64-デフォルトパッケージ" class="fragment"></span><a href="#centos-64-%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8"><i class="fa fa-link"></i></a>CentOS 6.4 デフォルトパッケージ</h4>
+
+<div class="code-frame" data-lang="default"><div class="highlight"><pre><span></span>$ postconf  | grep mail_version
+mail_version = 2.6.6
+</pre></div></div>
+
+<h4>
+<span id="remi" class="fragment"></span><a href="#remi"><i class="fa fa-link"></i></a>remi</h4>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">remi</span></div>
+<div class="highlight"><pre><span></span>$ yum install postfix --enablerepo<span class="o">=</span>remi
+
+Package         Arch                   Version                         Repository       <span class="nv">Size</span>
+<span class="o">=========================================================================================================</span>
+Updating:
+postfix        x86_64                   <span class="m">2</span>:2.6.6-6.el6_5                updates          <span class="m">2</span>.0 M
+
+</pre></div>
+</div>
+
+<p>見事に2.6.6なのでソースで2.11.0をインストールする</p>
+
+<h1>
+<span id="実施したいこと" class="fragment"></span><a href="#%E5%AE%9F%E6%96%BD%E3%81%97%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>実施したいこと</h1>
+
+<ol>
+<li>依存パッケージをインストール</li>
+<li>ansibleを使うので冪等性を保つためソースを前もってwgetしたものをサーバにコピー</li>
+<li>ソースをmake [残課題あり:後述]</li>
+<li>postfixユーザを作成</li>
+<li>configファイルを配置</li>
+<li>起動スクリプト配置</li>
+<li>postfix起動</li>
+</ol>
+
+<h1>
+<span id="ファイル配置" class="fragment"></span><a href="#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E9%85%8D%E7%BD%AE"><i class="fa fa-link"></i></a>ファイル配置</h1>
+
+<div class="code-frame" data-lang="dir"><div class="highlight"><pre><span></span>.
+├── files
+│   ├── main.cf
+│   ├── postfix
+│   └── postfix-2.11.0.tar.gz
+├── handlers
+│   
+├── tasks
+│   └── main.yml
+├── templates
+│   
+└── vars
+    └── main.yml
+</pre></div></div>
+
+<div class="code-frame" data-lang="yaml">
+<div class="code-lang"><span class="bold">vars/main.yml</span></div>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">postfix_file</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">postfix-2.11.0</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="YAML">
+<div class="code-lang"><span class="bold">task/main.yml</span></div>
+<div class="highlight"><pre><span></span>      <span class="c1"># postfix の停止</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">"Operation</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">sure</span><span class="nv"> </span><span class="s">postfix</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">stopped"</span>
+        <span class="l l-Scalar l-Scalar-Plain">service</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name=postfix state=stopped</span>
+
+      <span class="c1"># 初期インストールされているpostfixを削除</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">"Remove</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">pre</span><span class="nv"> </span><span class="s">installed</span><span class="nv"> </span><span class="s">postfix"</span>
+        <span class="l l-Scalar l-Scalar-Plain">yum</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name="postfix" state=absent</span>
+
+      <span class="c1"># 必要なパッケージをインストール</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">"Install</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">dependent</span><span class="nv"> </span><span class="s">package"</span>
+        <span class="l l-Scalar l-Scalar-Plain">yum</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name={{ item }} state=installed enablerepo=remi</span>
+        <span class="l l-Scalar l-Scalar-Plain">with_items</span><span class="p p-Indicator">:</span>
+         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db4*-devel</span>
+         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysql</span>
+         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysql-devel</span>
+         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pcre-devel</span>
+         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cyrus-sasl-devel</span>
+         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">openldap-devel</span>
+
+      <span class="c1"># postfixをソースでインストール</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">"Install</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">put</span><span class="nv"> </span><span class="s">postfix</span><span class="nv"> </span><span class="s">src</span><span class="nv"> </span><span class="s">file"</span>
+        <span class="l l-Scalar l-Scalar-Plain">copy</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">src=roles/postfix/files/{{ postfix_file }}.tar.gz dest=/usr/local/src</span>
+
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">"Install</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">unpack</span><span class="nv"> </span><span class="s">postfix</span><span class="nv"> </span><span class="s">src</span><span class="nv"> </span><span class="s">[need</span><span class="nv"> </span><span class="s">'make</span><span class="nv"> </span><span class="s">install'</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">remote</span><span class="nv"> </span><span class="s">server]"</span>
+        <span class="l l-Scalar l-Scalar-Plain">shell</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cd /usr/local/src; tar zxvf {{ postfix_file }}.tar.gz; cd {{ postfix_file }}; make</span>
+
+      <span class="c1"># postfixをパッケージでインストール</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">"Install</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">postfix</span><span class="nv"> </span><span class="s">package</span><span class="nv"> </span><span class="s">[Don't</span><span class="nv"> </span><span class="s">need</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">did</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">src]"</span>
+        <span class="l l-Scalar l-Scalar-Plain">yum</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name=postfix state=installed enablerepo=remi</span>
+
+      <span class="c1"># postfix userを追加</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">"Setup</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">add</span><span class="nv"> </span><span class="s">postfix</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">group"</span>
+        <span class="l l-Scalar l-Scalar-Plain">user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name=postfix system=yes createhome=no home=/var/spool/postfix shell=/sbin/nologin</span>
+
+      <span class="c1"># postfix confを設置</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">"Setup</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">put</span><span class="nv"> </span><span class="s">postfix</span><span class="nv"> </span><span class="s">conf"</span>
+        <span class="l l-Scalar l-Scalar-Plain">copy</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">src=roles/postfix/files/main.cf dest=/etc/postfix mode=644</span>
+
+      <span class="c1"># postfix 起動ファイル設置</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">"Setup</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">put</span><span class="nv"> </span><span class="s">postfix</span><span class="nv"> </span><span class="s">init</span><span class="nv"> </span><span class="s">file"</span>
+        <span class="l l-Scalar l-Scalar-Plain">copy</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">src=roles/postfix/files/postfix dest=/etc/init.d mode=755</span>
+
+      <span class="c1"># (うっかりインストール先を/usr/local/sbinにしてしまったので）シンボリックリンクを設定</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">"Setup</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">create</span><span class="nv"> </span><span class="s">symlink"</span>
+        <span class="l l-Scalar l-Scalar-Plain">file</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">src=/usr/local/sbin/{{ item }} dest=/usr/sbin/{{ item }} state=link</span>
+        <span class="l l-Scalar l-Scalar-Plain">with_items</span><span class="p p-Indicator">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">postconf</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">postlog</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">postalias</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">postcat</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">postdrop</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">postkick</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">postlock</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">postmap</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">postmulti</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">postqueue</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">postsuper</span>
+
+      <span class="c1"># postfix の起動、自動起動設定</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">"Setup</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">sure</span><span class="nv"> </span><span class="s">postfix</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">running</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">enabled"</span>
+        <span class="l l-Scalar l-Scalar-Plain">service</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name=postfix state=running enabled=yes</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="残課題" class="fragment"></span><a href="#%E6%AE%8B%E8%AA%B2%E9%A1%8C"><i class="fa fa-link"></i></a>残課題</h1>
+
+<p>だいたいのものはソースを展開した後にmake、make installをすれば終了なのだが、postfixでmake installした時にコンソールでインストール先のディレクトリなどをCUIで聞いてくる。</p>
+
+<p>そのため、上記のansibleでやろうとすると入力待ちで延々と処理が進まなくなってしまう。（別のケースでも使えそうなので)このようなケースの時にどうしてるのか知りたい。。。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>メールサーバをそんなにクラスタ構成にすることはないから今のところは、それぞれのサーバでmake installして対応したけど、、、そこも楽したいｗ</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -221,23 +1779,111 @@
 <tr>
 	<td rowspan="3"><center>kuni-nakajiさんの<br />9位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>59</kbd>
-		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/881cec9a505b060e02af">意外と知らない古代コマンド(pushd/popd)</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
+		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/fba58ef6e44801958df3">肥大するimpalaのログをどうにかしたい</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-02-12 11:37:46</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-01-06 17:11:37</center>
 	</td>
 	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
+		@kuni-nakaji<br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
 	</td>
-	<td style="width:300px;"><b>[Bash]</b> <b>[Linux]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[hadoop]</b> <b>[Impala]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="課題" class="fragment"></span><a href="#%E8%AA%B2%E9%A1%8C"><i class="fa fa-link"></i></a>課題</h1>
+
+<p>/var/log/impalad/profile以下にimpala_profile_log_xxxxのようなログファイルが大量に生成されてdiskが圧迫される</p>
+
+<h1>
+<span id="確認" class="fragment"></span><a href="#%E7%A2%BA%E8%AA%8D"><i class="fa fa-link"></i></a>確認</h1>
+
+<h4>
+<span id="impala_profile_logがなに奴かを確認してみる" class="fragment"></span><a href="#impala_profile_log%E3%81%8C%E3%81%AA%E3%81%AB%E5%A5%B4%E3%81%8B%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B"><i class="fa fa-link"></i></a>impala_profile_logがなに奴かを確認してみる</h4>
+
+<p><code># view /var/log/impalad/profiles/impala_profile_log_xxx-xxxx</code></p>
+
+<div class="code-frame" data-lang="impala_profile_log_xxx-xxxx"><div class="highlight"><pre><span></span>1389023567970 e44325113dee8aaa:924a7462703efbbb eJztmw10FMUdwDchhBAIX5p4KbSOVWuwcOzt3nfB9pJcTJRcYu4A2+crb7nbhH3cR9zdS4yv7xkRY0ojKAatHw8VUamP0kiLHzRiQKRIQVEkoKYYwVrgAY
+</pre></div></div>
+
+<p>中身を見ただけだと何かわからない</p>
+
+<p><a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_logging.html" rel="nofollow noopener" target="_blank">Using Impala Logging</a> によるとノード間に配布されたクエリーや転送結果などがログとして保存されるらしい。また、その内容はzlib-compressedされて保存されているとのこと。このデータは、Impala web user interfaceから参照できるらしい。</p>
+
+<h4>
+<span id="impala-web-user-interfaceでチェック" class="fragment"></span><a href="#impala-web-user-interface%E3%81%A7%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF"><i class="fa fa-link"></i></a>Impala web user interfaceでチェック</h4>
+
+<p>query idをチェック<br>
+<a href="http://hoge.com:25000/queries" class="autolink" rel="nofollow noopener" target="_blank">http://hoge.com:25000/queries</a></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Query (id=e44325113dee8aaa:924a7462703efbbb):
+  Summary:
+    Session ID: 344bd91ef220378b:98af975dfd7c000
+    Session Type: BEESWAX
+    Start Time: 2014-01-01 16:52:14.596559000
+    End Time: 2014-01-01 16:54:03.407829000
+    Query Type: QUERY
+    Query State: FINISHED
+    Query Status: OK
+    Impala Version: impalad version 1.x.x RELEASE (build 83d5868f005966883a918a819a449f636a5b3d5f)
+    User: www
+    Network Address: 192.168.23.xx:59026
+    Default Db: hoge_db
+    Sql Statement: SELECT
+            *
+        FROM
+            hoge_log
+        WHERE
+            account_id = ’11’
+          AND
+            project_id = ‘111’
+          AND
+.
+.
+.
+
+</pre></div></div>
+
+<h1>
+<span id="対応" class="fragment"></span><a href="#%E5%AF%BE%E5%BF%9C"><i class="fa fa-link"></i></a>対応</h1>
+
+<p>WebUIからも直近のデータだけ参照しているようであれば圧縮または別の場所に退避出来る気がする</p>
+
+<h4>
+<span id="念のためどこまでのデータか確認" class="fragment"></span><a href="#%E5%BF%B5%E3%81%AE%E3%81%9F%E3%82%81%E3%81%A9%E3%81%93%E3%81%BE%E3%81%A7%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%81%8B%E7%A2%BA%E8%AA%8D"><i class="fa fa-link"></i></a>念のためどこまでのデータか確認</h4>
+
+<p>上記のqueryを例にすると <strong>e44325113dee8aaa:924a7462703efbbb</strong> がidなのでコレをキーに探してみる</p>
+
+<p><code>grep “e44325113dee8aaa:924a7462703efbbb” /var/log/impalad/profiles/*</code></p>
+
+<h4>
+<span id="影響がなさそうな範囲を圧縮" class="fragment"></span><a href="#%E5%BD%B1%E9%9F%BF%E3%81%8C%E3%81%AA%E3%81%95%E3%81%9D%E3%81%86%E3%81%AA%E7%AF%84%E5%9B%B2%E3%82%92%E5%9C%A7%E7%B8%AE"><i class="fa fa-link"></i></a>影響がなさそうな範囲を圧縮</h4>
+
+<div class="code-frame" data-lang="Bash">
+<div class="code-lang"><span class="bold">gzip</span></div>
+<div class="highlight"><pre><span></span><span class="c1"># find -mtime +1 -type f ! -name "*.gz"|xargs gzip</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>gzipで25%(24.4MB -&gt; 18.4MB)程度空きができたので、一時凌ぎにはなりそう。Cloudera managerでそもそもローテート設定出来るとこが無いのかな。。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -245,191 +1891,94 @@
 <tr>
 	<td rowspan="3"><center>kuni-nakajiさんの<br />10位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>33</kbd>
-		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/4ffbc723f2d7cf529479">ansibleのBest Practiceなディレクトリをshellで作る</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-02-19 22:04:07</center>
-	</td>
-	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
-	</td>
-	<td style="width:300px;"><b>[Linux]</b> <b>[CentOS]</b> <b>[Ansible]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>kuni-nakajiさんの<br />11位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>27</kbd>
-		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/399e889227d0647e53f1">公開鍵をヨリ楽に設置する方法</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-02-18 22:05:49</center>
-	</td>
-	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
-	</td>
-	<td style="width:300px;"><b>[Linux]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>kuni-nakajiさんの<br />12位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>26</kbd>
-		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/f3426bf69be947c594c4">upstartでデーモン化してみる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-12-29 19:20:49</center>
-	</td>
-	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
-	</td>
-	<td style="width:300px;"><b>[Linux]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>kuni-nakajiさんの<br />13位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>11</kbd>
-		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/fb7f47b66ef7a1ba3050">impalaのメモリ管理</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-02-04 13:39:57</center>
-	</td>
-	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
-	</td>
-	<td style="width:300px;"><b>[Linux]</b> <b>[hadoop]</b> <b>[Impala]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>kuni-nakajiさんの<br />14位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
-		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/750b543db9ac8888aa97">ansibleでpostfix2.11をソースで入れる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-02-26 23:29:46</center>
-	</td>
-	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
-	</td>
-	<td style="width:300px;"><b>[Python]</b> <b>[Linux]</b> <b>[CentOS]</b> <b>[postfix]</b> <b>[Ansible]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>kuni-nakajiさんの<br />15位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
-		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/fba58ef6e44801958df3">肥大するimpalaのログをどうにかしたい</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-01-06 17:11:37</center>
-	</td>
-	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
-	</td>
-	<td style="width:300px;"><b>[hadoop]</b> <b>[Impala]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>kuni-nakajiさんの<br />16位</center></td>
-	<td colspan="3">
 		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
 		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/536e7ba4af3703efc40d">HDFSの再バランス</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2014-01-07 15:55:35</center>
 	</td>
 	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
+		@kuni-nakaji<br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
 	</td>
-	<td style="width:300px;"><b>[hadoop]</b> <b>[Hdfs]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>kuni-nakajiさんの<br />17位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
-		<a target="_blank" href="https://qiita.com/kuni-nakaji/items/fa609ce5d13c78c4d6d0">Azureでひっそりと動いてる割に重要なプロセスが見つかる！？</a>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[hadoop]</b> <b>[Hdfs]</b> </center>
 	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-11-10 16:26:37</center>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="課題" class="fragment"></span><a href="#%E8%AA%B2%E9%A1%8C"><i class="fa fa-link"></i></a>課題</h1>
+
+<p>Hadoopでhdfsを使用しているが下記の様なことが発生した</p>
+
+<ul>
+<li>特定のノードだけ妙にswapしたり負荷が高くなったりする</li>
+<li>追加したノードが使われていない気がする。</li>
+</ul>
+
+<h1>
+<span id="原因" class="fragment"></span><a href="#%E5%8E%9F%E5%9B%A0"><i class="fa fa-link"></i></a>原因</h1>
+
+<p>HDFSは、頻繁に書き込みや削除を繰り返すとデータに偏りが出てきてしまうため(データの断片化）、特定のノードにデータを取得してしまうため負荷も偏ってしまう。</p>
+
+<p>また、ノードを追加した時に自動で再バランスするわけではないので、手動で再バランスをするか、新しいファイルを作るタイミングからブロックを割り当てるのを待つしかないようです。</p>
+
+<h1>
+<span id="再バランス結果" class="fragment"></span><a href="#%E5%86%8D%E3%83%90%E3%83%A9%E3%83%B3%E3%82%B9%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>再バランス結果</h1>
+
+<p>各ノードのデータ量を平準化するためCloudera Managerで再バランスをしてみる</p>
+
+<h4>
+<span id="手順" class="fragment"></span><a href="#%E6%89%8B%E9%A0%86"><i class="fa fa-link"></i></a>手順</h4>
+
+<p><code>サービス -&gt; hdfs -&gt; アクション -&gt; 再バランス</code></p>
+
+<h4>
+<span id="結果ログ" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C%E3%83%AD%E3%82%B0"><i class="fa fa-link"></i></a>結果ログ</h4>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>2014-01-07 12:34:12,342 INFO  [main] balancer.Balancer (Balancer.java:parse(1538)) - Using a threshold of 10.0
+2014-01-07 12:34:12,351 INFO  [main] balancer.Balancer (Balancer.java:run(1417)) - namenodes = [hdfs://nameservice1]
+2014-01-07 12:34:12,353 INFO  [main] balancer.Balancer (Balancer.java:run(1418)) - p         = Balancer.Parameters[BalancingPolicy.Node, threshold=10.0]
+Time Stamp               Iteration#  Bytes Already Moved  Bytes Left To Move  Bytes Being Moved
+2014-01-07 12:34:14,239 INFO  [main] net.NetworkTopology (NetworkTopology.java:add(393)) - Adding a new node: /default/192.168.1.1:50010
+
+(snip)
+
+2014-01-07 12:34:14,253 INFO  [main] balancer.Balancer (Balancer.java:logNodes(907)) - 0 over-utilized: []
+2014-01-07 12:34:14,257 INFO  [main] balancer.Balancer (Balancer.java:logNodes(907)) - 2 underutilized: [BalancerDatanode[192.168.1.6:50010, utilization=0.35506872895520886], BalancerDatanode[192.168.1.7:50010, utilization=0.372112826760373]]
+2014-01-07 12:34:14,264 INFO  [main] balancer.Balancer (Balancer.java:run(1344)) - Need to move 91.54 GB to make the cluster balanced.
+2014-01-07 12:34:14,267 INFO  [main] balancer.Balancer (Balancer.java:chooseSource(1086)) - Decided to move 10 GB bytes from 192.168.1.2:50010 to 192.168.1.6:50010
+2014-01-07 12:34:14,268 INFO  [main] balancer.Balancer (Balancer.java:chooseSource(1086)) - Decided to move 10 GB bytes from 192.168.1.3:50010 to 192.168.1.7:50010
+2014-01-07 12:34:14,273 INFO  [main] balancer.Balancer (Balancer.java:run(1358)) - Will move 20 GB in this iteration
+Jan 7, 2014 12:34:14 PM           0                  0 B            91.54 GB              20 GB
+
+(snip)
+
+2014-01-07 14:01:52,211 INFO  [main] balancer.Balancer (Balancer.java:logNodes(907)) - 0 over-utilized: []
+2014-01-07 14:01:52,212 INFO  [main] balancer.Balancer (Balancer.java:logNodes(907)) - 0 underutilized: []
+The cluster is balanced. Exiting...
+Balancing took 1.4613238888888889 hours
+</pre></div></div>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<ul>
+<li>多少の速度低下はあったものの運用したままで再バランスすることはできた</li>
+<li>2つのノードを新規追加した場合、再バランスを実行すると自動で検出して既存のノードから10GBずつ分配された.</li>
+<li>全体が1.5TBのデータで91.54GBが再バランス対象を完了するのに1時間半位かかった。(NetworkやIO速度に依存するけど。。)</li>
+</ul>
+</div>
 	</td>
-	<td style="width:200px;">
-		@kuni-nakaji<!--(<a target="_blank" href="http://qiita.com/kuni-nakaji">Qiita内の17件の記事</a>)--><br><img width="80" height="80" src="https://gravatar.com/avatar/616811c1dbc547b20370eb444106d841?d=https%3A%2F%2Fidenticons.github.com%2F9c6a6d1079bb1facaa63a8f0aaa5e195.png&r=x">
-	</td>
-	<td style="width:300px;"><b>[Linux]</b> <b>[CentOS]</b> <b>[Azure]</b> <!--タグ--></td>
 </tr>
 </table>
 <br />

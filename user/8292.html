@@ -25,6 +25,7 @@
 <h1>Qiitaいいね数ランキング (koogawa さんの投稿分)</h1>
 </div><!--class="headerContainer"-->
 <p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
 <table border="1">
 <tr>
 	<td rowspan="3"><center>koogawaさんの<br />1位</center></td>
@@ -34,18 +35,388 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-04-06 19:28:05</center>
 	</td>
 	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
+		@koogawa<br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
 	</td>
-	<td style="width:300px;"><b>[iPhone]</b> <b>[Xcode]</b> <b>[iOS]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[iPhone]</b> <b>[Xcode]</b> <b>[iOS]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>iPhoneアプリの申請作業を行う上で知っておいた方が良いことをまとめておきます。</p>
+
+<ul>
+<li>一部個人の見解も混ざってます</li>
+<li>申請ルールなどは予告なしに変更になることがよくあるので、本記事の内容は古い場合があります</li>
+</ul>
+
+<h1>
+<span id="アプリ申請前" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E7%94%B3%E8%AB%8B%E5%89%8D"><i class="fa fa-link"></i></a>アプリ申請前</h1>
+
+<h2>
+<span id="アプリはどこから申請するの" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AF%E3%81%A9%E3%81%93%E3%81%8B%E3%82%89%E7%94%B3%E8%AB%8B%E3%81%99%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>アプリはどこから申請するの？</h2>
+
+<p><a href="https://itunesconnect.apple.com" rel="nofollow noopener" target="_blank">iTunes Connect</a>というサイトから申請できます。ブラウザはSafariでアクセスすることをおすすめします。 </p>
+
+<h2>
+<span id="誰でも申請できるの" class="fragment"></span><a href="#%E8%AA%B0%E3%81%A7%E3%82%82%E7%94%B3%E8%AB%8B%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>誰でも申請できるの？</h2>
+
+<p>Apple Developer Programに登録する必要があります。（年間参加費 ¥11,800）<br>
+また、アプリのアップロード時にはXcodeが必要なので、Macは必須になります。</p>
+
+<h2>
+<span id="アプリの申請時には何が必要なの" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E7%94%B3%E8%AB%8B%E6%99%82%E3%81%AB%E3%81%AF%E4%BD%95%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%AA%E3%81%AE"><i class="fa fa-link"></i></a>アプリの申請時には何が必要なの？</h2>
+
+<p>次の情報が必要になるので事前に準備しておきましょう。</p>
+
+<ul>
+<li>アプリ名（３０文字以内、すでに使われているものはダメ）</li>
+<li>サブタイトル（30文字以内、iOS 11移行を搭載したデバイスにのみ表示される）</li>
+<li>カテゴリ（主カテゴリと副カテゴリを指定可。詳細は後述）</li>
+<li>アプリの説明文（4000文字以内）</li>
+<li>プロモーション用テキスト（170文字以内、iOS 11移行を搭載したデバイスにのみ表示される）</li>
+<li>アプリの価格</li>
+<li>アプリのレーティング（性的なコンテンツ等が表示される可能性がある場合は高めに設定しておかないとリジェクトされる）</li>
+<li>検索のためのキーワード（100文字以内）</li>
+<li>サポート用サイト</li>
+<li>App Store用のアイコン（1024x1024, 高画質JPEG/TIFF/PNG）</li>
+<li>スクリーンショット（詳細は後述）</li>
+<li>連絡用のメールアドレス、電話番号（公開はされない）</li>
+</ul>
+
+<h2>
+<span id="主カテゴリと副カテゴリはどう違うの" class="fragment"></span><a href="#%E4%B8%BB%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA%E3%81%A8%E5%89%AF%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA%E3%81%AF%E3%81%A9%E3%81%86%E9%81%95%E3%81%86%E3%81%AE"><i class="fa fa-link"></i></a>主カテゴリと副カテゴリはどう違うの？</h2>
+
+<p>第一希望と第二希望だと思っていたのですが、違うようです。</p>
+
+<blockquote>
+<p>アプリケーションに指定する主カテゴリ（PrimaryCategory）も、見つけやすさの面で重要なポイントです。閲覧するユーザに便利なよう、アプリケーションはこのカテゴリ別にリストアップされます。<br>
+そのアプリケーションの主機能を最も適切に示しているカテゴリを注意深く選択してください。提出されたすべてのカテゴリはAppleがレビューを行います。<br>
+また、オプションの副カテゴリ（Secondary Category）も指定できます。アプリケーションは副カテゴリではリストアップされませんが、その副カテゴリに対する検索結果としては返されます。たとえば、そのアプリケーションの主カテゴリが「財務会計（Finance）」で副カテゴリが「ビジネス（Business）」だった場合、ユーザは財務会計のカテゴリをチェックしたときにそのアプリケーションを見つけることができ、また「ビジネス」で検索したときにもその検索結果としてそのアプリケーションを見つけることができます。<br>
+<a href="https://developer.apple.com/jp/devcenter/ios/library/documentation/iTunesConnect_Guide.pdf" rel="nofollow noopener" target="_blank">iTunes Connectデベロッパガイド</a>より抜粋</p>
+</blockquote>
+
+<p>詳しくはこちらの記事をご覧ください。</p>
+
+<ul>
+<li><a href="http://blog.koogawa.com/entry/2014/01/28/174240" rel="nofollow noopener" target="_blank">iOSアプリ公開時に設定できる「Secondary Category」はどこで使われるのか？</a></li>
+</ul>
+
+<h2>
+<span id="検索キーワードには何を入れればいいの" class="fragment"></span><a href="#%E6%A4%9C%E7%B4%A2%E3%82%AD%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%89%E3%81%AB%E3%81%AF%E4%BD%95%E3%82%92%E5%85%A5%E3%82%8C%E3%82%8C%E3%81%B0%E3%81%84%E3%81%84%E3%81%AE"><i class="fa fa-link"></i></a>検索キーワードには何を入れればいいの？</h2>
+
+<p>アプリケーション名、会社名は検索ワードとして自動的に設定されるので、表記のゆらぎ（例：Twitterアプリなら「ついったー」「とぅいったー」）等を登録しておくと良いでしょう。<br>
+ちなみに、アプリと関係ないキーワードや他社アプリ名などを入れるとリジェクトされるので注意です。</p>
+
+<h2>
+<span id="アプリ申請時にスクリーンショットは何種類用意すればよいの" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E7%94%B3%E8%AB%8B%E6%99%82%E3%81%AB%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%E3%81%AF%E4%BD%95%E7%A8%AE%E9%A1%9E%E7%94%A8%E6%84%8F%E3%81%99%E3%82%8C%E3%81%B0%E3%82%88%E3%81%84%E3%81%AE"><i class="fa fa-link"></i></a>アプリ申請時にスクリーンショットは何種類用意すればよいの？</h2>
+
+<p>2016/08/09より、スクリーンショットの簡易提出が可能になりました。これにより、iPhone/iPadそれぞれの最大サイズのスクリーンショット（例えばiPhoneなら5.5inch）をアップロードするだけで、自動で小さいサイズ用にリサイズしてくれるようになりました。詳しくは <a href="/mono0926" class="user-mention js-hovercard" title="mono0926" data-hovercard-target-type="user" data-hovercard-target-name="mono0926">@mono0926</a> さんの記事にとても詳しくまとめられています。</p>
+
+<ul>
+<li><a href="http://qiita.com/mono0926/items/0b1122e5a254f945f6b0" id="reference-608d515b123252483737">iTunesConnectでのアプリスクリーンショットの簡易提出が可能になりました🎉</a></li>
+</ul>
+
+<h2>
+<span id="アップロードできるスクリーンショットのサイズファイル形式は決まってるの" class="fragment"></span><a href="#%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%E3%81%AE%E3%82%B5%E3%82%A4%E3%82%BA%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%BD%A2%E5%BC%8F%E3%81%AF%E6%B1%BA%E3%81%BE%E3%81%A3%E3%81%A6%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>アップロードできるスクリーンショットのサイズ・ファイル形式は決まってるの？</h2>
+
+<p>はい。決められたサイズの画像しかアップロードできません。画像ファイル形式はJPEG、TIFF、またはPNGが使用可能です。</p>
+
+<h3>
+<span id="iphoneアプリの場合" class="fragment"></span><a href="#iphone%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>iPhoneアプリの場合</h3>
+
+<h4>
+<span id="35インチディスプレイ用iphone-3gsiphone-4などiphone-5より前の機種" class="fragment"></span><a href="#35%E3%82%A4%E3%83%B3%E3%83%81%E3%83%87%E3%82%A3%E3%82%B9%E3%83%97%E3%83%AC%E3%82%A4%E7%94%A8iphone-3gsiphone-4%E3%81%AA%E3%81%A9iphone-5%E3%82%88%E3%82%8A%E5%89%8D%E3%81%AE%E6%A9%9F%E7%A8%AE"><i class="fa fa-link"></i></a>3.5インチディスプレイ用（iPhone 3GS、iPhone 4など、iPhone 5より前の機種）</h4>
+
+<ul>
+<li>640×960ピクセル（ステータスバーを除く場合は640×920ピクセル）</li>
+<li>最低でも1枚。最大5枚まで。</li>
+</ul>
+
+<h4>
+<span id="4インチディスプレイ用iphone-5ipod-touch-第5世代など縦長の機種" class="fragment"></span><a href="#4%E3%82%A4%E3%83%B3%E3%83%81%E3%83%87%E3%82%A3%E3%82%B9%E3%83%97%E3%83%AC%E3%82%A4%E7%94%A8iphone-5ipod-touch-%E7%AC%AC5%E4%B8%96%E4%BB%A3%E3%81%AA%E3%81%A9%E7%B8%A6%E9%95%B7%E3%81%AE%E6%A9%9F%E7%A8%AE"><i class="fa fa-link"></i></a>4インチディスプレイ用（iPhone 5、iPod touch 第5世代など、縦長の機種）</h4>
+
+<ul>
+<li>640×1136ピクセル（ステータスバーを除く場合は640×1096ピクセル）</li>
+<li>最低でも1枚。最大5枚まで。</li>
+</ul>
+
+<h4>
+<span id="47インチディスプレイ用iphone-6" class="fragment"></span><a href="#47%E3%82%A4%E3%83%B3%E3%83%81%E3%83%87%E3%82%A3%E3%82%B9%E3%83%97%E3%83%AC%E3%82%A4%E7%94%A8iphone-6"><i class="fa fa-link"></i></a>4.7インチディスプレイ用（iPhone 6）</h4>
+
+<ul>
+<li>750×1334ピクセル</li>
+<li>iPhone 6をサポートする場合は最低でも1枚必要（最大5枚まで）</li>
+</ul>
+
+<h4>
+<span id="55インチディスプレイ用iphone-6-plus" class="fragment"></span><a href="#55%E3%82%A4%E3%83%B3%E3%83%81%E3%83%87%E3%82%A3%E3%82%B9%E3%83%97%E3%83%AC%E3%82%A4%E7%94%A8iphone-6-plus"><i class="fa fa-link"></i></a>5.5インチディスプレイ用（iPhone 6 Plus）</h4>
+
+<ul>
+<li>1242×2208ピクセル</li>
+<li>iPhone 6 Plusをサポートする場合は最低でも1枚必要（最大5枚まで）</li>
+</ul>
+
+<p>スクリーンショットに機能説明用のテキストなど、装飾を入れても問題ないようです（過度な使用は避けたほうがよいでしょう）</p>
+
+<h3>
+<span id="ipadアプリの場合" class="fragment"></span><a href="#ipad%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>iPadアプリの場合</h3>
+
+<p>iPadアプリの場合は更に多くの種類の画像が必要になります。詳しくは<a href="https://developer.apple.com/jp/devcenter/ios/library/documentation/iTunesConnect_Guide.pdf" rel="nofollow noopener" target="_blank">iTunes Connectデベロッパガイド</a>を参照してください。</p>
+
+<h2>
+<span id="アプリ紹介用のビデオをアップするには" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E7%B4%B9%E4%BB%8B%E7%94%A8%E3%81%AE%E3%83%93%E3%83%87%E3%82%AA%E3%82%92%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF"><i class="fa fa-link"></i></a>アプリ紹介用のビデオをアップするには？</h2>
+
+<p>iOS 8のApp Storeから、動画によるアプリ紹介（App Video Previews）が可能になりました。<br>
+動画を撮影・アップするにはYosemite以上(OS X 10.10以上)のMacとSafariが必要になります。</p>
+
+<p>また、動画にもいろいろな制約（30fps以下であること等）があるので、<a href="https://itunesconnect.apple.com/WebObjects/iTunesConnect.woa/wo/1.0.0.13.7.2.7.9.3.1.2.3.3.1.1.12.1" rel="nofollow noopener" target="_blank">Appleの公式ドキュメント</a>を読むことをオススメします。</p>
+
+<h2>
+<span id="アプリの公開日はコントロールできるの" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E5%85%AC%E9%96%8B%E6%97%A5%E3%81%AF%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>アプリの公開日はコントロールできるの？</h2>
+
+<p>できます。</p>
+
+<p>新規アプリの場合は「Availability Date」で公開日を指定できます。</p>
+
+<p>アップデートの場合は、アプリ申請時にリリースタイミングを</p>
+
+<ul>
+<li>自動リリース - 審査が通ったら即時リリース</li>
+<li>手動リリース - 審査が通ったら一旦保留状態になり、好きなタイミングでリリースできる</li>
+<li>時間指定リリース - 審査が通ったあと、指定した時間に自動リリース</li>
+</ul>
+
+<p>の中から選択できます。</p>
+
+<h1>
+<span id="アプリ申請後" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E7%94%B3%E8%AB%8B%E5%BE%8C"><i class="fa fa-link"></i></a>アプリ申請後</h1>
+
+<h2>
+<span id="アプリの審査にはどのくらい期間がかかるの" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E5%AF%A9%E6%9F%BB%E3%81%AB%E3%81%AF%E3%81%A9%E3%81%AE%E3%81%8F%E3%82%89%E3%81%84%E6%9C%9F%E9%96%93%E3%81%8C%E3%81%8B%E3%81%8B%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>アプリの審査にはどのくらい期間がかかるの？</h2>
+
+<p>アプリの内容や審査の時期にもよりますが、スムーズに行けば新規アプリの場合は大体2週間、アップデート審査の場合は1週間ぐらいで完了します。もちろん、これより早く審査が完了したり、逆にもっと長くかかったりする場合もあります。<br>
+ （私が実際に申請したアプリの平均データであり、公式な情報ではありません）</p>
+
+<p><strong>2017/6/14 追記：アップルさんが本気を出し始めたので、最近は1〜2日で完了するようになりました。</strong></p>
+
+<p>アプリ審査の混み具合を把握できるサイトもあります</p>
+
+<ul>
+<li>
+<a href="https://developer.apple.com/support/app-store/" rel="nofollow noopener" target="_blank">App Review Status</a> - Apple公式。5営業日以内にレビューされる割合がわかる（5営業日以内にレビューが完了する割合ではないので注意）</li>
+<li>
+<a href="http://reviewtimes.shinydevelopment.com/" rel="nofollow noopener" target="_blank">Average App Store Review Times</a> - 世界中のアプリ開発者から自己申告されたレビュー日数を元に平均日数を算出してくれるサービス。</li>
+</ul>
+
+<h2>
+<span id="アップデート審査完了後の公開日はコントロールできるの" class="fragment"></span><a href="#%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E5%AF%A9%E6%9F%BB%E5%AE%8C%E4%BA%86%E5%BE%8C%E3%81%AE%E5%85%AC%E9%96%8B%E6%97%A5%E3%81%AF%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>アップデート審査完了後の公開日はコントロールできるの？</h2>
+
+<p>できます。アップデート申請時に自動リリースか手動更新か選択できますので、後者を選択しましょう。手動更新を選択すると、審査完了後はリリース保留状態になり、リリース指示を出すまでApp Storeには公開されません。</p>
+
+<h2>
+<span id="waiting-for-reviewレビュー待ち中に変更できる情報は" class="fragment"></span><a href="#waiting-for-review%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E5%BE%85%E3%81%A1%E4%B8%AD%E3%81%AB%E5%A4%89%E6%9B%B4%E3%81%A7%E3%81%8D%E3%82%8B%E6%83%85%E5%A0%B1%E3%81%AF"><i class="fa fa-link"></i></a>Waiting For Review（レビュー待ち）中に変更できる情報は？</h2>
+
+<ul>
+<li>バージョン番号</li>
+<li>コピーライト</li>
+<li>カテゴリ</li>
+<li>レーティング</li>
+<li>アプリアイコン</li>
+<li>アプリ名</li>
+<li>Appサブタイトル</li>
+<li>アプリ説明文</li>
+<li>アップデート内容</li>
+<li>キーワード</li>
+<li>各種URL</li>
+<li>スクリーンショット</li>
+<li>開発者連絡先</li>
+<li>EULA(End User License Agreement)</li>
+</ul>
+
+<p>※これらは変更になる可能性があるので、最新の情報は<a href="http://help.apple.com/itunes-connect/developer/#/dev18557d60e" rel="nofollow noopener" target="_blank">公式ドキュメント</a>を参照して下さい。</p>
+
+<h2>
+<span id="in-reviewレビュー中に変更できる情報は" class="fragment"></span><a href="#in-review%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E4%B8%AD%E3%81%AB%E5%A4%89%E6%9B%B4%E3%81%A7%E3%81%8D%E3%82%8B%E6%83%85%E5%A0%B1%E3%81%AF"><i class="fa fa-link"></i></a>In Review（レビュー中）に変更できる情報は？</h2>
+
+<ul>
+<li>コピーライト</li>
+<li>各種URL</li>
+<li>開発者連絡先</li>
+<li>EULA(End User License Agreement)</li>
+</ul>
+
+<p>※これらは変更になる可能性があるので、最新の情報は<a href="http://help.apple.com/itunes-connect/developer/#/dev18557d60e" rel="nofollow noopener" target="_blank">公式ドキュメント</a>を参照して下さい。</p>
+
+<h2>
+<span id="アプリ審査中にバグが見つかったんだけど審査を中止してもらえるの" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E5%AF%A9%E6%9F%BB%E4%B8%AD%E3%81%AB%E3%83%90%E3%82%B0%E3%81%8C%E8%A6%8B%E3%81%A4%E3%81%8B%E3%81%A3%E3%81%9F%E3%82%93%E3%81%A0%E3%81%91%E3%81%A9%E5%AF%A9%E6%9F%BB%E3%82%92%E4%B8%AD%E6%AD%A2%E3%81%97%E3%81%A6%E3%82%82%E3%82%89%E3%81%88%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>アプリ審査中にバグが見つかったんだけど、審査を中止してもらえるの？</h2>
+
+<p>審査状態が以下のいずれかである場合のみキャンセルできます。</p>
+
+<ul>
+<li>MissingScreenshot（スクリーンショットの欠落）</li>
+<li>WaitingforExport Compliance（輸出コンプライアンス待ち）</li>
+<li>Waiting For Review（レビュー待ち）</li>
+<li>In Review（レビュー中）</li>
+<li>Pending Apple Release（Appleリリース待ち）</li>
+</ul>
+
+<p>iTunes Connectにログインし、「マイ App」ページの「このバージョンをレビュー審査から削除」をクリックすると、バイナリが審査待機リストから削除されます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/c2aac308e665f691a8f7a8a8e674ece855e0cee9/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f66656232343332322d313737612d303837632d383837632d3964323761626566336239372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/c2aac308e665f691a8f7a8a8e674ece855e0cee9/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f66656232343332322d313737612d303837632d383837632d3964323761626566336239372e706e67" alt="スクリーンショット 2014-10-19 10.18.31.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8292/feb24322-177a-087c-887c-9d27abef3b97.png"></a></p>
+
+<h2>
+<span id="どんなアプリがリジェクトされるの" class="fragment"></span><a href="#%E3%81%A9%E3%82%93%E3%81%AA%E3%82%A2%E3%83%97%E3%83%AA%E3%81%8C%E3%83%AA%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%95%E3%82%8C%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>どんなアプリがリジェクトされるの？</h2>
+
+<p>Appleが公開している「アプリケーション審査ガイドライン」に従っていないアプリはリジェクトされます。</p>
+
+<ul>
+<li><a href="https://developer.apple.com/jp/appstore/guidelines.html" rel="nofollow noopener" target="_blank">アプリケーション審査ガイドライン</a></li>
+<li>
+<a href="http://fladdict.net/blog/2010/09/reject-list.html" rel="nofollow noopener" target="_blank">iPhoneアプリ審査での111の禁止項目（意訳）</a> - <a href="http://twitter.com/fladdict" rel="nofollow noopener" target="_blank">fladdict</a>さんによる意訳。</li>
+</ul>
+
+<h2>
+<span id="段階的にリリースはできるの" class="fragment"></span><a href="#%E6%AE%B5%E9%9A%8E%E7%9A%84%E3%81%AB%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%81%AF%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>段階的にリリースはできるの？</h2>
+
+<p>できます（2017年6月5日〜）。段階的リリースにより、<strong>自動更新がオンになっているユーザ</strong>に対して、7日間かけて徐々にバージョンのアップデートがリリースされていきます。（段階的リリースに当たらなかったユーザーも、自分からApp Storeを見に行った場合はダウンロードできてしまう点にご注意ください）</p>
+
+<p>また、バージョンのアップデートで問題が発生した場合、いつでも段階的リリースを一時停止できます。</p>
+
+<p>詳しい設定方法については<a href="https://itunespartner.apple.com/jp/apps/news/31070842?sc_cid=ITC-AP-PSRL" rel="nofollow noopener" target="_blank">iTunes Connect のリソースとヘルプ</a>を参照してください。</p>
+
+<h2>
+<span id="審査中にアップルから電話がかかってくることはあるの" class="fragment"></span><a href="#%E5%AF%A9%E6%9F%BB%E4%B8%AD%E3%81%AB%E3%82%A2%E3%83%83%E3%83%97%E3%83%AB%E3%81%8B%E3%82%89%E9%9B%BB%E8%A9%B1%E3%81%8C%E3%81%8B%E3%81%8B%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%82%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>審査中にアップルから電話がかかってくることはあるの？</h2>
+
+<p>何度もリジェクトが続くと電話でやりとりすることになる場合もあるようです。というか、ありました。（私の場合は日本語が通じる方でした）</p>
+
+<h1>
+<span id="アプリ公開後" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E5%85%AC%E9%96%8B%E5%BE%8C"><i class="fa fa-link"></i></a>アプリ公開後</h1>
+
+<h2>
+<span id="公開後にスクリーンショットは自由に変更できるの" class="fragment"></span><a href="#%E5%85%AC%E9%96%8B%E5%BE%8C%E3%81%AB%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%E3%81%AF%E8%87%AA%E7%94%B1%E3%81%AB%E5%A4%89%E6%9B%B4%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>公開後にスクリーンショットは自由に変更できるの？</h2>
+
+<p>2013年1月9日よりスクリーンショットの常時変更ができなくなりました。公開後はアップデート時のみ変更可能です。</p>
+
+<p><a href="https://developer.apple.com/news/index.php?id=1092013a" rel="nofollow noopener" target="_blank">Updating Screenshots in iTunes Connect</a></p>
+
+<h2>
+<span id="公開後はどんな情報が変更できるの" class="fragment"></span><a href="#%E5%85%AC%E9%96%8B%E5%BE%8C%E3%81%AF%E3%81%A9%E3%82%93%E3%81%AA%E6%83%85%E5%A0%B1%E3%81%8C%E5%A4%89%E6%9B%B4%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>公開後はどんな情報が変更できるの？</h2>
+
+<p>次の情報は常時変更できます。</p>
+
+<ul>
+<li>
+<del>アプリの説明文</del>（<a href="https://itunespartner.apple.com/jp/apps/news/61604499?sc_cid=ITC-AP-UPDIN" rel="nofollow noopener" target="_blank">2017年6月5日</a>から変更できなくなりました）</li>
+<li>アップデート内容文</li>
+<li>プロモーション用テキスト</li>
+<li>Support URL</li>
+<li>Marketing URL</li>
+<li>Privacy Policy URL</li>
+<li>Copyright</li>
+</ul>
+
+<p>次の情報はアップデート時にのみ変更可能です。</p>
+
+<ul>
+<li>アプリ名</li>
+<li>アプリの説明文</li>
+<li>カテゴリ</li>
+<li>レーティング</li>
+<li>キーワード</li>
+<li>App Store用アイコン</li>
+<li>スクリーンショット</li>
+</ul>
+
+<h2>
+<span id="アプリのアップデートには何の情報が必要なの" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%81%AB%E3%81%AF%E4%BD%95%E3%81%AE%E6%83%85%E5%A0%B1%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%AA%E3%81%AE"><i class="fa fa-link"></i></a>アプリのアップデートには何の情報が必要なの？</h2>
+
+<p>アップデート内容を説明する文が必要になります（4000文字以内）<br>
+※空欄でも審査には出せるようです</p>
+
+<h2>
+<span id="アプリのアップデート審査にはどのくらいかかるの" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E5%AF%A9%E6%9F%BB%E3%81%AB%E3%81%AF%E3%81%A9%E3%81%AE%E3%81%8F%E3%82%89%E3%81%84%E3%81%8B%E3%81%8B%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>アプリのアップデート審査にはどのくらいかかるの？</h2>
+
+<p>先述した通り、アップデート審査の場合は1週間ぐらいで完了します。もちろん、これより早く審査が完了したり、逆にもっと長くかかったりする場合もあります。<br>
+ （私が実際に申請してきたアプリの平均データであり、公式な情報ではありません）</p>
+
+<p><strong>2017/6/14 追記：アップルさんが本気を出し始めたため、最近は1〜2日で完了するようになりました。</strong></p>
+
+<h2>
+<span id="表示されているカテゴリがおかしいんだけど" class="fragment"></span><a href="#%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA%E3%81%8C%E3%81%8A%E3%81%8B%E3%81%97%E3%81%84%E3%82%93%E3%81%A0%E3%81%91%E3%81%A9"><i class="fa fa-link"></i></a>表示されているカテゴリがおかしいんだけど？</h2>
+
+<p>カテゴリを変更した際などは、App Storeに反映されるまで3〜4日かかる場合もあるようです。（実際にありました）</p>
+
+<h2>
+<span id="アプリをappstoreから削除できるの" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92appstore%E3%81%8B%E3%82%89%E5%89%8A%E9%99%A4%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>アプリをAppStoreから削除できるの？</h2>
+
+<p>iTunes Connectから削除可能です。削除されたアプリケーションは24時間以内にApp Storeに表示されなくなります。</p>
+
+<h2>
+<span id="アプリの公開を一時的に停止したいんだけど" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E5%85%AC%E9%96%8B%E3%82%92%E4%B8%80%E6%99%82%E7%9A%84%E3%81%AB%E5%81%9C%E6%AD%A2%E3%81%97%E3%81%9F%E3%81%84%E3%82%93%E3%81%A0%E3%81%91%E3%81%A9"><i class="fa fa-link"></i></a>アプリの公開を一時的に停止したいんだけど</h2>
+
+<p>公開する国をゼロにすることで、非公開状態になります。</p>
+
+<ol>
+<li>iTunes Connectにログインして非公開にしたいアプリを選択します</li>
+<li>「Rights and Pricing」をクリックします</li>
+<li>「Select the App Store territories…」からすべての国のチェックボックスをオフにして「Save」ボタンをクリックします</li>
+</ol>
+
+<p>すると、アプリのステータスが「Developer Removed From Sale」に変わります。数時間でApp Storeからアプリが消えます。</p>
+
+<p>公開を再開したい場合は、公開先の国にチェックを入れて保存します。ステータスが「Ready for Sale」に変わり、アプリがApp Storeに公開されます。</p>
+
+<h2>
+<span id="アプリを公開したあとに致命的なバグが見つかったんだけどどうしたらいい" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%85%AC%E9%96%8B%E3%81%97%E3%81%9F%E3%81%82%E3%81%A8%E3%81%AB%E8%87%B4%E5%91%BD%E7%9A%84%E3%81%AA%E3%83%90%E3%82%B0%E3%81%8C%E8%A6%8B%E3%81%A4%E3%81%8B%E3%81%A3%E3%81%9F%E3%82%93%E3%81%A0%E3%81%91%E3%81%A9%E3%81%A9%E3%81%86%E3%81%97%E3%81%9F%E3%82%89%E3%81%84%E3%81%84"><i class="fa fa-link"></i></a>アプリを公開したあとに致命的なバグが見つかったんだけど、どうしたらいい？</h2>
+
+<ol>
+<li><strong>まずは落ち着きましょう</strong></li>
+<li>iTunes Connectから「Developer Rejected（デベロッパ取り下げ）」を行い、App Storeでの公開を中止しましょう。</li>
+<li>急いで修正版を申請しましょう</li>
+</ol>
+
+<p>何日も審査を待ってられないよ！！という場合は「Expedited reviews（通称：特急審査）」 を使う手段もあります。必ず受理されるわけではありませんが、受理されれば1〜2営業日で審査してくれます。（早急な審査が必要な理由を英語で書く必要があります）</p>
+
+<p><a href="https://developer.apple.com/appstore/contact/appreviewteam/index.html" rel="nofollow noopener" target="_blank">Request an Expedited App Review</a></p>
+
+<h2>
+<span id="アプリのダウンロード数は見れるの" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89%E6%95%B0%E3%81%AF%E8%A6%8B%E3%82%8C%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>アプリのダウンロード数は見れるの？</h2>
+
+<p>はい。iTunes Connectから、App Storeでのアプリケーションダウンロード数、売上データ（日次、週次、月次、年次、累計）を閲覧・ダウンロードできます。</p>
+
+<h2>
+<span id="アプリを他の人に譲渡できるの" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BB%96%E3%81%AE%E4%BA%BA%E3%81%AB%E8%AD%B2%E6%B8%A1%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%AE"><i class="fa fa-link"></i></a>アプリを他の人に譲渡できるの？</h2>
+
+<p>できるようになったみたいです。</p>
+
+<blockquote>
+<p>開発者どうしでアプリケーションを売買することが多くなり、譲渡手続きを自動化する仕組みが構築されました。この手続きにより、アプリケーションの所有権を、App Storeに置いたままで他の開発者に譲渡できます。それまでに寄せられた意見や要望、人気度の順位などもそのままです。譲渡するアプリケーションの数に制限はありませんが、個別に行う必要があります。</p>
+</blockquote>
+
+<p><a href="https://developer.apple.com/jp/devcenter/ios/library/documentation/iTunesConnect_Guide.pdf" rel="nofollow noopener" target="_blank">iTunes Connectデベロッパガイド</a>より引用。</p>
+
+<p>アプリを譲渡するには色々と条件があるようなので、具体的な手順はデベロッパガイドを参照してください。</p>
+
+<h1>
+<span id="リンク" class="fragment"></span><a href="#%E3%83%AA%E3%83%B3%E3%82%AF"><i class="fa fa-link"></i></a>リンク</h1>
+
+<ul>
+<li><a href="https://itunesconnect.apple.com" rel="nofollow noopener" target="_blank">iTunes Connect</a></li>
+<li><a href="https://developer.apple.com/jp/devcenter/ios/library/documentation/iTunesConnect_Guide.pdf" rel="nofollow noopener" target="_blank">iTunes Connectデベロッパガイド</a></li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -53,23 +424,580 @@
 <tr>
 	<td rowspan="3"><center>koogawaさんの<br />2位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>475</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/6ec24ca3201977e9642b">iOS 8から位置情報を取得する方法が変わるよ</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>403</kbd>
+		<a target="_blank" href="https://qiita.com/koogawa/items/e0b3862c0fbdf97b579f">iPhoneで取得・検知できる情報10連発！（サンプルアプリもあるよ）</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-08-12 13:47:34</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-12-11 00:04:18</center>
 	</td>
 	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
+		@koogawa<br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
 	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[位置情報]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Objective-C]</b> <b>[iPhone]</b> <b>[AdventCalendar]</b> <b>[iOS]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>こんにちは！12/11担当の <a href="https://twitter.com/koogawa" rel="nofollow noopener" target="_blank">@koogawa</a> です。どうぞよろしくお願いします。</p>
+
+<p>さて、iPhoneには「加速度センサー」や「電子コンパス」など、いろいろなセンサーが搭載されていることはご存知だと思います。そこで今回は、iPhoneで検知できる様々な情報とその実装方法を、10個ピックアップしてまとめてました。メジャーなものからマニアックなものまで色々揃えましたので、何か一つでもお役に立てたら嬉しいです。</p>
+
+<p>では、いってみましょう！</p>
+
+<h1>
+<span id="光音声系" class="fragment"></span><a href="#%E5%85%89%E9%9F%B3%E5%A3%B0%E7%B3%BB"><i class="fa fa-link"></i></a>光・音声系</h1>
+
+<h2>
+<span id="1-輝度センサー" class="fragment"></span><a href="#1-%E8%BC%9D%E5%BA%A6%E3%82%BB%E3%83%B3%E3%82%B5%E3%83%BC"><i class="fa fa-link"></i></a>1. 輝度センサー</h2>
+
+<p>iPhoneの画面輝度（明るさ）が取得・設定できます。</p>
+
+<p>画面輝度＝周りの明るさなので、輝度が高ければユーザが明るい場所にいると判断することもできそうです。ただ、中には画面輝度を固定に設定しているユーザもいるので、一概にこの基準が当てはまるとは限りません。</p>
+
+<h3>
+<span id="実装方法" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>実装方法</h3>
+
+<p>画面輝度は次のように取得できます。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="n">CGFloat</span> <span class="n">brightness</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIScreen</span> <span class="n">mainScreen</span><span class="p">].</span><span class="n">brightness</span><span class="p">;</span>
+</pre></div></div>
+
+<p>0.0〜1.0 の値が返ってきます。数値が増えるほど明るくなります。</p>
+
+<h3>
+<span id="詳しい記事" class="fragment"></span><a href="#%E8%A9%B3%E3%81%97%E3%81%84%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>詳しい記事</h3>
+
+<ul>
+<li><a href="http://blog.koogawa.com/entry/2013/11/17/111304" rel="nofollow noopener" target="_blank">【Tips】iOSで輝度センサーを使う</a></li>
+</ul>
+
+<h3>
+<span id="サンプルコード" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>サンプルコード</h3>
+
+<ul>
+<li><a href="https://github.com/koogawa/iSensor/blob/master/iSensor/BrightnessViewController.m" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/koogawa/iSensor/blob/master/iSensor/BrightnessViewController.m</a></li>
+</ul>
+
+<h2>
+<span id="2-近接センサー" class="fragment"></span><a href="#2-%E8%BF%91%E6%8E%A5%E3%82%BB%E3%83%B3%E3%82%B5%E3%83%BC"><i class="fa fa-link"></i></a>2. 近接センサー</h2>
+
+<p>通話中、画面に顔が近付くと自動的に画面をロックしてくれるアレです。もちろん顔じゃなくても反応します。</p>
+
+<h3>
+<span id="実装方法-1" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95-1"><i class="fa fa-link"></i></a>実装方法</h3>
+
+<p>まずは近接センサーをオンにします。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="p">[</span><span class="bp">UIDevice</span> <span class="n">currentDevice</span><span class="p">].</span><span class="n">proximityMonitoringEnabled</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+</pre></div></div>
+
+<p>次に、近接センサーを監視します。</p>
+
+<p>近接センサーが反応すると、<code>UIDeviceProximityStateDidChangeNotification</code> が飛んでくるので、それを監視します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="bp">NSNotificationCenter</span> <span class="n">defaultCenter</span><span class="p">]</span> <span class="nl">addObserver</span><span class="p">:</span><span class="nb">self</span>
+                                             <span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">proximitySensorStateDidChange</span><span class="p">:)</span>
+                                                 <span class="nl">name</span><span class="p">:</span><span class="n">UIDeviceProximityStateDidChangeNotification</span>
+                                               <span class="nl">object</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+</pre></div></div>
+
+<h3>
+<span id="詳しい記事-1" class="fragment"></span><a href="#%E8%A9%B3%E3%81%97%E3%81%84%E8%A8%98%E4%BA%8B-1"><i class="fa fa-link"></i></a>詳しい記事</h3>
+
+<ul>
+<li><a href="http://blog.koogawa.com/entry/2013/11/17/133500" rel="nofollow noopener" target="_blank">【Tips】iOSで近接センサーを使う</a></li>
+</ul>
+
+<h3>
+<span id="サンプルコード-1" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89-1"><i class="fa fa-link"></i></a>サンプルコード</h3>
+
+<ul>
+<li><a href="https://github.com/koogawa/iSensor/blob/master/iSensor/ProximityViewController.m" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/koogawa/iSensor/blob/master/iSensor/ProximityViewController.m</a></li>
+</ul>
+
+<h2>
+<span id="3-シェイクジェスチャー" class="fragment"></span><a href="#3-%E3%82%B7%E3%82%A7%E3%82%A4%E3%82%AF%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%81%E3%83%A3%E3%83%BC"><i class="fa fa-link"></i></a>3. シェイクジェスチャー</h2>
+
+<p>iPhoneを振ったときの動作を検知します。</p>
+
+<h3>
+<span id="実装方法-2" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95-2"><i class="fa fa-link"></i></a>実装方法</h3>
+
+<p>シェイクジェスチャーを検知するためにはファーストレスポンダにならないといけないので、<code>canBecomeFirstResonder</code> をオーバライドして <code>YES</code> を返します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">canBecomeFirstResponder</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>この状態でiPhoneを振ると、次のメソッドが呼ばれるようになります。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="c1">// シェイク開始</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">motionBegan:</span><span class="p">(</span><span class="n">UIEventSubtype</span><span class="p">)</span><span class="nv">motion</span> <span class="nf">withEvent:</span><span class="p">(</span><span class="bp">UIEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">UIEventTypeMotion</span> <span class="o">&amp;&amp;</span> <span class="n">event</span><span class="p">.</span><span class="n">subtype</span> <span class="o">==</span> <span class="n">UIEventSubtypeMotionShake</span><span class="p">)</span>  <span class="p">{</span>
+        <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Motion began"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// シェイク完了</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">motionEnded:</span><span class="p">(</span><span class="n">UIEventSubtype</span><span class="p">)</span><span class="nv">motion</span> <span class="nf">withEvent:</span><span class="p">(</span><span class="bp">UIEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">UIEventTypeMotion</span> <span class="o">&amp;&amp;</span> <span class="n">event</span><span class="p">.</span><span class="n">subtype</span> <span class="o">==</span> <span class="n">UIEventSubtypeMotionShake</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Motion ended"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>このメソッドを利用して、シェイクジェスチャーを検知します。</p>
+
+<h3>
+<span id="詳しい記事-2" class="fragment"></span><a href="#%E8%A9%B3%E3%81%97%E3%81%84%E8%A8%98%E4%BA%8B-2"><i class="fa fa-link"></i></a>詳しい記事</h3>
+
+<ul>
+<li><a href="http://blog.koogawa.com/entry/2013/11/20/222242" rel="nofollow noopener" target="_blank">【Tips】iOSでシェイクジェスチャーを検知する</a></li>
+</ul>
+
+<h3>
+<span id="サンプルコード-2" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89-2"><i class="fa fa-link"></i></a>サンプルコード</h3>
+
+<ul>
+<li><a href="https://github.com/koogawa/iSensor/blob/master/iSensor/ShakeViewController.m" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/koogawa/iSensor/blob/master/iSensor/ShakeViewController.m</a></li>
+</ul>
+
+<h2>
+<span id="4-マイクの音" class="fragment"></span><a href="#4-%E3%83%9E%E3%82%A4%E3%82%AF%E3%81%AE%E9%9F%B3"><i class="fa fa-link"></i></a>4. マイクの音</h2>
+
+<p>Core Audioを使用して、マイクから音を検知します。</p>
+
+<h3>
+<span id="実装方法-3" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95-3"><i class="fa fa-link"></i></a>実装方法</h3>
+
+<p>記録するデータフォーマットを決めます。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="bp">AudioStreamBasicDescription</span> <span class="n">dataFormat</span><span class="p">;</span>
+<span class="n">dataFormat</span><span class="p">.</span><span class="n">mSampleRate</span> <span class="o">=</span> <span class="mf">44100.0f</span><span class="p">;</span>
+<span class="n">dataFormat</span><span class="p">.</span><span class="n">mFormatID</span> <span class="o">=</span> <span class="n">kAudioFormatLinearPCM</span><span class="p">;</span>
+<span class="n">dataFormat</span><span class="p">.</span><span class="n">mFormatFlags</span> <span class="o">=</span> <span class="n">kLinearPCMFormatFlagIsBigEndian</span> <span class="o">|</span> <span class="n">kLinearPCMFormatFlagIsSignedInteger</span> <span class="o">|</span> <span class="n">kLinearPCMFormatFlagIsPacked</span><span class="p">;</span>
+<span class="n">dataFormat</span><span class="p">.</span><span class="n">mBytesPerPacket</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">dataFormat</span><span class="p">.</span><span class="n">mFramesPerPacket</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">dataFormat</span><span class="p">.</span><span class="n">mBytesPerFrame</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">dataFormat</span><span class="p">.</span><span class="n">mChannelsPerFrame</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">dataFormat</span><span class="p">.</span><span class="n">mBitsPerChannel</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+<span class="n">dataFormat</span><span class="p">.</span><span class="n">mReserved</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div></div>
+
+<p>音の監視を開始します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="n">AudioQueueNewInput</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dataFormat</span><span class="p">,</span> <span class="n">AudioInputCallback</span><span class="p">,</span> <span class="p">(</span><span class="k">__bridge</span> <span class="kt">void</span> <span class="o">*</span><span class="p">)(</span><span class="nb">self</span><span class="p">),</span> <span class="n">CFRunLoopGetCurrent</span><span class="p">(),</span> <span class="n">kCFRunLoopCommonModes</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">_queue</span><span class="p">);</span>
+<span class="n">AudioQueueStart</span><span class="p">(</span><span class="n">_queue</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</pre></div></div>
+
+<p>マイクのレベルを取得できるように、レベルメータを有効化しておきます。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="kt">UInt32</span> <span class="n">enabledLevelMeter</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="n">AudioQueueSetProperty</span><span class="p">(</span><span class="n">_queue</span><span class="p">,</span> <span class="n">kAudioQueueProperty_EnableLevelMetering</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">enabledLevelMeter</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">UInt32</span><span class="p">));</span>
+</pre></div></div>
+
+<p>一定時間ごとにレベルを取得して、画面に表示します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">detectVolume:</span><span class="p">(</span><span class="bp">NSTimer</span> <span class="o">*</span><span class="p">)</span><span class="nv">timer</span>
+<span class="p">{</span>
+    <span class="c1">// レベルを取得</span>
+    <span class="bp">AudioQueueLevelMeterState</span> <span class="n">levelMeter</span><span class="p">;</span>
+    <span class="kt">UInt32</span> <span class="n">levelMeterSize</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="bp">AudioQueueLevelMeterState</span><span class="p">);</span>
+    <span class="n">AudioQueueGetProperty</span><span class="p">(</span><span class="n">_queue</span><span class="p">,</span> <span class="n">kAudioQueueProperty_CurrentLevelMeterDB</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">levelMeter</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">levelMeterSize</span><span class="p">);</span>
+
+    <span class="c1">// 最大レベル、平均レベルを表示</span>
+    <span class="nb">self</span><span class="p">.</span><span class="n">peakTextField</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@"%.2f"</span><span class="p">,</span> <span class="n">levelMeter</span><span class="p">.</span><span class="n">mPeakPower</span><span class="p">];</span>
+    <span class="nb">self</span><span class="p">.</span><span class="n">averageTextField</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@"%.2f"</span><span class="p">,</span> <span class="n">levelMeter</span><span class="p">.</span><span class="n">mAveragePower</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>通常、<code>mPeakPower</code>、<code>mAveragePower</code> には負の値がセットされており、音量に比例して値も大きくなっていきます。最大値は 0 になります。</p>
+
+<h3>
+<span id="詳しい記事-3" class="fragment"></span><a href="#%E8%A9%B3%E3%81%97%E3%81%84%E8%A8%98%E4%BA%8B-3"><i class="fa fa-link"></i></a>詳しい記事</h3>
+
+<ul>
+<li><a href="http://blog.koogawa.com/entry/2013/11/24/121807" rel="nofollow noopener" target="_blank">【Tips】iOSでマイクの音を検知する</a></li>
+</ul>
+
+<h3>
+<span id="サンプルコード-3" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89-3"><i class="fa fa-link"></i></a>サンプルコード</h3>
+
+<ul>
+<li><a href="https://github.com/koogawa/iSensor/blob/master/iSensor/AudioViewController.m" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/koogawa/iSensor/blob/master/iSensor/AudioViewController.m</a></li>
+</ul>
+
+<h1>
+<span id="位置情報系" class="fragment"></span><a href="#%E4%BD%8D%E7%BD%AE%E6%83%85%E5%A0%B1%E7%B3%BB"><i class="fa fa-link"></i></a>位置情報系</h1>
+
+<h2>
+<span id="5-緯度経度" class="fragment"></span><a href="#5-%E7%B7%AF%E5%BA%A6%E7%B5%8C%E5%BA%A6"><i class="fa fa-link"></i></a>5. 緯度・経度</h2>
+
+<p>GPSを使って、現在地の緯度・経度を取得します。</p>
+
+<h3>
+<span id="実装方法-4" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95-4"><i class="fa fa-link"></i></a>実装方法</h3>
+
+<p>現在地の取得を開始します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">([</span><span class="bp">CLLocationManager</span> <span class="n">locationServicesEnabled</span><span class="p">])</span>
+<span class="p">{</span>
+    <span class="c1">// インスタンスを生成</span>
+    <span class="n">_locationManager</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">CLLocationManager</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+
+    <span class="c1">// デリゲートを設定</span>
+    <span class="n">_locationManager</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+
+    <span class="c1">// 位置情報の取得開始</span>
+    <span class="p">[</span><span class="n">_locationManager</span> <span class="n">startUpdatingLocation</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>この状態で位置情報が更新されると、次のメソッドが呼ばれます。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="c1">// 位置情報が更新されるたびに呼ばれる</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">locationManager:</span><span class="p">(</span><span class="bp">CLLocationManager</span> <span class="o">*</span><span class="p">)</span><span class="nv">manager</span>
+    <span class="nf">didUpdateToLocation:</span><span class="p">(</span><span class="bp">CLLocation</span> <span class="o">*</span><span class="p">)</span><span class="nv">newLocation</span>
+           <span class="nf">fromLocation:</span><span class="p">(</span><span class="bp">CLLocation</span> <span class="o">*</span><span class="p">)</span><span class="nv">oldLocation</span>
+<span class="p">{</span>
+    <span class="nb">self</span><span class="p">.</span><span class="n">latTextField</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@"%.2f"</span><span class="p">,</span> <span class="n">newLocation</span><span class="p">.</span><span class="n">coordinate</span><span class="p">.</span><span class="n">latitude</span><span class="p">];</span>
+    <span class="nb">self</span><span class="p">.</span><span class="n">lonTextField</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@"%.2f"</span><span class="p">,</span> <span class="n">newLocation</span><span class="p">.</span><span class="n">coordinate</span><span class="p">.</span><span class="n">longitude</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>引数 <code>newLocation</code> から現在地を取得することができます。</p>
+
+<h3>
+<span id="詳しい記事-4" class="fragment"></span><a href="#%E8%A9%B3%E3%81%97%E3%81%84%E8%A8%98%E4%BA%8B-4"><i class="fa fa-link"></i></a>詳しい記事</h3>
+
+<ul>
+<li><a href="http://blog.koogawa.com/entry/2013/11/23/190909" rel="nofollow noopener" target="_blank">iOSで緯度・経度を取得する方法メモ</a></li>
+</ul>
+
+<h3>
+<span id="サンプルコード-4" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89-4"><i class="fa fa-link"></i></a>サンプルコード</h3>
+
+<ul>
+<li><a href="https://github.com/koogawa/iSensor/blob/master/iSensor/LocationViewController.m" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/koogawa/iSensor/blob/master/iSensor/LocationViewController.m</a></li>
+</ul>
+
+<h2>
+<span id="6-電子コンパス" class="fragment"></span><a href="#6-%E9%9B%BB%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%91%E3%82%B9"><i class="fa fa-link"></i></a>6. 電子コンパス</h2>
+
+<p>磁力センサーを利用して、iPhoneの向きを計測することができます。</p>
+
+<h3>
+<span id="実装方法-5" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95-5"><i class="fa fa-link"></i></a>実装方法</h3>
+
+<p>取得を開始します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="p">([</span><span class="bp">CLLocationManager</span> <span class="n">headingAvailable</span><span class="p">])</span>
+    <span class="p">{</span>
+        <span class="c1">// インスタンスを生成</span>
+        <span class="n">_locationManager</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">CLLocationManager</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+
+        <span class="c1">// デリゲートを設定</span>
+        <span class="n">_locationManager</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+
+        <span class="c1">// 何度動いたら更新するか（デフォルトは1度）</span>
+        <span class="n">_locationManager</span><span class="p">.</span><span class="n">headingFilter</span> <span class="o">=</span> <span class="n">kCLHeadingFilterNone</span><span class="p">;</span>
+
+        <span class="c1">// デバイスの度の向きを北とするか（デフォルトは画面上部）</span>
+        <span class="n">_locationManager</span><span class="p">.</span><span class="n">headingOrientation</span> <span class="o">=</span> <span class="n">CLDeviceOrientationPortrait</span><span class="p">;</span>
+
+        <span class="c1">// ヘディングイベントの開始</span>
+        <span class="p">[</span><span class="n">_locationManager</span> <span class="n">startUpdatingHeading</span><span class="p">];</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<p>この状態でiPhoneの向きが変わると、次のメソッドが呼ばれます。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="c1">// デバイスの方位が変わるたびに呼ばれる</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">locationManager:</span><span class="p">(</span><span class="bp">CLLocationManager</span> <span class="o">*</span><span class="p">)</span><span class="nv">manager</span> <span class="nf">didUpdateHeading:</span><span class="p">(</span><span class="bp">CLHeading</span> <span class="o">*</span><span class="p">)</span><span class="nv">newHeading</span>
+<span class="p">{</span>
+    <span class="n">CLLocationDirection</span> <span class="n">heading</span> <span class="o">=</span> <span class="n">newHeading</span><span class="p">.</span><span class="n">magneticHeading</span><span class="p">;</span>
+    <span class="nb">self</span><span class="p">.</span><span class="n">textField</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@"%.2f"</span><span class="p">,</span> <span class="n">heading</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><code>magneticHeading</code> には 0.0 から 359.9 の値が入ります。北の方向がちょうど 0.0 になり、それから東、南、西の順に値が増えていき、北に戻ると再び 0.0 に戻ります。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">方角</th>
+<th style="text-align: right">値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">北</td>
+<td style="text-align: right">0.0</td>
+</tr>
+<tr>
+<td style="text-align: left">東</td>
+<td style="text-align: right">90.0</td>
+</tr>
+<tr>
+<td style="text-align: left">南</td>
+<td style="text-align: right">180.0</td>
+</tr>
+<tr>
+<td style="text-align: left">西</td>
+<td style="text-align: right">270.0</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<span id="詳しい記事-5" class="fragment"></span><a href="#%E8%A9%B3%E3%81%97%E3%81%84%E8%A8%98%E4%BA%8B-5"><i class="fa fa-link"></i></a>詳しい記事</h3>
+
+<ul>
+<li><a href="http://blog.koogawa.com/entry/2013/11/22/155025" rel="nofollow noopener" target="_blank">【Tips】iOSで電子コンパスを使う</a></li>
+</ul>
+
+<h3>
+<span id="サンプルコード-5" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89-5"><i class="fa fa-link"></i></a>サンプルコード</h3>
+
+<ul>
+<li><a href="https://github.com/koogawa/iSensor/blob/master/iSensor/HeadingViewController.m" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/koogawa/iSensor/blob/master/iSensor/HeadingViewController.m</a></li>
+</ul>
+
+<h2>
+<span id="7-標高" class="fragment"></span><a href="#7-%E6%A8%99%E9%AB%98"><i class="fa fa-link"></i></a>7. 標高</h2>
+
+<p>GPSを使って、現在地の標高を測定できます。</p>
+
+<h3>
+<span id="実装方法-6" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95-6"><i class="fa fa-link"></i></a>実装方法</h3>
+
+<p>現在地情報の取得を開始します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">([</span><span class="bp">CLLocationManager</span> <span class="n">locationServicesEnabled</span><span class="p">])</span>
+<span class="p">{</span>
+    <span class="c1">// インスタンスを生成</span>
+    <span class="n">_locationManager</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">CLLocationManager</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+
+    <span class="c1">// デリゲートを設定</span>
+    <span class="n">_locationManager</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+
+    <span class="c1">// 位置情報の取得開始</span>
+    <span class="p">[</span><span class="n">_locationManager</span> <span class="n">startUpdatingLocation</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>この状態でiPhoneの位置情報が更新されると、次のメソッドが呼ばれます。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="c1">// 位置情報が更新されるたびに呼ばれる</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">locationManager:</span><span class="p">(</span><span class="bp">CLLocationManager</span> <span class="o">*</span><span class="p">)</span><span class="nv">manager</span>
+    <span class="nf">didUpdateToLocation:</span><span class="p">(</span><span class="bp">CLLocation</span> <span class="o">*</span><span class="p">)</span><span class="nv">newLocation</span>
+           <span class="nf">fromLocation:</span><span class="p">(</span><span class="bp">CLLocation</span> <span class="o">*</span><span class="p">)</span><span class="nv">oldLocation</span>
+<span class="p">{</span>
+    <span class="nb">self</span><span class="p">.</span><span class="n">textField</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@"%.2f m"</span><span class="p">,</span> <span class="n">newLocation</span><span class="p">.</span><span class="n">altitude</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>引数 <code>newLocation</code> の <code>altitude</code> プロパティで標高が取得できます。単位はメートルです。</p>
+
+<h3>
+<span id="詳しい記事-6" class="fragment"></span><a href="#%E8%A9%B3%E3%81%97%E3%81%84%E8%A8%98%E4%BA%8B-6"><i class="fa fa-link"></i></a>詳しい記事</h3>
+
+<ul>
+<li><a href="http://blog.koogawa.com/entry/2013/11/23/112832" rel="nofollow noopener" target="_blank">【Tips】iOSで標高を測定する</a></li>
+</ul>
+
+<h3>
+<span id="サンプルコード-6" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89-6"><i class="fa fa-link"></i></a>サンプルコード</h3>
+
+<ul>
+<li><a href="https://github.com/koogawa/iSensor/blob/master/iSensor/AltitudeViewController.m" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/koogawa/iSensor/blob/master/iSensor/AltitudeViewController.m</a></li>
+</ul>
+
+<h1>
+<span id="移動動作系" class="fragment"></span><a href="#%E7%A7%BB%E5%8B%95%E5%8B%95%E4%BD%9C%E7%B3%BB"><i class="fa fa-link"></i></a>移動・動作系</h1>
+
+<h2>
+<span id="8-加速度センサー" class="fragment"></span><a href="#8-%E5%8A%A0%E9%80%9F%E5%BA%A6%E3%82%BB%E3%83%B3%E3%82%B5%E3%83%BC"><i class="fa fa-link"></i></a>8. 加速度センサー</h2>
+
+<p>加速度センサーを利用することで、例えば iPhone の傾きによって画面上のボールが転がる、などと言った動きのあるアプリを作ることができます。</p>
+
+<h3>
+<span id="実装方法-7" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95-7"><i class="fa fa-link"></i></a>実装方法</h3>
+
+<p>インスタンスを生成します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="n">_motionManager</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">CMMotionManager</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</pre></div></div>
+
+<p>適切な更新間隔を設定をして加速度センサーを有効化します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">_motionManager</span><span class="p">.</span><span class="n">accelerometerAvailable</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// センサーの更新間隔の指定</span>
+    <span class="n">_motionManager</span><span class="p">.</span><span class="n">accelerometerUpdateInterval</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>  <span class="c1">// 10Hz</span>
+
+    <span class="c1">// ハンドラを指定</span>
+    <span class="n">CMAccelerometerHandler</span> <span class="n">handler</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="bp">CMAccelerometerData</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 画面に表示</span>
+        <span class="nb">self</span><span class="p">.</span><span class="n">xLabel</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@"x %f"</span><span class="p">,</span> <span class="n">data</span><span class="p">.</span><span class="n">acceleration</span><span class="p">.</span><span class="n">x</span><span class="p">];</span>
+        <span class="nb">self</span><span class="p">.</span><span class="n">yLabel</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@"y %f"</span><span class="p">,</span> <span class="n">data</span><span class="p">.</span><span class="n">acceleration</span><span class="p">.</span><span class="n">y</span><span class="p">];</span>
+        <span class="nb">self</span><span class="p">.</span><span class="n">zLabel</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@"z %f"</span><span class="p">,</span> <span class="n">data</span><span class="p">.</span><span class="n">acceleration</span><span class="p">.</span><span class="n">z</span><span class="p">];</span>
+    <span class="p">};</span>
+
+    <span class="c1">// 加速度の取得開始</span>
+    <span class="p">[</span><span class="n">_motionManager</span> <span class="nl">startAccelerometerUpdatesToQueue</span><span class="p">:[</span><span class="bp">NSOperationQueue</span> <span class="n">currentQueue</span><span class="p">]</span> <span class="nl">withHandler</span><span class="p">:</span><span class="n">handler</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><code>startAccelerometerUpdatesToQueue</code>メソッドを実行すると、指定した更新間隔でハンドラの内容が実行されます。</p>
+
+<h3>
+<span id="詳しい記事-7" class="fragment"></span><a href="#%E8%A9%B3%E3%81%97%E3%81%84%E8%A8%98%E4%BA%8B-7"><i class="fa fa-link"></i></a>詳しい記事</h3>
+
+<ul>
+<li><a href="http://blog.koogawa.com/entry/2013/11/26/022710" rel="nofollow noopener" target="_blank">【Tips】iOSで加速度センサーを使用する</a></li>
+</ul>
+
+<h3>
+<span id="サンプルコード-7" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89-7"><i class="fa fa-link"></i></a>サンプルコード</h3>
+
+<ul>
+<li><a href="https://github.com/koogawa/iSensor/blob/master/iSensor/AccelerometerViewController.m" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/koogawa/iSensor/blob/master/iSensor/AccelerometerViewController.m</a></li>
+</ul>
+
+<h2>
+<span id="9-歩数進行状況" class="fragment"></span><a href="#9-%E6%AD%A9%E6%95%B0%E9%80%B2%E8%A1%8C%E7%8A%B6%E6%B3%81"><i class="fa fa-link"></i></a>9. 歩数・進行状況</h2>
+
+<p>CoreMotionを使って、歩数カウントを取得できます。（現時点ではiPhone 5Sのみ対応）</p>
+
+<h3>
+<span id="実装方法-8" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95-8"><i class="fa fa-link"></i></a>実装方法</h3>
+
+<p><code>CMStepCounter</code> インスタンスを生成します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="n">_stepCounter</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">CMStepCounter</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</pre></div></div>
+
+<p>歩数のカウントを開始します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">_stepCounter</span> <span class="nl">startStepCountingUpdatesToQueue</span><span class="p">:[</span><span class="bp">NSOperationQueue</span> <span class="n">mainQueue</span><span class="p">]</span>
+                                     <span class="nl">updateOn</span><span class="p">:</span><span class="mi">1</span>
+                                  <span class="nl">withHandler</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">NSInteger</span> <span class="n">numberOfSteps</span><span class="p">,</span> <span class="bp">NSDate</span> <span class="o">*</span><span class="n">timestamp</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+                                      <span class="c1">// 歩数が更新されるたびに呼ばれる</span>
+                                  <span class="p">}];</span>
+</pre></div></div>
+
+<ul>
+<li>第1引数：handler を呼び出す queue を指定</li>
+<li>第2引数：何歩歩いたら handler を呼び出すか（実際にはこの指定通りには動かなかった）</li>
+<li>第3引数：歩数更新時に呼び出す handler</li>
+</ul>
+
+<p>第3引数で指定する Blocks には、計測を始めてからの累計歩数、更新時のタイムスタンプ、エラー情報が返ってきます。</p>
+
+<p>また、歩数以外にもユーザの歩行情報（歩いているのか、走っているか等）も取得できます。詳しくは、下記の記事を参照してください。</p>
+
+<h3>
+<span id="詳しい記事-8" class="fragment"></span><a href="#%E8%A9%B3%E3%81%97%E3%81%84%E8%A8%98%E4%BA%8B-8"><i class="fa fa-link"></i></a>詳しい記事</h3>
+
+<ul>
+<li><a href="http://blog.koogawa.com/entry/2013/11/28/013437" rel="nofollow noopener" target="_blank">【Tips】iOSで歩数をカウントする</a></li>
+</ul>
+
+<h3>
+<span id="サンプルコード-8" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89-8"><i class="fa fa-link"></i></a>サンプルコード</h3>
+
+<ul>
+<li><a href="https://github.com/koogawa/iSensor/blob/master/iSensor/MotionActivityViewController.m" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/koogawa/iSensor/blob/master/iSensor/MotionActivityViewController.m</a></li>
+</ul>
+
+<h1>
+<span id="その他" class="fragment"></span><a href="#%E3%81%9D%E3%81%AE%E4%BB%96"><i class="fa fa-link"></i></a>その他</h1>
+
+<h2>
+<span id="10-顔検出" class="fragment"></span><a href="#10-%E9%A1%94%E6%A4%9C%E5%87%BA"><i class="fa fa-link"></i></a>10. 顔検出</h2>
+
+<p>Core Image を使って、顔を検出することができます。</p>
+
+<h3>
+<span id="実装方法-9" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95-9"><i class="fa fa-link"></i></a>実装方法</h3>
+
+<p>インスタンスを生成します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDictionary</span> <span class="nl">dictionaryWithObject</span><span class="p">:</span><span class="n">CIDetectorAccuracyHigh</span>
+                                                    <span class="nl">forKey</span><span class="p">:</span><span class="n">CIDetectorAccuracy</span><span class="p">];</span>
+<span class="bp">CIDetector</span> <span class="o">*</span><span class="n">detector</span> <span class="o">=</span> <span class="p">[</span><span class="bp">CIDetector</span> <span class="nl">detectorOfType</span><span class="p">:</span><span class="n">CIDetectorTypeFace</span>
+                                          <span class="nl">context</span><span class="p">:</span><span class="nb">nil</span>
+                                          <span class="nl">options</span><span class="p">:</span><span class="n">options</span><span class="p">];</span>
+</pre></div></div>
+
+<p><code>detectorOfType</code> には検出タイプを指定します。今回は顔検出なので、<code>CIDetectorTypeFace</code> を指定します。((今のところ CIDetectorTypeFace しか設定できないようです))</p>
+
+<p><code>options</code> には検出精度 <code>CIDetectorAccuracy</code> 等を指定できます。</p>
+
+<p>次に、顔検出を実行します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="bp">CIImage</span> <span class="o">*</span><span class="n">ciImage</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">CIImage</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithCGImage</span><span class="p">:</span><span class="n">originalImage</span><span class="p">.</span><span class="bp">CGImage</span><span class="p">];</span>
+<span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">imageOptions</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDictionary</span> <span class="nl">dictionaryWithObject</span><span class="p">:[</span><span class="bp">NSNumber</span> <span class="nl">numberWithInt</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nl">forKey</span><span class="p">:</span><span class="n">CIDetectorImageOrientation</span><span class="p">];</span>
+
+<span class="bp">NSArray</span> <span class="o">*</span><span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="n">detector</span> <span class="nl">featuresInImage</span><span class="p">:</span><span class="n">ciImage</span> <span class="nl">options</span><span class="p">:</span><span class="n">imageOptions</span><span class="p">];</span>
+</pre></div></div>
+
+<p><code>featuresInImage</code> には、顔検出したい画像を <code>CIImage</code> クラスで指定します。</p>
+
+<p><code>options</code> には画像の向きなどを指定します。カメラの画像を利用する場合には、デバイスの方向を正しく指定しないと顔検出ができないので注意してください。</p>
+
+<p>正常に顔が検出されると、検出結果が <code>CIFaceFeature</code> オブジェクトで返ってきます。このオブジェクトには、検出された顔の範囲や、目と口の位置などが含まれます。</p>
+
+<ul>
+<li>bounds - 顔の範囲</li>
+<li>leftEyePosition - 左目の位置</li>
+<li>mouthPosition - 口の位置</li>
+<li>rightEyePosition - 右目の位置</li>
+</ul>
+
+<p>ここで注意したいのは、<code>CoreImage</code> は、<b>左下の座標が (0,0) となる</b>点です。よって、検出元画像の上に部品を載せたい場合は、座標をUIKitの座標系に変換する必要があります。詳しくは、下記の記事を参照してください。</p>
+
+<h3>
+<span id="詳しい記事-9" class="fragment"></span><a href="#%E8%A9%B3%E3%81%97%E3%81%84%E8%A8%98%E4%BA%8B-9"><i class="fa fa-link"></i></a>詳しい記事</h3>
+
+<ul>
+<li><a href="http://blog.koogawa.com/entry/2013/11/30/154347" rel="nofollow noopener" target="_blank">【Tips】iOSの顔検出機能を使ってみる</a></li>
+</ul>
+
+<h3>
+<span id="サンプルコード-9" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89-9"><i class="fa fa-link"></i></a>サンプルコード</h3>
+
+<ul>
+<li><a href="https://github.com/koogawa/iSensor/blob/master/iSensor/FaceDetectionViewController.m" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/koogawa/iSensor/blob/master/iSensor/FaceDetectionViewController.m</a></li>
+</ul>
+
+<h1>
+<span id="さいごに" class="fragment"></span><a href="#%E3%81%95%E3%81%84%E3%81%94%E3%81%AB"><i class="fa fa-link"></i></a>さいごに</h1>
+
+<p>輝度センサーから顔検知までざっと書いてみましたが、いかがでしたでしょうか。すべての項目を詳しく書いていると、相当な量になってしまうため、各項目は簡単な説明に留めました。もっと詳しく知りたい場合はぜひ「詳しい記事」も参照してみてください。</p>
+
+<p>なお、今回紹介した10項目のサンプルコードは、ひとつのアプリにまとめてGithubにアップしてあります。すぐにビルドして使えるようにしてあるので、ぜひダウンロードしてみてくださいね。</p>
+
+<p><a href="https://github.com/koogawa/iSensor" rel="nofollow noopener" target="_blank">https://github.com/koogawa/iSensor</a></p>
+
+<p>この記事が皆様のお役に立てれば光栄ですm(_ _)m</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -77,23 +1005,288 @@
 <tr>
 	<td rowspan="3"><center>koogawaさんの<br />3位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>403</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/e0b3862c0fbdf97b579f">iPhoneで取得・検知できる情報10連発！（サンプルアプリもあるよ）</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>91</kbd>
+		<a target="_blank" href="https://qiita.com/koogawa/items/df92ec1c7eb750312b77">foursquare APIでできること</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-12-11 00:04:18</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-02-08 15:40:55</center>
 	</td>
 	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
+		@koogawa<br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
 	</td>
-	<td style="width:300px;"><b>[Objective-C]</b> <b>[iPhone]</b> <b>[AdventCalendar]</b> <b>[iOS]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Foursquare]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>まずは、foursquare デベロッパーサイトよりアプリケーション登録をしましょう。</p>
+
+<ul>
+<li><a href="http://qiita.com/koogawa/items/2e1e1c2c0fd9ca33ea6e" id="reference-704031300ebf228f65f3">foursquareアプリケーションの登録</a></li>
+</ul>
+
+<p>ここで発行される <code>CLIENT ID</code>、<code>CLIENT SECRET</code> を使ってfoursquare APIにアクセスできます。</p>
+
+<h1>
+<span id="概要" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>概要</h1>
+
+<h2>
+<span id="apiリクエスト" class="fragment"></span><a href="#api%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88"><i class="fa fa-link"></i></a>APIリクエスト</h2>
+
+<p>認証の有無によってリクエストパラメータが変わってきます。また、認証ありの場合、そのユーザに最適化された結果が返ってくるようになります。</p>
+
+<h3>
+<span id="認証あり" class="fragment"></span><a href="#%E8%AA%8D%E8%A8%BC%E3%81%82%E3%82%8A"><i class="fa fa-link"></i></a>認証あり</h3>
+
+<p>※最初に <code>CLIENT ID</code>、<code>CLIENT SECRET</code> で認証を行い、 <code>oauth_token</code> を発行しておきます。→<a href="https://developer.foursquare.com/overview/auth" rel="nofollow noopener" target="_blank">認証手順</a></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>https://api.foursquare.com/v2/hoge/fuga
+?param1=value1
+&amp;param2=value2
+&amp;oauth_token=YOUR_OAUTH_TOKEN
+&amp;v=YYYYMMDD
+</pre></div></div>
+
+<h3>
+<span id="認証なし" class="fragment"></span><a href="#%E8%AA%8D%E8%A8%BC%E3%81%AA%E3%81%97"><i class="fa fa-link"></i></a>認証なし</h3>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>https://api.foursquare.com/v2/hoge/fuga
+?param1=value1
+&amp;param2=value2
+&amp;client_id=YOUR_CLIENT_ID
+&amp;client_secret=YOUR_CLIENT_SECRET
+&amp;v=YYYYMMDD
+</pre></div></div>
+
+<h2>
+<span id="バージョニング" class="fragment"></span><a href="#%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%8B%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>バージョニング</h2>
+
+<p>すべてのリクエストには <code>v=YYYYMMDD</code> が必要です。foursquare APIは <code>YYYYMMDD</code> に指定した日付時点の仕様で動作します。例えば、<code>v=20140208</code> を指定しておけば、2014年2月9日にfoursquare側で大幅な仕様変更があった場合も、2014年2月8日時点での仕様で動作し続けるため、突然アプリケーションが動かなくなった！ということを防げます。</p>
+
+<ul>
+<li><a href="https://developer.foursquare.com/overview/versioning" rel="nofollow noopener" target="_blank">https://developer.foursquare.com/overview/versioning</a></li>
+</ul>
+
+<h2>
+<span id="国際化" class="fragment"></span><a href="#%E5%9B%BD%E9%9A%9B%E5%8C%96"><i class="fa fa-link"></i></a>国際化</h2>
+
+<p>例えば、foursquareのカテゴリ一覧を取得する場合、日本語環境では <strong>水族館</strong> 、英語環境では <strong>Aquariums</strong> といった具合に、ユーザの環境に適した表記が使用されます。これは、APIリクエスト時の HTTP ヘッダ <code>Accept-Language</code> によって変わってきます。通常はこれで問題無いと思いますが、<code>locale=XX</code> パラメータを使って強制的に言語を指定することも可能です。現在は、en, es, fr, de, it, ja, th, tr, ko, ru, pt, id がサポートされています。</p>
+
+<ul>
+<li><a href="https://developer.foursquare.com/overview/versioning#internationalization" class="autolink" rel="nofollow noopener" target="_blank">https://developer.foursquare.com/overview/versioning#internationalization</a></li>
+</ul>
+
+<h2>
+<span id="回数制限" class="fragment"></span><a href="#%E5%9B%9E%E6%95%B0%E5%88%B6%E9%99%90"><i class="fa fa-link"></i></a>回数制限</h2>
+
+<p>認証の有無、APIの種類によって変わってきます。</p>
+
+<h3>
+<span id="認証なしで使う場合" class="fragment"></span><a href="#%E8%AA%8D%E8%A8%BC%E3%81%AA%E3%81%97%E3%81%A7%E4%BD%BF%E3%81%86%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>認証なしで使う場合</h3>
+
+<ul>
+<li>venues/ から始まるAPI（venues/search, venues/explore等）は、ひとつのアプリケーションにつき、 <strong>1時間あたり合計5,000回まで</strong>
+</li>
+<li>それ以外のAPIはひとつのアプリケーションにつき、 <strong>1時間あたり合計500回まで</strong>
+</li>
+<li>上の2種類は別々にカウントされるので、例えば venues/search を5,000回使ってしまった場合でも、tips/ APIを使うことはできる</li>
+</ul>
+
+<h3>
+<span id="認証ありで使う場合" class="fragment"></span><a href="#%E8%AA%8D%E8%A8%BC%E3%81%82%E3%82%8A%E3%81%A7%E4%BD%BF%E3%81%86%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>認証ありで使う場合</h3>
+
+<ul>
+<li>ひとつのOAuth Tokenにつき、 <strong>1時間あたり合計500回まで</strong>
+</li>
+</ul>
+
+<h3>
+<span id="残り回数" class="fragment"></span><a href="#%E6%AE%8B%E3%82%8A%E5%9B%9E%E6%95%B0"><i class="fa fa-link"></i></a>残り回数</h3>
+
+<p>残りの使用可能回数は、APIレスポンスの <code>X-RateLimit-Remaining</code> と <code>X-RateLimit-Limit</code> で確認できます。</p>
+
+<p>これで足りない場合は、foursquare に連絡することでリミットを上げてくれるようです。</p>
+
+<ul>
+<li><a href="https://developer.foursquare.com/overview/ratelimits" class="autolink" rel="nofollow noopener" target="_blank">https://developer.foursquare.com/overview/ratelimits</a></li>
+</ul>
+
+<h1>
+<span id="エンドポイント" class="fragment"></span><a href="#%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>エンドポイント</h1>
+
+<h2>
+<span id="ベニュー検索" class="fragment"></span><a href="#%E3%83%99%E3%83%8B%E3%83%A5%E3%83%BC%E6%A4%9C%E7%B4%A2"><i class="fa fa-link"></i></a>ベニュー検索</h2>
+
+<p><a href="https://api.foursquare.com/v2/venues/search" class="autolink" rel="nofollow noopener" target="_blank">https://api.foursquare.com/v2/venues/search</a></p>
+
+<p><strong>緯度経度</strong> または <strong>地域名</strong> からベニューリストを検索します。認証不要ですが、認証ありの場合はそのユーザ向けにパーソナライズされた結果が返ってきます。</p>
+
+<ul>
+<li>HTTPメソッド：GET</li>
+<li>認証：不要</li>
+</ul>
+
+<h3>
+<span id="パラメータ" class="fragment"></span><a href="#%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF"><i class="fa fa-link"></i></a>パラメータ</h3>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">キー</th>
+<th style="text-align: left">例</th>
+<th style="text-align: center">必須</th>
+<th style="text-align: left">解説</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">ll</td>
+<td style="text-align: left">44.3,37.2</td>
+<td style="text-align: center">○</td>
+<td style="text-align: left">緯度経度をカンマ区切りで指定。</td>
+</tr>
+<tr>
+<td style="text-align: left">query</td>
+<td style="text-align: left">apple</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">検索ワードを指定。</td>
+</tr>
+<tr>
+<td style="text-align: left">limit</td>
+<td style="text-align: left">10</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">結果件数を指定。最大50まで。</td>
+</tr>
+<tr>
+<td style="text-align: left">intent</td>
+<td style="text-align: left">checkin</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">検索の意図を指定。ベニューの表示順や検索範囲に影響が出てくる。<code>checkin</code> （デフォルト）を指定すると、ユーザにチェックインされやすいベニュー順に結果が返ってくる。<code>global</code> を指定すると世界中のベニューが検索範囲になる。</td>
+</tr>
+<tr>
+<td style="text-align: left">radius</td>
+<td style="text-align: left">800</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">検索半径をメートルで指定。</td>
+</tr>
+<tr>
+<td style="text-align: left">categoryId</td>
+<td style="text-align: left">asad13242l,btbe24353m</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">結果をカテゴリで絞り込みたい場合に使用。カテゴリ名ではなく、カテゴリIDを指定。</td>
+</tr>
+</tbody>
+</table>
+
+<p>他にもいろいろ指定できます。</p>
+
+<ul>
+<li><a href="https://developer.foursquare.com/docs/venues/search" class="autolink" rel="nofollow noopener" target="_blank">https://developer.foursquare.com/docs/venues/search</a></li>
+</ul>
+
+<h3>
+<span id="レスポンス" class="fragment"></span><a href="#%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B9"><i class="fa fa-link"></i></a>レスポンス</h3>
+
+<p><strong>Compact Object</strong> 形式（簡易表示）で返ってきます。Compact Objectの場合、ベニュー名や住所などの情報は含まれますが、Tipsや写真などの詳細情報は含まれません。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">フィールド</th>
+<th style="text-align: left">解説</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: left">ユニークなベニューID（例えば秋葉原駅は 4b19f917f964a520abe623e3）</td>
+</tr>
+<tr>
+<td style="text-align: left">name</td>
+<td style="text-align: left">ベニュー名</td>
+</tr>
+<tr>
+<td style="text-align: left">contact</td>
+<td style="text-align: left">Twitterアカウントや電話番号</td>
+</tr>
+<tr>
+<td style="text-align: left">location</td>
+<td style="text-align: left">住所や緯度経度</td>
+</tr>
+<tr>
+<td style="text-align: left">categories</td>
+<td style="text-align: left">ベニューが所属するカテゴリ（複数ある場合やゼロの場合もある）</td>
+</tr>
+<tr>
+<td style="text-align: left">verified</td>
+<td style="text-align: left">ベニューのオーナーによって認証された情報かどうか</td>
+</tr>
+<tr>
+<td style="text-align: left">stats</td>
+<td style="text-align: left">総チェックイン数、今までにチェックインしたユーザー数、投稿されたTipsの数</td>
+</tr>
+<tr>
+<td style="text-align: left">hereNow</td>
+<td style="text-align: left">今チェックインしているユーザ数。認証ありの場合は、チェックイン中のユーザがフレンドかどうかもわかる</td>
+</tr>
+</tbody>
+</table>
+
+<p>他にもいろいろな情報が取得できます。</p>
+
+<ul>
+<li><a href="https://developer.foursquare.com/docs/responses/venue" class="autolink" rel="nofollow noopener" target="_blank">https://developer.foursquare.com/docs/responses/venue</a></li>
+</ul>
+
+<h1>
+<span id="ベニュー詳細" class="fragment"></span><a href="#%E3%83%99%E3%83%8B%E3%83%A5%E3%83%BC%E8%A9%B3%E7%B4%B0"><i class="fa fa-link"></i></a>ベニュー詳細</h1>
+
+<h1>
+<span id="カテゴリ一覧取得" class="fragment"></span><a href="#%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA%E4%B8%80%E8%A6%A7%E5%8F%96%E5%BE%97"><i class="fa fa-link"></i></a>カテゴリ一覧取得</h1>
+
+<h1>
+<span id="リソース" class="fragment"></span><a href="#%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9"><i class="fa fa-link"></i></a>リソース</h1>
+
+<h2>
+<span id="イケてるライブラリたち" class="fragment"></span><a href="#%E3%82%A4%E3%82%B1%E3%81%A6%E3%82%8B%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%81%9F%E3%81%A1"><i class="fa fa-link"></i></a>イケてるライブラリたち</h2>
+
+<ul>
+<li><a href="https://developer.foursquare.com/resources/libraries" class="autolink" rel="nofollow noopener" target="_blank">https://developer.foursquare.com/resources/libraries</a></li>
+</ul>
+
+<h2>
+<span id="フォーラム" class="fragment"></span><a href="#%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A9%E3%83%A0"><i class="fa fa-link"></i></a>フォーラム</h2>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/tagged/foursquare" class="autolink" rel="nofollow noopener" target="_blank">http://stackoverflow.com/questions/tagged/foursquare</a></li>
+</ul>
+
+<h2>
+<span id="公式開発ブログ" class="fragment"></span><a href="#%E5%85%AC%E5%BC%8F%E9%96%8B%E7%99%BA%E3%83%96%E3%83%AD%E3%82%B0"><i class="fa fa-link"></i></a>公式開発ブログ</h2>
+
+<ul>
+<li><a href="http://engineering.foursquare.com/" class="autolink" rel="nofollow noopener" target="_blank">http://engineering.foursquare.com/</a></li>
+</ul>
+
+<h2>
+<span id="参考リンク" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E3%83%AA%E3%83%B3%E3%82%AF"><i class="fa fa-link"></i></a>参考リンク</h2>
+
+<ul>
+<li><a href="http://blog.koogawa.com/entry/2013/11/04/212403" rel="nofollow noopener" target="_blank">foursquareのOAuth認証部分をライブラリに切り出してみた</a></li>
+<li><a href="http://blog.koogawa.com/entry/2013/11/04/043230" rel="nofollow noopener" target="_blank">foursquareが提供するネットワークライブラリFSNetworkingを使ってみた</a></li>
+<li><a href="http://blog.koogawa.com/archive/category/foursquare" rel="nofollow noopener" target="_blank">foursquare - koogawa blog</a></li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -101,23 +1294,134 @@
 <tr>
 	<td rowspan="3"><center>koogawaさんの<br />4位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>254</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/0a681469899bafb40f3e">iTunes ConnectのApp Analyticsを使ってみた</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>62</kbd>
+		<a target="_blank" href="https://qiita.com/koogawa/items/d047a8056a0db5b05771">iOS 7から追加されたMKDirectionsで経路検索を試してみる</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-05-02 11:11:06</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-12-03 00:21:12</center>
 	</td>
 	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
+		@koogawa<br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
 	</td>
-	<td style="width:300px;"><b>[iOS]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[iOS]</b> <b>[map]</b> <b>[ios7]</b> <b>[地図]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>この記事は <a href="http://qiita.com/advent-calendar/2013/ios-2">iOS Second Stage Advent Calendar 2013</a> 用にストックしておいたものです。すべて枠が埋まったようなので、通常記事として投稿します。</p>
+
+<hr>
+
+<p>iOS 7 で追加された MKDirections が面白そうだったので、試しに六本木から渋谷へのルートを検索してみました。</p>
+
+<p>まずは、出発点と到着点を <code>CLLocationCoordinate2D</code> で作成します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="c1">// 六本木</span>
+<span class="n">CLLocationCoordinate2D</span> <span class="n">fromCoordinate</span> <span class="o">=</span> <span class="n">CLLocationCoordinate2DMake</span><span class="p">(</span><span class="mf">35.665213</span><span class="p">,</span> <span class="mf">139.730011</span><span class="p">);</span>
+
+<span class="c1">// 渋谷</span>
+<span class="n">CLLocationCoordinate2D</span> <span class="n">toCoordinate</span> <span class="o">=</span> <span class="n">CLLocationCoordinate2DMake</span><span class="p">(</span><span class="mf">35.658987</span><span class="p">,</span> <span class="mf">139.702776</span><span class="p">);</span>
+</pre></div></div>
+
+<p>ここで作成した <code>CLLocationCoordinate2D</code> をセットした <code>MKPlacemark</code> を生成します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="c1">// CLLocationCoordinate2D から MKPlacemark を生成</span>
+<span class="bp">MKPlacemark</span> <span class="o">*</span><span class="n">fromPlacemark</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">MKPlacemark</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithCoordinate</span><span class="p">:</span><span class="n">fromCoordinate</span>
+                                                   <span class="nl">addressDictionary</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="bp">MKPlacemark</span> <span class="o">*</span><span class="n">toPlacemark</span>   <span class="o">=</span> <span class="p">[[</span><span class="bp">MKPlacemark</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithCoordinate</span><span class="p">:</span><span class="n">toCoordinate</span>
+                                                   <span class="nl">addressDictionary</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+</pre></div></div>
+
+<p><code>MKPlacemark</code> から <code>MKMapItem</code> を生成します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="c1">// MKPlacemark から MKMapItem を生成</span>
+<span class="bp">MKMapItem</span> <span class="o">*</span><span class="n">fromItem</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">MKMapItem</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithPlacemark</span><span class="p">:</span><span class="n">fromPlacemark</span><span class="p">];</span>
+<span class="bp">MKMapItem</span> <span class="o">*</span><span class="n">toItem</span>   <span class="o">=</span> <span class="p">[[</span><span class="bp">MKMapItem</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithPlacemark</span><span class="p">:</span><span class="n">toPlacemark</span><span class="p">];</span>
+</pre></div></div>
+
+<p><code>MKMapItem</code> をセットして <code>MKDirectionsRequest</code> を生成します。</p>
+
+<p><code>requestsAlternateRoutes</code> に <code>YES</code> を設定すると、複数のルートを検索できるようです。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="c1">// MKMapItem をセットして MKDirectionsRequest を生成</span>
+<span class="bp">MKDirectionsRequest</span> <span class="o">*</span><span class="n">request</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">MKDirectionsRequest</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="n">request</span><span class="p">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">fromItem</span><span class="p">;</span>
+<span class="n">request</span><span class="p">.</span><span class="n">destination</span> <span class="o">=</span> <span class="n">toItem</span><span class="p">;</span>
+<span class="n">request</span><span class="p">.</span><span class="n">requestsAlternateRoutes</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+</pre></div></div>
+
+<p><code>MKDirectionsRequest</code> から <code>MKDirections</code> を生成します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="c1">// MKDirectionsRequest から MKDirections を生成</span>
+<span class="bp">MKDirections</span> <span class="o">*</span><span class="n">directions</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">MKDirections</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithRequest</span><span class="p">:</span><span class="n">request</span><span class="p">];</span>
+</pre></div></div>
+
+<p>ここでようやく経路検索を実行できます。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="c1">// 経路検索を実行</span>
+<span class="p">[</span><span class="n">directions</span> <span class="nl">calculateDirectionsWithCompletionHandler</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">MKDirectionsResponse</span> <span class="o">*</span><span class="n">response</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span>
+ <span class="p">{</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+     <span class="k">if</span> <span class="p">([</span><span class="n">response</span><span class="p">.</span><span class="n">routes</span> <span class="n">count</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="bp">MKRoute</span> <span class="o">*</span><span class="n">route</span> <span class="o">=</span> <span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="n">routes</span> <span class="nl">objectAtIndex</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+         <span class="n">NSLog</span><span class="p">(</span><span class="s">@"distance: %.2f meter"</span><span class="p">,</span> <span class="n">route</span><span class="p">.</span><span class="n">distance</span><span class="p">);</span>
+
+         <span class="c1">// 地図上にルートを描画</span>
+         <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">mapView</span> <span class="nl">addOverlay</span><span class="p">:</span><span class="n">route</span><span class="p">.</span><span class="n">polyline</span><span class="p">];</span>
+     <span class="p">}</span>
+ <span class="p">}];</span>
+</pre></div></div>
+
+<p>ルート情報は <code>MKRoute</code> クラスで返ってくるようです。このクラスには経路情報の他、移動にかかる予測時間や距離なども含まれるようです。</p>
+
+<p>最後に、地図上に表示されるルートの色や線の太さなどを設定します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="c1">// 地図上に描画するルートの色などを指定（これを実装しないと何も表示されない）</span>
+<span class="p">-</span> <span class="p">(</span><span class="bp">MKOverlayRenderer</span> <span class="o">*</span><span class="p">)</span><span class="nf">mapView:</span><span class="p">(</span><span class="bp">MKMapView</span> <span class="o">*</span><span class="p">)</span><span class="nv">mapView</span>
+            <span class="nf">rendererForOverlay:</span><span class="p">(</span><span class="kt">id</span><span class="o">&lt;</span><span class="bp">MKOverlay</span><span class="o">&gt;</span><span class="p">)</span><span class="nv">overlay</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">([</span><span class="n">overlay</span> <span class="nl">isKindOfClass</span><span class="p">:[</span><span class="bp">MKPolyline</span> <span class="k">class</span><span class="p">]])</span>
+    <span class="p">{</span>
+        <span class="bp">MKPolyline</span> <span class="o">*</span><span class="n">route</span> <span class="o">=</span> <span class="n">overlay</span><span class="p">;</span>
+        <span class="bp">MKPolylineRenderer</span> <span class="o">*</span><span class="n">routeRenderer</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">MKPolylineRenderer</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithPolyline</span><span class="p">:</span><span class="n">route</span><span class="p">];</span>
+        <span class="n">routeRenderer</span><span class="p">.</span><span class="n">lineWidth</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>
+        <span class="n">routeRenderer</span><span class="p">.</span><span class="n">strokeColor</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIColor</span> <span class="n">redColor</span><span class="p">];</span>
+        <span class="k">return</span> <span class="n">routeRenderer</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">nil</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="実行結果" class="fragment"></span><a href="#%E5%AE%9F%E8%A1%8C%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>実行結果</h3>
+
+<p><a href="https://camo.qiitausercontent.com/f6e0c7a7895834fcd44f9a8b134b101fb8f8eaa0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f30393933333966332d303563362d373961392d643964352d6438383966343833316336372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f6e0c7a7895834fcd44f9a8b134b101fb8f8eaa0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f30393933333966332d303563362d373961392d643964352d6438383966343833316336372e706e67" alt="" title="iOSシミュレータのスクリーンショット 2013.12.02 13.05.41.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8292/099339f3-05c6-79a9-d9d5-d889f4831c67.png"></a></p>
+
+<p>▼こちらは複数のルートを検索してみた結果</p>
+
+<p><a href="https://camo.qiitausercontent.com/fd879bdbc384451d2c107247185702cd0d18931d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f63346139626231652d303531632d633635382d613838312d3531653533343130386564352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/fd879bdbc384451d2c107247185702cd0d18931d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f63346139626231652d303531632d633635382d613838312d3531653533343130386564352e706e67" alt="" title="iOSシミュレータのスクリーンショット 2013.12.02 13.35.53.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8292/c4a9bb1e-051c-c658-a881-51e534108ed5.png"></a></p>
+
+<p>今回は特に指定していませんが、経路検索条件に「徒歩」や「自動車」などの指定もできるようです。</p>
+
+<h3>
+<span id="サンプルソース" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%BD%E3%83%BC%E3%82%B9"><i class="fa fa-link"></i></a>サンプルソース</h3>
+
+<p>[<a href="https://github.com/koogawa/MKDirectionsSample" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/koogawa/MKDirectionsSample</a>]</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -125,23 +1429,141 @@
 <tr>
 	<td rowspan="3"><center>koogawaさんの<br />5位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>245</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/af3537b00dfd264511e3">iOS 8から追加されたWebKit Frameworkを使ってみる</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>52</kbd>
+		<a target="_blank" href="https://qiita.com/koogawa/items/adc2dd19015586bda39b">Google Maps SDK for iOSの使い方</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-06-21 22:04:14</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-03-03 00:34:05</center>
 	</td>
 	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
+		@koogawa<br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
 	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[WebKit]</b> <b>[iOS8]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Objective-C]</b> <b>[iPhone]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>ようやく Google Maps SDK for iOS の API Keyが発行されたので、いろいろ試してみました。そんときのメモです。</p>
+
+<p>なお、導入手順については<a href="http://qiita.com/users/shu223">shu223</a>さんの記事がとても丁寧でわかりやすいので、そちらをご覧下さいませ。 </p>
+
+<p><a href="http://qiita.com/items/bfb5ef3e45682c2bb763">Google Maps SDK for iOSの導入手順</a></p>
+
+<h2>
+<span id="地図の種類を変えてみる" class="fragment"></span><a href="#%E5%9C%B0%E5%9B%B3%E3%81%AE%E7%A8%AE%E9%A1%9E%E3%82%92%E5%A4%89%E3%81%88%E3%81%A6%E3%81%BF%E3%82%8B"><i class="fa fa-link"></i></a>地図の種類を変えてみる</h2>
+
+<p>GMSMapView の mapType プロパティを変更することで地図の種類を変更できます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>mapView_.mapType = kGMSTypeSatellite;
+</pre></div></div>
+
+<p>mapType には次の値を設定できます。</p>
+
+<ul>
+<li>kGMSTypeNormal - 通常の地図</li>
+<li>kGMSTypeSatellite - 航空写真</li>
+<li>kGMSTypeHybrid - 通常の地図＋航空写真のハイブリッド</li>
+<li>kGMSTypeTerrain - 地形や樹木などの地形的特徴を持つ地図</li>
+</ul>
+
+<p><strong>kGMSTypeNormal</strong></p>
+
+<p><a href="https://camo.qiitausercontent.com/49f712a2ffd3f1b026f4c8fdf18f2d441ffe6218/687474703a2f2f636c2e6c792f696d6167652f31693036304c33373032316f2f694f53254533253832254237254533253833253946254533253833254135254533253833254143254533253833254243254533253832254246254533253831254145254533253832254239254533253832254146254533253833254141254533253833254243254533253833254233254533253832254237254533253833254137254533253833253833254533253833253838253230323031332e30332e303225323032322e30392e31332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/49f712a2ffd3f1b026f4c8fdf18f2d441ffe6218/687474703a2f2f636c2e6c792f696d6167652f31693036304c33373032316f2f694f53254533253832254237254533253833253946254533253833254135254533253833254143254533253833254243254533253832254246254533253831254145254533253832254239254533253832254146254533253833254141254533253833254243254533253833254233254533253832254237254533253833254137254533253833253833254533253833253838253230323031332e30332e303225323032322e30392e31332e706e67" alt="kGMSTypeNormal" data-canonical-src="http://cl.ly/image/1i060L37021o/iOS%E3%82%B7%E3%83%9F%E3%83%A5%E3%83%AC%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202013.03.02%2022.09.13.png"></a></p>
+
+<p><strong>kGMSTypeSatellite</strong></p>
+
+<p><a href="https://camo.qiitausercontent.com/f7862896bfeb4c1ea44e7c9ec81c6f9aeacaa4c6/687474703a2f2f662e636c2e6c792f6974656d732f325a32613037304831763149326c3077306531542f694f53254533253832254237254533253833253946254533253833254135254533253833254143254533253833254243254533253832254246254533253831254145254533253832254239254533253832254146254533253833254141254533253833254243254533253833254233254533253832254237254533253833254137254533253833253833254533253833253838253230323031332e30332e303225323032322e30392e31352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f7862896bfeb4c1ea44e7c9ec81c6f9aeacaa4c6/687474703a2f2f662e636c2e6c792f6974656d732f325a32613037304831763149326c3077306531542f694f53254533253832254237254533253833253946254533253833254135254533253833254143254533253833254243254533253832254246254533253831254145254533253832254239254533253832254146254533253833254141254533253833254243254533253833254233254533253832254237254533253833254137254533253833253833254533253833253838253230323031332e30332e303225323032322e30392e31352e706e67" alt="kGMSTypeSatellite" data-canonical-src="http://f.cl.ly/items/2Z2a070H1v1I2l0w0e1T/iOS%E3%82%B7%E3%83%9F%E3%83%A5%E3%83%AC%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202013.03.02%2022.09.15.png"></a></p>
+
+<p><strong>kGMSTypeHybrid</strong></p>
+
+<p><a href="https://camo.qiitausercontent.com/e0733136465f9bd1992ec5c34b7795819229160a/687474703a2f2f662e636c2e6c792f6974656d732f32473256317833393054327130463132316a32632f694f53254533253832254237254533253833253946254533253833254135254533253833254143254533253833254243254533253832254246254533253831254145254533253832254239254533253832254146254533253833254141254533253833254243254533253833254233254533253832254237254533253833254137254533253833253833254533253833253838253230323031332e30332e303225323032322e30392e32302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e0733136465f9bd1992ec5c34b7795819229160a/687474703a2f2f662e636c2e6c792f6974656d732f32473256317833393054327130463132316a32632f694f53254533253832254237254533253833253946254533253833254135254533253833254143254533253833254243254533253832254246254533253831254145254533253832254239254533253832254146254533253833254141254533253833254243254533253833254233254533253832254237254533253833254137254533253833253833254533253833253838253230323031332e30332e303225323032322e30392e32302e706e67" alt="kGMSTypeHybrid" data-canonical-src="http://f.cl.ly/items/2G2V1x390T2q0F121j2c/iOS%E3%82%B7%E3%83%9F%E3%83%A5%E3%83%AC%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202013.03.02%2022.09.20.png"></a></p>
+
+<p><strong>kGMSTypeTerrain</strong></p>
+
+<p><a href="https://camo.qiitausercontent.com/1bbd65acb028876a75c03eee22c12d4db7386af8/687474703a2f2f662e636c2e6c792f6974656d732f306a3349336234353366336830353247325932312f694f53254533253832254237254533253833253946254533253833254135254533253833254143254533253833254243254533253832254246254533253831254145254533253832254239254533253832254146254533253833254141254533253833254243254533253833254233254533253832254237254533253833254137254533253833253833254533253833253838253230323031332e30332e303225323032322e30392e32342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1bbd65acb028876a75c03eee22c12d4db7386af8/687474703a2f2f662e636c2e6c792f6974656d732f306a3349336234353366336830353247325932312f694f53254533253832254237254533253833253946254533253833254135254533253833254143254533253833254243254533253832254246254533253831254145254533253832254239254533253832254146254533253833254141254533253833254243254533253833254233254533253832254237254533253833254137254533253833253833254533253833253838253230323031332e30332e303225323032322e30392e32342e706e67" alt="kGMSTypeTerrain" data-canonical-src="http://f.cl.ly/items/0j3I3b453f3h052G2Y21/iOS%E3%82%B7%E3%83%9F%E3%83%A5%E3%83%AC%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202013.03.02%2022.09.24.png"></a></p>
+
+<h2>
+<span id="マーカーを追加してみる" class="fragment"></span><a href="#%E3%83%9E%E3%83%BC%E3%82%AB%E3%83%BC%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B"><i class="fa fa-link"></i></a>マーカーを追加してみる</h2>
+
+<ol>
+<li>GMSMarkerOptions オブジェクトを生成</li>
+<li>マーカーを立てる位置（position）や場所のタイトル（title）などをセットする</li>
+<li>addMarkerWithOptions メソッドで GMSMapView に追加</li>
+</ol>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>GMSMarkerOptions *markerOptions = [[GMSMarkerOptions alloc] init];
+markerOptions.position = CLLocationCoordinate2DMake(35.6662026, 139.7312591);
+markerOptions.title = @"東京ミッドタウン";
+markerOptions.snippet = @"東京都港区赤坂9−7−1";
+
+[self.mapView addMarkerWithOptions:markerOptions];
+</pre></div></div>
+
+<p><a href="https://camo.qiitausercontent.com/96e1ead6cef5f28a125f4709792aabcf3005501b/687474703a2f2f662e636c2e6c792f6974656d732f32723347326733573348315630563159335a326e2f694f53254533253832254237254533253833253946254533253833254135254533253833254143254533253833254243254533253832254246254533253831254145254533253832254239254533253832254146254533253833254141254533253833254243254533253833254233254533253832254237254533253833254137254533253833253833254533253833253838253230323031332e30332e3033253230302e30392e30372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/96e1ead6cef5f28a125f4709792aabcf3005501b/687474703a2f2f662e636c2e6c792f6974656d732f32723347326733573348315630563159335a326e2f694f53254533253832254237254533253833253946254533253833254135254533253833254143254533253833254243254533253832254246254533253831254145254533253832254239254533253832254146254533253833254141254533253833254243254533253833254233254533253832254237254533253833254137254533253833253833254533253833253838253230323031332e30332e3033253230302e30392e30372e706e67" alt="" data-canonical-src="http://f.cl.ly/items/2r3G2g3W3H1V0V1Y3Z2n/iOS%E3%82%B7%E3%83%9F%E3%83%A5%E3%83%AC%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202013.03.03%200.09.07.png"></a></p>
+
+<p>マーカーをタップすると次のような吹き出し（info window）が表示される。<br>
+吹き出しの中には title, snippet で設定した文字列が表示される。</p>
+
+<p><a href="https://camo.qiitausercontent.com/159a491e0cdb584661eb696ca3149fd349c85c87/687474703a2f2f662e636c2e6c792f6974656d732f317a32343338325931333334315630483143317a2f694f53254533253832254237254533253833253946254533253833254135254533253833254143254533253833254243254533253832254246254533253831254145254533253832254239254533253832254146254533253833254141254533253833254243254533253833254233254533253832254237254533253833254137254533253833253833254533253833253838253230323031332e30332e3033253230302e30392e31332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/159a491e0cdb584661eb696ca3149fd349c85c87/687474703a2f2f662e636c2e6c792f6974656d732f317a32343338325931333334315630483143317a2f694f53254533253832254237254533253833253946254533253833254135254533253833254143254533253833254243254533253832254246254533253831254145254533253832254239254533253832254146254533253833254141254533253833254243254533253833254233254533253832254237254533253833254137254533253833253833254533253833253838253230323031332e30332e3033253230302e30392e31332e706e67" alt="" data-canonical-src="http://f.cl.ly/items/1z24382Y13341V0H1C1z/iOS%E3%82%B7%E3%83%9F%E3%83%A5%E3%83%AC%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202013.03.03%200.09.13.png"></a></p>
+
+<p>マーカーの画像は icon プロパティで変更が可能。</p>
+
+<h3>
+<span id="gmsmapviewdelegate" class="fragment"></span><a href="#gmsmapviewdelegate"><i class="fa fa-link"></i></a>GMSMapViewDelegate</h3>
+
+<p>マーカーのタップ検知は</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>- (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(id&lt;GMSMarker&gt;)marker;
+</pre></div></div>
+
+<p>で可能。また、吹き出しのタップ検知は</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>- (void)mapView:(GMSMapView *)mapView
+    didTapInfoWindowOfMarker:(id&lt;GMSMarker&gt;)marker;
+</pre></div></div>
+
+<p>で可能。</p>
+
+<h2>
+<span id="線を引いてみる" class="fragment"></span><a href="#%E7%B7%9A%E3%82%92%E5%BC%95%E3%81%84%E3%81%A6%E3%81%BF%E3%82%8B"><i class="fa fa-link"></i></a>線を引いてみる</h2>
+
+<ol>
+<li>GMSPolylineOptions オブジェクトを生成</li>
+<li>GMSMutablePath オブジェクトを生成</li>
+<li>GMSMutablePath の addCoordinate メソッドで頂点座標（緯度経度）を指定していく</li>
+<li>GMSPolylineOptions の path プロパティに GMSMutablePath オブジェクトをセット</li>
+<li>GMSMapView に GMSPolylineOptions を追加</li>
+</ol>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>GMSPolylineOptions *rectangle = [GMSPolylineOptions options];
+
+GMSMutablePath *path = [GMSMutablePath path];
+[path addCoordinate:CLLocationCoordinate2DMake(35.6662026, 139.7312591)];
+[path addCoordinate:CLLocationCoordinate2DMake(35.6762026, 139.7312591)];
+[path addCoordinate:CLLocationCoordinate2DMake(35.6762026, 139.7412591)];
+[path addCoordinate:CLLocationCoordinate2DMake(35.6662026, 139.7412591)];
+[path addCoordinate:CLLocationCoordinate2DMake(35.6662026, 139.7312591)];
+rectangle.path = path;
+
+[self.mapView addPolylineWithOptions:rectangle];
+</pre></div></div>
+
+<p><a href="https://camo.qiitausercontent.com/02bb3848c1a8d68a9db374240aa75e248d447831/687474703a2f2f662e636c2e6c792f6974656d732f325332443252307a306b334b33753271333332632f694f53254533253832254237254533253833253946254533253833254135254533253833254143254533253833254243254533253832254246254533253831254145254533253832254239254533253832254146254533253833254141254533253833254243254533253833254233254533253832254237254533253833254137254533253833253833254533253833253838253230323031332e30332e303225323032332e31372e35322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/02bb3848c1a8d68a9db374240aa75e248d447831/687474703a2f2f662e636c2e6c792f6974656d732f325332443252307a306b334b33753271333332632f694f53254533253832254237254533253833253946254533253833254135254533253833254143254533253833254243254533253832254246254533253831254145254533253832254239254533253832254146254533253833254141254533253833254243254533253833254233254533253832254237254533253833254137254533253833253833254533253833253838253230323031332e30332e303225323032332e31372e35322e706e67" alt="" data-canonical-src="http://f.cl.ly/items/2S2D2R0z0k3K3u2q332c/iOS%E3%82%B7%E3%83%9F%E3%83%A5%E3%83%AC%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202013.03.02%2023.17.52.png"></a></p>
+
+<p>とりあえずここまで。</p>
+
+<p>随時追加して行く予定です。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -149,23 +1571,98 @@
 <tr>
 	<td rowspan="3"><center>koogawaさんの<br />6位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>206</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/994878047f76cf125b2d">iOS 8から導入されたウィジェット機能を使ってみる</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>47</kbd>
+		<a target="_blank" href="https://qiita.com/koogawa/items/1011962b444420b854d7">iOS 7から追加されたDynamic Type機能を使ってみる</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-06-07 23:04:31</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-10-10 01:18:35</center>
 	</td>
 	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
+		@koogawa<br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
 	</td>
-	<td style="width:300px;"><b>[Objective-C]</b> <b>[iOS]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Objective-C]</b> <b>[iPhone]</b> <b>[iOS]</b> <b>[ios7]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>iOS 7から設定画面に「文字サイズを変更」が追加されました。</p>
+
+<p><a href="https://camo.qiitausercontent.com/94054d4522033bb53829b0f615539cb8fd499ce2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f39303330636662302d623365352d366637362d333363322d6133663732653331623335332e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/94054d4522033bb53829b0f615539cb8fd499ce2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f39303330636662302d623365352d366637362d333363322d6133663732653331623335332e6a706567" alt="6946da98e326fcaabf121b8694a9665d.jpeg" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8292/9030cfb0-b3e5-6f76-33c2-a3f72e31b353.jpeg"></a></p>
+
+<p>「Dynamic Type機能をサポートしているAppでは、下のスライダで指定したサイズでテキストが表示されます」とあります。では、Dynamic Type機能をサポートするにはどうしたら良いでしょうか。</p>
+
+<h1>
+<span id="わかったこと" class="fragment"></span><a href="#%E3%82%8F%E3%81%8B%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>わかったこと</h1>
+
+<p>これまでは、フォントの <strong>サイズ</strong> を直接数値で指定していましたが、Dynamic Typeでは <strong>スタイル</strong> を指定するようです。</p>
+
+<p>具体的には、</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="p">+</span> <span class="p">(</span><span class="bp">UIFont</span> <span class="o">*</span><span class="p">)</span><span class="nf">systemFontOfSize:</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">fontSize</span><span class="p">;</span>
+</pre></div></div>
+
+<p>などのメソッドを用いて直接サイズ指定していたところを</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="p">+</span> <span class="p">(</span><span class="bp">UIFont</span> <span class="o">*</span><span class="p">)</span><span class="nf">preferredFontForTextStyle:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">style</span>
+</pre></div></div>
+
+<p>メソッドを用いてスタイルを指定します。（他にもスタイルを指定する方法がありますが、ここでは解説しません）</p>
+
+<p>スタイルには次の値を指定できます。</p>
+
+<ul>
+<li>UIFontTextStyleHeadline</li>
+<li>UIFontTextStyleBody</li>
+<li>UIFontTextStyleSubheadline</li>
+<li>UIFontTextStyleFootnote</li>
+<li>UIFontTextStyleCaption1</li>
+<li>UIFontTextStyleCaption2</li>
+</ul>
+
+<p>画面に表示されるフォントサイズは、指定したスタイルによって自動的に決定するようです。</p>
+
+<p><a href="https://camo.qiitausercontent.com/00e793a5edca8305a6a60c9e126e56129445e06f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f64656461633836372d613261662d316261382d356530302d6661613963356463343939662e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/00e793a5edca8305a6a60c9e126e56129445e06f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f64656461633836372d613261662d316261382d356530302d6661613963356463343939662e6a706567" alt="dynamic.jpeg" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8292/dedac867-a2af-1ba8-5e00-faa9c5dc499f.jpeg"></a></p>
+
+<h1>
+<span id="フォントサイズの設定変更を監視する" class="fragment"></span><a href="#%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%B5%E3%82%A4%E3%82%BA%E3%81%AE%E8%A8%AD%E5%AE%9A%E5%A4%89%E6%9B%B4%E3%82%92%E7%9B%A3%E8%A6%96%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>フォントサイズの設定変更を監視する</h1>
+
+<p>このままだと設定画面からフォントサイズを変更しても何も起こりません。フォントサイズの変更を監視するには、 <strong>NSNotificationCenter</strong> に <strong>UIContentSizeCategoryDidChangeNotification</strong> を追加します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="bp">NSNotificationCenter</span> <span class="n">defaultCenter</span><span class="p">]</span> <span class="nl">addObserver</span><span class="p">:</span><span class="nb">self</span>
+<span class="nl">selector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">preferredContentSizeChanged</span><span class="p">:)</span>
+<span class="nl">name</span><span class="p">:</span><span class="n">UIContentSizeCategoryDidChangeNotification</span>
+<span class="nl">object</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+</pre></div></div>
+
+<p>こうすることにより、アプリ起動時にフォントサイズ設定が変わっていた場合、preferredContentSizeChanged が呼ばれるようになります。この中でテキストを再描画してあげれば良いでしょう。</p>
+
+<h1>
+<span id="実行結果" class="fragment"></span><a href="#%E5%AE%9F%E8%A1%8C%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>実行結果</h1>
+
+<p>とりあえず、設定画面の文字サイズが反映されるようになりました。</p>
+
+<p><a href="https://camo.qiitausercontent.com/e16d2211c9d4f258d5cd9a454e5cf55b35a1c942/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f63653366653737382d626166342d313738332d663563652d3331306364643235306330382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e16d2211c9d4f258d5cd9a454e5cf55b35a1c942/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f63653366653737382d626166342d313738332d663563652d3331306364643235306330382e706e67" alt="min.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8292/ce3fe778-baf4-1783-f5ce-310cdd250c08.png"></a><a href="https://camo.qiitausercontent.com/f7a014591cf5e0dd0213a76d417cdf2fd05b7b99/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f65643638323462342d656362362d626135322d316563372d3733653736646365653261622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f7a014591cf5e0dd0213a76d417cdf2fd05b7b99/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f65643638323462342d656362362d626135322d316563372d3733653736646365653261622e706e67" alt="mid2.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8292/ed6824b4-ecb6-ba52-1ec7-73e76dcee2ab.png"></a><a href="https://camo.qiitausercontent.com/7850c31d751ed38cab63cf0f72719c376901d677/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f35396234656633392d393232322d303163352d363538332d3637396531376166646338372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7850c31d751ed38cab63cf0f72719c376901d677/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f35396234656633392d393232322d303163352d363538332d3637396531376166646338372e706e67" alt="max.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8292/59b4ef39-9222-01c5-6583-679e17afdc87.png"></a></p>
+
+<p>まだまだ調査段階なのでツッコミ、訂正など歓迎です！m(_ _)m</p>
+
+<h1>
+<span id="リンク" class="fragment"></span><a href="#%E3%83%AA%E3%83%B3%E3%82%AF"><i class="fa fa-link"></i></a>リンク</h1>
+
+<ul>
+<li><a href="http://koogawa.hateblo.jp/entry/2013/09/23/011223" rel="nofollow noopener" target="_blank">iOS 7: Dynamic Typeに対応したUITableViewを作ってみた</a></li>
+<li><a href="https://developer.apple.com/wwdc/videos/" rel="nofollow noopener" target="_blank">Using Fonts with Text Kit</a></li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -173,23 +1670,131 @@
 <tr>
 	<td rowspan="3"><center>koogawaさんの<br />7位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>198</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/ca8cce019b4ff7ce2576">【iOS】Firebase の Notifications でプッシュ通知を送る</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>10</kbd>
+		<a target="_blank" href="https://qiita.com/koogawa/items/23359821d4c489c0ca5e">Map Kitでローカル検索ができるMKLocalSearchを試してみた</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-05-21 13:51:34</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-03-21 23:56:56</center>
 	</td>
 	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
+		@koogawa<br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
 	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[APNS]</b> <b>[Push通知]</b> <b>[Firebase]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[iOS]</b> <b>[位置情報]</b> <b>[ジオコーディング]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>最近、<a href="http://www.shuwasystem.co.jp/products/7980html/4070.html" rel="nofollow noopener" target="_blank">iOS位置情報プログラミング</a>という本を買って読んでいます。</p>
+
+<p>この本を読んで、iOS 6.1からMap Kitに<b>ローカル検索機能</b>が追加されたと知り、さっそくその性能を試してみました。（ここでローカル検索と呼んでいるのは、文字列から駅や飲食店などを検索できる検索機能のことです）</p>
+
+<h2>
+<span id="実装方法" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>実装方法</h2>
+
+<p>ローカル検索には次のクラスを使用します。</p>
+
+<ul>
+<li>MKLocalSearch</li>
+<li>MKLocalSearchRequest</li>
+<li>MKLocalSearchResponse</li>
+</ul>
+
+<p>まずは <code>MKLocalSearchRequest</code> インスタンスを生成し、検索文字列、検索範囲をセットします。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="bp">MKLocalSearchRequest</span> <span class="o">*</span><span class="n">request</span> <span class="o">=</span>
+    <span class="p">[[</span><span class="bp">MKLocalSearchRequest</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="n">request</span><span class="p">.</span><span class="n">naturalLanguageQuery</span> <span class="o">=</span> <span class="n">searchBar</span><span class="p">.</span><span class="n">text</span><span class="p">;</span>
+<span class="n">request</span><span class="p">.</span><span class="n">region</span> <span class="o">=</span> <span class="n">_mapView</span><span class="p">.</span><span class="n">region</span><span class="p">;</span>
+</pre></div></div>
+
+<p>次に、このインスタンスから <code>MKLocalSearch</code> インスタンスを生成します。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="bp">MKLocalSearch</span> <span class="o">*</span><span class="n">search</span> <span class="o">=</span>
+    <span class="p">[[</span><span class="bp">MKLocalSearch</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithRequest</span><span class="p">:</span><span class="n">request</span><span class="p">];</span>
+</pre></div></div>
+
+<p>これでローカル検索の準備ができました。さっそく <code>startWithCompletionHandler</code> メソッドを使って検索してみます。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">search</span> <span class="nl">startWithCompletionHandler</span><span class="p">:</span>
+<span class="o">^</span><span class="p">(</span><span class="bp">MKLocalSearchResponse</span> <span class="o">*</span><span class="n">response</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span>
+ <span class="p">{</span>
+     <span class="k">for</span> <span class="p">(</span><span class="bp">MKMapItem</span> <span class="o">*</span><span class="n">item</span> <span class="k">in</span> <span class="n">response</span><span class="p">.</span><span class="n">mapItems</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="bp">MKPointAnnotation</span> <span class="o">*</span><span class="n">point</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">MKPointAnnotation</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+         <span class="n">point</span><span class="p">.</span><span class="n">coordinate</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="n">placemark</span><span class="p">.</span><span class="n">coordinate</span><span class="p">;</span>
+         <span class="n">point</span><span class="p">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="n">placemark</span><span class="p">.</span><span class="n">name</span><span class="p">;</span>
+         <span class="n">point</span><span class="p">.</span><span class="n">subtitle</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="n">placemark</span><span class="p">.</span><span class="n">title</span><span class="p">;</span>
+
+         <span class="p">[</span><span class="n">_mapView</span> <span class="nl">addAnnotation</span><span class="p">:</span><span class="n">point</span><span class="p">];</span>
+     <span class="p">}</span>
+
+     <span class="p">[</span><span class="n">_mapView</span> <span class="nl">showAnnotations</span><span class="p">:[</span><span class="n">_mapView</span> <span class="n">annotations</span><span class="p">]</span> <span class="nl">animated</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+ <span class="p">}];</span>
+</pre></div></div>
+
+<p>実行結果は blocks 内で受け取ることができます。第1引数の <code>MKLocalSearchResponse</code> が検索結果で、第2引数にはエラー情報がセットされます。<code>MKLocalSearchResponse</code> クラスの <code>mapItems</code> プロパティが配列形式になっており、検索にヒットした分だけ <code>MKMapItem</code> 形式で格納されています。この例では、検索結果を順に取り出して <code>MKMapView</code> に表示しています。</p>
+
+<p>ちなみに、実装中に知ったのですが、iOS 7から次の便利なメソッドが使えるようになっていました。</p>
+
+<div class="code-frame" data-lang="objc"><div class="highlight"><pre><span></span><span class="c1">// Position the map such that the provided array of annotations are</span>
+<span class="c1">// all visible to the fullest extent possible.</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">showAnnotations:</span><span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="p">)</span><span class="nv">annotations</span>
+                       <span class="nf">animated:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">animated</span><span class="p">;</span>
+</pre></div></div>
+
+<p>第1引数に <code>MKAnnotation</code> （赤いピン等）の配列を指定すると、その全てが地図上に表示されるように、自動で縮尺率を調整してくれます。今までだと、これを実現するためには一番端のピンを自分で求める必要があったので、だいぶ楽になりそうですね。</p>
+
+<h2>
+<span id="実行結果" class="fragment"></span><a href="#%E5%AE%9F%E8%A1%8C%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>実行結果</h2>
+
+<p>まずは「渋谷駅」で検索してみました。</p>
+
+<p><a href="https://camo.qiitausercontent.com/776b36118890758ab5817551d3e9e550dbb6a60a/687474703a2f2f63646e2d616b2e662e73742d686174656e612e636f6d2f696d616765732f666f746f6c6966652f6b2f6b6f6f676177612f32303134303332312f32303134303332313137323635392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/776b36118890758ab5817551d3e9e550dbb6a60a/687474703a2f2f63646e2d616b2e662e73742d686174656e612e636f6d2f696d616765732f666f746f6c6966652f6b2f6b6f6f676177612f32303134303332312f32303134303332313137323635392e706e67" alt="f:id:koogawa:20140321172659p:plain" title="f:id:koogawa:20140321172659p:plain" data-canonical-src="http://cdn-ak.f.st-hatena.com/images/fotolife/k/koogawa/20140321/20140321172659.png"></a></p>
+
+<p>ちゃんと検索できましたね！</p>
+
+<p>次は「吉野家」で検索してみました。</p>
+
+<p><a href="https://camo.qiitausercontent.com/1753680bfefc1bfe678c49f3de6aa2892c79bfce/687474703a2f2f63646e2d616b2e662e73742d686174656e612e636f6d2f696d616765732f666f746f6c6966652f6b2f6b6f6f676177612f32303134303332312f32303134303332313137323835312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1753680bfefc1bfe678c49f3de6aa2892c79bfce/687474703a2f2f63646e2d616b2e662e73742d686174656e612e636f6d2f696d616765732f666f746f6c6966652f6b2f6b6f6f676177612f32303134303332312f32303134303332313137323835312e706e67" alt="f:id:koogawa:20140321172851p:plain" title="f:id:koogawa:20140321172851p:plain" data-canonical-src="http://cdn-ak.f.st-hatena.com/images/fotolife/k/koogawa/20140321/20140321172851.png"></a></p>
+
+<p>ちゃんとヒットしたのですが、なぜか1件しか返ってきません。全国に吉野家は何件もあるはずなのに不思議ですね。</p>
+
+<p>今度は、割と新しい建物である「ヒカリエ」を検索してみました。</p>
+
+<p><a href="https://camo.qiitausercontent.com/bfd609ae52f53d601a94503a19927e5bdfddee42/687474703a2f2f63646e2d616b2e662e73742d686174656e612e636f6d2f696d616765732f666f746f6c6966652f6b2f6b6f6f676177612f32303134303332312f32303134303332313137323934332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/bfd609ae52f53d601a94503a19927e5bdfddee42/687474703a2f2f63646e2d616b2e662e73742d686174656e612e636f6d2f696d616765732f666f746f6c6966652f6b2f6b6f6f676177612f32303134303332312f32303134303332313137323934332e706e67" alt="f:id:koogawa:20140321172943p:plain" title="f:id:koogawa:20140321172943p:plain" data-canonical-src="http://cdn-ak.f.st-hatena.com/images/fotolife/k/koogawa/20140321/20140321172943.png"></a></p>
+
+<p>茨城県の「光」という地域がヒットしました。。</p>
+
+<p>そして最後に「スカイツリー」で検索してみましたが、結果件数はゼロでした。</p>
+
+<h2>
+<span id="使ってみた感想" class="fragment"></span><a href="#%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E6%84%9F%E6%83%B3"><i class="fa fa-link"></i></a>使ってみた感想</h2>
+
+<p>最初に紹介した書籍でも書かれていましたが、日本での検索結果はまだ十分とは言えないと思いました。今後、より充実したエリア情報が検索できるようになることを期待しています。</p>
+
+<p>今回作ったソースコードはこちらにアップしておきました。</p>
+
+<ul>
+<li><a href="https://github.com/koogawa/MKLocalSearchSample" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/koogawa/MKLocalSearchSample</a></li>
+</ul>
+
+<h2>
+<span id="合わせて読みたい" class="fragment"></span><a href="#%E5%90%88%E3%82%8F%E3%81%9B%E3%81%A6%E8%AA%AD%E3%81%BF%E3%81%9F%E3%81%84"><i class="fa fa-link"></i></a>合わせて読みたい</h2>
+
+<ul>
+<li><a href="http://qiita.com/koogawa/items/d047a8056a0db5b05771" id="reference-33fde5e35498c623bf5d">iOS 7から追加されたMKDirectionsで経路検索を試してみる</a></li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -197,1295 +1802,42 @@
 <tr>
 	<td rowspan="3"><center>koogawaさんの<br />8位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>194</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/0dff2f59096b292571db">iOS 10 時代の Notification</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-06-19 12:38:20</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[APNS]</b> <b>[RemoteNotification]</b> <b>[ios10]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />9位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>140</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/3e36acd758de81b9a85a">iOS 9 / watchOS 2 で deprecated になる or 引退していくAPIたち</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-09-26 18:44:51</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[WatchKit]</b> <b>[watchOS]</b> <b>[iOS9]</b> <b>[WatchOS2]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />10位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>91</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/df92ec1c7eb750312b77">foursquare APIでできること</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-02-08 15:40:55</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[Foursquare]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />11位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>88</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/cdbda15d32c2adc91773">Xcodeのクラッシュ解析ツールCrashes Organizerを使う</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-03-02 19:15:22</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />12位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>86</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/ec876e29e7f45a240b53">TestFlightのExternal Testersが利用可能になったので使ってみた</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-10-24 21:48:38</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[TestFlight]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />13位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>86</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/6851669110aa522a088a">iTunes Connect の TestFlight 機能を使ってみる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-09-28 23:50:10</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[TestFlight]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />14位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>83</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/85e80d03c49daf80ce3a">Apple Watchアプリ申請時にハマったこと</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-04-01 18:20:50</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[WatchKit]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />15位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>77</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/024b00173561ed06ce9a">【iOS 9対応】知っておきたい位置情報周りの変更点</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-07-06 00:02:51</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[位置情報]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />16位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>76</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/83883a0282207be7751c">【iOS 11対応】知っておきたい位置情報周りの変更点</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2017-06-11 13:20:29</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[WWDC]</b> <b>[WWDC2017]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />17位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>73</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/b39e1419cbbcda8efc07">watchOS 2 の Watch Connectivity を使ってみた</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-07-05 10:08:39</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[WatchKit]</b> <b>[WWDC2015]</b> <b>[watchOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />18位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>64</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/dd94a303c7852885f269">iOS 9から追加された3D Touch shortcutsを実装してみる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-09-17 10:29:41</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[iOS9]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />19位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>62</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/ec2009653cbf5902bd1e">Stack Overflowで最も投票数の多かったiOS関連の質問ベスト10（2016年版）</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-12-12 00:00:29</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[AdventCalendar]</b> <b>[iOS]</b> <b>[StackOverflow]</b> <b>[AdventCalendar2016]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />20位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>62</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/d047a8056a0db5b05771">iOS 7から追加されたMKDirectionsで経路検索を試してみる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-12-03 00:21:12</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[map]</b> <b>[ios7]</b> <b>[地図]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />21位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>60</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/ccab13ee432ac0d0911f">Apple Watch Human Interface Guidelinesを読んだメモ</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-07 23:30:16</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[WatchKit]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />22位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>58</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/5f68feecf9b7b3f176c1">iOS 8 の Location Notification を使って目的地に着いたら教えてくれるアプリを作る</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 00:00:10</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[AdventCalendar]</b> <b>[iOS]</b> <b>[位置情報]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />23位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>57</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/9ea87bc0f28605b02588">iOS 11で大幅に強化されたMapKit</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2017-06-13 01:26:21</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[WWDC]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />24位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>53</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/432b9c65035b6ba17c8b">watchOS 2 対応時にハマったこと</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-07-03 16:55:45</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[WatchKit]</b> <b>[watchOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />25位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>52</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/adc2dd19015586bda39b">Google Maps SDK for iOSの使い方</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-03-03 00:34:05</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[Objective-C]</b> <b>[iPhone]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />26位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>49</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/f6e8f31ca549dbf55e83">Swift 3での遅延実行（Swift 2で言うdispatch_after）</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-11-12 12:00:49</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <b>[Swift3.0]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />27位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>48</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/55a7405c2c323a8f413a">iOS 11 から追加された SFAuthenticationSession でシングルサインオン</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2017-07-14 22:48:13</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />28位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>47</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/1011962b444420b854d7">iOS 7から追加されたDynamic Type機能を使ってみる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-10-10 01:18:35</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[Objective-C]</b> <b>[iPhone]</b> <b>[iOS]</b> <b>[ios7]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />29位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>45</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/b37cb7bb8d1ca14cb066">MapKitで現在地にフォーカスを合わせる＋ユーザの位置に追従させる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-07-31 18:42:32</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[MapKit]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />30位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>45</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/6e3303f61fd58b1e31b1">iOSアプリを開発するときに使ってる便利なサービス</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-01 22:46:49</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />31位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>42</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/15b231e2728ff64e08f3">【Xcode】無料の実機ビルドでどこまでできるのか</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-08-06 11:24:39</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />32位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>41</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/44ce2e1fb127b884d835">iOS 9から追加されたContacts Frameworkを使って連絡先アプリのデータを取得してみる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-09-28 00:09:10</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[iOS9]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />33位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>41</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/ad1f998ebb68827009a6">既存アプリをiPhone 6 Plusの解像度に最適化する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-09-23 14:12:47</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />34位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>40</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/0f689750a3210f4d6ff3">iOS 9で強化されたMapKit</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-07-02 23:38:24</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[位置情報]</b> <b>[MapKit]</b> <b>[地図]</b> <b>[WWDC2015]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />35位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>38</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/42dc928b474531ad2df3">iOS In-App Purchase プログラミングでハマった話</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-12-06 00:03:33</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[AdventCalendar]</b> <b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />36位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>37</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/3eb6ab3615744e8d55b9">MKMapViewでタップした位置に円を描く（Swift対応）</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-11-15 23:06:13</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />37位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>36</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/b94f92987f886f03fd9b">知っておくと便利かもしれないSlack Tips</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-06-11 10:32:31</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[Slack]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />38位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>36</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/970fdf2396fde489a6f5">HandoffをつかってApple Watchの作業をiPhoneに引き継ぐ</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-02-28 14:29:15</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[WatchKit]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />39位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>33</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/3dcc72e77ce9e5b106b1">Apple Watchをブルブルさせる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-07-07 18:09:41</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[WatchKit]</b> <b>[watchOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />40位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>29</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/cf34d8e45527c8c1831e">今どきのiAd実装</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-12-02 11:24:03</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[AdventCalendar]</b> <b>[iOS]</b> <b>[iAd]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />41位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>27</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/9b8a2ab36706d4c451e5">iOS 8で導入されたLocal Authenticationを使ってTouchID認証</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-06-07 20:36:14</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[Objective-C]</b> <b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />42位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>25</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/e013790b5579f7a89fad">【iOS 10】Today Extension (Widget) の高さを調節する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-08-07 11:29:56</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[ios10]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />43位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>25</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/456cd47d22842d14494a">知らなかったGitコマンドまとめ</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-09 20:59:57</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[Git]</b> <b>[GitHub]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />44位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>20</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/0c23fbb2ab1e6a10055a">[iOS] CLLocationManagerで移動速度を取得する（Swift編）</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-04-03 12:27:56</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[位置情報]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />45位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>19</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/05e2623f98af34b69d4c">[iOS] CLLocationManagerで移動速度を取得する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-01-04 13:27:00</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[位置情報]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />46位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>14</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/7ec4c6663ba009e0783f">Xcodeでオブジェクトを前面・背面に移動する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-09-07 16:46:53</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />47位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>13</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/67f446e731f3f5959d05">XcodeでUIStepperを使う方法</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-03-27 11:12:12</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />48位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>12</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/a2afae99fc647d86f061">WatchKitでPageControlを表示する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-10 20:40:57</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[WatchKit]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />49位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>11</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/63fd20ec1f40d7f79d9b">watchOS 2から追加されたWKInterfacePickerメモ</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-06-11 08:19:02</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[WatchKit]</b> <b>[watchOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />50位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>10</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/a50285611e191dd5eb51">App Storeのユーザーレビューに返信できるようになったよ</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2017-03-28 08:44:46</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[AppStore]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />51位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>10</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/687bd862b82e4bdce688">【iOS】システムフォントはUILableとUITextViewで違う</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-08-10 19:22:07</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />52位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>10</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/23359821d4c489c0ca5e">Map Kitでローカル検索ができるMKLocalSearchを試してみた</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-03-21 23:56:56</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[位置情報]</b> <b>[ジオコーディング]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />53位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/5dd2f7a0e36bf03d5e6c">watchOS 3 で追加された WKCrownSequencer でデジタルクラウンの状態を取得してみる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-06-16 10:15:03</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[watchOS]</b> <b>[WWDC2016]</b> <b>[ios10]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />54位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/b99304997c7fbd3e8530">UITextField の文字数カウント</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-01-31 23:21:48</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />55位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/9505d75eec03f1140e01">【MKMapView】現在地の青い◎（ドット）の色を変える</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-10-25 12:54:13</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[MapKit]</b> <b>[地図]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />56位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/487fdd1139ddf14189d0">【MapKit】ユーザートラッキングモードでユーザの現在値を追いかける</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2017-06-13 23:55:56</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[位置情報]</b> <b>[MapKit]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />57位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/991c5459742aaa6aa6cf">watchOS 3 で追加された WKGestureRecognizer でタッチ操作を検知してみる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-06-16 19:13:20</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[watchOS]</b> <b>[ios10]</b> <b>[watchOS3]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />58位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/3a4b2ad97514f9137569">NSNumberFormatterを使って数値を3桁カンマ区切りで表示するメモ</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-11-22 10:51:29</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />59位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/c5484c6a915028ee1227">なぜ “or die()” は動くのに “or return” はダメなのか</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2017-05-12 19:20:51</center>
-	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[PHP]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />60位</center></td>
-	<td colspan="3">
 		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
 		<a target="_blank" href="https://qiita.com/koogawa/items/2e1e1c2c0fd9ca33ea6e">foursquareアプリケーションの登録</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2014-02-08 04:16:57</center>
 	</td>
 	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
+		@koogawa<br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
 	</td>
-	<td style="width:300px;"><b>[Foursquare]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>koogawaさんの<br />61位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>0</kbd>
-		<a target="_blank" href="https://qiita.com/koogawa/items/f7bd53188487079587bd">【Xcode】実行ごとにビルド設定を切り替える</a>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Foursquare]</b> </center>
 	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-03-19 14:31:24</center>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>foursquare APIにアクセスするため、アプリケーション登録をおこないます。ここで発行されるconsumer keyがないとデータを取得できません。</p>
+
+<p><a href="https://ja.foursquare.com/oauth/" class="autolink" rel="nofollow noopener" target="_blank">https://ja.foursquare.com/oauth/</a></p>
+
+<p>にアクセスし、ページ右上の「REGISTER A NEW CONSUMER」ボタンをクリックします。</p>
+
+<p><a href="https://camo.qiitausercontent.com/ba9ea7b45fa263defa4962b661fdab007e96fa17/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f63353834336463332d343832632d633162612d646633302d6237393466353562353632362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ba9ea7b45fa263defa4962b661fdab007e96fa17/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383239322f63353834336463332d343832632d633162612d646633302d6237393466353562353632362e706e67" alt="20111119015555.png" title="20111119015555.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8292/c5843dc3-482c-c1ba-df30-b794f55b5626.png"></a></p>
+
+<p>「APPLICATION NAME」には文字通りアプリケーション名を入力します。「APPLICATION WEB SITE」「CALLBACK URL」にはアプリの紹介サイトなどを入力しますが、今回はWebアプリではないため、仮に「<a href="http://www.example.com/%E3%80%8D" class="autolink" rel="nofollow noopener" target="_blank">http://www.example.com/」</a>を入力しておきました。</p>
+
+<p>「ENTER TEXT BELOW」に画像の文字を入力し、「REGISTER APPLICATION」ボタンを押すと「CLIENT ID」「CLIENT SECRET」が発行されます。</p>
+</div>
 	</td>
-	<td style="width:200px;">
-		@koogawa<!--(<a target="_blank" href="http://qiita.com/koogawa">Qiita内の61件の記事</a>)--><br />(株式会社nanapi 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8292/profile-images/1473680983">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[iOS]</b> <!--タグ--></td>
 </tr>
 </table>
 <br />

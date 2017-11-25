@@ -25,6 +25,7 @@
 <h1>Qiitaいいね数ランキング (usamik26 さんの投稿分)</h1>
 </div><!--class="headerContainer"-->
 <p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
 <table border="1">
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />1位</center></td>
@@ -34,18 +35,133 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2012-12-12 01:38:19</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>git でファイルを無視するには、通常は <code>.gitignore</code> や <code>.git/info/exclude</code> を使います。<br>
+しかし、既に git 管理下にあるファイルは、これらの設定があっても無視されません。</p>
+
+<p>以下の方法を使えば、git 管理下にあるファイルをあえて無視することが可能です。</p>
+
+<h1>
+<span id="方法" class="fragment"></span><a href="#%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>方法</h1>
+
+<p>次の2つの方法があります。どちらを使っても、ファイルの変更を無視できます。</p>
+
+<h2>
+<span id="方法1-assume-unchanged" class="fragment"></span><a href="#%E6%96%B9%E6%B3%951-assume-unchanged"><i class="fa fa-link"></i></a>方法(1) assume-unchanged</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git update-index --assume-unchanged [ファイル名]
+</pre></div></div>
+
+<p>この設定を取り消すには次のようにします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git update-index --no-assume-unchanged [ファイル名]
+</pre></div></div>
+
+<h2>
+<span id="方法2-skip-worktree" class="fragment"></span><a href="#%E6%96%B9%E6%B3%952-skip-worktree"><i class="fa fa-link"></i></a>方法(2) skip-worktree</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git update-index --skip-worktree [ファイル名]
+</pre></div></div>
+
+<p>この設定を取り消すには次のようにします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git update-index --no-skip-worktree [ファイル名]
+</pre></div></div>
+
+<h1>
+<span id="設定の確認" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9A%E3%81%AE%E7%A2%BA%E8%AA%8D"><i class="fa fa-link"></i></a>設定の確認</h1>
+
+<p>上記の設定がされているファイルを確認するには、次のようにします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git ls-files -v
+</pre></div></div>
+
+<ul>
+<li>assume-unchanged 設定のファイルは、状態が小文字で表示されます。</li>
+<li>skip-worktree 設定のファイルは、状態が S と表示されます。</li>
+</ul>
+
+<h1>
+<span id="assume-unchanged-と-skip-worktree-の違い" class="fragment"></span><a href="#assume-unchanged-%E3%81%A8-skip-worktree-%E3%81%AE%E9%81%95%E3%81%84"><i class="fa fa-link"></i></a>assume-unchanged と skip-worktree の違い</h1>
+
+<p>この2つは、以下の点が違います。</p>
+
+<ul>
+<li>assume-unchanged : そのファイルが作業ツリー上で変更されているときでも、git はその変更を無視して変更されていないとみなします。</li>
+<li>skip-worktree : そのファイルが作業ツリー上で変更されているときには、git はその変更を保ちます。</li>
+</ul>
+
+<p>これは、以下のような状況で動作の違いとしてあらわれます。</p>
+
+<h2>
+<span id="作業ツリー上でもリポジトリ上でもファイル更新があってそれをマージするとき" class="fragment"></span><a href="#%E4%BD%9C%E6%A5%AD%E3%83%84%E3%83%AA%E3%83%BC%E4%B8%8A%E3%81%A7%E3%82%82%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E4%B8%8A%E3%81%A7%E3%82%82%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%9B%B4%E6%96%B0%E3%81%8C%E3%81%82%E3%81%A3%E3%81%A6%E3%81%9D%E3%82%8C%E3%82%92%E3%83%9E%E3%83%BC%E3%82%B8%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D"><i class="fa fa-link"></i></a>作業ツリー上でもリポジトリ上でもファイル更新があって、それをマージするとき</h2>
+
+<ul>
+<li>assume-unchanged : 作業ツリー上の更新は破棄されて、リポジトリの内容が取り込まれます。</li>
+<li>skip-worktree : 作業ツリー上の更新は保持されて、リポジトリの内容は取り込まれません。</li>
+</ul>
+
+<h2>
+<span id="作業ツリー上でファイル更新があってgit-reset---hard-を実行したとき" class="fragment"></span><a href="#%E4%BD%9C%E6%A5%AD%E3%83%84%E3%83%AA%E3%83%BC%E4%B8%8A%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%9B%B4%E6%96%B0%E3%81%8C%E3%81%82%E3%81%A3%E3%81%A6git-reset---hard-%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%9F%E3%81%A8%E3%81%8D"><i class="fa fa-link"></i></a>作業ツリー上でファイル更新があって、<code>git reset --hard</code> を実行したとき</h2>
+
+<ul>
+<li>assume-unchanged : 作業ツリー上の更新は破棄されます。</li>
+<li>skip-worktree : 作業ツリー上の更新は保持されます。</li>
+</ul>
+
+<h1>
+<span id="何のために使うのか" class="fragment"></span><a href="#%E4%BD%95%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AB%E4%BD%BF%E3%81%86%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>何のために使うのか</h1>
+
+<p>そもそも、何のためにファイルを無視したいのでしょうか。</p>
+
+<h2>
+<span id="更新確認しなくていいファイルを無視することで-git-status-などを高速化したい" class="fragment"></span><a href="#%E6%9B%B4%E6%96%B0%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%AA%E3%81%8F%E3%81%A6%E3%81%84%E3%81%84%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E7%84%A1%E8%A6%96%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%A7-git-status-%E3%81%AA%E3%81%A9%E3%82%92%E9%AB%98%E9%80%9F%E5%8C%96%E3%81%97%E3%81%9F%E3%81%84"><i class="fa fa-link"></i></a>更新確認しなくていいファイルを無視することで git status などを高速化したい</h2>
+
+<p>例えば、ネットワークドライブを使っていてファイルアクセスが遅い場合などがそうです。</p>
+
+<p>このために用意されたのが、assume-unchanged 設定です。<br>
+この設定がされていると、ファイルをチェックしなくなるので高速になるというわけです。</p>
+
+<h2>
+<span id="git-管理しているファイルがビルド時に更新されてしまうが普段は無視したい" class="fragment"></span><a href="#git-%E7%AE%A1%E7%90%86%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%8C%E3%83%93%E3%83%AB%E3%83%89%E6%99%82%E3%81%AB%E6%9B%B4%E6%96%B0%E3%81%95%E3%82%8C%E3%81%A6%E3%81%97%E3%81%BE%E3%81%86%E3%81%8C%E6%99%AE%E6%AE%B5%E3%81%AF%E7%84%A1%E8%A6%96%E3%81%97%E3%81%9F%E3%81%84"><i class="fa fa-link"></i></a>git 管理しているファイルがビルド時に更新されてしまうが普段は無視したい</h2>
+
+<p>開発環境によっては、こんな困ったファイルがあったりします。</p>
+
+<ul>
+<li>ビルド時に自動生成するファイルではないので git 管理したい</li>
+<li>ビルド時にそのファイルがあると日付だけ更新される</li>
+</ul>
+
+<p>あるいは、ビルドで生成するファイルを git に入れている場合もあるかもしれません。</p>
+
+<p>こういったファイルは、作業ツリー上では頻繁に更新しますが、git には触ってほしくありません。<br>
+このときには、skip-worktree 設定が使えます。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>git 管理下のファイルを無視する方法について書きました。</p>
+
+<p>git は様々な細かいニーズに答えて開発されていると思います。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -53,23 +169,128 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />2位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>398</kbd>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>399</kbd>
 		<a target="_blank" href="https://qiita.com/usamik26/items/cce867b3b139ea5568a6">git bisect で問題箇所を特定する</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2012-06-23 16:17:23</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <b>[AdventCalendar]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> <b>[AdventCalendar]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>以前は問題なく動いていたはずの機能が、最新版では動かなくなっている・・・。こんなときは、「どのコミットが問題を混入させてしまったのだろうか？」を知りたくなるでしょう。</p>
+
+<p>これを手助けするのが <a href="http://git-scm.com/docs/git-bisect" rel="nofollow noopener" target="_blank">git bisect</a> コマンドです。git bisect コマンドは、二分探索によって問題箇所を特定します。</p>
+
+<h1>
+<span id="事前準備" class="fragment"></span><a href="#%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>事前準備</h1>
+
+<p>最初に大事なことがひとつあります。それは、<strong>「問題がない（good）状態と問題がある（bad）状態を、確実に判定できるようにする」</strong>ことです。</p>
+
+<p>当然のことではありますが、ここがあやふやだと、二分探索をしても問題箇所をうまく特定できません。</p>
+
+<p>可能なら、「テストスクリプトを1つ実行するだけで判定」できるようにしたほうが良いです。このとき、テストスクリプトは、git リポジトリからチェックアウトした作業ツリーに対して実行できるようにします（例えばソースからのビルド処理もテストスクリプトに含めます）。また、テストスクリプトは、good なら 0 を、bad なら 1～127（ただし 125 は除く）を返すようにします。</p>
+
+<p>テストスクリプトが用意できない場合は、手動でテストを行うこともできます。</p>
+
+<h1>
+<span id="git-bisect-の実行方法" class="fragment"></span><a href="#git-bisect-%E3%81%AE%E5%AE%9F%E8%A1%8C%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>git bisect の実行方法</h1>
+
+<h2>
+<span id="good-と-bad-の指定" class="fragment"></span><a href="#good-%E3%81%A8-bad-%E3%81%AE%E6%8C%87%E5%AE%9A"><i class="fa fa-link"></i></a>good と bad の指定</h2>
+
+<p>まず、問題がない（good）時点と問題がある（bad）時点を指定します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git bisect start &lt;bad-commit&gt; &lt;good-commit&gt;
+</pre></div></div>
+
+<p>たとえば、V1.0 タグの時点では good で、最新（HEAD）では bad である、とすると次のように指定します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git bisect start HEAD V1.0
+</pre></div></div>
+
+<p>これを実行すると、bad と good の間にある適当な中間バージョンがチェックアウトされます。</p>
+
+<h2>
+<span id="テストスクリプトの指定" class="fragment"></span><a href="#%E3%83%86%E3%82%B9%E3%83%88%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%81%AE%E6%8C%87%E5%AE%9A"><i class="fa fa-link"></i></a>テストスクリプトの指定</h2>
+
+<p>次に、テストスクリプトを指定します（テストスクリプトが用意できない場合は、次の「手動でテストする」に進んでください）。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git bisect run &lt;テストスクリプトのファイル名&gt;
+</pre></div></div>
+
+<p>これを実行すると、git が自動的に「テスト実行」と「中間バージョンのチェックアウト」を繰り返して、問題が混入した時点を見つけてくれます。処理が終わるまで特にすることはありませんので、コーヒーでも飲んで心を落ち着けながら待ちましょう。</p>
+
+<p>無事終了すれば、問題が混入した時点のバージョンがチェックアウトされています。コミット内容を調べて問題を解決しましょう。</p>
+
+<h2>
+<span id="手動でテストする" class="fragment"></span><a href="#%E6%89%8B%E5%8B%95%E3%81%A7%E3%83%86%E3%82%B9%E3%83%88%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>手動でテストする</h2>
+
+<p>テストスクリプトが用意できない場合、手動でテストを行います。</p>
+
+<p>テストの結果、問題がない（good）なら以下を実行します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git bisect good
+</pre></div></div>
+
+<p>テストの結果、問題がある（bad）なら以下を実行します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git bisect bad
+</pre></div></div>
+
+<p>上記のどちらかを実行すると、git が自動的に bad と good の間にある中間バージョンをチェックアウトしてくれます。これに対して、ふたたび手動でテストを行います。</p>
+
+<p>手動の「テスト実行」と git による「中間バージョンのチェックアウト」を繰り返すと、問題が混入した時点が特定できます。コミット内容を調べて問題を解決しましょう。</p>
+
+<h1>
+<span id="その他のコマンド" class="fragment"></span><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89"><i class="fa fa-link"></i></a>その他のコマンド</h1>
+
+<h2>
+<span id="現在チェックアウトしているコミットを確認する" class="fragment"></span><a href="#%E7%8F%BE%E5%9C%A8%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>現在チェックアウトしているコミットを確認する</h2>
+
+<p>git bisect がチェックアウトしているコミットを見るには、次のコマンドが便利です。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git bisect view
+</pre></div></div>
+
+<p>デフォルトだと gitk で表示します。オプション -p をつけると、パッチ形式でコンソールに出力します。</p>
+
+<h2>
+<span id="二分探索の過程を確認する" class="fragment"></span><a href="#%E4%BA%8C%E5%88%86%E6%8E%A2%E7%B4%A2%E3%81%AE%E9%81%8E%E7%A8%8B%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>二分探索の過程を確認する</h2>
+
+<p>git bisect のログを表示します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git bisect log
+</pre></div></div>
+
+<h2>
+<span id="もとの状態に戻す" class="fragment"></span><a href="#%E3%82%82%E3%81%A8%E3%81%AE%E7%8A%B6%E6%85%8B%E3%81%AB%E6%88%BB%E3%81%99"><i class="fa fa-link"></i></a>もとの状態に戻す</h2>
+
+<p>git bisect を実行する前の状態に戻すには、以下を実行します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git bisect reset
+</pre></div></div>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>git bisect を使う機会はそんなに多くはないと思いますが、こういうものがあるということを覚えておくと、いざというときに助かります。実際に使ってみると、きっと感動しますよ。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -77,23 +298,112 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />3位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>395</kbd>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>397</kbd>
 		<a target="_blank" href="https://qiita.com/usamik26/items/c655abcaeee02ea59695">git を https 経由で使うときのパスワードを保存する</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2012-09-24 17:22:48</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>git を https 経由で使う場合、pull や push のたびに毎回パスワードを聞かれてしまいます。<br>
+これを改善するには <a href="http://git-scm.com/docs/gitcredentials" rel="nofollow noopener" target="_blank">git-credential</a> を使うと良いです。</p>
+
+<p>git-credential は git 1.7.9 以降で使用可能です。<br>
+なお、古いやり方としては .netrc を使う方法もありますが、パスワードを平文でファイルに保存するので、やらないほうがいいと思います。</p>
+
+<h1>
+<span id="使用可能な管理方式" class="fragment"></span><a href="#%E4%BD%BF%E7%94%A8%E5%8F%AF%E8%83%BD%E3%81%AA%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F"><i class="fa fa-link"></i></a>使用可能な管理方式</h1>
+
+<p>git-credential では、以下のような方法でユーザ名とパスワードを管理できます。</p>
+
+<ul>
+<li>
+<code>git-credential-store</code> : ファイルに保存します。ただし、パスワードが平文が保存されます。</li>
+<li>
+<code>git-credential-cache</code> : 常駐プロセスに記憶させます。</li>
+<li>
+<code>git-credential-osxkeychain</code> : Mac OS X のパスワード管理を使います。</li>
+<li>
+<code>Git-Credential-Manager-for-Windows</code> : Windows のパスワード管理を使います。</li>
+<li>
+<code>git-credential-gnomekering</code> : GNOME のパスワード管理を使います。</li>
+</ul>
+
+<p>なお、git 本家の contrib に、Windows 用の wincred というものが入っているようです。試していませんが・・・。</p>
+
+<h1>
+<span id="cache" class="fragment"></span><a href="#cache"><i class="fa fa-link"></i></a>cache</h1>
+
+<p>cache 方式は標準で付属しています。<br>
+次のコマンドで cache 方式が使用できます。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>git config --global credential.helper cache
+</pre></div></div>
+
+<p>初回パスワード入力時に git-credential-cache--daemon プロセスが常駐して、タイムアウト時間が過ぎるまでパスワードを記憶します。</p>
+
+<p>タイムアウトは、デフォルトでは 900 秒（15分）です。変更するには、次のようにタイムアウト時間（例では 3600 秒）を指定します。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>git config --global credential.helper <span class="s1">'cache --timeout=3600'</span>
+</pre></div></div>
+
+<h1>
+<span id="osxkeychain" class="fragment"></span><a href="#osxkeychain"><i class="fa fa-link"></i></a>osxkeychain</h1>
+
+<p>osxkeychain は git の contrib として付属しています。MacPorts や Homebrew でインストールすると有効になっています。<br>
+次のコマンドで osxkeychain が使用できます。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>git config --global credential.helper osxkeychain
+</pre></div></div>
+
+<p>初回パスワード入力時に OS X キーチェーンに登録され、以後はパスワード入力が不要になります。</p>
+
+<h1>
+<span id="windows" class="fragment"></span><a href="#windows"><i class="fa fa-link"></i></a>windows</h1>
+
+<p>別途インストールが必要です。</p>
+
+<p><a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/Microsoft/Git-Credential-Manager-for-Windows</a></p>
+
+<p>手順通りインストールを行えば良いです。</p>
+
+<p>初回パスワード入力時に Internet Explorer などと同じ場所にアクセストークンが保存され、以後はパスワード入力が不要になります。</p>
+
+<h1>
+<span id="gnomekeyring" class="fragment"></span><a href="#gnomekeyring"><i class="fa fa-link"></i></a>gnomekeyring</h1>
+
+<p>gnomekeyring は別途インストールが必要です。</p>
+
+<p><a href="https://github.com/shugo/git-credential-gnomekeyring" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/shugo/git-credential-gnomekeyring</a></p>
+
+<p>手順通りビルド・インストールを行えば良いです。</p>
+
+<p>初回パスワード入力時に GNOME キーリングに登録され、以後はパスワード入力が不要になります。</p>
+
+<h1>
+<span id="最後に" class="fragment"></span><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB"><i class="fa fa-link"></i></a>最後に</h1>
+
+<p>実は同様のことが github のヘルプにほとんど書いてありました。</p>
+
+<p><a href="https://help.github.com/articles/set-up-git" class="autolink" rel="nofollow noopener" target="_blank">https://help.github.com/articles/set-up-git</a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -106,18 +416,58 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2012-06-21 13:09:04</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>git におけるリモートリポジトリの操作は、「リモート上の何かを直接操作する」のではなくて「ローカルの変更をリモートに送りこむ」と考えれば理解しやすいのかもしれない。</p>
+
+<h2>
+<span id="リモートのタグを削除する" class="fragment"></span><a href="#%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%81%AE%E3%82%BF%E3%82%B0%E3%82%92%E5%89%8A%E9%99%A4%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>リモートのタグを削除する</h2>
+
+<p>リモート origin のタグ TAGNAME を削除するには、次のようにする。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git tag -d TAGNAME
+git push origin :TAGNAME
+</pre></div></div>
+
+<p>ローカルでタグを削除してから、リモートに「空のタグを送りこむ」という感じ。</p>
+
+<h2>
+<span id="リモートのブランチを削除する" class="fragment"></span><a href="#%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%82%92%E5%89%8A%E9%99%A4%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>リモートのブランチを削除する</h2>
+
+<p>リモート origin のブランチ BRANCHNAME を削除するには、次のようにする。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git branch -d BRANCHNAME
+git push origin :BRANCHNAME
+</pre></div></div>
+
+<p>ローカルでブランチを削除してから、リモートに「空のブランチを送りこむ」という感じ。</p>
+
+<h2>
+<span id="追記2012-09-13" class="fragment"></span><a href="#%E8%BF%BD%E8%A8%982012-09-13"><i class="fa fa-link"></i></a>追記（2012-09-13）</h2>
+
+<p>TAGNAME や BRANCHNAME の前にコロンを付けるかわりに、次のようにすることができるようです。こちらのほうが分かりやすいですね。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git push --delete origin TAGNAME
+git push --delete origin BRANCHNAME
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -125,23 +475,71 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />5位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>120</kbd>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>121</kbd>
 		<a target="_blank" href="https://qiita.com/usamik26/items/7bfa61b31344206077fb">git リポジトリの最新の履歴だけを取得する shallow clone</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-12-17 23:08:19</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>git でリポジトリを clone した場合、通常は元のリポジトリを丸ごと取得してきます。</p>
+
+<p>しかし、最新版が取得できればそれでよい、過去の履歴情報はいらない、という場合もあるかと思います。そんなとき、次のようにすればリポジトリを丸ごと取得せず、最新版だけ取得できます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git clone --depth 1 https://github.com/git/git
+</pre></div></div>
+
+<p>これは、git のマニュアルでは shallow clone と呼ばれています。</p>
+
+<p>オプション <code>depth</code> に渡す値は、取得する履歴の数です。上記では <code>1</code> を指定しているので、最新のみを取得します。depth 1 で shallow clone したリポジトリで <code>git log</code> を実行すると、ログが 1 つしかないのが分かります。</p>
+
+<h2>
+<span id="利点" class="fragment"></span><a href="#%E5%88%A9%E7%82%B9"><i class="fa fa-link"></i></a>利点</h2>
+
+<p>変更履歴が多くて通常の clone では時間がかかるような git リポジトリの場合、shallow clone を使うことで通常の clone より速く最新版を取得できます。</p>
+
+<p>とりあえず最近の履歴だけ見たい、とか、最新版に対して修正パッチを作成したい、とかいった目的に有益です。</p>
+
+<h2>
+<span id="通常の-clone-と-shallow-clone-との変換" class="fragment"></span><a href="#%E9%80%9A%E5%B8%B8%E3%81%AE-clone-%E3%81%A8-shallow-clone-%E3%81%A8%E3%81%AE%E5%A4%89%E6%8F%9B"><i class="fa fa-link"></i></a>通常の clone と shallow clone との変換</h2>
+
+<p>既に通常の clone がある場合に、それを後から shallow clone にすることが可能です。次のようにすれば良いです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git fetch --depth 1
+</pre></div></div>
+
+<p>また、既に shallow clone がある場合に、それを後から通常の clone にすることが可能です。次のようにすれば良いです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git fetch --unshallow
+</pre></div></div>
+
+<h2>
+<span id="補足" class="fragment"></span><a href="#%E8%A3%9C%E8%B6%B3"><i class="fa fa-link"></i></a>補足</h2>
+
+<p>以前は、shallow clone したリポジトリでは、fetch や push ができないという制限事項がありました。しかし、現在（Git 1.9 以降）は、それらが改善されており、fetch や push を行うことも可能になりました。</p>
+
+<h2>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h2>
+
+<p>shallow clone はあまり知られていない機能だと思いますが、状況と目的によっては役に立つ機能ではないかと思います。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -149,23 +547,64 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />6位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>100</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/2bbd0b8d304ab42b2279">RxSwift で UIKit を扱う基本</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>76</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/18591c9f870fcdd0d003">よく使うディレクトリに別名をつける</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-12-06 09:56:07</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-12-04 03:35:10</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Swift]</b> <b>[RxSwift]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Zsh]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>コマンドに別名をつける方法はよく知られていると思いますが、同じようにディレクトリに別名をつけることができます。</p>
+
+<h2>
+<span id="文法" class="fragment"></span><a href="#%E6%96%87%E6%B3%95"><i class="fa fa-link"></i></a>文法</h2>
+
+<p>次のようにすると、<code>~エイリアス名</code> が <code>ディレクトリパス</code> の別名になります。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="nb">hash</span> -d エイリアス名<span class="o">=</span>ディレクトリパス
+</pre></div></div>
+
+<h2>
+<span id="具体例" class="fragment"></span><a href="#%E5%85%B7%E4%BD%93%E4%BE%8B"><i class="fa fa-link"></i></a>具体例</h2>
+
+<p>例えば、次のように設定します。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="nb">hash</span> -d <span class="nv">log</span><span class="o">=</span>/var/log
+</pre></div></div>
+
+<p>すると、次のように別名を使うことができます。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>% ls ~log
+（/var/log ディレクトリの内容表示）
+% ls ~log/apache2
+（/var/log/apache2 ディレクトリの内容表示）
+% <span class="nb">cd</span> ~log
+% <span class="nb">pwd</span>
+/var/log
+</pre></div></div>
+
+<p>ほかにも、cygwin だと以下のような設定をしておくと <code>~desktop</code> でデスクトップフォルダを扱えるようになります。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="nb">hash</span> -d <span class="nv">desktop</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>cygpath --desktop<span class="k">)</span><span class="s2">"</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -173,23 +612,120 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />7位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>76</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/18591c9f870fcdd0d003">よく使うディレクトリに別名をつける</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>58</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/fcb720ba646e5b0b4684">zmvコマンドで複数ファイルの一括リネーム</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-12-04 03:35:10</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-12-16 21:02:30</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Zsh]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Zsh]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>zsh には、zmv という便利なコマンドがあります。この使い方をまとめます。</p>
+
+<h1>
+<span id="基本の使い方" class="fragment"></span><a href="#%E5%9F%BA%E6%9C%AC%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9"><i class="fa fa-link"></i></a>基本の使い方</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>zmv <span class="s1">'変換元'</span> <span class="s1">'変換先'</span>
+</pre></div></div>
+
+<p>変換元には、zsh の glob パターンが指定できます。</p>
+
+<p>例えば、次のように使います。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>zmv <span class="s1">'(*).xxx'</span> <span class="s1">'$1.yyy'</span>
+</pre></div></div>
+
+<p>このコマンドは、実際には次のようなコマンドを実行してくれます（マッチするファイルが3つあった場合の例）。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>mv -- hoge1.xxx hoge1.yyy
+mv -- hoge2.xxx hoge2.yyy
+mv -- hoge3.xxx hoge3.yyy
+</pre></div></div>
+
+<p>別の例として、次のように複数パターンの指定も可能です。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>zmv <span class="s1">'(**/)(*).xxx'</span> <span class="s1">'$1$2.yyy'</span>
+</pre></div></div>
+
+<h1>
+<span id="より簡単に使うためのオプション" class="fragment"></span><a href="#%E3%82%88%E3%82%8A%E7%B0%A1%E5%8D%98%E3%81%AB%E4%BD%BF%E3%81%86%E3%81%9F%E3%82%81%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>より簡単に使うためのオプション</h1>
+
+<p>次のオプションを使うと、より簡潔に書けて便利です。</p>
+
+<ul>
+<li>
+<code>-W</code> : 変換元に含まれるワイルドカードは括弧がついているとみなす。また、変換先に含まれるワイルドカードは順に <code>$1</code>, <code>$2</code>, ... とみなす。</li>
+</ul>
+
+<p>これを使うと、上に出てきた例は次のように書けます。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>zmv -W <span class="s1">'*.xxx'</span> <span class="s1">'*.yyy'</span>
+zmv -W <span class="s1">'**/*.xxx'</span> <span class="s1">'**/*.yyy'</span>
+</pre></div></div>
+
+<p>さらに、<code>noglob</code> を使うと、シングルクォートも省略できます。<br>
+次のようなエイリアスを定義すると便利です。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="nv">rename</span><span class="o">=</span><span class="s2">"noglob zmv -W"</span>
+</pre></div></div>
+
+<p>こうすると、次のように直観的に書けます。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>rename *.xxx *.yyy
+rename **/*.xxx **/*.yyy
+</pre></div></div>
+
+<p>僕は、簡単な変換の場合は <code>rename</code> を使い、複雑な変換の場合は <code>zmv</code> を生で使う、と使い分けています。</p>
+
+<h1>
+<span id="確認用のオプション" class="fragment"></span><a href="#%E7%A2%BA%E8%AA%8D%E7%94%A8%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>確認用のオプション</h1>
+
+<p>複雑な変換の場合は、パターンが正しく指定できているか確認できるような、次のオプションが便利です。</p>
+
+<ul>
+<li>
+<code>-n</code> : 処理の表示のみ行い、実際には実行しません。</li>
+<li>
+<code>-v</code> : 処理を表示しながら実行します。</li>
+<li>
+<code>-i</code> : 対話的に実行します。</li>
+</ul>
+
+<h1>
+<span id="リネーム以外の処理を行う" class="fragment"></span><a href="#%E3%83%AA%E3%83%8D%E3%83%BC%E3%83%A0%E4%BB%A5%E5%A4%96%E3%81%AE%E5%87%A6%E7%90%86%E3%82%92%E8%A1%8C%E3%81%86"><i class="fa fa-link"></i></a>リネーム以外の処理を行う</h1>
+
+<p>実は、リネーム以外の処理を行うこともできます。</p>
+
+<ul>
+<li>
+<code>-C</code> : <code>mv</code> の代わりに <code>cp</code> を実行します。</li>
+<li>
+<code>-L</code> : <code>mv</code> の代わりに <code>ln</code> を実行します。</li>
+<li>
+<code>-p コマンド</code> : <code>mv</code> の代わりに指定したコマンドを実行します。</li>
+</ul>
+
+<h1>
+<span id="参照" class="fragment"></span><a href="#%E5%8F%82%E7%85%A7"><i class="fa fa-link"></i></a>参照</h1>
+
+<p><code>zmv</code> については、<code>man zshcontrib</code> の OTHER FUNCTIONS に記載があります。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -197,23 +733,45 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />8位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>66</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/601f5612bd3f8a21cc41">Homebrew のインストール先を変更する</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>57</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/bfc2196f510d68b3c2cc">git diff のとき変更したファイルだけを確認する</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-03-31 20:45:27</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-12-12 12:31:52</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[homebrew]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>通常の <code>git diff</code> では、追加したファイルやリネームしたファイルなども差分として表示されますが、それが邪魔に思うときもあります。</p>
+
+<p>以下のようにすれば、変更したファイルについてだけ差分を表示することができます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git diff --diff-filter=M
+</pre></div></div>
+
+<p>ちなみに、<code>diff-filter</code> は他にも、A （追加）、C （コピー）、D （削除）、R （リネーム）、などが指定できます。</p>
+
+<p>僕は以下のようなエイリアスを作って使っています。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>[alias]
+        modified = diff --diff-filter=M
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -221,23 +779,64 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />9位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>64</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/9a2d14aea30cb01a60c6">Git リポジトリの内容を zip ファイルにする</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>56</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/28be7d2c221a7a53c2c3">git push の反対は git pull ではない</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-12-20 15:07:28</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-12-08 11:12:44</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <b>[GitHub]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><code>git push</code> の反対は <code>git fetch</code> です。<code>git pull</code> ではありません。</p>
+
+<h1>
+<span id="どういう意味" class="fragment"></span><a href="#%E3%81%A9%E3%81%86%E3%81%84%E3%81%86%E6%84%8F%E5%91%B3"><i class="fa fa-link"></i></a>どういう意味？</h1>
+
+<ul>
+<li>
+<code>git push</code> は、ローカルのリポジトリの内容をリモートのリポジトリに送り込むコマンドです。</li>
+<li>
+<code>git fetch</code> は、リモートのリポジトリの内容をローカルのリポジトリに取り込むコマンドです。</li>
+</ul>
+
+<p>ほら、対になるコマンドでしょう。</p>
+
+<p>では、<code>git pull</code> は？</p>
+
+<ul>
+<li>
+<code>git pull</code> は、まず、リモートのリポジトリの内容をローカルのリポジトリに取り込み、次に、現在のローカルのブランチに対して、それに対応するリモートのブランチをマージするコマンドです。</li>
+</ul>
+
+<p>マージ処理が入りますね。特に、マージが完了すると、作業ツリーの内容がマージ後の内容に変わります。</p>
+
+<p><code>git push</code> や <code>git fetch</code> は、リポジトリだけを操作し、作業ツリーは無関係です。これに対して、<code>git pull</code> は、リポジトリだけでなく、作業ツリーも操作します。このため、<code>git push</code> と <code>git pull</code> を対にして語るのは不自然だといえます。</p>
+
+<h1>
+<span id="git-fetch-を使おう" class="fragment"></span><a href="#git-fetch-%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86"><i class="fa fa-link"></i></a>git fetch を使おう</h1>
+
+<p><code>git fetch</code> は作業ツリーを書き換えないので、気軽に実行できます。リモートの情報をいつでも取り込んでおきましょう。リモートに追随したくなったときに、自分の目でログを確認して、<code>git merge FETCH_HEAD</code> でマージすれば良いです。</p>
+
+<p><code>git pull</code> は妙に複雑なコマンドで、分かりにくいし、余計なことするし、いいことありません。こんなコマンドは忘れてしまいましょう。</p>
+
+<p>これからは、リモートの取り込みは <code>git fetch</code> です。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -245,23 +844,207 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />10位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>58</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/fcb720ba646e5b0b4684">zmvコマンドで複数ファイルの一括リネーム</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>50</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/563e94301ca150c3d0c3">iBeacon で忍者が密会する</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-12-16 21:02:30</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-12-03 21:58:51</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Zsh]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[iOS]</b> <b>[iBeacon]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>先日、iBeacon を使ったアプリを AppStore で公開しましたので、簡単に紹介させていただきたいと思います。このアプリは複数名で開発しており、私は実装担当でした。</p>
+
+<ul>
+<li><a href="http://www.appstore.com/ninjatryst" rel="nofollow noopener" target="_blank">Ninja Tryst</a></li>
+</ul>
+
+<h1>
+<span id="ibeacon-の特徴" class="fragment"></span><a href="#ibeacon-%E3%81%AE%E7%89%B9%E5%BE%B4"><i class="fa fa-link"></i></a>iBeacon の特徴</h1>
+
+<p>iBeacon は、ざっくり言えば、様々な機器が発するビーコン信号を iOS デバイスが検出する仕組みです。</p>
+
+<p>iBeacon の特徴を簡単に述べておきます。詳しい情報は、昨日や一昨日の Advent Calendar の記事が参考になると思います。</p>
+
+<ul>
+<li>BLE (Bluetooth Low Energy) を利用
+
+<ul>
+<li>一般の BLE 通信と異なり、ペアリングが不要</li>
+</ul>
+</li>
+<li>受信側デバイス
+
+<ul>
+<li>BLE 搭載の iOS デバイス</li>
+</ul>
+</li>
+<li>発信側デバイス
+
+<ul>
+<li>BLE 搭載の機器で、iBeacon 仕様のビーコン発信を実装したもの</li>
+</ul>
+</li>
+<li>アプリがバックグラウンドのときでも、ビーコンを検出してユーザに通知できる</li>
+<li>おおまかな距離の情報が取得できる</li>
+</ul>
+
+<h2>
+<span id="ninja-tryst-では" class="fragment"></span><a href="#ninja-tryst-%E3%81%A7%E3%81%AF"><i class="fa fa-link"></i></a>Ninja Tryst では</h2>
+
+<p>今回のアプリ開発ではこれらの特徴の中から、距離の情報が取得できる、という点に着目してみました。</p>
+
+<h1>
+<span id="ibeacon-の実装" class="fragment"></span><a href="#ibeacon-%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>iBeacon の実装</h1>
+
+<p>次に、iBeacon をアプリに組み込む実装方法を簡単に述べておきます。これも、詳しい情報は、昨日や一昨日の Advent Calendar の記事が参考になると思います。</p>
+
+<p>また個人的には、WWDC のサンプルコードである AirLocate のコードを参考資料として読みました。iOS Dev Center でダウンロードできます。</p>
+
+<h2>
+<span id="ビーコンの受信" class="fragment"></span><a href="#%E3%83%93%E3%83%BC%E3%82%B3%E3%83%B3%E3%81%AE%E5%8F%97%E4%BF%A1"><i class="fa fa-link"></i></a>ビーコンの受信</h2>
+
+<p>BLE を利用していますが、Core Bluetooth を使うわけではありません。iBeacon は、Region Monitoring に近い性格のものとして位置づけられているように思えます。</p>
+
+<ul>
+<li>Core Location フレームワークを使う
+
+<ul>
+<li>従来は、位置情報取得や Region Monitoring の機能があった</li>
+<li>ここに iBeacon 受信機能が追加された</li>
+</ul>
+</li>
+<li>
+<code>CLLocationManager</code>
+
+<ul>
+<li>ビーコン領域の検出
+
+<ul>
+<li>
+<code>startMonitoringForRegion:</code> で開始</li>
+<li>ビーコン領域に入ったり出たりすると <code>locationManager:didDetermineState:forRegion:</code> が呼ばれる</li>
+</ul>
+</li>
+<li>個々のビーコン信号を取得
+
+<ul>
+<li>
+<code>startRangingBeaconsInRegion:</code> で開始</li>
+<li>ビーコン信号を取得すると <code>locationManager:didRangeBeacons:inRegion:</code> が呼ばれる</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="ビーコンの発信" class="fragment"></span><a href="#%E3%83%93%E3%83%BC%E3%82%B3%E3%83%B3%E3%81%AE%E7%99%BA%E4%BF%A1"><i class="fa fa-link"></i></a>ビーコンの発信</h2>
+
+<p>iOS デバイスは主にビーコンの受信側として使われることが多いと思いますが、ビーコンの発信側になることもできます。こちらは、BLE 周辺機器として実装します。</p>
+
+<ul>
+<li>Core Bluetooth フレームワークを使う
+
+<ul>
+<li>参考：<a href="http://blog.fenrir-inc.com/jp/2013/10/bluetooth-le-ios-2.html" rel="nofollow noopener" target="_blank">iOS デバイスを Bluetooth LE 機器にする</a>
+</li>
+</ul>
+</li>
+<li>
+<code>CBPeripheralManager</code>
+
+<ul>
+<li>ビーコン発信
+
+<ul>
+<li>
+<code>startAdvertising:</code> で発信</li>
+<li>発信するデータは <code>CLBeaconRegion</code> で生成する（<code>peripheralDataWithMeasuredPower:</code> を使う）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="ninja-tryst-では-1" class="fragment"></span><a href="#ninja-tryst-%E3%81%A7%E3%81%AF-1"><i class="fa fa-link"></i></a>Ninja Tryst では</h2>
+
+<p>iBeacon は一般的には、ビーコン発信器を特定の場所に固定で設置して、iOS デバイスがビーコン受信器になる、という使い方です。</p>
+
+<p>しかし今回のアプリ開発では、iOS デバイスが発信側にもなれる、という点に着目して、iOS デバイス同士でビーコンの発信・受信を行うようにしました。</p>
+
+<ul>
+<li>ビーコンの発信と受信を同時に行う
+
+<ul>
+<li>
+<code>CLLocationManager</code> と <code>CBPeripheralManager</code> を両方動かす</li>
+</ul>
+</li>
+<li>2台のデバイスそれぞれがお互いのビーコンを受信する</li>
+</ul>
+
+<h1>
+<span id="ninja-tryst-の概要" class="fragment"></span><a href="#ninja-tryst-%E3%81%AE%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>Ninja Tryst の概要</h1>
+
+<p>さて、アプリの紹介ですが、一言でいえば、待ち合わせを手助けするアプリです。ビーコンによって、相手までのおおまかな距離をアプリ画面に表示します。</p>
+
+<p>という書き方をすると真面目なアプリのようですが、ビーコンで忍者が密会するアプリです。ぶっちゃけ、アホアプリの部類に入ります（注：「アホアプリ」という言葉は褒め言葉です）。</p>
+
+<p>まあ、はっきり言って、ちゃんと使おうとすると不便なアプリです。</p>
+
+<p>詳しくは、公式 Web サイトがオススメです。また、開発メンバの紹介記事も見ていただくのがいいかと思います。</p>
+
+<ul>
+<li>
+<a href="http://www.ninjatryst.com/" rel="nofollow noopener" target="_blank">Ninja Tryst</a> : 公式 Web サイト</li>
+<li>
+<a href="http://guchitaka.com/?p=119" rel="nofollow noopener" target="_blank">iBeacon実験アプリ NinjaTryst リリースしました。</a> : たいへんインパクトが強いデザインを作ったデザイナー</li>
+<li>
+<a href="http://kuso-app-president.tumblr.com/post/68367994900/ninja-tryst" rel="nofollow noopener" target="_blank">クソアプリカンパニーの地獄部屋 — Ninja Trystの開発に参加してました</a> : そもそもこの人がいなかったらこのアプリはなかった、リーダー＆企画</li>
+</ul>
+
+<h2>
+<span id="距離の表示" class="fragment"></span><a href="#%E8%B7%9D%E9%9B%A2%E3%81%AE%E8%A1%A8%E7%A4%BA"><i class="fa fa-link"></i></a>距離の表示</h2>
+
+<p>距離は次の4段階で表示しています。</p>
+
+<ul>
+<li>隠：ビーコン未検知</li>
+<li>忍：ビーコンの proximity の値が Far</li>
+<li>獲：ビーコンの proximity の値が Near</li>
+<li>顕：ビーコンの proximity の値が Immediate</li>
+</ul>
+
+<h1>
+<span id="実際に動かしてみて" class="fragment"></span><a href="#%E5%AE%9F%E9%9A%9B%E3%81%AB%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%81%A6"><i class="fa fa-link"></i></a>実際に動かしてみて</h1>
+
+<p>ビーコンから取得できる距離情報に注目したわけですが、期待していたほど距離の精度はよくないという印象を受けました。</p>
+
+<p>ビーコンの accuracy プロパティが距離の数値っぽいと思いきや、この数値から正確な距離を知ることは無理でした（そもそも、Apple のドキュメントにそういう目的には使うなと書いてあります）。ビーコンの proximity プロパティがおおまかな距離を示す値ですが、これもわりとブレがあります。また、移動中に値が更新されるのが思ったよりも遅い気がしました。</p>
+
+<p>また、ビーコンからは方向の情報は得られません（BLE だから当たり前といえば当たり前）。下手な使い方では、位置推定に使うのはつらい感じです。</p>
+
+<p>と、欠点ばかりずらずら書きました。それでも、使えない技術だと思っているわけではありません。大事なことは、何ができるのかを把握してうまく使うことです。</p>
+
+<p>iBeacon の特性をつかんで上手に生かすような使い方を考えれば、有益な技術であることは間違いないと思います。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -269,23 +1052,66 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />11位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>57</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/bfc2196f510d68b3c2cc">git diff のとき変更したファイルだけを確認する</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>44</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/426fce61252aaa135e60">git flow を使うときによく使う操作</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-12-12 12:31:52</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-05-19 23:13:33</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="develop-ブランチにリモートの更新を取り込む" class="fragment"></span><a href="#develop-%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%AB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92%E5%8F%96%E3%82%8A%E8%BE%BC%E3%82%80"><i class="fa fa-link"></i></a>develop ブランチに、リモートの更新を取り込む</h1>
+
+<p>リモートの develop ブランチが更新された場合は、ローカルの develop ブランチもそれに追従したい。（特に、<code>git flow feature finish</code> したいときには必須）</p>
+
+<p>事前に <code>git fetch</code> してあれば、以下の操作でよい。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>% git checkout develop &amp;&amp; git merge origin/develop
+</pre></div></div>
+
+<p>サブモジュールがある場合は、その更新もあわせてしておく。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>% git checkout develop &amp;&amp; git merge origin/develop &amp;&amp; git submodule update
+</pre></div></div>
+
+<h1>
+<span id="feature-ブランチにdevelop-ブランチの更新を取り込む" class="fragment"></span><a href="#feature-%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%ABdevelop-%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92%E5%8F%96%E3%82%8A%E8%BE%BC%E3%82%80"><i class="fa fa-link"></i></a>feature ブランチに、develop ブランチの更新を取り込む</h1>
+
+<p>develop ブランチが更新された場合は、feature ブランチもそれに追従したい。</p>
+
+<p><code>git flow</code> のサブコマンドが用意されているので、それを使えばよい。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>% for branch in $(git flow feature) ; do git flow feature rebase $branch ; done
+</pre></div></div>
+
+<h1>
+<span id="備考" class="fragment"></span><a href="#%E5%82%99%E8%80%83"><i class="fa fa-link"></i></a>備考</h1>
+
+<p>merge や rebase については、基本的な方針を決めておくといいと思う。</p>
+
+<ul>
+<li>master ブランチ、develop ブランチは merge する（rebase しない）。これは、リモートに push して他の人と共有するブランチであるため。</li>
+<li>feature ブランチは rebase する。これは、ローカルで好きに操作するブランチであるため。（ただし、feature ブランチをリモートに push して共有したい場合はこの限りではない）</li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -293,23 +1119,42 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />12位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>56</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/28be7d2c221a7a53c2c3">git push の反対は git pull ではない</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>38</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/8aa6c3aed4b9c7dba5ca">現在のブランチ名を取得するコマンド</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-12-08 11:12:44</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-10-10 19:36:34</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>以下のコマンドで、現在のブランチ名を表示できる。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>git branch --contains<span class="o">=</span>HEAD
+</pre></div></div>
+
+<p>branch コマンドの contains オプションは、指定したコミットを含むブランチのみを表示する。</p>
+
+<p>コミット指定を省略すると HEAD が指定されたとみなすので、以下でも上記コマンドと同じ意味になる。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>git branch --contains
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -317,23 +1162,80 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />13位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>51</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/00208bbcde31fcde9117">コンフリクトの解決を記録して再適用する git rerere</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>30</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/f733add9ca910f6c5784">mintty ターミナル上の vim で、モードに応じてカーソル形状を変える</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-14 11:09:34</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-08-23 12:28:32</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>（cygwin や mingw の）mintty ターミナル上の vim で、カーソル形状をモードによって次のように変えたい。</p>
+
+<ul>
+<li>通常はブロック型点滅カーソル</li>
+<li>挿入モード時はライン型点滅カーソル</li>
+</ul>
+
+<h1>
+<span id="vimrc-の設定" class="fragment"></span><a href="#vimrc-%E3%81%AE%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>vimrc の設定</h1>
+
+<p>vimrc に次を追加すればよい。</p>
+
+<div class="code-frame" data-lang="vimrc"><div class="highlight"><pre><span></span>let &amp;t_ti.="\e[1 q"
+let &amp;t_SI.="\e[5 q"
+let &amp;t_EI.="\e[1 q"
+let &amp;t_te.="\e[0 q"
+</pre></div></div>
+
+<p>（引用元 : <a href="http://code.google.com/p/mintty/wiki/Tips#Mode-dependent_cursor_in_vim" class="autolink" rel="nofollow noopener" target="_blank">http://code.google.com/p/mintty/wiki/Tips#Mode-dependent_cursor_in_vim</a> ）</p>
+
+<p>起動・終了時、モード切替時に、mintty の制御シーケンスを使ってカーソル形状を変えている。</p>
+
+<h1>
+<span id="参考mintty-の制御シーケンス" class="fragment"></span><a href="#%E5%8F%82%E8%80%83mintty-%E3%81%AE%E5%88%B6%E5%BE%A1%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9"><i class="fa fa-link"></i></a>参考：mintty の制御シーケンス</h1>
+
+<p>mintty でカーソル形状を変える制御シーケンスは以下のとおり。</p>
+
+<ul>
+<li>ESC [ 0 SP q ⇒ mintty のデフォルト設定</li>
+<li>ESC [ 1 SP q ⇒ ブロック型、点滅あり</li>
+<li>ESC [ 2 SP q ⇒ ブロック型、点滅なし</li>
+<li>ESC [ 3 SP q ⇒ 下線型、点滅あり</li>
+<li>ESC [ 4 SP q ⇒ 下線型、点滅なし</li>
+<li>ESC [ 5 SP q ⇒ ライン型、点滅あり</li>
+<li>ESC [ 6 SP q ⇒ ライン型、点滅なし</li>
+</ul>
+
+<p>（参照 : <a href="http://code.google.com/p/mintty/wiki/CtrlSeqs#Cursor_style" class="autolink" rel="nofollow noopener" target="_blank">http://code.google.com/p/mintty/wiki/CtrlSeqs#Cursor_style</a> ）</p>
+
+<p>この制御シーケンスは、VT510 ベースに mintty 独自拡張を追加した感じらしい。</p>
+
+<h1>
+<span id="余談" class="fragment"></span><a href="#%E4%BD%99%E8%AB%87"><i class="fa fa-link"></i></a>余談</h1>
+
+<p>ちなみに、制御シーケンスをテキストファイルに記述するときに、vim で C-v C-[ と入力して ESC コード（表示上は ^[ になる）を直接埋め込んでいるのをよく見かける。</p>
+
+<p>でも、上記の設定で ESC コードを "\e" と書いているように、普通のテキスト文字だけで記述できることが多い。</p>
+
+<p>個人的には、テキストファイルに制御コードを埋め込むのは好きではないので、テキスト文字で記述できるときはなるべくそうしている。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -341,23 +1243,59 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />14位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>50</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/563e94301ca150c3d0c3">iBeacon で忍者が密会する</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>24</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/560830841525c1efa9f5">変更があったファイルだけエクスポートする</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-12-03 21:58:51</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-10-02 01:51:34</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[iBeacon]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>以下のコマンドで、OLD_COMMIT と NEW_COMMIT の間に変更があったファイルだけ取り出せる。<br>
+OLD_COMMIT バージョンが old ディレクトリに、NEW_COMMIT バージョンが new ディレクトリに出力される。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span><span class="nv">OLD_COMMIT</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">NEW_COMMIT</span><span class="o">=</span><span class="nv">$2</span>
+<span class="k">for</span> file in <span class="sb">`</span>git diff --name-only <span class="nv">$OLD_COMMIT</span> <span class="nv">$NEW_COMMIT</span><span class="sb">`</span> <span class="p">;</span> <span class="k">do</span>
+    git archive --prefix<span class="o">=</span>old/ <span class="nv">$OLD_COMMIT</span> <span class="nv">$file</span> <span class="p">|</span> tar -xf - <span class="p">;</span>
+    git archive --prefix<span class="o">=</span>new/ <span class="nv">$NEW_COMMIT</span> <span class="nv">$file</span> <span class="p">|</span> tar -xf - <span class="p">;</span>
+<span class="k">done</span>
+</pre></div></div>
+
+<ul>
+<li>
+<code>git diff --name-only</code> で違いがあるファイルの名前だけを取得する</li>
+<li>
+<code>git archive</code> でそのファイルを取り出す</li>
+</ul>
+
+<h1>
+<span id="補足git-archive-コマンド" class="fragment"></span><a href="#%E8%A3%9C%E8%B6%B3git-archive-%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89"><i class="fa fa-link"></i></a>補足：git archive コマンド</h1>
+
+<p><code>git archive</code> コマンドはちょっと癖があるけど、うまく使うと便利。</p>
+
+<ul>
+<li>標準出力に tar 形式で出力されるので、個々のファイルとして取り出すには tar コマンドにパイプする必要がある</li>
+<li>ファイル名を指定すると、特定のファイルだけを取り出せる（tar 展開なのでいちいち mkdir しなくてもディレクトリが生成されるのが嬉しい）</li>
+<li>prefix オプションで出力先ディレクトリを指定できる（このとき、最後にスラッシュを付ける必要がある）</li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -365,23 +1303,66 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />15位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>44</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/426fce61252aaa135e60">git flow を使うときによく使う操作</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>23</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/28503c2f594d2ef305d2">git ですべてのブランチに対して処理を行う方法</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-05-19 23:13:33</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-08-02 14:23:30</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>git-svn を使っているとき、すべてのブランチに対して git svn rebase をしたいと思った。</p>
+
+<h1>
+<span id="方法1" class="fragment"></span><a href="#%E6%96%B9%E6%B3%951"><i class="fa fa-link"></i></a>方法1</h1>
+
+<p>以下のコマンドで、ブランチのリストを取得できる。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>git <span class="k">for</span>-each-ref --format<span class="o">=</span><span class="s1">'%(refname:short)'</span> refs/heads
+</pre></div></div>
+
+<p>これを使ってシェルスクリプトを書くことができる。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>git svn fetch
+<span class="k">for</span> branch in <span class="k">$(</span>git <span class="k">for</span>-each-ref --format<span class="o">=</span><span class="s1">'%(refname:short)'</span> refs/heads<span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+    git checkout <span class="nv">$branch</span> <span class="o">&amp;&amp;</span> git svn rebase --local
+<span class="k">done</span>
+</pre></div></div>
+
+<h1>
+<span id="方法2" class="fragment"></span><a href="#%E6%96%B9%E6%B3%952"><i class="fa fa-link"></i></a>方法2</h1>
+
+<p>git for-each-ref の出力をパイプで直接 sh に渡してしまう方法もある。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>git svn fetch
+git <span class="k">for</span>-each-ref --format<span class="o">=</span><span class="s1">'git checkout %(refname:short) &amp;&amp; git svn rebase --local'</span> refs/heads <span class="p">|</span> sh
+</pre></div></div>
+
+<h1>
+<span id="補足" class="fragment"></span><a href="#%E8%A3%9C%E8%B6%B3"><i class="fa fa-link"></i></a>補足</h1>
+
+<p>ブランチのリストを取得して何か処理する、といった場合は、git branch でなく git for-each-ref を使うほうがいいようだ。</p>
+
+<p>git branch は hidh-level commands (porcelain) であり、シェル上で対話的に使うことを想定している。だから、現在のブランチにマークがついていたりする。</p>
+
+<p>git for-each-ref は low-level commands (plumbing) であり、スクリプトで使うのに向いている。だから、普段シェル上でコマンドを打つときはちょっと使いにくいけど、format 指定ができたりして応用がきく。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -389,23 +1370,68 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />16位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>42</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/0d42db4ea25e2a2ce845">複数の作業ディレクトリを作成する git worktree</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>19</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/9a2ca29ec30b6baf5280">テキストファイルの特定文字列の行から特定文字列の行までを抽出したい</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-12-02 07:13:44</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-02-26 13:30:54</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[awk]</b> <b>[shell]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>例えば、START という行から STOP という行までを抽出したいとき。</p>
+
+<h2>
+<span id="awk-を使う場合" class="fragment"></span><a href="#awk-%E3%82%92%E4%BD%BF%E3%81%86%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>awk を使う場合</h2>
+
+<p>シェルでこの手の作業をしようと思ったら、まず思いつくのが awk です。<br>
+実は簡単な記述法が用意されています。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>cat file.txt <span class="p">|</span> awk <span class="s1">'/START/,/STOP/'</span>
+</pre></div></div>
+
+<p>抽出した行をさらに加工したい場合は、awk で書くなら以下のような感じです。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>cat file.txt <span class="p">|</span> awk <span class="s1">'/START/,/STOP/ { 何か加工処理 }'</span>
+</pre></div></div>
+
+<p>しかし、sed と組み合わせるほうが自然な気がします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>cat file.txt | awk '/START/,/STOP/' | sed '何か加工処理'
+</pre></div></div>
+
+<h2>
+<span id="ruby-を使う場合" class="fragment"></span><a href="#ruby-%E3%82%92%E4%BD%BF%E3%81%86%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>ruby を使う場合</h2>
+
+<p>上記のフィルタ処理を ruby で書くとこうなります。<br>
+こちらもわりと簡単な記述で書けます。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>cat file.txt <span class="p">|</span> ruby -ne <span class="s1">'print if /START/../STOP/'</span>
+</pre></div></div>
+
+<p>抽出した行をさらに加工したい場合は、ruby スクリプトで書くなら以下のような感じです。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">'file.txt'</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+    <span class="k">next</span> <span class="k">unless</span> <span class="n">line</span> <span class="o">=~</span> <span class="sr">/START/</span> <span class="o">..</span> <span class="n">line</span> <span class="o">=~</span> <span class="sr">/STOP/</span>
+    <span class="err">何か加工処理</span>
+<span class="k">end</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -413,23 +1439,108 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />17位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>38</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/8aa6c3aed4b9c7dba5ca">現在のブランチ名を取得するコマンド</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>19</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/c0c0559b6d66aa8e3bff">Asset Catalog への画像リソース追加をシェルスクリプトで楽に行う</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-10-10 19:36:34</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-12-05 01:27:44</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Xcode]</b> <b>[iOS]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Xcode 5 で追加された Asset Catalog は、画像リソースの管理に使うと便利です。<br>
+画像リソースをいじってもプロジェクトファイルが変更されないので、バージョン管理ツールでのコンフリクトが起こりにくくなります。また、非 Retina 画像と Retina 画像をペアにして管理できます。</p>
+
+<p>しかし、Xcode 上で <code>Images.xcassets</code> に画像ファイルを追加しようと思うと、画像ファイルを所定の場所にいちいちドラッグ＆ドロップしなくてはいけないため、面倒であり、間違いも発生しやすいです。</p>
+
+<p>実は、<code>Images.xcassets</code> は非常に単純な構成になっています。単に <code>imageset</code> というフォルダの中に、画像ファイルそのものと、<code>Contents.json</code> というファイルがあるだけです。<br>
+このため、スクリプトを作って処理を自動化することができます。</p>
+
+<p>実際に、スクリプトを書いてみました。</p>
+
+<ul>
+<li><a href="https://gist.github.com/usami-k/7784440" rel="nofollow noopener" target="_blank">generate_xcassets.sh</a></li>
+</ul>
+
+<p>これで、だいぶ楽ができます。</p>
+
+<h1>
+<span id="スクリプトの使い方" class="fragment"></span><a href="#%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9"><i class="fa fa-link"></i></a>スクリプトの使い方</h1>
+
+<p>使い方は次のとおりです。</p>
+
+<ol>
+<li>フォルダを新規に作り、そこに画像ファイルたちを入れます（<code>aaaa.png</code> と <code>aaaa@2x.png</code> といったペアになるファイルを両方入れておきます）。</li>
+<li>そのフォルダで、上記のシェルスクリプトを実行します。すると、<code>imageset</code> フォルダが自動で作成され、その中に画像ファイルが移動し、<code>Contents.json</code> が作成されます。</li>
+<li>できた <code>imageset</code> を <code>Images.xcassets</code> フォルダに入れると、Xcode が自動的に認識してくれます。</li>
+</ol>
+
+<h1>
+<span id="実行例" class="fragment"></span><a href="#%E5%AE%9F%E8%A1%8C%E4%BE%8B"><i class="fa fa-link"></i></a>実行例</h1>
+
+<p>フォルダ内に次のようなファイルがあるとします。</p>
+
+<ul>
+<li><code>aaaa.png</code></li>
+<li><code>aaaa@2x.png</code></li>
+<li><code>bbbb.png</code></li>
+<li><code>bbbb@2x.png</code></li>
+<li><code>cccc.png</code></li>
+<li><code>cccc@2x.png</code></li>
+</ul>
+
+<p>このフォルダでスクリプトを実行すると、次のようになります。</p>
+
+<ul>
+<li>
+<code>aaaa.imageset</code>
+
+<ul>
+<li><code>aaaa.png</code></li>
+<li><code>aaaa@2x.png</code></li>
+<li><code>Contents.json</code></li>
+</ul>
+</li>
+<li>
+<code>bbbb.imageset</code>
+
+<ul>
+<li><code>bbbb.png</code></li>
+<li><code>bbbb@2x.png</code></li>
+<li><code>Contents.json</code></li>
+</ul>
+</li>
+<li>
+<code>cccc.imageset</code>
+
+<ul>
+<li><code>cccc.png</code></li>
+<li><code>cccc@2x.png</code></li>
+<li><code>Contents.json</code></li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<span id="補足" class="fragment"></span><a href="#%E8%A3%9C%E8%B6%B3"><i class="fa fa-link"></i></a>補足</h1>
+
+<p>ごく単純なスクリプトであり、エラー処理や気のきいた機能などはありません。いろいろと改良の余地はあると思います。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -437,23 +1548,35 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />18位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>36</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/292ae8ab7cb491309932">SwiftGen</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>17</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/38bd5b99349d0ae9c4ca">gitで無視されているファイルを表示する</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-09-20 19:31:57</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-07-18 12:46:25</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[macos]</b> <b>[Swift]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git status --ignored
+</pre></div></div>
+
+<p>これで .gitignore で無視されているファイルがどれなのかを確認することができる。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -461,23 +1584,54 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />19位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>33</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/1e24c81d31b90373c146">なぜ Realm を使うのか改めて振り返る</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>16</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/f27fef5335752a3e37ec">cygwin vim でクリップボードを使う</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-12-18 14:17:21</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-10-12 23:36:31</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <b>[Realm]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> <b>[Cygwin]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>cygwin コンソール版 vim は +clipboard バージョンではありません。<br>
+しかし、cygwin の機能を活用すれば間接的にクリップボードを扱うことができます。</p>
+
+<h1>
+<span id="vim-からクリップボードへのコピー" class="fragment"></span><a href="#vim-%E3%81%8B%E3%82%89%E3%82%AF%E3%83%AA%E3%83%83%E3%83%97%E3%83%9C%E3%83%BC%E3%83%89%E3%81%B8%E3%81%AE%E3%82%B3%E3%83%94%E3%83%BC"><i class="fa fa-link"></i></a>vim からクリップボードへのコピー</h1>
+
+<p>以下のコマンドで、バッファ全体をクリップボードに送ることができます（<code>/dev/clipboard</code> は cygwin の機能のひとつです）。</p>
+
+<div class="code-frame" data-lang="vim"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">w</span> <span class="p">!</span><span class="k">cat</span> <span class="p">&gt;</span> <span class="sr">/dev/</span><span class="nb">clipboard</span>
+</pre></div></div>
+
+<p>また、ビジュアルモードで範囲選択してから以下のコマンドで、選択部分をクリップボードに送ることができます。</p>
+
+<div class="code-frame" data-lang="vim"><div class="highlight"><pre><span></span><span class="p">:</span><span class="s1">'&lt;,'</span><span class="p">&gt;</span><span class="k">w</span> <span class="p">!</span><span class="k">cat</span> <span class="p">&gt;</span> <span class="sr">/dev/</span><span class="nb">clipboard</span>
+</pre></div></div>
+
+<p>なお、コマンドの <code>'&lt;,'&gt;</code> の部分は、範囲選択中にコロンを入力すると勝手に挿入されるので、入力するのは <code>w !cat &gt; /dev/clipboard</code> の部分だけです。</p>
+
+<h1>
+<span id="クリップボードから-vim-へのペースト" class="fragment"></span><a href="#%E3%82%AF%E3%83%AA%E3%83%83%E3%83%97%E3%83%9C%E3%83%BC%E3%83%89%E3%81%8B%E3%82%89-vim-%E3%81%B8%E3%81%AE%E3%83%9A%E3%83%BC%E3%82%B9%E3%83%88"><i class="fa fa-link"></i></a>クリップボードから vim へのペースト</h1>
+
+<p>mintty の機能を使うのが簡単です。<br>
+vim を挿入モードにして、mintty のペースト（Ctrl-Shift-V または Shift-Ins）を行えばよいです。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -485,23 +1639,36 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />20位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>30</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/f733add9ca910f6c5784">mintty ターミナル上の vim で、モードに応じてカーソル形状を変える</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>15</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/dabfa85f5c2a74644103">git add -p と同じような機能を持つ git stash -p</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-08-23 12:28:32</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-06-26 17:45:59</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="http://qiita.com/items/1abf08bca4ce51db4775">横着で神経質な私とあなたに贈るgit add -p</a> で <code>git add -p</code> が紹介されていますが、実は <code>git stash -p</code> なんていうのもあります。</p>
+
+<p>機能もほとんど同じで、<code>git add -p</code> が index に変更内容の一部だけを入れるのに対し、<code>git stash -p</code> は stash に変更内容の一部だけを入れる、という違いだけです。</p>
+
+<p>今変更している内容の一部だけを退避したい、というときに使います。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -509,23 +1676,41 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />21位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>25</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/fa7c1f14c5ce2a0bd9fc">Stack を使って Haskell をインストールする</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/3cc1207d086b95f32914">evernote-editor のエディタに CotEditor を指定する</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-07-16 00:50:17</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-03-27 23:02:51</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Haskell]</b> <b>[ghc]</b> <b>[stack]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Mac]</b> <b>[Evernote]</b> <b>[CotEditor]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>コマンドラインで Evernote のノート作成や編集が行える <a href="https://github.com/hpoydar/evernote-editor" rel="nofollow noopener" target="_blank">evernote-editor</a> というツールがあります。</p>
+
+<p>導入は <code>gem install evernote-editor</code> で行うことができます。</p>
+
+<p>ノート編集用のテキストエディタは、デフォルトでは vim になっていますが、CotEditor を使うようにできます。そのためには、テキストエディタを次のように指定します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>'open -W -n -F -a CotEditor'
+</pre></div></div>
+
+<p>初回起動時にエディタを聞かれるのでそこで指定するか、<code>.evned</code> ファイルに記載すればよいです。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -533,23 +1718,43 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />22位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>24</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/560830841525c1efa9f5">変更があったファイルだけエクスポートする</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/2b4a6bc28b617bd491fd">Windows の ping.exe は、なぜか改行の出力が CR + CR + LF になっている</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-10-02 01:51:34</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-02-13 13:39:27</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[PowerShell]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>コマンドプロンプト上で実行していると気づかないが、出力をファイルにリダイレクトすると分かる。</p>
+
+<p>このため、PowerShell で次のようにして ping 出力をファイルに残そうとすると、画面出力もファイル出力も、余計な空行が入って残念な感じになる。<br>
+（PowerShell の場合、CR + CR + LF を CR + LF + CR + LF に修正するようだが、空行が入るのは同じ）</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>ping -t ＜IPアドレス＞ | tee ping.log
+</pre></div></div>
+
+<p>これを回避するには、空行を除去してパイプに渡してやればよい。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>ping -t ＜IPアドレス＞ | Select-String -Pattern "\S" | tee ping.log
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -557,23 +1762,41 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />23位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>23</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/28503c2f594d2ef305d2">git ですべてのブランチに対して処理を行う方法</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/usamik26/items/ad7c370f8659b8000ce9">ファイル名でソートしたときに一番最後にくるファイルを開く PowerShell スクリプト</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-08-02 14:23:30</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-01-24 13:21:12</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[PowerShell]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><div class="code-frame" data-lang="powershell"><div class="highlight"><pre><span></span><span class="nb">Get-ChildItem</span> <span class="n">C</span><span class="err">:</span><span class="p">\</span><span class="n">hoge</span><span class="p">\</span><span class="n">fuga</span> <span class="p">|</span> <span class="nb">Sort-Object</span> <span class="n">-Descending</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-First</span> <span class="n">1</span> <span class="p">|</span> <span class="nb">Invoke-Item</span>
+</pre></div></div>
+
+<p>エイリアスを使えば、もう少し短く書ける。</p>
+
+<div class="code-frame" data-lang="powershell"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="n">C</span><span class="err">:</span><span class="p">\</span><span class="n">hoge</span><span class="p">\</span><span class="n">fuga</span> <span class="p">|</span> <span class="n">sort</span> <span class="n">-des</span> <span class="p">|</span> <span class="n">select</span> <span class="o">-f</span> <span class="n">1</span> <span class="p">|</span> <span class="n">ii</span>
+</pre></div></div>
+
+<p>PowerShell は、この手のことがパイプを使ってサクサク書けるのが良いな、と思う。<br>
+入出力が（文字列ではなくて）オブジェクトそのものなので、細かいことを気にしなくてもだいたい思ったように動く。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -581,479 +1804,40 @@
 <tr>
 	<td rowspan="3"><center>usamik26さんの<br />24位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>19</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/9a2ca29ec30b6baf5280">テキストファイルの特定文字列の行から特定文字列の行までを抽出したい</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-02-26 13:30:54</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[awk]</b> <b>[shell]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />25位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>19</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/c0c0559b6d66aa8e3bff">Asset Catalog への画像リソース追加をシェルスクリプトで楽に行う</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-12-05 01:27:44</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />26位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>18</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/c8911219b610101e69a9">Semantic Versioning</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-29 10:16:58</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[rubygems]</b> <b>[CocoaPods]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />27位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>17</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/3c73f66a464a62e7813f">CocoaPods を OS X アプリ開発で使う</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-01 21:57:52</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[OSX]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />28位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>17</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/38bd5b99349d0ae9c4ca">gitで無視されているファイルを表示する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-07-18 12:46:25</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />29位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>16</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/f27fef5335752a3e37ec">cygwin vim でクリップボードを使う</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-10-12 23:36:31</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[Vim]</b> <b>[Cygwin]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />30位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>15</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/d99bf694150a549b5078">Haskell for Mac でちょっと Haskell をさわってみる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-12-16 00:38:50</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[Haskell]</b> <b>[Mac]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />31位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>15</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/dabfa85f5c2a74644103">git add -p と同じような機能を持つ git stash -p</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-06-26 17:45:59</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />32位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/3cc1207d086b95f32914">evernote-editor のエディタに CotEditor を指定する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-03-27 23:02:51</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[Mac]</b> <b>[Evernote]</b> <b>[CotEditor]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />33位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/5a46b4b4e439635af91f">MvvmCross の Visibility Converter</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-07 23:20:03</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[Xamarin]</b> <b>[MvvmCross]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />34位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/6527213ddbd0697a1054">Mavericksのターミナルで記号表示がおかしくなるのを改善する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-28 17:08:05</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[OSX]</b> <b>[Terminal]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />35位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/75ddb99cc8f3501046f0">Static Cells を UITableViewController 以外で使うと Xcode 5.1 ではビルドエラーになる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-10 13:29:54</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />36位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/fcabb984697585bdee49">以前のバージョンから現在までに変更されたファイルを抜き出す</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-09 12:54:21</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />37位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/40973465fee80ec6a8b8">Xamarin.tvOS の Early Preview 版を試す</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-12-13 10:28:17</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Xamarin]</b> <b>[tvOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />38位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/2b4a6bc28b617bd491fd">Windows の ping.exe は、なぜか改行の出力が CR + CR + LF になっている</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-02-13 13:39:27</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[PowerShell]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />39位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/0bb1333167e570daec35">fish shell のプラグインの作り方</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2017-07-18 20:57:43</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[fish]</b> <b>[oh-my-fish]</b> <b>[fisherman]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />40位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/ad7c370f8659b8000ce9">ファイル名でソートしたときに一番最後にくるファイルを開く PowerShell スクリプト</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-01-24 13:21:12</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[PowerShell]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />41位</center></td>
-	<td colspan="3">
 		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
 		<a target="_blank" href="https://qiita.com/usamik26/items/1050886adb7d7f033914">Mountain Lion の Sharing Service</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2012-08-27 12:40:22</center>
 	</td>
 	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
+		@usamik26<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
 	</td>
-	<td style="width:300px;"><b>[MacOSX]</b> <b>[Cocoa]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />42位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>0</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/939cb667404f065987f8">Qiita の Advent Calendar 投稿時には、自分で「△日目の記事です」と書かなくてよいと思う</a>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[MacOSX]</b> <b>[Cocoa]</b> </center>
 	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-07-07 10:48:01</center>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="http://atnd.org/events/30192" rel="nofollow noopener" target="_blank">第45回Cocoa勉強会関西</a> で発表しました。</p>
+
+<p>発表時のスライドはこちら。<br>
+<a href="http://www.slideshare.net/kosukeusami/mountain-lion-sharing-service" class="autolink" rel="nofollow noopener" target="_blank">http://www.slideshare.net/kosukeusami/mountain-lion-sharing-service</a></p>
+
+<p>また、発表時に使ったサンプルコードはこちら。これはAppleが提供しているものです。<br>
+<a href="http://developer.apple.com/library/Mac/#samplecode/SharingServices/Introduction/Intro.html" class="autolink" rel="nofollow noopener" target="_blank">http://developer.apple.com/library/Mac/#samplecode/SharingServices/Introduction/Intro.html</a></p>
+
+<p>OS X 10.8 Mountain Lion の新機能では通知センターが人気があるような気がしていますが、この Sharing Service もお手軽に使えて良いと思います。</p>
+</div>
 	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[Qiita]</b> <b>[AdventCalendar]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>usamik26さんの<br />43位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>0</kbd>
-		<a target="_blank" href="https://qiita.com/usamik26/items/18e7408a3116544957f4">git-svn の妙な Warning</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-06-09 15:43:17</center>
-	</td>
-	<td style="width:200px;">
-		@usamik26<!--(<a target="_blank" href="http://qiita.com/usamik26">Qiita内の43件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/6204/profile-images/1473682679">
-	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
 </tr>
 </table>
 <br />

@@ -25,27 +25,309 @@
 <h1>Qiitaいいね数ランキング (sotarok さんの投稿分)</h1>
 </div><!--class="headerContainer"-->
 <p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
 <table border="1">
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />1位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1356</kbd>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1358</kbd>
 		<a target="_blank" href="https://qiita.com/sotarok/items/0d525e568a6088f6f6bb">Git submodule の基礎</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2012-06-06 23:58:30</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <b>[AdventCalendar]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> <b>[AdventCalendar]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>この記事は <a href="http://qiita.com/advent-calendar/git">Git Advent Calendar</a> 6日目の記事です！<br>
+Git submodule って最初わかりにくいと思うので、基本的な説明をしようと思います。</p>
+
+<h2>
+<span id="git-submodule-とは" class="fragment"></span><a href="#git-submodule-%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>git submodule とは</h2>
+
+<p><code>git submodule</code> は、外部の git リポジトリを、自分の git リポジトリのサブディレクトリとして登録し、特定の commit を参照する仕組みです。<br>
+Subversion でいうところの、external と似ています。</p>
+
+<p>さて、解説のため、手元に、リポジトリA (/path/to/a) とAの submodule として、よく使う例として  Bootstrap (元Twitter Bootstrap) を登録してみます。</p>
+
+<p>git submodule を理解するうえで重要なのは、</p>
+
+<ul>
+<li>リポジトリAが指し示すsubmoduleとしてのBootstrapのcommit</li>
+<li>現在のBootstrapのcommit</li>
+</ul>
+
+<p>です。</p>
+
+<h2>
+<span id="git-submodule-add-してみる" class="fragment"></span><a href="#git-submodule-add-%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B"><i class="fa fa-link"></i></a>git submodule add してみる</h2>
+
+<p>では、リポジトリA内、submodule add してみます。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ git submodule add https://github.com/twbs/bootstrap.git bootstrap
+Cloning into <span class="s1">'bootstrap'</span>...
+remote: Counting objects: <span class="m">73135</span>, <span class="k">done</span>.
+remote: Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">15</span>/15<span class="o">)</span>, <span class="k">done</span>.
+remote: Total <span class="m">73135</span> <span class="o">(</span>delta <span class="m">6</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, pack-reused <span class="m">73120</span>
+Receiving objects: <span class="m">100</span>% <span class="o">(</span><span class="m">73135</span>/73135<span class="o">)</span>, <span class="m">85</span>.84 MiB <span class="p">|</span> <span class="m">3</span>.91 MiB/s, <span class="k">done</span>.
+Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">44541</span>/44541<span class="o">)</span>, <span class="k">done</span>.
+Checking connectivity... <span class="k">done</span>.
+</pre></div></div>
+
+<p>これで 手元の <code>bootstrap</code> ディレクトリに、GitHub にある Bootstrap が submodule として登録されました。<br>
+git status をみてみると .gitmodules というファイルと、submodule の入れものである <code>bootstrap</code> というディレクトリが新しく登録されています。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ git status
+<span class="c1"># On branch master</span>
+<span class="c1"># Changes to be committed:</span>
+<span class="c1">#   (use "git reset HEAD &lt;file&gt;..." to unstage)</span>
+<span class="c1">#</span>
+<span class="c1">#       new file:   .gitmodules</span>
+<span class="c1">#       new file:   bootstrap</span>
+<span class="c1">#</span>
+</pre></div></div>
+
+<p>diff も確認します。</p>
+
+<div class="code-frame" data-lang="diff"><div class="highlight"><pre><span></span>$ git diff --cached
+<span class="gh">diff --git a/.gitmodules b/.gitmodules</span>
+new file mode 100644
+<span class="gh">index 0000000..2fdbccb</span>
+<span class="gd">--- /dev/null</span>
+<span class="gi">+++ b/.gitmodules</span>
+<span class="gu">@@ -0,0 +1,3 @@</span>
+<span class="gi">+[submodule "bootstrap"]</span>
+<span class="gi">+       path = bootstrap</span>
+<span class="gi">+       url = https://github.com/twbs/bootstrap.git</span>
+<span class="gh">diff --git a/bootstrap b/bootstrap</span>
+new file mode 160000
+<span class="gh">index 0000000..5c02844</span>
+<span class="gd">--- /dev/null</span>
+<span class="gi">+++ b/bootstrap</span>
+<span class="gu">@@ -0,0 +1 @@</span>
+<span class="gi">+Subproject commit 5c028448c1fc171cf4a0fd99d3a672b649bef2aa</span>
+</pre></div></div>
+
+<p>注目すべきは、 <code>+Subproject commit 5c028448c1fc171cf4a0fd99d3a672b649bef2aa</code> の diff で、これは、</p>
+
+<ul>
+<li>Bootstrap の、 <code>5c028448c1fc171cf4a0fd99d3a672b649bef2aa</code> コミットを、</li>
+<li>
+<code>bootstrap</code> ディレクトリに Submodule として登録した</li>
+</ul>
+
+<p>という意味になります。<br>
+これをコミットしておきます。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ git commit -m <span class="s2">"Add Twitter Bootstrap as a submodule"</span>
+</pre></div></div>
+
+<p>では、ためしに、bootstrapディレクトリに移動して、<code>git show</code> してみると、</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> bootstrap
+$ git show
+commit 5c028448c1fc171cf4a0fd99d3a672b649bef2aa
+Merge: 5e7c5a6 0c4c1e4
+Author: Chris Rebert &lt;github@rebertia.com&gt;
+Date:   Wed Jul <span class="m">29</span> <span class="m">15</span>:00:54 <span class="m">2015</span> -0700
+
+    Merge pull request <span class="c1">#16908 from twbs/crbug-309483</span>
+
+    Remove http://crbug.com/309483 from the Wall of Browser Bugs
+</pre></div></div>
+
+<p>たしかに、現在、<code>5c028448c1fc171cf4a0fd99d3a672b649bef2aa</code> にいることがわかります。</p>
+
+<h2>
+<span id="submodule-を更新する" class="fragment"></span><a href="#submodule-%E3%82%92%E6%9B%B4%E6%96%B0%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Submodule を更新する</h2>
+
+<p>いま追加した Bootstrap は、master ブランチの最新のコミットでした。<br>
+プロジェクトでは、別のブランチの Bootstarp が使いたくなったとします。たとえば、現在進行中の <code>14226-rebased</code> ブランチを使いたいとしましょう。 (このブランチ名等は、タイミングや、Submodule に追加するプロジェクトによって変わりますので、適宜読み替えてください)</p>
+
+<p>このときの手順は、</p>
+
+<ul>
+<li>submodule のディレクトリに入り、対象のブランチやコミットをチェックアウトする</li>
+<li>submodule の外側に戻り、その submodule の現在のコミットを記録する (指し示す先を変更する)</li>
+</ul>
+
+<p>という手順になります。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> bootstrap
+$ git branch -a
+* master
+  remotes/origin/14226-rebased
+  remotes/origin/HEAD -&gt; origin/master
+  remotes/origin/bhamodi-update-dependencies
+  remotes/origin/bundler
+  remotes/origin/derp
+  remotes/origin/fix-15534
+  remotes/origin/fix-popover-setContent
+  remotes/origin/gh-pages
+  remotes/origin/master
+  remotes/origin/travis2
+
+$ git checkout <span class="m">14226</span>-rebased
+Branch <span class="m">14226</span>-rebased <span class="nb">set</span> up to track remote branch <span class="m">14226</span>-rebased from origin.
+Switched to a new branch <span class="s1">'14226-rebased'</span>
+</pre></div></div>
+
+<p>この状態で外に戻ると、</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ..
+$ git status
+Changes not staged <span class="k">for</span> commit:
+  <span class="o">(</span>use <span class="s2">"git add &lt;file&gt;..."</span> to update what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">"git checkout -- &lt;file&gt;..."</span> to discard changes in working directory<span class="o">)</span>
+
+    modified:   bootstrap <span class="o">(</span>new commits<span class="o">)</span>
+
+no changes added to commit <span class="o">(</span>use <span class="s2">"git add"</span> and/or <span class="s2">"git commit -a"</span><span class="o">)</span>
+</pre></div></div>
+
+<p>bootstrap ディレクトリに diff が出た状態となっています。</p>
+
+<div class="code-frame" data-lang="diff"><div class="highlight"><pre><span></span>$ git diff
+<span class="gh">diff --git a/bootstrap b/bootstrap</span>
+<span class="gh">index 5c02844..88697c0 160000</span>
+<span class="gd">--- a/bootstrap</span>
+<span class="gi">+++ b/bootstrap</span>
+<span class="gu">@@ -1 +1 @@</span>
+<span class="gd">-Subproject commit 5c028448c1fc171cf4a0fd99d3a672b649bef2aa</span>
+<span class="gi">+Subproject commit 88697c03a9315b5f1944fc82534a824aafebda0e</span>
+</pre></div></div>
+
+<p>これが、submodule がコミットを記録する仕組みで、つまり、</p>
+
+<ul>
+<li>リポジトリAの参照する Bootstrap のコミットが、<code>5c028448c1fc171cf4a0fd99d3a672b649bef2aa</code> から <code>88697c03a9315b5f1944fc82534a824aafebda0e</code> に変更されたという意味になります。</li>
+</ul>
+
+<p>これを add してコミットしておきます</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ git add bootstrap
+$ git commit -m <span class="s2">"Update submodule: Bootstrap"</span>
+</pre></div></div>
+
+<h2>
+<span id="リポジトリaで別のコミットをチェックアウトする--git-submodule-update" class="fragment"></span><a href="#%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AAa%E3%81%A7%E5%88%A5%E3%81%AE%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%82%92%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88%E3%81%99%E3%82%8B--git-submodule-update"><i class="fa fa-link"></i></a>リポジトリAで別のコミットをチェックアウトする &amp; git submodule update</h2>
+
+<p>submodule のわかりづらい点としては、おそらく、<strong>リポジトリA (submodule の外側) と submodule の中が連動しない</strong> という点ではないでしょうか。</p>
+
+<p>たとえば、今の状態で、リポジトリAでひとつ前のコミットをチェックアウトしてみるとします。(今回はミニマムなgitリポジトリなので直前のコミットをチェックアウトしますが、実際いろいろな作業では、他のブランチをチェックアウトしたり、そういう操作の例として、です)</p>
+
+<p>まずは、チェックアウトするため、ログを確認。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ git log --oneline
+284ffed Update submodule: Bootstrap
+45db3c1 Add Twitter Bootstrap as a submodule
+30ef9ed initial commit
+</pre></div></div>
+
+<p>一つ前なので、 <code>45db3c1</code> をチェックアウトします。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ git checkout 45db3c1
+...
+HEAD is now at 45db3c1... Add Twitter Bootstrap as a submodule
+</pre></div></div>
+
+<p>この状態で status を見てみると、</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ git status
+HEAD detached at 45db3c1
+Changes not staged <span class="k">for</span> commit:
+  <span class="o">(</span>use <span class="s2">"git add &lt;file&gt;..."</span> to update what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">"git checkout -- &lt;file&gt;..."</span> to discard changes in working directory<span class="o">)</span>
+
+    modified:   bootstrap <span class="o">(</span>new commits<span class="o">)</span>
+
+no changes added to commit <span class="o">(</span>use <span class="s2">"git add"</span> and/or <span class="s2">"git commit -a"</span><span class="o">)</span>
+</pre></div></div>
+
+<p>あれ！bootstrap ディレクトリに diff がでてしまいました。<br>
+これが、<strong>連動しない、というわかりにくい点</strong> と言った点です。</p>
+
+<ul>
+<li>外側のリポジトリで前のコミットをチェックアウトしたため、そのコミット時点での submodule としての bootstrap は <code>5c028448c1fc171cf4a0fd99d3a672b649bef2aa</code> が記録されている</li>
+<li>しかし、bootstrap の内側は、先程操作したため、<code>88697c03a9315b5f1944fc82534a824aafebda0e</code> を指し示したまま</li>
+</ul>
+
+<p>という状態になっています。リポジトリA上で色々なブランチやコミットを移動しても、submodule 内は自動的にチェックアウトされたりはしないんですよね。<br>
+そこで、</p>
+
+<ul>
+<li>boostrapディレクトリ内を、コミット <code>88697c0</code> が指し示している bootstrap のコミット <code>5c02844</code> にする</li>
+</ul>
+
+<p>という操作が、</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ git submodule update
+</pre></div></div>
+
+<p>というコマンドになります。submodule update というコマンド名は、「submoduleを更新する」という意味なので、考えてみればそのままの意味なのですが、わかってないと混乱してしまいますね。</p>
+
+<p>これで、</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ git status
+</pre></div></div>
+
+<p>が clean な状態となり、 bootstrap ディレクトリの中に入って確認してみると、<code>5c02844</code> がチェックアウトされた状態になっています。</p>
+
+<h2>
+<span id="まとめとその他のこと" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A8%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>まとめとその他のこと</h2>
+
+<p>時間がなくなってきたので強引にまとめに入ると、</p>
+
+<ul>
+<li>submodule として追加したディレクトリは、ただの外部リポジトリへ参照を記録した箱である</li>
+<li>submodule の外側は、その箱のどのコミットを参照しているのかを記録している</li>
+<li>submodule の内側は、基本的には、自分が操作したときにしか更新されない</li>
+</ul>
+
+<p>よくある現象集:</p>
+
+<ul>
+<li>git pull したら submodule に <code>(new commits)</code> とか出た
+
+<ul>
+<li>これは、自分以外の誰かが submodule を更新した (指し示すコミットを変更した) 場合です</li>
+<li>さっきの、<code>0a30745</code> をチェックアウトしたときと同じ</li>
+<li>
+<code>git submodule update</code> すれば、その指し示すコミットがチェックアウトされる</li>
+</ul>
+</li>
+<li>git status したら submodule に <code>(modified content)</code> とか出てる
+
+<ul>
+<li>これは、submodule 内に diff がある状態です。今回の例で言えば、bootstrapディレクトリ内のなにかのファイルを変更したりすると、リポジトリAではこういうふうにいわれます</li>
+<li>もとに戻したいなら、bootstrapディレクトリ内をcleanな状態にします。<code>git checkout</code>とかで変更ファイルをなくしたり。</li>
+<li>中でコミットなどをすると、 <code>(new commits)</code> になります。
+
+<ul>
+<li>submodule の中身を変更して、そのコミットをリポジトリAから指し示したい場合、さらに <code>git add bootstrap</code> して <code>git commit</code> します。内側でコミット、外側でもそれをコミット、という形</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>あとなんだっけ、もっと書きたいことがあったけど忘れたのでまた思い出したら書きます。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -53,23 +335,42 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />2位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>189</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/4ebd4cfedab186355867">package.json のチルダ(~) とキャレット(^)</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>112</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/07c6b2cca5ed2f9a53a6">git rebase --onto どこへ どこから どのブランチを</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-08-20 10:42:26</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-09-12 16:07:36</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[Node.js]</b> <b>[npm]</b> <b>[package.json]</b> <b>[semver]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>いつもわすれるので</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git rebase --onto どこへ どこから どのブランチを
+</pre></div></div>
+
+<p>あるブランチがどこから生えているかを変更することができる。</p>
+
+<p>例: (まちがって master から切ってしまった feature/hoge ブランチを develop に移動する)</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git rebase --onto develop master feature/hoge
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -77,23 +378,59 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />3位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>112</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/07c6b2cca5ed2f9a53a6">git rebase --onto どこへ どこから どのブランチを</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>54</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/9f2ccffc23bd36534e2e">Shell Script での文字列操作</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-09-12 16:07:36</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2011-11-25 14:20:08</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[ShellScript]</b> <b>[Bash]</b> <b>[Zsh]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>なんかいつもわすれてしまうんだけど。だいたいよくつかうのは <code>##</code> かなー。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">FILE</span><span class="o">=</span><span class="s2">"/usr/local/var.piyo/hoge.piyo"</span>
+
+<span class="c1"># 先頭から = #</span>
+<span class="c1"># 文字列の先頭から、最初に一致するパターンを取り除く (${VAR#pattern})</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">FILE</span><span class="p">#*.</span><span class="si">}</span> <span class="c1"># =&gt; piyo/hoge.piyo</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">FILE</span><span class="p">#*/</span><span class="si">}</span> <span class="c1"># =&gt; usr/local/var.piyo/hoge.piyo</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">FILE</span><span class="p">#*a</span><span class="si">}</span> <span class="c1"># =&gt; l/var.piyo/hoge.piyo</span>
+
+<span class="c1"># 文字列の先頭から、最後に一致するパターンを取り除く (${VAR##pattern})</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">FILE</span><span class="p">##*.</span><span class="si">}</span> <span class="c1"># =&gt; piyo</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">FILE</span><span class="p">##*/</span><span class="si">}</span> <span class="c1"># =&gt; hoge.piyo</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">FILE</span><span class="p">##*a</span><span class="si">}</span> <span class="c1"># =&gt; r.piyo/hoge.piyo</span>
+
+<span class="c1"># 末尾から = %</span>
+<span class="c1"># 文字列の末尾から、最初に一致するパターンを取り除く (${VAR%pattern})</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">FILE</span><span class="p">%.*</span><span class="si">}</span> <span class="c1"># =&gt; /usr/local/var.piyo/hoge</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">FILE</span><span class="p">%/*</span><span class="si">}</span> <span class="c1"># =&gt; /usr/local/var.piyo</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">FILE</span><span class="p">%a*</span><span class="si">}</span> <span class="c1"># =&gt; /usr/local/v</span>
+
+<span class="c1"># 文字列の末尾から、最後に一致するパターンを取り除く (${VAR%%pattern})</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">FILE</span><span class="p">%%.*</span><span class="si">}</span> <span class="c1"># =&gt; /usr/local/var</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">FILE</span><span class="p">%%/*</span><span class="si">}</span> <span class="c1"># =&gt;</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">FILE</span><span class="p">%%a*</span><span class="si">}</span> <span class="c1"># =&gt; /usr/loc</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -101,23 +438,89 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />4位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>57</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/7003e2f4fa64b8fda3f7">Twitter Bootstrap のボタン要素の色とかを変えた独自のボタンを作る</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>36</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/c54fc5233757a2dc3212">Treasure Data で &quot;昨日1日分&quot; の集計をする</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-05-14 11:55:11</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-05-15 23:51:27</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[CSS3]</b> <b>[less]</b> <b>[TwitterBootstrap]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[TreasureData]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><code>TD_TIME_RANGE()</code> を使えば、前日分を簡単に集計できます。</p>
+
+<h3>
+<span id="td_time_range-とは" class="fragment"></span><a href="#td_time_range-%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>TD_TIME_RANGE とは</h3>
+
+<p>TD で定義されている hive の UDF です。</p>
+
+<p><a href="http://docs.treasure-data.com/articles/udfs#tdtimerange" class="autolink" rel="nofollow noopener" target="_blank">http://docs.treasure-data.com/articles/udfs#tdtimerange</a></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>boolean TD_TIME_RANGE(int/long unix_timestamp,
+                      int/long/string start_time,
+                      int/long/string end_time
+                      [, string default_timezone = 'UTC'])
+</pre></div></div>
+
+<p><code>TD_TIME_RANGE()</code> には、<code>対象の schema, start, end</code> を指定します。<br>
+対象の schema には、 td がログに入れた時間を保持している <code>time</code> schema を、start と end には、その日の最初の時間と最後の時間を指定します。ちなみに start と end は <code>(start_time &lt;= time &amp;&amp; time &lt; end_time)</code> と展開されるため、end_time は含みません。</p>
+
+<h3>
+<span id="前日1日分の集計" class="fragment"></span><a href="#%E5%89%8D%E6%97%A51%E6%97%A5%E5%88%86%E3%81%AE%E9%9B%86%E8%A8%88"><i class="fa fa-link"></i></a>「前日1日分の集計」</h3>
+
+<p>というわけで、前日の 00:00:00 から 当日の 00:00:00 までを集計するには、以下のような条件を WHERE 句に追加します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>TD_TIME_RANGE(time,
+    TD_TIME_FORMAT(TD_TIME_ADD(unix_timestamp(), '-1d'), 'yyyy-MM-dd 00:00:00', 'JST'),
+    TD_TIME_FORMAT(unix_timestamp(), 'yyyy-MM-dd 00:00:00', 'JST'),
+    'JST'
+)
+</pre></div></div>
+
+<p>これを用いると、例えば、<strong>昨日一日のPV</strong> などは、以下の様に取得できます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>SELECT
+    count(*)
+FROM
+    access_log
+WHERE
+    TD_TIME_RANGE(
+        time,
+        TD_TIME_FORMAT(TD_TIME_ADD(unix_timestamp(), '-1d'), 'yyyy-MM-dd 00:00:00', 'JST'),
+        TD_TIME_FORMAT(unix_timestamp(), 'yyyy-MM-dd 00:00:00', 'JST'),
+        'JST'
+    )
+</pre></div></div>
+
+<p><code>td scheds</code> を使ってスケジュール登録して日次で PV 集計を行う場合 <code>unix_timestamp()</code> を <code>TD_SCHEDULED_TIME()</code> にするだけですね。</p>
+
+<h3>
+<span id="備考" class="fragment"></span><a href="#%E5%82%99%E8%80%83"><i class="fa fa-link"></i></a>備考</h3>
+
+<p>ちなみに <code>time</code> に対して <code>TD_TIME_RANGE()</code> 関数を使うと、td の実行速度が速くなるというメリットがあります。Treasure Data は upload されてきたログデータを、<code>time</code> をベースに時間でパーティショニングして保存しているため、解析に用いるログデータの取得を必要な分だけに抑えられるからです。</p>
+
+<p>参考:</p>
+
+<ul>
+<li><a href="http://docs.treasure-data.com/articles/udfs#tdtimerange" rel="nofollow noopener" target="_blank">Supported UDFs (User Defined Functions)</a></li>
+<li><a href="http://docs.treasure-data.com/articles/performance-tuning" rel="nofollow noopener" target="_blank">Performance Tuning</a></li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -125,23 +528,58 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />5位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>54</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/9f2ccffc23bd36534e2e">Shell Script での文字列操作</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>17</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/cad0f29c3f3eb41d1755">Twitter Bootstrap 風のキャレットの作り方</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2011-11-25 14:20:08</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-06-28 01:24:08</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[ShellScript]</b> <b>[Bash]</b> <b>[Zsh]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[CSS]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>caret です。つまり、「▼」的なやつですが、Twitter Bootstrap ではこれを CSS だけで実現してたのでメモです。Twitter Bootstrap では dropdown メニューにつけてたりとかしてます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&lt;b class="caret"&gt;&lt;/b&gt;
+&lt;style type="text/css"&gt;
+.caret {
+  border-top:   solid 4px #000;
+  border-left:  solid 4px transparent;
+  border-right: solid 4px transparent;
+}
+&lt;/style&gt;
+</pre></div></div>
+
+<p>これだけです。</p>
+
+<p>スクリーンショット:<br>
+<a href="https://camo.qiitausercontent.com/67f438205d890ce7df9b20ae32d29e9d84ae829a/687474703a2f2f6779617a6f2e636f6d2f66386365363632313835323339656432303538376639646438316633313463632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/67f438205d890ce7df9b20ae32d29e9d84ae829a/687474703a2f2f6779617a6f2e636f6d2f66386365363632313835323339656432303538376639646438316633313463632e706e67" alt="caret" data-canonical-src="http://gyazo.com/f8ce662185239ed20587f9dd81f314cc.png"></a></p>
+
+<p><code>border-top</code> を bottom にすれば上向きのやつをつくれるし、 <code>4px</code> のやつを大きくすれば大きな三角が作れるし、left/right を <code>#000<span class="inline-code-color" style="background-color: #000;"></span></code> にして top と bottom を <code>transparent</code> にすると横向きのやつがつくれます。</p>
+
+<p>どういう原理かは大きくして色をつけてみればよくわかる気がします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>  border-top:   solid 80px #000;
+  border-left:  solid 80px #0f0;
+  border-right: solid 80px #f00;
+</pre></div></div>
+
+<p><a href="https://camo.qiitausercontent.com/c6ef4f4ceeac851bc814d2dcd603522d147c132d/687474703a2f2f6779617a6f2e636f6d2f63356236393336363262636337623938663963363739616338343061656365392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/c6ef4f4ceeac851bc814d2dcd603522d147c132d/687474703a2f2f6779617a6f2e636f6d2f63356236393336363262636337623938663963363739616338343061656365392e706e67" alt="caret color" data-canonical-src="http://gyazo.com/c5b693662bcc7b98f9c679ac840aece9.png"></a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -149,23 +587,36 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />6位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>49</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/1abb6c2747404c4e155b">Aura for PHP 雑感 (と PHPフレームワークについて徒然)</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>17</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/833640941547df052c41">submodule の url を変更する</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-04-17 23:54:20</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2011-12-20 03:14:01</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[PHP]</b> <b>[Aura]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><ol>
+<li>.gitmodules の url を変更する</li>
+<li>git submodule sync して確認</li>
+<li>.gitmodules を add して commit</li>
+</ol>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -173,23 +624,35 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />7位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>36</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/c54fc5233757a2dc3212">Treasure Data で &quot;昨日1日分&quot; の集計をする</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>12</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/b1f537b77f31aa010b8f">Git で今日の作業を確認する(日報のお供)</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-05-15 23:51:27</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2011-12-12 18:58:42</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[TreasureData]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>日報書く際に役立つ。(authorんとこは適当に user.name にマッチするやつ)</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git log --author=Sotaro --since=yesterday --oneline
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -197,23 +660,40 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />8位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>35</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/ff5ca29f88d1f8069c98">maildev (SMTP mock server) を使ってハイパーメール開発</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>12</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/e074c66b0058f1567cad">Vim 使いを幸せにする Alias</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-06-21 23:05:06</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2011-12-01 12:26:53</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[Node.js]</b> <b>[maildev]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> <b>[Bash]</b> <b>[Zsh]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>@.*rc</p>
+
+<p><code>alias :e='vim'</code></p>
+
+<blockquote>
+<p>zsh: command not found: :e </p>
+</blockquote>
+
+<p>これ対策です。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -221,23 +701,50 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />9位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>31</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/b3d6fc80407f8128af0d">1日1回ゆどうふに HipChat でブログを書けと言うための hubot script</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/ecc2ff7a1ee8c8678621">async#forEach の最も簡単な例</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-06-25 15:38:41</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-05-02 00:18:44</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[Hubot]</b> <b>[hipchat]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Node.js]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">async</span>   <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'async'</span><span class="p">);</span>
+<span class="cm">/**</span>
+<span class="cm"> * output:</span>
+<span class="cm"> *    1</span>
+<span class="cm"> *    2</span>
+<span class="cm"> *    3</span>
+<span class="cm"> *    undefined</span>
+<span class="cm"> *    end</span>
+<span class="cm"> */</span>
+<span class="nx">async</span><span class="p">.</span><span class="nx">forEach</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// iteration で呼ばれる</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+  <span class="nx">cb</span><span class="p">();</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 全部おわったら or error があると呼ばれる</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"end"</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div></div>
+
+<p>インストールは <code>npm install async</code>。 (current version: 0.1.18)</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -245,23 +752,54 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />10位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>17</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/cad0f29c3f3eb41d1755">Twitter Bootstrap 風のキャレットの作り方</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/282d8f6e4785382fd55b">Mac OS X で Growl が暴走したときに再起動</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-06-28 01:24:08</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2011-12-06 16:23:15</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[CSS]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Bash]</b> <b>[Mac]</b> <b>[Growl]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Skypeとかが新Growlに対応してなくて？たまに暴走する。<br>
+冬は膝の上ぽかぽかでいいんだけど健康的じゃないので再起動する。面倒なので自動でする。</p>
+
+<p>適当に cron とかにいれた。</p>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">growl_restart</span></div>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">PID</span><span class="o">=</span><span class="k">$(</span>ps ax <span class="p">|</span> grep Growl.app <span class="p">|</span> grep -v grep <span class="p">|</span> awk <span class="s1">'{print $1};'</span><span class="k">)</span>
+<span class="nb">test</span> -z <span class="s2">"</span><span class="nv">$PID</span><span class="s2">"</span> <span class="o">&amp;&amp;</span> open -j -a Growl <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">"Growl restarted on </span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: pid not found (</span><span class="nv">$PID</span><span class="s2">)"</span> &gt;&gt; /tmp/growl_restart.log <span class="o">&amp;&amp;</span> <span class="nb">exit</span>
+
+<span class="nv">CPU_USAGE</span><span class="o">=</span><span class="k">$(</span>top -pid <span class="nv">$PID</span> -l <span class="m">2</span> -s <span class="m">5</span> -stats cpu <span class="p">|</span> tail -n1 <span class="p">|</span> cut -d<span class="s2">"."</span> -f1<span class="k">)</span>
+<span class="k">if</span> <span class="nb">test</span> <span class="nv">$CPU_USAGE</span> -gt <span class="m">80</span>
+<span class="k">then</span>
+    killall Growl
+    open -j -a Growl
+    <span class="nb">echo</span> <span class="s2">"Growl restarted on </span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: pid=</span><span class="nv">$PID</span><span class="s2">"</span> &gt;&gt; /tmp/growl_restart.log
+<span class="k">fi</span>
+</pre></div>
+</div>
+
+<p>(追記。 cut だと pid の桁数が grep の pid と異なるときうまくとれないから awk に変えた</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -269,23 +807,49 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />11位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>17</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/833640941547df052c41">submodule の url を変更する</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/fa4eed5026651a6a27fc">irc.freenode.net cheetsheet</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2011-12-20 03:14:01</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2011-11-08 20:58:29</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[IRC]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>nick の登録<br>
+<code>/msg nickserv register  &lt;password&gt; &lt;email&gt;</code></p>
+
+<p>ログイン（split したりしてセッションが切れた時）<br>
+<code>/msg nickserv identify  &lt;password&gt;</code></p>
+
+<p>自分の管理 channel の登録。<br>
+<code>/msg chanserv register #hoge</code></p>
+
+<p>chanservからなるとをもらう<br>
+<code>/msg chanserv op #hoge sotarok</code></p>
+
+<p>自動的に op する flag たてておく。<br>
+<code>/msg chanserv flags #hoge sotarok +O</code></p>
+
+<p>ちなみに tiarra 経由だと default の server に msg が飛んでしまうので、<br>
+<code>/msg chanserv@freenode ...</code><br>
+のようにする必要がある</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -293,23 +857,38 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />12位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>12</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/b1f537b77f31aa010b8f">Git で今日の作業を確認する(日報のお供)</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/e140288dd59dfe91d94b">include_path の解決された絶対 path を取得する。</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2011-12-12 18:58:42</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2011-11-06 22:38:52</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[PHP]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><code>get_include_path()</code> を <code>PATH_SEPARATOR</code> で <code>explode()</code> した結果を foreach でまわして <code>file_exists()</code> 的なことをするひつようは、PHP 5.3 からなくなったわけですが。あまり知られてない（というかおととい知った）</p>
+
+<div class="code-frame" data-lang="php"><div class="highlight"><pre><span></span>
+<span class="cp">&lt;?php</span>
+<span class="nv">$filename</span> <span class="o">=</span> <span class="nb">stream_resolve_include_path</span><span class="p">(</span><span class="s1">'Hoge.php'</span><span class="p">);</span>
+
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -317,23 +896,37 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />13位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>12</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/e074c66b0058f1567cad">Vim 使いを幸せにする Alias</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/705ed3f64c3e2ba6b325">Git で svn export 的なやつ</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2011-12-01 12:26:53</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-06-23 00:31:50</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <b>[Bash]</b> <b>[Zsh]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git checkout-index -a -f --prefix=../hoge/
+</pre></div></div>
+
+<p>prefix は末尾に / をちゃんと入れないと悲惨なことになる．</p>
+
+<p>(Qiitaに投稿するとモテると聞いたので、 <a href="http://d.hatena.ne.jp/strkpy/20090714/1247534844" rel="nofollow noopener" target="_blank">過去のブログ</a> から引用。)</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -341,23 +934,63 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />14位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/ecc2ff7a1ee8c8678621">async#forEach の最も簡単な例</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/f508faa4e7edd6bbe121">タイムゾーンを考慮した date time string &lt;-&gt; unix timestamp 相互変換</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-05-02 00:18:44</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-01-04 19:18:26</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[Node.js]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[PHP]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>手元の適当スクリプトで一番使うやつ</p>
+
+<div class="code-frame" data-lang="php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * Usage:</span>
+<span class="sd"> *</span>
+<span class="sd"> *  $ php t.php 1324393200</span>
+<span class="sd"> *      =&gt; 2011-12-20 15:00:00</span>
+<span class="sd"> *  $ php t.php 1324393200 'Asia/Tokyo'</span>
+<span class="sd"> *      =&gt; 2011-12-21 00:00:00</span>
+<span class="sd"> *  $ php t.php '2011-12-21 00:00:00'</span>
+<span class="sd"> *      =&gt; 1324393200</span>
+<span class="sd"> *  $ php t.php '2011-12-21 00:00:00' 'UTC'</span>
+<span class="sd"> *      =&gt; 1324425600</span>
+<span class="sd"> */</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$argc</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">exit</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nb">preg_match</span><span class="p">(</span><span class="s1">'/^\d+$/'</span><span class="p">,</span> <span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="nv">$dt</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\DateTime</span><span class="p">(</span><span class="s1">'@'</span> <span class="o">.</span> <span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="nv">$dt</span><span class="o">-&gt;</span><span class="na">setTimeZone</span><span class="p">(</span><span class="k">new</span> <span class="nx">\DateTimeZone</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]));</span>
+    <span class="p">}</span>
+
+    <span class="k">echo</span> <span class="nv">$dt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">'Y-m-d H:i:s'</span><span class="p">),</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nv">$dt</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\DateTime</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="k">new</span> <span class="nx">\DateTimeZone</span><span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">:</span> <span class="s1">'Asia/Tokyo'</span><span class="p">));</span>
+    <span class="nv">$dt</span><span class="o">-&gt;</span><span class="na">setTimeZone</span><span class="p">(</span><span class="k">new</span> <span class="nx">\DateTimeZone</span><span class="p">(</span><span class="s1">'GMT'</span><span class="p">));</span>
+    <span class="k">echo</span> <span class="nv">$dt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">'U'</span><span class="p">),</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -365,23 +998,41 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />15位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/282d8f6e4785382fd55b">Mac OS X で Growl が暴走したときに再起動</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/ddb30c47951e80782e61">DoctrineでIN句に配列渡す方法。</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2011-12-06 16:23:15</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2011-10-25 17:09:31</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[Bash]</b> <b>[Mac]</b> <b>[Growl]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[PHP]</b> <b>[Symfony]</b> <b>[doctrine]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><div class="code-frame" data-lang="php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nv">$qb</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">createQueryBuilder</span><span class="p">(</span><span class="s1">'u'</span><span class="p">);</span>
+<span class="k">return</span> <span class="nv">$qb</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">'...'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">andWhere</span><span class="p">(</span><span class="nv">$qb</span><span class="o">-&gt;</span><span class="na">expr</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">in</span><span class="p">(</span><span class="s1">'u.id'</span><span class="p">,</span> <span class="nv">$id_list</span><span class="p">))</span>
+    <span class="o">-&gt;</span><span class="na">setParameter</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">getQuery</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">getResult</span><span class="p">();</span>
+
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -389,23 +1040,35 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />16位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/439fdf4726a91ffc7689">Aura.Framework_Project で Twig を使う</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/4aadc3e05ba058632c93">Redmine で既存のすべてのプロジェクトで特定のモジュールを有効にする</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-04-17 13:20:27</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2011-12-06 02:36:23</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[PHP]</b> <b>[twig]</b> <b>[Aura]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Redmine]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>あとから変更したくなったときとか、プラグインいれたあととかで、全プロジェクトの設定画面のモジュールタブをひらいてチェックして送信とかしてられないから多分 MySQL で直接やればいいとおもった。（多分あってる</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>insert into enabled_modules (project_id, name) select distinct project_id, 'issue_extensions' from enabled_modules;
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -413,23 +1076,33 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />17位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/fa4eed5026651a6a27fc">irc.freenode.net cheetsheet</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/a9765db157d10d4402d3">git graph の設定</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2011-11-08 20:58:29</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2011-10-26 18:23:45</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[IRC]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>$ git config --global alias.graph <span class="s2">"log --graph --pretty='format:%h %Cgreen%an%Creset | %s %Cred%d%Creset'"</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -437,23 +1110,40 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />18位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/e140288dd59dfe91d94b">include_path の解決された絶対 path を取得する。</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/6170b0c27b18ffd37a2e">リポジトリに入ってるファイルを git rm じゃなくてふつうに rm しちゃったときにその対象のファイルを git rm --cached まとめてやるときにそれはそれで面倒だから alias な gitconfig。</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2011-11-06 22:38:52</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2011-10-26 23:49:43</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[PHP]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>追記: git add -u でいけた</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span><span class="c1"># ほかのalias省略</span>
+<span class="c1"># これで git rm-deleted できる。</span>
+
+<span class="o">[</span>alias<span class="o">]</span>
+    rm-deleted <span class="o">=</span> <span class="s2">"!f() { git status -s | grep '^ D' | cut -d' ' -f3 ; }; git rm --cached `f`"</span>
+
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -461,23 +1151,63 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />19位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/705ed3f64c3e2ba6b325">Git で svn export 的なやつ</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/92408114bb3da1039a6e">タイムスタンプを→日付に変換しながら tail とか</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-06-23 00:31:50</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-03-21 17:12:27</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[PHP]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><div class="code-frame" data-lang="php">
+<div class="code-lang"><span class="bold">tt</span></div>
+<div class="highlight"><pre><span></span><span class="x">#!/usr/bin/php</span>
+<span class="cp">&lt;?php</span>
+<span class="k">while</span><span class="p">(</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nx">STDIN</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// now: 1326356996</span>
+    <span class="c1">// 6年前~14年後くらいまで大丈夫</span>
+    <span class="k">echo</span> <span class="nb">preg_replace_callback</span><span class="p">(</span>
+        <span class="s1">'/ (1[2-7]\d{8}) /'</span><span class="p">,</span>
+        <span class="k">function</span> <span class="p">(</span><span class="nv">$m</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$argv</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$ts</span> <span class="o">=</span> <span class="nv">$m</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+            <span class="nv">$dt</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\DateTime</span><span class="p">(</span><span class="s1">'@'</span> <span class="o">.</span> <span class="nv">$ts</span><span class="p">);</span>
+            <span class="nv">$dt</span><span class="o">-&gt;</span><span class="na">setTimeZone</span><span class="p">(</span><span class="k">new</span> <span class="nx">\DateTimeZone</span><span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="s1">'Asia/Tokyo'</span><span class="p">));</span>
+            <span class="k">return</span> <span class="s1">' '</span> <span class="o">.</span> <span class="nv">$dt</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">'Y-m-d H:i:s'</span><span class="p">)</span> <span class="o">.</span> <span class="s1">' '</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="nv">$line</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>で、適当に実行権限あたえてpathとおして</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ cat hoge.txt | tt
+</pre></div></div>
+
+<p>とかしてる</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ tail -f /path/to/log | tt 'UTC'
+</pre></div></div>
+
+<p>とか。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -485,23 +1215,55 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />20位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/f508faa4e7edd6bbe121">タイムゾーンを考慮した date time string &lt;-&gt; unix timestamp 相互変換</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/944da7e0a07a9929c242">PHP 5.4.0 では、Class::{expr}() がサポートされました</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-01-04 19:18:26</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-03-09 18:25:49</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[PHP]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[PHP]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>動的にあおいちゃんを呼ぶ。</p>
+
+<div class="code-frame" data-lang="php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * PHP 5.4.0 では、Class::{expr}() がサポートされました</span>
+<span class="sd"> * こういうこと</span>
+<span class="sd"> */</span>
+
+<span class="k">class</span> <span class="nc">Miyazaki</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">aoi</span><span class="p">()</span>
+    <span class="p">{</span>   
+        <span class="k">echo</span> <span class="s2">"aoi!"</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+    <span class="p">}</span>   
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">getAoiMethod</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'aoi'</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Miyazaki</span><span class="o">::</span><span class="na">aoi</span><span class="p">();</span>
+<span class="nx">Miyazaki</span><span class="o">::</span><span class="p">{</span><span class="nx">getAoiMethod</span><span class="p">()}();</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -509,23 +1271,46 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />21位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/ddb30c47951e80782e61">DoctrineでIN句に配列渡す方法。</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/c49441972344f263ecf0">Google Reader の新しいデザインで余白を小さくして11インチでも快適にする</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2011-10-25 17:09:31</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2011-11-11 14:46:53</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[PHP]</b> <b>[Symfony]</b> <b>[doctrine]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[CSS]</b> <b>[Stylish]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>11インチだと現状、余白が大きすぎて情報の一覧性が乏しくなるので、User Style で調整。だいぶ見やすくなった。</p>
+
+<div class="code-frame" data-lang="css"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">top-bar</span> <span class="p">{</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">46</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">#</span><span class="nn">search</span> <span class="p">{</span>
+  <span class="k">padding</span><span class="p">:</span> <span class="mi">9</span><span class="kt">px</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">#</span><span class="nn">viewer-header</span> <span class="p">{</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">35</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">#</span><span class="nn">entries</span><span class="p">.</span><span class="nc">list</span> <span class="p">.</span><span class="nc">entry</span> <span class="p">.</span><span class="nc">collapsed</span> <span class="p">{</span>
+  <span class="k">padding</span><span class="p">:</span> <span class="mi">2</span><span class="kt">px</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -533,23 +1318,37 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />22位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/4aadc3e05ba058632c93">Redmine で既存のすべてのプロジェクトで特定のモジュールを有効にする</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/sotarok/items/2289017f7304d47fd113">zsh promot と git の連携。vcs_info は rvm とつかうと svn のディレクトリに入ったときにセグるので、enable git だけしておく。</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2011-12-06 02:36:23</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2011-10-27 23:57:54</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[Redmine]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Zsh]</b> <b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>autoload -Uz vcs_info
+zstyle <span class="s1">':vcs_info:*'</span> <span class="nb">enable</span> git
+zstyle <span class="s1">':vcs_info:*'</span> actionformats <span class="s1">' %F{3}@%F{4}%b%F{3} !!%F{1}%a%f'</span>
+zstyle <span class="s1">':vcs_info:*'</span> formats       <span class="s1">' %F{3}@%F{4}%b%f'</span>
+<span class="nv">RPROMPT</span><span class="o">=</span><span class="s2">"%F{5}[%F{2}%3~\${vcs_info_msg_0_}%F{5}]%f"</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -557,215 +1356,46 @@
 <tr>
 	<td rowspan="3"><center>sotarokさんの<br />23位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/a9765db157d10d4402d3">git graph の設定</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2011-10-26 18:23:45</center>
-	</td>
-	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
-	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>sotarokさんの<br />24位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/6170b0c27b18ffd37a2e">リポジトリに入ってるファイルを git rm じゃなくてふつうに rm しちゃったときにその対象のファイルを git rm --cached まとめてやるときにそれはそれで面倒だから alias な gitconfig。</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2011-10-26 23:49:43</center>
-	</td>
-	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
-	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>sotarokさんの<br />25位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/6b26374c9408ffcaafd1">Docker の mongo に mongorestore</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2017-03-08 00:03:10</center>
-	</td>
-	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
-	</td>
-	<td style="width:300px;"><b>[MongoDB]</b> <b>[docker]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>sotarokさんの<br />26位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/dd436d7b3433ae08f79c">mongodumpコマンドでunauthorizedというエラーが出たらauthenticationDatabaseを指定する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-01-29 13:06:48</center>
-	</td>
-	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
-	</td>
-	<td style="width:300px;"><b>[MongoDB]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>sotarokさんの<br />27位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/92408114bb3da1039a6e">タイムスタンプを→日付に変換しながら tail とか</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-03-21 17:12:27</center>
-	</td>
-	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
-	</td>
-	<td style="width:300px;"><b>[PHP]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>sotarokさんの<br />28位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/944da7e0a07a9929c242">PHP 5.4.0 では、Class::{expr}() がサポートされました</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-03-09 18:25:49</center>
-	</td>
-	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
-	</td>
-	<td style="width:300px;"><b>[PHP]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>sotarokさんの<br />29位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/c49441972344f263ecf0">Google Reader の新しいデザインで余白を小さくして11インチでも快適にする</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2011-11-11 14:46:53</center>
-	</td>
-	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
-	</td>
-	<td style="width:300px;"><b>[CSS]</b> <b>[Stylish]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>sotarokさんの<br />30位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
-		<a target="_blank" href="https://qiita.com/sotarok/items/2289017f7304d47fd113">zsh promot と git の連携。vcs_info は rvm とつかうと svn のディレクトリに入ったときにセグるので、enable git だけしておく。</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2011-10-27 23:57:54</center>
-	</td>
-	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
-	</td>
-	<td style="width:300px;"><b>[Zsh]</b> <b>[Git]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>sotarokさんの<br />31位</center></td>
-	<td colspan="3">
 		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
 		<a target="_blank" href="https://qiita.com/sotarok/items/86d47c0ca83bf30b1f68">PHP で16進表記を10進と2進に変換する</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2011-10-26 13:05:50</center>
 	</td>
 	<td style="width:200px;">
-		@sotarok<!--(<a target="_blank" href="http://qiita.com/sotarok">Qiita内の31件の記事</a>)--><br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
+		@sotarok<br />(Mercari, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/59/profile-images/1473683095">
 	</td>
-	<td style="width:300px;"><b>[PHP]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[PHP]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ php hex_to_bin.php 0x0f80
+</pre></div></div>
+
+<p>とかで</p>
+
+<blockquote>
+<p>3968<br>
+111110000000</p>
+</blockquote>
+
+<div class="code-frame" data-lang="php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">list</span><span class="p">(</span><span class="nv">$hex</span><span class="p">)</span> <span class="o">=</span> <span class="nb">sscanf</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">"%x"</span><span class="p">);</span>
+<span class="nb">printf</span><span class="p">(</span><span class="s2">"%d</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="nv">$hex</span><span class="p">);</span>
+<span class="nb">printf</span><span class="p">(</span><span class="s2">"%b</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="nv">$hex</span><span class="p">);</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />

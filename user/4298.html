@@ -25,6 +25,7 @@
 <h1>Qiitaいいね数ランキング (taiki45 さんの投稿分)</h1>
 </div><!--class="headerContainer"-->
 <p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
 <table border="1">
 <tr>
 	<td rowspan="3"><center>taiki45さんの<br />1位</center></td>
@@ -34,18 +35,459 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-09-15 14:30:48</center>
 	</td>
 	<td style="width:200px;">
-		@taiki45<!--(<a target="_blank" href="http://qiita.com/taiki45">Qiita内の10件の記事</a>)--><br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
+		@taiki45<br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
 	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[chef]</b> <b>[vagrant]</b> <b>[VirtualBox]</b> <b>[Berkshelf]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[chef]</b> <b>[vagrant]</b> <b>[VirtualBox]</b> <b>[Berkshelf]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Vagrant と Chef Solo ってとてもベンリそうに見えてたのですが、ネット上にあるのは断片的な情報が多かったり、そもそもいろんなやり方があって混乱してたので、サックリ始めるためのチュートリアルを書きました。これをきっかけにベンリな Vagrant ライフを堪能して頂ければ幸いです。</p>
+
+<p>[追記10/10/2013]<br>
+Window 上の Vagrant でも問題なく動きました。ただ1点注意があって、UAC のポップアップに反応しないと、Vagrant か VirtualBox 側でタイムアウトになってしまうので、ポップアップを見張るか、放置したいなら一時的に無効にしておくとよいです。<br>
+[/追記終わり]</p>
+
+<p>[追記 10/23/2013]<br>
+VirtualBox 4.3 だとまだうまく動かないようです(私も host-only adapter の作成で VirtualBox 側のエラーになりました)。<a href="https://github.com/mitchellh/vagrant/issues/2392" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/mitchellh/vagrant/issues/2392</a><br>
+なので <a href="https://www.virtualbox.org/wiki/Download_Old_Builds" class="autolink" rel="nofollow noopener" target="_blank">https://www.virtualbox.org/wiki/Download_Old_Builds</a> から 4.2 系をインストールすると良いです。<br>
+[/追記終わり]</p>
+
+<p>[追記 12/15/2013]<br>
+フォロワーさんに教えてもらったのですが、VirtualBox 4.3 のサポートきました！ <a href="http://docs.vagrantup.com/v2/virtualbox/index.html" class="autolink" rel="nofollow noopener" target="_blank">http://docs.vagrantup.com/v2/virtualbox/index.html</a><br>
+まだぼくは試してないのですが、ひとまず情報をアップデートしておきます。Thanks to <a href="/cosmo__" class="user-mention js-hovercard" title="cosmo__" data-hovercard-target-type="user" data-hovercard-target-name="cosmo__">@cosmo__</a> !!<br>
+[/追記終わり]</p>
+
+<h2>
+<span id="3行のまとめ" class="fragment"></span><a href="#3%E8%A1%8C%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>3行のまとめ</h2>
+
+<ul>
+<li>Vagrant + Chef Solo + Berkshelf でいこう。プラグインは vagrant-berkshelf と vagrant-omnibus と sahara</li>
+<li>
+<a href="http://berkshelf.com/" class="autolink" rel="nofollow noopener" target="_blank">http://berkshelf.com/</a> と <a href="http://docs.opscode.com/#id3" class="autolink" rel="nofollow noopener" target="_blank">http://docs.opscode.com/#id3</a> と <a href="http://docs.vagrantup.com/v2/" class="autolink" rel="nofollow noopener" target="_blank">http://docs.vagrantup.com/v2/</a> で全て解決</li>
+<li>Cookbook の README ベンリ。そこに情報なかったら <code>attributes</code> と <code>recipes</code> 以下を読むとその Cookbook 大体把握できる</li>
+</ul>
+
+<h2>
+<span id="おすすめの進め方" class="fragment"></span><a href="#%E3%81%8A%E3%81%99%E3%81%99%E3%82%81%E3%81%AE%E9%80%B2%E3%82%81%E6%96%B9"><i class="fa fa-link"></i></a>おすすめの進め方</h2>
+
+<p>もっとも良い進め方は <strong>"入門Chef Solo - Infrastructure as Code"</strong> を読んでからこのチュートリアルを始めるのが良いと思います。</p>
+
+<p>ですが、いろいろと説明不足感ありますが簡単に試せるので、ひとまずこのチュートリアルを先に体験して、その後に Chef ってなんだろ？っていうのを解決する方法も悪くないようにも思えます。</p>
+
+<p>わからないまま進めるのが嫌な人は Chef Solo のチュートリアルをしてから、とりあえず試してみたい人はこのチュートリアルから、という分け方になるやもしれないです。</p>
+
+<p>あと今回のチュートリアルで使ったファイルを github に置いておきます。「これどこにかくんや！」ってなった時にどうぞ。</p>
+
+<p><a href="https://github.com/taiki45/vagrant-tutorial" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/taiki45/vagrant-tutorial</a></p>
+
+<p>では、チュートリアル本編です☆</p>
+
+<h1>
+<span id="チュートリアル" class="fragment"></span><a href="#%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB"><i class="fa fa-link"></i></a>チュートリアル〜</h1>
+
+<h2>
+<span id="vagrant" class="fragment"></span><a href="#vagrant"><i class="fa fa-link"></i></a>Vagrant</h2>
+
+<p>Virtual Box のような仮想化ソフトウェアを便利に扱うツールです。</p>
+
+<p>どんなご利益があるのか興味あると思うのですけど、公式的には「自由に使えて、ポータブルで、持続的で安定した環境を開発者に提供する」という風になってます。サイコーですね！「僕の環境なら動くんだけど…」っていうバグとはオサラバです！</p>
+
+<p>個人的にはさらに、設定ファイルが柔軟に書けたり、仮想化ソフトウェアを抽象化するインターフェイスを提供していて、プラグインを書くことでそれらを使えるので、便利なんだと思います。Vagrant が他のツールをうまくまとめてくれる感じです。</p>
+
+<p>Vagrant は特に難しいことはないので1つ VM を起動してみて感じをつかんでみましょう。</p>
+
+<h3>
+<span id="インストール" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>インストール</h3>
+
+<ul>
+<li>まずは Vertual Box をインストールします。 <a href="https://www.virtualbox.org/" class="autolink" rel="nofollow noopener" target="_blank">https://www.virtualbox.org/</a>
+</li>
+<li>Vagrant をインストールします。 <a href="http://www.vagrantup.com/" class="autolink" rel="nofollow noopener" target="_blank">http://www.vagrantup.com/</a>
+</li>
+</ul>
+
+<p><code>vagrant -v</code> が成功しました？さっそく VM を作りましょう！</p>
+
+<h3>
+<span id="初めての-up" class="fragment"></span><a href="#%E5%88%9D%E3%82%81%E3%81%A6%E3%81%AE-up"><i class="fa fa-link"></i></a>初めての up</h3>
+
+<p>まずは設定ファイルを書かなくてはなりません。そのための便利なコマンドがほら！</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>vagrant init <span class="s2">"Debian7"</span> <span class="s2">"https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_debian-7.1.0_provisionerless.box"</span>
+</pre></div></div>
+
+<p>カレントディレクトリに <code>Vagrantfile</code> が出力されたと思います。さっそく見てみましょう！</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">Vagrantfile</span></div>
+<div class="highlight"><pre><span></span><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="no">VAGRANTFILE_API_VERSION</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="c1">#…</span>
+  <span class="c1">#…</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<p>こんな感じに Ruby のブロックを使ってその中で設定を書くようになってます。Ruby で書くので独自に <code>config.yml</code> とかを作ってそれを読む込むとかもできますが、まあ最初はいらないと思います。</p>
+
+<p>さっきの <code>vagrant init</code> コマンドに渡した引数はここに反映されています。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">Vagrantfile</span></div>
+<div class="highlight"><pre><span></span><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="no">VAGRANTFILE_API_VERSION</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">"Debian7"</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box_url</span> <span class="o">=</span> <span class="s2">"https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_debian-7.1.0_provisionerless.box"</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<p>フー、box ってなんのことだ？この box というのは(程度の違いがあるけれど)最低限の構成の VM のスケルトンのことです。ここでは Opscode という Chef を開発したりしている企業の box リポジトリからひとつを指定しています。この名前の box がローカルにある場合は新たにダウンロードせずにローカルの box を使いますし、なければ URL から引っ張ってくる、ってワケですね。ちなみにすでにダウンロードした box ファイルは <code>vagrant box add</code> コマンドで追加したりできます。</p>
+
+<p>なが〜い説明もおわったことだし、いよいよ立ち上げてみましょう！</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>vagrant up
+</pre></div></div>
+
+<p>なが〜いなが〜いダウンロードは終わりましたか？おつかれさまです☆ では VM の中に入っていきましょう！</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>vagrant ssh
+</pre></div></div>
+
+<p>ヒュ～、クール。簡単でしたね。</p>
+
+<h3>
+<span id="shared-folders" class="fragment"></span><a href="#shared-folders"><i class="fa fa-link"></i></a>Shared folders</h3>
+
+<p>Vagrant は標準で Shared folders が設定されています。デフォルトだと Vagrantfile があるディレクトリと VM 上の <code>/vagrant</code> が同期されています。試してみましょう。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span><span class="c1"># ホストマシン上で</span>
+touch created_on_host
+vagrant ssh
+
+<span class="c1"># VM 上で</span>
+<span class="nb">cd</span> /vagrant
+ls
+touch created_on_vm
+<span class="nb">exit</span>
+
+<span class="c1"># ホストマシン上で</span>
+ls
+</pre></div></div>
+
+<h3>
+<span id="gitignore" class="fragment"></span><a href="#gitignore"><i class="fa fa-link"></i></a>gitignore</h3>
+
+<p>Vagrant を使ったプロジェクトを VCS で管理する場合 <code>.vagrant</code> ディレクトリを ignore するようにするのが(たぶん)おすすめです。</p>
+
+<h3>
+<span id="vagrant-まとめ" class="fragment"></span><a href="#vagrant-%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>Vagrant まとめ</h3>
+
+<p>Vagrant は基本的に仮想化ソフトウェアを便利に扱うツールです。そこから先の Provisioning といってサーバーに必要なものをいれたり設定するのは Chef とかシェルスクリプトとか別のツールの役割です。そのあたりをうまく統合してくれるから強力なツールになるのですね。</p>
+
+<p>ということで Vagrant に関して最初に知ることはこれだけです。とってもシンプルです。これからこのまっさらな VM を調理していく方法を紹介しますよ！</p>
+
+<h2>
+<span id="chef-solo" class="fragment"></span><a href="#chef-solo"><i class="fa fa-link"></i></a>Chef Solo</h2>
+
+<p>実際に使う Chef Solo についてお話する前に Chef についてお伝えしなければなりませんね。</p>
+
+<h3>
+<span id="chef-って" class="fragment"></span><a href="#chef-%E3%81%A3%E3%81%A6"><i class="fa fa-link"></i></a>Chef って？</h3>
+
+<p>Chef は複数台のサーバーの構成を管理するためのツールです。1台の Chef サーバーと呼ばれるマスターノードみたいなのがいて、他のサーバーはその Chef サーバーを定期的に見に行くことで最新のサーバー構成を知り自身に適用していきます。入門 Chef-solo によると Facebook は数万から数十万台規模のサーバーを Chef で管理しているようです。となると Chef サーバー(マスターノード)は1台以上でもいけるのかもしれませんね。</p>
+
+<p>Chef を使う上でお世話になるのが <code>knife</code> コマンドです。この knife は実際にレシピのひな形をつくったりとか、レシピをあるサーバーに適用したりとか、Chef が実際に調理する時の道具です。Chef という仮想の調理師が knife を振り回すことで料理(サーバー)ができる、そんなイメージですね。</p>
+
+<p>さて次にたくさんある Chef の要素を必要なものだけ見ていきます。まずは構築手順のパッケージとして <strong>Cookbook</strong> というのがあります。概念としては RubyGems での <code>gem</code> とかと似てます。この Cookbook の中に実際に実行される <strong>Recipe</strong> が1個以上入っています。覚えるものはまずはこの2つで大丈夫です。実際には実行手順の汎用性を高めるために様々な要素が Chef にはあるのですが、全てハードコーディングして書けば最初はこれ以上いりません。</p>
+
+<ul>
+<li><strong>Chef はサーバー/クライアントモデルで複数台のサーバーを管理する</strong></li>
+<li><strong>実際に使うコマンドは <code>knife</code></strong></li>
+<li><strong>同じ領域の実行手順をまとめたものを Cookbook と呼ぶパッケージにまとめる。実際に実行されるのはその中の Recipe</strong></li>
+</ul>
+
+<h3>
+<span id="chef-solo-1" class="fragment"></span><a href="#chef-solo-1"><i class="fa fa-link"></i></a>Chef Solo</h3>
+
+<p>このように本来は複数台のマシンでサーバー・クライアントモデルで使う Chef ですが、1台でも使えるように Chef Solo というコマンドがついてきてます。この Chef Solo は自分自身に対して Cookbook と呼ばれる構築手順を実行することができます。</p>
+
+<ul>
+<li><strong>Chef Solo は自分自身に対してのみサーバー構築手順を実行する Chef のサブセット</strong></li>
+</ul>
+
+<h2>
+<span id="vagrant--chef-solo" class="fragment"></span><a href="#vagrant--chef-solo"><i class="fa fa-link"></i></a>Vagrant + Chef Solo</h2>
+
+<p>Vagrant はプロビジョニングツールとしていくつか選べるのですが、Vagrant + Chef Solo の場合、</p>
+
+<ol>
+<li>Vagrant が VM を立ち上げる</li>
+<li>Cookbook を VM に転送する</li>
+<li>VM 上で Chef Solo を実行する</li>
+</ol>
+
+<p>という手順になっています。</p>
+
+<h2>
+<span id="もっと便利にberkshelf--chef-solo--vagrant" class="fragment"></span><a href="#%E3%82%82%E3%81%A3%E3%81%A8%E4%BE%BF%E5%88%A9%E3%81%ABberkshelf--chef-solo--vagrant"><i class="fa fa-link"></i></a>もっと便利に、Berkshelf + Chef Solo + Vagrant</h2>
+
+<p>Chef にはいくつかの抽象化するための要素があり、構築手順の汎用性を高めることができます。つまり1つの Cookbook をいろいろな OS、いろいろな設定に使いまわすことができるのです。</p>
+
+<p>そこで、いろんな人が作った Cookbook を使いまわすために RubyGems に対する Bundler のような Cookbook 管理ツールがあります。それが Berkshelf です。</p>
+
+<p><a href="http://berkshelf.com/" class="autolink" rel="nofollow noopener" target="_blank">http://berkshelf.com/</a></p>
+
+<p>この Berkshelf は Vagrant Plugin も開発されていて Vagrant 連携もバッチリです☆ Vagrant にプロビジョニングツールとして Chef Solo を使う場合いくつかやり方があるのですが、おすすめするのが Berkshelf を足したやり方です。</p>
+
+<h3>
+<span id="vagrant-omnibus" class="fragment"></span><a href="#vagrant-omnibus"><i class="fa fa-link"></i></a>vagrant-omnibus</h3>
+
+<p>他の人が作った Box に chef が入っていなくて Chef Solo が走らない！っていうのはよくあることです。これを回避するために <code>vagrant up</code> 時に Chef が入っているか確認してインストールしてくれる Vagrant プラグインが vagrant-omnibus です。</p>
+
+<p><a href="https://github.com/schisamo/vagrant-omnibus" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/schisamo/vagrant-omnibus</a></p>
+
+<p>README 通りにインストールして</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">Vagrantfile</span></div>
+<div class="highlight"><pre><span></span><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="no">VAGRANTFILE_API_VERSION</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="c1"># ...</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">omnibus</span><span class="o">.</span><span class="n">chef_version</span> <span class="o">=</span> <span class="ss">:latest</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<p>と書き加えればすぐに動きます。ベンリ！</p>
+
+<h2>
+<span id="berkshelf--chef-solo-とチュートリアル再開" class="fragment"></span><a href="#berkshelf--chef-solo-%E3%81%A8%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB%E5%86%8D%E9%96%8B"><i class="fa fa-link"></i></a>Berkshelf + Chef Solo とチュートリアル再開</h2>
+
+<p>さてこれで道具の紹介は終わったので実際にレシピを書いていきましょう。まずはインストールですね☆</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>vagrant plugin install vagrant-omnibus
+vagrant plugin install vagrant-berkshelf
+gem i berkshelf
+</pre></div></div>
+
+<p>とっても簡単ですね。 では Helloworld をしましょう！</p>
+
+<p>Berkshelf を使うには <code>Berksfile</code> というファイルが必要です。<code>Gemfile</code> のようなものです。さきほどの <code>Vagrantfile</code> と同じディレクトリに配置しましょう。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">Berksfile</span></div>
+<div class="highlight"><pre><span></span><span class="n">site</span> <span class="ss">:opscode</span>
+</pre></div>
+</div>
+
+<p>これは <code>Gemfile</code> でいうところの <code>source "https://rubygems.org"</code> と同じようなもので特にソースを指定しない場合は opscode からダウンロードします〜という意味です。</p>
+
+<p>さて次に Cookbook を置くためのディレクトリの説明です。</p>
+
+<p>詳しい作法をぼくはまだ良くわかってないのですが、汎用的な Cookbook を置く場所が <code>cookbooks</code> で、その環境構築固有の Cookbook を <code>site-cookbooks</code> に置くことが多いようです。<code>berks init</code> をしてみても <code>cookbooks</code> は git ignore の対象になったりしています。なのでその作法に従います。</p>
+
+<p>ということで <code>site-cookbooks</code> というディレクトリをつくりましょう。おつぎに hello という Cookbook をつくります。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span><span class="nb">cd</span> site-cookbooks
+berks cookbook hello
+<span class="nb">cd</span> -
+</pre></div></div>
+
+<p>なにやら <code>hello/</code> 以下にいろいろ出力されたと思いますが、重要なのは <code>hello/recipes/default.rb</code> だけです。編集しましょう。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">hello/recipes/default.rb</span></div>
+<div class="highlight"><pre><span></span><span class="n">log</span> <span class="s2">"Hello World!!!!!!!!!!!!!"</span>
+</pre></div>
+</div>
+
+<p>次に <code>Vagrantfile</code> と <code>Berksfile</code> に Berkshelf と vagrant-berkshelf プラグインのための設定を書いていきます。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">Vagrantfile</span></div>
+<div class="highlight"><pre><span></span><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="no">VAGRANTFILE_API_VERSION</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="c1"># ...</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">omnibus</span><span class="o">.</span><span class="n">chef_version</span> <span class="o">=</span> <span class="ss">:latest</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">berkshelf</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kp">true</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">Berksfile</span></div>
+<div class="highlight"><pre><span></span><span class="n">site</span> <span class="ss">:opscode</span>
+<span class="n">cookbook</span> <span class="s2">"hello"</span><span class="p">,</span> <span class="ss">path</span><span class="p">:</span> <span class="s2">"site-cookbooks/hello"</span>
+</pre></div>
+</div>
+
+<p>最後に Chef Solo の設定を <code>Vagrantfile</code> に書き足します。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">Vagrantfile</span></div>
+<div class="highlight"><pre><span></span><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="no">VAGRANTFILE_API_VERSION</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="c1"># ...</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="ss">:chef_solo</span> <span class="k">do</span> <span class="o">|</span><span class="n">chef</span><span class="o">|</span>
+    <span class="n">chef</span><span class="o">.</span><span class="n">run_list</span> <span class="o">=</span> <span class="o">[</span><span class="s2">"hello"</span><span class="o">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<p>最終的に <code>Vagrantfile</code> は次のようになります。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">Vagrantfile</span></div>
+<div class="highlight"><pre><span></span><span class="c1"># -*- mode: ruby -*-</span>
+<span class="c1"># vi: set ft=ruby :</span>
+
+<span class="c1"># Vagrantfile API/syntax version. Don't touch unless you know what you're doing!</span>
+<span class="no">VAGRANTFILE_API_VERSION</span> <span class="o">=</span> <span class="s2">"2"</span>
+
+<span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="no">VAGRANTFILE_API_VERSION</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">"Debian7"</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box_url</span> <span class="o">=</span> <span class="s2">"https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_debian-7.1.0_provisionerless.box"</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="ss">:private_network</span><span class="p">,</span> <span class="ss">ip</span><span class="p">:</span> <span class="s2">"192.168.33.10"</span>
+
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provider</span> <span class="ss">:virtualbox</span> <span class="k">do</span> <span class="o">|</span><span class="n">vb</span><span class="o">|</span>
+    <span class="n">vb</span><span class="o">.</span><span class="n">gui</span> <span class="o">=</span> <span class="kp">false</span>
+    <span class="n">vb</span><span class="o">.</span><span class="n">customize</span> <span class="o">[</span><span class="s2">"modifyvm"</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="s2">"--memory"</span><span class="p">,</span> <span class="s2">"1024"</span><span class="o">]</span>
+  <span class="k">end</span>
+
+  <span class="n">config</span><span class="o">.</span><span class="n">berkshelf</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kp">true</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">omnibus</span><span class="o">.</span><span class="n">chef_version</span> <span class="o">=</span> <span class="ss">:latest</span>
+
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="ss">:chef_solo</span> <span class="k">do</span> <span class="o">|</span><span class="n">chef</span><span class="o">|</span>
+    <span class="n">chef</span><span class="o">.</span><span class="n">run_list</span> <span class="o">=</span> <span class="o">[</span><span class="s2">"hello"</span><span class="o">]</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<p>それではお待ちかねの <code>vagrant up</code> をしましょう！</p>
+
+<p>まずは最初に立ち上げた VM を捨てて新しく up します。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>vagrant destroy
+</pre></div></div>
+
+<p><code>y</code> と答えて無事デストロイされればお次は up です。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>vagrant up
+</pre></div></div>
+
+<p>おそらく Chef のインストールにそれなりに時間がかかることと思います。VM の起動 -&gt; Chef のインストール -&gt; Chef Solo の実行、とうまく動けば成功です。ログに <code>Hello World!!!!</code> って表示されましたか？うんうん、表示された？やりましたね！</p>
+
+<h2>
+<span id="mysql-をインストール" class="fragment"></span><a href="#mysql-%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>MySQL をインストール☆</h2>
+
+<p>最後にコミュニティの Cookbook を使ってみましょう。</p>
+
+<p><a href="https://github.com/opscode-cookbooks/mysql" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/opscode-cookbooks/mysql</a></p>
+
+<p>他の人が作った Cookbook を使う時のコツは README を読んで、そのあと <code>attributes/</code> と <code>recipes/</code> 以下を読むことです。この2つが Chef Solo では大きなキーです。</p>
+
+<p>まずは README の <code>Attributes</code> の欄を読んでみます。大体ここは Chef 実行時に自分用に書き換えれる設定の一覧になってます。もし README に情報がなければ <code>attributes</code> 以下のファイルを直接読みましょう。OS 毎に設定を振り分けてるくらいであんまり難しくないです。</p>
+
+<p>なんとなく設定項目がわかったら <code>Usage</code> を読みます。Opscode の MySQL Cookbook は親切にも Chef Solo の時のメモを書いてくれています！</p>
+
+<p>さて大体のことはわかったと思いますので実践してみましょう。</p>
+
+<h3>
+<span id="設定ファイルカキカキ" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%AB%E3%82%AD%E3%82%AB%E3%82%AD"><i class="fa fa-link"></i></a>設定ファイルカキカキ</h3>
+
+<p>まずは Berkshelf に MySQL Cookbook を使うってことを教えましょう。<code>Berksfile</code> にこう書き加えます。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">Berksfile</span></div>
+<div class="highlight"><pre><span></span><span class="n">cookbook</span> <span class="s2">"mysql"</span>
+</pre></div>
+</div>
+
+<p>これだけで Opscode のサービスから Cookbook をインストールしてくれます。インストール先はデフォルトだと <code>~/.berkshelf</code> になるようです。</p>
+
+<p>ではおつぎに Attributes の指定をします。この Attributes は Chef 本来のサーバー/クライアント運用であれば JSON 形式でサーバーからクライアントに渡されるものなので Vagrant-Chef でも <code>chef.json</code> という名前になっているようです。Hash で Attrubutes を設定していきます。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">Vagrantfile</span></div>
+<div class="highlight"><pre><span></span>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="ss">:chef_solo</span> <span class="k">do</span> <span class="o">|</span><span class="n">chef</span><span class="o">|</span>
+    <span class="n">chef</span><span class="o">.</span><span class="n">run_list</span> <span class="o">=</span> <span class="o">[</span>
+      <span class="s2">"hello"</span><span class="p">,</span>
+      <span class="s2">"mysql::client"</span><span class="p">,</span>
+      <span class="s2">"mysql::server"</span>
+    <span class="o">]</span>
+
+    <span class="n">chef</span><span class="o">.</span><span class="n">json</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="ss">mysql</span><span class="p">:</span> <span class="p">{</span>
+        <span class="ss">server_root_password</span><span class="p">:</span> <span class="s2">"iloverandompasswordsbutthiswilldo"</span><span class="p">,</span>
+        <span class="ss">server_repl_password</span><span class="p">:</span> <span class="s2">"iloverandompasswordsbutthiswilldo"</span><span class="p">,</span>
+        <span class="ss">server_debian_password</span><span class="p">:</span> <span class="s2">"iloverandompasswordsbutthiswilldo"</span><span class="p">,</span>
+        <span class="ss">bind_address</span><span class="p">:</span> <span class="s2">"127.0.0.1"</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+</pre></div>
+</div>
+
+<p>ついでに Chef の <code>run_list</code> にも実行するレシピとして mysql レシピを追加しています。これは Opscode の MySQL Cookbooks の <code>recipes/</code> 以下を見てもらえるとわかるのですが、このように <code>run_list</code> を設定すると <code>recipes</code> 以下の対応する名前のレシピが実行されます。Cookbook の名前のみを指定した場合(ここでは <code>hello</code> がそれ)、その Cookbook の <code>recipes/default.rb</code> が実行されます。</p>
+
+<p>では VM を調理しましょう。えいや！</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>vagrant provision
+</pre></div></div>
+
+<p>オオー、上手に焼けました！さてさてうまくインストールされたか確認しましょう。</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>vagrant ssh
+
+<span class="c1"># VM 上で</span>
+mysql -uroot -piloverandompasswordsbutthiswilldo
+</pre></div></div>
+
+<p>MySQL サーバーにつなげたでしょうか？このようにして、コミュニティの Cookbook を有効活用できれば VM 構築がもっと楽になりますよ！</p>
+
+<h2>
+<span id="ボクタチのこれから" class="fragment"></span><a href="#%E3%83%9C%E3%82%AF%E3%82%BF%E3%83%81%E3%81%AE%E3%81%93%E3%82%8C%E3%81%8B%E3%82%89"><i class="fa fa-link"></i></a>ボクタチのこれから</h2>
+
+<p>くぅ～疲れましたw これにて完結です！</p>
+
+<p>たぶん、この分量だといろいろ足りなかったとおもいます。なので学習のポインタをカキカキさせて頂いておわりにします。</p>
+
+<p>Vagrant について<br>
+* 公式サイトが良いです。 <a href="http://docs.vagrantup.com/v2/" class="autolink" rel="nofollow noopener" target="_blank">http://docs.vagrantup.com/v2/</a><br>
+* ベンリ Vagrant プラグイン <a href="https://github.com/jedi4ever/sahara" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/jedi4ever/sahara</a></p>
+
+<p>Chef について<br>
+* Docs <a href="http://docs.opscode.com/" class="autolink" rel="nofollow noopener" target="_blank">http://docs.opscode.com/</a> の Cookbooks あたりを読むと必要な情報が手に入ります。<br>
+* まずは Resources を覚えるところからがいいと思います。 <a href="http://docs.opscode.com/resource.html" class="autolink" rel="nofollow noopener" target="_blank">http://docs.opscode.com/resource.html</a></p>
+
+<p>Berkshelf について<br>
+* 公式サイトが良いです。 <a href="http://berkshelf.com/" class="autolink" rel="nofollow noopener" target="_blank">http://berkshelf.com/</a><br>
+* <code>:path</code> 指定してローカルの Cookbook を参照できたように <code>:git</code> とか <code>:github</code> とかのオプションを渡すとそこの Cookbook を参照できます。ベンリ！</p>
+
+<p>Ruby のリテラルについて<br>
+* たぶん Ruby を知らない人は%記法にびっくりすると思うので <a href="http://doc.ruby-lang.org/ja/2.0.0/doc/spec=2fliteral.html#percent" class="autolink" rel="nofollow noopener" target="_blank">http://doc.ruby-lang.org/ja/2.0.0/doc/spec=2fliteral.html#percent</a></p>
+
+<p>Cookbook について<br>
+* <a href="https://github.com/opscode-cookbooks" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/opscode-cookbooks</a> にベンリ Cookbook がある。<br>
+* なにかしたいことがあれば "したいこと cookbook" とかでググればわりと出やすい。その場合 github に置かれていることが多いので Berkshelf の <code>:github</code> オプションが役に立ちます。</p>
+
+<p><strong>それでは楽しい Vagrant ライフを！</strong></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -58,18 +500,89 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-05-10 22:02:17</center>
 	</td>
 	<td style="width:200px;">
-		@taiki45<!--(<a target="_blank" href="http://qiita.com/taiki45">Qiita内の10件の記事</a>)--><br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
+		@taiki45<br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
 	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h2>
+<span id="問題" class="fragment"></span><a href="#%E5%95%8F%E9%A1%8C"><i class="fa fa-link"></i></a>問題</h2>
+
+<p>mecab-ruby を本格的に使う必要が出てきたので mecab-ruby を触っていました.<br>
+mecab-ruby は <a href="http://www.swig.org/" rel="nofollow noopener" target="_blank">SWIG</a> という一度書いたものをより高級な言語で使いまわせるようにするツールで実装されているので, インターフェイスが Ruby っぽくないです.<br>
+あと<a href="http://mecab.googlecode.com/svn/trunk/mecab/doc/bindings.html" rel="nofollow noopener" target="_blank">各言語向けバインディングの Doc</a> の <code>MeCab::Node の振舞い</code> で触れられているように <code>MeCab::Node</code> の振る舞いはすこし癖があります.</p>
+
+<h2>
+<span id="書いてみた" class="fragment"></span><a href="#%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%BF%E3%81%9F"><i class="fa fa-link"></i></a>書いてみた</h2>
+
+<p>というわけで, 不満があるならラッパーを書けばいいじゃない！ということで gem を書いてみました.</p>
+
+<ul>
+<li><a href="https://github.com/taiki45/mecab-ext" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/taiki45/mecab-ext</a></li>
+<li><a href="https://rubygems.org/gems/mecab-ext" class="autolink" rel="nofollow noopener" target="_blank">https://rubygems.org/gems/mecab-ext</a></li>
+</ul>
+
+<h2>
+<span id="どこが便利なったのか使い方" class="fragment"></span><a href="#%E3%81%A9%E3%81%93%E3%81%8C%E4%BE%BF%E5%88%A9%E3%81%AA%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%8B%E4%BD%BF%E3%81%84%E6%96%B9"><i class="fa fa-link"></i></a>どこが便利なったのか・使い方</h2>
+
+<p>まずは Node インスタンスを作ります.</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">nodes</span> <span class="o">=</span> <span class="no">Mecab</span><span class="o">::</span><span class="no">Ext</span><span class="o">::</span><span class="no">Parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">"テスト文章"</span><span class="p">)</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">class</span> <span class="c1">#=&gt; Mecab::Ext::Node</span>
+</pre></div></div>
+
+<p>このmecab-ruby の Node がいくつか入った <code>Mecab::Ext::Node</code> をいろいろこねくれるようにしました.</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="c1"># Enumerable です</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">node</span><span class="o">|</span> <span class="nb">p</span> <span class="n">node</span> <span class="p">}</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">node</span><span class="o">|</span> <span class="n">node</span><span class="o">.</span><span class="n">surface</span> <span class="p">}</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span><span class="o">|</span><span class="n">node</span><span class="o">|</span> <span class="n">node</span><span class="o">.</span><span class="n">surface</span> <span class="o">==</span> <span class="s2">"テスト"</span> <span class="p">}</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="n">n</span><span class="o">.</span><span class="n">surface</span> <span class="p">}</span><span class="o">.</span><span class="n">join</span>
+
+<span class="c1"># surface だけほしい場合</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">each_surface</span> <span class="p">{</span><span class="o">|</span><span class="n">surface</span><span class="o">|</span> <span class="nb">p</span> <span class="n">surface</span> <span class="p">}</span>
+
+<span class="c1"># 元の Node の各メソッドの返り値をイテレートする</span>
+<span class="c1"># こっちのが Enumerable のメソッド使えて便利なはず</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">surfaces</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">surface</span><span class="o">|</span> <span class="nb">p</span> <span class="n">surface</span> <span class="p">}</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">surfaces</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span><span class="o">|</span><span class="n">surface</span><span class="o">|</span> <span class="n">surface</span> <span class="o">==</span> <span class="s2">"テスト"</span> <span class="p">}</span>
+
+<span class="sx">%w(surfaces features lengths ids char_types isbests wcosts costs)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+  <span class="n">nodes</span><span class="o">.</span><span class="n">respond_to?</span> <span class="nb">name</span> <span class="c1">#=&gt; true</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<p>で, これは実は良くなかったりするのかもしれないのですが, 文頭・文末の形態素をカットしています. 不要な場合が多いかな…と思いまして. 必要ならオプションで指定できるようにしたいです.</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">nodes</span><span class="o">.</span><span class="n">count</span> <span class="c1">#=&gt; 2</span>
+</pre></div></div>
+
+<p>mecab-ruby の <code>Node</code> の上書き問題を解決するために <code>MeCab::Tagger</code> のインスタンス生成を遅らせて, イテレーション毎に生成するようにしました.<br>
+なのでなんどもイテレートできますし, 別の文章を解析しても上書きされません.</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">n1</span> <span class="o">=</span> <span class="no">Mecab</span><span class="o">::</span><span class="no">Ext</span><span class="o">::</span><span class="no">Parser</span><span class="o">.</span><span class="n">parse</span> <span class="s2">"今日の天気"</span>
+<span class="n">n2</span> <span class="o">=</span> <span class="no">Mecab</span><span class="o">::</span><span class="no">Ext</span><span class="o">::</span><span class="no">Parser</span><span class="o">.</span><span class="n">parse</span> <span class="s2">"赤い花"</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">each_surface</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:display</span><span class="p">)</span>
+<span class="n">n2</span><span class="o">.</span><span class="n">each_surface</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:display</span><span class="p">)</span>
+</pre></div></div>
+
+<p>というわけで mecab 愛用している方々いかがでしょうか. 今のところ自分向けには 100% 仕様を満たしたので改善点などあればぜひ伺って取り込みたいです.</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -77,23 +590,104 @@
 <tr>
 	<td rowspan="3"><center>taiki45さんの<br />3位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>26</kbd>
-		<a target="_blank" href="https://qiita.com/taiki45/items/0aaccda69aa1606d445c">Mac OSX 10.9 (marvericks) に GHC 7.8.2 をインストールする方法</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>16</kbd>
+		<a target="_blank" href="https://qiita.com/taiki45/items/b7e0789c0bfa37d61a02">サンドボックス環境で hspec をセットアップする方法</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-13 02:57:52</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-01-25 17:43:54</center>
 	</td>
 	<td style="width:200px;">
-		@taiki45<!--(<a target="_blank" href="http://qiita.com/taiki45">Qiita内の10件の記事</a>)--><br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
+		@taiki45<br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
 	</td>
-	<td style="width:300px;"><b>[Haskell]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Haskell]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>なんどか Haskell プロジェクトを作る中で良い感じのセットアップ方法がわかってきたので書き置きしておきます。<br>
+Haskell 周りの進化は速いので今後変わる可能性もあります。なのでこの記事から年月を感じる場合、新しい情報を探すことをおすすめします。</p>
+
+<h2>
+<span id="サンドボックス環境" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%89%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9%E7%92%B0%E5%A2%83"><i class="fa fa-link"></i></a>サンドボックス環境</h2>
+
+<p><strong>cabal hell</strong> あるいは <strong>cabal dependincy hell</strong> という言葉は重みがあります。なので、回避するためにサンドボックス環境が推奨されています。</p>
+
+<p>いまのところ</p>
+
+<ul>
+<li>cabal-dev</li>
+<li>hsenv</li>
+<li>cabal sandbox</li>
+</ul>
+
+<p>の3つくらいが有名です。cabal-dev はそろそろ他の2種に置き換えられるみたいです(雰囲気)。</p>
+
+<p>で、hsenv は処理系の切り離しもできて便利そうなんですが、ここでは global にインストールされているパッケージを(おそらく)使いまわせる <code>cabal sandbox</code> を使ってみます。おすすめがあれば教えてください…</p>
+
+<h2>
+<span id="hspec" class="fragment"></span><a href="#hspec"><i class="fa fa-link"></i></a>hspec</h2>
+
+<p>みんな大好き BDD ツールです。</p>
+
+<h2>
+<span id="セットアップ実行方法" class="fragment"></span><a href="#%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E5%AE%9F%E8%A1%8C%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>セットアップ&amp;実行方法</h2>
+
+<p>まず <code>.cabal</code> ファイルを作成します。お手元のプロジェクトで <code>cabal init</code> すると手に入ります。質問に答えていきましょう。</p>
+
+<p>次に <a href="https://github.com/hspec/hspec/blob/master/hspec.cabal" rel="nofollow noopener" target="_blank">hspec の cabal ファイル</a> を参考にしながら自分のプロジェクトの <code>.cabal</code> ファイルに <code>test-suite spec</code> を追加します。この設定の <code>ghc-options</code> はワーニングレベルでアウトになるので <code>-Wall</code> は削除しても良いです。</p>
+
+<p>だいたいかけたらコマンド発行していきましょう。</p>
+
+<ul>
+<li>
+<code>cabal sandbox init</code> サンドボックス環境を作成します。たぶん冪等性あり。</li>
+<li>
+<code>cabal update</code> アップデートしてない場合</li>
+<li>
+<code>cabal install --enable-tests --only-dependencies</code> これでテスト用を含めて依存パッケージをインストールします。</li>
+<li><code>cabal configure --enable-tests</code></li>
+<li>
+<code>cabal build</code> これでアプリケーションコードとテストコードがコンパイルされます。</li>
+<li>
+<code>cabal test</code> これでテストが走ります。</li>
+</ul>
+
+<p><code>cabal build</code> はコンパイル済みのものは無視してくれるので、その後はソースコードを書き換えたら <code>cabal build &amp;&amp; cabal test</code> を打つだけで良いです。</p>
+
+<h2>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h2>
+
+<p>ぼくが自分のプロジェクトで書いてる <code>.cabal</code> ファイルへのリンクを置いておきます。多少参考になると思います。</p>
+
+<ul>
+<li><a href="https://github.com/taiki45/saadeh/blob/master/sasdeh.cabal" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/taiki45/saadeh/blob/master/sasdeh.cabal</a></li>
+<li><a href="https://github.com/taiki45/ex-simple-html-parser/blob/master/ex-simple-html-parser.cabal" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/taiki45/ex-simple-html-parser/blob/master/ex-simple-html-parser.cabal</a></li>
+</ul>
+
+<h3>
+<span id="参考資料" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E8%B3%87%E6%96%99"><i class="fa fa-link"></i></a>参考資料</h3>
+
+<ul>
+<li>cabal sandbox について <a href="http://coldwa.st/e/blog/2013-08-20-Cabal-sandbox.html" class="autolink" rel="nofollow noopener" target="_blank">http://coldwa.st/e/blog/2013-08-20-Cabal-sandbox.html</a>
+</li>
+<li>hspec について <a href="https://github.com/hspec/hspec" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/hspec/hspec</a>
+</li>
+<li>cabal について <a href="https://github.com/taiki45/hs-lisp/pull/1" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/taiki45/hs-lisp/pull/1</a>
+</li>
+<li>cabal init の説明 <a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20121106/435201/" class="autolink" rel="nofollow noopener" target="_blank">http://itpro.nikkeibp.co.jp/article/COLUMN/20121106/435201/</a>
+</li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -101,23 +695,47 @@
 <tr>
 	<td rowspan="3"><center>taiki45さんの<br />4位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>16</kbd>
-		<a target="_blank" href="https://qiita.com/taiki45/items/b7e0789c0bfa37d61a02">サンドボックス環境で hspec をセットアップする方法</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>11</kbd>
+		<a target="_blank" href="https://qiita.com/taiki45/items/ef1d9c74baa2bec8ac19">Gauche + rlwrap for reading SICP</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-01-25 17:43:54</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-05-18 15:55:25</center>
 	</td>
 	<td style="width:200px;">
-		@taiki45<!--(<a target="_blank" href="http://qiita.com/taiki45">Qiita内の10件の記事</a>)--><br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
+		@taiki45<br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
 	</td>
-	<td style="width:300px;"><b>[Haskell]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Gauche]</b> <b>[SICP]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>これから SICP を読む人で Scheme の処理系として Gauche を選ぶ方もいるでしょう. (環境によるのかもしれませんが) Gauche の REPL では readline が使えず悲しい思いをします.</p>
+
+<p>そこで <a href="http://utopia.knoware.nl/%7Ehlub/rlwrap/#rlwrap" rel="nofollow noopener" target="_blank">rlwrap</a> という readline が使えないコマンドを優しく包み込んでくれるユーティリティを使うことで快適になれます.</p>
+
+<p>お使いのパッケージ管理ツールで <code>install rlwrap</code> をするとはいると思います. <code>brew install rlwrap</code> など.</p>
+
+<p>あとは</p>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span>rlwrap gosh
+</pre></div></div>
+
+<p>で起動, <code>C-p</code>, <code>C-n</code> で履歴をたどれたり <code>C-r</code> で履歴検索できたりします. Gauche に限らず自作のコマンド等でも readline が使えるようになるので便利です.</p>
+
+<p>他の設定等は <a href="http://qiita.com/items/02f7d2f157c7145d58f2">SICPを読むためにやっておくと便利かもしれないこと</a> が詳しいです.</p>
+
+<p>Happy Reading SICP!</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -125,23 +743,88 @@
 <tr>
 	<td rowspan="3"><center>taiki45さんの<br />5位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>11</kbd>
-		<a target="_blank" href="https://qiita.com/taiki45/items/ef1d9c74baa2bec8ac19">Gauche + rlwrap for reading SICP</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
+		<a target="_blank" href="https://qiita.com/taiki45/items/b951a04a9da53b809f46">変わった特異メソッドの定義の仕方 with yield</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-05-18 15:55:25</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-04-03 23:20:38</center>
 	</td>
 	<td style="width:200px;">
-		@taiki45<!--(<a target="_blank" href="http://qiita.com/taiki45">Qiita内の10件の記事</a>)--><br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
+		@taiki45<br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
 	</td>
-	<td style="width:300px;"><b>[Gauche]</b> <b>[SICP]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>rspec-rails をなんとなく読んでいた時に見つけて「なるほど」と驚いたので. </p>
+
+<p>今までの自分の考え方だったら <code>instance_eval</code> + <code>define_method</code> でやっていただろうけど, こっちのほうが綺麗ﾀﾞﾅｰと.</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">subject</span><span class="o">.</span><span class="n">yield_sub</span> <span class="k">do</span> <span class="o">|</span><span class="nb">sub</span><span class="o">|</span>
+  <span class="k">def</span> <span class="nc">sub</span><span class="o">.</span><span class="nf">foo</span>
+    <span class="s1">'foo'</span>
+  <span class="k">end</span>
+
+  <span class="s2">"...do something"</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<p>見つけたのは <a href="https://github.com/rspec/rspec-rails/blob/master/lib/rspec/rails/example.rb" rel="nofollow noopener" target="_blank">このファイルで</a></p>
+
+<p>全体の挙動はこんなかんじです.</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">'rspec'</span>
+
+<span class="k">class</span> <span class="nc">Foo</span>
+  <span class="k">class</span> <span class="nc">Sub</span><span class="p">;</span> <span class="k">end</span>
+
+  <span class="kp">attr_reader</span> <span class="ss">:sub</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="vi">@sub</span> <span class="o">=</span> <span class="no">Sub</span><span class="o">.</span><span class="n">new</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">yield_sub</span>
+    <span class="k">yield</span> <span class="vi">@sub</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">describe</span> <span class="s2">"Definition with yield"</span> <span class="k">do</span>
+  <span class="n">subject</span> <span class="p">{</span> <span class="no">Foo</span><span class="o">.</span><span class="n">new</span> <span class="p">}</span>
+
+  <span class="n">context</span> <span class="s2">"when not defined"</span> <span class="k">do</span>
+    <span class="n">its</span><span class="p">(</span><span class="ss">:sub</span><span class="p">)</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:foo</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">context</span> <span class="s2">"when defined in block"</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="k">do</span>
+      <span class="n">subject</span><span class="o">.</span><span class="n">yield_sub</span> <span class="k">do</span> <span class="o">|</span><span class="nb">sub</span><span class="o">|</span>
+        <span class="k">def</span> <span class="nc">sub</span><span class="o">.</span><span class="nf">foo</span>
+          <span class="s1">'foo'</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="n">its</span><span class="p">(</span><span class="ss">:sub</span><span class="p">)</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:foo</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">context</span> <span class="s2">"after"</span> <span class="k">do</span>
+    <span class="n">its</span><span class="p">(</span><span class="ss">:sub</span><span class="p">)</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:foo</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -149,23 +832,98 @@
 <tr>
 	<td rowspan="3"><center>taiki45さんの<br />6位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
-		<a target="_blank" href="https://qiita.com/taiki45/items/e1b7e9abcd8bd0b42aff">Haskell プロジェクトで Travis CI を使って自動テストと hlint をまわす</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
+		<a target="_blank" href="https://qiita.com/taiki45/items/b90002c72352ab382183">Rubinius 2.0.0-dev をインストールする with rbenv</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-01 01:01:25</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-10-04 13:07:28</center>
 	</td>
 	<td style="width:200px;">
-		@taiki45<!--(<a target="_blank" href="http://qiita.com/taiki45">Qiita内の10件の記事</a>)--><br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
+		@taiki45<br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
 	</td>
-	<td style="width:300px;"><b>[Haskell]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[Rubinius]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>ruby-build 使えば楽かな―と思ったら Build Failed したので少し格闘しました。日本語の記事ないので書いてみました。</p>
+
+<p>すでに rbenv で CRuby をインストールしている人向けです。実行した環境は OS X 10.8 です。</p>
+
+<h2>
+<span id="rubinius-をインストールする" class="fragment"></span><a href="#rubinius-%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Rubinius をインストールする</h2>
+
+<ul>
+<li><p>libyaml をインストールする。 i.e. <code>brew install libyaml</code></p></li>
+<li><p>クローンして configure:</p></li>
+</ul>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span><span class="c1"># Clone Rubinius</span>
+git clone https://github.com/rubinius/rubinius.git
+<span class="nb">cd</span> rubinius
+
+<span class="c1"># Rubinius に必要な gem を入れる</span>
+bundle install
+
+<span class="c1"># rbenv のパスが違う場合は適宜変更してください</span>
+./configure --prefix<span class="o">=</span><span class="nv">$HOME</span>/.rbenv/versions/rbx-2.0.0-dev
+</pre></div></div>
+
+<ul>
+<li>
+<em>[Option]</em> もし <code>rake -T</code> を実行してみて <code>RUBYLIB</code> 環境変数に関するワーニングがでたら、<code>Rakefile</code> を次のように修正する:</li>
+</ul>
+
+<div class="code-frame" data-lang="diff"><div class="highlight"><pre><span></span> require 'redcard'
+ require './rakelib/configure'
+
+<span class="gi">+ENV["RUBYLIB"] = nil</span>
+<span class="gi">+</span>
+ include Rake::DSL if Rake.const_defined? :DSL
+
+ if ENV["RUBYLIB"]
+</pre></div></div>
+
+<p>Bundler.setup でこの環境変数が設定されるみたいです。</p>
+
+<ul>
+<li>
+<code>rake</code> を実行して完了！</li>
+</ul>
+
+<h2>
+<span id="rubinius-を有効にする" class="fragment"></span><a href="#rubinius-%E3%82%92%E6%9C%89%E5%8A%B9%E3%81%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Rubinius を有効にする</h2>
+
+<p>Rubinius は CRuby と違う bin path を持っているので rbenv にパッチが必要です。そのための rbenv プラグインがあって、今の Rubinius 用にアップデートしたのでこれを使います。 <a href="https://github.com/taiki45/rbenv-rbx_2.0.0-dev_fix" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/taiki45/rbenv-rbx_2.0.0-dev_fix</a></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>mkdir -p ~/.rbenv/plugins
+cd ~/.rbenv/plugins
+git clone git://github.com/taiki45/rbenv-rbx_2.0.0-dev_fix.git
+</pre></div></div>
+
+<p>あとは <code>rbenv global rbx-2.0.0-dev</code> そして <code>rbenv rehash</code>.</p>
+
+<p><strong>エンジョイ Rubinius！</strong></p>
+
+<hr>
+
+<p>参考にしたもの</p>
+
+<ul>
+<li><a href="https://gist.github.com/amateurhuman/2005745" class="autolink" rel="nofollow noopener" target="_blank">https://gist.github.com/amateurhuman/2005745</a></li>
+<li>Rubinius の README</li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -173,23 +931,79 @@
 <tr>
 	<td rowspan="3"><center>taiki45さんの<br />7位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
-		<a target="_blank" href="https://qiita.com/taiki45/items/b951a04a9da53b809f46">変わった特異メソッドの定義の仕方 with yield</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/taiki45/items/469dab27f047c9f1468a">Mongoid で Custom field serialization を適用して Uniqueness validation を機能させる</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-04-03 23:20:38</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-04-21 04:30:09</center>
 	</td>
 	<td style="width:200px;">
-		@taiki45<!--(<a target="_blank" href="http://qiita.com/taiki45">Qiita内の10件の記事</a>)--><br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
+		@taiki45<br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
 	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>MongoDB は 8 bit Integer 以上は扱えないようでして, でも Ruby での Bignum を格納したいという要件がありました.</p>
+
+<p>最初は元から定義してある BigDecimal type を使っていたのですが, これがあまり良くなくて MongoDB フレンドリーな形式にする時(serialize 時?) に <code>NoMethodError: __bson_dump__</code> でおちてくれるのです.</p>
+
+<p>なので独自タイプを作ってみました.</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span>
+  <span class="kp">include</span> <span class="no">Mongoid</span><span class="o">::</span><span class="no">Document</span>
+  <span class="n">field</span> <span class="ss">:uid</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="no">Bignum</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">module</span> <span class="nn">Mongoid::Extensions</span>
+  <span class="k">module</span> <span class="nn">Bignum</span>
+    <span class="k">def</span> <span class="nf">mongoize</span>
+      <span class="nb">to_s</span>
+    <span class="k">end</span>
+
+    <span class="k">module</span> <span class="nn">ClassMethods</span>
+      <span class="k">def</span> <span class="nf">mongoize</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">to_s</span>
+      <span class="k">end</span>
+
+      <span class="k">def</span> <span class="nf">demongoize</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">to_i</span>
+      <span class="k">end</span>
+
+      <span class="k">alias</span> <span class="ss">:evolve</span> <span class="ss">:mongoize</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="o">::</span><span class="no">Bignum</span><span class="o">.</span><span class="n">__send__</span><span class="p">(</span><span class="ss">:include</span><span class="p">,</span> <span class="no">Mongoid</span><span class="o">::</span><span class="no">Extensions</span><span class="o">::</span><span class="no">Bignum</span><span class="p">)</span>
+<span class="o">::</span><span class="no">Bignum</span><span class="o">.</span><span class="n">__send__</span><span class="p">(</span><span class="ss">:extend</span><span class="p">,</span> <span class="no">Mongoid</span><span class="o">::</span><span class="no">Extensions</span><span class="o">::</span><span class="no">Bignum</span><span class="o">::</span><span class="no">ClassMethods</span><span class="p">)</span>
+</pre></div></div>
+
+<p>順調に Examples をパスしたのですが <code>uniqueness</code> の Validation でうまく <code>mongoize</code> してくれなくて <code>8-bit int</code> のエラーがでてしまっていました.</p>
+
+<p>そこで組み込みがダメなら, と自作 validation で対応することにしました.</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span>  <span class="n">validate</span> <span class="ss">:uniqueness_of_uid</span>
+
+  <span class="k">def</span> <span class="nf">uniqueness_of_uid</span>
+    <span class="n">errors</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="ss">:unique_uid</span><span class="p">,</span> <span class="s2">"uid: </span><span class="si">#{</span><span class="n">uid</span><span class="si">}</span><span class="s2"> is not unique."</span><span class="p">)</span> <span class="k">if</span> <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">uid</span><span class="p">:</span> <span class="n">uid</span><span class="p">)</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span>
+  <span class="k">end</span>
+</pre></div></div>
+
+<p>とりあえずこれでしのげたけど, 組み込みの <code>validate_uniqueness_of</code> がうまく動かない原因もコード読んで探ってつきとめれればｲｲﾅｰ</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -197,71 +1011,55 @@
 <tr>
 	<td rowspan="3"><center>taiki45さんの<br />8位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
-		<a target="_blank" href="https://qiita.com/taiki45/items/b90002c72352ab382183">Rubinius 2.0.0-dev をインストールする with rbenv</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-10-04 13:07:28</center>
-	</td>
-	<td style="width:200px;">
-		@taiki45<!--(<a target="_blank" href="http://qiita.com/taiki45">Qiita内の10件の記事</a>)--><br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
-	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[Rubinius]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>taiki45さんの<br />9位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
-		<a target="_blank" href="https://qiita.com/taiki45/items/469dab27f047c9f1468a">Mongoid で Custom field serialization を適用して Uniqueness validation を機能させる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-04-21 04:30:09</center>
-	</td>
-	<td style="width:200px;">
-		@taiki45<!--(<a target="_blank" href="http://qiita.com/taiki45">Qiita内の10件の記事</a>)--><br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
-	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>taiki45さんの<br />10位</center></td>
-	<td colspan="3">
 		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
 		<a target="_blank" href="https://qiita.com/taiki45/items/55d5edecf3576816342f">Ruby の 引数あたりのカッコについてメモ</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-04-05 01:35:55</center>
 	</td>
 	<td style="width:200px;">
-		@taiki45<!--(<a target="_blank" href="http://qiita.com/taiki45">Qiita内の10件の記事</a>)--><br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
+		@taiki45<br />(COOKPAD Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4298/profile-images/1491842772">
 	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>なんとなく気になってためしてみたのでメモ. 普段は <a href="https://github.com/bbatsov/ruby-style-guide" rel="nofollow noopener" target="_blank">ruby style guide</a> にだいたい従ってます.</p>
+
+<p>Ruby は構文解析がんばってるマン, と <a href="http://loveruby.net/ja/rhg/" rel="nofollow noopener" target="_blank">RHG</a> で覚えた.</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plus</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+<span class="k">end</span>
+
+<span class="n">square</span> <span class="n">square</span> <span class="mi">8</span>
+<span class="c1">#=&gt; 4096</span>
+
+<span class="n">plus</span> <span class="n">square</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span>
+<span class="c1">#=&gt; ArgumentError: wrong number of arguments (2 for 1)</span>
+
+<span class="n">plus</span> <span class="mi">3</span><span class="p">,</span> <span class="n">square</span> <span class="mi">5</span>
+<span class="c1">#=&gt; SyntaxError: unexpected tINTEGER, expecting keyword_do or '{' or '('</span>
+
+<span class="n">square</span> <span class="n">plus</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span>
+<span class="c1">#=&gt; 121</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />

@@ -25,6 +25,7 @@
 <h1>Qiitaいいね数ランキング (tekkoc さんの投稿分)</h1>
 </div><!--class="headerContainer"-->
 <p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
 <table border="1">
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />1位</center></td>
@@ -34,18 +35,398 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2014-03-09 09:48:15</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>この記事は<a href="http://atnd.org/events/45072" rel="nofollow noopener" target="_blank">Vim Advent Calendar 2013 : ATND</a>の99日目の記事です。</p>
+
+<h1>
+<span id="画面分割タブページのススメ" class="fragment"></span><a href="#%E7%94%BB%E9%9D%A2%E5%88%86%E5%89%B2%E3%82%BF%E3%83%96%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E3%82%B9%E3%82%B9%E3%83%A1"><i class="fa fa-link"></i></a>画面分割・タブページのススメ</h1>
+
+<p>みなさん、分割してますか？<br>
+みなさん、タブページ使ってますか？</p>
+
+<p>僕はどちらも大好きです。</p>
+
+<ul>
+<li>サンプルを見ながら写経する</li>
+<li>TODOやメモを見ながら編集</li>
+<li>関数の定義元などを見ながら編集</li>
+<li>編集目的に合わせてタブを分ける</li>
+</ul>
+
+<p>などなど。 ものぐさな僕は、コードを書くときはガシガシ分割したりしながらコードを書いています。</p>
+
+<p>これらの機能は当然設定やプラグインの導入などをしなくても使えますが自分はsキーをprefixとしたキーマッピングをしています。<br>
+元は<code>&lt;C-w&gt;</code>の代わりに<code>s</code>を使っていただけですが、タブウィンドウ関連やバッファ関連にも使うようにしたことで、格段に便利になりました。自分の設定例を合わせて掲載するので、良ければ参考にしてください。</p>
+
+<h1>
+<span id="各種機能とマッピング" class="fragment"></span><a href="#%E5%90%84%E7%A8%AE%E6%A9%9F%E8%83%BD%E3%81%A8%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>各種機能とマッピング</h1>
+
+<h2>
+<span id="ウィンドウを分割する" class="fragment"></span><a href="#%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%92%E5%88%86%E5%89%B2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>ウィンドウを分割する</h2>
+
+<p><a href="https://camo.qiitausercontent.com/b484cd9d1dd4485ab14abcddffc775494c728137/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f38353136306434352d303862352d323064642d356331622d6661636261366366626434302e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b484cd9d1dd4485ab14abcddffc775494c728137/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f38353136306434352d303862352d323064642d356331622d6661636261366366626434302e676966" alt="sn.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/11916/85160d45-08b5-20dd-5c1b-facba6cfbd40.gif"></a></p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">項目名</th>
+<th style="text-align: left">デフォルト</th>
+<th style="text-align: left">オリジナル設定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">水平分割</td>
+<td style="text-align: left"><code>:split</code></td>
+<td style="text-align: left"><code>ss</code></td>
+</tr>
+<tr>
+<td style="text-align: left">垂直分割</td>
+<td style="text-align: left"><code>:vsplit</code></td>
+<td style="text-align: left"><code>sv</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="分割したウィンドウ間を移動する" class="fragment"></span><a href="#%E5%88%86%E5%89%B2%E3%81%97%E3%81%9F%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E9%96%93%E3%82%92%E7%A7%BB%E5%8B%95%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>分割したウィンドウ間を移動する</h2>
+
+<p><a href="https://camo.qiitausercontent.com/3a80684deff78b958d06d87e9fa491207cc1b28f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f34373535376636332d306266392d656630622d663762352d3663623064396531343435632e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/3a80684deff78b958d06d87e9fa491207cc1b28f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f34373535376636332d306266392d656630622d663762352d3663623064396531343435632e676966" alt="sj.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/11916/47557f63-0bf9-ef0b-f7b5-6cb0d9e1445c.gif"></a></p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">項目名</th>
+<th style="text-align: left">デフォルト</th>
+<th style="text-align: left">オリジナル設定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">左に移動</td>
+<td style="text-align: left"><code>&lt;C-w&gt;h</code></td>
+<td style="text-align: left"><code>sh</code></td>
+</tr>
+<tr>
+<td style="text-align: left">下に移動</td>
+<td style="text-align: left"><code>&lt;C-w&gt;j</code></td>
+<td style="text-align: left"><code>sj</code></td>
+</tr>
+<tr>
+<td style="text-align: left">上に移動</td>
+<td style="text-align: left"><code>&lt;C-w&gt;k</code></td>
+<td style="text-align: left"><code>sk</code></td>
+</tr>
+<tr>
+<td style="text-align: left">右に移動</td>
+<td style="text-align: left"><code>&lt;C-w&gt;l</code></td>
+<td style="text-align: left"><code>sl</code></td>
+</tr>
+<tr>
+<td style="text-align: left">次に移動</td>
+<td style="text-align: left"><code>&lt;C-w&gt;w</code></td>
+<td style="text-align: left"><code>sw</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="分割したウィンドウそのものを移動する" class="fragment"></span><a href="#%E5%88%86%E5%89%B2%E3%81%97%E3%81%9F%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%81%9D%E3%81%AE%E3%82%82%E3%81%AE%E3%82%92%E7%A7%BB%E5%8B%95%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>分割したウィンドウそのものを移動する</h2>
+
+<p><a href="https://camo.qiitausercontent.com/8db3981ce725fc33ae8ea8799bee1d0b32f61060/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f66393539396532382d383935382d653737612d666565392d6632316231633532356339382e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/8db3981ce725fc33ae8ea8799bee1d0b32f61060/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f66393539396532382d383935382d653737612d666565392d6632316231633532356339382e676966" alt="sK.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/11916/f9599e28-8958-e77a-fee9-f21b1c525c98.gif"></a></p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">項目名</th>
+<th style="text-align: left">デフォルト</th>
+<th style="text-align: left">オリジナル設定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">左に移動</td>
+<td style="text-align: left"><code>&lt;C-w&gt;H</code></td>
+<td style="text-align: left"><code>sH</code></td>
+</tr>
+<tr>
+<td style="text-align: left">下に移動</td>
+<td style="text-align: left"><code>&lt;C-w&gt;J</code></td>
+<td style="text-align: left"><code>sJ</code></td>
+</tr>
+<tr>
+<td style="text-align: left">上に移動</td>
+<td style="text-align: left"><code>&lt;C-w&gt;K</code></td>
+<td style="text-align: left"><code>sK</code></td>
+</tr>
+<tr>
+<td style="text-align: left">右に移動</td>
+<td style="text-align: left"><code>&lt;C-w&gt;L</code></td>
+<td style="text-align: left"><code>sL</code></td>
+</tr>
+<tr>
+<td style="text-align: left">回転</td>
+<td style="text-align: left"><code>&lt;C-w&gt;r</code></td>
+<td style="text-align: left"><code>sr</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="カレントウィンドウの大きさを変える" class="fragment"></span><a href="#%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%88%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%95%E3%82%92%E5%A4%89%E3%81%88%E3%82%8B"><i class="fa fa-link"></i></a>カレントウィンドウの大きさを変える</h2>
+
+<p><a href="https://camo.qiitausercontent.com/1ba3bbf6d1035e901f73fadb0130d8cc281939de/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f65386137336163662d626565312d366437342d386339612d6431663062616266396430372e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1ba3bbf6d1035e901f73fadb0130d8cc281939de/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f65386137336163662d626565312d366437342d386339612d6431663062616266396430372e676966" alt="so.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/11916/e8a73acf-bee1-6d74-8c9a-d1f0babf9d07.gif"></a></p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">項目名</th>
+<th style="text-align: left">デフォルト</th>
+<th style="text-align: left">オリジナル設定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">縦に最大化</td>
+<td style="text-align: left"><code>&lt;C-w&gt;_</code></td>
+<td style="text-align: left"><code>なし</code></td>
+</tr>
+<tr>
+<td style="text-align: left">横に最大化</td>
+<td style="text-align: left"><code>&lt;C-w&gt;パイプ</code></td>
+<td style="text-align: left"><code>なし</code></td>
+</tr>
+<tr>
+<td style="text-align: left">縦横最大化</td>
+<td style="text-align: left"><code>なし</code></td>
+<td style="text-align: left"><code>so</code></td>
+</tr>
+<tr>
+<td style="text-align: left">大きさを揃える</td>
+<td style="text-align: left"><code>&lt;C-w&gt;=</code></td>
+<td style="text-align: left">
+<code>sO</code> もしくは <code>s=</code>
+</td>
+</tr>
+<tr>
+<td style="text-align: left">幅を増やす</td>
+<td style="text-align: left"><code>&lt;C-w&gt;&gt;</code></td>
+<td style="text-align: left"><code>s&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align: left">幅を減らす</td>
+<td style="text-align: left"><code>&lt;C-w&gt;&lt;</code></td>
+<td style="text-align: left"><code>s&lt;</code></td>
+</tr>
+<tr>
+<td style="text-align: left">高さを増やす</td>
+<td style="text-align: left"><code>&lt;C-w&gt;+</code></td>
+<td style="text-align: left"><code>s+</code></td>
+</tr>
+<tr>
+<td style="text-align: left">高さを減らす</td>
+<td style="text-align: left"><code>&lt;C-w&gt;-</code></td>
+<td style="text-align: left"><code>s-</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>テーブル内で<code>|</code>を表示すると崩れるみたいなので、パイプと表記してます。</p>
+
+<p>また<code>s&gt;</code>系のマッピングは、実際には「<a href="https://github.com/kana/vim-submode" rel="nofollow noopener" target="_blank">vim-submode</a>」というプラグインを使って<code>s&gt;&gt;&gt;</code>などでサイズ変更出来るようにしてます。詳しくは最後のVimrcを参照してください。</p>
+
+<h2>
+<span id="タブページ関連" class="fragment"></span><a href="#%E3%82%BF%E3%83%96%E3%83%9A%E3%83%BC%E3%82%B8%E9%96%A2%E9%80%A3"><i class="fa fa-link"></i></a>タブページ関連</h2>
+
+<p><a href="https://camo.qiitausercontent.com/db36b97a63270f86d1a6e3399ac2e242f1a51870/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f33623364353863312d363638362d356464322d313131632d3835353032343865326564642e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/db36b97a63270f86d1a6e3399ac2e242f1a51870/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f33623364353863312d363638362d356464322d313131632d3835353032343865326564642e676966" alt="tab.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/11916/3b3d58c1-6686-5dd2-111c-8550248e2edd.gif"></a></p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">項目名</th>
+<th style="text-align: left">デフォルト</th>
+<th style="text-align: left">オリジナル設定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">新規タブ</td>
+<td style="text-align: left"><code>:tabnew</code></td>
+<td style="text-align: left"><code>st</code></td>
+</tr>
+<tr>
+<td style="text-align: left">次のタブに切替</td>
+<td style="text-align: left"><code>gt</code></td>
+<td style="text-align: left"><code>sn</code></td>
+</tr>
+<tr>
+<td style="text-align: left">前のタブに切替</td>
+<td style="text-align: left"><code>gT</code></td>
+<td style="text-align: left"><code>sp</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="閉じる" class="fragment"></span><a href="#%E9%96%89%E3%81%98%E3%82%8B"><i class="fa fa-link"></i></a>閉じる</h2>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">項目名</th>
+<th style="text-align: left">デフォルト</th>
+<th style="text-align: left">オリジナル設定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">ウィンドウを閉じる</td>
+<td style="text-align: left"><code>:q</code></td>
+<td style="text-align: left"><code>sq</code></td>
+</tr>
+<tr>
+<td style="text-align: left">バッファを閉じる</td>
+<td style="text-align: left"><code>:bd</code></td>
+<td style="text-align: left"><code>sQ</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="unitevim" class="fragment"></span><a href="#unitevim"><i class="fa fa-link"></i></a>Unite.vim</h2>
+
+<p><a href="https://camo.qiitausercontent.com/34ab8da6f577ef09c665b2f8fb4edafd531bb983/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f63663465333761342d343166312d613966372d376165662d6231663838646165373634622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/34ab8da6f577ef09c665b2f8fb4edafd531bb983/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f63663465333761342d343166312d613966372d376165662d6231663838646165373634622e706e67" alt="unite.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/11916/cf4e37a4-41f1-a9f7-7aef-b1f88dae764b.png"></a></p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">項目名</th>
+<th style="text-align: left">デフォルト</th>
+<th style="text-align: left">オリジナル設定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">タブ一覧</td>
+<td style="text-align: left"><code>:Unite tab</code></td>
+<td style="text-align: left"><code>sT</code></td>
+</tr>
+<tr>
+<td style="text-align: left">現在のタブで開いたバッファ一覧</td>
+<td style="text-align: left"><code>:Unite buffer_tab</code></td>
+<td style="text-align: left"><code>sb</code></td>
+</tr>
+<tr>
+<td style="text-align: left">バッファ一覧</td>
+<td style="text-align: left"><code>:Unite buffer</code></td>
+<td style="text-align: left"><code>sB</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>当然ですが「<a href="https://github.com/Shougo/unite.vim" rel="nofollow noopener" target="_blank">unite.vim</a>」が必要です。</p>
+
+<h1>
+<span id="最後に" class="fragment"></span><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB"><i class="fa fa-link"></i></a>最後に</h1>
+
+<h2>
+<span id="ウィンドウとバッファとタブページについて" class="fragment"></span><a href="#%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%81%A8%E3%83%90%E3%83%83%E3%83%95%E3%82%A1%E3%81%A8%E3%82%BF%E3%83%96%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>ウィンドウとバッファとタブページについて</h2>
+
+<p>バッファはファイル等の内容そのもの。<br>
+ウィンドウはバッファを表示するもので、別ウィンドウで同じファイルを開いて編集したり出来る。<br>
+タブページはウィンドウを束ねるもの。</p>
+
+<p>詳しくは「<a href="http://cohama.hateblo.jp/entry/2013/09/28/220808" rel="nofollow noopener" target="_blank">Vim のバッファとウィンドウを理解する - 反省はしても後悔はしない</a>」で解説されています。<br>
+この記事も去年のVACの記事ですね。歴史長い！</p>
+
+<h2>
+<span id="sキーの元々の機能について" class="fragment"></span><a href="#s%E3%82%AD%E3%83%BC%E3%81%AE%E5%85%83%E3%80%85%E3%81%AE%E6%A9%9F%E8%83%BD%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>sキーの元々の機能について</h2>
+
+<p>今回潰した<code>s</code>キーには元々割り当たっている機能がありますが、ヘルプに書かれている通り、他で代用が効くので気にせず潰しています。<br>
+まったく別のマッピングをする場合でも<code>s</code>キーはかなり押しやすい位置にあるので、マッピング先に便利でおすすめです。</p>
+
+<blockquote>
+<p>["x]s         [count] 文字を [レジスタ x に入れ] 削除し、挿入を始め<br>
+      る (s は Substitute --置換 を意味する)。"cl" と同義で<br>
+      ある (行単位でない|linewise|)。</p>
+</blockquote>
+
+<h2>
+<span id="vimrc" class="fragment"></span><a href="#vimrc"><i class="fa fa-link"></i></a>vimrc</h2>
+
+<p>最後に、当該箇所の自分のvimrcを貼っておきます。</p>
+
+<div class="code-frame" data-lang="vim"><div class="highlight"><pre><span></span><span class="nb">nnoremap</span> s <span class="p">&lt;</span>Nop<span class="p">&gt;</span>
+<span class="nb">nnoremap</span> <span class="nb">sj</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">w</span><span class="p">&gt;</span><span class="k">j</span>
+<span class="nb">nnoremap</span> sk <span class="p">&lt;</span>C<span class="p">-</span><span class="k">w</span><span class="p">&gt;</span><span class="k">k</span>
+<span class="nb">nnoremap</span> <span class="k">sl</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">w</span><span class="p">&gt;</span><span class="k">l</span>
+<span class="nb">nnoremap</span> <span class="k">sh</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">w</span><span class="p">&gt;</span><span class="k">h</span>
+<span class="nb">nnoremap</span> sJ <span class="p">&lt;</span>C<span class="p">-</span><span class="k">w</span><span class="p">&gt;</span>J
+<span class="nb">nnoremap</span> sK <span class="p">&lt;</span>C<span class="p">-</span><span class="k">w</span><span class="p">&gt;</span>K
+<span class="nb">nnoremap</span> sL <span class="p">&lt;</span>C<span class="p">-</span><span class="k">w</span><span class="p">&gt;</span>L
+<span class="nb">nnoremap</span> sH <span class="p">&lt;</span>C<span class="p">-</span><span class="k">w</span><span class="p">&gt;</span>H
+<span class="nb">nnoremap</span> <span class="k">sn</span> gt
+<span class="nb">nnoremap</span> <span class="k">sp</span> gT
+<span class="nb">nnoremap</span> <span class="nb">sr</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">w</span><span class="p">&gt;</span><span class="k">r</span>
+<span class="nb">nnoremap</span> s<span class="p">=</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">w</span><span class="p">&gt;=</span>
+<span class="nb">nnoremap</span> <span class="k">sw</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">w</span><span class="p">&gt;</span><span class="k">w</span>
+<span class="nb">nnoremap</span> <span class="k">so</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">w</span><span class="p">&gt;</span>_<span class="p">&lt;</span>C<span class="p">-</span><span class="k">w</span><span class="p">&gt;|</span>
+<span class="nb">nnoremap</span> sO <span class="p">&lt;</span>C<span class="p">-</span><span class="k">w</span><span class="p">&gt;=</span>
+<span class="nb">nnoremap</span> <span class="k">sN</span> :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span><span class="k">bn</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="nb">nnoremap</span> sP :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span><span class="k">bp</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="nb">nnoremap</span> <span class="k">st</span> :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span><span class="k">tabnew</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="nb">nnoremap</span> sT :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span>Unite <span class="k">tab</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="nb">nnoremap</span> <span class="nb">ss</span> :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span><span class="k">sp</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="nb">nnoremap</span> <span class="k">sv</span> :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span><span class="k">vs</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="nb">nnoremap</span> sq :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span><span class="k">q</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="nb">nnoremap</span> sQ :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span><span class="k">bd</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="nb">nnoremap</span> <span class="k">sb</span> :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span>Unite buffer_tab <span class="p">-</span>buffer<span class="p">-</span>name<span class="p">=</span><span class="k">file</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="nb">nnoremap</span> sB :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span>Unite buffer <span class="p">-</span>buffer<span class="p">-</span>name<span class="p">=</span><span class="k">file</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+
+<span class="k">call</span> submode#enter_with<span class="p">(</span><span class="s1">'bufmove'</span><span class="p">,</span> <span class="s1">'n'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">'s&gt;'</span><span class="p">,</span> <span class="s1">'&lt;C-w&gt;&gt;'</span><span class="p">)</span>
+<span class="k">call</span> submode#enter_with<span class="p">(</span><span class="s1">'bufmove'</span><span class="p">,</span> <span class="s1">'n'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">'s&lt;'</span><span class="p">,</span> <span class="s1">'&lt;C-w&gt;&lt;'</span><span class="p">)</span>
+<span class="k">call</span> submode#enter_with<span class="p">(</span><span class="s1">'bufmove'</span><span class="p">,</span> <span class="s1">'n'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">'s+'</span><span class="p">,</span> <span class="s1">'&lt;C-w&gt;+'</span><span class="p">)</span>
+<span class="k">call</span> submode#enter_with<span class="p">(</span><span class="s1">'bufmove'</span><span class="p">,</span> <span class="s1">'n'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">'s-'</span><span class="p">,</span> <span class="s1">'&lt;C-w&gt;-'</span><span class="p">)</span>
+<span class="k">call</span> submode#map<span class="p">(</span><span class="s1">'bufmove'</span><span class="p">,</span> <span class="s1">'n'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">'&gt;'</span><span class="p">,</span> <span class="s1">'&lt;C-w&gt;&gt;'</span><span class="p">)</span>
+<span class="k">call</span> submode#map<span class="p">(</span><span class="s1">'bufmove'</span><span class="p">,</span> <span class="s1">'n'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">'&lt;'</span><span class="p">,</span> <span class="s1">'&lt;C-w&gt;&lt;'</span><span class="p">)</span>
+<span class="k">call</span> submode#map<span class="p">(</span><span class="s1">'bufmove'</span><span class="p">,</span> <span class="s1">'n'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">'+'</span><span class="p">,</span> <span class="s1">'&lt;C-w&gt;+'</span><span class="p">)</span>
+<span class="k">call</span> submode#map<span class="p">(</span><span class="s1">'bufmove'</span><span class="p">,</span> <span class="s1">'n'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="s1">'&lt;C-w&gt;-'</span><span class="p">)</span>
+</pre></div></div>
+
+<h1>
+<span id="追記20140310-836" class="fragment"></span><a href="#%E8%BF%BD%E8%A8%9820140310-836"><i class="fa fa-link"></i></a>追記(2014/03/10 8:36)</h1>
+
+<blockquote>
+<p>@hisatake_i<br>
+最初の 画像が コロンとセミコロンが間違ってるな。</p>
+</blockquote>
+
+<p><code>:</code>と<code>;</code>をノーマルモードでのみ入れ替えるマッピングをしているため、画像上では<code>;</code>を打ったと表示されています。紛らわしくてすみません。実際には<code>:</code>を打つ必要があります。</p>
+
+<p>英字キーボードではオススメの設定なので、あわせてどうぞ。</p>
+
+<div class="code-frame" data-lang="vim"><div class="highlight"><pre><span></span><span class="c">" コロンとセミコロンを入れ替え</span>
+<span class="nb">noremap</span> : ;
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -53,23 +434,128 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />2位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>208</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/923d7a7cf124e63adab5">VimでPython環境をいい感じに整える</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>145</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/324d736f68b0f27680b8">JSONビュアーとしてVim(とjq)を使うとすごい便利</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-08-17 23:33:01</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-05-19 22:57:54</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[Python]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="https://camo.qiitausercontent.com/a6da51e401219aefd49c7141181d4278da944d88/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f62383632343532612d613837652d386134612d393034622d3337343035356263636437622e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a6da51e401219aefd49c7141181d4278da944d88/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f62383632343532612d613837652d386134612d393034622d3337343035356263636437622e676966" alt="jq.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/11916/b862452a-a87e-8a4a-904b-374055bccd7b.gif"></a></p>
+
+<p>JSONを返すようなAPIを作っているとき、いつもは単に目で追うだけだったり、あるいはブラウザの拡張機能とかで誤魔化していましたが、Vimとjqで扱うようにしてからとても捗っています。</p>
+
+<h1>
+<span id="jqで整形する" class="fragment"></span><a href="#jq%E3%81%A7%E6%95%B4%E5%BD%A2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>jqで整形する</h1>
+
+<p>jqという、コマンドラインで使えるJSONパーサーがあります。</p>
+
+<ul>
+<li><a href="http://stedolan.github.io/jq/" rel="nofollow noopener" target="_blank">jq</a></li>
+</ul>
+
+<p>Vimからjqを使うのに、次のようなコマンドをvimrcに定義しました。</p>
+
+<div class="code-frame" data-lang="vim"><div class="highlight"><pre><span></span>command<span class="p">!</span> <span class="p">-</span>nargs<span class="p">=</span>? Jq <span class="k">call</span> s:Jq<span class="p">(&lt;</span><span class="k">f</span><span class="p">-</span>args<span class="p">&gt;)</span>
+<span class="k">function</span><span class="p">!</span> s:Jq<span class="p">(</span>...<span class="p">)</span>
+    <span class="k">if</span> <span class="m">0</span> <span class="p">==</span> <span class="k">a</span>:<span class="m">0</span>
+        <span class="k">let</span> <span class="k">l</span>:<span class="k">arg</span> <span class="p">=</span> <span class="s2">"."</span>
+    <span class="k">else</span>
+        <span class="k">let</span> <span class="k">l</span>:<span class="k">arg</span> <span class="p">=</span> <span class="k">a</span>:<span class="m">1</span>
+    <span class="k">endif</span>
+    execute <span class="s2">"%! jq \""</span> . <span class="k">l</span>:<span class="k">arg</span> . <span class="s2">"\""</span>
+<span class="k">endfunction</span>
+</pre></div></div>
+
+<p>バッファ内の文字列全体に対してjqを実行し、変換後の文字列で置き換えます。</p>
+
+<p>例えば、次のようなJSONがあったとして、</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>{"obj":{"list":[1,1,2,3,5,8,13]},"jstr":"\u3053\u3093\u306B\u3061\u306F\u4E16\u754C","str":"helloworld","num":1}
+</pre></div></div>
+
+<p>「:Jq」と実行</p>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">"num"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"str"</span><span class="o">:</span> <span class="s2">"helloworld"</span><span class="p">,</span>
+  <span class="s2">"jstr"</span><span class="o">:</span> <span class="s2">"こんにちは世界"</span><span class="p">,</span>
+  <span class="s2">"obj"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"list"</span><span class="o">:</span> <span class="p">[</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="mi">1</span><span class="p">,</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="mi">3</span><span class="p">,</span>
+      <span class="mi">5</span><span class="p">,</span>
+      <span class="mi">8</span><span class="p">,</span>
+      <span class="mi">13</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>「:Jq .obj.list」と実行</p>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="p">[</span>
+  <span class="mi">1</span><span class="p">,</span>
+  <span class="mi">1</span><span class="p">,</span>
+  <span class="mi">2</span><span class="p">,</span>
+  <span class="mi">3</span><span class="p">,</span>
+  <span class="mi">5</span><span class="p">,</span>
+  <span class="mi">8</span><span class="p">,</span>
+  <span class="mi">13</span>
+<span class="p">]</span>
+</pre></div></div>
+
+<p>なんて風になります。</p>
+
+<p>ばっちりUnicodeエスケープシーケンスの変換が行われて日本語が表示されていますし、色々加工も出来ちゃいます。<br>
+欠点はもちろんjqに依存してしまうことですが、普段から良くJSONに触れている方ならjqは入れておいて損はないと思いますよ！</p>
+
+<p>jqのフィルタ機能については、以下のブログがとても参考になります！</p>
+
+<ul>
+<li><a href="http://beatsync.net/main/log20130428.html" rel="nofollow noopener" target="_blank">jqコマンドが実は高性能すぎてビビッた話 - beatsync.net</a></li>
+</ul>
+
+<h1>
+<span id="vim-jsonを入れてjsonファイルをより見やすくする" class="fragment"></span><a href="#vim-json%E3%82%92%E5%85%A5%E3%82%8C%E3%81%A6json%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E3%82%88%E3%82%8A%E8%A6%8B%E3%82%84%E3%81%99%E3%81%8F%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>vim-jsonを入れてJSONファイルをより見やすくする</h1>
+
+<p>JSONを表示するのに、filetypeをjavascriptにしてもいいのですが、どうせならJSON用のfiletypeプラグインを入れてしまうのをオススメします。</p>
+
+<ul>
+<li><a href="https://github.com/elzr/vim-json" rel="nofollow noopener" target="_blank">elzr/vim-json · GitHub</a></li>
+</ul>
+
+<p>↑のgithubのページにスクリーンショットがありますが、filetypeをjavascriptにしたときよりも色分けされるようになりますし、文字列を囲う「"」も省略されて表示されるので、とても見易いです</p>
+
+<h1>
+<span id="jqの代わりにpythonで整形する" class="fragment"></span><a href="#jq%E3%81%AE%E4%BB%A3%E3%82%8F%E3%82%8A%E3%81%ABpython%E3%81%A7%E6%95%B4%E5%BD%A2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>jqの代わりにpythonで整形する</h1>
+
+<ul>
+<li><a href="http://qiita.com/items/cc29b414a63e08cd4f89">Vim (with python) で json を整形 #Python #Vim #JSON - Qiita [キータ]</a></li>
+</ul>
+
+<p>自分がVimでJSONを整形したいと思ったのも、この投稿がきっかけです。<br>
+もし、開発環境にjqを入れれない場合でも、Pythonならだいたい入っているのでこれで代用するのもありだと思います。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -77,23 +563,187 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />3位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>145</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/324d736f68b0f27680b8">JSONビュアーとしてVim(とjq)を使うとすごい便利</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>65</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/f610289c7ce36f680d94">PhantomJSで簡単にログイン・スクレイピング・ページキャプチャ</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-05-19 22:57:54</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-12-22 23:09:30</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[CoffeeScript]</b> <b>[PhantomJS]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>PhantomJSを使うと、ページのキャプチャを取ったり、スクレイピングが出来て便利ですね。</p>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/hecomi/20121229/1356785834" rel="nofollow noopener" target="_blank">PhantomJS でログインが必要なページでも自由自在にスクレイピング - 凹みTips</a></li>
+</ul>
+
+<p>こちらのページの解説がとてもわかりやすかったです。<br>
+自分も上記ページを元に、毎分Facebookにログインしてキャプチャ撮るツールとか作っていました。</p>
+
+<p>途中、CasperJSの存在を知ってそれを使えばいいことに気付いたのですが、せっかくなので、掲載されてるサンプル改造したものを公開します。</p>
+
+<p>下記は、Qiitaにログインし、キャプチャを撮り、フィードのタイトルをJSON形式でファイルに保存するサンプルです。</p>
+
+<div class="code-frame" data-lang="coffeescript"><div class="highlight"><pre><span></span><span class="nv">USER_ID = </span><span class="s">"qiitaのユーザ名"</span>
+<span class="nv">PASSWORD = </span><span class="s">"qiitaのパスワード"</span>
+
+<span class="c1"># initialize {{{</span>
+<span class="nv">page = </span><span class="nx">require</span><span class="p">(</span><span class="s">"webpage"</span><span class="p">).</span><span class="nx">create</span><span class="p">()</span>
+<span class="nv">fs = </span><span class="nx">require</span><span class="p">(</span><span class="s">"fs"</span><span class="p">)</span>
+
+<span class="nv">page.onConsoleMessage = </span><span class="nf">(msg) -&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s">"CONSOLE: "</span> <span class="o">+</span> <span class="nx">msg</span><span class="p">)</span>
+
+<span class="c1"># ページが読み込まれたら page.onCallback を呼ぶ</span>
+<span class="nv">page.onInitialized = </span><span class="nf">-&gt;</span>
+  <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span> <span class="nf">-&gt;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span> <span class="s">"DOMContentLoaded"</span><span class="p">,</span> <span class="nf">-&gt;</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">callPhantom</span><span class="p">(</span><span class="s">"DOMContentLoaded"</span><span class="p">)</span>
+    <span class="p">,</span> <span class="kc">false</span>
+
+<span class="k">class</span> <span class="nx">Actions</span>
+  <span class="nv">actions: </span><span class="p">[]</span>
+
+  <span class="nv">constructor: </span><span class="nf">-&gt;</span>
+    <span class="nv">page.onCallback = </span><span class="nf">(data) =&gt;</span>
+      <span class="nx">@run</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="nx">data</span> <span class="o">==</span> <span class="s">"DOMContentLoaded"</span><span class="p">)</span>
+
+  <span class="c1"># アクションを追加</span>
+  <span class="nv">add: </span><span class="nf">(action) -&gt;</span>
+    <span class="nx">action</span><span class="p">.</span><span class="nx">name</span> <span class="o">?=</span> <span class="s">""</span>
+    <span class="nx">action</span><span class="p">.</span><span class="nx">render</span> <span class="o">?=</span> <span class="kc">false</span>
+    <span class="nx">action</span><span class="p">.</span><span class="nx">delay</span> <span class="o">?=</span> <span class="mi">0</span>
+    <span class="nx">action</span><span class="p">.</span><span class="nx">before</span> <span class="o">?=</span> <span class="p">(</span><span class="nf">-&gt;</span> <span class="p">{})</span>
+    <span class="nx">action</span><span class="p">.</span><span class="nx">evaluate</span> <span class="o">?=</span> <span class="p">(</span><span class="nf">(obj) -&gt;</span> <span class="p">{})</span>
+    <span class="nx">action</span><span class="p">.</span><span class="nx">after</span> <span class="o">?=</span> <span class="p">(</span><span class="nf">(obj) -&gt;</span> <span class="p">{})</span>
+    <span class="nx">@actions</span><span class="p">.</span><span class="nx">push</span> <span class="nx">action</span>
+
+  <span class="c1"># アクションを順に実行</span>
+  <span class="nv">run: </span><span class="nf">-&gt;</span>
+    <span class="nv">action = </span><span class="nx">@actions</span><span class="p">.</span><span class="nx">shift</span><span class="p">()</span>
+
+    <span class="k">unless</span> <span class="nx">action</span><span class="o">?</span>
+      <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">()</span>
+      <span class="k">return</span>
+
+    <span class="c1"># 指定ミリ秒数待ってから実行</span>
+    <span class="nx">setTimeout</span> <span class="nf">=&gt;</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">"=============================="</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">" </span><span class="si">#{</span><span class="nx">action</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="s">"</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">"=============================="</span>
+
+      <span class="k">if</span> <span class="nx">action</span><span class="p">.</span><span class="nx">render</span>
+        <span class="nx">page</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s">"</span><span class="si">#{</span><span class="nx">action</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="s">.png"</span><span class="p">)</span>
+
+      <span class="nv">before_result = </span><span class="nx">action</span><span class="p">.</span><span class="nx">before</span><span class="p">()</span>
+
+      <span class="c1"># 各ページでライブラリを読み込む</span>
+      <span class="nx">page</span><span class="p">.</span><span class="nx">injectJs</span> <span class="s">"lib/jquery.min.js"</span>
+      <span class="nx">page</span><span class="p">.</span><span class="nx">injectJs</span> <span class="s">"lib/jquery.cookie.js"</span>
+
+      <span class="c1"># 開いているページ内でaction.evaluateを実行</span>
+      <span class="c1"># action.beforeの結果を引数として受け取り、返り値をaction.afterの引数にする</span>
+      <span class="nv">evaluate_result = </span><span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span> <span class="nx">action</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">,</span> <span class="nx">before_result</span>
+
+      <span class="nx">action</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="nx">evaluate_result</span><span class="p">)</span>
+
+      <span class="k">if</span> <span class="nx">@actions</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">()</span>
+
+    <span class="p">,</span> <span class="nx">action</span><span class="p">.</span><span class="nx">delay</span>
+<span class="c1"># }}}</span>
+
+<span class="cm">###</span>
+<span class="cm">  以下、qiitaにログインしてフィードのタイトルを取得するサンプル</span>
+<span class="cm">###</span>
+
+<span class="nv">actions = </span><span class="k">new</span> <span class="nx">Actions</span>
+
+<span class="nx">actions</span><span class="p">.</span><span class="nx">add</span>
+  <span class="nv">name: </span><span class="s">"start"</span>
+  <span class="nv">after: </span><span class="nf">-&gt;</span>
+    <span class="c1"># URLを指定して開く</span>
+    <span class="nx">page</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s">"http://qiita.com/"</span><span class="p">)</span>
+
+<span class="nx">actions</span><span class="p">.</span><span class="nx">add</span>
+  <span class="nv">name: </span><span class="s">"login"</span>
+  <span class="nv">render: </span><span class="kc">true</span>  <span class="c1"># 自動でlogin.pngとしてキャプチャ撮る</span>
+  <span class="nv">before: </span><span class="nf">-&gt;</span>
+    <span class="c1"># evaluateで参照する用のオブジェクトを定義し、return</span>
+    <span class="nv">user_id: </span><span class="nx">USER_ID</span>
+    <span class="nv">password: </span><span class="nx">PASSWORD</span>
+  <span class="nv">evaluate: </span><span class="nf">(params) -&gt;</span>
+    <span class="c1"># beforeの返り値をparamsとして受け取っている</span>
+
+    <span class="c1"># 「http://qiita.com/」内での処理(jQuery読み込み済み)</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s">"#user_url_name"</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">params</span><span class="p">.</span><span class="nx">user_id</span><span class="p">)</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s">"#user_password"</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">params</span><span class="p">.</span><span class="nx">password</span><span class="p">)</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s">"#new_user"</span><span class="p">).</span><span class="nx">submit</span><span class="p">()</span>
+
+<span class="nx">actions</span><span class="p">.</span><span class="nx">add</span>
+  <span class="nv">name: </span><span class="s">"mypage"</span>
+  <span class="nv">delay: </span><span class="mi">3000</span> <span class="c1"># フィードの読み込みのため3秒待つ</span>
+  <span class="nv">evaluate: </span><span class="nf">-&gt;</span>
+    <span class="c1"># タイトルを表示(onConsoleMessageを定義してるから出力を確認出来る)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">$</span><span class="p">(</span><span class="s">"title"</span><span class="p">).</span><span class="nx">text</span><span class="p">()</span>
+
+    <span class="c1"># 読み込んだフィードを順に処理</span>
+    <span class="nv">titles = </span><span class="p">[]</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s">".item-box-title"</span><span class="p">).</span><span class="nx">each</span> <span class="nf">-&gt;</span>
+      <span class="c1"># 配列に追加</span>
+      <span class="nx">titles</span><span class="p">.</span><span class="nx">push</span> <span class="nx">$</span><span class="p">(</span><span class="nx">@</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s">"h1 a"</span><span class="p">).</span><span class="nx">text</span><span class="p">().</span><span class="nx">trim</span><span class="p">()</span>
+
+    <span class="c1"># afterで参照する用のオブジェクトを定義し、return</span>
+    <span class="nv">titles: </span><span class="nx">titles</span>
+  <span class="nv">after: </span><span class="nf">(result) -&gt;</span>
+    <span class="c1"># evaluateの返り値をresultとして受け取っている</span>
+
+    <span class="c1"># ファイルに書き込み</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">write</span> <span class="s">"result.json"</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">titles</span><span class="p">),</span> <span class="kc">true</span>
+
+<span class="nx">actions</span><span class="p">.</span><span class="nx">run</span><span class="p">()</span>
+</pre></div></div>
+
+<h1>
+<span id="実行結果" class="fragment"></span><a href="#%E5%AE%9F%E8%A1%8C%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>実行結果</h1>
+
+<p><a href="https://camo.qiitausercontent.com/d55b2e1c736245175dce932c7f76e4ceb1dbcc77/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f31636138343433332d316262322d333063392d323535322d6262663365616332366263622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d55b2e1c736245175dce932c7f76e4ceb1dbcc77/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f31636138343433332d316262322d333063392d323535322d6262663365616332366263622e706e67" alt="result.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/11916/1ca84433-1bb2-30c9-2552-bbf3eac26bcb.png"></a></p>
+
+<p>（OS X Mavericksでは「CoreText performance note:  ...」というエラーが大量に出るので、標準エラーを捨てています）</p>
+
+<h1>
+<span id="解説" class="fragment"></span><a href="#%E8%A7%A3%E8%AA%AC"><i class="fa fa-link"></i></a>解説</h1>
+
+<p>基本的な仕組みは<a href="http://d.hatena.ne.jp/hecomi/20121229/1356785834" rel="nofollow noopener" target="_blank">冒頭で紹介したページ</a>と同じです。</p>
+
+<p>追加でやっていることは、主に下記の通りです。</p>
+
+<ul>
+<li>Actions.add()を使い、各ページでの処理を定義するように</li>
+<li>page.evaluateに渡す関数と、その前後で呼び出したい関数を定義出来るように</li>
+<li>ページを開いた後Ajaxで内容を読み込むようなページ用に、一定時間待ってからevaluate出来るように</li>
+<li>evaluate内でjQuery(や、任意のライブラリ)を使えるように</li>
+<li>page.onConsoleMessageを定義し、evaluate(開いたページ内でのJS実行)時のconsole.logも表示されるように</li>
+</ul>
+
+<p>CoffeeScriptを使っていることもあり、シンプルかつ簡単にログイン処理やスクレイピングなどが出来るようになったかなと思います。<br>
+今後機会あればCasperJSも触ってみようと思います。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -101,23 +751,83 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />4位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>138</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/8897cdf378305c4e547d">VimでPHPの補完にスニペットを使ったら捗った件</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>60</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/0d9ba557b01c93805d4e">PHPでオブジェクトを配列に変換</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-28 00:04:33</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-01-25 23:38:01</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[PHP]</b> <b>[Vim]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[PHP]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>オブジェクトを配列にしたい場合、arrayキャストを使うとオブジェクトがネストしている場合にうまく行かないが、json_encode関数、json_decode関数を使うとシンプルに出来た。</p>
+
+<p>json_decode関数で第二引数で連想配列形式で返すかどうかを指定出来るので、それを利用する。</p>
+
+<div class="code-frame" data-lang="php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="k">class</span> <span class="nc">Foo</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$pub_var</span> <span class="o">=</span> <span class="s2">"foo_pub"</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$pri_var</span> <span class="o">=</span> <span class="s2">"foo_pri"</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$bar</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">bar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Bar</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Bar</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$pub_var</span> <span class="o">=</span> <span class="s2">"bar_pub"</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$pri_var</span> <span class="o">=</span> <span class="s2">"bar_pri"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nv">$foo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
+<span class="nb">var_dump</span><span class="p">((</span><span class="k">array</span><span class="p">)</span><span class="nv">$foo</span><span class="p">);</span>
+<span class="c1">// array(3) {</span>
+<span class="c1">//   'pub_var' =&gt;</span>
+<span class="c1">//   string(7) "foo_pub"</span>
+<span class="c1">//   '\0Foo\0pri_var' =&gt;</span>
+<span class="c1">//   string(7) "foo_pri"</span>
+<span class="c1">//   'bar' =&gt;</span>
+<span class="c1">//   class Bar#3 (2) {</span>
+<span class="c1">//     public $pub_var =&gt;</span>
+<span class="c1">//     string(7) "bar_pub"</span>
+<span class="c1">//     private $pri_var =&gt;</span>
+<span class="c1">//     string(7) "bar_pri"</span>
+<span class="c1">//   }</span>
+<span class="c1">// }</span>
+
+
+<span class="nb">var_dump</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nb">json_encode</span><span class="p">(</span><span class="nv">$foo</span><span class="p">),</span> <span class="k">true</span><span class="p">));</span>
+<span class="c1">// array(2) {</span>
+<span class="c1">//   'pub_var' =&gt;</span>
+<span class="c1">//   string(7) "foo_pub"</span>
+<span class="c1">//   'bar' =&gt;</span>
+<span class="c1">//   array(1) {</span>
+<span class="c1">//     'pub_var' =&gt;</span>
+<span class="c1">//     string(7) "bar_pub"</span>
+<span class="c1">//   }</span>
+<span class="c1">// }</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -125,23 +835,95 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />5位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>69</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/f81a3fca0641a398fa35">AngularJSよりもお手軽！Vue.jsで超簡単データバインディング</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>54</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/eb5ab65524c3e5b4a11c">Backbone.jsなどのライブラリのgetter, setterがダサい理由と、その解消方法</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-05-19 22:55:03</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-02-17 01:13:23</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[vue.js]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Backbone.js]</b> <b>[knockoutjs]</b> <b>[RactiveJS]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="http://backbonejs.org/" rel="nofollow noopener" target="_blank">Backbone.js</a>, <a href="http://knockoutjs.com/" rel="nofollow noopener" target="_blank">Knockout.js</a>, <a href="http://www.ractivejs.org/" rel="nofollow noopener" target="_blank">Ractive.js</a>どれも素晴しいライブラリですが、モデル等のデータの取得・設定する構文がとてもダサいのが難点ですよね。</p>
+
+<p>Backbone.jsとRactive.jsは<code>get("hoge")</code>や<code>set("hoge", value)</code>という形式。<br>
+Knockout.jsは少しマシで<code>hoge()</code>で取得し<code>hoge(value)</code>で設定する形式。</p>
+
+<p>こういうラッパーを必要とする理由はKnockout.jsのドキュメントにわかりやすく書いています。</p>
+
+<blockquote>
+<p>JavaScript には getter/setter 構文がありますが、残念ながら全てのブラウザで実装されているわけではありません(IEｹﾞﾌﾝｹﾞﾌﾝ...)。 そこで互換性を確保するため、ko.observable オブジェクトの実態は function です。 </p>
+
+<p><a href="http://kojs.sukobuto.com/docs/observables" rel="nofollow noopener" target="_blank">ドキュメント | Knockout.js 日本語ドキュメント</a></p>
+</blockquote>
+
+<p>ドキュメントで明言してる箇所を見ていませんが、Backbone.jsやRactive.jsも(それだけではないにせよ)同じ理由でしょう。<br>
+例えば、<a href="http://vuejs.org/" rel="nofollow noopener" target="_blank">Vue.js</a>ではES5のサポートを前提としている代わりにラッパーを通さずに値の取得・設定が出来るようになっています。</p>
+
+<p>Vue.jsがObject.definePropertyを使っている件に関しては、以下の記事が面白いです。</p>
+
+<ul>
+<li><a href="http://efcl.info/?p=3658" rel="nofollow noopener" target="_blank">JavaScriptライブラリの気になる実装をどうやって見ていくか | Web scratch</a></li>
+</ul>
+
+<hr>
+
+<p>ここで当然の予測として、Backbone.js等のライブラリも古いIEを見捨ててもいいのであれば、definePropertyの恩恵に授かれそうですよね！</p>
+
+<p>ということで、調べてみたらありました。</p>
+
+<p>以下、各ライブラリ別の方法です。（全部は試せてないので、詳しくは各記事を参照してください。）</p>
+
+<h1>
+<span id="backbonejs" class="fragment"></span><a href="#backbonejs"><i class="fa fa-link"></i></a>Backbone.js</h1>
+
+<ul>
+<li><a href="http://www.narrativescience.com/blog/automatically-creating-getterssetters-for-backbone-models/" rel="nofollow noopener" target="_blank">Automatically Creating Getters/Setters for Backbone ModelsNarrative Science | Narrative Science</a></li>
+</ul>
+
+<p>10行程度のコードを読み込み、definePropertyを有効にしたいモデルで<code>buildProperties(this)</code>を呼ぶ。</p>
+
+<h1>
+<span id="knockoutjs" class="fragment"></span><a href="#knockoutjs"><i class="fa fa-link"></i></a>Knockout.js</h1>
+
+<ul>
+<li><a href="http://blog.stevensanderson.com/2013/05/20/knockout-es5-a-plugin-to-simplify-your-syntax/" rel="nofollow noopener" target="_blank">Knockout-ES5: a plugin to simplify your syntax - Steve Sanderson’s blog - As seen on YouTube™</a></li>
+<li><a href="https://github.com/SteveSanderson/knockout-es5" rel="nofollow noopener" target="_blank">SteveSanderson/knockout-es5</a></li>
+</ul>
+
+<p>knockout-es5を追加で読み込むだけ。</p>
+
+<h1>
+<span id="ractivejs" class="fragment"></span><a href="#ractivejs"><i class="fa fa-link"></i></a>Ractive.js</h1>
+
+<ul>
+<li><a href="http://docs.ractivejs.org/latest/magic-mode" rel="nofollow noopener" target="_blank">Magic mode | Docs | Ractive.js</a></li>
+</ul>
+
+<p>magic modeというものが元から用意されている。</p>
+
+<h1>
+<span id="おまけ" class="fragment"></span><a href="#%E3%81%8A%E3%81%BE%E3%81%91"><i class="fa fa-link"></i></a>おまけ</h1>
+
+<ul>
+<li><a href="http://qiita.com/tekkoc/items/582f30a4c739cb995f4f" id="reference-6560a32b61e9f4bf08f4">Backbone.jsのModelに簡単にアクセス出来るようにする - Qiita</a></li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -149,23 +931,272 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />6位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>65</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/f610289c7ce36f680d94">PhantomJSで簡単にログイン・スクレイピング・ページキャプチャ</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>26</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/1513188c05f615f75848">噂のRactive.jsをKnockout.jsと比べてみた</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-12-22 23:09:30</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-02-16 15:49:43</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[CoffeeScript]</b> <b>[PhantomJS]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[CoffeeScript]</b> <b>[knockoutjs]</b> <b>[RactiveJS]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Ractive.jsはざっくり言ってKnockout.jsのようなdata-bindings系のライブラリです。</p>
+
+<ul>
+<li><a href="http://www.ractivejs.org/" rel="nofollow noopener" target="_blank">Ractive.js - next-generation DOM manipulation</a></li>
+<li><a href="http://lxyuma.hatenablog.com/entry/2014/02/03/000904" rel="nofollow noopener" target="_blank">Ractive.js入門 - lxyuma BLOG</a></li>
+</ul>
+
+<p>先日公開された<a href="http://lxyuma.hatenablog.com/entry/2014/02/03/000904" rel="nofollow noopener" target="_blank">lxyumaさんの記事</a>で知りましたが、とてもシンプルかつパワフルでとても良さそうです。</p>
+
+<p>どう凄いのか試すために、<a href="http://kojs.sukobuto.com/tips/helloWorld" rel="nofollow noopener" target="_blank">Knockout.jsのデモ</a>を題材に書き比べてみました。<br>
+どちらとも豊富な機能がありますが、今回は基本的なbindingまわりの機能だけが対象です。</p>
+
+<h1>
+<span id="hello-world-デモ" class="fragment"></span><a href="#hello-world-%E3%83%87%E3%83%A2"><i class="fa fa-link"></i></a>Hello World デモ</h1>
+
+<ul>
+<li><a href="http://kojs.sukobuto.com/tips/helloWorld" rel="nofollow noopener" target="_blank">元ページ</a></li>
+</ul>
+
+<h2>
+<span id="knockoutjs" class="fragment"></span><a href="#knockoutjs"><i class="fa fa-link"></i></a>Knockout.js</h2>
+
+<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>ファーストネーム: <span class="p">&lt;</span><span class="nt">input</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">"value: firstName"</span> <span class="p">/&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>ラストネーム: <span class="p">&lt;</span><span class="nt">input</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">"value: lastName"</span> <span class="p">/&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Hello, <span class="p">&lt;</span><span class="nt">span</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">"text: fullName"</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>!<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="coffeescript"><div class="highlight"><pre><span></span><span class="nv">ViewModel = </span> <span class="nf">(first, last) -&gt;</span>
+  <span class="vi">@firstName = </span><span class="nx">ko</span><span class="p">.</span><span class="nx">observable</span><span class="p">(</span><span class="nx">first</span><span class="p">)</span>
+  <span class="vi">@lastName = </span><span class="nx">ko</span><span class="p">.</span><span class="nx">observable</span><span class="p">(</span><span class="nx">last</span><span class="p">)</span>
+  <span class="vi">@fullName = </span><span class="nx">ko</span><span class="p">.</span><span class="nx">computed</span> <span class="nf">-&gt;</span>
+    <span class="s">"</span><span class="si">#{</span><span class="nx">@firstName</span><span class="p">()</span><span class="si">}</span><span class="s"> </span><span class="si">#{</span><span class="nx">@lastName</span><span class="p">()</span><span class="si">}</span><span class="s">"</span>
+  <span class="p">,</span> <span class="nx">@</span>
+  <span class="k">return</span>
+
+<span class="nx">ko</span><span class="p">.</span><span class="nx">applyBindings</span> <span class="k">new</span> <span class="nx">ViewModel</span> <span class="s">"Planet"</span><span class="p">,</span> <span class="s">"Earth"</span>
+</pre></div></div>
+
+<h2>
+<span id="ractivejs" class="fragment"></span><a href="#ractivejs"><i class="fa fa-link"></i></a>Ractive.js</h2>
+
+<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"container"</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">id</span><span class="o">=</span><span class="s">"template"</span> <span class="na">type</span><span class="o">=</span><span class="s">"text/ractive"</span><span class="p">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">ファーストネーム</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"{{firstName}}"</span><span class="o">/&gt;&lt;</span><span class="err">/p&gt;</span>
+  <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">ラストネーム</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"{{lastName}}"</span><span class="o">/&gt;&lt;</span><span class="err">/p&gt;</span>
+  <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="p">{{</span><span class="nx">fullName</span><span class="p">()}}</span><span class="o">!&lt;</span><span class="err">/span&gt;&lt;/h2&gt;</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="coffeescript"><div class="highlight"><pre><span></span><span class="nv">ractive = </span><span class="k">new</span> <span class="nx">Ractive</span>
+  <span class="nv">el: </span><span class="s">"#container"</span>
+  <span class="nv">template: </span><span class="s">"#template"</span>
+  <span class="nv">data:</span>
+    <span class="nv">firstName: </span><span class="s">"Planet"</span>
+    <span class="nv">lastName: </span><span class="s">"Earth"</span>
+    <span class="nv">fullName: </span><span class="nf">-&gt;</span>
+      <span class="s">"</span><span class="si">#{</span><span class="nx">@get</span><span class="p">(</span><span class="s">"firstName"</span><span class="p">)</span><span class="si">}</span><span class="s"> </span><span class="si">#{</span><span class="nx">@get</span><span class="p">(</span><span class="s">"lastName"</span><span class="p">)</span><span class="si">}</span><span class="s">"</span>
+</pre></div></div>
+
+<h1>
+<span id="クリックカウンター-デモ" class="fragment"></span><a href="#%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E3%82%AB%E3%82%A6%E3%83%B3%E3%82%BF%E3%83%BC-%E3%83%87%E3%83%A2"><i class="fa fa-link"></i></a>クリックカウンター デモ</h1>
+
+<ul>
+<li><a href="http://kojs.sukobuto.com/tips/clickCounter" rel="nofollow noopener" target="_blank">元ページ</a></li>
+</ul>
+
+<h2>
+<span id="knockoutjs-1" class="fragment"></span><a href="#knockoutjs-1"><i class="fa fa-link"></i></a>Knockout.js</h2>
+
+<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>クリック回数 <span class="p">&lt;</span><span class="nt">span</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">'text: numberOfClicks'</span><span class="p">&gt;</span><span class="ni">&amp;nbsp;</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span> 回<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">'click: registerClick, disable: hasClickedTooManyTimes'</span><span class="p">&gt;</span>クリックしてね<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">'visible: hasClickedTooManyTimes'</span><span class="p">&gt;</span>
+    クリックしすぎです！指がすり減らないうちにやめて下さい ヽ(^o^;)丿
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">'click: resetClicks'</span><span class="p">&gt;</span>リセット<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="coffeescript"><div class="highlight"><pre><span></span><span class="nv">ClickCounterViewModel = </span><span class="nf">-&gt;</span>
+  <span class="vi">@numberOfClicks = </span><span class="nx">ko</span><span class="p">.</span><span class="nx">observable</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="vi">@registerClick = </span><span class="nf">-&gt;</span>
+    <span class="nx">@numberOfClicks</span><span class="p">(</span><span class="nx">@numberOfClicks</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="vi">@resetClicks = </span><span class="nf">-&gt;</span>
+    <span class="nx">@numberOfClicks</span> <span class="mi">0</span>
+
+  <span class="vi">@hasClickedTooManyTimes = </span><span class="nx">ko</span><span class="p">.</span><span class="nx">computed</span> <span class="nf">-&gt;</span>
+    <span class="nx">@numberOfClicks</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">5</span>
+  <span class="p">,</span> <span class="nx">@</span>
+  <span class="k">return</span>
+
+<span class="nx">ko</span><span class="p">.</span><span class="nx">applyBindings</span> <span class="k">new</span> <span class="nx">ClickCounterViewModel</span><span class="p">()</span>
+</pre></div></div>
+
+<h2>
+<span id="ractivejs-1" class="fragment"></span><a href="#ractivejs-1"><i class="fa fa-link"></i></a>Ractive.js</h2>
+
+<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"container"</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">id</span><span class="o">=</span><span class="s">"template"</span> <span class="na">type</span><span class="o">=</span><span class="s">"text/ractive"</span><span class="p">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">クリック回数</span><span class="o">&amp;</span><span class="nx">nbsp</span><span class="p">;{{</span><span class="nx">numberOfClicks</span><span class="p">}}</span><span class="nx">回</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+    <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">on</span><span class="o">-</span><span class="nx">click</span><span class="o">=</span><span class="s2">"registerClick"</span> <span class="nx">disabled</span><span class="o">=</span><span class="s2">"{{hasClickedTooManyTimes()}}"</span><span class="o">&gt;</span><span class="nx">クリックしてね</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">style</span><span class="o">=</span><span class="s2">"{{^hasClickedTooManyTimes()}}display: none;{{/hasClickedTooManyTimes}}"</span><span class="o">&gt;</span>
+        <span class="nx">クリックしすぎです</span><span class="err">！</span><span class="nx">指がすり減らないうちにやめて下さい</span> <span class="nx">ヽ</span><span class="p">(</span><span class="o">^</span><span class="nx">o</span><span class="o">^</span><span class="p">;)</span><span class="nx">丿</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">on</span><span class="o">-</span><span class="nx">click</span><span class="o">=</span><span class="s2">"resetClicks"</span><span class="o">&gt;</span><span class="nx">リセット</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="coffeescript"><div class="highlight"><pre><span></span><span class="nv">ractive = </span><span class="k">new</span> <span class="nx">Ractive</span>
+  <span class="nv">el: </span><span class="s">"#container"</span>
+  <span class="nv">template: </span><span class="s">"#template"</span>
+  <span class="nv">data:</span>
+    <span class="nv">numberOfClicks: </span><span class="mi">0</span>
+    <span class="nv">hasClickedTooManyTimes: </span><span class="nf">-&gt;</span>
+      <span class="nx">@get</span><span class="p">(</span><span class="s">"numberOfClicks"</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">5</span>
+<span class="nx">ractive</span><span class="p">.</span><span class="nx">on</span>
+  <span class="nv">registerClick: </span><span class="nf">(e) -&gt;</span>
+    <span class="nx">@set</span><span class="p">(</span><span class="s">"numberOfClicks"</span><span class="p">,</span> <span class="nx">@get</span><span class="p">(</span><span class="s">"numberOfClicks"</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="nv">resetClicks: </span><span class="nf">(e) -&gt;</span>
+    <span class="nx">@set</span><span class="p">(</span><span class="s">"numberOfClicks"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div></div>
+
+<h1>
+<span id="リストを改良する" class="fragment"></span><a href="#%E3%83%AA%E3%82%B9%E3%83%88%E3%82%92%E6%94%B9%E8%89%AF%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>リストを改良する</h1>
+
+<ul>
+<li><a href="http://kojs.sukobuto.com/tips/betterList" rel="nofollow noopener" target="_blank">元ページ</a></li>
+</ul>
+
+<h2>
+<span id="knockoutjs-2" class="fragment"></span><a href="#knockoutjs-2"><i class="fa fa-link"></i></a>Knockout.js</h2>
+
+<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">"submit: addItem"</span><span class="p">&gt;</span>
+    新しいアイテム
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"text"</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">'value: itemToAdd, valueUpdate: "afterkeydown"'</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">"submit"</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">"enable: itemToAdd().length &gt; 0"</span><span class="p">&gt;</span>追加<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>アイテム一覧<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">select</span> <span class="na">multiple</span><span class="o">=</span><span class="s">"multiple"</span> <span class="na">width</span><span class="o">=</span><span class="s">"50"</span>
+        <span class="na">data-bind</span><span class="o">=</span><span class="s">"options: allItems, selectedOptions: selectedItems"</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">"click: removeSelected, enable: selectedItems().length &gt; 0"</span><span class="p">&gt;</span>削除<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">data-bind</span><span class="o">=</span><span class="s">"click: sortItems, enable: allItems().length &gt; 1"</span><span class="p">&gt;</span>ソート<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="coffeescript"><div class="highlight"><pre><span></span><span class="nv">BetterListModel = </span><span class="nf">-&gt;</span>
+  <span class="vi">@allItems = </span><span class="nx">ko</span><span class="p">.</span><span class="nx">observableArray</span> <span class="p">[</span>
+    <span class="s">"リコッタチーズ"</span>
+    <span class="s">"エシャロット"</span>
+    <span class="s">"ロマネスコ"</span>
+    <span class="s">"オリーブオイル"</span>
+    <span class="s">"イタリアンパセリ"</span>
+    <span class="s">"パルミジャーノチーズ"</span>
+  <span class="p">]</span>
+  <span class="vi">@itemToAdd = </span><span class="nx">ko</span><span class="p">.</span><span class="nx">observable</span> <span class="s">""</span>
+  <span class="vi">@selectedItems = </span><span class="nx">ko</span><span class="p">.</span><span class="nx">observableArray</span> <span class="p">[</span><span class="s">"オリーブオイル"</span><span class="p">]</span>
+  <span class="vi">@addItem = </span><span class="nf">-&gt;</span>
+    <span class="nx">@allItems</span><span class="p">.</span><span class="nx">push</span> <span class="nx">@itemToAdd</span><span class="p">()</span>  <span class="k">if</span> <span class="p">(</span><span class="nx">@itemToAdd</span><span class="p">()</span> <span class="o">isnt</span> <span class="s">""</span><span class="p">)</span> <span class="o">and</span> <span class="p">(</span><span class="nx">@allItems</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">@itemToAdd</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="nx">@itemToAdd</span> <span class="s">""</span>
+
+  <span class="vi">@removeSelected = </span><span class="nf">-&gt;</span>
+    <span class="nx">@allItems</span><span class="p">.</span><span class="nx">removeAll</span> <span class="nx">@selectedItems</span><span class="p">()</span>
+    <span class="nx">@selectedItems</span> <span class="p">[]</span> <span class="c1"># 選択状態をクリア</span>
+
+  <span class="vi">@sortItems = </span><span class="nf">-&gt;</span>
+    <span class="nx">@allItems</span><span class="p">.</span><span class="nx">sort</span><span class="p">()</span>
+  <span class="k">return</span>
+
+<span class="nx">ko</span><span class="p">.</span><span class="nx">applyBindings</span> <span class="k">new</span> <span class="nx">BetterListModel</span><span class="p">()</span>
+</pre></div></div>
+
+<h2>
+<span id="ractivejs-2" class="fragment"></span><a href="#ractivejs-2"><i class="fa fa-link"></i></a>Ractive.js</h2>
+
+<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"container"</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">id</span><span class="o">=</span><span class="s">"template"</span> <span class="na">type</span><span class="o">=</span><span class="s">"text/ractive"</span><span class="p">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">on</span><span class="o">-</span><span class="nx">submit</span><span class="o">=</span><span class="s2">"addItem"</span><span class="o">&gt;</span>
+        <span class="nx">新しいアイテム</span>
+        <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"{{itemToAdd}}"</span><span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"submit"</span> <span class="nx">disabled</span><span class="o">=</span><span class="s2">"{{!hasInputtedNewItem()}}"</span><span class="o">&gt;</span><span class="nx">追加</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+        <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">アイテム一覧</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+        <span class="o">&lt;</span><span class="nx">select</span> <span class="nx">multiple</span><span class="o">=</span><span class="s2">"multiple"</span> <span class="nx">width</span><span class="o">=</span><span class="s2">"50"</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"{{selectedItems}}"</span><span class="o">&gt;</span>
+            <span class="p">{{</span><span class="err">#</span><span class="nx">allItems</span><span class="p">}}</span>
+            <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"{{.}}"</span><span class="o">&gt;</span><span class="p">{{.}}</span><span class="o">&lt;</span><span class="err">/option&gt;</span>
+            <span class="p">{{</span><span class="err">/allItems}}</span>
+        <span class="o">&lt;</span><span class="err">/select&gt;</span>
+    <span class="o">&lt;</span><span class="err">/form&gt;</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">on</span><span class="o">-</span><span class="nx">click</span><span class="o">=</span><span class="s2">"removeSelected"</span> <span class="nx">disabled</span><span class="o">=</span><span class="s2">"{{!hasSelectedItem()}}"</span><span class="o">&gt;</span><span class="nx">削除</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">on</span><span class="o">-</span><span class="nx">click</span><span class="o">=</span><span class="s2">"sortItems"</span> <span class="nx">disabled</span><span class="o">=</span><span class="s2">"{{!canSort()}}"</span><span class="o">&gt;</span><span class="nx">ソート</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="coffeescript"><div class="highlight"><pre><span></span><span class="nv">ractive = </span><span class="k">new</span> <span class="nx">Ractive</span>
+  <span class="nv">el: </span><span class="s">"#container"</span>
+  <span class="nv">template: </span><span class="s">"#template"</span>
+  <span class="nv">data:</span>
+    <span class="nv">allItems: </span><span class="p">[</span>
+      <span class="s">"リコッタチーズ"</span>
+      <span class="s">"エシャロット"</span>
+      <span class="s">"ロマネスコ"</span>
+      <span class="s">"オリーブオイル"</span>
+      <span class="s">"イタリアンパセリ"</span>
+      <span class="s">"パルミジャーノチーズ"</span>
+    <span class="p">]</span>
+    <span class="nv">itemToAdd: </span><span class="s">""</span>
+    <span class="nv">selectedItems: </span><span class="p">[</span><span class="s">"オリーブオイル"</span><span class="p">]</span>
+    <span class="nv">hasInputtedNewItem: </span><span class="nf">-&gt;</span>
+      <span class="nx">@get</span><span class="p">(</span><span class="s">"itemToAdd"</span><span class="p">).</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="nv">hasSelectedItem: </span><span class="nf">-&gt;</span>
+      <span class="nx">@get</span><span class="p">(</span><span class="s">"selectedItems"</span><span class="p">).</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="nv">canSort: </span><span class="nf">-&gt;</span>
+      <span class="nx">@get</span><span class="p">(</span><span class="s">"allItems"</span><span class="p">).</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span>
+<span class="nx">ractive</span><span class="p">.</span><span class="nx">on</span>
+  <span class="nv">addItem: </span><span class="nf">(e) -&gt;</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">original</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
+    <span class="k">unless</span> <span class="nx">@get</span><span class="p">(</span><span class="s">"itemToAdd"</span><span class="p">)</span> <span class="o">is</span> <span class="s">""</span>
+      <span class="nx">@get</span><span class="p">(</span><span class="s">"allItems"</span><span class="p">).</span><span class="nx">push</span> <span class="nx">@get</span><span class="p">(</span><span class="s">"itemToAdd"</span><span class="p">)</span>
+      <span class="nx">@set</span><span class="p">(</span><span class="s">"itemToAdd"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+  <span class="nv">removeSelected: </span><span class="nf">(e) -&gt;</span>
+    <span class="nx">@set</span><span class="p">(</span><span class="s">"allItems"</span><span class="p">,</span> <span class="nx">_</span><span class="p">.</span><span class="nx">difference</span><span class="p">(</span><span class="nx">@get</span><span class="p">(</span><span class="s">"allItems"</span><span class="p">),</span> <span class="nx">@get</span><span class="p">(</span><span class="s">"selectedItems"</span><span class="p">)))</span>
+    <span class="nx">@set</span><span class="p">(</span><span class="s">"selectedItems"</span><span class="p">,</span> <span class="p">[])</span>
+  <span class="nv">sortItems: </span><span class="nf">(e) -&gt;</span>
+    <span class="nx">@set</span><span class="p">(</span><span class="s">"allItems"</span><span class="p">,</span> <span class="nx">@get</span><span class="p">(</span><span class="s">"allItems"</span><span class="p">).</span><span class="nx">sort</span><span class="p">())</span>
+</pre></div></div>
+
+<h1>
+<span id="感想" class="fragment"></span><a href="#%E6%84%9F%E6%83%B3"><i class="fa fa-link"></i></a>感想</h1>
+
+<ul>
+<li>ほぼMustacheの知識だけで使うことが出来る(Mustache自身もすごく単純)</li>
+<li>View側にロジックなくていい</li>
+<li>data定義に「ko.observable」とかが不要で、ハンドラの定義位置が別なのもいい</li>
+<li>scriptタグ内にHTML書くのちょっと辛い(エディタ的に)</li>
+<li>getter, setterがKnockoutよりダサい</li>
+</ul>
+
+<p>Ractive.jsいいですね!<br>
+Backbone.jsと組み合わせて使う方法もあるみたいなので、しばらく使い続けようと思います。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -173,23 +1204,64 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />7位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>60</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/0d9ba557b01c93805d4e">PHPでオブジェクトを配列に変換</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>16</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/29a9b43e5395ccaabc04">某お絵描きアプリをBackbone.jsに移植してみた</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-01-25 23:38:01</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-02-24 08:32:01</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[PHP]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Backbone.js]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>ふと思い立って友人の作った「ひかりのくれよん」というアプリをBackbone.jsを使うよう移植してみました。<br>
+先日、WebSocketを使ったお絵描きチャット風に改造して「みんなのひかりのくれよん」として公開しました。</p>
+
+<p><a href="http://hikari-no-crayon.herokuapp.com/" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/a654bca3727a6bc77cb3cc8a925e18ff61fb5d5d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31313931362f32613434633031312d333335342d656664382d336664382d3835313134623735333635362e706e67" alt="bb.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/11916/2a44c011-3354-efd8-3fd8-85114b753656.png"></a></p>
+
+<h3>
+<span id="デモサイト" class="fragment"></span><a href="#%E3%83%87%E3%83%A2%E3%82%B5%E3%82%A4%E3%83%88"><i class="fa fa-link"></i></a>デモサイト</h3>
+
+<ul>
+<li><a href="http://hikari-no-crayon.herokuapp.com/" rel="nofollow noopener" target="_blank">みんなのひかりのくれよん(Backbone.jsで移植した版)</a></li>
+<li><a href="http://mrkuc.github.io/Hikari-no-Crayon/" rel="nofollow noopener" target="_blank">ひかりのくれよん(オリジナル版)</a></li>
+</ul>
+
+<h3>
+<span id="github" class="fragment"></span><a href="#github"><i class="fa fa-link"></i></a>github</h3>
+
+<ul>
+<li><a href="https://github.com/mrkuc/Hikari-no-Crayon" rel="nofollow noopener" target="_blank">ひかりのくれよん</a></li>
+<li><a href="https://github.com/tekkoc/Hikari-no-Crayon" rel="nofollow noopener" target="_blank">みんなのひかりのくれよん</a></li>
+</ul>
+
+<p>最近何かと話題のAngularJS等と比べて、やや目立たなくなってきた感のあるBackbone.jsですが、既存のアプリの移植に使うのには結構アリだなというのが感想です。</p>
+
+<p><strong>Backboneは背骨となる部分を提供してくれるだけで、あまり細かいところまで面倒見てくれないのですが、それが逆に既存のアプリを移植するのにはとてもやりやすかったです。</strong><br>
+何をBackboneにおけるModelやCollectionにするか、どの単位でViewにするかで悩みましたが、いざ決まるとすいすいと移植出来ました。</p>
+
+<p><strong>Backboneで実装しなおすことでアプリ内に構造が出来て、どの機能をどこに足すのか少しはわかりやすくなった</strong>かなと思います。ただ、アプリの性質もあってコード量が短くなる事にはあまり貢献しませんでした。体感的には、むしろコード量が増えた気もしてます。（あわせてCoffeeScriptに変換したため、公平な比較は出来ませんが……）</p>
+
+<p><strong>AngularJS等生産性の高いフレームワークはよく「レールに乗っている内は楽だが、レールから逸れると辛い」みたいな話を聞くのですが、Backbone.jsは「レールから逸れても割と何とかなるが、レールがそもそもそんなにない」みたいな感じだと思ってます。</strong></p>
+
+<p>背骨を提供されるだけで色々強制されず自由に出来る代わりに、色々なものを自分で取捨選択しないといけない。そういう自由度が僕は好きなんですが、ここら辺は好みが分かれるところだと思います。</p>
+
+<p>Backbone.jsもよくあるパターンの開発にはChaplin.jsやMarionette.js、Ractive.jsなどを使って効率よく、かつコード数を減らして開発が行えますし、変わったパターンにも対応しやすかったりで、まだまだ魅力あるフレームワークだと思っているので、もうしばらく使い続けていきたいなーと思います。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -197,23 +1269,221 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />8位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>54</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/eb5ab65524c3e5b4a11c">Backbone.jsなどのライブラリのgetter, setterがダサい理由と、その解消方法</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>14</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/8e901196c3403c2194fb">Backbone.jsによる簡単pjaxサンプル</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-02-17 01:13:23</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-12-07 16:25:19</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Backbone.js]</b> <b>[knockoutjs]</b> <b>[RactiveJS]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[CoffeeScript]</b> <b>[Backbone.js]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Backboneのrouterやpjaxを一度試してみたかったので、簡単なサンプルみたいなものを作ってみました。</p>
+
+<ul>
+<li><a href="http://tekkoc.github.io/backbone_pjax/public/" rel="nofollow noopener" target="_blank">サンプルデモ</a></li>
+<li><a href="https://github.com/tekkoc/backbone_pjax" rel="nofollow noopener" target="_blank">github</a></li>
+</ul>
+
+<p>なお、一度でも遷移した後にリロードすると404になります。実際にはサーバ側の対応が必要になります。</p>
+
+<h1>
+<span id="コード" class="fragment"></span><a href="#%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>コード</h1>
+
+<p>JSの代わりにCoffeeScript、HTMLの代わりにJadeで書いています。</p>
+
+<div class="code-frame" data-lang="jade"><div class="highlight"><pre><span></span><span class="nn">!!!5</span>
+<span class="nt">title</span> = "Backbone router sample"
+<span class="nt">html</span>
+  <span class="nt">head</span>
+    <span class="nt">script</span>(<span class="na">src=</span><span class="s">"lib/jquery/jquery.min.js"</span>)
+    <span class="nt">script</span>(<span class="na">src=</span><span class="s">"lib/underscore/underscore.js"</span>)
+    <span class="nt">script</span>(<span class="na">src=</span><span class="s">"lib/backbone/backbone.js"</span>)
+    <span class="nt">script</span>(<span class="na">src=</span><span class="s">"lib/mustache/mustache.js"</span>)
+    <span class="nt">script</span>(<span class="na">src=</span><span class="s">"lib/bootstrap/dist/js/bootstrap.min.js"</span>)
+    <span class="nt">script</span>(<span class="na">src=</span><span class="s">"js/main.js"</span>)
+    <span class="nt">link</span>(<span class="na">href=</span><span class="s">"lib/bootstrap/dist/css/bootstrap.min.css"</span><span class="err">,</span> <span class="na">rel=</span><span class="s">"stylesheet"</span>)
+    <span class="nt">link</span>(<span class="na">href=</span><span class="s">"css/main.css"</span><span class="err">,</span> <span class="na">rel=</span><span class="s">"stylesheet"</span>)
+    <span class="nt">meta</span>(<span class="na">charset=</span><span class="s">"utf-8"</span>)
+    <span class="nt">meta</span>(<span class="na">name=</span><span class="s">"apple-mobile-web-app-capable"</span><span class="err">,</span> <span class="na">content=</span><span class="s">"yes"</span>)
+    <span class="nt">meta</span>(<span class="na">name=</span><span class="s">"apple-mobile-web-app-status-bar-style"</span><span class="err">,</span> <span class="na">content=</span><span class="s">"black"</span>)
+    <span class="nt">meta</span>(<span class="na">name=</span><span class="s">"viewport"</span><span class="err">,</span> <span class="na">content=</span><span class="s">"width=device-width,initial-scale=1.0"</span>)
+    <span class="nt">title</span><span class="p">=</span> <span class="n">title</span>
+    <span class="nt">script</span><span class="nf">#index_view_template</span>(<span class="na">type=</span><span class="s">"template"</span>)
+      <span class="nc">.jumbotron</span>
+        <span class="nc">.container</span>
+          <span class="nt">h2</span> トップページ
+          <span class="nt">ul</span><span class="nc">.list-group</span>
+            <span class="nt">li</span><span class="nc">.list-group-item</span>
+              <span class="nt">a</span><span class="nc">.link</span>(<span class="na">href=</span><span class="s">"other"</span>) other
+            <span class="nt">li</span><span class="nc">.list-group-item</span>
+              <span class="nt">a</span><span class="nc">.link</span>(<span class="na">href=</span><span class="s">"other/1"</span>) other(1)
+            <span class="nt">li</span><span class="nc">.list-group-item</span>
+              <span class="nt">a</span><span class="nc">.link</span>(<span class="na">href=</span><span class="s">"other/2"</span>) other(2)
+    <span class="nt">script</span><span class="nf">#other_view_template</span>(<span class="na">type=</span><span class="s">"template"</span>)
+      <span class="nc">.jumbotron</span>
+        <span class="nc">.container</span>
+          <span class="nt">p</span> 指定された値 {{val}}
+  <span class="nt">body</span>
+    <span class="nc">.navbar.navbar-default.navbar-static-top</span>
+      <span class="nc">.container</span>
+        <span class="nc">.navbar-header</span>
+          <span class="nt">a</span><span class="nc">.link.navbar-brand</span>(<span class="na">href=</span><span class="s">""</span>)<span class="p">=</span> <span class="n">title</span>
+        <span class="nc">.navbar-collapse.collapse</span>
+          <span class="nt">ul</span><span class="nc">.nav.navbar-nav</span>
+            <span class="nt">li</span>
+              <span class="nt">a</span><span class="nc">.link</span>(<span class="na">href=</span><span class="s">"other"</span>) other
+            <span class="nt">li</span>
+              <span class="nt">a</span><span class="nc">.link</span>(<span class="na">href=</span><span class="s">"other/1"</span>) other(1)
+            <span class="nt">li</span>
+              <span class="nt">a</span><span class="nc">.link</span>(<span class="na">href=</span><span class="s">"other/2"</span>) other(2)
+    <span class="nf">#test</span>
+      <span class="nt">marquee</span> あなたの予想に反して、この文字はスクロールし続けていますか？
+    <span class="nf">#app_view</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="coffeescript"><div class="highlight"><pre><span></span><span class="nx">$</span> <span class="nf">=&gt;</span>
+  <span class="nv">body_view = </span><span class="k">new</span> <span class="nx">BodyView</span><span class="p">()</span>
+
+  <span class="k">new</span> <span class="nx">Router</span><span class="p">()</span>
+
+  <span class="c1"># pushStateするためには、サーバ側対応が必要</span>
+  <span class="nx">Backbone</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="nv">pushState: </span><span class="kc">true</span><span class="p">)</span>
+  <span class="c1"># Backbone.history.start()</span>
+
+<span class="c1"># 全体のルーティングを行う</span>
+<span class="nv">Router = </span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">extend</span>
+  <span class="c1"># Singletonパターン</span>
+  <span class="c1"># 通常、色々なイベントで遷移するため、Singletonに</span>
+  <span class="nv">constructor: </span><span class="nf">-&gt;</span>
+    <span class="k">if</span> <span class="o">!</span><span class="nx">Router</span><span class="p">.</span><span class="nx">instance</span>
+      <span class="nv">Router.instance = </span><span class="nx">@</span>
+      <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">Router</span><span class="p">.</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span>
+    <span class="nx">Router</span><span class="p">.</span><span class="nx">instance</span>
+
+  <span class="c1"># どこにアクセスされたら、どの関数を呼ぶか定義</span>
+  <span class="nv">routes:</span>
+    <span class="s">""</span><span class="o">:</span> <span class="s">"index"</span>
+    <span class="s">"other"</span><span class="o">:</span> <span class="s">"other"</span>
+    <span class="s">"other/:id"</span><span class="o">:</span> <span class="s">"other"</span>
+
+  <span class="c1"># ------------------------------------------</span>
+  <span class="c1"># 対応するビュークラスを生成し表示処理を呼ぶ</span>
+  <span class="c1"># ------------------------------------------</span>
+
+  <span class="nv">index: </span><span class="nf">-&gt;</span>
+    <span class="vi">@index_view = </span><span class="k">new</span> <span class="nx">IndexView</span><span class="p">()</span> <span class="k">unless</span> <span class="nx">@index_view</span>
+    <span class="nx">@index_view</span><span class="p">.</span><span class="nx">render</span><span class="p">()</span>
+
+  <span class="nv">other: </span><span class="nf">(id) -&gt;</span>
+    <span class="vi">@other_view = </span><span class="k">new</span> <span class="nx">OtherView</span><span class="p">()</span> <span class="k">unless</span> <span class="nx">@other_view</span>
+    <span class="nx">@other_view</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nv">id: </span><span class="nx">id</span><span class="p">)</span>
+
+<span class="c1"># body要素ビュー。全体のリンク処理を扱う</span>
+<span class="nv">BodyView = </span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span>
+  <span class="nv">el: </span><span class="s">'body'</span>
+
+  <span class="c1"># class="link"な要素がクリックされたらlink関数を呼ぶように</span>
+  <span class="nv">events:</span>
+    <span class="s">"click .link"</span><span class="o">:</span> <span class="s">"link"</span>
+
+  <span class="c1"># 通常のリンクによる遷移をキャンセルし、Backbone.Routerによる遷移を行う</span>
+  <span class="nv">link: </span><span class="nf">(e) -&gt;</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
+    <span class="p">(</span><span class="k">new</span> <span class="nx">Router</span><span class="p">()).</span><span class="nx">navigate</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s">"href"</span><span class="p">),</span> <span class="nv">trigger: </span><span class="kc">true</span><span class="p">)</span>
+
+<span class="c1"># 各ページ用ビューの抽象クラス</span>
+<span class="nv">PageViewBase = </span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span>
+  <span class="nv">el: </span><span class="s">'#app_view'</span>
+
+  <span class="c1"># テンプレートが書かれているscriptタグのid名</span>
+  <span class="c1"># 上書きを想定</span>
+  <span class="nv">template_name: </span><span class="s">""</span>
+
+  <span class="nv">initialize: </span><span class="nf">() -&gt;</span>
+    <span class="c1"># テンプレートを読みこんでおく</span>
+    <span class="vi">@template = </span><span class="nx">$</span><span class="p">(</span><span class="nx">@template_name</span><span class="p">).</span><span class="nx">text</span><span class="p">()</span>
+
+  <span class="c1"># HTMLを描画する際に呼び出される関数</span>
+  <span class="c1"># 上書きを想定</span>
+  <span class="nv">execute: </span><span class="nf">(params) -&gt;</span> <span class="p">{}</span>
+
+  <span class="c1"># 描画処理。前後でフェードインとフェードアウトをするように</span>
+  <span class="nv">render: </span><span class="nf">(params) -&gt;</span>
+    <span class="nx">@$el</span><span class="p">.</span><span class="nx">fadeOut</span> <span class="s">"fast"</span><span class="p">,</span> <span class="nf">=&gt;</span>
+      <span class="nx">@$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">Mustache</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">@template</span><span class="p">,</span> <span class="nx">@execute</span><span class="p">(</span><span class="nx">params</span><span class="p">)))</span>
+      <span class="nx">@$el</span><span class="p">.</span><span class="nx">fadeIn</span><span class="p">(</span><span class="s">"fast"</span><span class="p">)</span>
+
+<span class="c1"># ==========================================</span>
+<span class="c1"># ここから各ページの定義</span>
+<span class="c1"># ==========================================</span>
+
+<span class="c1"># 単に表示のみ行う</span>
+<span class="nv">IndexView = </span><span class="nx">PageViewBase</span><span class="p">.</span><span class="nx">extend</span>
+  <span class="nv">template_name: </span><span class="s">'#index_view_template'</span>
+
+<span class="c1"># 適当に値を受けとるパターン</span>
+<span class="nv">OtherView = </span><span class="nx">PageViewBase</span><span class="p">.</span><span class="nx">extend</span>
+  <span class="nv">template_name: </span><span class="s">'#other_view_template'</span>
+
+  <span class="nv">execute: </span><span class="nf">(params) -&gt;</span>
+    <span class="c1"># idが指定されていない場合0とする</span>
+    <span class="nv">params.id = </span><span class="mi">0</span> <span class="k">unless</span> <span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="o">?</span>
+    <span class="nv">val: </span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span>
+</pre></div></div>
+
+<h1>
+<span id="ちょっとした解説" class="fragment"></span><a href="#%E3%81%A1%E3%82%87%E3%81%A3%E3%81%A8%E3%81%97%E3%81%9F%E8%A7%A3%E8%AA%AC"><i class="fa fa-link"></i></a>ちょっとした解説</h1>
+
+<h2>
+<span id="リンクの仕方" class="fragment"></span><a href="#%E3%83%AA%E3%83%B3%E3%82%AF%E3%81%AE%E4%BB%95%E6%96%B9"><i class="fa fa-link"></i></a>リンクの仕方</h2>
+
+<p>linkクラスの付いたaタグをページ内リンクとして扱うことにしていて、通常の遷移の代わりにpjaxによる遷移にしています。</p>
+
+<p>リンク監視用としてbody要素を対象にしているBodyViewを定義して、そこでハンドリングを行っています。</p>
+
+<h2>
+<span id="router" class="fragment"></span><a href="#router"><i class="fa fa-link"></i></a>Router</h2>
+
+<p>Backbone.Routerを継承したオブジェクト内で、どこにアクセスされたら、何をするかを定義をしています。</p>
+
+<p>対応するViewオブジェクトを生成し描画を行っています。</p>
+
+<p>また、Routerは通常色々な箇所から呼ばれるためシングルトンにしています。</p>
+
+<h2>
+<span id="pageviewbase" class="fragment"></span><a href="#pageviewbase"><i class="fa fa-link"></i></a>PageViewBase</h2>
+
+<p>各ページ用Viewオブジェクトの継承元。</p>
+
+<p>テンプレートの読み込み、表示の際のフェードイン・フェードアウトを行っています。</p>
+
+<p>継承先のIndexViewとOtherViewで、テンプレート名や、レンダリング時に渡すパラメータを指定するためのexecute関数のオーバーライドを行っています。</p>
+
+<h2>
+<span id="テンプレート" class="fragment"></span><a href="#%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88"><i class="fa fa-link"></i></a>テンプレート</h2>
+
+<p>各ページのHTMLはscriptタグ内に書いています。本来は別ファイルで記述出来るようにすべきですね。</p>
+
+<p>jadeとmustacheを組み合わせて使っています。mustacheの「{{hoge}}」を含んだjadeをHTMLに変換してもmustache用のタグは残ったままになるので、それを更にJSでHTMLを書き換える際のテンプレートとして使っています。</p>
+
+<p>jadeでシンプルに書きつつ、mustacheによるロジックレステンプレートを使っているので、ごちゃごちゃしてなくて結構好きです。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -221,23 +1491,44 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />9位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>26</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/1513188c05f615f75848">噂のRactive.jsをKnockout.jsと比べてみた</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/5ed37ddeef6545141e03">VimでHJKLをスーパーなhjklにする！</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-02-16 15:49:43</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-02-25 22:36:21</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[CoffeeScript]</b> <b>[knockoutjs]</b> <b>[RactiveJS]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Vimには多彩な移動がありますが、あまり考えずに移動するためにHJKLをスーパーなhjklとしてマッピングしています。</p>
+
+<div class="code-frame" data-lang="vim"><div class="highlight"><pre><span></span><span class="c">" シフトで多めに移動</span>
+<span class="nb">nnoremap</span> J <span class="m">20</span>j
+<span class="nb">nnoremap</span> K <span class="m">20</span>k
+<span class="nb">nnoremap</span> L <span class="m">10</span>l
+<span class="nb">nnoremap</span> H <span class="m">10</span>h
+</pre></div></div>
+
+<p>これで、シフトを押しながらhjklを押すと、(つまりHJKLを押すと)通常よりも多く移動することが出来ます。<br>
+意図した場所に的確に移動する方法はたくさんありますが、これは何も考えなくても大体狙った所へ移動出来るので大変重宝してます。</p>
+
+<p>移動量を増やしたり、<code>vnoremap J 20j</code>のようにヴィジュアルモードでも有効にするのはお好みで。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -245,23 +1536,54 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />10位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>24</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/5692984700096cf26aaa">Unityでフリック入力</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/de25bbf595de8c5f73ec">Vimで透明・不透明を瞬時に切り替える</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-07-14 00:50:52</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-07-09 23:57:20</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[Unity]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>以前、MacVimの背景を透過させる設定をしていました。<br>
+表示は格好良くなってとてもお気に入りだったのですが、一日に何度か透明だと困るケース(コードをgyazoりたいとか、裏に見えるものが邪魔くさいとか)が発生したため、結局止めてしまいました。</p>
+
+<p>ただ、よくよく考えれば、透明にするかを瞬時に切り替えれれば何も問題ないことに気付きました。</p>
+
+<div class="code-frame" data-lang="vim"><div class="highlight"><pre><span></span><span class="k">function</span><span class="p">!</span> s:toggle_transparence<span class="p">()</span>
+    <span class="k">if</span> &amp;transparency <span class="p">==</span> <span class="m">10</span>
+        <span class="k">set</span> transparency<span class="p">=</span><span class="m">0</span>
+    <span class="k">else</span>
+        <span class="k">set</span> transparency<span class="p">=</span><span class="m">10</span>
+    <span class="k">endif</span>
+<span class="k">endfunction</span>
+<span class="nb">nnoremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span>Space<span class="p">&gt;</span>oT :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span><span class="k">call</span> <span class="p">&lt;</span>SID<span class="p">&gt;</span>toggle_transparence<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+</pre></div></div>
+
+<p>これで「Space + o + T」と入力するだけで簡単に切り替えが出来るようになりました。</p>
+
+<ul>
+<li><a href="http://qiita.com/tekkoc@github/items/f5157419be57b17fd24a" id="reference-bdde255256bf1d502cad">Vim - タブ幅を瞬時に切り替える - Qiita [キータ]</a></li>
+</ul>
+
+<p>やっている事は↑と同じです。<br>
+基本「Space + o + 何か」で設定(オプション)をトグルするようなマッピングにしています。簡単な規則を作るとやや長いマピングも覚えやすくなるので、おすすめです。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -269,23 +1591,76 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />11位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>21</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/1ca56efc0a1c365a693f">「プログラムでシダを描画する」をVue.jsで描画する(+α)</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/086cb68835b83a5c9e93">Mac OS X(Mavericks)にAnsibleをインストールする際に出たエラーの対処</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-05-30 12:50:18</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-03-19 08:21:11</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[vue.js]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[OSX]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>インストール・セットアップ地獄から逃れるためにAnsibleに挑戦しようと思ったのですが、肝心のAnsibleを入れる際にエラーが出まくって辛かったので、解消するためにやったことを共有。</p>
+
+<p>pip, easyinstall自体は以前Pythonを触ったときにインストールしていたのですが、なぜか実行時にエラーが発生しトレース情報だけが表示される感じでした。</p>
+
+<h2>
+<span id="easyinstallを再度インストール" class="fragment"></span><a href="#easyinstall%E3%82%92%E5%86%8D%E5%BA%A6%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>easyinstallを再度インストール</h2>
+
+<div class="code-frame" data-lang="shell-session"><div class="highlight"><pre><span></span><span class="go">curl http://python-distribute.org/distribute_setup.py | sudo python</span>
+</pre></div></div>
+
+<h3>
+<span id="参考元" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E5%85%83"><i class="fa fa-link"></i></a>参考元</h3>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/7110360/easy-install-and-pip-doesnt-work" rel="nofollow noopener" target="_blank">python - Easy_install and Pip doesn't work - Stack Overflow</a></li>
+</ul>
+
+<h2>
+<span id="easyinstallからpipをインストール" class="fragment"></span><a href="#easyinstall%E3%81%8B%E3%82%89pip%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>easyinstallからpipをインストール</h2>
+
+<p>ここはふつう通り<br>
+<code>shell-session<br>
+sudo easyinstall pip<br>
+</code></p>
+
+<h2>
+<span id="pipからansibleをインストール" class="fragment"></span><a href="#pip%E3%81%8B%E3%82%89ansible%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>pipからAnsibleをインストール</h2>
+
+<div class="code-frame" data-lang="shell-session"><div class="highlight"><pre><span></span><span class="go">sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install ansible</span>
+</pre></div></div>
+
+<h3>
+<span id="参考元-1" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E5%85%83-1"><i class="fa fa-link"></i></a>参考元</h3>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/22313407/clang-error-unknown-argument-mno-fused-madd-python-package-installation-fa" rel="nofollow noopener" target="_blank">clang error: unknown argument: '-mno-fused-madd' (python package installation failure) - Stack Overflow</a></li>
+</ul>
+
+<p>他にも色々試したましたが結果的には↑2つで解決しました。</p>
+
+<h2>
+<span id="追記20140319-2014" class="fragment"></span><a href="#%E8%BF%BD%E8%A8%9820140319-2014"><i class="fa fa-link"></i></a>追記(2014/03/19 20:14)</h2>
+
+<p>コメント欄で指摘されましたが、pipのインストールは<a href="http://pip.readthedocs.org/en/latest/installing.html" rel="nofollow noopener" target="_blank">Installation — pip 1.5.4 documentation</a>に書いてある通りget-pip.py経由で行うのが今どきだそうです。<br>
+自分はそれでも失敗してしまったので、↑の方法で逃げることにしました。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -293,23 +1668,84 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />12位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>16</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/29a9b43e5395ccaabc04">某お絵描きアプリをBackbone.jsに移植してみた</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/8c78e01167953ab513f9">ctrlp.vimのプロンプトのマッピングを変更する</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-02-24 08:32:01</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-03-02 02:21:53</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[Backbone.js]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Vimでファイルを開いたりする定番プラグインの一つに、ctrlp.vimというプラグインがあります。</p>
+
+<ul>
+<li><a href="http://kien.github.io/ctrlp.vim/" rel="nofollow noopener" target="_blank">ctrlp.vim ÷ home</a></li>
+</ul>
+
+<p>見た目がよく、特別な設定なしに軽快に動き、なかなかいいですね。</p>
+
+<p>僕はUnite.vimをメインに使っていたために今まで導入していなかったのですが、「ディレクトリ配下全てのファイルから、特定のファイルを開く」というケースではctrlp.vimを使うようになりました。</p>
+
+<p>ただ、ctrlp.vimのプロンプトでは結構大胆にキーマッピングを潰される上、自分の直感とずれててとても使いにくく感じました。<br>
+幸い、<code>g:ctrlp_prompt_mappings</code>変数で一括で変更出来るので思い切り変更しました。</p>
+
+<div class="code-frame" data-lang="vim"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="k">g</span>:ctrlp_map <span class="p">=</span> <span class="s1">'&lt;C-f&gt;'</span>
+<span class="k">let</span> <span class="k">g</span>:ctrlp_prompt_mappings <span class="p">=</span> {
+  \ <span class="s1">'PrtBS()'</span>:              [<span class="s1">'&lt;c-h&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtDeleteWord()'</span>:      [<span class="s1">'&lt;c-w&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtCurEnd()'</span>:          [<span class="s1">'&lt;c-e&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtCurLeft()'</span>:         [<span class="s1">'&lt;c-b&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtCurRight()'</span>:        [<span class="s1">'&lt;c-f&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtSelectMove("j")'</span>:   [<span class="s1">'&lt;c-j&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtSelectMove("k")'</span>:   [<span class="s1">'&lt;c-k&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtHistory(-1)'</span>:       [<span class="s1">'&lt;c-n&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtHistory(1)'</span>:        [<span class="s1">'&lt;c-p&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'AcceptSelection("e")'</span>: [<span class="s1">'&lt;cr&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'ToggleRegex()'</span>:        [<span class="s1">'&lt;c-r&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'ToggleByFname()'</span>:      [<span class="s1">'&lt;c-d&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtExit()'</span>:            [<span class="s1">'&lt;c-l&gt;'</span><span class="p">,</span> <span class="s1">'&lt;esc&gt;'</span><span class="p">,</span> <span class="s1">'&lt;c-c&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'ToggleFocus()'</span>:        [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtExpandDir()'</span>:       [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'AcceptSelection("h")'</span>: [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span> 
+  \ <span class="s1">'AcceptSelection("t")'</span>: [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'AcceptSelection("v")'</span>: [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'ToggleType(1)'</span>:        [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'ToggleType(-1)'</span>:       [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtInsert()'</span>:          [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtCurStart()'</span>:        [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtClearCache()'</span>:      [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtDeleteEnt()'</span>:       [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'CreateNewFile()'</span>:      [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'MarkToOpen()'</span>:         [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'OpenMulti()'</span>:          [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtDelete()'</span>:          [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtSelectMove("t")'</span>:   [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtSelectMove("b")'</span>:   [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtSelectMove("u")'</span>:   [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ <span class="s1">'PrtSelectMove("d")'</span>:   [<span class="s1">'&lt;nop&gt;'</span>]<span class="p">,</span>
+  \ }
+</pre></div></div>
+
+<p><code>&lt;c-h&gt;</code>で削除、<code>&lt;c-f&gt;</code>と<code>&lt;c-b&gt;</code>で前後にカーソル移動、単純にファイルを開く以上に使うキーは未設定にしました。また、プラグイン名の通り<code>&lt;c-f&gt;</code>で動作を開始させるのも、既存のマッピングに衝突していたので、<code>&lt;c-f&gt;</code>に変更しました。</p>
+
+<p>ctrlp.vimの魅力を犠牲にするような設定で偲びないですが、複雑なことはUnite.vimや他のプラグインを使うので、こんな感じで使っていこうと思います。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -317,23 +1753,57 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />13位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>14</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/8e901196c3403c2194fb">Backbone.jsによる簡単pjaxサンプル</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/f5157419be57b17fd24a">タブ幅を瞬時に切り替える</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-12-07 16:25:19</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-06-14 08:51:19</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[CoffeeScript]</b> <b>[Backbone.js]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>普段タブ幅4のタブインデントなファイルをよく弄ります。<br>
+僕としてはタブ幅は2もあれば十分で切り替えたいのですが、いかんせん行末のコメントなどでタブを使っている場合などに、見た目の整合性が取れなくなるため自重していました。</p>
+
+<p>ただ、逆に言えばコミット時などにサクっと切り替えさえ出来れば普段タブ幅2でも生きていけると思い、ざっくりと切り替える用のマッピングを用意しました。</p>
+
+<div class="code-frame" data-lang="vim"><div class="highlight"><pre><span></span><span class="k">function</span><span class="p">!</span> s:toggle_indent<span class="p">()</span>
+    <span class="k">if</span> &amp;<span class="nb">tabstop</span> <span class="p">==</span> <span class="m">2</span>
+        <span class="k">setlocal</span> <span class="nb">shiftwidth</span><span class="p">=</span><span class="m">4</span>
+        <span class="k">setlocal</span> <span class="nb">tabstop</span><span class="p">=</span><span class="m">4</span>
+        <span class="k">setlocal</span> <span class="nb">softtabstop</span><span class="p">=</span><span class="m">4</span>
+    <span class="k">else</span>
+        <span class="k">setlocal</span> <span class="nb">shiftwidth</span><span class="p">=</span><span class="m">2</span>
+        <span class="k">setlocal</span> <span class="nb">tabstop</span><span class="p">=</span><span class="m">2</span>
+        <span class="k">setlocal</span> <span class="nb">softtabstop</span><span class="p">=</span><span class="m">2</span>
+    <span class="k">endif</span>
+<span class="k">endfunction</span>
+<span class="nb">nnoremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span>Space<span class="p">&gt;</span>ot :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span><span class="k">call</span> <span class="p">&lt;</span>SID<span class="p">&gt;</span>toggle_indent<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+</pre></div></div>
+
+<p>ビックリするくらいアナログですね！</p>
+
+<p>ノーマルモードで「スペース → o → t」と押すとタブ幅が2と4で切り替わります。</p>
+
+<p>既存のタブ幅を半分にしたり戻したり出来るプラグインを作ると良さそうとか思いつつ、↑の用な設定だけして誤魔化してます。</p>
+
+<p>スペースインデント派だった僕ですが、こういう設定をするとタブインデントも悪くないかなと思うようになりました。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -341,23 +1811,71 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />14位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>11</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/aceb0b8d645d9d851ce3">ソーシャルボタンを簡単一括配置する</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/de56e2dfaf6a9a5aeb09">Unite.vimでSkypeチャットルームを開く</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-06-15 16:27:38</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-06-08 16:51:49</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="ショートカットの作りかた" class="fragment"></span><a href="#%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%81%AE%E4%BD%9C%E3%82%8A%E3%81%8B%E3%81%9F"><i class="fa fa-link"></i></a>ショートカットの作りかた</h1>
+
+<ul>
+<li><a href="http://www.infiniteloop.co.jp/blog/2012/09/skypegeturi/" rel="nofollow noopener" target="_blank">100個を超えても大丈夫！！Skypeチャットルームの多さにうんざりしている人のための「/get uri」入門 | 株式会社インフィニットループ技術ブログ</a></li>
+</ul>
+
+<p>この記事で紹介されている通り「/get uri」を使うことで直接チャット窓を開けるためのショートカットが出来ます。</p>
+
+<h1>
+<span id="開き方" class="fragment"></span><a href="#%E9%96%8B%E3%81%8D%E6%96%B9"><i class="fa fa-link"></i></a>開き方</h1>
+
+<p>上記記事内ではキーボードオンリーで特定のチャットを「絞り込み&amp;開く」ためにSpotlight等を勧められています。<br>
+また、Alfredで開くようにするのも流行っているみたいです。</p>
+
+<p>ただ自分の場合、次のような理由からUnite.vimで開くことにしました。</p>
+
+<ul>
+<li>Vimで清書してから貼り付けたい事が多い(そうでなえればマウスでもいい)</li>
+<li>そもそも「絞り込んで何かをする」と言えばUnite.vim</li>
+<li>設定も簡単に出きそう</li>
+</ul>
+
+<h1>
+<span id="設定の仕方" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9A%E3%81%AE%E4%BB%95%E6%96%B9"><i class="fa fa-link"></i></a>設定の仕方</h1>
+
+<p>Uniteからチャットを開くのは簡単です。<br>
+「:Unite file」等を使いskypeチャットのショートカットを絞りこみ、startアクションを実行する、ただそれだけです。</p>
+
+<div class="code-frame" data-lang="vim"><div class="highlight"><pre><span></span>command<span class="p">!</span> <span class="p">-</span>nargs<span class="p">=</span><span class="m">0</span> Skype :Unite file_rec<span class="sr">/async:~/</span>skype_link <span class="p">-</span>buffer<span class="p">-</span>name<span class="p">=</span><span class="k">file</span> <span class="p">-</span><span class="k">start</span><span class="p">-</span>insert <span class="p">-</span>default<span class="p">-</span>action<span class="p">=</span><span class="k">start</span>
+<span class="nb">nnoremap</span> <span class="p">&lt;</span>Space<span class="p">&gt;</span>s :Skype<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</pre></div></div>
+
+<p>「~/skype_link」にショートカットを置いていることが前提です。<br>
+default-actionとしてstartを設定しているので、Enterするだけで開けます。</p>
+
+<p>「:Skype」で起動しますが、それですら面倒なのでノーマルモードでの「s」でも起動するようにしています。</p>
+
+<p>これでVimでチャット用の文章を書いてから、チャットに貼り付ける作業がとても楽になりました。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -365,23 +1883,52 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />15位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>10</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/4e8be19aa36d24d8851d">clever-f.vimでf連打が便利すぎる件</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/0fb37d5ee681404497ac">VimでGitのルートディレクトリのパスへ移動</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-08-17 23:49:06</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-11-24 23:24:00</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> <b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Gitのルートディレクトリのパスは、以下のコマンドで取得出来ます。</p>
+
+<p>相対パス</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git rev-parse --show-cdup
+</pre></div></div>
+
+<p>絶対パス</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git rev-parse --show-toplevel
+</pre></div></div>
+
+<p>Gitの管理下で実行しないとエラーを吐きます。</p>
+
+<p>ということで、早速vimのカレントディレクトリを自動で移動するようにしよう……と思ったら、プラグインが既にありました。</p>
+
+<ul>
+<li><a href="https://github.com/airblade/vim-rooter" rel="nofollow noopener" target="_blank">airblade/vim-rooter</a></li>
+</ul>
+
+<p>機能的には十分というか、むしろGit以外にも対応していたりと高機能だったので、結局これを使うことにしました……w</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -389,23 +1936,71 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />16位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/5ed37ddeef6545141e03">VimでHJKLをスーパーなhjklにする！</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/66c8e10c8a1075e1380e">Marionette.jsでmustache.js(Hogan.js)を使う</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-02-25 22:36:21</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-01-08 23:12:19</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Backbone.js]</b> <b>[Marionette.js]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Marionette.jsのItemViewで定義されているrender関数では、Underscore.jsの_.templateが使われています。</p>
+
+<p>これをmustache.jsを使うように置き換える場合は、Backbone.Marionette.Renderer.renderを置き換えればOKです。</p>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/11084021/how-to-use-backbone-marionette-itemview-with-mustache" rel="nofollow noopener" target="_blank">backbone.js - How to use Backbone.Marionette.ItemView with Mustache - Stack Overflow</a></li>
+</ul>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">Marionette</span><span class="p">.</span><span class="nx">Renderer</span><span class="p">.</span><span class="nx">render</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">template</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">Mustache</span><span class="p">.</span><span class="nx">to_html</span><span class="p">(</span><span class="nx">template</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">rowTemplate</span> <span class="o">=</span> <span class="s1">'{{ username }}{{ fullname }}'</span><span class="p">;</span>
+
+<span class="c1">// A Grid Row</span>
+<span class="kd">var</span> <span class="nx">GridRow</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Marionette</span><span class="p">.</span><span class="nx">ItemView</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">template</span><span class="o">:</span> <span class="nx">rowTemplate</span><span class="p">,</span>
+    <span class="nx">tagName</span><span class="o">:</span> <span class="s2">"tr"</span>
+<span class="p">});</span>
+</pre></div></div>
+
+<p>この方法でもいいのですが、Hogan.jsを使うことでより自然に置き換えが可能です。</p>
+
+<p>元のrenderではテンプレートの事前コンパイルとそのキャッシュを行い、更にテンプレートの指定も<code>template: #hoge</code>のようにIDを指定する仕組みになっています。</p>
+
+<p>Hogan.jsはmustache.jsに事前コンパイルの機能を追加したライブラリのため、これを使ってテンプレートのコンパイルを行っている箇所のみを置き換えれば、元の使い勝手のままmustache.jsと同等のテンプレートを使えるようになります。</p>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Marionette</span><span class="p">.</span><span class="nx">TemplateCache</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">compileTemplate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">rawTemplate</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">Hogan</span><span class="p">.</span><span class="nx">compile</span><span class="p">(</span><span class="nx">rawTemplate</span><span class="p">).</span><span class="nx">render</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">};</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">GridRow</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Marionette</span><span class="p">.</span><span class="nx">ItemView</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">template</span><span class="o">:</span> <span class="s2">"#grid_row_template"</span><span class="p">,</span>
+  <span class="nx">tagName</span><span class="o">:</span> <span class="s2">"tr"</span>
+<span class="p">});</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -413,23 +2008,96 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />17位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/de25bbf595de8c5f73ec">Vimで透明・不透明を瞬時に切り替える</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/582f30a4c739cb995f4f">Backbone.jsのModelに簡単にアクセス出来るようにする</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-07-09 23:57:20</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2014-02-09 15:01:27</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[CoffeeScript]</b> <b>[Backbone.js]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Backbone.jsのModelのattributeにアクセスする場合、get・setメソッドを使います。</p>
+
+<div class="code-frame" data-lang="coffeescript"><div class="highlight"><pre><span></span><span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">"key"</span><span class="p">)</span>
+<span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s">"key"</span><span class="p">,</span> <span class="s">"value"</span><span class="p">)</span>
+</pre></div></div>
+
+<p>これを、Knockout.jsのObservableのように</p>
+
+<div class="code-frame" data-lang="coffeescript"><div class="highlight"><pre><span></span><span class="nx">model</span><span class="p">.</span><span class="nx">key</span><span class="p">()</span>
+<span class="nx">model</span><span class="p">.</span><span class="nx">key</span><span class="p">(</span><span class="s">"value"</span><span class="p">)</span>
+</pre></div></div>
+
+<p>と出来たら便利かなと思ったので、試しにやってみました。</p>
+
+<div class="code-frame" data-lang="coffeescript"><div class="highlight"><pre><span></span><span class="c1"># Backbone.ModelにsetPropertyメソッドを追加</span>
+<span class="nx">_</span><span class="p">.</span><span class="nx">extend</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span>
+  <span class="nv">setProperty: </span><span class="nf">-&gt;</span>
+    <span class="k">for</span> <span class="nx">key</span> <span class="k">of</span> <span class="nx">@defaults</span>
+      <span class="c1"># 名前が既存のプロパティと被る場合は無視</span>
+      <span class="k">continue</span> <span class="k">if</span> <span class="nx">@</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="o">?</span>
+
+      <span class="c1"># obj.property()でget, obj.property("hoge")でset出来るよう関数を定義</span>
+      <span class="nx">@</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nf">(arg) -&gt;</span>
+        <span class="k">if</span> <span class="nx">arg</span><span class="o">?</span>
+          <span class="nx">@set</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span>
+        <span class="k">else</span>
+          <span class="nx">@get</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nx">Human</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span>
+  <span class="c1"># modelのattiributeは全てdefaultsに定義する</span>
+  <span class="nv">defaults:</span>
+    <span class="nv">height: </span><span class="mi">150</span>
+    <span class="nv">weight: </span><span class="mi">60</span>
+    <span class="nv">age: </span><span class="mi">20</span>
+
+    <span class="c1"># テスト用メソッド</span>
+    <span class="nv">dummy: </span><span class="mi">0</span>
+    <span class="nv">toJSON: </span><span class="mi">0</span>
+
+  <span class="nv">dummy: </span><span class="nf">-&gt;</span> <span class="s">"exists function"</span>
+
+  <span class="nv">initialize: </span><span class="nf">-&gt;</span>
+    <span class="c1"># 初期化処理でsetPropertyメソッドを呼ぶ</span>
+    <span class="nx">@setProperty</span><span class="p">()</span>
+<span class="nv">human = </span><span class="k">new</span> <span class="nx">Human</span><span class="p">()</span>
+
+<span class="c1"># human.height()でhuman.get("height")</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">human</span><span class="p">.</span><span class="nx">height</span><span class="p">()</span>   <span class="c1"># 150</span>
+
+<span class="c1"># human.height(value)でhuman.set("height", value)</span>
+<span class="nx">human</span><span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="s">"130"</span><span class="p">)</span>
+
+<span class="c1"># 名前が重複した場合は上書きされない</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">human</span><span class="p">.</span><span class="nx">dummy</span><span class="p">()</span>    <span class="c1"># exists function</span>
+
+<span class="c1"># 名前が重複してもget, setを直接呼べる</span>
+<span class="nx">human</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s">"toJSON"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">human</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">()</span>
+<span class="c1"># age     20</span>
+<span class="c1"># dummy   0</span>
+<span class="c1"># height  150</span>
+<span class="c1"># toJSON  1</span>
+<span class="c1"># weight  60</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -437,23 +2105,51 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />18位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/086cb68835b83a5c9e93">Mac OS X(Mavericks)にAnsibleをインストールする際に出たエラーの対処</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/83b165a0bf335fcb893d">quickrun.vimでD言語のユニットテスト</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-03-19 08:21:11</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-11-11 00:24:08</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[OSX]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> <b>[dlang]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>quickrun.vimは素晴らしいことに標準でD言語に対応しています。<br>
+またD言語は素晴らしいことに簡単に単体テストの記述が可能です。</p>
+
+<ul>
+<li><a href="http://www.kmonos.net/alang/d/unittest.html" rel="nofollow noopener" target="_blank">単体テスト - プログラミング言語 D (日本語訳)</a></li>
+</ul>
+
+<p>デフォルトでは「r」でquickrunによる実行ができるので、「R」で先に単体テストをしつつ実行するようにしました。</p>
+
+<div class="code-frame" data-lang="vim"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="k">g</span>:quickrun_config <span class="p">=</span> {}
+<span class="k">let</span> <span class="k">g</span>:quickrun_config[<span class="s1">'d_unittest'</span>] <span class="p">=</span> {
+      \ <span class="s1">'command'</span>: <span class="s1">'rdmd'</span><span class="p">,</span>
+      \ <span class="s1">'cmdopt'</span> : <span class="s1">'-unittest'</span><span class="p">,</span>
+      \ <span class="s1">'tempfile'</span>: <span class="s1">'%{tempname()}.d'</span><span class="p">,</span>
+      \ }
+
+<span class="nb">nnoremap</span> <span class="p">&lt;</span>buffer<span class="p">&gt;</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span>R :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span>QuickRun d_unittest<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</pre></div></div>
+
+<p>なお「d_unittest」の部分を「d」だけにすれば常に単体テストが有効になります。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -461,23 +2157,41 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />19位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/8c78e01167953ab513f9">ctrlp.vimのプロンプトのマッピングを変更する</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/15bedd330f4700ea53b7">Laravel4のヘルパー関数</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-03-02 02:21:53</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-06-09 20:21:03</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[laravel]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>「vendor/laravel/framework/src/Illuminate/Support/helpers.php」内でヘルパー関数が定義されています。</p>
+
+<ul>
+<li>var_dumpしてdieする「dd関数」</li>
+<li>文字列をスネークケースに変換する「snake_case関数」</li>
+<li>配列を平滑化する「array_flatten関数」</li>
+<li>htmlentitiesの短縮形「e関数」</li>
+</ul>
+
+<p>などなど、フレームワークで固有なものから、汎用的なものまで色々定義されていました。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -485,23 +2199,53 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />20位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/f5157419be57b17fd24a">タブ幅を瞬時に切り替える</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/tekkoc/items/044911786cb9976a730f">foldとfoldLeftは型が違う</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-06-14 08:51:19</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-08-24 21:27:52</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Scala]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>List等のメソッドであるfoldとfoldLeft。<br>
+同じように見えて型が異なるため、注意が必要。</p>
+
+<div class="code-frame" data-lang="scala"><div class="highlight"><pre><span></span><span class="k">val</span> <span class="n">s1</span> <span class="k">=</span> <span class="o">(</span><span class="mi">1</span> <span class="n">to</span> <span class="mi">10</span><span class="o">).</span><span class="n">fold</span><span class="o">(</span><span class="mi">0</span><span class="o">)(</span><span class="k">_</span> <span class="o">+</span> <span class="k">_</span><span class="o">)</span>
+<span class="n">println</span><span class="o">(</span><span class="n">s1</span><span class="o">)</span>   <span class="c1">// 55</span>
+
+<span class="k">val</span> <span class="n">s2</span> <span class="k">=</span> <span class="o">(</span><span class="mi">1</span> <span class="n">to</span> <span class="mi">10</span><span class="o">).</span><span class="n">foldLeft</span><span class="o">(</span><span class="mi">1</span><span class="o">)(</span><span class="k">_</span> <span class="o">*</span> <span class="k">_</span><span class="o">)</span>
+<span class="n">println</span><span class="o">(</span><span class="n">s2</span><span class="o">)</span>   <span class="c1">// 3628800</span>
+
+<span class="k">val</span> <span class="n">s3</span> <span class="k">=</span> <span class="o">(</span><span class="mi">1</span> <span class="n">to</span> <span class="mi">10</span><span class="o">).</span><span class="n">foldLeft</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">)((</span><span class="n">acc</span><span class="o">,</span> <span class="n">n</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">acc</span><span class="o">.</span><span class="n">_1</span> <span class="o">+</span> <span class="n">n</span><span class="o">,</span> <span class="n">acc</span><span class="o">.</span><span class="n">_2</span> <span class="o">*</span> <span class="n">n</span><span class="o">))</span>
+<span class="n">println</span><span class="o">(</span><span class="n">s3</span><span class="o">)</span>   <span class="c1">// (55, 3628800)</span>
+
+<span class="c1">// val s4 = (1 to 10).fold(0, 1)((acc, n) =&gt; (acc._1 + n, acc._2 * n))</span>
+<span class="c1">// println(s4)    error</span>
+
+<span class="c1">// hoge.scala:10: error: value _1 is not a member of Any</span>
+<span class="c1">// val s4 = (1 to 10).fold(0, 1)((acc, n) =&gt; (acc._1 + n, acc._2 * n))</span>
+<span class="c1">//                                                ^</span>
+<span class="c1">// hoge.scala::10: error: value _2 is not a member of Any</span>
+<span class="c1">// val s4 = (1 to 10).fold(0, 1)((acc, n) =&gt; (acc._1 + n, acc._2 * n))</span>
+<span class="c1">// two errors found</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -509,215 +2253,52 @@
 <tr>
 	<td rowspan="3"><center>tekkocさんの<br />21位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/de56e2dfaf6a9a5aeb09">Unite.vimでSkypeチャットルームを開く</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-06-08 16:51:49</center>
-	</td>
-	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
-	</td>
-	<td style="width:300px;"><b>[Vim]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>tekkocさんの<br />22位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/0fb37d5ee681404497ac">VimでGitのルートディレクトリのパスへ移動</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-11-24 23:24:00</center>
-	</td>
-	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
-	</td>
-	<td style="width:300px;"><b>[Vim]</b> <b>[Git]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>tekkocさんの<br />23位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/66c8e10c8a1075e1380e">Marionette.jsでmustache.js(Hogan.js)を使う</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-01-08 23:12:19</center>
-	</td>
-	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
-	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Backbone.js]</b> <b>[Marionette.js]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>tekkocさんの<br />24位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/582f30a4c739cb995f4f">Backbone.jsのModelに簡単にアクセス出来るようにする</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-02-09 15:01:27</center>
-	</td>
-	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
-	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[CoffeeScript]</b> <b>[Backbone.js]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>tekkocさんの<br />25位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/83b165a0bf335fcb893d">quickrun.vimでD言語のユニットテスト</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-11-11 00:24:08</center>
-	</td>
-	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
-	</td>
-	<td style="width:300px;"><b>[Vim]</b> <b>[dlang]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>tekkocさんの<br />26位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/15bedd330f4700ea53b7">Laravel4のヘルパー関数</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-06-09 20:21:03</center>
-	</td>
-	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
-	</td>
-	<td style="width:300px;"><b>[laravel]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>tekkocさんの<br />27位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/8a0a00d01f1030720ada">「Apple Mach-O Linker Error &quot;UnityPause(bool)&quot;」というエラーの対処法</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-04-27 01:18:47</center>
-	</td>
-	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
-	</td>
-	<td style="width:300px;"><b>[Unity]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>tekkocさんの<br />28位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
-		<a target="_blank" href="https://qiita.com/tekkoc/items/044911786cb9976a730f">foldとfoldLeftは型が違う</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-08-24 21:27:52</center>
-	</td>
-	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
-	</td>
-	<td style="width:300px;"><b>[Scala]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>tekkocさんの<br />29位</center></td>
-	<td colspan="3">
 		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
 		<a target="_blank" href="https://qiita.com/tekkoc/items/6d3bd74104c30cb51e3e">modelineとmodelinesとグローバルなオプション</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-06-14 08:13:16</center>
 	</td>
 	<td style="width:200px;">
-		@tekkoc<!--(<a target="_blank" href="http://qiita.com/tekkoc">Qiita内の29件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
+		@tekkoc<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11916/profile-images/1473682212">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>特定のファイルタイプでのみ、モードラインを無効にしようと思ってmodelines(モードラインとして調べる行数)を0行と3行などで切り替えていましたが、どうもうまく行きませんでした。</p>
+
+<div class="code-frame" data-lang="vim"><div class="highlight"><pre><span></span><span class="c">    " 駄目な例</span>
+    <span class="k">set</span> <span class="nb">modelines</span><span class="p">=</span><span class="m">3</span>
+    autocmd <span class="nb">FileType</span> php <span class="k">setlocal</span> <span class="nb">modelines</span><span class="p">=</span><span class="m">0</span>
+</pre></div></div>
+
+<p>一見正しく動くのですが、↑の場合phpでだけモードラインを無効にしたいのに、一度phpファイルを開いた後は常に0行しかモードラインを見なくなります。</p>
+
+<p>理由は簡単でした。<br>
+modelinesがグローバルなオプションのため、setlocalしても全体に適用されてしまうのです。</p>
+
+<p>modeline(sが付かない！)はバッファローカルなオプションなので、それを使いましょう。</p>
+
+<div class="code-frame" data-lang="vim"><div class="highlight"><pre><span></span>    <span class="k">set</span> <span class="nb">modeline</span>
+    <span class="k">set</span> <span class="nb">modelines</span><span class="p">=</span><span class="m">3</span>
+    autocmd <span class="nb">FileType</span> php <span class="k">setlocal</span> <span class="nb">nomodeline</span>
+</pre></div></div>
+
+<p>特筆するような話題ではないのですが、油断しているとこの手の「実はグローバルなオプションだった」ということに気付くのに遅れて悲しい気持ちになることがよくあります。<br>
+helpを見ればすぐに分かることなので、helpを見る癖をつけないと駄目ですね。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />

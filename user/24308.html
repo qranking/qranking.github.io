@@ -25,27 +25,87 @@
 <h1>Qiitaいいね数ランキング (osamu1203 さんの投稿分)</h1>
 </div><!--class="headerContainer"-->
 <p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
 <table border="1">
 <tr>
 	<td rowspan="3"><center>osamu1203さんの<br />1位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>759</kbd>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>760</kbd>
 		<a target="_blank" href="https://qiita.com/osamu1203/items/cb94ef9da02e1ec3e921">git fetchの理解からgit mergeとpullの役割</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-10-31 23:56:05</center>
 	</td>
 	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
+		@osamu1203<br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <b>[GitHub]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> <b>[GitHub]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="https://camo.qiitausercontent.com/5c42392546b7e3159a1d18f820e0df8b31a03656/687474703a2f2f6661726d382e737461746963666c69636b722e636f6d2f373035352f373030353332333838345f343734373565343166312e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/5c42392546b7e3159a1d18f820e0df8b31a03656/687474703a2f2f6661726d382e737461746963666c69636b722e636f6d2f373035352f373030353332333838345f343734373565343166312e6a7067" alt="photo by yukop" data-canonical-src="http://farm8.staticflickr.com/7055/7005323884_47475e41f1.jpg"></a></p>
+
+<p>gitを使い始めるとcommit, push, pullなどはある程度理解出来るようになりますが、<b>fetch</b>ってなんだ？ってなりますよね。</p>
+
+<p>あまり馴染みにくいのは、pullが<b>fetch</b>と<b>merge</b>の両方を組み合わせたコマンドだからなんですね。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>pull = fetch + merge origin/master
+</pre></div></div>
+
+<h1>
+<span id="fetchとは" class="fragment"></span><a href="#fetch%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>fetchとは</h1>
+
+<p>gitの場合、リポジトリはリモートとローカルの２ヶ所あります。fetchとはリモートリポジトリから最新情報をローカルリポジトリに持ってくるコマンドです。<br>
+fetchをしても、pullのようにファイルが更新されるわけではありません。<br>
+あくまでもローカルリポジトリが更新されるだけです。</p>
+
+<p>もっと詳しくいうと、例えばmasterブランチを使っているのであれば、<br>
+<b>origin/masterが更新される</b>ということです。</p>
+
+<h1>
+<span id="masterとoriginmasterの違い" class="fragment"></span><a href="#master%E3%81%A8originmaster%E3%81%AE%E9%81%95%E3%81%84"><i class="fa fa-link"></i></a>masterとorigin/masterの違い</h1>
+
+<p>masterは、例えばローカルのファイルを更新してコミットする場合にはmasterに入りますよね。<br>
+ローカルの作業ディレクトリと結び付いているのがmasterブランチです。</p>
+
+<p>origin/masterとはリポジトリと結びついているブランチです。<br>
+とはいってもorigin/masterを参照するといっても、常に直接リモート側を見ているわけではないのです。<br>
+<b>git fetchをすることでorigin/masterが更新</b>されるのですね。</p>
+
+<p>ローカルリポジトリの中にはmasterとorigin/masterの２つそれぞれの情報が置かれていることになります。<br>
+fetchを行ったときに新しい更新があったとするとorigin/masterが最新になり、masterはその分の更新がまだ行われていない事になります。<br>
+そこでmergeが必要になるんですね。</p>
+
+<p>master ← origin/master　最新情報をマージするわけですね。</p>
+
+<h1>
+<span id="git-mergeへ" class="fragment"></span><a href="#git-merge%E3%81%B8"><i class="fa fa-link"></i></a>git mergeへ</h1>
+
+<p>という理解を持てないと、svnなどを使ってきた人にはどこのブランチをマージするのか？となりますよね。<br>
+リモートリポジトリの最新情報をローカルのmasterブランチにマージする必要があります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git merge origin/master
+</pre></div></div>
+
+<p>ここまで処理を行うことでローカルのファイルが最新状態に更新されます。</p>
+
+<h1>
+<span id="git-pull" class="fragment"></span><a href="#git-pull"><i class="fa fa-link"></i></a>git pull</h1>
+
+<p>git pull は上記の工程を一気に行うコマンドでした。<br>
+便利なコマンドではありますが、これらの理解をした上で利用することでpullしたときにコンフリクトなどが発生してテンパらずに正しい理解で行動出来ますね。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -58,18 +118,70 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-11-30 21:04:08</center>
 	</td>
 	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
+		@osamu1203<br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
 	</td>
-	<td style="width:300px;"><b>[CentOS]</b> <b>[vagrant]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[CentOS]</b> <b>[vagrant]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Failed to mount folders in Linux guest. This is usually beacuse
+the "vboxsf" file system is not available. Please verify that
+the guest additions are properly installed in the guest and
+can work properly. The command attempted was:
+
+mount -t vboxsf -o uid=`id -u vagrant`,gid=`getent group apache | cut -d: -f3`,dmode=777,fmode=777 /vagrant /vagrant
+mount -t vboxsf -o uid=`id -u vagrant`,gid=`id -g apache`,dmode=777,fmode=777 /vagrant /vagrant
+</pre></div></div>
+
+<p>こんなエラー。</p>
+
+<h1>
+<span id="解決方法" class="fragment"></span><a href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>解決方法</h1>
+
+<p>vboxをリビルドする必要があるようです。</p>
+
+<p>まずsshで入ります</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>vagrant ssh
+</pre></div></div>
+
+<p>リビルド実行します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>sudo /etc/init.d/vboxadd setup
+
+Removing existing VirtualBox non-DKMS kernel modules       [  OK  ]
+Building the VirtualBox Guest Additions kernel modules
+Building the main Guest Additions module                   [  OK  ]
+Building the shared folder support module                  [  OK  ]
+Building the OpenGL support module                         [失敗]
+(Look at /var/log/vboxadd-install.log to find out what went wrong)
+Doing non-kernel setup of the Guest Additions              [  OK  ]
+</pre></div></div>
+
+<p>一旦macのコンソールに戻ります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>exit
+</pre></div></div>
+
+<p>vagrantを再起動します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>vagrant halt
+vagrant up
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -77,23 +189,61 @@
 <tr>
 	<td rowspan="3"><center>osamu1203さんの<br />3位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>389</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/a7c78666b18eb499c94b">[iOS]TwitterアプリのようにLaunch Screenがアニメーションするように見せる技</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>38</kbd>
+		<a target="_blank" href="https://qiita.com/osamu1203/items/c72a1b2c27ac3e02cb15">better_errorsがvagrantで動作しない対処</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-03-04 16:15:42</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-11-27 00:11:31</center>
 	</td>
 	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
+		@osamu1203<br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
 	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[Rails]</b> <b>[vagrant]</b> <b>[better_errors]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Rails4 今のところ最強なデバッグツール達<br>
+<a href="http://qiita.com/yusabana/items/8ce54577d959bb085b37" class="autolink" id="reference-707c93f0cb073fcf3db7">http://qiita.com/yusabana/items/8ce54577d959bb085b37</a></p>
+
+<h2>
+<span id="better_errorsが動かない" class="fragment"></span><a href="#better_errors%E3%81%8C%E5%8B%95%E3%81%8B%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>better_errorsが動かない・・・</h2>
+
+<p>こちらにならって、vagrant環境にrailsを構築していたので、<br>
+デバッグに便利なbetter_errorsをgemからインストールしたが<br>
+・・・・動かず。</p>
+
+<p>公式githubにこのようにありました。<br>
+<a href="https://github.com/charliesome/better_errors#security" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/charliesome/better_errors#security</a></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>You will notice that the only machine that gets the Better Errors page is localhost, which means you get the default error page if you are developing on a remote host (or a virtually remote host, such as a Vagrant box)
+↓
+超訳：localhostのみで表示され、リモートホストやVagrantでは出ないよ
+</pre></div></div>
+
+<h2>
+<span id="対処法" class="fragment"></span><a href="#%E5%AF%BE%E5%87%A6%E6%B3%95"><i class="fa fa-link"></i></a>対処法</h2>
+
+<p>rails内にある、<code>config/environments/development.rb</code>に以下を追加</p>
+
+<p><code>BetterErrors::Middleware.allow_ip! "192.168.33.1"</code><br>
+(※vagrantが config.vm.network :private_network, ip: "192.168.33.10" の場合)</p>
+
+<p>vagrantのデフォルトでは、192.168.33.1から192.168.33.10にアクセスすることになるので、<br>
+192.168.33.1をallowすることで使えるようになりました。</p>
+
+<p>非常に便利！！</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -101,23 +251,40 @@
 <tr>
 	<td rowspan="3"><center>osamu1203さんの<br />4位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>217</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/d7d2206cc079092d07c4">mBaaSまとめてみた</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>13</kbd>
+		<a target="_blank" href="https://qiita.com/osamu1203/items/bbdee07d6be502d92492">CakePHPでリアルタイムにAjaxでバリデーションするプラグイン作りました。</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-05-15 09:15:51</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-12-10 23:21:02</center>
 	</td>
 	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
+		@osamu1203<br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
 	</td>
-	<td style="width:300px;"><b>[Android]</b> <b>[iOS]</b> <b>[Parse]</b> <b>[mBaas]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[PHP]</b> <b>[CakePHP]</b> <b>[Ajax]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Cakephpは2.3からはHTML5によるバリデーションが自動的にかかるようになりましたが、<br>
+やはりモデルで設定したバリデーションをリアルタイムにチェックしたいと思い、<br>
+プラグインを作成しました。</p>
+
+<p><a href="https://github.com/nishiyamaosamu/cakephp-ajax-validation" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/nishiyamaosamu/cakephp-ajax-validation</a></p>
+
+<p>まだ全然作りが甘いので、遠慮無くFork、プルリクエストしてください。<br>
+Github初心者の方も歓迎です。githubに慣れてない方も練習台として参加して頂くのも歓迎です！<br>
+気軽にどうぞ！</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -125,23 +292,65 @@
 <tr>
 	<td rowspan="3"><center>osamu1203さんの<br />5位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>195</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/5f49dd6787f86e6c61d3">SwiftでKVOを使って堅牢なMVCを実現するサンプル</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>13</kbd>
+		<a target="_blank" href="https://qiita.com/osamu1203/items/f8a1b0ba99a5450641d5">VagrantでAngularJSを使ったhtml（静的コンテンツ）がうまく動かなかった対処法</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-03-17 11:58:33</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-11-09 23:38:42</center>
 	</td>
 	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
+		@osamu1203<br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
 	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[HTML]</b> <b>[Apache]</b> <b>[vagrant]</b> <b>[AngularJS]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>AngularJSの学習をしようと、Vagrantの開発環境にhtml作って試そうとしたところ、<br>
+修正して、リロードすると正しく読み込まれず、ソースが途中で切れるような現象が発生しました。</p>
+
+<h1>
+<span id="なかなか原因が特定できず" class="fragment"></span><a href="#%E3%81%AA%E3%81%8B%E3%81%AA%E3%81%8B%E5%8E%9F%E5%9B%A0%E3%81%8C%E7%89%B9%E5%AE%9A%E3%81%A7%E3%81%8D%E3%81%9A"><i class="fa fa-link"></i></a>なかなか原因が特定できず・・・</h1>
+
+<p>最初はAngularJSが悪いかと思ったら、そうでもないようで、<br>
+ブラウザかと思ったら、どのブラウザでもダメ。<br>
+ってことはapacheかと思い、だいぶ設定を見直しましたがなかなかわからず、<br>
+だいぶ時間を使ってしまいました。</p>
+
+<h1>
+<span id="何が問題だったか" class="fragment"></span><a href="#%E4%BD%95%E3%81%8C%E5%95%8F%E9%A1%8C%E3%81%A0%E3%81%A3%E3%81%9F%E3%81%8B"><i class="fa fa-link"></i></a>何が問題だったか?</h1>
+
+<p><strong>Vagrantの共有ディレクトリにドキュメントルートを設置していたから。</strong></p>
+
+<p>ネットワークマウントされたドキュメントルートでは静的コンテンツが正しくロード出来ないことがあるようです。そのためには、下記をhttpd.confに書いてあげる必要がありました。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>EnableMMAP Off
+EnableSendfile Off
+</pre></div></div>
+
+<p>どなたかの役に立ったら幸いです。。。</p>
+
+<h1>
+<span id="共有ディレクトリにdocumentrootは置くべきではない" class="fragment"></span><a href="#%E5%85%B1%E6%9C%89%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%81%ABdocumentroot%E3%81%AF%E7%BD%AE%E3%81%8F%E3%81%B9%E3%81%8D%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>共有ディレクトリにDocumentRootは置くべきではない？</h1>
+
+<p>とりあえず動くようになったけど、共有ディレクトリはDocumentRootにすると、パーミッションとか、色々問題多いからやめた方がよさそうですかね？</p>
+
+<p>vagrantでは皆さんはどうしてますか？</p>
+
+<p>こちら参考にさせて頂きました。<br>
+<a href="http://www.trapon.jp/log/201310/donot_read_file_use_vagrant_shared_folder.html" rel="nofollow noopener" target="_blank">Vagrantの共有フォルダをDocumentRootに設定した場合にファイルの変更が反映されない</a><br>
+<a href="http://1000g.5qk.jp/2013/03/20/vm-%E3%81%AE%E5%85%B1%E6%9C%89%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E5%86%85%E3%81%AE-%E9%9D%99%E7%9A%84%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%8C%E6%AD%A3%E3%81%97%E3%81%8F%E3%83%AD%E3%83%BC/" rel="nofollow noopener" target="_blank">VM の共有フォルダ内の 静的ファイルが正しくロードできないときの対処方法</a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -149,23 +358,54 @@
 <tr>
 	<td rowspan="3"><center>osamu1203さんの<br />6位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>169</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/8d6c548a6ef7f4178970">ベンチャー企業のエンジニアが一人でアプリを開発しなければならない時に、フレームワークやサービスの選定で悩んでいること→結論追記しました</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
+		<a target="_blank" href="https://qiita.com/osamu1203/items/0043b59461ed31e2934b">OSX Mavericksアップデート後にvagrant upが立ち上がらない対処方法</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-05-14 17:36:28</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-10-29 22:07:01</center>
 	</td>
 	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
+		@osamu1203<br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
 	</td>
-	<td style="width:300px;"><b>[Android]</b> <b>[iOS]</b> <b>[Cordova]</b> <b>[Parse]</b> <b>[TitaniumMobile]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[OSX]</b> <b>[vagrant]</b> <b>[OSXMarvericks]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>OSX Mavericksにアップデート後、<code>vagrant up</code> したら、こんなエラーが出た。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>There was an error while executing `VBoxManage`, a CLI used by Vagrant
+for controlling VirtualBox. The command and stderr is shown below.
+
+Command: ["hostonlyif", "create"]
+
+Stderr: 0%...
+Progress state: NS_ERROR_FAILURE
+VBoxManage: error: Failed to create the host-only adapter
+VBoxManage: error: VBoxNetAdpCtl: Error while adding new interface: failed to open /dev/vboxnetctl: No such file or directory
+
+VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), component HostNetworkInterface, interface IHostNetworkInterface
+VBoxManage: error: Context: "int handleCreate(HandlerArg*, int, int*)" at line 68 of file VBoxManageHostonly.cpp
+</pre></div></div>
+
+<p>調べてみると<a href="http://www.stumiller.me/fixing-vagrant-osx-mavericks-update/" rel="nofollow noopener" target="_blank">こちら</a>のサイトを参考に下記コマンドで解決しました。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>sudo /Library/StartupItems/VirtualBox/VirtualBox restart
+</pre></div></div>
+
+<p>スタートアップで立ち上がっていたVirtualBoxの再起動が必要だったようです。<br>
+これでめでたく解決しました。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -173,23 +413,83 @@
 <tr>
 	<td rowspan="3"><center>osamu1203さんの<br />7位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>128</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/fef97a0bec5d863f48f6">Swift Bond 入門（Bond v4, Swift v2) サンプルあり</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
+		<a target="_blank" href="https://qiita.com/osamu1203/items/2a28adc6cb5425c90dde">開発者必見！Chromeで.local .loc .dev .pre などのドメインがgoogle検索になってしまう回避方法</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-12-11 00:01:03</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-11-30 12:59:35</center>
 	</td>
 	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
+		@osamu1203<br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
 	</td>
-	<td style="width:300px;"><b>[Swift]</b> <b>[SwiftBond]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Chrome]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Chromeのアドレスバー（omnibox）に</p>
+
+<p><code>example.local</code></p>
+
+<p>などいれるとgoogle検索に行ってしまいます。<br>
+開発者としては使いづらいですよね。</p>
+
+<p>それを回避する方法をいくつか調べてみました。</p>
+
+<h1>
+<span id="解決1スラッシュを最後にいれる" class="fragment"></span><a href="#%E8%A7%A3%E6%B1%BA1%E3%82%B9%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5%E3%82%92%E6%9C%80%E5%BE%8C%E3%81%AB%E3%81%84%E3%82%8C%E3%82%8B"><i class="fa fa-link"></i></a>解決1　スラッシュを最後にいれる</h1>
+
+<p>アドレスバーに入力する際に<br>
+<code>example.local/</code><br>
+というように<br>
+最後にスラッシュをつけるとURLと認識してくれます。</p>
+
+<h1>
+<span id="解決2検索エンジンとして設定する-おすすめ" class="fragment"></span><a href="#%E8%A7%A3%E6%B1%BA2%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3%E3%81%A8%E3%81%97%E3%81%A6%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B-%E3%81%8A%E3%81%99%E3%81%99%E3%82%81"><i class="fa fa-link"></i></a>解決2　検索エンジンとして設定する （おすすめ）</h1>
+
+<p>Chromeの検索エンジンの設定に追加することで、<br>
+自動で解決してくれます。</p>
+
+<p>・Chromeの設定→検索エンジンの管理<br>
+・その他の検索エンジンの一番下の3つボックスに下記の用に追加<br>
+・「example.local」   「example.local」   「<a href="http://example.local/%E3%80%8D" class="autolink" rel="nofollow noopener" target="_blank">http://example.local/」</a></p>
+
+<p>これでexample.localといれたものは、<a href="http://example.local/%E3%81%A8%E5%A4%89%E6%8F%9B%E3%81%97%E3%81%A6%E3%81%8F%E3%82%8C%E3%81%BE%E3%81%99%E3%80%82" class="autolink" rel="nofollow noopener" target="_blank">http://example.local/と変換してくれます。</a><br>
+自分のよく使うものについては設定してしまった方が楽ですね。</p>
+
+<h1>
+<span id="解決2の発展短縮化" class="fragment"></span><a href="#%E8%A7%A3%E6%B1%BA2%E3%81%AE%E7%99%BA%E5%B1%95%E7%9F%AD%E7%B8%AE%E5%8C%96"><i class="fa fa-link"></i></a>解決2の発展　短縮化</h1>
+
+<p>実は検索エンジンの管理はこんな使い方もできます。<br>
+上記で設定した内容の真ん中をこのように変更してみましょう。</p>
+
+<p>・「example.local」   「loc」   「<a href="http://example.local/%E3%80%8D" class="autolink" rel="nofollow noopener" target="_blank">http://example.local/」</a></p>
+
+<p>こうするとアドレスバーに</p>
+
+<p><code>loc</code></p>
+
+<p>といれて、Enterすると</p>
+
+<p><code>http://example.local/</code></p>
+
+<p>を開いてくれます。</p>
+
+<p>これは色々応用出来そうですね！</p>
+
+<p>元記事こちら<br>
+<a href="http://osm.hatenablog.com/entry/2013/11/30/125200" class="autolink" rel="nofollow noopener" target="_blank">http://osm.hatenablog.com/entry/2013/11/30/125200</a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -197,23 +497,41 @@
 <tr>
 	<td rowspan="3"><center>osamu1203さんの<br />8位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>124</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/09ab7ba89b2101a855f7">Xcode6.3アップデートすると必ずやってくるSwift1.2のエラー対処のいくつか</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/osamu1203/items/5eaced3fbc9635437bd2">【意見求む】Vagrantで共有ディレクトリ以下をドキュメントルートにすべきでないか？</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-04-09 17:43:48</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-11-09 23:51:56</center>
 	</td>
 	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
+		@osamu1203<br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
 	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[Swift]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Mac]</b> <b>[Apache]</b> <b>[vagrant]</b> <b>[SublimeText2]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Vagrantでは、/vagrant/が共有ディレクトリとしてマウントされますが、<br>
+/vagrant/以下を<em>apacheのドキュメントルートに設置すべきではない</em>でしょうか？</p>
+
+<p>パーミッションをVagrantfileで固定させないといけなかったり、<br>
+静的コンテンツが正しくロードされなかったり・・・。</p>
+
+<p>Macで、Vagrantで、Sublime Textでちょこちょこしたいと思っていたら、<br>
+どんな形がベストですか？</p>
+
+<p>皆さんの開発環境について教えて下さい！！！</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -221,1943 +539,40 @@
 <tr>
 	<td rowspan="3"><center>osamu1203さんの<br />9位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>110</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/9c5680d78d77146a9cfc">UIButtonを動的に作るサンプルコード</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-10-01 17:36:10</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />10位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>94</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/6dedc01e3b975a0ceec4">[iOS8] Swiftでdelegateを使ったモーダル間の値渡し</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 14:13:31</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />11位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>75</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/a230e5470cee7fa357b8">[iOS8] SwiftでUIAlertController(アラート)を使うサンプルコードと解説</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 14:35:41</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />12位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>69</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/b8868733111cabf16418">[iOS8] SwiftData（Swift製SQLiteラッパー）を使ったMVCサンプル</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 14:45:13</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />13位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>54</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/0de2909821a1b3cbb350">Line BotをGoogle App Scriptで無料で手軽に試してみる。</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-04-21 23:51:07</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[GoogleAppsScript]</b> <b>[linebot]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />14位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>53</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/a1a361f9ff00e93258e2">[Swift]たった40行のUIScrollViewを使ったシンプルなチュートリアル画面サンプル</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-01-29 12:03:24</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />15位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>52</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/c0e92b3ac661046dfd79">iOS9 Safariのコンテンツブロッカーなどのアドブロックしていることを検知するFuckAdBlock.js</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-09-18 16:42:36</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[Safari]</b> <b>[iOS9]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />16位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>51</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/c7e937fbf16cf9520892">Wordpress高速化に使ったプラグインとテクニック（2014年8月時点）</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-08-11 15:43:03</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[PHP]</b> <b>[WordPress]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />17位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>47</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/35df25d93e9d12b11222">iOSアプリ提出の輸出コンプライアンスで、通信にHTTPSを使っているだけの場合の解釈</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2017-07-14 14:57:34</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />18位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>44</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/a96a5fb93a5bf1614e7c">SwiftでUIScrollViewやUITableViewなどでスクロール方向を取得する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 13:55:03</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />19位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>42</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/2dc511627e8aad512237">[Swift] enumって便利！UIButton.tagの管理手法からenum型の使い方を理解する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-01-21 15:40:19</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />20位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>38</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/c72a1b2c27ac3e02cb15">better_errorsがvagrantで動作しない対処</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-11-27 00:11:31</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[Rails]</b> <b>[vagrant]</b> <b>[better_errors]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />21位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>33</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/56e591372bdebdaea8b6">Swiftでsubviewsを全て削除する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-19 11:40:01</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />22位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>32</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/f1aea7b932e69522f638">SwiftでUIAlertController(iOS8以降)とUIAlertView(iOS7以前)を使い分ける</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-01-16 11:04:51</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />23位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>31</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/ee8ef09fea9de9175e80">NSCalendarを使ったNSDateの日数の加算、２つの日時の差分、月日時などの取得</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-11-06 18:54:35</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />24位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>31</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/86d2a543f70bf094ae0f">Xcodeで色付きログのライブラリ(ColorLogger.swift)を作った</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-04-09 11:44:00</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />25位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>30</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/654127e44591b6696ff6">SwiftでCSVファイルを読み込み→配列に格納する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-05-20 08:50:33</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />26位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>28</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/e7b1718caf4fa59dca4f">EC2でnginxの過剰な404|403に対しfail2banをかける</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-03-13 12:46:15</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Linux]</b> <b>[nginx]</b> <b>[EC2]</b> <b>[fail2ban]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />27位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>27</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/190771ec455053445b25">UITableViewやUICollectionViewなど（UIScrollview系）のtouchesBeganが遅い対処</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-01-22 12:56:18</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Objective-C]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />28位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>27</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/77ef14a006415d566359">BootstrapのGlyphiconsが表示されない対処法(クロスオリジンリクエスト)</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 14:05:41</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[S3]</b> <b>[bootstrap]</b> <b>[CloudFront]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />29位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>27</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/6bf983b94eeaa7fa5c34">[WordPress]Googleアナリティクスからランキングを表示するプラグイン、Simple GA Rankingは本当に素晴らしい</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 13:51:24</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[WordPress]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />30位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>26</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/198c267581fc56b585d7">AlamofireでBasic認証を事前に(全体に)適用する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-03-18 11:18:22</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />31位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>23</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/3ee63291c37d91428b55">Swiftで任意の文字列が含まれるか判定</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-11-05 10:44:21</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />32位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>23</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/57cd8f18dbe7f21589ec">Nginxで特定ページのキャッシュクリアする</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-02-27 12:27:28</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[nginx]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />33位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>23</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/cc22cdf750dde3782448">SwiftでUIButtonのタップ時に押された感のアニメーション</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-01-08 09:51:03</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />34位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>23</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/6c203f3f048f9d7540f3">[iOS8] Swiftでモーダルの切り替わり方サンプル(modalTransitionStyle)</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 14:10:50</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />35位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>22</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/9160f5f4951ebe205ea3">Swiftで処理時間を計測</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-12 19:10:47</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />36位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>22</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/f45909bdffcf6373f4b6">SwiftでiPhoneとiPadを判別する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-05 17:42:23</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />37位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>20</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/0a68b98fb13a52bca421">DFPのiOS SDKを使って、UITableViewCellにネイティブ広告（GADNativeContentAd）を配信するサンプル</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-09-17 15:02:31</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[DFP]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />38位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>19</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/cc8d90c7adfc1360b101">Swiftで背景にパターン画像の繰り返しを使う</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-02-23 12:56:29</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />39位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>17</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/175d7eb3fc0b9ebfee53">UILabelを角丸 or パディングしたいならUIButtonで代用するテク</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-02-04 12:51:37</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Objective-C]</b> <b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />40位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>16</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/270fc716883d86d8f3b7">Xcode6.2でビルドが異常に遅い</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-03-20 20:19:23</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />41位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>16</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/4872842cd689a78fdeaa">fail2banでslackに通知する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-03-13 13:18:40</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[fail2ban]</b> <b>[Slack]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />42位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>15</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/202c187d6fc355b58840">WKWebviewを使って、ネイティブ部分とHTMLを同居させて、画像をバインバインさせてみる。</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-07-01 11:46:45</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <b>[iOS,]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />43位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>15</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/c1f92aee94f37fb96116">SwiftでUILabelのテキストを中央寄せにする</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 13:56:08</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />44位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>13</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/9c2154123731b3bf629a">ios7対応のLandscape（横向き）のアプリを作るときの注意点</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-02-20 16:25:26</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />45位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>13</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/bbdee07d6be502d92492">CakePHPでリアルタイムにAjaxでバリデーションするプラグイン作りました。</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-12-10 23:21:02</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[PHP]</b> <b>[CakePHP]</b> <b>[Ajax]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />46位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>13</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/f8a1b0ba99a5450641d5">VagrantでAngularJSを使ったhtml（静的コンテンツ）がうまく動かなかった対処法</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-11-09 23:38:42</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[HTML]</b> <b>[Apache]</b> <b>[vagrant]</b> <b>[AngularJS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />47位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>12</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/73e58d922cc19f5a6cb9">Xcode7にアップグレード後でビルドエラー&quot;Command /bin/sh failed with exit code 23&quot;</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-09-24 10:24:04</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[XCode7]</b> <b>[Swift2.0]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />48位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>10</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/1f2544fe1949837d7d6e">Atomで言語ごとのTab Lengthを変更する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-03-16 10:26:44</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[ATOM]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />49位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>10</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/01e30ecd3205717066bc">SwiftでNSTimerをクロージャで扱えるように拡張する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-01-15 18:28:02</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />50位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>10</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/d175b93b3ada1486beda">Swiftでデバイスの向き(orientation)を強制的に設定する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-01-07 15:13:58</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />51位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>10</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/bcfc624c66c9672da5f0">cakephpやfuelphpでpostなどした後に元のページへ戻す方法</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-01-06 10:13:06</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[PHP]</b> <b>[CakePHP]</b> <b>[FuelPHP]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />52位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/4956df6bb56e954a8513">iOS11からApp StoreのUIが劇的に変わるために審査や運用ですべきこと</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2017-08-16 15:29:16</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[AppStore]</b> <b>[ASO]</b> <b>[ios11]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />53位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/4847e1d2b0bf7d708bba">BondとRealmの組み合わせサンプルから感じた、アプリ開発における「守破離」</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-12-07 00:00:23</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />54位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/290bc6f8bf5b61bba96c">swiftでenumを文字列に変換する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-03-17 17:30:57</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />55位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/4aafea09116891e6ed2d">SwiftのUIColorで16進数形式（Hex）を扱えるように拡張する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-01-05 10:20:41</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />56位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/864a4013f8a7a141364d">[WordPress] nginxでモバイルとPCでテーマを分ける方法</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 13:47:24</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[WordPress]</b> <b>[nginx]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />57位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/0043b59461ed31e2934b">OSX Mavericksアップデート後にvagrant upが立ち上がらない対処方法</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-10-29 22:07:01</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[OSX]</b> <b>[vagrant]</b> <b>[OSXMarvericks]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />58位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/99f6ee4ebec0564e431b">Swiftでスクリーンサイズを取得する（特にLandscape対応）</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-15 09:34:02</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />59位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/ecf0100f631cd6d3d2c4">[FuelPHP] ORMのObserver_Typingがすごい！</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 14:02:46</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[FuelPHP]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />60位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/a5a0c89a0437a8a00ae5">[Android] ScrollViewの中にスクロールしないListViewを持つ</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-10-26 14:41:45</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Android]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />61位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/b338f3d3a072183ceec1">iOSのGoogle Analyticsでアプリのキャンペーン計測ができないと思ったら、WEBでは無理だった。</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-03-03 12:25:08</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[GoogleAnalytics]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />62位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/9d78a2b4b3dd54b10633">[Wordpress] 投稿が消えた！「本当に実行していいですか？」という悪魔のメッセージ、とその対策</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-01-07 00:20:14</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[WordPress]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />63位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/9317f72b93b461d15d6e">UIPageControlの丸（ドット）のサイズを変える</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-07-15 14:20:28</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />64位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/6b5852603186ba7e6f05">React Nativeを実機で動かす</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-04-23 09:41:22</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[reactnative]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />65位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/8e4998c797dcd536c929">[Swift] NavigationControllerのshow(push)で画面がフリーズ（leftBarButtonItemをカスタマイズした弊害でした）</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-09-28 13:40:14</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[Swift]</b> <b>[iOS9]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />66位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/73d6d721b08bee00158b">Alamofireでダウンロードのdestinationを変更する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-03-20 10:02:42</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />67位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/0d70122df7978baecabf">SwiftでUIButtonの背景色(backgroundColor)の変更</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-19 12:24:37</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />68位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/2e6e1508d8ee22d07b87">wordpressでスマートフォンとPCなどのデバイスを切り分けてキャッシュを実現する方法</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-08-11 14:45:21</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[WordPress]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />69位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/2a28adc6cb5425c90dde">開発者必見！Chromeで.local .loc .dev .pre などのドメインがgoogle検索になってしまう回避方法</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-11-30 12:59:35</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Chrome]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />70位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/035d295f4a49b75a9456">UITableViewのセルを一番下までスクロールさせると位置がズレる問題の対処</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-05-30 18:49:50</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />71位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/9ce685df1ce3649c1819">NginxとWordpressの404ページがproxy cacheできない</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-03-11 15:59:27</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[WordPress]</b> <b>[nginx]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />72位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/fd515e24e82d4464cbb1">SwiftでUIButtonのテキスト(title)色の変更</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-19 12:23:02</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />73位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/45729ec63f61db34ac16">[xcode] &quot;process launch failed timed out waiting for app to launch&quot;のエラー対処方法</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 14:09:03</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[iOS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />74位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/5eaced3fbc9635437bd2">【意見求む】Vagrantで共有ディレクトリ以下をドキュメントルートにすべきでないか？</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-11-09 23:51:56</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Mac]</b> <b>[Apache]</b> <b>[vagrant]</b> <b>[SublimeText2]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />75位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/0456c3e9ee2030971b71">webViewDidFinishLoadが何度も呼ばれてしまう</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-11-09 17:07:38</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />76位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/a5d8871f8c1041e15122">MacもWinもスクリーンショットはLightshotが便利</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 12:44:35</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Mac]</b> <b>[Windows]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />77位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/bf4c1e905d27adbe2c80">次世代jpegエンコーダのGoogle製「guetzli」とMozilla製「mozjpeg」を比較してみる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2017-01-16 11:38:41</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[jpeg]</b> <b>[guetzli]</b> <b>[mozjpeg]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />78位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/d2c9aac396ddb59a5974">Wordpressでimgタグにsrcsetとなるのを無効にする</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-07-14 17:17:33</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[WordPress]</b> <b>[AWS]</b> <b>[S3]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />79位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/2118ff9932588d7b5a1c">[Android] datePickerでsetMaxDateやsetMinDateで日付範囲を指定するときに気をつけること</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-09-10 11:46:16</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Java]</b> <b>[Android]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />80位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/2c1556e9cc50316c6c16">[iphone開発] UIAlertControllerのサンプル</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-09-30 15:40:31</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[iPhone]</b> <b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />81位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/8521bb7162c2df10853c">fatal error: &apos;try!&apos; expression unexpectedly raised an error: Error Domain=io.realm Code=2 &quot;Unable to open a realm at path </a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-04-28 18:07:55</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Realm]</b> <b>[RealmSwift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />82位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/799a8524b79eda6e6d43">ios7でDocumentにあるUIImageが表示されないのでハマった</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-04-16 14:33:24</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[iOS]</b> <b>[Swift]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />83位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/2df40bb9eabfe03275db">AWS ELBからapacheのログに408が大量に出る対処</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 14:08:13</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[AWS]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />84位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/492c9e5ff9e71eee9da9">Google APIでBadAuthenticationの対処</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-08 13:52:27</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[GoogleAnalytics]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />85位</center></td>
-	<td colspan="3">
 		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
 		<a target="_blank" href="https://qiita.com/osamu1203/items/4204474fc4b309d47354">-bash: __rvm_add_to_path: コマンドが見つかりません</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-11-09 01:22:32</center>
 	</td>
 	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
+		@osamu1203<br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
 	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[rvm]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />86位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>0</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/b2f344ac25c11f6e17ce">[Swift] Rangeを逆順にする</a>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[rvm]</b> </center>
 	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-04-28 11:09:20</center>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>-bash: __rvm_add_to_path: コマンドが見つかりません
+</pre></div></div>
+
+<p>rvmを削除したら、ssh接続時にこんな表示が出るようになった。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>sudo rm /etc/profile.d/rvm.sh
+</pre></div></div>
+
+<p>このコマンドで直った。</p>
+</div>
 	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Swift]</b> <b>[Swift2.2]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />87位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>0</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/769010c2639c6edfe1f3">React NativeでCommand /bin/sh failed with exit code 2のビルドエラー</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-04-23 09:26:02</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[reactnative]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />88位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>0</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/9cebb2dd6dbfb2044713">Wordpressでアップデートできない問題(wp-includes\update.php on line 295)</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-03-30 13:55:38</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[WordPress]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>osamu1203さんの<br />89位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>0</kbd>
-		<a target="_blank" href="https://qiita.com/osamu1203/items/e62454cb425b26565b1b">[xcode]アーカイブできない（no provisioning profiles with a valid signing identity）</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-01-30 20:37:59</center>
-	</td>
-	<td style="width:200px;">
-		@osamu1203<!--(<a target="_blank" href="http://qiita.com/osamu1203">Qiita内の89件の記事</a>)--><br />(ever sense, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/24308/profile-images/1473684087">
-	</td>
-	<td style="width:300px;"><b>[Xcode]</b> <b>[iOS]</b> <b>[Xcode6]</b> <!--タグ--></td>
 </tr>
 </table>
 <br />

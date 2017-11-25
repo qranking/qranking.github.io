@@ -25,6 +25,7 @@
 <h1>Qiitaいいね数ランキング (sutetotanuki さんの投稿分)</h1>
 </div><!--class="headerContainer"-->
 <p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
 <table border="1">
 <tr>
 	<td rowspan="3"><center>sutetotanukiさんの<br />1位</center></td>
@@ -34,18 +35,415 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2012-10-10 13:34:53</center>
 	</td>
 	<td style="width:200px;">
-		@sutetotanuki<!--(<a target="_blank" href="http://qiita.com/sutetotanuki">Qiita内の9件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
+		@sutetotanuki<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <b>[CheatSheet]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> <b>[CheatSheet]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="add" class="fragment"></span><a href="#add"><i class="fa fa-link"></i></a>Add</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># 部分的にaddする</span>
+git add -p
+
+<span class="c1"># add済みのfileをadd(deletedを消すときにも使う)</span>
+git add -u
+</pre></div></div>
+
+<h1>
+<span id="apply" class="fragment"></span><a href="#apply"><i class="fa fa-link"></i></a>Apply</h1>
+
+<h2>
+<span id="diffからworking-treeに反映する" class="fragment"></span><a href="#diff%E3%81%8B%E3%82%89working-tree%E3%81%AB%E5%8F%8D%E6%98%A0%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>diffからworking treeに反映する</h2>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>git diff &lt;FILE&gt; &gt; pending.diff
+git apply pending.diff
+</pre></div></div>
+
+<h1>
+<span id="archive" class="fragment"></span><a href="#archive"><i class="fa fa-link"></i></a>Archive</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># zip形式でファイルを出力。</span>
+git archive &lt;COMMIT&gt; --format<span class="o">=</span>zip -o &lt;OUTPUT FILE&gt;
+</pre></div></div>
+
+<h1>
+<span id="bisect" class="fragment"></span><a href="#bisect"><i class="fa fa-link"></i></a>Bisect</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># スクリプトで渡す</span>
+git bisect run ./test_script <span class="c1">#=&gt; 成功 0, 失敗 1, スキップ 125で返すスクリプト</span>
+</pre></div></div>
+
+<h2>
+<span id="コミットを二分探索する" class="fragment"></span><a href="#%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%82%92%E4%BA%8C%E5%88%86%E6%8E%A2%E7%B4%A2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>コミットを二分探索する</h2>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>git bisect good v1.6.0
+git bisect bad v1.6.2
+git bisect good <span class="c1"># 壊れてない</span>
+git bisect bad <span class="c1"># こわれている</span>
+git bisect skip <span class="c1"># スキップ</span>
+git bisect reset <span class="c1"># 終了</span>
+</pre></div></div>
+
+<h1>
+<span id="blame" class="fragment"></span><a href="#blame"><i class="fa fa-link"></i></a>Blame</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># どのcommitでそのファイルが追加されたかみる</span>
+git blame &lt;FILE&gt;
+</pre></div></div>
+
+<h1>
+<span id="branch" class="fragment"></span><a href="#branch"><i class="fa fa-link"></i></a>Branch</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># リモートのbranch一覧をみる</span>
+git branch -r
+<span class="c1"># ブランチ名を変更する</span>
+git branch -m &lt;NEW_NAME&gt;
+
+<span class="c1"># ローカルブランチを削除</span>
+git branch -d &lt;BRANCH&gt;
+<span class="c1"># ローカルブランチを強制削除</span>
+git branch -D &lt;BRANCH&gt;
+
+<span class="c1"># リモートブランチを削除</span>
+git push origin :&lt;BRANCH&gt;
+
+<span class="c1"># ローカルブランチをリネーム</span>
+git branch -m &lt;OLD_BRANCH_NAME&gt; &lt;NEW_BRANCH_NAME&gt;
+</pre></div></div>
+
+<h1>
+<span id="clean" class="fragment"></span><a href="#clean"><i class="fa fa-link"></i></a>Clean</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># 管理されていない(.gitignoreにもない)ファイルを削除する -n は消去ファイル確認</span>
+git clean -n -f
+</pre></div></div>
+
+<h1>
+<span id="clone" class="fragment"></span><a href="#clone"><i class="fa fa-link"></i></a>Clone</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># submodule も一緒に初期化</span>
+git clone --recursive &lt;URL&gt;
+</pre></div></div>
+
+<h1>
+<span id="checkout" class="fragment"></span><a href="#checkout"><i class="fa fa-link"></i></a>Checkout</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># work treeの向き先を現在のcommitにする(detached HEAD)</span>
+git checkout HEAD^0 
+<span class="c1"># fileをコミットからもどす</span>
+git checkout &lt;COMMIT&gt; file
+
+<span class="c1"># fileをインデックスから戻す</span>
+git checkout &lt;FILE&gt;
+
+<span class="c1"># remoteのブランチをとってきてcheckout</span>
+git checkout -t -b &lt;BRANCH&gt; origin/&lt;BRANCH&gt;
+
+<span class="c1"># 一つ前のbrachにcheckoutする</span>
+git checkout -
+
+<span class="c1"># 強制上書き</span>
+git checkout .
+git pull
+</pre></div></div>
+
+<h1>
+<span id="cherry-pick" class="fragment"></span><a href="#cherry-pick"><i class="fa fa-link"></i></a>Cherry-pick</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># 狙ったコミットをマージする</span>
+git cherry-pick &lt;COMMIT&gt;
+</pre></div></div>
+
+<h1>
+<span id="commit" class="fragment"></span><a href="#commit"><i class="fa fa-link"></i></a>Commit</h1>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">commit.sh</span></div>
+<div class="highlight"><pre><span></span><span class="c1"># 追加してcommitする</span>
+git commit --amend
+</pre></div>
+</div>
+
+<h1>
+<span id="diff" class="fragment"></span><a href="#diff"><i class="fa fa-link"></i></a>Diff</h1>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">diff.sh</span></div>
+<div class="highlight"><pre><span></span><span class="c1"># 最新のコミットと、インデックスの間</span>
+git diff --cached
+
+<span class="c1"># コミット間の変更ファイル一覧</span>
+git diff --stat
+
+<span class="c1"># ファイル名と変更を表示</span>
+git diff --name-status
+
+<span class="c1"># カラーモード</span>
+git diff --color-words
+</pre></div>
+</div>
+
+<h1>
+<span id="fetch" class="fragment"></span><a href="#fetch"><i class="fa fa-link"></i></a>Fetch</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># 全てfetchする</span>
+git fetch &lt;REMOTE&gt; &lt;BRANCH&gt;
+
+<span class="c1"># fetchしたcommitをmergeする</span>
+git merge FETCH_HEAD
+</pre></div></div>
+
+<h1>
+<span id="format-patch" class="fragment"></span><a href="#format-patch"><i class="fa fa-link"></i></a>Format-patch</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># 差分をpatch形式としてファイルで出力する</span>
+git format-patch &lt;COMMIT..COMMIT&gt;
+</pre></div></div>
+
+<h1>
+<span id="log" class="fragment"></span><a href="#log"><i class="fa fa-link"></i></a>Log</h1>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">log.sh</span></div>
+<div class="highlight"><pre><span></span><span class="c1"># 出力するコミット数制限</span>
+git log -2
+
+<span class="c1"># 各コミットの変更をパッチ形式で出力</span>
+git log -p
+
+<span class="c1"># ログメッセージの最初の１行を出力</span>
+git log --pretty<span class="o">=</span>short
+
+<span class="c1"># 内容に変更がある部分を探す</span>
+git log --pretty<span class="o">=</span>short -S <span class="s1">'class Abc</span>
+<span class="s1">  def aa</span>
+<span class="s1">    p "aa"</span>
+<span class="s1">  end</span>
+<span class="s1">end'</span> -- &lt;FILE&gt;
+
+<span class="c1"># 全てのログを見る</span>
+git log -g
+
+<span class="c1"># onelineでみる</span>
+git log --oneline
+
+<span class="c1"># ある特定のファイルのlogをみる</span>
+git log v1.0.0 -- path/to/file.c <span class="c1"># v1.0.0タグ以降のfile.cのログを見る</span>
+
+<span class="c1"># ある特定のユーザーのコミットをみる</span>
+git log --author<span class="o">=</span><span class="s2">"&lt;USER NAME&gt;"</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="ls-files" class="fragment"></span><a href="#ls-files"><i class="fa fa-link"></i></a>Ls-files</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># マージが必要なfileを出力</span>
+git ls-files -u
+</pre></div></div>
+
+<h1>
+<span id="merge" class="fragment"></span><a href="#merge"><i class="fa fa-link"></i></a>Merge</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># マージする。デフォルトはff</span>
+git merge &lt;BRANCH&gt;
+
+<span class="c1"># ffでも&lt;BRAHCN&gt;の情報があったことを残してMergeする</span>
+git merge --no-ff &lt;BRANCH&gt;
+
+<span class="c1"># 公開したcommitを取り消す</span>
+git merge -s ours &lt;COMMIT&gt;
+
+<span class="c1"># 一つ前にいたbranchをmergeする</span>
+git merge -
+</pre></div></div>
+
+<h1>
+<span id="merge-base" class="fragment"></span><a href="#merge-base"><i class="fa fa-link"></i></a>Merge-base</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># 共通のcommitオブジェクトを出力する</span>
+git merge-base &lt;COMMIT&gt; &lt;COMMIT&gt;
+</pre></div></div>
+
+<h1>
+<span id="push" class="fragment"></span><a href="#push"><i class="fa fa-link"></i></a>Push</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># 2つ前のコミットでプッシュ先のmasterブランチを更新</span>
+git push REMOTE HEAD^^:master
+
+<span class="c1"># ローカルmasterでremoteのmaster更新</span>
+git push REMOTE master
+
+<span class="c1"># ブランチ削除</span>
+git push :temporary
+
+<span class="c1"># 強制的にpushする。(過去のcommitを変えちゃうかもしれない)</span>
+git push -f
+</pre></div></div>
+
+<h1>
+<span id="reset" class="fragment"></span><a href="#reset"><i class="fa fa-link"></i></a>Reset</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># indexから全て削除</span>
+git reset
+
+<span class="c1">#indexからFILEを削除</span>
+git reset &lt;FILE&gt;
+
+<span class="c1"># commitを削除</span>
+git reset HEAD^
+
+<span class="c1"># commitを削除しファイルももとに戻す</span>
+git reset --hard HEAD
+
+<span class="c1"># resetを取り消す</span>
+git reflog
+git reset --hard &lt;リセットの前のCOMMIT&gt;
+
+<span class="c1"># 直前の操作(commit, merge, rebase, reset等)を取り消す</span>
+git reset --hard ORIG_HEAD
+</pre></div></div>
+
+<h1>
+<span id="remote" class="fragment"></span><a href="#remote"><i class="fa fa-link"></i></a>Remote</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># 現在Remoteとして設定されている一覧を取得</span>
+git remote -v
+
+<span class="c1"># Remoteを登録する</span>
+git remote add &lt;REMOTE&gt;
+
+<span class="c1"># Remoteとして登録しているのを削除する　</span>
+git remote rm &lt;REMOTE&gt;
+
+<span class="c1"># Remote の url を変更する</span>
+git remote set-url &lt;REMOTE&gt; &lt;URL&gt;
+</pre></div></div>
+
+<h1>
+<span id="rev-list" class="fragment"></span><a href="#rev-list"><i class="fa fa-link"></i></a>Rev-list</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># 指定したディレクトリのコミットidを一覧表示</span>
+git rev-list HEAD^..HEAD -- DIR/
+</pre></div></div>
+
+<h1>
+<span id="revert" class="fragment"></span><a href="#revert"><i class="fa fa-link"></i></a>Revert</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># 過去のcommitを打ち消すcommitをする</span>
+git revert &lt;COMMIT&gt;
+
+<span class="c1"># コミットを行わない</span>
+git revert -n &lt;COMMIT&gt; 
+</pre></div></div>
+
+<h1>
+<span id="rm" class="fragment"></span><a href="#rm"><i class="fa fa-link"></i></a>Rm</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># Add取り消し</span>
+git rm --cached &lt;FILE&gt;
+</pre></div></div>
+
+<h1>
+<span id="rebase" class="fragment"></span><a href="#rebase"><i class="fa fa-link"></i></a>Rebase</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># インタラクティブリベースを取り消す</span>
+git rebase --abort
+</pre></div></div>
+
+<h2>
+<span id="過去のcommitを修正する" class="fragment"></span><a href="#%E9%81%8E%E5%8E%BB%E3%81%AEcommit%E3%82%92%E4%BF%AE%E6%AD%A3%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>過去のcommitを修正する</h2>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>git rebase -i HEAD~&lt;戻したいコミットの位置&gt;
+  <span class="c1"># editorが起動するので直すコミットの横にあるコマンドを edit に変更</span>
+  <span class="c1"># 実際に変更して git add で indexに追加</span>
+git commit --amend でcommit
+git rebase --continue
+</pre></div></div>
+
+<h2>
+<span id="リベースそのものを無かったことにする" class="fragment"></span><a href="#%E3%83%AA%E3%83%99%E3%83%BC%E3%82%B9%E3%81%9D%E3%81%AE%E3%82%82%E3%81%AE%E3%82%92%E7%84%A1%E3%81%8B%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8%E3%81%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>リベースそのものを無かったことにする</h2>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>git log -g <span class="c1"># rebase -i 前のコミットを探す</span>
+git reset &lt;COMMIT&gt;
+</pre></div></div>
+
+<h2>
+<span id="topicブランチ育て中にmasterブランチの変更を取り込む" class="fragment"></span><a href="#topic%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E8%82%B2%E3%81%A6%E4%B8%AD%E3%81%ABmaster%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%AE%E5%A4%89%E6%9B%B4%E3%82%92%E5%8F%96%E3%82%8A%E8%BE%BC%E3%82%80"><i class="fa fa-link"></i></a>topicブランチ育て中にmasterブランチの変更を取り込む</h2>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>git checkout feature
+git fetch origin
+git rebase origin/master
+</pre></div></div>
+
+<h2>
+<span id="以下でも一緒" class="fragment"></span><a href="#%E4%BB%A5%E4%B8%8B%E3%81%A7%E3%82%82%E4%B8%80%E7%B7%92"><i class="fa fa-link"></i></a>以下でも一緒</h2>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>git checkout feature
+git pull --rebase origin master
+git checkout master
+git pull --rebase
+</pre></div></div>
+
+<h1>
+<span id="shortlog" class="fragment"></span><a href="#shortlog"><i class="fa fa-link"></i></a>Shortlog</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># コミットの（ユーザー毎の？）要約</span>
+git shortlog HEAD^..HEAD -- &lt;DIR&gt;
+
+<span class="c1"># ユーザー毎のコミット数を集計</span>
+git shortlog &lt;COMMIT&gt;..&lt;COMMIT&gt; --summary
+</pre></div></div>
+
+<h1>
+<span id="status" class="fragment"></span><a href="#status"><i class="fa fa-link"></i></a>Status</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># 次のcommitに含まれるのを確認する </span>
+git status
+</pre></div></div>
+
+<h1>
+<span id="stash" class="fragment"></span><a href="#stash"><i class="fa fa-link"></i></a>Stash</h1>
+
+<h2>
+<span id="現在の変更を一時的によける" class="fragment"></span><a href="#%E7%8F%BE%E5%9C%A8%E3%81%AE%E5%A4%89%E6%9B%B4%E3%82%92%E4%B8%80%E6%99%82%E7%9A%84%E3%81%AB%E3%82%88%E3%81%91%E3%82%8B"><i class="fa fa-link"></i></a>現在の変更を一時的によける</h2>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>git stash 
+git checkout &lt;Other BRANCH&gt; <span class="c1"># edit files … </span>
+git add 
+git commit 
+git checkout &lt;Working BRANCH&gt; 
+git stash pop
+</pre></div></div>
+
+<h1>
+<span id="tag" class="fragment"></span><a href="#tag"><i class="fa fa-link"></i></a>Tag</h1>
+
+<h2>
+<span id="remoteのタグを消す" class="fragment"></span><a href="#remote%E3%81%AE%E3%82%BF%E3%82%B0%E3%82%92%E6%B6%88%E3%81%99"><i class="fa fa-link"></i></a>remoteのタグを消す</h2>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="c1"># localのタグを消す</span>
+git tag -d &lt;TAG_NAME&gt;
+<span class="c1"># それをremoteに反映する</span>
+git push origin :refs/tags/&lt;TAG_NAME&gt;
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -53,23 +451,178 @@
 <tr>
 	<td rowspan="3"><center>sutetotanukiさんの<br />2位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>241</kbd>
-		<a target="_blank" href="https://qiita.com/sutetotanuki/items/5eda6bbb5532dd64529a">Railsのセキュリティ対策で調べた事</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>49</kbd>
+		<a target="_blank" href="https://qiita.com/sutetotanuki/items/ea60ab94ddb54b8d9288">Mocha, chai, sinon で JavaScriptのテスト</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-21 17:07:30</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-07-31 08:53:05</center>
 	</td>
 	<td style="width:200px;">
-		@sutetotanuki<!--(<a target="_blank" href="http://qiita.com/sutetotanuki">Qiita内の9件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
+		@sutetotanuki<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
 	</td>
-	<td style="width:300px;"><b>[Rails]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[test]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h2>
+<span id="準備" class="fragment"></span><a href="#%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>準備</h2>
+
+<p>必要なnpmは以下</p>
+
+<ul>
+<li>mocha</li>
+<li>chai</li>
+<li>sinon (※ sinon-chai入れてもsinonは別に必要?)</li>
+<li>sinon-chai</li>
+</ul>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">chai</span>      <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'chai'</span><span class="p">),</span>
+    <span class="nx">should</span>    <span class="o">=</span> <span class="nx">chai</span><span class="p">.</span><span class="nx">should</span><span class="p">(),</span>
+    <span class="nx">sinon</span>     <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'sinon'</span><span class="p">),</span>
+    <span class="nx">sinonChai</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'sinon-chai'</span><span class="p">);</span>
+
+<span class="nx">chai</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">sinonChai</span><span class="p">);</span>
+</pre></div></div>
+
+<h2>
+<span id="非同期テスト" class="fragment"></span><a href="#%E9%9D%9E%E5%90%8C%E6%9C%9F%E3%83%86%E3%82%B9%E3%83%88"><i class="fa fa-link"></i></a>非同期テスト</h2>
+
+<p>beforeやitの引数のfunctionはdoneが引数としてとれるので、テストを次に進めていいタイミングで呼び出す。doneを引数としてとらなければ、そのまま進む。</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">asyncronize.js</span></div>
+<div class="highlight"><pre><span></span><span class="nx">it</span><span class="p">(</span><span class="s2">"should not raise an error"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s2">"/path/to/text.text"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">should</span><span class="p">.</span><span class="nx">not</span><span class="p">.</span><span class="nx">exist</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="nx">done</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="hooks" class="fragment"></span><a href="#hooks"><i class="fa fa-link"></i></a>hooks</h2>
+
+<h3>
+<span id="before" class="fragment"></span><a href="#before"><i class="fa fa-link"></i></a>before</h3>
+
+<p>テスト実行前に'一度だけ'走る</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">'test'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">before</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'before'</span><span class="p">);</span>
+    <span class="nx">done</span><span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">'should be done successfull'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'it1'</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">'should be done successfull'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'it2'</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>before
+it1
+it2
+</pre></div></div>
+
+<h3>
+<span id="beforeeach" class="fragment"></span><a href="#beforeeach"><i class="fa fa-link"></i></a>beforeEach</h3>
+
+<p>テスト実行前に'毎it'走る</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">'test'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'before'</span><span class="p">);</span>
+    <span class="nx">done</span><span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">'should be done successfull'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'it1'</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">'should be done successfull'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'it2'</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>before
+it1
+before
+it2
+</pre></div></div>
+
+<h3>
+<span id="after" class="fragment"></span><a href="#after"><i class="fa fa-link"></i></a>after</h3>
+
+<p>テスト実行後に'一度だけ'はしる<br>
+before の対応</p>
+
+<h3>
+<span id="aftereahc" class="fragment"></span><a href="#aftereahc"><i class="fa fa-link"></i></a>afterEahc</h3>
+
+<p>テスト実行後に'毎it'はしる<br>
+beforeEach の対応 </p>
+
+<h2>
+<span id="アサーションchai" class="fragment"></span><a href="#%E3%82%A2%E3%82%B5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3chai"><i class="fa fa-link"></i></a>アサーション(chai)</h2>
+
+<p>should使う場合のアサーション一覧<br>
+<a href="http://chaijs.com/api/bdd/" class="autolink" rel="nofollow noopener" target="_blank">http://chaijs.com/api/bdd/</a></p>
+
+<p>少しだけピックアップ</p>
+
+<h3>
+<span id="deep" class="fragment"></span><a href="#deep"><i class="fa fa-link"></i></a>deep</h3>
+
+<p>Object同士を比べる場合はequalでは無くこちらを使う</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span> <span class="s2">"b"</span><span class="p">};</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">deep</span><span class="p">.</span><span class="nx">equal</span><span class="p">({</span><span class="nx">a</span><span class="o">:</span> <span class="s2">"b"</span><span class="p">});</span>
+</pre></div></div>
+
+<h2>
+<span id="stub-mock" class="fragment"></span><a href="#stub-mock"><i class="fa fa-link"></i></a>stub, mock</h2>
+
+<p>sinonを使ってstub(mock)する。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">'Send data'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">spy</span><span class="p">,</span> <span class="nx">target</span><span class="p">;</span>
+
+  <span class="nx">before</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">spy</span> <span class="o">=</span> <span class="nx">sinon</span><span class="p">.</span><span class="nx">spy</span><span class="p">();</span>
+    <span class="nx">target</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TestTargetModule</span><span class="p">();</span>
+    <span class="nx">target</span><span class="p">.</span><span class="nx">_sendData</span> <span class="o">=</span> <span class="nx">spy</span><span class="p">;</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"should sends data over private _sendData method"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">target</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'data'</span><span class="p">);</span>
+    <span class="nx">spy</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">been</span><span class="p">.</span><span class="nx">calledWith</span><span class="p">(</span><span class="s1">'data'</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"should not sends data over private _sendData method"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">target</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'data'</span><span class="p">,</span> <span class="p">{</span><span class="nx">direct</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
+    <span class="nx">spy</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">not</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">been</span><span class="p">.</span><span class="nx">calledWith</span><span class="p">(</span><span class="s1">'data'</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -77,23 +630,65 @@
 <tr>
 	<td rowspan="3"><center>sutetotanukiさんの<br />3位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>48</kbd>
-		<a target="_blank" href="https://qiita.com/sutetotanuki/items/ea60ab94ddb54b8d9288">Mocha, chai, sinon で JavaScriptのテスト</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>31</kbd>
+		<a target="_blank" href="https://qiita.com/sutetotanuki/items/602e3e80eb2ae5d5635f">ActionMailerのテスト</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-07-31 08:53:05</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-08-12 18:46:32</center>
 	</td>
 	<td style="width:200px;">
-		@sutetotanuki<!--(<a target="_blank" href="http://qiita.com/sutetotanuki">Qiita内の9件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
+		@sutetotanuki<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
 	</td>
-	<td style="width:300px;"><b>[JavaScript]</b> <b>[test]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Rails]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h2>
+<span id="delivery_methodを-test-に設定する" class="fragment"></span><a href="#delivery_method%E3%82%92-test-%E3%81%AB%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>delivery_methodを :test に設定する</h2>
+
+<p>Rails 4 ではデフォでなってた。確認するだけ？</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">config/environments/test.rb</span></div>
+<div class="highlight"><pre><span></span>  <span class="c1"># Tell Action Mailer not to deliver emails to the real world.                                                                                                                   </span>
+  <span class="c1"># The :test delivery method accumulates sent emails in the                                                                                                                      </span>
+  <span class="c1"># ActionMailer::Base.deliveries array.  </span>
+  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">delivery_method</span> <span class="o">=</span> <span class="ss">:test</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="actionmailerbasedeliveriesで送信したmailmessageにアクセスする" class="fragment"></span><a href="#actionmailerbasedeliveries%E3%81%A7%E9%80%81%E4%BF%A1%E3%81%97%E3%81%9Fmailmessage%E3%81%AB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>ActionMailer::Base.deliveriesで送信したMail::Messageにアクセスする</h2>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">spec/some_spec.rb</span></div>
+<div class="highlight"><pre><span></span><span class="n">describe</span> <span class="s2">"sample"</span> <span class="k">do</span> 
+  <span class="c1">#  グローバルな変数みたいなので毎回クリアする。</span>
+  <span class="n">after</span> <span class="p">{</span> <span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">deliveries</span><span class="o">.</span><span class="n">clear</span> <span class="p">}</span>
+
+  <span class="n">it</span> <span class="s2">"sample"</span> <span class="k">do</span> 
+    <span class="c1"># メール送る処理</span>
+    <span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">deliveries</span><span class="o">.</span><span class="n">last</span> <span class="c1">#=&gt; #&lt;Mail::Message&gt;</span>
+    <span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">deliveries</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">body</span> <span class="c1">#=&gt; #&lt;Mail::Body&gt;</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">deliveries</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">body</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">match</span><span class="p">(</span><span class="sr">/wellcom/</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -101,23 +696,220 @@
 <tr>
 	<td rowspan="3"><center>sutetotanukiさんの<br />4位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>31</kbd>
-		<a target="_blank" href="https://qiita.com/sutetotanuki/items/602e3e80eb2ae5d5635f">ActionMailerのテスト</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>27</kbd>
+		<a target="_blank" href="https://qiita.com/sutetotanuki/items/1e600058fe55223ecf18">Express で twitter OAuthで認証してmongoにほりこむとこまで</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-08-12 18:46:32</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2012-12-19 01:45:48</center>
 	</td>
 	<td style="width:200px;">
-		@sutetotanuki<!--(<a target="_blank" href="http://qiita.com/sutetotanuki">Qiita内の9件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
+		@sutetotanuki<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
 	</td>
-	<td style="width:300px;"><b>[Rails]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Node.js]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h2>
+<span id="twitterアプリ登録" class="fragment"></span><a href="#twitter%E3%82%A2%E3%83%97%E3%83%AA%E7%99%BB%E9%8C%B2"><i class="fa fa-link"></i></a>Twitterアプリ登録</h2>
+
+<p>ここで <a href="https://dev.twitter.com/" class="autolink" rel="nofollow noopener" target="_blank">https://dev.twitter.com/</a></p>
+
+<h2>
+<span id="expressをグローバルにインスールしてアプリの雛形を作る" class="fragment"></span><a href="#express%E3%82%92%E3%82%B0%E3%83%AD%E3%83%BC%E3%83%90%E3%83%AB%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%9B%9B%E5%BD%A2%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>expressをグローバルにインスールしてアプリの雛形を作る</h2>
+
+<p>Generator使いたいだけなので任意</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>npm install express -g
+express oauth_test
+</pre></div></div>
+
+<h2>
+<span id="必要なnpmを導入" class="fragment"></span><a href="#%E5%BF%85%E8%A6%81%E3%81%AAnpm%E3%82%92%E5%B0%8E%E5%85%A5"><i class="fa fa-link"></i></a>必要なnpmを導入</h2>
+
+<p>package.jsonに追加して…</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">/package.json</span></div>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"application-name"</span><span class="p">,</span>
+  <span class="s2">"version"</span><span class="o">:</span> <span class="s2">"0.0.1"</span><span class="p">,</span>
+  <span class="s2">"private"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"scripts"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"start"</span><span class="o">:</span> <span class="s2">"node app"</span>
+  <span class="p">},</span>
+  <span class="s2">"dependencies"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"express"</span><span class="o">:</span> <span class="s2">"3.0.3"</span><span class="p">,</span>
+    <span class="s2">"jade"</span><span class="o">:</span> <span class="s2">"*"</span><span class="p">,</span>
+    <span class="s2">"passport"</span><span class="o">:</span> <span class="s2">"*"</span><span class="p">,</span> <span class="c1">// &lt;= 追加</span>
+    <span class="s2">"passport-twitter"</span><span class="o">:</span> <span class="s2">"*"</span><span class="p">,</span> <span class="c1">// &lt;= 追加</span>
+    <span class="s2">"mongoose"</span><span class="o">:</span> <span class="s2">"*"</span> <span class="c1">// &lt;= 追加</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>インストール</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>npm install
+</pre></div></div>
+
+<h2>
+<span id="mongo関連を準備" class="fragment"></span><a href="#mongo%E9%96%A2%E9%80%A3%E3%82%92%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>Mongo関連を準備</h2>
+
+<p>mongooseいらなかったかもしれない</p>
+
+<div class="code-frame" data-lang="js">
+<div class="code-lang"><span class="bold">/app.js</span></div>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">)</span>
+
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">"mongodb://localhost/oauth_test"</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">userSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+  <span class="nx">uid</span><span class="o">:</span> <span class="nb">Number</span>
+<span class="p">});</span>
+
+<span class="c1">// mogooseからfindAndModifyがみれないので追加</span>
+<span class="nx">userSchema</span><span class="p">.</span><span class="nx">statics</span><span class="p">.</span><span class="nx">findAndModify</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="nx">sort</span><span class="p">,</span> <span class="nx">doc</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">findAndModify</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="nx">sort</span><span class="p">,</span> <span class="nx">doc</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">User</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'User'</span><span class="p">,</span> <span class="nx">userSchema</span><span class="p">);</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="passportを使用する準備" class="fragment"></span><a href="#passport%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8B%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>passportを使用する準備</h2>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">/app.js</span></div>
+<div class="highlight"><pre><span></span><span class="kd">var</span>   <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'passport'</span><span class="p">)</span>
+    <span class="p">,</span> <span class="nx">TwitterStrategy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'passport-twitter'</span><span class="p">).</span><span class="nx">Strategy</span><span class="p">;</span>
+
+<span class="c1">// セッションに入れるときのシリアライザ？と</span>
+<span class="c1">// デシリアライザ？。必要だったので追加。</span>
+<span class="nx">passport</span><span class="p">.</span><span class="nx">serializeUser</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">passport</span><span class="p">.</span><span class="nx">deserializeUser</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">obj</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// expressを設定</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">configure</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'port'</span><span class="p">,</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">);</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'views'</span><span class="p">,</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/views'</span><span class="p">);</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'view engine'</span><span class="p">,</span> <span class="s1">'jade'</span><span class="p">);</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">favicon</span><span class="p">());</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">logger</span><span class="p">(</span><span class="s1">'dev'</span><span class="p">));</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">bodyParser</span><span class="p">());</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">methodOverride</span><span class="p">());</span>
+  <span class="c1">// -- 追加しところ --</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">cookieParser</span><span class="p">());</span> <span class="c1">// session使うためにパーサーを有効に</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">session</span><span class="p">({</span><span class="nx">secret</span><span class="o">:</span> <span class="s2">"hogesecret"</span><span class="p">}));</span> <span class="c1">// session有効</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">passport</span><span class="p">.</span><span class="nx">initialize</span><span class="p">());</span> <span class="c1">// passportの初期化処理</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">passport</span><span class="p">.</span><span class="nx">session</span><span class="p">());</span> <span class="c1">// passportのsessionを設定(中身はしらぬ)</span>
+  <span class="c1">// -- 追加ココまで --</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">router</span><span class="p">);</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">'public'</span><span class="p">)));</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="passport-twitterの設定" class="fragment"></span><a href="#passport-twitter%E3%81%AE%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>passport-twitterの設定</h2>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">/app.js</span></div>
+<div class="highlight"><pre><span></span><span class="nx">passport</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="k">new</span> <span class="nx">TwitterStrategy</span><span class="p">({</span>
+  <span class="nx">consumerKey</span><span class="o">:</span> <span class="s2">"&lt;YOUR KEY&gt;"</span><span class="p">,</span>
+  <span class="nx">consumerSecret</span><span class="o">:</span> <span class="s2">"&lt;YOUR SECRET&gt;"</span><span class="p">,</span>
+  <span class="nx">callbackURL</span><span class="o">:</span> <span class="s2">"http://localhost:3000/auth/twitter/callback"</span>
+<span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="nx">tokenSecret</span><span class="p">,</span> <span class="nx">profile</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">User</span><span class="p">.</span><span class="nx">findAndModify</span><span class="p">({</span>
+    <span class="c1">// Query</span>
+    <span class="nx">uid</span><span class="o">:</span> <span class="nx">profile</span><span class="p">.</span><span class="nx">id</span>
+  <span class="p">},</span>
+    <span class="c1">// sort</span>
+    <span class="p">[]</span>
+  <span class="p">,{</span>
+    <span class="c1">// Object</span>
+    <span class="nx">$set</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">uid</span><span class="o">:</span> <span class="nx">profile</span><span class="p">.</span><span class="nx">id</span>
+    <span class="p">}</span>
+  <span class="p">},</span> <span class="p">{</span>
+    <span class="c1">// Option</span>
+    <span class="nx">upsert</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">_id</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">}));</span>
+
+<span class="c1">// -- 追加したルート --</span>
+<span class="c1">// ユーザーからリクエストをもらうルート</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/auth/twitter"</span><span class="p">,</span> <span class="nx">passport</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="s1">'twitter'</span><span class="p">));</span>
+
+<span class="c1">// Twitterからcallbackうけるルート</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/auth/twitter/callback"</span><span class="p">,</span> <span class="nx">passport</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="s1">'twitter'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">successRedirect</span><span class="o">:</span> <span class="s1">'/'</span><span class="p">,</span>
+  <span class="nx">failureRedirect</span><span class="o">:</span> <span class="s1">'/login'</span>
+<span class="p">}));</span>
+
+</pre></div>
+</div>
+
+<h2>
+<span id="適当なviewを用意して完了" class="fragment"></span><a href="#%E9%81%A9%E5%BD%93%E3%81%AAview%E3%82%92%E7%94%A8%E6%84%8F%E3%81%97%E3%81%A6%E5%AE%8C%E4%BA%86"><i class="fa fa-link"></i></a>適当なviewを用意して完了</h2>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">/app.js</span></div>
+<div class="highlight"><pre><span></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="nx">routes</span><span class="p">.</span><span class="nx">login</span><span class="p">);</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">/routes/index.js</span></div>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * GET login</span>
+<span class="cm"> */</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">login</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'login'</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span><span class="o">:</span> <span class="s1">'Express'</span> <span class="p">});</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="jade">
+<div class="code-lang"><span class="bold">/views/login.jade</span></div>
+<div class="highlight"><pre><span></span><span class="nt">extend</span> layout
+
+<span class="nt">block</span> content
+  <span class="nt">a</span>(<span class="na">href=</span><span class="s">"/auth/twitter"</span>) login
+</pre></div>
+</div>
+
+<h2>
+<span id="完成サンプル" class="fragment"></span><a href="#%E5%AE%8C%E6%88%90%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB"><i class="fa fa-link"></i></a>完成サンプル</h2>
+
+<p>つたない説明なので動くサンプルをアップ。。。<br>
+<a href="https://github.com/sutetotanuki/node_oauth_sample" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/sutetotanuki/node_oauth_sample</a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -125,23 +917,57 @@
 <tr>
 	<td rowspan="3"><center>sutetotanukiさんの<br />5位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>27</kbd>
-		<a target="_blank" href="https://qiita.com/sutetotanuki/items/1e600058fe55223ecf18">Express で twitter OAuthで認証してmongoにほりこむとこまで</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/sutetotanuki/items/629d636fb18cbca98d63">テストでActiveRecordのCallbcksをスキップする方法</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-12-19 01:45:48</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-08-09 11:34:49</center>
 	</td>
 	<td style="width:200px;">
-		@sutetotanuki<!--(<a target="_blank" href="http://qiita.com/sutetotanuki">Qiita内の9件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
+		@sutetotanuki<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
 	</td>
-	<td style="width:300px;"><b>[Node.js]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Rails]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>いろいろやり方があるみたいだけど標準機能でいけそう</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">sample.rb</span></div>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Sample</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">after_create</span> <span class="ss">:sample_callback</span>
+
+  <span class="k">def</span> <span class="nf">sample_callback</span>
+    <span class="c1"># doing something</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">sample_spec.rb</span></div>
+<div class="highlight"><pre><span></span><span class="n">describe</span> <span class="no">Sample</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="p">{</span> <span class="no">Sample</span><span class="o">.</span><span class="n">skip_callback</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">:after</span><span class="p">,</span> <span class="ss">:sample_callback</span><span class="p">)</span> <span class="p">}</span> 
+  <span class="n">after</span> <span class="p">{</span> <span class="no">Sample</span><span class="o">.</span><span class="n">set_callback</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">:after</span><span class="p">,</span> <span class="ss">:sample_callback</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">it</span> <span class="s2">"test"</span> <span class="k">do</span>
+    <span class="c1"># test</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -149,95 +975,68 @@
 <tr>
 	<td rowspan="3"><center>sutetotanukiさんの<br />6位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/sutetotanuki/items/97f0e176ee2f1249168a">ZKメモ</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-06-03 16:31:51</center>
-	</td>
-	<td style="width:200px;">
-		@sutetotanuki<!--(<a target="_blank" href="http://qiita.com/sutetotanuki">Qiita内の9件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
-	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[ZooKeeper]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>sutetotanukiさんの<br />7位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
-		<a target="_blank" href="https://qiita.com/sutetotanuki/items/629d636fb18cbca98d63">テストでActiveRecordのCallbcksをスキップする方法</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-08-09 11:34:49</center>
-	</td>
-	<td style="width:200px;">
-		@sutetotanuki<!--(<a target="_blank" href="http://qiita.com/sutetotanuki">Qiita内の9件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
-	</td>
-	<td style="width:300px;"><b>[Rails]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>sutetotanukiさんの<br />8位</center></td>
-	<td colspan="3">
 		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
 		<a target="_blank" href="https://qiita.com/sutetotanuki/items/a0e13ce73b8716f39eb4">Resqueスケジューラーで動的にargsを渡す方法</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-02-28 15:41:07</center>
 	</td>
 	<td style="width:200px;">
-		@sutetotanuki<!--(<a target="_blank" href="http://qiita.com/sutetotanuki">Qiita内の9件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
+		@sutetotanuki<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
 	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[Resque]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>sutetotanukiさんの<br />9位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>0</kbd>
-		<a target="_blank" href="https://qiita.com/sutetotanuki/items/546fb4c553ee56879f19">KeyRemap4MacBookでアンダースコアとバッククォートを入れ替える。</a>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[Resque]</b> </center>
 	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2012-12-19 09:44:58</center>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>需要があるかどうかもわからないし、他にやり方があるかもしれない</p>
+
+<h2>
+<span id="schedulerコンフィグにargsがhashになるよう設定する" class="fragment"></span><a href="#scheduler%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%B0%E3%81%ABargs%E3%81%8Chash%E3%81%AB%E3%81%AA%E3%82%8B%E3%82%88%E3%81%86%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>schedulerコンフィグにargsがHashになるよう設定する　</h2>
+
+<div class="code-frame" data-lang="yaml">
+<div class="code-lang"><span class="bold">resque_scheduler.yml</span></div>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">sample_queue</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">every</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">60s</span>
+  <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">SampleQueue</span>
+
+  <span class="c1"># Hashになるように設定する</span>
+  <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">time</span><span class="p p-Indicator">:</span> <span class="s">"this</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">replaced"</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="before_delayed_enqueue-フックでわたってきたhashを書き換える" class="fragment"></span><a href="#before_delayed_enqueue-%E3%83%95%E3%83%83%E3%82%AF%E3%81%A7%E3%82%8F%E3%81%9F%E3%81%A3%E3%81%A6%E3%81%8D%E3%81%9Fhash%E3%82%92%E6%9B%B8%E3%81%8D%E6%8F%9B%E3%81%88%E3%82%8B"><i class="fa fa-link"></i></a>before_delayed_enqueue フックでわたってきたHashを書き換える</h2>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SampleQueue</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">before_delayed_enqueue</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+    <span class="c1"># schedulerがenqueuする直前によばれ</span>
+    <span class="c1"># argsにparseされたargsが配列でわたってくる    </span>
+    <span class="c1"># おそらくこんな用途に使うものでないのか</span>
+    <span class="c1"># 戻り値とか無視されるのでHashで渡すようして</span>
+    <span class="c1"># そのHashの中身を上書き</span>
+    <span class="c1"># ソース見る限りそれをそのまま渡してそう</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">shift</span>
+    <span class="n">param</span><span class="o">[</span><span class="s2">"time"</span><span class="o">]</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">to_i</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">perform</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="s2">"time"</span><span class="o">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></div>
+</div>
 	</td>
-	<td style="width:200px;">
-		@sutetotanuki<!--(<a target="_blank" href="http://qiita.com/sutetotanuki">Qiita内の9件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/4307/profile-images/1473683900">
-	</td>
-	<td style="width:300px;"><b>[keyremap4macbook]</b> <!--タグ--></td>
 </tr>
 </table>
 <br />

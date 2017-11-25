@@ -25,27 +25,501 @@
 <h1>Qiitaいいね数ランキング (hide さんの投稿分)</h1>
 </div><!--class="headerContainer"-->
 <p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
 <table border="1">
 <tr>
 	<td rowspan="3"><center>hideさんの<br />1位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>718</kbd>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>719</kbd>
 		<a target="_blank" href="https://qiita.com/hide/items/5bfe5b322872c61a6896">よく使う Vim のコマンドまとめ</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-07-06 11:56:18</center>
 	</td>
 	<td style="width:200px;">
-		@hide<!--(<a target="_blank" href="http://qiita.com/hide">Qiita内の13件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
+		@hide<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="ファイル操作" class="fragment"></span><a href="#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C"><i class="fa fa-link"></i></a>ファイル操作</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ZZ</td>
+<td>上書き保存し、viを終了</td>
+</tr>
+<tr>
+<td>:w</td>
+<td>内容を保存</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>保存せずに終了</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="モード" class="fragment"></span><a href="#%E3%83%A2%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>モード</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i</td>
+<td>挿入モードへ</td>
+</tr>
+<tr>
+<td>o</td>
+<td>新しい行を追加し挿入モードへ</td>
+</tr>
+<tr>
+<td>R</td>
+<td>上書きモードへ</td>
+</tr>
+<tr>
+<td>v</td>
+<td>ビジュアルモードへ</td>
+</tr>
+<tr>
+<td>Ctrl + v</td>
+<td>矩形選択のビジュアルモードへ</td>
+</tr>
+<tr>
+<td>ESC</td>
+<td>コマンドモードに戻る</td>
+</tr>
+<tr>
+<td>ctrl + [</td>
+<td>コマンドモードに戻る</td>
+</tr>
+<tr>
+<td>ctrl + z</td>
+<td>vim を一時停止する</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="カーソル移動" class="fragment"></span><a href="#%E3%82%AB%E3%83%BC%E3%82%BD%E3%83%AB%E7%A7%BB%E5%8B%95"><i class="fa fa-link"></i></a>カーソル移動</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>w</td>
+<td>次の単語 (Word)</td>
+</tr>
+<tr>
+<td>b</td>
+<td>前の単語</td>
+</tr>
+<tr>
+<td>f(文字)</td>
+<td>カーソルがある行の(文字)に移動 (Find)</td>
+</tr>
+<tr>
+<td>F(文字)</td>
+<td>カーソルがある行の(文字)に移動(逆向き)</td>
+</tr>
+<tr>
+<td>0</td>
+<td>行頭</td>
+</tr>
+<tr>
+<td>＾</td>
+<td>行頭</td>
+</tr>
+<tr>
+<td>$</td>
+<td>行末</td>
+</tr>
+<tr>
+<td>%</td>
+<td>対応する括弧に移動</td>
+</tr>
+<tr>
+<td>Ctrl + u</td>
+<td>半画面上 (Up)</td>
+</tr>
+<tr>
+<td>Ctrl + d</td>
+<td>半画面下 (Down)</td>
+</tr>
+<tr>
+<td>zz</td>
+<td>カーソルが画面中央になるようにスクロール</td>
+</tr>
+<tr>
+<td>Ctrl + o</td>
+<td>古いカーソル位置に戻る。 (Old)</td>
+</tr>
+<tr>
+<td>Ctrl + i</td>
+<td>新しいカーソル位置に進む。</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="行移動" class="fragment"></span><a href="#%E8%A1%8C%E7%A7%BB%E5%8B%95"><i class="fa fa-link"></i></a>行移動</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gg</td>
+<td>最初の行</td>
+</tr>
+<tr>
+<td>88G</td>
+<td>88行目</td>
+</tr>
+<tr>
+<td>G</td>
+<td>最終行</td>
+</tr>
+<tr>
+<td>H</td>
+<td>画面上の最初の行 (Home)</td>
+</tr>
+<tr>
+<td>M</td>
+<td>画面上の中央の行 (Middle)</td>
+</tr>
+<tr>
+<td>L</td>
+<td>画面上の最後の行 (Last)</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="検索と置換" class="fragment"></span><a href="#%E6%A4%9C%E7%B4%A2%E3%81%A8%E7%BD%AE%E6%8F%9B"><i class="fa fa-link"></i></a>検索と置換</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>カーソル下の単語を検索</td>
+</tr>
+<tr>
+<td>#</td>
+<td>カーソル下の単語を検索 (上方向に検索)</td>
+</tr>
+<tr>
+<td>:%s/hage/hoge/g</td>
+<td>単語の置換(hageをhogeへ置換)。<code>%</code> はファイル全体を表す。</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="編集" class="fragment"></span><a href="#%E7%B7%A8%E9%9B%86"><i class="fa fa-link"></i></a>編集</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>直前の変更を繰り返す</td>
+</tr>
+<tr>
+<td>u</td>
+<td>Undo</td>
+</tr>
+<tr>
+<td>Ctrl + r</td>
+<td>Redo</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="コピーペースト" class="fragment"></span><a href="#%E3%82%B3%E3%83%94%E3%83%BC%E3%83%9A%E3%83%BC%E3%82%B9%E3%83%88"><i class="fa fa-link"></i></a>コピー&amp;ペースト</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yy</td>
+<td>今いる行をコピー (yank)</td>
+</tr>
+<tr>
+<td>p</td>
+<td>カーソルの場所に、ペースト</td>
+</tr>
+<tr>
+<td>yy5p</td>
+<td>現在の行をコピーし、下に5行追加する</td>
+</tr>
+<tr>
+<td>gv</td>
+<td>直前の選択範囲を再選択</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="特殊文字" class="fragment"></span><a href="#%E7%89%B9%E6%AE%8A%E6%96%87%E5%AD%97"><i class="fa fa-link"></i></a>特殊文字</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl-v return</td>
+<td>改行文字の入力</td>
+</tr>
+<tr>
+<td>Ctrl-v tab</td>
+<td>Tab 文字の入力</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="ウィンドウ" class="fragment"></span><a href="#%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6"><i class="fa fa-link"></i></a>ウィンドウ</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:vsplit</td>
+<td>画面を左右に分割する</td>
+</tr>
+<tr>
+<td>:e filename</td>
+<td>今いるWindowにファイルを開く (Edit)</td>
+</tr>
+<tr>
+<td>:e test*.cc</td>
+<td>ワイルドカードを指定してファイルを開く</td>
+</tr>
+<tr>
+<td>Ctrl +w h</td>
+<td>左のWindowへ移動</td>
+</tr>
+<tr>
+<td>Ctrl + w l</td>
+<td>右のWindowへ移動</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="バッファ" class="fragment"></span><a href="#%E3%83%90%E3%83%83%E3%83%95%E3%82%A1"><i class="fa fa-link"></i></a>バッファ</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:buffers</td>
+<td>編集中のバッファ一覧を表示</td>
+</tr>
+<tr>
+<td>:bn</td>
+<td>次のバッファに移動</td>
+</tr>
+<tr>
+<td>:bd[elete]</td>
+<td>バッファを削除</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="単語補完" class="fragment"></span><a href="#%E5%8D%98%E8%AA%9E%E8%A3%9C%E5%AE%8C"><i class="fa fa-link"></i></a>単語補完</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + p</td>
+<td>単語補完(前方検索)</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="マクロ" class="fragment"></span><a href="#%E3%83%9E%E3%82%AF%E3%83%AD"><i class="fa fa-link"></i></a>マクロ</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q&lt;letter&gt;</td>
+<td>マクロの記録開始</td>
+</tr>
+<tr>
+<td>q</td>
+<td>マクロの記録停止</td>
+</tr>
+<tr>
+<td>@&lt;letter&gt;</td>
+<td>マクロの実行</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="レジスタ" class="fragment"></span><a href="#%E3%83%AC%E3%82%B8%E3%82%B9%E3%82%BF"><i class="fa fa-link"></i></a>レジスタ</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>機能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:reg</td>
+<td>レジスタの一覧表示</td>
+</tr>
+<tr>
+<td>Ctrl + r "</td>
+<td>ヤンクした文字列をペースト</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="コマンドの意味" class="fragment"></span><a href="#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE%E6%84%8F%E5%91%B3"><i class="fa fa-link"></i></a>コマンドの意味</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>g</td>
+<td>繰り返し</td>
+</tr>
+<tr>
+<td>c</td>
+<td>1回毎に確認</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="その他" class="fragment"></span><a href="#%E3%81%9D%E3%81%AE%E4%BB%96"><i class="fa fa-link"></i></a>その他</h1>
+
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:!command</td>
+<td>外部コマンドの実行</td>
+</tr>
+<tr>
+<td>:</td>
+<td>範囲選択中に <code>:</code> を入力すると、選択領域の範囲指定( <code>’&lt;,’&gt;</code> )が自動で挿入された状態でコマンドモードに入る。これを置換に利用すると便利。 (例: :'&lt;,'&gt;s/old/new/g)</td>
+</tr>
+<tr>
+<td>Ctrl + a</td>
+<td>数値のインクリメント</td>
+</tr>
+<tr>
+<td>Ctrl + x</td>
+<td>数値のデクリメント</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="参考文献" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><i class="fa fa-link"></i></a>参考文献</h1>
+
+<p><a href="http://route477.net/w/?VimMemo" rel="nofollow noopener" target="_blank">Route 477 - Vim覚え書き</a><br>
+<a href="http://archiva.jp/web/tool/vim_basic.html" rel="nofollow noopener" target="_blank">Vim 基本操作まとめ - Archiva</a><br>
+<a href="http://d.hatena.ne.jp/ykmbpp/20080527/1211850475" rel="nofollow noopener" target="_blank">検索・置換に便利なヤンク（レジスタ）【Vimコマンド】にさん追加7/3 - YKMbPP</a></p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -58,18 +532,229 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-07-07 07:20:11</center>
 	</td>
 	<td style="width:200px;">
-		@hide<!--(<a target="_blank" href="http://qiita.com/hide">Qiita内の13件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
+		@hide<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <b>[Unite]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> <b>[Unite]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="unitevim-とは" class="fragment"></span><a href="#unitevim-%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>unite.vim とは</h1>
+
+<p>vim 用の統合ユーザインターフェース。</p>
+
+<p>様々なデータを共通のインタフェースを用いて操作できる。<br>
+unite.vim のインターフェースを学習するだけで色々なデータを簡単に操作できるようになり、また異なる種類のデータを同時に操作できる。</p>
+
+<p>例えば、ノーマルモードで以下のコマンドを実行すると、カレントディレクトリとバッファの一覧を同時に表示できる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>:Unite file buffer
+</pre></div></div>
+
+<h1>
+<span id="導入方法" class="fragment"></span><a href="#%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>導入方法</h1>
+
+<p>unite.vim は GitHub で公開されている。<br>
+<a href="https://github.com/Shougo/unite.vim" rel="nofollow noopener" target="_blank">Shougo/unite.vim</a></p>
+
+<p>NeoBundle を導入済みの場合は、まずは以下を .vimrc に記述する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>NeoBundle 'Shougo/unite.vim'
+</pre></div></div>
+
+<p>そして、ノーマルモードで以下のコマンドを実行すると、 unite.vim をインストールできる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>:NeoBundleInstall
+</pre></div></div>
+
+<h1>
+<span id="使い方" class="fragment"></span><a href="#%E4%BD%BF%E3%81%84%E6%96%B9"><i class="fa fa-link"></i></a>使い方</h1>
+
+<h2>
+<span id="操作の流れ" class="fragment"></span><a href="#%E6%93%8D%E4%BD%9C%E3%81%AE%E6%B5%81%E3%82%8C"><i class="fa fa-link"></i></a>操作の流れ</h2>
+
+<ol>
+<li>データの種類(Source)を選択</li>
+<li>データを選択</li>
+<li>Action を選択</li>
+</ol>
+
+<h2>
+<span id="操作方法" class="fragment"></span><a href="#%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>操作方法</h2>
+
+<ol>
+<li>
+<code>:Unite {source}</code> を実行し、 unite を起動する</li>
+<li>データの一覧からデータを選択する(カーソルをデータに合わせる)</li>
+<li>Action を選択する
+
+<ul>
+<li>
+<code>&lt;Tab&gt;</code> を押すと、 Action の一覧が出力される。その一覧から実行したい Action を選択する。</li>
+<li>
+<code>&lt;Tab&gt;</code> の代わりに <code>&lt;Enter&gt;</code> を押すと、 default のアクションをすぐに実行できるので便利。</li>
+</ul>
+</li>
+</ol>
+
+<h2>
+<span id="実行例" class="fragment"></span><a href="#%E5%AE%9F%E8%A1%8C%E4%BE%8B"><i class="fa fa-link"></i></a>実行例</h2>
+
+<p>例えば、 source として <em>file</em> を指定する場合は、以下のコマンドを実行する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>:Unite file
+</pre></div></div>
+
+<p>上記コマンドを実行すると、カレントディレクトリのディレクトリとファイルが一覧表示される。<br>
+この時に insert モードに入ることで、データの絞り込みを行えるので便利。</p>
+
+<p>Source が file の場合は、 default のアクションは file の <em>open</em> なので、ファイル選択中に Enter キーを押すと選択中のファイルを開くことができる。</p>
+
+<h2>
+<span id="source" class="fragment"></span><a href="#source"><i class="fa fa-link"></i></a>Source</h2>
+
+<p>よく利用する source の一覧。</p>
+
+<table>
+<thead>
+<tr>
+<th>source</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file</td>
+<td>カレントディレクトリのファイルとディレクトリ一覧</td>
+</tr>
+<tr>
+<td>file/new</td>
+<td>ファイルの新規作成</td>
+</tr>
+<tr>
+<td>file_mru</td>
+<td>最近開いたファイル(Most Recently Used)の一覧</td>
+</tr>
+<tr>
+<td>buffer</td>
+<td>buffer の一覧</td>
+</tr>
+<tr>
+<td>register</td>
+<td>register の一覧</td>
+</tr>
+<tr>
+<td>source</td>
+<td>unite の source の一覧</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="insert-モードでの操作" class="fragment"></span><a href="#insert-%E3%83%A2%E3%83%BC%E3%83%89%E3%81%A7%E3%81%AE%E6%93%8D%E4%BD%9C"><i class="fa fa-link"></i></a>insert モードでの操作</h2>
+
+<p>unite 起動時の insert モードでよく利用する操作の一覧。</p>
+
+<table>
+<thead>
+<tr>
+<th>キー</th>
+<th>動作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + p</td>
+<td>上の候補に移動</td>
+</tr>
+<tr>
+<td>Ctrl + n</td>
+<td>下の候補に移動</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>default の Action を実行</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>Action 選択画面に移行</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="tips" class="fragment"></span><a href="#tips"><i class="fa fa-link"></i></a>Tips</h2>
+
+<ul>
+<li>Unite の停止
+
+<ul>
+<li>q で unite が停止する。</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<span id="vimrc" class="fragment"></span><a href="#vimrc"><i class="fa fa-link"></i></a>.vimrc</h1>
+
+<p>以下は私の unite.vim の設定。</p>
+
+<div class="code-frame" data-lang="vim">
+<div class="code-lang"><span class="bold">.vimrc</span></div>
+<div class="highlight"><pre><span></span><span class="c">" Unite</span>
+NeoBundle <span class="s1">'Shougo/unite.vim'</span>
+<span class="k">let</span> <span class="k">g</span>:unite_enable_start_insert<span class="p">=</span><span class="m">1</span>
+<span class="k">let</span> <span class="k">g</span>:unite_source_history_yank_enable <span class="p">=</span><span class="m">1</span>
+<span class="k">let</span> <span class="k">g</span>:unite_source_file_mru_limit <span class="p">=</span> <span class="m">200</span>
+<span class="nb">nnoremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">,</span>uy :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span>Unite <span class="k">history</span>/<span class="k">yank</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="nb">nnoremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">,</span>ub :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span>Unite buffer<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="nb">nnoremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">,</span>uf :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span>UniteWithBufferDir <span class="p">-</span>buffer<span class="p">-</span>name<span class="p">=</span><span class="k">files</span> <span class="k">file</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="nb">nnoremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">,</span><span class="nb">ur</span> :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span>Unite <span class="p">-</span>buffer<span class="p">-</span>name<span class="p">=</span><span class="k">register</span> <span class="k">register</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="nb">nnoremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">,</span>uu :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span>Unite file_mru buffer<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</pre></div>
+</div>
+
+<p>上記設定をすると、 insert モードで unite が起動する。</p>
+
+<p>また、ノーマルモードで  <code>,uu</code> と入力するだけで source に file_mru と buffer が指定された状態で unite が起動するのでとても便利。</p>
+
+<p>ノーマルモードで <code>,uy</code> と入力すると、 yank の履歴が表示される。</p>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<ul>
+<li>
+<p><a href="http://d.hatena.ne.jp/osyo-manga/20130307/1362621589" rel="nofollow noopener" target="_blank">unite.vim について語る - C++でゲームプログラミング</a></p>
+
+<ul>
+<li>unite.vim の概要、導入方法、操作方法、 tips について分かりやすく記述されている</li>
+<li>おすすめのページ</li>
+</ul>
+</li>
+<li>
+<p><a href="http://blog.ruedap.com/entry/20110110/vim_unite_plugin" rel="nofollow noopener" target="_blank">Vimでファイラー兼ランチャーなunite.vimプラグインを使う</a></p>
+
+<ul>
+<li>このページに書かれている .vimrc はとても参考になりました</li>
+</ul>
+</li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -77,23 +762,117 @@
 <tr>
 	<td rowspan="3"><center>hideさんの<br />3位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>217</kbd>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>218</kbd>
 		<a target="_blank" href="https://qiita.com/hide/items/17b970c485e803cbce08">よく使う git diff コマンド</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-11-30 16:40:58</center>
 	</td>
 	<td style="width:200px;">
-		@hide<!--(<a target="_blank" href="http://qiita.com/hide">Qiita内の13件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
+		@hide<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
 	</td>
-	<td style="width:300px;"><b>[Git]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>git diff コマンドは、2つの commit の差分や、 working tree と index の差分などを表示するコマンドである。</p>
+
+<h2>
+<span id="実行例" class="fragment"></span><a href="#%E5%AE%9F%E8%A1%8C%E4%BE%8B"><i class="fa fa-link"></i></a>実行例</h2>
+
+<h3>
+<span id="まだ-index-に-add-していないモノを表示" class="fragment"></span><a href="#%E3%81%BE%E3%81%A0-index-%E3%81%AB-add-%E3%81%97%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%83%A2%E3%83%8E%E3%82%92%E8%A1%A8%E7%A4%BA"><i class="fa fa-link"></i></a>まだ index に add していないモノを表示</h3>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git diff
+</pre></div></div>
+
+<p>index と working tree の差分を表示するコマンド。</p>
+
+<p><em>注意: 新規に作成したファイルはこのコマンドでは表示されない。新規に作成されたファイルは Git に track されていないので。</em></p>
+
+<h3>
+<span id="次の-commit-で反映される変更を表示" class="fragment"></span><a href="#%E6%AC%A1%E3%81%AE-commit-%E3%81%A7%E5%8F%8D%E6%98%A0%E3%81%95%E3%82%8C%E3%82%8B%E5%A4%89%E6%9B%B4%E3%82%92%E8%A1%A8%E7%A4%BA"><i class="fa fa-link"></i></a>次の commit で反映される変更を表示</h3>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git diff --cached
+</pre></div></div>
+
+<p>index と HEAD の差分を表示するコマンド。<br>
+commit 直前によく実行する。</p>
+
+<h3>
+<span id="直前の-commit-による変更を表示" class="fragment"></span><a href="#%E7%9B%B4%E5%89%8D%E3%81%AE-commit-%E3%81%AB%E3%82%88%E3%82%8B%E5%A4%89%E6%9B%B4%E3%82%92%E8%A1%A8%E7%A4%BA"><i class="fa fa-link"></i></a>直前の commit による変更を表示</h3>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git diff HEAD^ HEAD
+</pre></div></div>
+
+<p>HEAD と HEAD^ の差分を表示するコマンド。<br>
+commit 直後によく実行する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git diff HEAD^ HEAD --stat
+</pre></div></div>
+
+<p><code>--stat</code> オプションを指定すると、差分の統計情報だけを表示する。</p>
+
+<h2>
+<span id="オプションについての補足" class="fragment"></span><a href="#%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%AE%E8%A3%9C%E8%B6%B3"><i class="fa fa-link"></i></a>オプションについての補足</h2>
+
+<p>git diff コマンドは、 default では index と woking tree の差分を表示する。</p>
+
+<p><code>--cached</code> オプションを指定すると、 index と、ある commit の差分を表示する。<br>
+(commit を明示的に指定しない場合は HEAD との差分を表示する。)</p>
+
+<h2>
+<span id="設定" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>設定</h2>
+
+<p>コンフィグファイルに以下の設定を書くことで、 git diff を含む Git の大半の出力に色がつく。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>[color]
+        ui = true
+</pre></div></div>
+
+<p><code>~/.gitconfig</code> に上記設定を書き込むには、以下のコマンドを実行すれば良い。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git config --global color.ui true
+</pre></div></div>
+
+<h2>
+<span id="リファレンス" class="fragment"></span><a href="#%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"><i class="fa fa-link"></i></a>リファレンス</h2>
+
+<ul>
+<li>
+<p><a href="http://www.git-scm.com/docs/git-diff" rel="nofollow noopener" target="_blank">git-diff</a></p>
+
+<ul>
+<li>Git 公式ウェブサイトの中のマニュアルページ。</li>
+</ul>
+</li>
+<li>
+<p><a href="http://d.hatena.ne.jp/murank/20110320/1300619118" rel="nofollow noopener" target="_blank">git diff の使い方がほんの少し理解できた - murankの日記</a></p>
+
+<ul>
+<li>git diff コマンドの使い方について、絵付きで分かりやすく書いてある。</li>
+</ul>
+</li>
+<li>
+<p><a href="http://git-scm.com/book/ja/Git-%E3%81%AE%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%9E%E3%82%A4%E3%82%BA-Git-%E3%81%AE%E8%A8%AD%E5%AE%9A" rel="nofollow noopener" target="_blank">Git - Git の設定</a></p>
+
+<ul>
+<li>コンフィグファイルの設定について。</li>
+</ul>
+</li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -106,18 +885,156 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-07-10 15:29:03</center>
 	</td>
 	<td style="width:200px;">
-		@hide<!--(<a target="_blank" href="http://qiita.com/hide">Qiita内の13件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
+		@hide<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="neocomplcachevim-とは" class="fragment"></span><a href="#neocomplcachevim-%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>neocomplcache.vim とは</h1>
+
+<p>入力補完機能を提供する Vim のプラグイン。</p>
+
+<p>GitHub で公開されている。<br>
+<a href="https://github.com/Shougo/neocomplcache.vim" rel="nofollow noopener" target="_blank">Shougo/neocomplcache.vim</a></p>
+
+<p>なお、 neocomplcache は "neo-completion with cache" の略。</p>
+
+<h1>
+<span id="操作イメージ" class="fragment"></span><a href="#%E6%93%8D%E4%BD%9C%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8"><i class="fa fa-link"></i></a>操作イメージ</h1>
+
+<p>文字を入力すると、自動で補完候補が表示される。<br>
+(下の絵の水色の文字が補完候補。)</p>
+
+<p><a href="https://camo.qiitausercontent.com/49f780dd92921e51ff884ff6b31824161380b147/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31323238362f66326533306532622d663038622d623463302d623164332d3833663437326664336137312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/49f780dd92921e51ff884ff6b31824161380b147/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31323238362f66326533306532622d663038622d623463302d623164332d3833663437326664336137312e706e67" alt="image1.png" title="image1.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/12286/f2e30e2b-f08b-b4c0-b1d3-83f472fd3a71.png"></a></p>
+
+<p>文字を入力する毎に、補完候補が絞られていく。</p>
+
+<p><a href="https://camo.qiitausercontent.com/aaccf747b7426ede68c0678e6f8b20c6bb9c5925/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31323238362f37323164663863662d313530372d343461342d616330662d6532643435386630623264382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/aaccf747b7426ede68c0678e6f8b20c6bb9c5925/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31323238362f37323164663863662d313530372d343461342d616330662d6532643435386630623264382e706e67" alt="image2.png" title="image2.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/12286/721df8cf-1507-44a4-ac0f-e2d458f0b2d8.png"></a></p>
+
+<p>そして補完候補を選択すると、 neocomplacache が残りの文字を自動で入力してくれる。</p>
+
+<p><a href="https://camo.qiitausercontent.com/ce5b68e452c561853ddec39c91810c8945894a9d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31323238362f36313432313634622d373531632d306536622d353266622d3561323239643562386635372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ce5b68e452c561853ddec39c91810c8945894a9d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31323238362f36313432313634622d373531632d306536622d353266622d3561323239643562386635372e706e67" alt="image3.png" title="image3.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/12286/6142164b-751c-0e6b-52fb-5a229d5b8f57.png"></a></p>
+
+<h1>
+<span id="導入方法" class="fragment"></span><a href="#%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>導入方法</h1>
+
+<p>NeoBundle を導入済みの場合は、まずは以下を .vimrc に記述し、 Vim を起動する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>NeoBundle 'Shougo/neocomplcache'
+</pre></div></div>
+
+<p>そしてノーマルモードで以下のコマンドを実行すると、 neocomplcache.vim をインストールできる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>:NeoBundleInstall
+</pre></div></div>
+
+<h1>
+<span id="設定" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>設定</h1>
+
+<p>以下は、私の .vimrc に書いてある neocomplcache.vim の設定。<br>
+neocomplcache.vim の README に書いてある設定をほぼそのまま利用した。</p>
+
+<p><a href="https://github.com/Shougo/neocomplcache.vim" rel="nofollow noopener" target="_blank">Shougo/neocomplcache.vim</a></p>
+
+<div class="code-frame" data-lang="vim">
+<div class="code-lang"><span class="bold">.vimrc</span></div>
+<div class="highlight"><pre><span></span><span class="c">"" neocomplcache</span>
+NeoBundle <span class="s1">'Shougo/neocomplcache'</span>
+<span class="c">" Disable AutoComplPop.</span>
+<span class="k">let</span> <span class="k">g</span>:acp_enableAtStartup <span class="p">=</span> <span class="m">0</span>
+<span class="c">" Use neocomplcache.</span>
+<span class="k">let</span> <span class="k">g</span>:neocomplcache_enable_at_startup <span class="p">=</span> <span class="m">1</span>
+<span class="c">" Use smartcase.</span>
+<span class="k">let</span> <span class="k">g</span>:neocomplcache_enable_smart_case <span class="p">=</span> <span class="m">1</span>
+<span class="c">" Set minimum syntax keyword length.</span>
+<span class="k">let</span> <span class="k">g</span>:neocomplcache_min_syntax_length <span class="p">=</span> <span class="m">3</span>
+<span class="k">let</span> <span class="k">g</span>:neocomplcache_lock_buffer_name_pattern <span class="p">=</span> <span class="s1">'\*ku\*'</span>
+
+<span class="c">" Define dictionary.</span>
+<span class="k">let</span> <span class="k">g</span>:neocomplcache_dictionary_filetype_lists <span class="p">=</span> {
+    \ <span class="s1">'default'</span> : <span class="s1">''</span>
+    \ }
+
+<span class="c">" Plugin key-mappings.</span>
+<span class="nb">inoremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">g</span><span class="p">&gt;</span>     neocomplcache#undo_completion<span class="p">()</span>
+<span class="nb">inoremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">l</span><span class="p">&gt;</span>     neocomplcache#complete_common_string<span class="p">()</span>
+
+<span class="c">" Recommended key-mappings.</span>
+<span class="c">" &lt;CR&gt;: close popup and save indent.</span>
+<span class="nb">inoremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span>CR<span class="p">&gt;</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">r</span><span class="p">&gt;=&lt;</span>SID<span class="p">&gt;</span>my_cr_function<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+<span class="k">function</span><span class="p">!</span> s:my_cr_function<span class="p">()</span>
+  <span class="k">return</span> neocomplcache#smart_close_popup<span class="p">()</span> . <span class="s2">"\&lt;CR&gt;"</span>
+<span class="k">endfunction</span>
+<span class="c">" &lt;TAB&gt;: completion.</span>
+<span class="nb">inoremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>TAB<span class="p">&gt;</span>  pumvisible<span class="p">()</span> ? <span class="s2">"\&lt;C-n&gt;"</span> : <span class="s2">"\&lt;TAB&gt;"</span>
+<span class="c">" &lt;C-h&gt;, &lt;BS&gt;: close popup and delete backword char.</span>
+<span class="nb">inoremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">h</span><span class="p">&gt;</span> neocomplcache#smart_close_popup<span class="p">()</span>.<span class="s2">"\&lt;C-h&gt;"</span>
+<span class="nb">inoremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>BS<span class="p">&gt;</span> neocomplcache#smart_close_popup<span class="p">()</span>.<span class="s2">"\&lt;C-h&gt;"</span>
+<span class="nb">inoremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">y</span><span class="p">&gt;</span>  neocomplcache#close_popup<span class="p">()</span>
+<span class="nb">inoremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">e</span><span class="p">&gt;</span>  neocomplcache#cancel_popup<span class="p">()</span>
+</pre></div>
+</div>
+
+<p>上記設定の場合、 insert モードで以下の操作ができる。</p>
+
+<table>
+<thead>
+<tr>
+<th>キー</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;Tab&gt;</td>
+<td>補完候補の選択。</td>
+</tr>
+<tr>
+<td>Ctrl + g</td>
+<td>前回行われた補完をキャンセル。補完した文字を消す。</td>
+</tr>
+<tr>
+<td>Ctrl + l</td>
+<td>補完候補の中から、共通する部分を補完。</td>
+</tr>
+</tbody>
+</table>
+
+<p>各設定の意味は、以下のページで詳しく説明されている。</p>
+
+<p><a href="http://vim-jp.org/vim-users-jp/2010/10/17/Hack-177.html" rel="nofollow noopener" target="_blank">Vim-users.jp - Hack #177: neocomplcacheの設定について知る　前編</a><br>
+<a href="http://vim-jp.org/vim-users-jp/2010/11/27/Hack-185.html" rel="nofollow noopener" target="_blank">Vim-users.jp - Hack #185: neocomplcacheの設定について知る　中編</a><br>
+<a href="http://vim-jp.org/vim-users-jp/2011/01/06/Hack-193.html" rel="nofollow noopener" target="_blank">Vim-users.jp - Hack #193: neocomplcacheの設定について知る　後編</a></p>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<ul>
+<li>
+<a href="http://code-life.net/?p=2308" rel="nofollow noopener" target="_blank">Vim初心者によるVim導入記録（neocomplcache設定編） | Code Life</a>
+
+<ul>
+<li>設定(.vimrc) の説明が分かりやすい</li>
+</ul>
+</li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -130,18 +1047,90 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-07-14 12:23:00</center>
 	</td>
 	<td style="width:200px;">
-		@hide<!--(<a target="_blank" href="http://qiita.com/hide">Qiita内の13件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
+		@hide<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <b>[Windows]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> <b>[Windows]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>Windows 7 で Vim 環境を構築した時の手順をまとめた。<br>
+GitHub で管理している .vimrc の導入方法についても書いた。</p>
+
+<h1>
+<span id="vim-の導入" class="fragment"></span><a href="#vim-%E3%81%AE%E5%B0%8E%E5%85%A5"><i class="fa fa-link"></i></a>Vim の導入</h1>
+
+<p>以下のページで配布されている Vim をダウンロード。</p>
+
+<p><a href="http://www.kaoriya.net/software/vim/" rel="nofollow noopener" target="_blank">Vim — KaoriYa</a></p>
+
+<p>ダウンロードしたファイルを解凍し、 vim.exe を実行すれば Vim が起動する。</p>
+
+<h1>
+<span id="設定方法" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9A%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>設定方法</h1>
+
+<p>Vim の設定は、 Linux の場合と同様にホームディレクトリ配下の .vimrc に書けば良い。</p>
+
+<h2>
+<span id="github-で管理している-vimrc-の導入方法" class="fragment"></span><a href="#github-%E3%81%A7%E7%AE%A1%E7%90%86%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B-vimrc-%E3%81%AE%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>GitHub で管理している .vimrc の導入方法</h2>
+
+<p>まずは、 Windows PowerShell を管理者として実行する。<br>
+そして、以下のようなコマンドを実行し、 .vimrc へのシンボリックリンクを $HOME ディレクトリ配下に作成する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>PS C:\Users\hide&gt; cmd /c mklink .vimrc "C:\Users\hide\dotfiles\.vimrc"
+</pre></div></div>
+
+<p>また、 NeoBundle が必要であれば、以下のようなコマンドを実行し neobundle.vim へのシンボリックリンクも作成しておく。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>PS C:\Users\hide&gt; mkdir .vim
+PS C:\Users\hide&gt; mkdir .vim/bundle
+PS C:\Users\hide&gt; cmd /c mklink /D ".vim/bundle/neobundle.vim" "C:\Users\hide\dotfiles\neobundle.vim"
+</pre></div></div>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<ul>
+<li>
+<p><a href="http://www.kaoriya.net/software/vim/" rel="nofollow noopener" target="_blank">Vim — KaoriYa</a></p>
+
+<ul>
+<li>Windows 用の Vim を配布している</li>
+<li>vim.org 等で配布されるオリジナルの Vim に、日本語を扱う上で便利な設定やスクリプトが追加されている</li>
+</ul>
+</li>
+<li>
+<p><a href="http://teppeis.hatenablog.com/entry/20080705/1215262928" rel="nofollow noopener" target="_blank">vimrc, runtime の優先順位を理解して Windows と Linux で Vim の設定を共有する - teppeis blog</a></p>
+
+<ul>
+<li>Vim の設定ファイルについて分かりやすく説明している</li>
+</ul>
+</li>
+<li>
+<p><a href="http://blog.ruedap.com/entry/20110301/vim_vimrc_vimperator_dropbox_windows_mac_share" rel="nofollow noopener" target="_blank">Vimの.vimrcと.vimフォルダをDropboxを使ってWin/Macで共有する - アインシュタインの電話番号☎</a></p>
+
+<ul>
+<li>Windows でのシンボリックリンクの作成方法について書いてある</li>
+</ul>
+</li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -154,18 +1143,186 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-07-09 14:40:48</center>
 	</td>
 	<td style="width:200px;">
-		@hide<!--(<a target="_blank" href="http://qiita.com/hide">Qiita内の13件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
+		@hide<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <b>[VimFiler]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> <b>[VimFiler]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="vimfiler-とは" class="fragment"></span><a href="#vimfiler-%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>vimfiler とは</h1>
+
+<p>ファイル操作をサポートする Vim のプラグイン。</p>
+
+<p>GitHub で公開されている。<br>
+<a href="https://github.com/Shougo/vimfiler.vim" rel="nofollow noopener" target="_blank">Shougo/vimfiler.vim</a></p>
+
+<h1>
+<span id="導入方法" class="fragment"></span><a href="#%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>導入方法</h1>
+
+<p>vimfiler は unite.vim の機能を利用するので、まずは unite.vim をインストールする必要がある。</p>
+
+<p>unite.vim インストール後、 NeoBundle を導入済みの場合はまずは以下を .vimrc に記述する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>NeoBundle 'Shougo/vimfiler'
+</pre></div></div>
+
+<p>そして、ノーマルモードで以下のコマンドを実行すると、 vimfiler をインストールできる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>:NeoBundleInstall
+</pre></div></div>
+
+<h1>
+<span id="基本操作" class="fragment"></span><a href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><i class="fa fa-link"></i></a>基本操作</h1>
+
+<p>以下のコマンドを実行すると、 vimfiler を起動できる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>:VimFiler
+</pre></div></div>
+
+<p>起動すると、カレントディレクトリのディレクトリとファイルが表示される。</p>
+
+<p>j, k でカーソルを上下に移動でき、選択中のファイルは e で開ける。</p>
+
+<p>q で vimfiler を終了できる。</p>
+
+<table>
+<thead>
+<tr>
+<th>キー</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>j</td>
+<td>カーソルを下に移動</td>
+</tr>
+<tr>
+<td>k</td>
+<td>カーソルを上に移動</td>
+</tr>
+<tr>
+<td>h</td>
+<td>親ディレクトリへ移動</td>
+</tr>
+<tr>
+<td>l</td>
+<td>子ディレクトリへ移動</td>
+</tr>
+<tr>
+<td>q</td>
+<td>VimFiler を停止</td>
+</tr>
+<tr>
+<td>~</td>
+<td>ホームディレクトリへ移動</td>
+</tr>
+<tr>
+<td>M</td>
+<td>マスクモード</td>
+</tr>
+<tr>
+<td>e</td>
+<td>選択中のファイルを開く</td>
+</tr>
+<tr>
+<td>N</td>
+<td>新規ファイルを作成</td>
+</tr>
+<tr>
+<td>K</td>
+<td>新規ディレクトリを作成</td>
+</tr>
+<tr>
+<td>D</td>
+<td>ファイル削除</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>選択中のファイルのフルパスをコピー</td>
+</tr>
+<tr>
+<td>gs</td>
+<td>セーフモードのオン/オフの切り替え</td>
+</tr>
+<tr>
+<td>Ctrl + l</td>
+<td>画面の再描画</td>
+</tr>
+<tr>
+<td>.</td>
+<td>隠しファイルの表示/非表示の切り替え</td>
+</tr>
+</tbody>
+</table>
+
+<p>vimfiler は default ではセーフモードで起動し、ファイルの削除や作成はできないようになっている。<br>
+ファイルの作成などをするには、 <code>gs</code> と入力しセーフモードを解除する必要がある。</p>
+
+<p>また、直近のファイル操作が vimfiler の画面に反映されていない時は、 <code>Ctrl + l</code> で画面が再描画するといよい。</p>
+
+<h2>
+<span id="マスクモード" class="fragment"></span><a href="#%E3%83%9E%E3%82%B9%E3%82%AF%E3%83%A2%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>マスクモード</h2>
+
+<p>M でマスクモードに入る。</p>
+
+<p>マスクモードでは、 unite.vim のインターフェースでファイルの絞り込みができる。</p>
+
+<h1>
+<span id="設定vimrc" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9Avimrc"><i class="fa fa-link"></i></a>設定(.vimrc)</h1>
+
+<p>以下は、私の vimfiler 用の設定。<br>
+プラグインをインストールする以外、何の設定も書いていない。</p>
+
+<div class="code-frame" data-lang="vim">
+<div class="code-lang"><span class="bold">.vimrc</span></div>
+<div class="highlight"><pre><span></span><span class="c">" VimFiler</span>
+NeoBundle <span class="s1">'Shougo/vimfiler'</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<ul>
+<li>
+<p><a href="http://blog.scimpr.com/2013/03/06/vimfiler%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9F/" rel="nofollow noopener" target="_blank">VimFilerはじめました | Scimpr Blog</a></p>
+
+<ul>
+<li>導入方法、基本操作についてとても分かりやすく書いてある</li>
+</ul>
+</li>
+<li>
+<p><a href="http://d.hatena.ne.jp/h1mesuke/20100611/p1" rel="nofollow noopener" target="_blank">vimfiler のデフォルトキーバインドまとめ（機能別） - Alone Like a Rhinoceros Horn</a></p>
+
+<ul>
+<li>キーバインドが分かりやすくまとめてある</li>
+</ul>
+</li>
+<li>
+<p><a href="http://www.karakaram.com/vimfiler" rel="nofollow noopener" target="_blank">vimfilerとUniteでVimをファイラとして使用する方法 | karakaram-blog</a></p>
+
+<ul>
+<li>キーバインドが分かりやすくまとめてある</li>
+</ul>
+</li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -178,18 +1335,159 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-11-17 22:14:33</center>
 	</td>
 	<td style="width:200px;">
-		@hide<!--(<a target="_blank" href="http://qiita.com/hide">Qiita内の13件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
+		@hide<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
 	</td>
-	<td style="width:300px;"><b>[Java]</b> <b>[Maven]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Java]</b> <b>[Maven]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>Maven の Archetype Plugin を使って Java project を作成する方法と、その project に対する Maven の基本操作について説明する。</p>
+
+<p>Maven のコマンドを1つ実行するだけで、<br>
+Hellow World プログラムの source file と test file が自動で作成される。</p>
+
+<h1>
+<span id="project-の作成" class="fragment"></span><a href="#project-%E3%81%AE%E4%BD%9C%E6%88%90"><i class="fa fa-link"></i></a>Project の作成</h1>
+
+<p>以下の Maven コマンドを実行すると、 Java project が作成される。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>mvn archetype:generate \
+  -DarchetypeArtifactId=maven-archetype-quickstart \
+  -DinteractiveMode=false \
+  -DgroupId={group-id} \
+  -DartifactId={project-name}
+</pre></div></div>
+
+<p>例えば、 <code>{group-id}</code> を com.sample 、 <code>{project-name}</code> を hello とする場合は、以下のコマンドを実行すればよい。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>mvn archetype:generate \
+  -DarchetypeArtifactId=maven-archetype-quickstart \
+  -DinteractiveMode=false \
+  -DgroupId=com.sample \
+  -DartifactId=hello
+</pre></div></div>
+
+<p>生成されるディレクトリとファイルの構成は以下の通り。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>hello
+|-- pom.xml
+`-- src
+    |-- main
+    |   `-- java
+    |       `-- com
+    |           `-- sample
+    |                   `-- App.java
+    `-- test
+        `-- java
+            `-- com
+                `-- sample
+                        `-- AppTest.java
+</pre></div></div>
+
+<h1>
+<span id="maven-の基本操作" class="fragment"></span><a href="#maven-%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><i class="fa fa-link"></i></a>Maven の基本操作</h1>
+
+<h2>
+<span id="コンパイルと実行" class="fragment"></span><a href="#%E3%82%B3%E3%83%B3%E3%83%91%E3%82%A4%E3%83%AB%E3%81%A8%E5%AE%9F%E8%A1%8C"><i class="fa fa-link"></i></a>コンパイルと実行</h2>
+
+<p>以下のコマンドを project のトップディレクトリ(上記の例の hello ディレクトリ)で実行すると、src ディレクトリ配下にあるアプリケーションの source file がコンパイルされる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>mvn compile
+</pre></div></div>
+
+<p>トップディレクトリ配下に target ディレクトリが作成され、その配下に class file が生成される。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>hello
+|-- pom.xml
+|-- src
+|   |-- main
+|   |   `-- java
+|   |       `-- com
+|   |           `-- sample
+|   |                   `-- App.java
+|   `-- test
+|       `-- java
+|           `-- com
+|               `-- sample
+|                       `-- AppTest.java
+`-- target
+    `-- classes
+        `-- com
+            `-- sample
+                    `-- App.class
+</pre></div></div>
+
+<p>トップディレクトリで以下のコマンドを実行すれば、自動生成された class ファイルを実行できる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>java -cp target/classes/ com.sample.App
+</pre></div></div>
+
+<h2>
+<span id="テスト" class="fragment"></span><a href="#%E3%83%86%E3%82%B9%E3%83%88"><i class="fa fa-link"></i></a>テスト</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>mvn test
+</pre></div></div>
+
+<p>test ディレクトリ配下のテストコードをコンパイルし、実行する。</p>
+
+<h2>
+<span id="clean" class="fragment"></span><a href="#clean"><i class="fa fa-link"></i></a>clean</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>mvn clean
+</pre></div></div>
+
+<p>target ディレクトリを削除し、 build data を全て削除する。</p>
+
+<h1>
+<span id="補足" class="fragment"></span><a href="#%E8%A3%9C%E8%B6%B3"><i class="fa fa-link"></i></a>補足</h1>
+
+<p>Maven 3.1.1 をインストールした環境で、上記コマンドの動作確認を行った。</p>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<ul>
+<li>
+<p><a href="http://maven.apache.org/download.cgi" rel="nofollow noopener" target="_blank">Maven - Download Apache Maven</a></p>
+
+<ul>
+<li>Maven のダウンロードページ。</li>
+<li>Maven のインストール方法についても書いてある。</li>
+</ul>
+</li>
+<li>
+<p><a href="http://maven.apache.org/guides/getting-started/" rel="nofollow noopener" target="_blank">Maven - Maven Getting Started Guide</a></p>
+
+<ul>
+<li>Maven の基本的な使い方について。</li>
+</ul>
+</li>
+<li>
+<p><a href="http://www.mkyong.com/maven/how-to-create-a-java-project-with-maven/" rel="nofollow noopener" target="_blank">How to create a Java project with Maven</a></p>
+
+<ul>
+<li>Maven の Archetype Plugin を使って Java project を作成する方法について説明している。</li>
+</ul>
+</li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -202,18 +1500,63 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2014-01-05 21:33:06</center>
 	</td>
 	<td style="width:200px;">
-		@hide<!--(<a target="_blank" href="http://qiita.com/hide">Qiita内の13件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
+		@hide<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
 	</td>
-	<td style="width:300px;"><b>[Java]</b> <b>[Maven]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Java]</b> <b>[Maven]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><code>exec-maven-plugin</code> を使えば、<br>
+指定した Java プログラムを Maven から実行することができる。</p>
+
+<h1>
+<span id="exec-maven-pluginの使用例" class="fragment"></span><a href="#exec-maven-plugin%E3%81%AE%E4%BD%BF%E7%94%A8%E4%BE%8B"><i class="fa fa-link"></i></a><code>exec-maven-plugin</code>の使用例</h1>
+
+<p>pom.xml に以下を追記する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+            &lt;artifactId&gt;exec-maven-plugin&lt;/artifactId&gt;
+            &lt;version&gt;1.2.1&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;mainClass&gt;com.example.Main&lt;/mainClass&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</pre></div></div>
+
+<p><code>&lt;mainClass&gt;</code> には、実行したいクラスを指定する。</p>
+
+<p>指定したクラスを実行するには、以下のコマンドを実行する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>mvn exec:java
+</pre></div></div>
+
+<h1>
+<span id="リファレンス" class="fragment"></span><a href="#%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"><i class="fa fa-link"></i></a>リファレンス</h1>
+
+<ul>
+<li><p><a href="http://mojo.codehaus.org/exec-maven-plugin/" rel="nofollow noopener" target="_blank">Exec Maven Plugin - Introduction</a></p></li>
+<li><p><a href="http://www.techscore.com/tech/Java/ApacheJakarta/Maven/7-2/#maven-6-14" rel="nofollow noopener" target="_blank">7. Maven Tips | TECHSCORE(テックスコア)</a></p></li>
+<li><p><a href="http://stackoverflow.com/questions/15869784/how-to-run-a-maven-created-jar-file-using-just-the-command-line" rel="nofollow noopener" target="_blank">java - How to run a maven created jar file using just the command line - Stack Overflow</a></p></li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -226,18 +1569,70 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-11-22 01:00:28</center>
 	</td>
 	<td style="width:200px;">
-		@hide<!--(<a target="_blank" href="http://qiita.com/hide">Qiita内の13件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
+		@hide<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
 	</td>
-	<td style="width:300px;"><b>[UNIX]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[UNIX]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="方法" class="fragment"></span><a href="#%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>方法</h1>
+
+<p>ls と grep と sed を組み合わせ、ディレクトリ構成を tree 形式に表示する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>ls -R | grep ":" | sed -e 's/://' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+</pre></div></div>
+
+<p>上記コマンドの実行例。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ ls -R | grep ":" | sed -e 's/://' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+   |-src
+   |---main
+   |-----java
+   |-------com
+   |---------hidetai
+   |---test
+   |-----java
+   |-------com
+   |---------hidetai
+</pre></div></div>
+
+<h1>
+<span id="補足" class="fragment"></span><a href="#%E8%A3%9C%E8%B6%B3"><i class="fa fa-link"></i></a>補足</h1>
+
+<p>tree コマンドがインストールされているマシンであれば、 tree コマンドを実行した方が便利。</p>
+
+<ul>
+<li><a href="http://x68000.q-e-d.net/%7E68user/unix/pickup?tree" rel="nofollow noopener" target="_blank">UNIXの部屋 コマンド検索:tree (*BSD/Linux)</a></li>
+</ul>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<ul>
+<li>
+<a href="http://hints.macworld.com/article.php?story=20060209130749352" rel="nofollow noopener" target="_blank">Display a tree-like structural view of any directory - Mac OS X Hints</a>
+
+<ul>
+<li>元々、このページでこの方法を見つけた。</li>
+</ul>
+</li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -250,18 +1645,109 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2014-01-03 20:02:28</center>
 	</td>
 	<td style="width:200px;">
-		@hide<!--(<a target="_blank" href="http://qiita.com/hide">Qiita内の13件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
+		@hide<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
 	</td>
-	<td style="width:300px;"><b>[アルゴリズム]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[アルゴリズム]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>アルゴリズムを比較する基準として、アルゴリズムの計算量がある。<br>
+それぞれのアルゴリズムが答えを出すまでに要する計算時間などを計算し、比較する。</p>
+
+<h1>
+<span id="o-記法" class="fragment"></span><a href="#o-%E8%A8%98%E6%B3%95"><i class="fa fa-link"></i></a>O-記法</h1>
+
+<p>一般的に、計算量はO-記法を用いて表す。<br>
+O-記法は、関数の挙動を分かりやすい別の関数を目安にして記述するための記法である。</p>
+
+<p>例えば、関数 <code>f(n)</code> が <code>g(n)</code> と同じような挙動をする場合、</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>f(n) = O(g(n))
+</pre></div></div>
+
+<p>と表記する。</p>
+
+<p>関数の挙動、つまり計算量の増加にさほど関係しない項は無視し、<br>
+また主要項の係数も無視する。</p>
+
+<p>アルゴリズムの計算量が <code>O(g(n))</code> であるとき、このアルゴリズムのオーダーが<br>
+<code>g(n)</code> である、という。</p>
+
+<h1>
+<span id="よく使われるオーダー" class="fragment"></span><a href="#%E3%82%88%E3%81%8F%E4%BD%BF%E3%82%8F%E3%82%8C%E3%82%8B%E3%82%AA%E3%83%BC%E3%83%80%E3%83%BC"><i class="fa fa-link"></i></a>よく使われるオーダー</h1>
+
+<p>増加率の低いものから順に並べる。</p>
+
+<p>つまり、計算量の小さい順。</p>
+
+<table>
+<thead>
+<tr>
+<th>オーダー</th>
+<th>アルゴリズムの例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>O(1)</td>
+<td></td>
+</tr>
+<tr>
+<td>O(log n)</td>
+<td>バイナリサーチ</td>
+</tr>
+<tr>
+<td>O(n)</td>
+<td>線形サーチ</td>
+</tr>
+<tr>
+<td>O(n^2)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>なお、アルゴリズムのオーダーを表記する際、<br>
+対数の底が省略されていた場合はその対数の底は2であることが多い。</p>
+
+<h1>
+<span id="リファレンス" class="fragment"></span><a href="#%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9"><i class="fa fa-link"></i></a>リファレンス</h1>
+
+<ul>
+<li><p><a href="http://www.amazon.co.jp/%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%A8%E3%83%87%E3%83%BC%E3%82%BF%E6%A7%8B%E9%80%A0-%E5%B2%A9%E6%B3%A2%E8%AC%9B%E5%BA%A7-%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E7%A7%91%E5%AD%A6-3-%E7%9F%B3%E7%95%91/dp/4000103431" rel="nofollow noopener" target="_blank">アルゴリズムとデータ構造 (岩波講座 ソフトウェア科学 3)</a></p></li>
+<li>
+<p><a href="http://ja.wikipedia.org/wiki/%E3%83%A9%E3%83%B3%E3%83%80%E3%82%A6%E3%81%AE%E8%A8%98%E5%8F%B7" rel="nofollow noopener" target="_blank">ランダウの記号 - Wikipedia</a></p>
+
+<ul>
+<li>O-記法について書いてある。</li>
+</ul>
+</li>
+<li>
+<p><a href="http://ja.wikipedia.org/wiki/%E5%AF%BE%E6%95%B0" rel="nofollow noopener" target="_blank">対数 - Wikipedia</a></p>
+
+<ul>
+<li>対数関数 log n について。</li>
+</ul>
+</li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -269,23 +1755,148 @@
 <tr>
 	<td rowspan="3"><center>hideさんの<br />11位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/hide/items/d9d89a77ec9904a7fc83">Python を久々に使う時に役立つメモ</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
+		<a target="_blank" href="https://qiita.com/hide/items/01e779f89cf577883809">Java バイトコードにおけるメソッドの長さを調べる</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-22 17:40:05</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-11-19 20:52:54</center>
 	</td>
 	<td style="width:200px;">
-		@hide<!--(<a target="_blank" href="http://qiita.com/hide">Qiita内の13件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
+		@hide<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
 	</td>
-	<td style="width:300px;"><b>[Python]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Java]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="計算方法" class="fragment"></span><a href="#%E8%A8%88%E7%AE%97%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>計算方法</h1>
+
+<h2>
+<span id="ソースコードから計算" class="fragment"></span><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%E3%81%8B%E3%82%89%E8%A8%88%E7%AE%97"><i class="fa fa-link"></i></a>ソースコードから計算</h2>
+
+<p><code>javap</code> コマンドを実行すると、クラスファイルが逆アセンブルされ、 Java バイトコードが人間の読みやすい形式で出力される。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>javac Employee.java
+javap -c Employee.class
+</pre></div></div>
+
+<p>この出力結果であるバイトコードを見れば、各メソッドの長さを計算できる。</p>
+
+<p>ちなみに、 Java バイトコードのオペーコードは 1 byte である。<br>
+複数の引数を必要とする命令もあるため、結果として1命令は複数 byte になりえる。</p>
+
+<h2>
+<span id="jar-ファイルから計算" class="fragment"></span><a href="#jar-%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%8B%E3%82%89%E8%A8%88%E7%AE%97"><i class="fa fa-link"></i></a>Jar ファイルから計算</h2>
+
+<p>jar ファイルを解凍し、クラスファイルを取り出す。<br>
+そのクラスファイルを引数として指定し、 javap コマンドを実行すれば良い。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>jar xvf sample-1.0-SNAPSHOT.jar
+javap -c com/hidetai/Employee.class
+</pre></div></div>
+
+<h1>
+<span id="例" class="fragment"></span><a href="#%E4%BE%8B"><i class="fa fa-link"></i></a>例</h1>
+
+<div class="code-frame" data-lang="Java">
+<div class="code-lang"><span class="bold">Employee.java</span></div>
+<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">com.hidetai</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Employee</span>
+<span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kt">int</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+
+<p>上記のコードをコンパイルし、クラスファイルを生成する。<br>
+そして、そのクラスファイルを引数として javap コマンドを実行する。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>javap -c Employee.class
+</pre></div></div>
+
+<p>すると、以下のようなバイトコードが出力される。</p>
+
+<div class="code-frame" data-lang="Java">
+<div class="code-lang"><span class="bold">Employee.bc</span></div>
+<div class="highlight"><pre><span></span><span class="n">Compiled</span> <span class="n">from</span> <span class="s">"Employee.java"</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">hidetai</span><span class="o">.</span><span class="na">Employee</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">com</span><span class="o">.</span><span class="na">hidetai</span><span class="o">.</span><span class="na">Employee</span><span class="o">();</span>
+    <span class="n">Code</span><span class="o">:</span>
+       <span class="mi">0</span><span class="o">:</span> <span class="n">aload_0</span>
+       <span class="mi">1</span><span class="o">:</span> <span class="n">invokespecial</span> <span class="err">#</span><span class="mi">1</span>                  <span class="c1">// Method java/lang/Object."&lt;init&gt;":()V</span>
+       <span class="mi">4</span><span class="o">:</span> <span class="k">return</span>
+
+  <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="kt">int</span><span class="o">);</span>
+    <span class="n">Code</span><span class="o">:</span>
+       <span class="mi">0</span><span class="o">:</span> <span class="n">aload_0</span>
+       <span class="mi">1</span><span class="o">:</span> <span class="n">iload_1</span>
+       <span class="mi">2</span><span class="o">:</span> <span class="n">putfield</span>      <span class="err">#</span><span class="mi">2</span>                  <span class="c1">// Field id:I</span>
+       <span class="mi">5</span><span class="o">:</span> <span class="k">return</span>
+
+  <span class="kt">int</span> <span class="nf">getId</span><span class="o">();</span>
+    <span class="n">Code</span><span class="o">:</span>
+       <span class="mi">0</span><span class="o">:</span> <span class="n">aload_0</span>
+       <span class="mi">1</span><span class="o">:</span> <span class="n">getfield</span>      <span class="err">#</span><span class="mi">2</span>                  <span class="c1">// Field id:I</span>
+       <span class="mi">4</span><span class="o">:</span> <span class="n">ireturn</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+
+<p>この出力を見れば、例えば setId(int) メソッドは 6 byte の長さであることが分かる。</p>
+
+<h1>
+<span id="javap" class="fragment"></span><a href="#javap"><i class="fa fa-link"></i></a>javap</h1>
+
+<p>クラスファイルを逆アセンブルするコマンド。</p>
+
+<p>以下のページに仕様が書いてある。</p>
+
+<ul>
+<li><a href="http://docs.oracle.com/javase/7/docs/technotes/tools/windows/javap.html" rel="nofollow noopener" target="_blank">javap (English version)</a></li>
+<li><a href="http://docs.oracle.com/javase/jp/7/technotes/tools/windows/javap.html" rel="nofollow noopener" target="_blank">javap (日本語版)</a></li>
+</ul>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<ul>
+<li>
+<p><a href="http://stackoverflow.com/questions/11345034/how-many-bytes-of-bytecode-has-a-particular-method-in-java" rel="nofollow noopener" target="_blank">jvm - How many bytes of bytecode has a particular method in Java? - Stack Overflow</a></p>
+
+<ul>
+<li>バイトコードの出力方法について書いてある。</li>
+</ul>
+</li>
+<li>
+<p><a href="http://ja.wikipedia.org/wiki/Java%E3%83%90%E3%82%A4%E3%83%88%E3%82%B3%E3%83%BC%E3%83%89" rel="nofollow noopener" target="_blank">Javaバイトコード - Wikipedia</a></p>
+
+<ul>
+<li>バイトコードの説明が分かりやすい。</li>
+</ul>
+</li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -293,47 +1904,66 @@
 <tr>
 	<td rowspan="3"><center>hideさんの<br />12位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
-		<a target="_blank" href="https://qiita.com/hide/items/01e779f89cf577883809">Java バイトコードにおけるメソッドの長さを調べる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-11-19 20:52:54</center>
-	</td>
-	<td style="width:200px;">
-		@hide<!--(<a target="_blank" href="http://qiita.com/hide">Qiita内の13件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
-	</td>
-	<td style="width:300px;"><b>[Java]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>hideさんの<br />13位</center></td>
-	<td colspan="3">
 		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
 		<a target="_blank" href="https://qiita.com/hide/items/d2e52615fd7e7c5515a8">ときどき使う Vim コマンド</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2014-01-03 19:37:51</center>
 	</td>
 	<td style="width:200px;">
-		@hide<!--(<a target="_blank" href="http://qiita.com/hide">Qiita内の13件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
+		@hide<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/12286/profile-images/1473682343">
 	</td>
-	<td style="width:300px;"><b>[Vim]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Vim]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="help-subject" class="fragment"></span><a href="#help-subject"><i class="fa fa-link"></i></a><code>:h[elp] {subject}</code>
+</h1>
+
+<p>help ファイルを開く。</p>
+
+<p><code>{subject}</code> としてコマンド名を指定すると、<br>
+そのコマンドの help ページを開くことが出来る。</p>
+
+<p>実行例)</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>:help :scriptnames
+</pre></div></div>
+
+<ul>
+<li>リファレンス
+
+<ul>
+<li>
+<a href="http://vim-users.jp/2009/07/hack45/" rel="nofollow noopener" target="_blank">Vim-users.jp - Hack #45: help を引く</a>
+
+<ul>
+<li>help を引く際に役立つ tips が書かれている。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<span id="scriptnames" class="fragment"></span><a href="#scriptnames"><i class="fa fa-link"></i></a><code>:scrip[tnames]</code>
+</h1>
+
+<p>読み込んだ全ての設定スクリプトを表示する。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />

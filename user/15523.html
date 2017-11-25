@@ -25,27 +25,441 @@
 <h1>Qiitaいいね数ランキング (genzouw さんの投稿分)</h1>
 </div><!--class="headerContainer"-->
 <p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
 <table border="1">
 <tr>
 	<td rowspan="3"><center>genzouwさんの<br />1位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>708</kbd>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>709</kbd>
 		<a target="_blank" href="https://qiita.com/genzouw/items/35022fa96c120e67c637">データベースオブジェクトの命名規約</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2014-03-28 16:36:07</center>
 	</td>
 	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
+		@genzouw<br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
 	</td>
-	<td style="width:300px;"><b>[規約]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[規約]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="オブジェクトの命名規約" class="fragment"></span><a href="#%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E5%91%BD%E5%90%8D%E8%A6%8F%E7%B4%84"><i class="fa fa-link"></i></a>オブジェクトの命名規約</h1>
+
+<p>DB設計によく携わっていた頃に多くのプロジェクトで共通で規定されていた規約をまとめてみました。</p>
+
+<p>ここでは <strong>オブジェクト</strong> として以下のものを対象としています。<br>
+（カラムはテーブルの一部ではありますが、別で切りだしています。）</p>
+
+<ul>
+<li>テーブル</li>
+<li>カラム</li>
+<li>インデックス</li>
+<li>制約</li>
+</ul>
+
+<h2>
+<span id="1全般" class="fragment"></span><a href="#1%E5%85%A8%E8%88%AC"><i class="fa fa-link"></i></a>1.全般</h2>
+
+<h3>
+<span id="大文字を利用しない" class="fragment"></span><a href="#%E5%A4%A7%E6%96%87%E5%AD%97%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>大文字を利用しない</h3>
+
+<p>テーブル名、カラム名ともに大文字を利用しない。<br>
+（DBにより大文字小文字を区別するもの、しないものなどがあるため小文字で統一を図る）</p>
+
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>OK/NG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DOCUMENTS</td>
+<td>x</td>
+</tr>
+<tr>
+<td>Documents</td>
+<td>x</td>
+</tr>
+<tr>
+<td><strong>documents</strong></td>
+<td>o</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<span id="複数単語の連携は-スネークケース" class="fragment"></span><a href="#%E8%A4%87%E6%95%B0%E5%8D%98%E8%AA%9E%E3%81%AE%E9%80%A3%E6%90%BA%E3%81%AF-%E3%82%B9%E3%83%8D%E3%83%BC%E3%82%AF%E3%82%B1%E3%83%BC%E3%82%B9"><i class="fa fa-link"></i></a>複数単語の連携は <em>スネークケース</em>
+</h3>
+
+<p>テーブル名、カラム名ともにスネークケースを利用する。<br>
+キャメルケース、キャメルバックはNG。</p>
+
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>OK/NG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tableName</td>
+<td>x</td>
+</tr>
+<tr>
+<td>TableName</td>
+<td>x</td>
+</tr>
+<tr>
+<td>tablename</td>
+<td>x</td>
+</tr>
+<tr>
+<td><strong>table_name</strong></td>
+<td>o</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<span id="英語表記" class="fragment"></span><a href="#%E8%8B%B1%E8%AA%9E%E8%A1%A8%E8%A8%98"><i class="fa fa-link"></i></a>英語表記</h3>
+
+<p>基本的にはローマ字ではなく、英語で。</p>
+
+<h3>
+<span id="略名は利用しない" class="fragment"></span><a href="#%E7%95%A5%E5%90%8D%E3%81%AF%E5%88%A9%E7%94%A8%E3%81%97%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>略名は利用しない</h3>
+
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>OK/NG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>start_dt</td>
+<td>x</td>
+</tr>
+<tr>
+<td>maker_cd</td>
+<td>x</td>
+</tr>
+<tr>
+<td><strong>start_date</strong></td>
+<td>o</td>
+</tr>
+<tr>
+<td><strong>maker_code</strong></td>
+<td>o</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="2テーブル編" class="fragment"></span><a href="#2%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E7%B7%A8"><i class="fa fa-link"></i></a>2.テーブル編</h2>
+
+<h3>
+<span id="基本系-は-s複数形" class="fragment"></span><a href="#%E5%9F%BA%E6%9C%AC%E7%B3%BB-%E3%81%AF-s%E8%A4%87%E6%95%B0%E5%BD%A2"><i class="fa fa-link"></i></a>基本系 は <strong>〜s（複数形）</strong>
+</h3>
+
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>OK/NG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>document</td>
+<td>x</td>
+</tr>
+<tr>
+<td><strong>documents</strong></td>
+<td>o</td>
+</tr>
+<tr>
+<td>category</td>
+<td>x</td>
+</tr>
+<tr>
+<td>categorys</td>
+<td>x</td>
+</tr>
+<tr>
+<td><strong>categories</strong></td>
+<td>o</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<span id="nnのテーブル" class="fragment"></span><a href="#nn%E3%81%AE%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB"><i class="fa fa-link"></i></a>n:nのテーブル</h3>
+
+<p><strong>〜s（複数形）</strong> + "_" + <strong>〜s（複数形）</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>OK/NG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userscategories</td>
+<td>x</td>
+</tr>
+<tr>
+<td>user_categories</td>
+<td>x</td>
+</tr>
+<tr>
+<td><strong>users_categories</strong></td>
+<td>o</td>
+</tr>
+</tbody>
+</table>
+
+<p><em><a href="/ryo88c" class="user-mention js-hovercard" title="ryo88c" data-hovercard-target-type="user" data-hovercard-target-name="ryo88c">@ryo88c</a> さんの案に、今までのプロジェクトでのケースを加えさせていただきました。</em></p>
+
+<h2>
+<span id="3カラム編" class="fragment"></span><a href="#3%E3%82%AB%E3%83%A9%E3%83%A0%E7%B7%A8"><i class="fa fa-link"></i></a>3.カラム編</h2>
+
+<h3>
+<span id="ある瞬間の状態ステータスを表す名前とする" class="fragment"></span><a href="#%E3%81%82%E3%82%8B%E7%9E%AC%E9%96%93%E3%81%AE%E7%8A%B6%E6%85%8B%E3%82%B9%E3%83%86%E3%83%BC%E3%82%BF%E3%82%B9%E3%82%92%E8%A1%A8%E3%81%99%E5%90%8D%E5%89%8D%E3%81%A8%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a><strong>ある瞬間の状態（ステータス）を表す名前とする</strong>
+</h3>
+
+<table>
+<thead>
+<tr>
+<th>カラム名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>name</strong></td>
+</tr>
+<tr>
+<td><strong>age</strong></td>
+</tr>
+<tr>
+<td><strong>is_working</strong></td>
+</tr>
+<tr>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+
+<p><em>ある任意のタイミングの情報を管理するというDBの特性から考えたら当然では有ります</em> </p>
+
+<h3>
+<span id="以下のカラムは必須" class="fragment"></span><a href="#%E4%BB%A5%E4%B8%8B%E3%81%AE%E3%82%AB%E3%83%A9%E3%83%A0%E3%81%AF%E5%BF%85%E9%A0%88"><i class="fa fa-link"></i></a>以下のカラムは必須</h3>
+
+<table>
+<thead>
+<tr>
+<th>カラム名</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>主キー</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>登録日時</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>更新日時</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<span id="他テーブルの主キーとジョインするカラムは-テーブル名単数系_id" class="fragment"></span><a href="#%E4%BB%96%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E4%B8%BB%E3%82%AD%E3%83%BC%E3%81%A8%E3%82%B8%E3%83%A7%E3%82%A4%E3%83%B3%E3%81%99%E3%82%8B%E3%82%AB%E3%83%A9%E3%83%A0%E3%81%AF-%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E5%90%8D%E5%8D%98%E6%95%B0%E7%B3%BB_id"><i class="fa fa-link"></i></a>他テーブルの主キーとジョインするカラムは <em>テーブル名(単数系)_id</em>
+</h3>
+
+<table>
+<thead>
+<tr>
+<th>カラム名</th>
+<th>OK/NG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>categories_id</em></td>
+<td>x</td>
+</tr>
+<tr>
+<td><em>category_id</em></td>
+<td>o</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<span id="flgkbnなどの略名は利用しない" class="fragment"></span><a href="#flgkbn%E3%81%AA%E3%81%A9%E3%81%AE%E7%95%A5%E5%90%8D%E3%81%AF%E5%88%A9%E7%94%A8%E3%81%97%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>flg/kbnなどの略名は利用しない</h3>
+
+<p><strong>flag</strong> は on/off の意味がわかりにくいため、できるだけ使用しない。<br>
+（ <strong>delete_flag</strong> は on で削除？ off で削除？）</p>
+
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>OK/NG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>delete_flg</td>
+<td>x</td>
+</tr>
+<tr>
+<td>delete_flag</td>
+<td>△</td>
+</tr>
+<tr>
+<td><em>is_deleted</em></td>
+<td>o</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<span id="時間を表すカラムは-受動態_on-受動態_at" class="fragment"></span><a href="#%E6%99%82%E9%96%93%E3%82%92%E8%A1%A8%E3%81%99%E3%82%AB%E3%83%A9%E3%83%A0%E3%81%AF-%E5%8F%97%E5%8B%95%E6%85%8B_on-%E5%8F%97%E5%8B%95%E6%85%8B_at"><i class="fa fa-link"></i></a>時間を表すカラムは <em>受動態_on</em> 、<em>受動態_at</em>
+</h3>
+
+<p><a href="http://railsdoc.com/rails_base" rel="nofollow noopener" target="_blank">Railsの基礎知識 - - Railsドキュメント</a> より。</p>
+
+<p>DATE型のカラムには名前を「受動態_on」<br><br>
+TIMESTAMP型のカラムには名前を「受動態_at」</p>
+
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>OK/NG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>created</td>
+<td>x</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>o</td>
+</tr>
+<tr>
+<td>closed_day</td>
+<td>x</td>
+</tr>
+<tr>
+<td>closed_on</td>
+<td>o</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="4制約編" class="fragment"></span><a href="#4%E5%88%B6%E7%B4%84%E7%B7%A8"><i class="fa fa-link"></i></a>4.制約編</h2>
+
+<h3>
+<span id="ユニーク制約は-uq_テーブル名_nn" class="fragment"></span><a href="#%E3%83%A6%E3%83%8B%E3%83%BC%E3%82%AF%E5%88%B6%E7%B4%84%E3%81%AF-uq_%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E5%90%8D_nn"><i class="fa fa-link"></i></a>ユニーク制約は uq_&lt;テーブル名&gt;_NN</h3>
+
+<p>users テーブルのユニークキーは以下のとおり。<br>
+（同一テーブルに複数ユニークキーが存在していた場合、 <em>01</em> の部分を2桁のゼロフィル連番値で加算していく。）</p>
+
+<ul>
+<li><em>uq_users_01</em></li>
+</ul>
+
+<h2>
+<span id="5インデックス編" class="fragment"></span><a href="#5%E3%82%A4%E3%83%B3%E3%83%87%E3%83%83%E3%82%AF%E3%82%B9%E7%B7%A8"><i class="fa fa-link"></i></a>5.インデックス編</h2>
+
+<h3>
+<span id="インデックス-は-idx_テーブル名_nn" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%83%87%E3%83%83%E3%82%AF%E3%82%B9-%E3%81%AF-idx_%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E5%90%8D_nn"><i class="fa fa-link"></i></a>インデックス は idx_&lt;テーブル名&gt;_NN</h3>
+
+<p>users テーブルのインデックスは以下のとおり。<br>
+（同一テーブルに複数インデックスが存在していた場合、 <em>01</em> の部分を2桁のゼロフィル連番値で加算していく。）</p>
+
+<ul>
+<li><em>idx_users_01</em></li>
+</ul>
+
+<h3>
+<span id="ユニークインデックス-は-ui_テーブル名_nn" class="fragment"></span><a href="#%E3%83%A6%E3%83%8B%E3%83%BC%E3%82%AF%E3%82%A4%E3%83%B3%E3%83%87%E3%83%83%E3%82%AF%E3%82%B9-%E3%81%AF-ui_%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E5%90%8D_nn"><i class="fa fa-link"></i></a>ユニークインデックス は ui_&lt;テーブル名&gt;_NN</h3>
+
+<p>users テーブルのユニークインデックスキーは以下のとおり。<br>
+（同一テーブルに複数ユニークインデックスが存在していた場合、 <em>01</em> の部分を2桁のゼロフィル連番値で加算していく。）</p>
+
+<ul>
+<li><em>ui_users_01</em></li>
+</ul>
+
+<hr>
+
+<p>こんな規約もあるよ！という意見お待ちしています。</p>
+
+<hr>
+
+<p><strong>2017-01-22(日)</strong></p>
+
+<p>以下の方のご指摘を反映</p>
+
+<ul>
+<li><a href="/Hirata-Masato" class="user-mention js-hovercard" title="Hirata-Masato" data-hovercard-target-type="user" data-hovercard-target-name="Hirata-Masato">@Hirata-Masato</a></li>
+</ul>
+
+<hr>
+
+<p><strong>2016-06-29(水)</strong> </p>
+
+<p>以下の方々の案を追記</p>
+
+<ul>
+<li>
+<a href="/shoooo" class="user-mention js-hovercard" title="shoooo" data-hovercard-target-type="user" data-hovercard-target-name="shoooo">@shoooo</a> さん</li>
+<li>
+<a href="/fuzzball" class="user-mention js-hovercard" title="fuzzball" data-hovercard-target-type="user" data-hovercard-target-name="fuzzball">@fuzzball</a> さん</li>
+</ul>
+
+<hr>
+
+<p><strong>2016-01-08(金)</strong> </p>
+
+<p>以下の方々の案を追記</p>
+
+<ul>
+<li>
+<a href="/ryo88c" class="user-mention js-hovercard" title="ryo88c" data-hovercard-target-type="user" data-hovercard-target-name="ryo88c">@ryo88c</a> さん</li>
+<li>
+<a href="/scivola" class="user-mention js-hovercard" title="scivola" data-hovercard-target-type="user" data-hovercard-target-name="scivola">@scivola</a> さん</li>
+</ul>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -53,359 +467,72 @@
 <tr>
 	<td rowspan="3"><center>genzouwさんの<br />2位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>28</kbd>
-		<a target="_blank" href="https://qiita.com/genzouw/items/87f8db46cebc8c4f9ae7">Bashのストリーム/パイプ処理を視覚的に理解する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-12-08 20:53:54</center>
-	</td>
-	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
-	</td>
-	<td style="width:300px;"><b>[ShellScript]</b> <b>[Bash]</b> <b>[Linux]</b> <b>[並列処理]</b> <b>[アドエビス]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>genzouwさんの<br />3位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>19</kbd>
-		<a target="_blank" href="https://qiita.com/genzouw/items/23cd0119715403e6e110">ER図を書くのに疲れたら</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-12-16 22:38:28</center>
-	</td>
-	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
-	</td>
-	<td style="width:300px;"><b>[Java]</b> <b>[Bash]</b> <b>[データベース]</b> <b>[設計]</b> <b>[アドエビス]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>genzouwさんの<br />4位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>15</kbd>
-		<a target="_blank" href="https://qiita.com/genzouw/items/89055a7bf11702b8d7ed">Webサービスを作成するにあたり利用したツール・サービス</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-06-27 01:27:31</center>
-	</td>
-	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
-	</td>
-	<td style="width:300px;"><b>[tools]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>genzouwさんの<br />5位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>12</kbd>
-		<a target="_blank" href="https://qiita.com/genzouw/items/ce999466123c8c04286a">バージョン管理されていないシステムをバージョン管理していく</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-11-10 13:40:23</center>
-	</td>
-	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
-	</td>
-	<td style="width:300px;"><b>[Git]</b> <b>[バージョン管理]</b> <b>[vcm]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>genzouwさんの<br />6位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
-		<a target="_blank" href="https://qiita.com/genzouw/items/59d9c943061b1a7a1f55">HybridAuthを利用したOAuth認証（Facebook編）</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-11-11 00:37:30</center>
-	</td>
-	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
-	</td>
-	<td style="width:300px;"><b>[PHP]</b> <b>[Facebook]</b> <b>[OAuth]</b> <b>[HybridAuth]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>genzouwさんの<br />7位</center></td>
-	<td colspan="3">
 		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
 		<a target="_blank" href="https://qiita.com/genzouw/items/f3fad29966e49e36ec35">コーディング規約</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2014-03-28 16:43:47</center>
 	</td>
 	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
+		@genzouw<br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
 	</td>
-	<td style="width:300px;"><b>[規約]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>genzouwさんの<br />8位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/genzouw/items/2f22849487b1564ff2c9">Bashでリダイレクトにより誤って既存ファイルを上書きしてしまわないようにする</a>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[規約]</b> </center>
 	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-12-16 02:11:13</center>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="コーディング規約" class="fragment"></span><a href="#%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E8%A6%8F%E7%B4%84"><i class="fa fa-link"></i></a>コーディング規約</h1>
+
+<h2>
+<span id="php" class="fragment"></span><a href="#php"><i class="fa fa-link"></i></a>PHP</h2>
+
+<h3>
+<span id="psr-0オートローダー" class="fragment"></span><a href="#psr-0%E3%82%AA%E3%83%BC%E3%83%88%E3%83%AD%E3%83%BC%E3%83%80%E3%83%BC"><i class="fa fa-link"></i></a>PSR-0:オートローダー</h3>
+
+<ul>
+<li><a href="https://github.com/genzouw/fig-standards/blob/master/translation/PSR-0.md" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/genzouw/fig-standards/blob/master/translation/PSR-0.md</a></li>
+</ul>
+
+<blockquote>
+<p>オートローダー連携のための要件を説明します。</p>
+</blockquote>
+
+<h3>
+<span id="psr-1基本コーディング規約" class="fragment"></span><a href="#psr-1%E5%9F%BA%E6%9C%AC%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E8%A6%8F%E7%B4%84"><i class="fa fa-link"></i></a>PSR-1:基本コーディング規約</h3>
+
+<ul>
+<li><a href="https://github.com/genzouw/fig-standards/tree/master/translation" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/genzouw/fig-standards/tree/master/translation</a></li>
+</ul>
+
+<blockquote>
+<p>この規約セクションでは、共有されるPHPコードにおいて高い技術レベルでの連携を確保するために必要とされる標準的なコーディング要素を考慮したうえで構成されています。</p>
+</blockquote>
+
+<h3>
+<span id="psr-2コーディングガイド" class="fragment"></span><a href="#psr-2%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%82%AC%E3%82%A4%E3%83%89"><i class="fa fa-link"></i></a>PSR-2:コーディングガイド</h3>
+
+<ul>
+<li><a href="https://github.com/genzouw/fig-standards/blob/master/translation/PSR-2-coding-style-guide.md" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/genzouw/fig-standards/blob/master/translation/PSR-2-coding-style-guide.md</a></li>
+</ul>
+
+<blockquote>
+<p>このガイドはPSR-1に準拠し、標準的なコーディング規約のためのスタイルガイドです。</p>
+
+<p>このガイドの目的は、複数メンバーがコードを読む際の認識のずれを抑えることです。 これはPHPコードをどのような書式にするかについて、ルールや期待値を共有することで実現します。</p>
+</blockquote>
+</div>
 	</td>
-	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
-	</td>
-	<td style="width:300px;"><b>[Bash]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>genzouwさんの<br />9位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/genzouw/items/a4cca99d4de9387da5f6">ssh-copy-idを使ってssh公開鍵を対象サーバーに配置する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-12-09 21:05:38</center>
-	</td>
-	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
-	</td>
-	<td style="width:300px;"><b>[Linux]</b> <b>[SSH]</b> <b>[Linuxコマンド]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>genzouwさんの<br />10位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/genzouw/items/5428be93411e06c0cc87">Chocolateyを使ってコマンドのみでEclipse + ERMasterをインストール</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-01-07 12:57:20</center>
-	</td>
-	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
-	</td>
-	<td style="width:300px;"><b>[Eclipse]</b> <b>[chocolatey]</b> <b>[ERMaster]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>genzouwさんの<br />11位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
-		<a target="_blank" href="https://qiita.com/genzouw/items/57ac0c8cce8fad4355b2">自作サイトを登録する検索エンジンリスト</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-05-06 15:06:11</center>
-	</td>
-	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
-	</td>
-	<td style="width:300px;"><b>[tools]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>genzouwさんの<br />12位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
-		<a target="_blank" href="https://qiita.com/genzouw/items/08107d2d10f3c5436fc2">Robocodeによるロボットバトル入門（環境構築編）</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2017-03-13 23:47:01</center>
-	</td>
-	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
-	</td>
-	<td style="width:300px;"><b>[Java]</b> <b>[IntelliJ]</b> <b>[Robocode]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>genzouwさんの<br />13位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
-		<a target="_blank" href="https://qiita.com/genzouw/items/9a26f0002015d8b44b11">phpQueryを使って、commandlinefu.comからCommandLine Tipsを取得してみる</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-12-17 01:22:20</center>
-	</td>
-	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
-	</td>
-	<td style="width:300px;"><b>[PHP]</b> <b>[スクレイピング]</b> <b>[Composer]</b> <b>[phpQuery]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>genzouwさんの<br />14位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
-		<a target="_blank" href="https://qiita.com/genzouw/items/4dd2caec6cdefdaf2ff3">開発作業時にコマンドラインから利用すると便利なPHPライブラリ</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-10-26 13:51:53</center>
-	</td>
-	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
-	</td>
-	<td style="width:300px;"><b>[PHP]</b> <b>[Composer]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>genzouwさんの<br />15位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
-		<a target="_blank" href="https://qiita.com/genzouw/items/59705fcfd4af1c5369e1">「Hadoop+Hive」のローカル開発環境の構築を自動化する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2016-12-06 21:02:28</center>
-	</td>
-	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
-	</td>
-	<td style="width:300px;"><b>[hadoop]</b> <b>[vagrant]</b> <b>[Spark]</b> <b>[hive]</b> <b>[アドエビス]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>genzouwさんの<br />16位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
-		<a target="_blank" href="https://qiita.com/genzouw/items/e1c6b4cae2222563d14c">Robocodeによるロボットバトル入門（開発初級編）</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2017-03-29 16:24:24</center>
-	</td>
-	<td style="width:200px;">
-		@genzouw<!--(<a target="_blank" href="http://qiita.com/genzouw">Qiita内の16件の記事</a>)--><br />(株式会社ロックオン 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15523/profile-images/1473681614">
-	</td>
-	<td style="width:300px;"><b>[Java]</b> <b>[IntelliJ]</b> <b>[Robocode]</b> <!--タグ--></td>
 </tr>
 </table>
 <br />

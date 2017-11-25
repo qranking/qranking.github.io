@@ -25,6 +25,7 @@
 <h1>Qiitaいいね数ランキング (k-shogo さんの投稿分)</h1>
 </div><!--class="headerContainer"-->
 <p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
 <table border="1">
 <tr>
 	<td rowspan="3"><center>k-shogoさんの<br />1位</center></td>
@@ -34,18 +35,195 @@
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2013-10-16 11:17:52</center>
 	</td>
 	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
+		@k-shogo<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
 	</td>
-	<td style="width:300px;"><b>[nginx]</b> <b>[SSL]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[nginx]</b> <b>[SSL]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="背景" class="fragment"></span><a href="#%E8%83%8C%E6%99%AF"><i class="fa fa-link"></i></a>背景</h1>
+
+<p>自前のサービスでhttps通信をサポートするには、SSL証明書が必要になります。<br><br>
+自分で使用するだけなら、SSL証明書も自前で作成するいわゆるオレオレ証明書を用いても良いのですが、外部に公開するサービスの場合そうとも行きません。<br>
+SSL証明書というと値段が高い印象がありましたが、<a href="https://www.startssl.com/" rel="nofollow noopener" target="_blank">StartSSL</a>というサービスで無料でSSL証明書の発行を受けられると言うことで試してみました。</p>
+
+<h1>
+<span id="startsslにユーザー登録する" class="fragment"></span><a href="#startssl%E3%81%AB%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E7%99%BB%E9%8C%B2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>StartSSLにユーザー登録する</h1>
+
+<p>証明書の発行を行う前に、StartSSLにユーザー登録する必要があります。<br><br>
+<a href="https://www.startssl.com/" rel="nofollow noopener" target="_blank">StartSSL</a>から、"StartSSL Free (Class1)"を選択します。</p>
+
+<p><a href="https://camo.qiitausercontent.com/29b862d93c62b62a7168f9178d7388e9bed6fb8b/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30312e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/29b862d93c62b62a7168f9178d7388e9bed6fb8b/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30312e6a7067" alt="01" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/01.jpg"></a></p>
+
+<p>Certificate Control Panelを選択。</p>
+
+<p><a href="https://camo.qiitausercontent.com/105cecd09cc707726473910969ec2141dbb57939/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30322e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/105cecd09cc707726473910969ec2141dbb57939/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30322e6a7067" alt="02" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/02.jpg"></a></p>
+
+<p>Sign-upに進みます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/6f72135ebab383525e2ddd02bc1a76c2c0d1cf65/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30332e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/6f72135ebab383525e2ddd02bc1a76c2c0d1cf65/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30332e6a7067" alt="03" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/03.jpg"></a></p>
+
+<p>名前、住所、メールアドレスなど<br>
+個人情報の登録を行います。</p>
+
+<p><a href="https://camo.qiitausercontent.com/3d7560ca30f26d9f44112c3e9903980a2a3817ba/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30342e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/3d7560ca30f26d9f44112c3e9903980a2a3817ba/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30342e6a7067" alt="04" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/04.jpg"></a></p>
+
+<p>登録したメールアドレスに本人確認のメールが届くので、受信したメールのauthentication codeを入力して登録を完了させます。<br>
+この時、「もっと詳細な住所を教えて欲しい」と言う旨のメールが送られてくることがあります。<br>
+その場合はStartSSLの担当者とメールをやりとりして登録を完了させましょう。</p>
+
+<p><a href="https://camo.qiitausercontent.com/4de09e61db061bb30dfcd9408f04b95628872dfb/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30352e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/4de09e61db061bb30dfcd9408f04b95628872dfb/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30352e6a7067" alt="05" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/05.jpg"></a></p>
+
+<p>登録を完了すると、StartSSLへのログイン用SSL証明書発行のためのURLが送られてきます。<br>
+そのリンクからブラウザに証明書をインストールしましょう。<br>
+暗号化セキュリティーレベルはデフォルトの2048（高）で良いと思います。<br>
+この時にインストールした証明書が無いとStartSSLにログインできません。 <br>
+他の端末や、ブラウザでアクセスする場合は証明書のエクスポートが必要になります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/a8ba603d88eca2fd1c40b4a8636922a7ed79bf5d/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30362e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a8ba603d88eca2fd1c40b4a8636922a7ed79bf5d/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30362e6a7067" alt="06" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/06.jpg"></a></p>
+
+<h1>
+<span id="ドメインの認証" class="fragment"></span><a href="#%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%81%AE%E8%AA%8D%E8%A8%BC"><i class="fa fa-link"></i></a>ドメインの認証</h1>
+
+<p>ユーザー登録が完了したら、次はドメインの認証です。<br>
+Validations Wizardタブを選択します。</p>
+
+<p><a href="https://camo.qiitausercontent.com/aeaaba7c4896bce9549cdcb2023c232ae6448333/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30372e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/aeaaba7c4896bce9549cdcb2023c232ae6448333/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30372e6a7067" alt="07" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/07.jpg"></a></p>
+
+<p>証明書を発行したいドメインを登録します。</p>
+
+<p><a href="https://camo.qiitausercontent.com/852a5e94956da58615c4860a7e2e609811f5e66c/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30382e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/852a5e94956da58615c4860a7e2e609811f5e66c/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30382e6a7067" alt="08" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/08.jpg"></a></p>
+
+<p>自分が管理しているドメインであることを示すために、登録したドメインのpostmaster, hostmaster, webmasterなど、いずれかのメールアドレスでメールを受け取る必要があります。<br>
+メールを受信できるように事前に設定しておきましょう。</p>
+
+<p><a href="https://camo.qiitausercontent.com/c8a6ca8d3919945db6c3b2bca678d9ace802c79f/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30392e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/c8a6ca8d3919945db6c3b2bca678d9ace802c79f/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f30392e6a7067" alt="09" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/09.jpg"></a></p>
+
+<p>先ほど指定した名前に確認用メールが送られてくるので、メールに記載されているコードを入力して進みます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/29cb7743ecd71e317ea810700064b5c5ad757f11/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31302e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/29cb7743ecd71e317ea810700064b5c5ad757f11/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31302e6a7067" alt="10" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/10.jpg"></a></p>
+
+<h1>
+<span id="秘密鍵の発行" class="fragment"></span><a href="#%E7%A7%98%E5%AF%86%E9%8D%B5%E3%81%AE%E7%99%BA%E8%A1%8C"><i class="fa fa-link"></i></a>秘密鍵の発行</h1>
+
+<p>ドメインの認証が終わったら、秘密鍵の発行です。<br>
+Certificates Wizardタブを選択し、Certificate TargetはWeb Server SSL/TLS Certificateを指定します。</p>
+
+<p><a href="https://camo.qiitausercontent.com/1a1b54c2c21d51ee2dedafa65916fc0b9f1e8d0c/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31312e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1a1b54c2c21d51ee2dedafa65916fc0b9f1e8d0c/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31312e6a7067" alt="11" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/11.jpg"></a></p>
+
+<p>パスワードを設定して進みます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/f9cab207ea53b4aa2d4255c3e9e8865255846b4a/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31322e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f9cab207ea53b4aa2d4255c3e9e8865255846b4a/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31322e6a7067" alt="12" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/12.jpg"></a></p>
+
+<p>private keyが作成されたので、テキストエリアの情報を保存します。</p>
+
+<p><a href="https://camo.qiitausercontent.com/b8c61a5097f18c730d101fc1eed09e43f3cc1646/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31332e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b8c61a5097f18c730d101fc1eed09e43f3cc1646/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31332e6a7067" alt="13" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/13.jpg"></a></p>
+
+<h1>
+<span id="公開鍵の発行" class="fragment"></span><a href="#%E5%85%AC%E9%96%8B%E9%8D%B5%E3%81%AE%E7%99%BA%E8%A1%8C"><i class="fa fa-link"></i></a>公開鍵の発行</h1>
+
+<p>登録したドメインを選択します。</p>
+
+<p><a href="https://camo.qiitausercontent.com/1f6d402104c7e88a49cb5c8baaf990dd15a458e8/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31342e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1f6d402104c7e88a49cb5c8baaf990dd15a458e8/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31342e6a7067" alt="14" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/14.jpg"></a></p>
+
+<p>サブドメインを登録します。</p>
+
+<p><a href="https://camo.qiitausercontent.com/e94cbc62cc568e4d3f49e438224cd40159825ffb/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31352e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e94cbc62cc568e4d3f49e438224cd40159825ffb/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31352e6a7067" alt="15" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/15.jpg"></a></p>
+
+<p>次に進むとメールを送信するという表示がされるので、メールが来るのを待ちます。<br>
+メールを受信したら、Tool Boxタブに移動し、Retrieve Certificateを選択します。</p>
+
+<p><a href="https://camo.qiitausercontent.com/875a2710fa62e42f3ca6b0da38e71b78051758b4/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31362e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/875a2710fa62e42f3ca6b0da38e71b78051758b4/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31362e6a7067" alt="16" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/16.jpg"></a></p>
+
+<p>すると公開鍵が表示されるので、テキストエリアの内容を保存しておきます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/9bf46568cf3180c7c843df967198f6b80041dbd3/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31372e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/9bf46568cf3180c7c843df967198f6b80041dbd3/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31302d30372d73746172742d73736c2f31372e6a7067" alt="17" data-canonical-src="http://k-shogo.github.io/images/2013-10-07-start-ssl/17.jpg"></a></p>
+
+<h1>
+<span id="証明書の設置" class="fragment"></span><a href="#%E8%A8%BC%E6%98%8E%E6%9B%B8%E3%81%AE%E8%A8%AD%E7%BD%AE"><i class="fa fa-link"></i></a>証明書の設置</h1>
+
+<p>サーバーにSSL証明書を設置し、HTTPSでの通信を出来るようにします。<br>
+今回はnginxでSSL証明書を利用できるようにしてみます。</p>
+
+<p>SSL証明書を設置するディレクトリに移動します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>cd /etc/pki/tls/certs/
+</pre></div></div>
+
+<p>StartSSLの証明書をダウンロードします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>wget https://www.startssl.com/certs/ca.pem
+wget https://www.startssl.com/certs/sub.class1.server.ca.pem
+</pre></div></div>
+
+<p>先ほど保存しておいた秘密鍵と公開鍵を配置します。<br>
+今回はそれぞれ<code>startssl.key</code>と<code>startssl.crt</code>と言う名前で設置しました。<br>
+例えばvimでファイルを作成して鍵の中身を貼り付けます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>vim startssl.key
+vim startssl.crt
+</pre></div></div>
+
+<p>証明書と鍵のパーミッションを変更します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>chmod 400 startssl.crt startssl.key ca.pem sub.class1.server.ca.pem
+</pre></div></div>
+
+<p>Apacheを使用する場合は中間証明書を指定するディレクティブがありますが、nginxには中間証明書を直接指定するディレクティブが用意されていません。<br>
+そこでサーバ証明書と中間証明書を結合します。<br>
+証明書は順に辿らないと駄目なので、結合の順番には注意しましょう。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>cat sub.class1.server.ca.pem &gt;&gt; startssl.crt
+</pre></div></div>
+
+<p>秘密鍵にはパスワードが設定されているため、nginxのstart/restart時にそのパスワードを入力する必要が出てきます。<br>
+自動起動する場合には不便なので、パスワードを解除する場合は以下のようにバックアップを作成した後、パスワードがない鍵を作成します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>cp startssl.key startssl.key.org
+openssl rsa -in startssl.key -out startssl.key
+</pre></div></div>
+
+<p>nginxの設定を一部抜粋します。<br>
+<code>ssl_certificate</code>で中間証明書と結合した証明書を、<code>ssl_certificate_key</code>で秘密鍵を指定します。<br>
+オプションとしてSSLダウングレード攻撃を考慮して、SSLバージョン指定<code>ssl_protocols</code>,暗号スイート指定<code>ssl_ciphers</code>,暗号選択方式指定<code>ssl_prefer_server_ciphers</code>を変更しました。</p>
+
+<div class="code-frame" data-lang="nginx"><div class="highlight"><pre><span></span><span class="k">server</span> <span class="p">{</span>
+
+    <span class="kn">listen</span>       <span class="mi">443</span> <span class="s">ssl</span><span class="p">;</span>
+
+    <span class="kn">ssl_certificate</span>      <span class="s">/etc/pki/tls/certs/startssl.crt</span><span class="p">;</span>
+    <span class="kn">ssl_certificate_key</span>  <span class="s">/etc/pki/tls/certs/startssl.key</span><span class="p">;</span>
+    <span class="kn">ssl_session_timeout</span>  <span class="mi">5m</span><span class="p">;</span>
+    <span class="c1"># SSLv2以下は利用しない</span>
+    <span class="kn">ssl_protocols</span>  <span class="s">SSLv3</span> <span class="s">TLSv1</span><span class="p">;</span>
+    <span class="c1"># 暗号スイートの指定</span>
+    <span class="kn">ssl_ciphers</span>  <span class="s">RC4-SHA:HIGH:!ADH</span><span class="p">;</span>
+    <span class="c1"># 暗号の選択をサーバ側で決定</span>
+    <span class="kn">ssl_prefer_server_ciphers</span>   <span class="no">on</span><span class="p">;</span>
+
+<span class="p">}</span>
+</pre></div></div>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>無料のSSL証明書ではありますが、PCブラウザおよびiPhoneからのアクセス等でも警告なくHTTPSでの接続が可能になるので便利に活用できるのではないでしょうか。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -53,23 +231,288 @@
 <tr>
 	<td rowspan="3"><center>k-shogoさんの<br />2位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>855</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/5bbc23e1d0dd0ad3a8a2">早く知ってたら良かったrailsの技</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>199</kbd>
+		<a target="_blank" href="https://qiita.com/k-shogo/items/d85905535a64e82a3b2b">開発中にrailsから送信したメールを確認する</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-12-18 19:05:33</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-11-06 19:53:15</center>
 	</td>
 	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
+		@k-shogo<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
 	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[Rails]</b> <b>[Rails4]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Rails]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="背景" class="fragment"></span><a href="#%E8%83%8C%E6%99%AF"><i class="fa fa-link"></i></a>背景</h1>
+
+<p>railsアプリからメールを送信することは簡単にできますが、開発中に送信メールを確認したいときはどうするでしょうか。<br>
+今回はrailsアプリ開発中にメールを確認する方法を紹介します。</p>
+
+<h1>
+<span id="準備" class="fragment"></span><a href="#%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>準備</h1>
+
+<p>今回はメール確認の例として、<a href="https://github.com/plataformatec/devise" rel="nofollow noopener" target="_blank">devise</a>を用いてメール認証が必要なユーザー登録の仕組みを用意します。</p>
+
+<h2>
+<span id="deviseインストール" class="fragment"></span><a href="#devise%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>deviseインストール</h2>
+
+<p>railsアプリケーションがすでに初期化されていたとして、<br>
+Gemfileにdeviseを追加し、インストールを行います。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>bundle exec rails generate devise:install
+bundle exec rails generate devise user
+bundle exec rails generate devise:views users
+</pre></div></div>
+
+<p>生成したviewを読むように設定します。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="no">Devise</span><span class="o">.</span><span class="n">setup</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="c1"># 中略</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">scoped_views</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<p>モデルでメール認証を有効化します。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">devise</span> <span class="ss">:database_authenticatable</span><span class="p">,</span> <span class="ss">:registerable</span><span class="p">,</span> <span class="ss">:confirmable</span><span class="p">,</span>
+         <span class="ss">:recoverable</span><span class="p">,</span> <span class="ss">:rememberable</span><span class="p">,</span> <span class="ss">:trackable</span><span class="p">,</span> <span class="ss">:validatable</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<p>メール認証に関する部分のmigrationも変更しておきます。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DeviseCreateUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="c1">## Database authenticatable</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:email</span><span class="p">,</span>              <span class="ss">:null</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="s2">""</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:encrypted_password</span><span class="p">,</span> <span class="ss">:null</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="s2">""</span>
+
+      <span class="c1">## Recoverable</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span>   <span class="ss">:reset_password_token</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">datetime</span> <span class="ss">:reset_password_sent_at</span>
+
+      <span class="c1">## Rememberable</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">datetime</span> <span class="ss">:remember_created_at</span>
+
+      <span class="c1">## Trackable</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">integer</span>  <span class="ss">:sign_in_count</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="ss">:null</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">datetime</span> <span class="ss">:current_sign_in_at</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">datetime</span> <span class="ss">:last_sign_in_at</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span>   <span class="ss">:current_sign_in_ip</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span>   <span class="ss">:last_sign_in_ip</span>
+
+      <span class="c1">## Confirmable</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span>   <span class="ss">:confirmation_token</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">datetime</span> <span class="ss">:confirmed_at</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">datetime</span> <span class="ss">:confirmation_sent_at</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span>   <span class="ss">:unconfirmed_email</span> <span class="c1"># Only if using reconfirmable</span>
+
+      <span class="c1">## Lockable</span>
+      <span class="c1"># t.integer  :failed_attempts, :default =&gt; 0, :null =&gt; false # Only if lock strategy is :failed_attempts</span>
+      <span class="c1"># t.string   :unlock_token # Only if unlock strategy is :email or :both</span>
+      <span class="c1"># t.datetime :locked_at</span>
+
+
+      <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+    <span class="k">end</span>
+
+    <span class="n">add_index</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span>                <span class="ss">:unique</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+    <span class="n">add_index</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:reset_password_token</span><span class="p">,</span> <span class="ss">:unique</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+    <span class="c1"># add_index :users, :confirmation_token,   :unique =&gt; true</span>
+    <span class="c1"># add_index :users, :unlock_token,         :unique =&gt; true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<p><code>config/environments/development.rb</code>の設定も忘れずに。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span>  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">default_url_options</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">host</span><span class="p">:</span> <span class="s1">'localhost:3000'</span> <span class="p">}</span>
+</pre></div></div>
+
+<p>これでrailsサーバーを起動して、<code>http://localhost:3000/users/sign_up</code>にアクセスすればユーザー登録が出来るので、メールが送信されます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/7e1c3935ccb65f3372fdb522e40c381a8c62462e/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31312d30362d7261696c732d6c65747465722d6f70656e65722f666f726d2e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7e1c3935ccb65f3372fdb522e40c381a8c62462e/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31312d30362d7261696c732d6c65747465722d6f70656e65722f666f726d2e6a7067" alt="フォーム" data-canonical-src="http://k-shogo.github.io/images/2013-11-06-rails-letter-opener/form.jpg"></a></p>
+
+<h1>
+<span id="コンソールでの確認" class="fragment"></span><a href="#%E3%82%B3%E3%83%B3%E3%82%BD%E3%83%BC%E3%83%AB%E3%81%A7%E3%81%AE%E7%A2%BA%E8%AA%8D"><i class="fa fa-link"></i></a>コンソールでの確認</h1>
+
+<p>railsサーバーを起動しているコンソールを見てみると、メール送信のログが出力されています。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Sent mail to hoge@email.com (12.1ms)
+Date: Wed, 06 Nov 2013 10:05:01 +0900
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: hoge@email.com
+Message-ID: &lt;527995bddd516_2a4d3fe5d64135c4906e9@MBP.local.mail&gt;
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+&lt;p&gt;Welcome hoge@email.com!&lt;/p&gt;
+
+&lt;p&gt;You can confirm your account email through the link below:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://localhost:3000/users/confirmation?confirmation_token=Ewx4qYxPR4Ex9yqySYEJ"&gt;Confirm my account&lt;/a&gt;&lt;/p&gt;
+
+   (0.7ms)  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 927ms (ActiveRecord: 3.9ms)
+</pre></div></div>
+
+<p>少しメール送信の文面を変更してみましょう。</p>
+
+<p><code>app/views/users/mailer/confirmaion_instructions.html.erb</code></p>
+
+<div class="code-frame" data-lang="erb"><div class="highlight"><pre><span></span><span class="x">&lt;p&gt;ようこそ </span><span class="cp">&lt;%=</span> <span class="vi">@email</span> <span class="cp">%&gt;</span><span class="x"> さん!&lt;/p&gt;</span>
+
+<span class="x">&lt;p&gt;下のリンクからユーザー登録を完了してください&lt;/p&gt;</span>
+
+<span class="x">&lt;p&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s1">'ユーザー登録を完了する'</span><span class="p">,</span> <span class="n">confirmation_url</span><span class="p">(</span><span class="vi">@resource</span><span class="p">,</span> <span class="ss">:confirmation_token</span> <span class="o">=&gt;</span> <span class="vi">@token</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="x">&lt;/p&gt;</span>
+</pre></div></div>
+
+<p>もう一度メール送信して、コンソールから確認してみると・・・</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Sent mail to fuga@email.com (40.4ms)
+Date: Wed, 06 Nov 2013 10:09:10 +0900
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: fuga@email.com
+Message-ID: &lt;527996b6b39fd_2a4d3fe5d7dd27e49078@MBP.local.mail&gt;
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+PHA+44KI44GG44GT44GdIGZ1Z2FAZW1haWwuY29tIOOBleOCkyE8L3A+Cgo8
+cD7kuIvjga7jg6rjg7Pjgq/jgYvjgonjg6bjg7zjgrbjg7znmbvpjLLjgpLl
+rozkuobjgZfjgabjgY/jgaDjgZXjgYQ8L3A+Cgo8cD48YSBocmVmPSJodHRw
+Oi8vbG9jYWxob3N0OjMwMDAvdXNlcnMvY29uZmlybWF0aW9uP2NvbmZpcm1h
+dGlvbl90b2tlbj14b2EzeTR2OTlpOExZQ3hycWRvTSI+44Om44O844K244O8
+55m76Yyy44KS5a6M5LqG44GZ44KLPC9hPjwvcD4K
+
+   (7.2ms)  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 148ms (ActiveRecord: 8.1ms)
+</pre></div></div>
+
+<p>エンコードされてしまっているので、confirmation_token付きのリンクを確認できなくなってしまいました。<br>
+そもそもメールの内容をコンソールから確認するのは面倒ですね。</p>
+
+<h1>
+<span id="letter_opener" class="fragment"></span><a href="#letter_opener"><i class="fa fa-link"></i></a>letter_opener</h1>
+
+<p>一つ目のメール確認方法は<a href="https://github.com/ryanb/letter_opener" rel="nofollow noopener" target="_blank">letter_opener</a>です。</p>
+
+<p>Gemfileにletter_openerを追加し、インストールします。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'letter_opener'</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<p><code>config/environments/development.rb</code>に<code>config.action_mailer.delivery_method = :letter_opener</code>の一行を追加します。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span>  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">default_url_options</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">host</span><span class="p">:</span> <span class="s1">'localhost:3000'</span> <span class="p">}</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">delivery_method</span> <span class="o">=</span> <span class="ss">:letter_opener</span>
+</pre></div></div>
+
+<p>これだけでメールが送信されたとき（今回の場合はユーザー登録を行ったとき）にブラウザでメールを確認することが出来ます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/fb7fd86ee45f0ff9e7c6747e7c6613ed7777b994/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31312d30362d7261696c732d6c65747465722d6f70656e65722f30312e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/fb7fd86ee45f0ff9e7c6747e7c6613ed7777b994/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31312d30362d7261696c732d6c65747465722d6f70656e65722f30312e6a7067" alt="letter_opener_web" data-canonical-src="http://k-shogo.github.io/images/2013-11-06-rails-letter-opener/01.jpg"></a></p>
+
+<p>さらに<a href="https://github.com/fgrehm/letter_opener_web" rel="nofollow noopener" target="_blank">letter_opener_web</a>というgemもあります。</p>
+
+<p>こちらもGemfileに追加し</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'letter_opener_web'</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<p><code>config/environments/development.rb</code>の<code>config.action_mailer.delivery_method</code>を<code>:letter_opener_web</code>に変更</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span>  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">default_url_options</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">host</span><span class="p">:</span> <span class="s1">'localhost:3000'</span> <span class="p">}</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">delivery_method</span> <span class="o">=</span> <span class="ss">:letter_opener_web</span>
+</pre></div></div>
+
+<p><code>config/routes.rb</code>に<code>/letter_opener</code>で<code>LetterOpenerWeb::Engine</code>をマウントするだけです。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="no">Your</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+  <span class="n">devise_for</span> <span class="ss">:users</span>
+
+  <span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span>
+    <span class="n">mount</span> <span class="no">LetterOpenerWeb</span><span class="o">::</span><span class="no">Engine</span><span class="p">,</span> <span class="ss">at</span><span class="p">:</span> <span class="s2">"/letter_opener"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<p>これで<code>http://localhost:3000/letter_opener</code>にアクセスすることで送信されたメールを確認することが出来るようになります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/128b4dc048f282a1be36876c6a4b13f48cedd6ee/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31312d30362d7261696c732d6c65747465722d6f70656e65722f30322e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/128b4dc048f282a1be36876c6a4b13f48cedd6ee/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31312d30362d7261696c732d6c65747465722d6f70656e65722f30322e6a7067" alt="letter_opener_web" data-canonical-src="http://k-shogo.github.io/images/2013-11-06-rails-letter-opener/02.jpg"></a></p>
+
+<h1>
+<span id="mailcatcher" class="fragment"></span><a href="#mailcatcher"><i class="fa fa-link"></i></a>mailcatcher</h1>
+
+<p>もう一つの方法は<a href="http://mailcatcher.me" rel="nofollow noopener" target="_blank">mailcatcher</a>です。</p>
+
+<p>先ほどのletter_openerはrailsアプリケーションに組み込みましたが、mailcatcherは単独で動作する開発用のSMTPサーバーです。</p>
+
+<p>gemで配布されており、インストールは簡単です。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>gem install mailcatcher
+</pre></div></div>
+
+<p><code>mailcatcher</code>コマンドで起動し、デフォルトではバックグラウンドで起動し、<code>smtp://localhost:1025</code>が使用されます。</p>
+
+<p>起動オプションで適宜変更することも可能です。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Usage: mailcatcher [options]
+        --ip IP                      Set the ip address of both servers
+        --smtp-ip IP                 Set the ip address of the smtp server
+        --smtp-port PORT             Set the port of the smtp server
+        --http-ip IP                 Set the ip address of the http server
+        --http-port PORT             Set the port address of the http server
+        --[no-]growl                 Growl to the local machine when a message arrives
+    -f, --foreground                 Run in the foreground
+    -b, --browse                     Open web browser
+    -v, --verbose                    Be more verbose
+    -h, --help                       Display this help information
+</pre></div></div>
+
+<p>railsアプリケーションと連携する場合は<code>config/environments/development.rb</code>の<code>config.action_mailer.smtp_settings</code>で設定を行います。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span>  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">delivery_method</span> <span class="o">=</span> <span class="ss">:smtp</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">smtp_settings</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">address</span><span class="p">:</span> <span class="s1">'localhost'</span><span class="p">,</span> <span class="ss">port</span><span class="p">:</span> <span class="mi">1025</span> <span class="p">}</span>
+</pre></div></div>
+
+<p>あとは<code>http://localhost:1080</code>にアクセスすればメールを確認することが出来ます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/bc7ed2b2196f3c243abb61eefe3d79c4bc11f9ef/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31312d30362d7261696c732d6c65747465722d6f70656e65722f30332e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/bc7ed2b2196f3c243abb61eefe3d79c4bc11f9ef/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d31312d30362d7261696c732d6c65747465722d6f70656e65722f30332e6a7067" alt="mailcatcher" data-canonical-src="http://k-shogo.github.io/images/2013-11-06-rails-letter-opener/03.jpg"></a></p>
+
+<h3>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h3>
+
+<p>どちらの方法も少しの設定で開発環境でメールを確認出来るようになるので、railsアプリからメールを送信する機能を確認する場合に活用できそうです。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -77,23 +520,183 @@
 <tr>
 	<td rowspan="3"><center>k-shogoさんの<br />3位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>495</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/592e243f9763d0c3b10a">railsをdockerで動かしたい場合の構成はどうするべきか</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>139</kbd>
+		<a target="_blank" href="https://qiita.com/k-shogo/items/884498ad512c0e6eb303">Railsで規約に沿わない古いデータを扱う</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-07-08 16:38:01</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-09-18 19:28:30</center>
 	</td>
 	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
+		@k-shogo<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
 	</td>
-	<td style="width:300px;"><b>[Rails]</b> <b>[docker]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Rails4]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h3>
+<span id="背景" class="fragment"></span><a href="#%E8%83%8C%E6%99%AF"><i class="fa fa-link"></i></a>背景</h3>
+
+<p>railsでは<code>rails g scaffold</code>などでModelを作成すれば、<br>
+自動的にidが付与されます。<br>
+しかもprimary_keyでauto_incrementでかつindexも張られるので、<br>
+普段はidを気にする必要はありません。</p>
+
+<p>railsを使い、自分でデータ構造を決める場合はrailsの流儀に則った方が楽で、問題も起こりません。<br>
+しかし、古いデータを活用した場合、流儀にそぐわない事もあり得ます。</p>
+
+<p>今回は規約に沿わない場合の対応について大きく分けて2つの場合について説明します。<br>
+なお環境は以下の物で検証しています。<br>
+* ruby 2.0.0p247 (2013-06-27 revision 41674) [x86_64-darwin12.4.0]<br>
+* Rails 4.0.0<br>
+* composite_primary_keys (6.0.0)</p>
+
+<h3>
+<span id="主キーがidではない" class="fragment"></span><a href="#%E4%B8%BB%E3%82%AD%E3%83%BC%E3%81%8Cid%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>主キーがidではない</h3>
+
+<p>主キーがidではない場合として、<br>
+具体的に商品（Item）テーブルの主キーが文字列である場合を考えます。</p>
+
+<p>主キーがidで無い場合のポイントは<br>
+<code>create_tabel</code>の<code>id: false</code>です。<br>
+これによってidが自動生成されることはなくなります。<br>
+他のオプションで<code>primary_key</code>と言う物もありますが、<br>
+これはinteger型で名前をidから変更するだけの物です。</p>
+
+<p>下記の例では<code>null: false</code>とする事でnot nullな制約を追加し、<br>
+<code>add_index :items, :code, unique: true</code>でユニーク制約を定義しています。</p>
+
+<h4>
+<span id="migrationファイル" class="fragment"></span><a href="#migration%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB"><i class="fa fa-link"></i></a>Migrationファイル</h4>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CreateItems</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:items</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="c1"># 商品コード</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:code</span><span class="p">,</span> <span class="ss">limit</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="ss">null</span><span class="p">:</span> <span class="kp">false</span>
+      <span class="c1"># 商品名</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:name</span>
+    <span class="k">end</span>
+    <span class="n">add_index</span> <span class="ss">:items</span><span class="p">,</span> <span class="ss">:code</span><span class="p">,</span> <span class="ss">unique</span><span class="p">:</span> <span class="kp">true</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div></div>
+
+<p>モデル側には<code>self.primary_key</code>で主キーを設定します。<br>
+これによって<code>find</code>メソッドで主キーによる取得が可能になります。</p>
+
+<h4>
+<span id="item-model" class="fragment"></span><a href="#item-model"><i class="fa fa-link"></i></a>Item Model</h4>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Item</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># 主キー設定</span>
+  <span class="nb">self</span><span class="o">.</span><span class="n">primary_key</span> <span class="o">=</span> <span class="ss">:code</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<h3>
+<span id="複合主キーを扱いたい" class="fragment"></span><a href="#%E8%A4%87%E5%90%88%E4%B8%BB%E3%82%AD%E3%83%BC%E3%82%92%E6%89%B1%E3%81%84%E3%81%9F%E3%81%84"><i class="fa fa-link"></i></a>複合主キーを扱いたい</h3>
+
+<p>次は複合主キーを扱う場合についてです。<br>
+具体的に先ほど使った商品（Item）について、<br>
+各商品に任意のタグ（Tag）がついているとします。<br>
+タグは商品コード（item_code）とタグコード（code）の複合主キーを持っています。</p>
+
+<p>railsで複合主キーを扱う場合、<br>
+<a href="https://github.com/composite-primary-keys/composite_primary_keys" rel="nofollow noopener" target="_blank">composite_primary_keys</a>のgemを使用します。<br>
+composite_primary_keysの準備として<code>Gemfile</code>に<code>gem 'composite_primary_keys'</code>を追加し<code>bundle install</code>します。</p>
+
+<p>Migrationファイルのポイントは、<br>
+<code>:item_code</code>と<code>:code</code>の組み合わせがユニークである制約の定義です。<br>
+複合主キーがユニークである制約は<code>add_index :tags, [:item_code, :code], unique: true</code>だけでも十分です。<br>
+複合主キーが2つ3つと長くなる場合、インデックス名が長すぎてエラーが発生する事もあるので、<br>
+その場合は<code>name</code>でインデックス名を指定してあげましょう。</p>
+
+<h4>
+<span id="migrationファイル-1" class="fragment"></span><a href="#migration%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB-1"><i class="fa fa-link"></i></a>Migrationファイル</h4>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CreateTags</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:tags</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="c1"># 商品コード</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:item_code</span><span class="p">,</span> <span class="ss">limit</span><span class="p">:</span> <span class="mi">8</span>
+      <span class="c1"># タグコード</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:code</span><span class="p">,</span> <span class="ss">limit</span><span class="p">:</span> <span class="mi">8</span>
+      <span class="c1"># タグ名称</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:name</span>
+    <span class="k">end</span>
+    <span class="n">add_index</span> <span class="ss">:tags</span><span class="p">,</span> <span class="o">[</span><span class="ss">:item_code</span><span class="p">,</span> <span class="ss">:code</span><span class="o">]</span><span class="p">,</span> <span class="ss">unique</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s1">'composite_index'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<p>モデルに関しては、<br>
+先ほどは<code>self.primary_key</code>を使いましたが、<br>
+複合主キーの場合は<code>self.primary_keys</code>を使います。<br>
+これによって<code>Tag.find 'item_code', 'code'</code>と、<br>
+findメソッドで複合主キーを扱うことが可能になります。</p>
+
+<p>また、<code>foreign_key</code>によって、どのカラムが外部キーなのかを指定することで、<br>
+関連を定義することが可能です。</p>
+
+<h4>
+<span id="tag-model" class="fragment"></span><a href="#tag-model"><i class="fa fa-link"></i></a>Tag Model</h4>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Tag</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># 主キー設定</span>
+  <span class="nb">self</span><span class="o">.</span><span class="n">primary_keys</span> <span class="o">=</span> <span class="ss">:item_code</span><span class="p">,</span> <span class="ss">:code</span>
+
+  <span class="c1"># 商品との関連</span>
+  <span class="n">belongs_to</span> <span class="ss">:item</span><span class="p">,</span> <span class="ss">foreign_key</span><span class="p">:</span> <span class="ss">:item_code</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<h4>
+<span id="item-model-1" class="fragment"></span><a href="#item-model-1"><i class="fa fa-link"></i></a>Item Model</h4>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Item</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># 主キー設定</span>
+  <span class="nb">self</span><span class="o">.</span><span class="n">primary_key</span> <span class="o">=</span> <span class="ss">:code</span>
+
+  <span class="c1"># タグとの関連</span>
+  <span class="n">has_many</span> <span class="ss">:tags</span><span class="p">,</span> <span class="ss">foreign_key</span><span class="p">:</span> <span class="ss">:item_code</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<h3>
+<span id="問題" class="fragment"></span><a href="#%E5%95%8F%E9%A1%8C"><i class="fa fa-link"></i></a>問題</h3>
+
+<p>composite_primary_keysによって複合主キーを取り扱うことが出来るようになりました。<br>
+しかし、少し問題が発生する場合もあります。<br>
+それはModelに対して<code>to_json</code>を呼び出した場合などで、以下のエラーが発生します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>TypeError: ["item_code", "code"] is not a symbol
+</pre></div></div>
+
+<p>根本では<code>serializable_hash</code>を呼び出すところでのエラーなので、<br>
+モデルでserializable_hashをオーバーライドする事で解決します。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">serializable_hash</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+  <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">:only</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:item_code</span><span class="p">,</span> <span class="ss">:code</span><span class="p">,</span> <span class="ss">:name_code</span><span class="o">]</span>
+  <span class="p">}</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+  <span class="k">super</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -101,23 +704,150 @@
 <tr>
 	<td rowspan="3"><center>k-shogoさんの<br />4位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>382</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/3c887cbf86b3cab85b72">複雑な構成のrailsアプリをdockerで動かしたい場合はどうするべきか</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>125</kbd>
+		<a target="_blank" href="https://qiita.com/k-shogo/items/8657e0a5fdf20a25bba0">railsから全文検索エンジンelasticsearchを利用する</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-02-23 18:14:13</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-09-06 12:15:16</center>
 	</td>
 	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
+		@k-shogo<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
 	</td>
-	<td style="width:300px;"><b>[Rails]</b> <b>[docker]</b> <b>[dockerfile]</b> <b>[fig]</b> <b>[docker-compose]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[Rails]</b> <b>[Elasticsearch]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h3>
+<span id="elasticsearchとは" class="fragment"></span><a href="#elasticsearch%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>ElasticSearchとは</h3>
+
+<p><a href="http://www.elasticsearch.org/" rel="nofollow noopener" target="_blank">ElasticSearch</a>はSolrと同じApache Lucene上で稼働するオープンソースの全文検索システムです。<br><br>
+ElasticSearchの特徴としては、REST APIが整備されていて、JSONですべてやり取りできるところです。</p>
+
+<h3>
+<span id="準備" class="fragment"></span><a href="#%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>準備</h3>
+
+<p>ElasticSearchはJavaで動作するので事前にJavaのインストールが必要です。</p>
+
+<p>ElasticSearchのインストールはMacならbrewがあるので簡単です。</p>
+
+<div class="code-frame" data-lang="shell"><div class="highlight"><pre><span></span>$ brew install elasticsearch
+</pre></div></div>
+
+<p>Windowsでも<a href="https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.3.zip" rel="nofollow noopener" target="_blank">Zipをダウンロード</a>して、batファイル叩くだけだったので楽です。</p>
+
+<p>ElasticSearchには<a href="http://www.elasticsearch.org/guide/reference/modules/plugins/" rel="nofollow noopener" target="_blank">様々なプラグイン</a><br>
+が用意されており、その中に日本語対応の物も用意されています。<br><br>
+kuromojiを用いた<a href="https://github.com/elasticsearch/elasticsearch-analysis-kuromoji" rel="nofollow noopener" target="_blank">elasticsearch-analysis-kuromoji</a>を使います。</p>
+
+<p>プラグインのインストールも簡単で用意されている<code>plugin</code>コマンドにgitの短縮アドレスを渡して叩くだけです。</p>
+
+<div class="code-frame" data-lang="shell"><div class="highlight"><pre><span></span>$ plugin --install elasticsearch/elasticsearch-analysis-kuromoji/1.5.0
+</pre></div></div>
+
+<p>これでkuromojiをプラグインとして利用可能となりました。<br><br>
+日本語対応させる際に、後述するrailsのmodelでフィールド毎にAnalyzerとしてkuromojiを指定することも出来ますし、デフォルトのAnalyzerとして利用したければ設定ファイル（macなら<code>/usr/local/opt/elasticsearch/config/elasticsearch.yml</code>）に以下を追記して指定することも可能です。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>index.analysis.analyzer.default.type: custom
+index.analysis.analyzer.default.tokenizer: kuromoji_tokenizer
+</pre></div></div>
+
+<hr>
+
+<p>ブラウザからElasticSearchの状態を確認できるプラグインも複数用意されています。<br><br>
+今回は基本的な<a href="https://github.com/mobz/elasticsearch-head" rel="nofollow noopener" target="_blank">elasticsearch-head</a>を導入してみます。</p>
+
+<div class="code-frame" data-lang="shell"><div class="highlight"><pre><span></span>$ plugin --install mobz/elasticsearch-head
+</pre></div></div>
+
+<p>elasticsearch-headプラグイン導入後は<code>http://localhost:9200/_plugin/head/</code>にアクセスすることでブラウザから様々な確認が出来るようになります。</p>
+
+<h3>
+<span id="サンプルrailsアプリ" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%ABrails%E3%82%A2%E3%83%97%E3%83%AA"><i class="fa fa-link"></i></a>サンプルRailsアプリ</h3>
+
+<p>ElasticSearchを扱うためのサンプルアプリを作成します。<br><br>
+<code>bundle init</code>して<code>Gemfile</code>に<code>rails</code>追加して<code>bundle exec rails new</code>します。</p>
+
+<p>全文検索を試したいので、ニュースの記事を扱うようにしてみます。<br><br>
+記事のモデル名をarticleにして、タイトルと本文を持つようにしてみました。</p>
+
+<div class="code-frame" data-lang="shell"><div class="highlight"><pre><span></span>$ bundle exec rake db:create                                                                                                               
+$ bundle exec rails g scaffold article title:string body:text                                                                              
+$ bundle exec rake db:migrate
+</pre></div></div>
+
+<h3>
+<span id="連携" class="fragment"></span><a href="#%E9%80%A3%E6%90%BA"><i class="fa fa-link"></i></a>連携</h3>
+
+<p>RailsとElasticSearchとの連携には<a href="https://github.com/karmi/tire" rel="nofollow noopener" target="_blank">tire</a>を使います。<br><br>
+<code>Gemfile</code>に<code>gem 'tire'</code>を追加して<code>bundle intall</code>します。</p>
+
+<p>次にmodelにElasticSearchとの連携を記述します。</p>
+
+<h4>
+<span id="appmodelsarticlerb" class="fragment"></span><a href="#appmodelsarticlerb"><i class="fa fa-link"></i></a><code>app/models/article.rb</code>
+</h4>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Article</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="kp">include</span> <span class="no">Tire</span><span class="o">::</span><span class="no">Model</span><span class="o">::</span><span class="no">Search</span>
+  <span class="kp">include</span> <span class="no">Tire</span><span class="o">::</span><span class="no">Model</span><span class="o">::</span><span class="no">Callbacks</span>
+
+  <span class="n">mapping</span> <span class="k">do</span>
+    <span class="n">indexes</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">analyzer</span><span class="p">:</span> <span class="ss">:kuromoji</span>
+    <span class="n">indexes</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">analyzer</span><span class="p">:</span> <span class="ss">:kuromoji</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">search</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">tire</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="nb">load</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">query</span> <span class="p">{</span>
+        <span class="n">string</span> <span class="s2">"body:</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">]</span><span class="si">}</span><span class="s2"> title:</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">]</span><span class="si">}</span><span class="s2">"</span>
+      <span class="p">}</span> <span class="k">if</span> <span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">].</span><span class="n">present?</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<p>Controllerは<code>Article.all</code>の呼び出しをElasticSearchからの検索に変更します。</p>
+
+<h4>
+<span id="appcontrollersarticles_controllerrbindex" class="fragment"></span><a href="#appcontrollersarticles_controllerrbindex"><i class="fa fa-link"></i></a><code>app/controllers/articles_controller.rb#index</code>
+</h4>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">index</span>
+    <span class="vi">@articles</span> <span class="o">=</span> <span class="no">Article</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="c1"># @articles = Article.all</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<p>Viewに検索のボックスを追加します。</p>
+
+<h4>
+<span id="appviewsarticlesindexhtmlerb" class="fragment"></span><a href="#appviewsarticlesindexhtmlerb"><i class="fa fa-link"></i></a><code>app/views/articles/index.html.erb</code>
+</h4>
+
+<div class="code-frame" data-lang="erb"><div class="highlight"><pre><span></span><span class="cp">&lt;%=</span> <span class="n">form_tag</span> <span class="n">articles_path</span><span class="p">,</span> <span class="ss">:method</span> <span class="o">=&gt;</span> <span class="ss">:get</span> <span class="k">do</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">text_field_tag</span> <span class="ss">:search</span><span class="p">,</span> <span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">]</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">submit_tag</span> <span class="s2">"Search"</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="kp">nil</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s1">'clear'</span><span class="p">,</span> <span class="n">articles_path</span> <span class="cp">%&gt;</span><span class="x"></span>
+</pre></div></div>
+
+<p>これで<br>
+<code>http://localhost:3000/articles</code>にアクセスして<br>
+適当にニュース記事のデータを突っ込んで、<br>
+検索窓にワードを打ち込めば検索可能になっています。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -125,23 +855,115 @@
 <tr>
 	<td rowspan="3"><center>k-shogoさんの<br />5位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>250</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/6d687c38b0f7b3ade6f5">deviseをAPIで利用しやすくする -Token Authenticationの追加-</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>90</kbd>
+		<a target="_blank" href="https://qiita.com/k-shogo/items/0f8a98c52913c729c7eb">rubyのmecabバインディングnattoを使う</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-09-14 19:43:02</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-09-08 15:44:50</center>
 	</td>
 	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
+		@k-shogo<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
 	</td>
-	<td style="width:300px;"><b>[Rails]</b> <b>[devise]</b> <b>[cancancan]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[mecab]</b> <b>[natto]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h3>
+<span id="背景" class="fragment"></span><a href="#%E8%83%8C%E6%99%AF"><i class="fa fa-link"></i></a>背景</h3>
+
+<p><a href="http://qiita.com/k-shogo/items/64d554322d308745fed9" id="reference-ce19922a6f5804d3f86a">macでmecab-rubyをビルドせずにインストールする</a>では、mecabの基本的な言語バインディングを用いました。<br><br>
+このバインディングはSWIGを用いてMeCabと密に結合しているため、mecab gemのバージョンとMeCabのバージョンを合わせる必要がありました。<br><br>
+今回はmecab gem以外の選択肢を使ってみます。</p>
+
+<h3>
+<span id="納豆" class="fragment"></span><a href="#%E7%B4%8D%E8%B1%86"><i class="fa fa-link"></i></a>納豆</h3>
+
+<p>今回はrubyからmecabを利用するために<a href="https://bitbucket.org/buruzaemon/natto/overview" rel="nofollow noopener" target="_blank">natto</a>というgemを使用します。</p>
+
+<p>nattoは、FFI（foreign function interface：外部関数インタフェース）を使用して、RubyとMeCabを繋ぐgemです。<br><br>
+nattoはC言語拡張ではないためコンパイルは必要ありません。<br><br>
+そのためCRuby（MRI / YARV）でもJRuby（JVM）でも実行できる利点があります。<br><br>
+（<code>jruby 1.7.4 (1.9.3p392) 2013-05-16 2390d3b on Java HotSpot(TM) 64-Bit Server VM 1.7.0_25-b15 [darwin-x86_64]</code>で動作確認）</p>
+
+<h3>
+<span id="mecabを最新に" class="fragment"></span><a href="#mecab%E3%82%92%E6%9C%80%E6%96%B0%E3%81%AB"><i class="fa fa-link"></i></a>mecabを最新に</h3>
+
+<p>mecab gemをbundlerから管理するために、mecab本体のバージョンを0.98にしていました。<br><br>
+nattoを利用するに当たって最新のバージョンに戻します。</p>
+
+<p>既に古いバージョンがインストールされている場合、<br>
+いったんアンインストールします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>brew uninstall mecab mecab-ipadic
+</pre></div></div>
+
+<p>次に、最新のバージョンを確かめます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>brew versions mecab
+</pre></div></div>
+
+<p>最新バージョンを確認したら、<br>
+<code>/usr/local</code>に移動してformulaをチェックアウトします。<br><br>
+このとき最新バージョンは<code>0.996</code>でした。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git checkout ee21df2 /usr/local/Library/Formula/mecab.rb
+</pre></div></div>
+
+<p>改めてmecabをインストールします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>brew install mecab mecab-ipadic
+</pre></div></div>
+
+<p><code>mecab -v</code>してバージョンが0.996になっていれば大丈夫。</p>
+
+<h3>
+<span id="natto-gemを使う" class="fragment"></span><a href="#natto-gem%E3%82%92%E4%BD%BF%E3%81%86"><i class="fa fa-link"></i></a>natto gemを使う</h3>
+
+<p><code>Gemfile</code>に<code>gem 'natto'</code>を追加して<code>bundle install</code>でインストールします。</p>
+
+<p>使い方は<code>Natto::MeCab.new</code>して、<br>
+<code>parse</code>メソッドに渡すだけです。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">'natto'</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="sh">"</span><span class="dl">EOS</span><span class="sh">"</span>
+<span class="sh">悪質な業者によるトラブルが全国で急増している。</span>
+<span class="dl">EOS</span>
+
+<span class="n">nm</span> <span class="o">=</span> <span class="no">Natto</span><span class="o">::</span><span class="no">MeCab</span><span class="o">.</span><span class="n">new</span>
+<span class="n">nm</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">n</span><span class="o">.</span><span class="n">surface</span><span class="si">}</span><span class="se">\t</span><span class="si">#{</span><span class="n">n</span><span class="o">.</span><span class="n">feature</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>悪質　　　名詞,形容動詞語幹,*,*,*,*,悪質,アクシツ,アクシツ
+な　　　　助動詞,*,*,*,特殊・ダ,体言接続,だ,ナ,ナ
+業者　　　名詞,一般,*,*,*,*,業者,ギョウシャ,ギョーシャ
+による　　助詞,格助詞,連語,*,*,*,による,ニヨル,ニヨル
+トラブル　名詞,一般,*,*,*,*,トラブル,トラブル,トラブル
+が　　　　助詞,格助詞,一般,*,*,*,が,ガ,ガ
+全国　　　名詞,一般,*,*,*,*,全国,ゼンコク,ゼンコク
+で　　　　助詞,格助詞,一般,*,*,*,で,デ,デ
+急増　　　名詞,サ変接続,*,*,*,*,急増,キュウゾウ,キューゾー
+し　　　　動詞,自立,*,*,サ変・スル,連用形,する,シ,シ
+て　　　　助詞,接続助詞,*,*,*,*,て,テ,テ
+いる　　　動詞,非自立,*,*,一段,基本形,いる,イル,イル
+。　　　　記号,句点,*,*,*,*,。,。,。
+　　　　　BOS/EOS,*,*,*,*,*,*,*,*
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -149,23 +971,150 @@
 <tr>
 	<td rowspan="3"><center>k-shogoさんの<br />6位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>199</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/d85905535a64e82a3b2b">開発中にrailsから送信したメールを確認する</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>60</kbd>
+		<a target="_blank" href="https://qiita.com/k-shogo/items/61d76a9a590b65887f77">rubyから形態素解析ライブラリkuromojiを使う</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-11-06 19:53:15</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-09-06 18:25:04</center>
 	</td>
 	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
+		@k-shogo<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
 	</td>
-	<td style="width:300px;"><b>[Rails]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[kuromoji]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h3>
+<span id="kuromojiとは" class="fragment"></span><a href="#kuromoji%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>kuromojiとは</h3>
+
+<p><a href="http://www.atilika.com/ja/products/kuromoji.html" rel="nofollow noopener" target="_blank">Kuromoji</a>は<a href="http://www.atilika.com/ja/" rel="nofollow noopener" target="_blank">atilika</a>社が開発したJavaで作成されたオープンソースの日本語形態素解析エンジンです。</p>
+
+<p>Kuromojiは下記の機能を持っています。</p>
+
+<ul>
+<li>複合語の分割</li>
+<li>品詞のタグ付け</li>
+<li>見出し化</li>
+<li>漢字の読み方を抽出</li>
+<li>検索用の設計（複数の単語分割モード）</li>
+</ul>
+
+<p>KuromojiのライセンスはApache v2ライセンスなので、商用でも利用できそうです。</p>
+
+<h3>
+<span id="準備" class="fragment"></span><a href="#%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>準備</h3>
+
+<p>ソースコードはgithubにあるのでビルドしても良いのですが、zipでも<a href="https://github.com/downloads/atilika/kuromoji/kuromoji-0.7.7.zip" rel="nofollow noopener" target="_blank">ダウンロード</a>する事が出来ます。<br>
+今回はプロジェクトディレクトリ以下に解凍し、呼び出します。</p>
+
+<p>kuromojiはjavaで作成されていますが、今回はrubyから使うことが目的なので、<a href="http://rjb.rubyforge.org/" rel="nofollow noopener" target="_blank">rjb</a>を使います。<br><br>
+rjbはJNI (Java Native Interface) を利用してJava VMを操作するライブラリです。<br><br>
+具体的には、Rubyプロセス内にJVMを起動し、Java クラスファイルをロードしてメソッドを呼ぶことができます。</p>
+
+<p>rjbの用意は、<code>Gemfile</code>に<code>gem 'rjb'</code>を追加し、<code>require 'rjb'</code>するだけです。</p>
+
+<h3>
+<span id="形態素解析" class="fragment"></span><a href="#%E5%BD%A2%E6%85%8B%E7%B4%A0%E8%A7%A3%E6%9E%90"><i class="fa fa-link"></i></a>形態素解析</h3>
+
+<p>rubyからkuromojiの使い際のポイントは</p>
+
+<p><code>Rjb::load</code>して、<br>
+<code>Tokenizer=Rjb::import('org.atilika.kuromoji.Tokenizer')</code>し、<br>
+<code>Tokenizer.builder.build</code>でトークナイザーを作る事です。</p>
+
+<h4>
+<span id="サンプルコード" class="fragment"></span><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>サンプルコード</h4>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">'rjb'</span>
+
+<span class="k">module</span>  <span class="nn">JavaIterator</span>
+  <span class="k">def</span> <span class="nf">each</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">iterator</span>
+    <span class="k">while</span> <span class="n">i</span><span class="o">.</span><span class="n">has_next</span>
+      <span class="k">yield</span> <span class="n">i</span><span class="o">.</span><span class="n">next</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">Rjb</span><span class="o">::</span><span class="nb">load</span><span class="p">(</span><span class="s1">'kuromoji-0.7.7/lib/kuromoji-0.7.7.jar'</span><span class="p">)</span>
+
+<span class="no">Tokenizer</span><span class="o">=</span><span class="no">Rjb</span><span class="o">::</span><span class="n">import</span><span class="p">(</span><span class="s1">'org.atilika.kuromoji.Tokenizer'</span><span class="p">)</span>
+
+<span class="vi">@tknizer</span> <span class="o">=</span> <span class="no">Tokenizer</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">build</span>
+
+<span class="k">def</span> <span class="nf">tokenize</span> <span class="n">sentence</span>
+  <span class="n">list</span> <span class="o">=</span> <span class="vi">@tknizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+  <span class="n">list</span><span class="o">.</span><span class="n">extend</span> <span class="no">JavaIterator</span>
+  <span class="n">list</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+    <span class="nb">print</span> <span class="n">x</span><span class="o">.</span><span class="n">surface_form</span>
+    <span class="nb">print</span> <span class="s2">" : "</span>
+    <span class="nb">puts</span> <span class="n">x</span><span class="o">.</span><span class="n">all_features</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">str</span> <span class="o">=</span> <span class="s2">"関西国際空港は、大阪府大阪市の南西38kmにまたがる会社管理空港である"</span>
+
+<span class="n">tokenize</span> <span class="n">str</span>
+</pre></div></div>
+
+<h4>
+<span id="実行結果" class="fragment"></span><a href="#%E5%AE%9F%E8%A1%8C%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>実行結果</h4>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>関西国際空港 : 名詞,固有名詞,組織,*,*,*,関西国際空港,カンサイコクサイクウコウ,カンサイコクサイクーコー
+は : 助詞,係助詞,*,*,*,*,は,ハ,ワ
+、 : 記号,読点,*,*,*,*,、,、,、
+大阪 : 名詞,固有名詞,地域,一般,*,*,大阪,オオサカ,オーサカ
+府 : 名詞,接尾,地域,*,*,*,府,フ,フ
+大阪 : 名詞,固有名詞,地域,一般,*,*,大阪,オオサカ,オーサカ
+市 : 名詞,接尾,地域,*,*,*,市,シ,シ
+の : 助詞,連体化,*,*,*,*,の,ノ,ノ
+南西 : 名詞,一般,*,*,*,*,南西,ナンセイ,ナンセイ
+38 : 名詞,数,*,*,*,*,*
+km : 名詞,一般,*,*,*,*,*
+に : 助詞,格助詞,一般,*,*,*,に,ニ,ニ
+またがる : 動詞,自立,*,*,五段・ラ行,基本形,またがる,マタガル,マタガル
+会社 : 名詞,一般,*,*,*,*,会社,カイシャ,カイシャ
+管理 : 名詞,サ変接続,*,*,*,*,管理,カンリ,カンリ
+空港 : 名詞,一般,*,*,*,*,空港,クウコウ,クーコー
+で : 助動詞,*,*,*,特殊・ダ,連用形,だ,デ,デ
+ある : 助動詞,*,*,*,五段・ラ行アル,基本形,ある,アル,アル
+</pre></div></div>
+
+<p>単語の特徴は<code>all_features</code>で取得出来るほかに、<br>
+<code>surface_form</code>,<code>part_of_speech</code>,<code>base_form</code>,<code>position</code>,<code>reading</code>とそれぞれ個別でも取得可能です。</p>
+
+<h3>
+<span id="検索用の分割モード" class="fragment"></span><a href="#%E6%A4%9C%E7%B4%A2%E7%94%A8%E3%81%AE%E5%88%86%E5%89%B2%E3%83%A2%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>検索用の分割モード</h3>
+
+<p>Kuromojiは複数の分割モードを持っています。<br><br>
+単語分割モードの変更はトークナイザー作成時にモードを指定します。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="no">Mode</span> <span class="o">=</span> <span class="no">Rjb</span><span class="o">::</span><span class="n">import</span><span class="p">(</span><span class="s1">'org.atilika.kuromoji.Tokenizer$Mode'</span><span class="p">)</span>
+
+<span class="vi">@tknizer</span> <span class="o">=</span> <span class="no">Tokenizer</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="no">Mode</span><span class="o">.</span><span class="n">SEARCH</span><span class="p">)</span><span class="o">.</span><span class="n">build</span>
+</pre></div></div>
+
+<p>例えば検索用のモードだと、先ほど「関西国際空港」と一つの単語だった物が分割されます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>関西 : 名詞,固有名詞,地域,一般,*,*,関西,カンサイ,カンサイ
+国際 : 名詞,一般,*,*,*,*,国際,コクサイ,コクサイ
+空港 : 名詞,一般,*,*,*,*,空港,クウコウ,クーコー
+は : 助詞,係助詞,*,*,*,*,は,ハ,ワ
+~~~ 以下略 ~~~
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -173,23 +1122,364 @@
 <tr>
 	<td rowspan="3"><center>k-shogoさんの<br />7位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>139</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/884498ad512c0e6eb303">Railsで規約に沿わない古いデータを扱う</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>51</kbd>
+		<a target="_blank" href="https://qiita.com/k-shogo/items/fce39fd5fe6c474586a7">rubyからグラフデータベースneo4jを利用する</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-09-18 19:28:30</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-09-05 21:22:21</center>
 	</td>
 	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
+		@k-shogo<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
 	</td>
-	<td style="width:300px;"><b>[Rails4]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[neo4j]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h3>
+<span id="neo4jとは" class="fragment"></span><a href="#neo4j%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>neo4jとは</h3>
+
+<p><a href="http://www.neo4j.org/" rel="nofollow noopener" target="_blank">neo4j</a>とはNeo Technologyが開発したJavaベースのグラフデータベースです。（<a href="http://oss.infoscience.co.jp/neo4j/neo4j.org/" rel="nofollow noopener" target="_blank">日本語ページ</a>）</p>
+
+<p>グラフデータベースは、一つ一つのデータを行で表現するリレーショナルデータベースと異なり、<br>
+ノード（頂点）、リレーションシップ（エッジ）、プロパティ（属性）という3つの基本構成要素でデータを格納します。<br><br>
+グラフデータベースが有用なのはTwitterやFacebookのように、フォローや友人関係を扱う時です。<br><br>
+「友人のそのまた友人を探す」や「任意の二人を選択し、最短の関係（パス）を探す」などの問題を解こうとしたとき、<br>
+リレーショナルデータベースでは関係の探索に大量の結合演算が必要になりますが、<br>
+グラフ構造をそのまま格納しているグラフデータベースなら高速に処理することが可能です。</p>
+
+<p>neo4jはオープンソースですが、ライセンスはAGPLv3なので、商用利用などの際は<a href="http://oss.infoscience.co.jp/neo4j/neo4j.org/licensing-guide.html" rel="nofollow noopener" target="_blank">ライセンス選択の手引き</a>を参考にしてください。</p>
+
+<h3>
+<span id="neo4jのインストール" class="fragment"></span><a href="#neo4j%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>neo4jのインストール</h3>
+
+<p>neo4jはjavaベースなので事前にjavaをインストールしてください。<br><br>
+その上でmacならbrweでインストールすることが可能です。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ brew install neo4j
+</pre></div></div>
+
+<p>neo4jにはデフォルトでブラウザからアクセスできる機能が組み込まれています。<br><br>
+neo4jを起動し、<br>
+<code>http://localhost:7474/webadmin/</code><br>
+にアクセスする事でブラウザからデータなどが確認可能です。</p>
+
+<h3>
+<span id="rubyからneo4jを利用する" class="fragment"></span><a href="#ruby%E3%81%8B%E3%82%89neo4j%E3%82%92%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>rubyからneo4jを利用する</h3>
+
+<p>rubyからneo4jを利用するために<br>
+<a href="https://github.com/maxdemarzi/neography" rel="nofollow noopener" target="_blank">neography</a>のGemを使用します。</p>
+
+<p><code>Gemfile</code>に<br>
+<code>gem 'neography'</code>を記述して<code>bundle install</code>します。</p>
+
+<p>rubyからneo4jに接続してみます。<br><br>
+neo4jのポートなどがデフォルトのままなら、<br>
+neographyをrequireして<code>Neography::Rest.new</code>するだけなので簡単です。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">'neography'</span>
+<span class="vi">@neo</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Rest</span><span class="o">.</span><span class="n">new</span>
+</pre></div></div>
+
+<p>接続先などの設定がデフォルトと異なる場合でも<br>
+<code>Neography::Rest.new</code>の引数に設定を渡すだけです。</p>
+
+<p>ノードの作成、プロパティの追加、リレーションの追加などのサンプルです。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">'neography'</span>
+<span class="vi">@neo</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Rest</span><span class="o">.</span><span class="n">new</span>
+
+<span class="c1"># ノード作成</span>
+<span class="n">node1</span> <span class="o">=</span> <span class="vi">@neo</span><span class="o">.</span><span class="n">create_node</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"tanaka"</span><span class="p">,</span> <span class="ss">age</span><span class="p">:</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">node2</span> <span class="o">=</span> <span class="vi">@neo</span><span class="o">.</span><span class="n">create_node</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"suzuki"</span><span class="p">,</span> <span class="ss">age</span><span class="p">:</span> <span class="mi">24</span><span class="p">)</span>
+
+<span class="c1"># ノードにプロパティを追加</span>
+<span class="vi">@neo</span><span class="o">.</span><span class="n">set_node_properties</span><span class="p">(</span><span class="n">node1</span><span class="p">,</span> <span class="p">{</span><span class="ss">weight</span><span class="p">:</span> <span class="s1">'60kg'</span><span class="p">})</span>
+
+<span class="c1"># 関係を追加（node1 -&gt; node2 方向）</span>
+<span class="vi">@neo</span><span class="o">.</span><span class="n">create_relationship</span><span class="p">(</span><span class="ss">:friend</span><span class="p">,</span> <span class="n">node1</span><span class="p">,</span> <span class="n">node2</span><span class="p">)</span>
+
+<span class="c1"># 関係を取得</span>
+<span class="vi">@neo</span><span class="o">.</span><span class="n">get_node_relationships</span><span class="p">(</span><span class="n">node1</span><span class="p">,</span> <span class="ss">:out</span><span class="p">,</span> <span class="ss">:friend</span><span class="p">)</span>
+<span class="vi">@neo</span><span class="o">.</span><span class="n">get_node_relationships</span><span class="p">(</span><span class="n">node2</span><span class="p">,</span> <span class="ss">:in</span><span class="p">,</span> <span class="ss">:friend</span><span class="p">)</span>
+</pre></div></div>
+
+<p>それぞれの行を実行すると、<br>
+REST APIの結果をハッシュに格納した物が返ります。<br><br>
+このままだと少々扱いにくいです。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">"extensions"</span> <span class="o">=&gt;</span> <span class="p">{},</span>
+  <span class="s2">"paged_traverse"</span> <span class="o">=&gt;</span> <span class="s2">"http://localhost:7474/db/data/node/15/paged/traverse/{returnType}{?pageSize,leaseTime}"</span><span class="p">,</span>
+  <span class="s2">"outgoing_relationships"</span> <span class="o">=&gt;</span> <span class="s2">"http://localhost:7474/db/data/node/15/relationships/out"</span><span class="p">,</span>
+  <span class="s2">"traverse"</span> <span class="o">=&gt;</span> <span class="s2">"http://localhost:7474/db/data/node/15/traverse/{returnType}"</span><span class="p">,</span>
+  <span class="s2">"all_typed_relationships"</span> <span class="o">=&gt;</span> <span class="s2">"http://localhost:7474/db/data/node/15/relationships/all/{-list|&amp;|types}"</span><span class="p">,</span>
+  <span class="s2">"property"</span> <span class="o">=&gt;</span> <span class="s2">"http://localhost:7474/db/data/node/15/properties/{key}"</span><span class="p">,</span>
+  <span class="s2">"all_relationships"</span> <span class="o">=&gt;</span> <span class="s2">"http://localhost:7474/db/data/node/15/relationships/all"</span><span class="p">,</span>
+  <span class="s2">"self"</span> <span class="o">=&gt;</span> <span class="s2">"http://localhost:7474/db/data/node/15"</span><span class="p">,</span>
+  <span class="s2">"properties"</span> <span class="o">=&gt;</span> <span class="s2">"http://localhost:7474/db/data/node/15/properties"</span><span class="p">,</span>
+  <span class="s2">"outgoing_typed_relationships"</span> <span class="o">=&gt;</span> <span class="s2">"http://localhost:7474/db/data/node/15/relationships/out/{-list|&amp;|types}"</span><span class="p">,</span>
+  <span class="s2">"incoming_relationships"</span> <span class="o">=&gt;</span> <span class="s2">"http://localhost:7474/db/data/node/15/relationships/in"</span><span class="p">,</span>
+  <span class="s2">"incoming_typed_relationships"</span> <span class="o">=&gt;</span> <span class="s2">"http://localhost:7474/db/data/node/15/relationships/in/{-list|&amp;|types}"</span><span class="p">,</span>
+  <span class="s2">"create_relationship"</span> <span class="o">=&gt;</span> <span class="s2">"http://localhost:7474/db/data/node/15/relationships"</span><span class="p">,</span>
+  <span class="s2">"data"</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="s2">"weight"</span> <span class="o">=&gt;</span> <span class="s2">"60kg"</span><span class="p">,</span> <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"tanaka"</span><span class="p">,</span> <span class="s2">"age"</span> <span class="o">=&gt;</span> <span class="mi">20</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="rubyからneo4jを利用する2" class="fragment"></span><a href="#ruby%E3%81%8B%E3%82%89neo4j%E3%82%92%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B2"><i class="fa fa-link"></i></a>rubyからneo4jを利用する2</h3>
+
+<p>前述の利用では、<br>
+返ってくるデータが少々扱いにくいところがありました。<br><br>
+そこでneographyには抽象化度を上げた利用方法が用意されています。</p>
+
+<p>例えばノードの作成は以下のようになります。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">node1</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"tanaka"</span><span class="p">,</span> <span class="ss">age</span><span class="p">:</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div></div>
+
+<p>このとき返ってくるのは<code>Neography::Node</code>クラスになります。<br><br>
+プロパティへのアクセスも抽象化されています。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="c1"># プロパティ :age を取得</span>
+<span class="n">node1</span><span class="o">[</span><span class="ss">:age</span><span class="o">]</span>
+<span class="c1"># ドットでもアクセス可能</span>
+<span class="n">node1</span><span class="o">.</span><span class="n">name</span>
+<span class="c1"># プロパティの変更</span>
+<span class="n">node1</span><span class="o">[</span><span class="ss">:age</span><span class="o">]</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="c1"># 新しくプロパティを追加</span>
+<span class="n">node1</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="mi">190</span>
+<span class="c1"># プロパティの削除</span>
+<span class="n">node1</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="kp">nil</span>
+</pre></div></div>
+
+<p>ノードの削除は<code>del</code>で行います</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">node1</span><span class="o">.</span><span class="n">del</span>
+</pre></div></div>
+
+<p>接続先の設定について変更する場合は<br>
+<code>Neography.configure</code>ブロックで行います。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="no">Neography</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">protocol</span>       <span class="o">=</span> <span class="s2">"http://"</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">server</span>         <span class="o">=</span> <span class="s2">"localhost"</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">port</span>           <span class="o">=</span> <span class="mi">7474</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">directory</span>      <span class="o">=</span> <span class="s2">""</span>  <span class="c1"># prefix this path with '/' </span>
+  <span class="n">config</span><span class="o">.</span><span class="n">cypher_path</span>    <span class="o">=</span> <span class="s2">"/cypher"</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">gremlin_path</span>   <span class="o">=</span> <span class="s2">"/ext/GremlinPlugin/graphdb/execute_script"</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">log_file</span>       <span class="o">=</span> <span class="s2">"neography.log"</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">log_enabled</span>    <span class="o">=</span> <span class="kp">false</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">max_threads</span>    <span class="o">=</span> <span class="mi">20</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">authentication</span> <span class="o">=</span> <span class="kp">nil</span>  <span class="c1"># 'basic' or 'digest'</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">username</span>       <span class="o">=</span> <span class="kp">nil</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">password</span>       <span class="o">=</span> <span class="kp">nil</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">parser</span>         <span class="o">=</span> <span class="no">MultiJsonParser</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<p>接続先は<code>Neography.configuration</code>でアクセスすることが可能です。</p>
+
+<p>また、接続先を引数に取ることも出来ます。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="vi">@neo2</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Rest</span><span class="o">.</span><span class="n">new</span><span class="p">({</span><span class="ss">:server</span> <span class="o">=&gt;</span> <span class="s1">'192.168.10.1'</span><span class="p">})</span>
+<span class="no">Neography</span><span class="o">::</span><span class="no">Node</span><span class="o">.</span><span class="n">create</span><span class="p">({</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"tanaka"</span><span class="p">},</span> <span class="vi">@neo2</span><span class="p">)</span> 
+</pre></div></div>
+
+<p>続いて、ノード間にリレーションを張ってみます。<br><br>
+リレーションには方向性があり、<code>outgoing</code>,<code>incoming</code>,<code>both</code>でアクセスします。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="c1"># ノードの作成</span>
+<span class="n">n1</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"tanaka"</span><span class="p">,</span> <span class="ss">age</span><span class="p">:</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">n2</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"suzuki"</span><span class="p">,</span> <span class="ss">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">)</span>
+
+<span class="c1"># n1からn2方向へfriend関係を追加</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friend</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">n2</span>
+<span class="c1"># n2からn1方向へfriend関係を追加</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">incoming</span><span class="p">(</span><span class="ss">:friend</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">n2</span>
+<span class="c1"># n1、n2間にfriend関係を追加（両方向）</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">both</span><span class="p">(</span><span class="ss">:friend</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">n2</span>
+</pre></div></div>
+
+<p>ノードのリレーションは<code>rels</code>でアクセスできます。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="c1"># n1の持つ全てのリレーションを取得</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">rels</span>
+<span class="c1"># n1の持つリレーションの中で種類がfriendの物を取得</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">rels</span><span class="p">(</span><span class="ss">:friend</span><span class="p">)</span>
+<span class="c1"># n1の持つリレーションの中で種類がfriendであり、かつn1から出る方向のリレーションを取得</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">rels</span><span class="p">(</span><span class="ss">:friend</span><span class="p">)</span><span class="o">.</span><span class="n">outgoing</span>
+</pre></div></div>
+
+<p>リレーションを取得すれば、開始ノード、終端ノードにアクセスできます。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="c1"># リレーションの取得</span>
+<span class="n">rel</span> <span class="o">=</span> <span class="n">n1</span><span class="o">.</span><span class="n">rels</span><span class="p">(</span><span class="ss">:friend</span><span class="p">)</span><span class="o">.</span><span class="n">outgoing</span><span class="o">.</span><span class="n">first</span>
+<span class="c1"># 開始ノードの取得</span>
+<span class="n">rel</span><span class="o">.</span><span class="n">start_node</span>
+<span class="c1"># 終端ノードの取得</span>
+<span class="n">rel</span><span class="o">.</span><span class="n">end_node</span>
+<span class="c1"># リレーションの削除</span>
+<span class="n">rel</span><span class="o">.</span><span class="n">del</span>
+</pre></div></div>
+
+<h3>
+<span id="rubyからneo4jを利用する3" class="fragment"></span><a href="#ruby%E3%81%8B%E3%82%89neo4j%E3%82%92%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B3"><i class="fa fa-link"></i></a>rubyからneo4jを利用する3</h3>
+
+<p><code>Neography::Node#rels</code>でリレーション<br>
+<code>Neography::Relationship</code>を取得したときは、<br>
+開始ノードや終端ノードにアクセスしただけでした。<br><br>
+もう少し進んで<code>Neography::NodeTraverser</code>を利用してみましょう。</p>
+
+<p>5つのノードを作成し、リレーションとして友人関係（friends）を定義します。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">'neography'</span>
+
+<span class="c1"># ノードの作成</span>
+<span class="n">n1</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">)</span>
+<span class="n">n2</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">)</span>
+<span class="n">n3</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"3"</span><span class="p">)</span>
+<span class="n">n4</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"4"</span><span class="p">)</span>
+<span class="n">n5</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"5"</span><span class="p">)</span>
+
+<span class="c1"># 関係の追加</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">both</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">n2</span>
+<span class="n">n2</span><span class="o">.</span><span class="n">both</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">n3</span>
+<span class="n">n2</span><span class="o">.</span><span class="n">both</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">n4</span>
+<span class="n">n3</span><span class="o">.</span><span class="n">both</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">n4</span>
+<span class="n">n3</span><span class="o">.</span><span class="n">both</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">n5</span>
+</pre></div></div>
+
+<p>関係をグラフにすると以下のような物になります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/d4d9680c9994135b8d9b2ba55751c6dfa57f8473/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d30392d30342d727562792d6e656f346a2f73732e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d4d9680c9994135b8d9b2ba55751c6dfa57f8473/687474703a2f2f6b2d73686f676f2e6769746875622e696f2f696d616765732f323031332d30392d30342d727562792d6e656f346a2f73732e706e67" alt="グラフ" data-canonical-src="http://k-shogo.github.io/images/2013-09-04-ruby-neo4j/ss.png"></a></p>
+
+<p>ここから<code>Neography::NodeTraverser</code>を利用します。<br><br>
+<code>Neography::NodeTraverser</code>の利用には、<br>
+リレーションを張るのに使用した<br>
+<code>outgoing</code>,<code>incoming</code>,<code>both</code>を使います。</p>
+
+<p>ノード"1"を基準にして友人を辿ってみます。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">n1</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="n">n</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
+<span class="c1"># =&gt; ["2"]</span>
+</pre></div></div>
+
+<p>2関係先まで見てみます。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">n1</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="n">n</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
+<span class="c1"># =&gt; ["2", "4", "3", "1"]</span>
+</pre></div></div>
+
+<p>3関係先までにしてみます。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">n1</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="n">n</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
+<span class="c1"># =&gt; ["2", "4", "3", "2", "3", "5", "4", "2", "1", "2"]</span>
+</pre></div></div>
+
+<p>デフォルトでは深さ優先探索が使われているので、<br>
+<code>order</code>で幅優先探索に変更してみます。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">n1</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="ss">:breadth</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="n">n</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
+<span class="c1"># =&gt; ["2", "4", "3", "1", "3", "2", "5", "4", "2", "2"]</span>
+</pre></div></div>
+
+<p><code>:breadth</code>以外にも<code>"breadth"</code>,<code>"breadth first"</code>,<code>"breadthFirst"</code>,<code>:wide</code>,<code>"wide"</code>の指定でも同じです。</p>
+
+<p><code>friends</code>関係が各ノード間で双方向に張られているので、<br>
+トラバースの結果に同一ノードが含まれています。<br><br>
+そこで、重複したノードを除外してみます。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">n1</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="ss">:breadth</span><span class="p">)</span><span class="o">.</span><span class="n">uniqueness</span><span class="p">(</span><span class="ss">:nodeglobal</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="n">n</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
+<span class="c1"># =&gt; ["2", "4", "3", "5"]</span>
+</pre></div></div>
+
+<p><code>:nodeglobal</code>は<code>"node global"</code>,<code>"nodeglobal"</code>,<code>"node_global"</code>としてしても同じです。<br><br>
+<code>uniqueenss</code>の指定は、<br>
+<code>"node global"</code>以外にも<br>
+<code>"node path"</code>,<code>"node recent"</code>,<code>"relationship global"</code>, <code>"relationship path"</code>,<code>"relationship recent"</code>がありますが、今回は割愛します。</p>
+
+<p>次に、2関係先だけの友達に限定してみます。<br>
+ベースは先ほどの物を使います。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">n1</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="ss">:breadth</span><span class="p">)</span><span class="o">.</span><span class="n">uniqueness</span><span class="p">(</span><span class="ss">:nodeglobal</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="n">n</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
+<span class="c1"># =&gt; ["2", "4", "3"]</span>
+</pre></div></div>
+
+<p>この指定だと1関係先のノード"2"が含まれているので、ここに<code>filter</code>を追加します。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">n1</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="ss">:breadth</span><span class="p">)</span><span class="o">.</span><span class="n">uniqueness</span><span class="p">(</span><span class="ss">:nodeglobal</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s2">"position.length() == 2;"</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="n">n</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
+<span class="c1"># =&gt; ["4", "3"]</span>
+</pre></div></div>
+
+<p>2関係先だけに限定できました。<br><br>
+ここまでをまとめると</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">'neography'</span>
+
+<span class="c1"># ノードの作成</span>
+<span class="n">n1</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">)</span>
+<span class="n">n2</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">)</span>
+<span class="n">n3</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"3"</span><span class="p">)</span>
+<span class="n">n4</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"4"</span><span class="p">)</span>
+<span class="n">n5</span> <span class="o">=</span> <span class="no">Neography</span><span class="o">::</span><span class="no">Node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"5"</span><span class="p">)</span>
+
+<span class="c1"># 関係の追加</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">both</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">n2</span>
+<span class="n">n2</span><span class="o">.</span><span class="n">both</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">n3</span>
+<span class="n">n2</span><span class="o">.</span><span class="n">both</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">n4</span>
+<span class="n">n3</span><span class="o">.</span><span class="n">both</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">n4</span>
+<span class="n">n3</span><span class="o">.</span><span class="n">both</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">n5</span>
+
+<span class="c1"># 友人の推薦</span>
+<span class="k">def</span> <span class="nf">suggestions_for</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+  <span class="n">node</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span><span class="o">.</span>
+    <span class="n">depth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span>
+    <span class="n">order</span><span class="p">(</span><span class="ss">:breadth</span><span class="p">)</span><span class="o">.</span>
+    <span class="n">uniqueness</span><span class="p">(</span><span class="ss">:nodeglobal</span><span class="p">)</span><span class="o">.</span>
+    <span class="n">filter</span><span class="p">(</span><span class="s2">"position.length() == 2;"</span><span class="p">)</span><span class="o">.</span>
+    <span class="n">map</span><span class="p">{</span><span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="n">n</span><span class="o">.</span><span class="n">name</span> <span class="p">}</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">', '</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">n1</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">さんに推薦する人：</span><span class="si">#{</span><span class="n">suggestions_for</span><span class="p">(</span><span class="n">n1</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">n3</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">さんに推薦する人：</span><span class="si">#{</span><span class="n">suggestions_for</span><span class="p">(</span><span class="n">n3</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">n5</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">さんに推薦する人：</span><span class="si">#{</span><span class="n">suggestions_for</span><span class="p">(</span><span class="n">n5</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="c1"># 結果</span>
+<span class="c1"># 1さんに推薦する人：3, 4</span>
+<span class="c1"># 3さんに推薦する人：1</span>
+<span class="c1"># 5さんに推薦する人：2, 4</span>
+</pre></div></div>
+
+<p>最後にノード間の経路を求めてみます。  </p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="c1"># n1からn5までの全ての友人関係の経路を最大深度を4として検索</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">all_paths_to</span><span class="p">(</span><span class="n">n5</span><span class="p">)</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>
+<span class="c1"># ループした経路を除外</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">all_simple_paths_to</span><span class="p">(</span><span class="n">n5</span><span class="p">)</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>
+<span class="c1"># 最短経路の場合</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">all_shortest_paths_to</span><span class="p">(</span><span class="n">n5</span><span class="p">)</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>
+
+<span class="c1"># リレーションだけ取得</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">shortest_path_to</span><span class="p">(</span><span class="n">n5</span><span class="p">)</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">rels</span><span class="o">.</span><span class="n">to_a</span>
+<span class="c1"># ノードだけ取得</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">shortest_path_to</span><span class="p">(</span><span class="n">n5</span><span class="p">)</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">to_a</span>
+
+<span class="c1"># 最短経路を表示</span>
+<span class="n">n1</span><span class="o">.</span><span class="n">shortest_path_to</span><span class="p">(</span><span class="n">n5</span><span class="p">)</span><span class="o">.</span><span class="n">outgoing</span><span class="p">(</span><span class="ss">:friends</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="n">n</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
+<span class="c1"># =&gt; ["1", "2", "3", "5"]</span>
+</pre></div></div>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -197,23 +1487,154 @@
 <tr>
 	<td rowspan="3"><center>k-shogoさんの<br />8位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>125</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/8657e0a5fdf20a25bba0">railsから全文検索エンジンelasticsearchを利用する</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>29</kbd>
+		<a target="_blank" href="https://qiita.com/k-shogo/items/64d554322d308745fed9">macでmecab-rubyをビルドせずにインストールする</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-09-06 12:15:16</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-09-04 13:40:43</center>
 	</td>
 	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
+		@k-shogo<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
 	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[Rails]</b> <b>[Elasticsearch]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[mecab]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h3>
+<span id="背景" class="fragment"></span><a href="#%E8%83%8C%E6%99%AF"><i class="fa fa-link"></i></a>背景</h3>
+
+<p>rubyからMeCabを利用しようとすると、<br>
+ソースを取得し、makeしてinstallしなければならないし、<br>
+場合によってはMakefileの修正も必要なのであまり好きではありませんでした。</p>
+
+<p>しかしふと<code>gem search mecab</code>してみると</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>*** REMOTE GEMS ***
+
+mecab (0.98)
+mecab-ext (1.0.2)
+mecab-light (0.2.2)
+mecab-modern (0.0.2)
+mecab-mora (0.0.5)
+mecab-syllable (0.0.5)
+</pre></div></div>
+
+<p>なんとgemからインストールできそうではありませんか。</p>
+
+<h3>
+<span id="インストールを試みる" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%82%92%E8%A9%A6%E3%81%BF%E3%82%8B"><i class="fa fa-link"></i></a>インストールを試みる</h3>
+
+<p>brewでmecabをインストールして</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>brew install mecab mecab-ipadic
+</pre></div></div>
+
+<p><code>bundle init</code><br>
+して<code>Gemfile</code>に<br>
+<code>gem 'mecab'</code>を追加し、<br>
+<code>bundle install</code>してみると・・・</p>
+
+<p>盛大なエラーが・・・</p>
+
+<p>brewでインストールしたmecabのバージョンが0.996で、<br>
+gemのmecab-rubyのバージョンが0.98であることが原因です。</p>
+
+<h3>
+<span id="brewでバージョンを指定してインストール" class="fragment"></span><a href="#brew%E3%81%A7%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%A6%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>brewでバージョンを指定してインストール</h3>
+
+<p>brewでmecabをバージョン指定してみます。<br><br>
+まず、mecabが登録されているバージョンを調べてみます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>brew versions mecab
+</pre></div></div>
+
+<p>0.98はちゃんと存在しました。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>0.996    git checkout ee21df2 /usr/local/Library/Formula/mecab.rb
+0.995    git checkout 1c6ad82 /usr/local/Library/Formula/mecab.rb
+0.994    git checkout 4844910 /usr/local/Library/Formula/mecab.rb
+0.993    git checkout 642c664 /usr/local/Library/Formula/mecab.rb
+0.992    git checkout bb95f13 /usr/local/Library/Formula/mecab.rb
+0.99     git checkout 01788c0 /usr/local/Library/Formula/mecab.rb
+0.98     git checkout 0476235 /usr/local/Library/Formula/mecab.rb
+</pre></div></div>
+
+<p>このバージョン0.98を利用するには<code>/usr/local</code>に移動して、指定のバージョンをチェックアウトします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git checkout 0476235 /usr/local/Library/Formula/mecab.rb
+</pre></div></div>
+
+<p>改めて<code>brew install mecab</code>してインストールしてみましょう。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>==&gt; Downloading http://downloads.sourceforge.net/project/mecab/mecab/0.98/mecab-0.98.tar.gz
+
+curl: (22) The requested URL returned error: 404
+Error: Download failed: http://downloads.sourceforge.net/project/mecab/mecab/0.98/mecab-0.98.tar.gz
+</pre></div></div>
+
+<p>だめだ、リンク死んでる・・・<br><br>
+回避するために<code>brew edit mecab</code>してbrewのformulaファイルを書き換えます。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">'formula'</span>
+
+<span class="k">class</span> <span class="nc">Mecab</span> <span class="o">&lt;</span> <span class="no">Formula</span>
+  <span class="c1"># url 'http://downloads.sourceforge.net/project/mecab/mecab/0.98/mecab-0.98.tar.gz'</span>
+  <span class="n">url</span> <span class="s1">'https://mecab.googlecode.com/files/mecab-0.98.tar.gz'</span>
+  <span class="n">homepage</span> <span class="s1">'http://mecab.sourceforge.net/'</span>
+  <span class="c1"># md5 'b3d8d79e35acf0ca178e8d885309f5fd'</span>
+  <span class="n">sha1</span> <span class="s1">'8977d7760638ec65132e1f9bfc66655ac761f964'</span>
+
+  <span class="k">def</span> <span class="nf">install</span>
+    <span class="nb">system</span> <span class="s2">"./configure"</span><span class="p">,</span> <span class="s2">"--disable-debug"</span><span class="p">,</span> <span class="s2">"--disable-dependency-tracking"</span><span class="p">,</span> <span class="s2">"--prefix=</span><span class="si">#{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">"</span>
+    <span class="nb">system</span> <span class="s2">"make install"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<p>いったん<code>brew uninstall mecab mecab-ipadic</code>して、<br>
+改めて<code>brew install mecab mecab-ipadic</code>すると無事mecab 0.98が使えるようになり、<br>
+<code>bundle install</code>でmecab-rubyもビルド出来ました。</p>
+
+<h3>
+<span id="rubyからmecabを使うテスト" class="fragment"></span><a href="#ruby%E3%81%8B%E3%82%89mecab%E3%82%92%E4%BD%BF%E3%81%86%E3%83%86%E3%82%B9%E3%83%88"><i class="fa fa-link"></i></a>rubyからmecabを使うテスト</h3>
+
+<p>簡単なサンプルコードを動かしてみます。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s2">"mecab"</span>
+
+<span class="n">node</span> <span class="o">=</span> <span class="no">MeCab</span><span class="o">::</span><span class="no">Tagger</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">parseToNode</span><span class="p">(</span><span class="s2">"本日は晴天なり"</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">node</span>
+  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">node</span><span class="o">.</span><span class="n">surface</span><span class="si">}</span><span class="se">\t</span><span class="si">#{</span><span class="n">node</span><span class="o">.</span><span class="n">feature</span><span class="si">}</span><span class="s2">"</span>
+  <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">next</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<p>実行結果</p>
+
+<div class="code-frame" data-lang="shell"><div class="highlight"><pre><span></span>　　　BOS/EOS,*,*,*,*,*,*,*,*
+本日　名詞,副詞可能,*,*,*,*,本日,ホンジツ,ホンジツ
+は　　助詞,係助詞,*,*,*,*,は,ハ,ワ
+晴天　名詞,一般,*,*,*,*,晴天,セイテン,セイテン
+なり　助動詞,*,*,*,文語・ナリ,基本形,なり,ナリ,ナリ
+　　　BOS/EOS,*,*,*,*,*,*,*,*
+</pre></div></div>
+
+<p>動作しました。<br><br>
+バージョンの一致には気をつける必要がありますが、<br>
+bundle管理でgemからインストールできるようになっただけでも便利になりました。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -221,23 +1642,194 @@
 <tr>
 	<td rowspan="3"><center>k-shogoさんの<br />9位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>90</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/0f8a98c52913c729c7eb">rubyのmecabバインディングnattoを使う</a>
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>24</kbd>
+		<a target="_blank" href="https://qiita.com/k-shogo/items/7ad6cbcec657204c89f8">rails + ElasticSearchで全文検索だけでなく地理情報も扱う</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-09-08 15:44:50</center>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2013-09-09 23:44:50</center>
 	</td>
 	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
+		@k-shogo<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
 	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[mecab]</b> <b>[natto]</b> <!--タグ--></td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Rails]</b> <b>[Elasticsearch]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h3>
+<span id="背景" class="fragment"></span><a href="#%E8%83%8C%E6%99%AF"><i class="fa fa-link"></i></a>背景</h3>
+
+<p>昨今のスマートフォンの普及は目覚ましく、位置情報を利用したサービスも増えてきました。</p>
+
+<p>位置情報サービスを構築するとき、データベースは何を使うでしょうか。 <br>
+<a href="http://www.mongodb.org/" rel="nofollow noopener" target="_blank">mongoDB</a>には<a href="http://docs.mongodb.org/manual/core/geospatial-indexes/" rel="nofollow noopener" target="_blank">地理空間インデックス</a>が用意されているため、有効な選択肢になり得ます。</p>
+
+<p>位置情報と全文検索を組み合わせて検索したいときはどうでしょうか。<br>
+mongoDB + ElasticSearchなどの複数のデータベースという選択肢もありますが、条件の組み合わせ処理が煩雑になってしまいます。  </p>
+
+<p>今回はElasticSearchで全文検索と位置情報の両方を扱ってみます。</p>
+
+<h3>
+<span id="準備" class="fragment"></span><a href="#%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>準備</h3>
+
+<p>railsからElasticSearchを利用する準備は<a href="http://k-shogo.github.io/article/2013/09/03/rails-elasticsearch/" rel="nofollow noopener" target="_blank">railsから全文検索エンジンelasticsearchを利用する</a>を参考にしてください。  </p>
+
+<p>今回作成するサンプルの要点をまとめます。</p>
+
+<ul>
+<li>保存する単位は単一の位置情報を持つ「ピン」とする</li>
+<li>ピンは「ピンのタイトル」と「住所の文字列」、「位置情報」を持つ</li>
+<li>ピンはタイトルや住所などで全文検索することが出来る</li>
+<li>ピンは特定の位置情報を中心として半径N km以内の条件で検索することが出来る</li>
+<li>全文検索と位置情報の検索は組み合わせることが出来る</li>
+</ul>
+
+<h3>
+<span id="テーブル定義" class="fragment"></span><a href="#%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E5%AE%9A%E7%BE%A9"><i class="fa fa-link"></i></a>テーブル定義</h3>
+
+<p>まずテーブルの定義をします。<br>
+ピンに自由につける名前を<code>name</code>、住所の情報を<code>address</code>とします。<br>
+位置情報は<code>latitude</code>、<code>longitude</code>です。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">create_pins.rb</span></div>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CreatePins</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:pins</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:name</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:address</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">decimal</span> <span class="ss">:latitude</span><span class="p">,</span> <span class="ss">precision</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="ss">scale</span><span class="p">:</span> <span class="mi">15</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">decimal</span> <span class="ss">:longitude</span><span class="p">,</span> <span class="ss">precision</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="ss">scale</span><span class="p">:</span> <span class="mi">15</span>
+
+      <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<p>次にmodelの設定を行います。<br>
+今回も<a href="https://github.com/karmi/tire" rel="nofollow noopener" target="_blank">tire</a>のgemを使用するので、<code>Tire::Model</code>をincludeします。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">app/models/pin.rb</span></div>
+<div class="highlight"><pre><span></span><span class="kp">include</span> <span class="no">Tire</span><span class="o">::</span><span class="no">Model</span><span class="o">::</span><span class="no">Search</span>
+<span class="kp">include</span> <span class="no">Tire</span><span class="o">::</span><span class="no">Model</span><span class="o">::</span><span class="no">Callbacks</span>
+</pre></div>
+</div>
+
+<p>マッピングの設定に関して、<code>name</code>と<code>address</code>は日本語での検索を行いたいので、<code>analyzer</code>に<code>kuromoji</code>を指定します。<br>
+ここでのポイントは<code>indexes :location, type: :geo_point, lat_lon: true</code>です。<br>
+これは<code>location</code>というフィールドに地理情報を扱うための<a href="http://www.elasticsearch.org/guide/reference/mapping/geo-point-type/" rel="nofollow noopener" target="_blank">geo-point-type</a>を指定しています。<br>
+ただし、位置情報は<code>latitude</code>と<code>longitude</code>に格納していました。<br>
+そのためElasticSearchに渡す情報を加工することにします。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">app/models/pin.rb</span></div>
+<div class="highlight"><pre><span></span><span class="n">tire</span> <span class="k">do</span>
+  <span class="n">mapping</span> <span class="k">do</span>
+    <span class="n">indexes</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">analyzer</span><span class="p">:</span> <span class="ss">:kuromoji</span>
+    <span class="n">indexes</span> <span class="ss">:address</span><span class="p">,</span> <span class="ss">analyzer</span><span class="p">:</span> <span class="ss">:kuromoji</span>
+    <span class="n">indexes</span> <span class="ss">:location</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="ss">:geo_point</span><span class="p">,</span> <span class="ss">lat_lon</span><span class="p">:</span> <span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<p>ElasticSearchに渡す情報をカスタマイズするには<code>.to_indexed_json</code>を定義します。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">app/models/pin.rb</span></div>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">to_indexed_json</span>
+  <span class="p">{</span>
+    <span class="nb">name</span><span class="p">:</span> <span class="nb">name</span><span class="p">,</span>
+    <span class="ss">address</span><span class="p">:</span> <span class="n">address</span><span class="p">,</span>
+    <span class="ss">location</span><span class="p">:</span> <span class="n">location</span>
+  <span class="p">}</span><span class="o">.</span><span class="n">to_json</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">location</span>
+  <span class="p">{</span><span class="ss">lat</span><span class="p">:</span> <span class="n">latitude</span><span class="o">.</span><span class="n">to_f</span><span class="p">,</span> <span class="ss">lon</span><span class="p">:</span> <span class="n">longitude</span><span class="o">.</span><span class="n">to_f</span><span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<p>これでElasticSearchに渡るJSONを以下のように設定することが出来ます。</p>
+
+<div class="code-frame" data-lang="json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"テスト"</span><span class="p">,</span>
+  <span class="nt">"address"</span><span class="p">:</span> <span class="s2">"日本, 東京都新宿区戸山３丁目１９−１"</span><span class="p">,</span>
+  <span class="nt">"location"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"lat"</span><span class="p">:</span> <span class="mf">35.70675638058483</span><span class="p">,</span>
+    <span class="nt">"lon"</span><span class="p">:</span> <span class="mf">139.71004486083984</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>最後に検索ためのメソッドを用意します。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">app/models/pin.rb</span></div>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">search</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+  <span class="n">tire</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="nb">load</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">query</span> <span class="p">{</span>
+      <span class="n">string</span> <span class="s2">"name:</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">]</span><span class="si">}</span><span class="s2"> address:</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">]</span><span class="si">}</span><span class="s2">"</span>
+    <span class="p">}</span> <span class="k">if</span> <span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">].</span><span class="n">present?</span>
+    <span class="n">filter</span> <span class="ss">:geo_distance</span><span class="p">,</span> <span class="p">{</span>
+      <span class="ss">distance</span><span class="p">:</span> <span class="s2">"</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:distance</span><span class="o">].</span><span class="n">present?</span> <span class="p">?</span> <span class="n">params</span><span class="o">[</span><span class="ss">:distance</span><span class="o">].</span><span class="n">to_f</span> <span class="p">:</span> <span class="mi">10</span><span class="si">}</span><span class="s2">km"</span><span class="p">,</span>
+      <span class="ss">location</span><span class="p">:</span> <span class="p">{</span><span class="ss">lat</span><span class="p">:</span> <span class="n">params</span><span class="o">[</span><span class="ss">:lat</span><span class="o">].</span><span class="n">to_f</span><span class="p">,</span> <span class="ss">lon</span><span class="p">:</span> <span class="n">params</span><span class="o">[</span><span class="ss">:lon</span><span class="o">].</span><span class="n">to_f</span><span class="p">}</span>
+    <span class="p">}</span> <span class="k">if</span> <span class="n">params</span><span class="o">[</span><span class="ss">:lat</span><span class="o">].</span><span class="n">present?</span> <span class="o">&amp;&amp;</span> <span class="n">params</span><span class="o">[</span><span class="ss">:lon</span><span class="o">].</span><span class="n">present?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<p>検索は<code>PinsController</code>の<code>index</code>で行うことにしましょう。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">app/controllers/pins_controller.rb</span></div>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PinsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="n">before_action</span> <span class="ss">:set_pin</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="o">[</span><span class="ss">:show</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
+
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="c1"># @pins = Pin.all</span>
+    <span class="vi">@pins</span> <span class="o">=</span> <span class="no">Pin</span><span class="o">.</span><span class="n">search</span> <span class="n">params</span>
+  <span class="k">end</span>
+
+<span class="o">~</span><span class="err">以下略</span><span class="o">~</span>
+</pre></div>
+</div>
+
+<p><code>views/pins/index.html.haml</code>に検索フォームをつけました。</p>
+
+<div class="code-frame" data-lang="haml">
+<div class="code-lang"><span class="bold">app/views/pins/index.html.haml</span></div>
+<div class="highlight"><pre><span></span><span class="p">=</span> <span class="n">form_tag</span> <span class="n">pins_path</span><span class="p">,</span> <span class="nb">method</span><span class="p">:</span> <span class="ss">:get</span> <span class="k">do</span>
+  search query
+  <span class="p">=</span> <span class="n">text_field_tag</span> <span class="ss">:search</span><span class="p">,</span> <span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">]</span>
+  lat
+  <span class="p">=</span> <span class="n">text_field_tag</span> <span class="ss">:lat</span><span class="p">,</span> <span class="n">params</span><span class="o">[</span><span class="ss">:lat</span><span class="o">]</span>
+  lon
+  <span class="p">=</span> <span class="n">text_field_tag</span> <span class="ss">:lon</span><span class="p">,</span> <span class="n">params</span><span class="o">[</span><span class="ss">:lon</span><span class="o">]</span>
+  distance
+  <span class="p">=</span> <span class="n">text_field_tag</span> <span class="ss">:distance</span><span class="p">,</span> <span class="n">params</span><span class="o">[</span><span class="ss">:distance</span><span class="o">]</span>
+  <span class="p">=</span> <span class="n">submit_tag</span> <span class="s2">"Search"</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="kp">nil</span>
+</pre></div>
+</div>
+
+<p>これで位置情報と全文検索を組み合わせて利用可能です。</p>
+</div>
+	</td>
 </tr>
 </table>
 <br />
@@ -245,239 +1837,290 @@
 <tr>
 	<td rowspan="3"><center>k-shogoさんの<br />10位</center></td>
 	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>74</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/cc47e448fa0c07ac3189">Docker(pool)を用いたプレビュー環境を検証する(railsアプリ開発チームの活用例)</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2015-01-14 18:32:19</center>
-	</td>
-	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
-	</td>
-	<td style="width:300px;"><b>[Rails]</b> <b>[開発環境]</b> <b>[docker]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>k-shogoさんの<br />11位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>60</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/61d76a9a590b65887f77">rubyから形態素解析ライブラリkuromojiを使う</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-09-06 18:25:04</center>
-	</td>
-	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
-	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[kuromoji]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>k-shogoさんの<br />12位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>51</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/fce39fd5fe6c474586a7">rubyからグラフデータベースneo4jを利用する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-09-05 21:22:21</center>
-	</td>
-	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
-	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[neo4j]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>k-shogoさんの<br />13位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>29</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/64d554322d308745fed9">macでmecab-rubyをビルドせずにインストールする</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-09-04 13:40:43</center>
-	</td>
-	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
-	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[mecab]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>k-shogoさんの<br />14位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>24</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/7ad6cbcec657204c89f8">rails + ElasticSearchで全文検索だけでなく地理情報も扱う</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2013-09-09 23:44:50</center>
-	</td>
-	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
-	</td>
-	<td style="width:300px;"><b>[Rails]</b> <b>[Elasticsearch]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>k-shogoさんの<br />15位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>15</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/8b1a7d5a55e3b4cd42d9">RubyMotion事始め</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-09 15:44:10</center>
-	</td>
-	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
-	</td>
-	<td style="width:300px;"><b>[RubyMotion]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>k-shogoさんの<br />16位</center></td>
-	<td colspan="3">
 		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>10</kbd>
 		<a target="_blank" href="https://qiita.com/k-shogo/items/e457c85b2d5de91eabb8">ActiveModelとtireでElasticsearch上でのみCRUDを行う</a>
 	</td>
 </tr>
 <tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
+	<td style="width:100px;"><center>投稿日時</center></td>
 	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
 </tr>
 <tr>
-	<td style="width:200px;">
+	<td style="width:100px;">
 		<!--投稿日時--><center>2014-03-18 11:20:32</center>
 	</td>
 	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
+		@k-shogo<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
 	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[Rails]</b> <b>[Elasticsearch]</b> <b>[tire]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>k-shogoさんの<br />17位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/908e8487ef7b0ea3c11b">ドライブレコーダーの動画からGPSデータを取り出したい</a>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[Rails]</b> <b>[Elasticsearch]</b> <b>[tire]</b> </center>
 	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2017-10-03 17:29:51</center>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>"<a href="/article/2013/09/03/rails-elasticsearch/">railsから全文検索エンジンelasticsearchを利用する</a>"では、<a href="https://github.com/karmi/tire" rel="nofollow noopener" target="_blank">tire</a>を用いてrailsから<a href="http://www.elasticsearch.org/" rel="nofollow noopener" target="_blank">elasticsearch</a>を扱う方法を説明しました。<br><br>
+この時、基本的なデータはデータベース上に永続化し、elasticsearchは検索用のインデックスとしてのみ使用していました。<br><br>
+今回はDBには永続化せずにelasticsearch上のみでCRUDが出来るようにしてみます。</p>
+
+<h1>
+<span id="注意elasticsearch用rubyクライアント" class="fragment"></span><a href="#%E6%B3%A8%E6%84%8Felasticsearch%E7%94%A8ruby%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>注意：elasticsearch用rubyクライアント</h1>
+
+<p>今回、elasticsearchとの連携は<a href="https://github.com/karmi/tire" rel="nofollow noopener" target="_blank">tire</a>を用いていますが、<br>
+これからは後継のプロジェクトである<br>
+<a href="https://github.com/elasticsearch/elasticsearch-ruby" rel="nofollow noopener" target="_blank">elasticsearch-ruby</a> 及び <a href="https://github.com/elasticsearch/elasticsearch-rails" rel="nofollow noopener" target="_blank">elasticsearch-rails</a> の方が主流になっていくと思います。</p>
+
+<h1>
+<span id="モデルの準備" class="fragment"></span><a href="#%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>モデルの準備</h1>
+
+<p>データベースを用いて永続化を行う際、通常は<code>ActiveRecord::Base</code>を継承したモデルを用いますが、今回はデータベースを用いないため、<code>ActiveModel</code>を使います。</p>
+
+<p>また、今回作成するアプリケーションでは、elasticsearch上のみでCRUDする処理の部分以外を簡潔にするために、名前のフィールドだけを持つ単純な<code>User</code>モデルを仮定しています。</p>
+
+<p><code>rails g scaffold user name:string</code> でひな形を作成し、<br>
+該当のマイグレーションファイルを消してスタートします。</p>
+
+<p>とりあえずは<code>ActiveModel</code>と<code>Tire</code>をincludeしたクラスを作成しましょう。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span>
+  <span class="kp">include</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Model</span>
+  <span class="kp">include</span> <span class="no">Tire</span><span class="o">::</span><span class="no">Model</span><span class="o">::</span><span class="no">Search</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<h1>
+<span id="フィールド--マッピングの定義" class="fragment"></span><a href="#%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89--%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%81%AE%E5%AE%9A%E7%BE%A9"><i class="fa fa-link"></i></a>フィールド / マッピングの定義</h1>
+
+<p>次にフィールドを定義します。<br>
+また、同時にelasticsearch上のマッピングも定義しておきます。<br>
+作成している<code>User</code>モデルは要素としては名前、つまり<code>name</code>フィールドのみを持つとしましたが、CRUD処理を行うために、documentを一意に特定するためのフィールドも必要になるため、これを<code>id</code>として定義します。</p>
+
+<p><code>id</code>は必須としたいため、<code>validates</code>も設定しておきましょう。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span>
+  <span class="kp">include</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Model</span>
+  <span class="kp">include</span> <span class="no">Tire</span><span class="o">::</span><span class="no">Model</span><span class="o">::</span><span class="no">Search</span>
+
+  <span class="kp">attr_accessor</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span>
+
+  <span class="n">validates</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span> <span class="kp">true</span>
+
+  <span class="n">mapping</span> <span class="k">do</span>
+    <span class="n">indexes</span> <span class="ss">:id</span><span class="p">,</span>   <span class="ss">index</span><span class="p">:</span>    <span class="ss">:not_analyzed</span>
+    <span class="n">indexes</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">analyzer</span><span class="p">:</span> <span class="ss">:kuromoji</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></div>
+
+<h1>
+<span id="elasticsearchへのインデックス登録の準備" class="fragment"></span><a href="#elasticsearch%E3%81%B8%E3%81%AE%E3%82%A4%E3%83%B3%E3%83%87%E3%83%83%E3%82%AF%E3%82%B9%E7%99%BB%E9%8C%B2%E3%81%AE%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>elasticsearchへのインデックス登録の準備</h1>
+
+<p>elasticsearchへモデルの情報をjsonで送るために<code>to_indexed_json</code>を定義します。<br><br>
+<code>User.index.import users</code>などのように<code>Tire::Index.import</code>を用いて一括登録することも出来るように、<code>serializable_hash</code>を定義し、<code>to_indexed_json</code>ではそれを呼び出すようにしています。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span>
+
+  <span class="c1"># 中略</span>
+
+  <span class="k">def</span> <span class="nf">to_indexed_json</span>
+    <span class="n">serializable_hash</span><span class="o">.</span><span class="n">to_json</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">serializable_hash</span>
+    <span class="p">{</span>
+      <span class="nb">id</span><span class="p">:</span>   <span class="nb">id</span><span class="p">,</span>
+      <span class="nb">name</span><span class="p">:</span> <span class="nb">name</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div></div>
+
+<h1>
+<span id="保存と更新" class="fragment"></span><a href="#%E4%BF%9D%E5%AD%98%E3%81%A8%E6%9B%B4%E6%96%B0"><i class="fa fa-link"></i></a>保存と更新</h1>
+
+<p>モデル情報の保存が出来るようにしてみます。<br><br>
+<code>save</code>は単純で<code>tire</code>の<code>update_index</code>を呼び出すだけです。<br><br>
+<code>id</code>フィールドは必須としたいので、設定していなければ<code>SecureRandom.uuid</code>でIDを作成します。<br>
+この時<code>valid?</code>を見ておけば、モデル全体のデータの検証をすることが出来ます。</p>
+
+<p><code>persisted?</code>はフォーム送信時にコントローラーの<code>create</code>か<code>update</code>どちらのメソッドに行くのかの判定に必要になります。  </p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span>
+
+  <span class="c1"># 中略</span>
+
+  <span class="k">def</span> <span class="nf">persisted?</span>
+    <span class="vi">@id</span><span class="o">.</span><span class="n">present?</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">save</span>
+    <span class="vi">@id</span> <span class="o">||=</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">uuid</span>
+    <span class="n">update_index</span> <span class="k">if</span> <span class="n">valid?</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">update</span> <span class="n">attributes</span>
+    <span class="n">attributes</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span>
+      <span class="nb">self</span><span class="o">.</span><span class="n">send</span> <span class="s2">"</span><span class="si">#{</span><span class="n">key</span><span class="si">}</span><span class="s2">="</span><span class="p">,</span> <span class="n">value</span>
+    <span class="k">end</span>
+    <span class="n">save</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div></div>
+
+<h1>
+<span id="削除" class="fragment"></span><a href="#%E5%89%8A%E9%99%A4"><i class="fa fa-link"></i></a>削除</h1>
+
+<p>elasticsearch上からの削除も<code>update_index</code>を使うことで実現します。<br><br>
+このとき<code>destroyed?</code>が<code>true</code>になると<code>update_index</code>で削除してくれるので、フィールドに削除フラグを表す<code>destroyed</code>を追加しています。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span>
+
+  <span class="c1"># 中略</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:destroyed</span>  
+
+  <span class="k">def</span> <span class="nf">destroyed?</span>
+    <span class="o">!!</span><span class="vi">@destroyed</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">destroy</span>
+    <span class="vi">@destroyed</span> <span class="o">=</span> <span class="kp">true</span>
+    <span class="n">update_index</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div></div>
+
+<h1>
+<span id="userfind-userallの用意" class="fragment"></span><a href="#userfind-userall%E3%81%AE%E7%94%A8%E6%84%8F"><i class="fa fa-link"></i></a>User.find, User.allの用意</h1>
+
+<p>コントローラーから呼ばれる<code>User.all</code>, <code>User.find</code>を用意します。<br><br>
+どちらも<code>tire.search</code>を使い、<code>#find</code>では<code>id</code>を指定して取得できるようにしてみます。<br><br>
+<code>load</code>は検索結果から<code>ActiveModel</code>のインスタンスを作成するために用意してあり、検索結果をハッシュに変更した中には<code>_score</code>, <code>_type</code>などの要素が含まれているため、<code>method_missing</code>で余分なものを無視しています。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span>
+
+  <span class="c1"># 中略</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
+    <span class="n">tire</span><span class="o">.</span><span class="n">search</span> <span class="p">{</span>
+      <span class="n">query</span> <span class="p">{</span><span class="n">all</span><span class="p">}</span>
+    <span class="p">}</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">data</span><span class="o">|</span> <span class="nb">load</span> <span class="n">data</span><span class="o">.</span><span class="n">to_hash</span><span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">find</span> <span class="nb">id</span>
+    <span class="n">es_data</span> <span class="o">=</span> <span class="n">tire</span><span class="o">.</span><span class="n">search</span> <span class="p">{</span>
+      <span class="n">query</span> <span class="p">{</span> <span class="n">term</span> <span class="ss">:id</span><span class="p">,</span> <span class="nb">id</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nb">self</span><span class="o">.</span><span class="n">load</span> <span class="n">es_data</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">to_hash</span> <span class="k">if</span> <span class="n">es_data</span><span class="o">.</span><span class="n">first</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">load</span> <span class="nb">hash</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">new</span> <span class="nb">hash</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">method_missing</span> <span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">arguments</span>
+    <span class="kp">nil</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div></div>
+
+<h1>
+<span id="モデルの全体像" class="fragment"></span><a href="#%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E5%85%A8%E4%BD%93%E5%83%8F"><i class="fa fa-link"></i></a>モデルの全体像</h1>
+
+<p>ここまで作成してきたモデルの全体像を示します。<br>
+ここに検索のロジックなどを追加することを考えると、モジュールで分割した方が良さそうですね。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span>
+  <span class="kp">include</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Model</span>
+  <span class="kp">include</span> <span class="no">Tire</span><span class="o">::</span><span class="no">Model</span><span class="o">::</span><span class="no">Search</span>
+
+  <span class="kp">attr_accessor</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:destroyed</span>
+  <span class="n">validates</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span> <span class="kp">true</span>
+
+  <span class="n">mapping</span> <span class="k">do</span>
+    <span class="n">indexes</span> <span class="ss">:id</span><span class="p">,</span>   <span class="ss">index</span><span class="p">:</span>    <span class="ss">:not_analyzed</span>
+    <span class="n">indexes</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">analyzer</span><span class="p">:</span> <span class="ss">:kuromoji</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
+    <span class="n">tire</span><span class="o">.</span><span class="n">search</span> <span class="p">{</span>
+      <span class="n">query</span> <span class="p">{</span><span class="n">all</span><span class="p">}</span>
+    <span class="p">}</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">data</span><span class="o">|</span> <span class="nb">load</span> <span class="n">data</span><span class="o">.</span><span class="n">to_hash</span><span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">find</span> <span class="nb">id</span>
+    <span class="n">es_data</span> <span class="o">=</span> <span class="n">tire</span><span class="o">.</span><span class="n">search</span> <span class="p">{</span>
+      <span class="n">query</span> <span class="p">{</span> <span class="n">term</span> <span class="ss">:id</span><span class="p">,</span> <span class="nb">id</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nb">self</span><span class="o">.</span><span class="n">load</span> <span class="n">es_data</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">to_hash</span> <span class="k">if</span> <span class="n">es_data</span><span class="o">.</span><span class="n">first</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">load</span> <span class="nb">hash</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">new</span> <span class="nb">hash</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">method_missing</span> <span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">arguments</span>
+    <span class="kp">nil</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">to_indexed_json</span>
+    <span class="n">serializable_hash</span><span class="o">.</span><span class="n">to_json</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">serializable_hash</span>
+    <span class="p">{</span>
+      <span class="nb">id</span><span class="p">:</span>   <span class="nb">id</span><span class="p">,</span>
+      <span class="nb">name</span><span class="p">:</span> <span class="nb">name</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">persisted?</span>
+    <span class="vi">@id</span><span class="o">.</span><span class="n">present?</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">destroyed?</span>
+    <span class="o">!!</span><span class="vi">@destroyed</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">save</span>
+    <span class="vi">@id</span> <span class="o">||=</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">uuid</span>
+    <span class="n">update_index</span> <span class="k">if</span> <span class="n">valid?</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">update</span> <span class="n">attributes</span>
+    <span class="n">attributes</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span>
+      <span class="nb">self</span><span class="o">.</span><span class="n">send</span> <span class="s2">"</span><span class="si">#{</span><span class="n">key</span><span class="si">}</span><span class="s2">="</span><span class="p">,</span> <span class="n">value</span>
+    <span class="k">end</span>
+    <span class="n">save</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">destroy</span>
+    <span class="vi">@destroyed</span> <span class="o">=</span> <span class="kp">true</span>
+    <span class="n">update_index</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div></div>
+
+<h1>
+<span id="既知の問題" class="fragment"></span><a href="#%E6%97%A2%E7%9F%A5%E3%81%AE%E5%95%8F%E9%A1%8C"><i class="fa fa-link"></i></a>既知の問題</h1>
+
+<p><code>ActiveRecord::Base</code>を継承したモデルから、今回作成したモデルに置き換えるだけで、コントローラやビューに変更を加えることなくCRUDが出来るようになっています。</p>
+
+<p>ただし少し問題もあります。<br>
+たとえば新規作成時、一覧ページにリダイレクトした後に、新たに作成したデータが存在しないように見えることがあります。</p>
+
+<p>実はリロードすると正常に作成されており、これはリダイレクトされるタイミングとElasticsearchに永続化が完了するタイミングが同期していないことに原因があります。<br><br>
+個人的には<code>ajax:complete</code>イベントで<code>create</code>や<code>destroy</code>に対する要素の増減を制御して対処していますが、もっと筋のよい解決策があるかもしれません。</p>
+</div>
 	</td>
-	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
-	</td>
-	<td style="width:300px;"><b>[Ruby]</b> <b>[mp4]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>k-shogoさんの<br />18位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/32a6c4aba38e4ec143bb">CoreDataQueryでデータを保存する [RubyMotion]</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-10 11:36:50</center>
-	</td>
-	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
-	</td>
-	<td style="width:300px;"><b>[CoreData]</b> <b>[RubyMotion]</b> <b>[iPhone開発]</b> <!--タグ--></td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>k-shogoさんの<br />19位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/k-shogo/items/55f00183b136a0aeecec">CoreDataQueryでCRUDを実装する [RubyMotion]</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:200px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:300px;"><center>タグ</center></td>
-</tr>
-<tr>
-	<td style="width:200px;">
-		<!--投稿日時--><center>2014-04-10 17:39:51</center>
-	</td>
-	<td style="width:200px;">
-		@k-shogo<!--(<a target="_blank" href="http://qiita.com/k-shogo">Qiita内の19件の記事</a>)--><br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/29014/profile-images/1487495629">
-	</td>
-	<td style="width:300px;"><b>[CoreData]</b> <b>[RubyMotion]</b> <!--タグ--></td>
 </tr>
 </table>
 <br />
