@@ -30,9 +30,9 @@
 <table border="1">
 <tr>
 	<td rowspan="3"><center>icoxfog417さんの<br />1位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>900</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/2ac773c33a8b34288551">お前のAngular.jsはもうMVCではない。と言われないためのTutorial</a>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>398</kbd>
+		<a target="_blank" href="https://qiita.com/icoxfog417/items/d06651db10e27220c819">大自然言語時代のための、文章要約</a>
 	</td>
 </tr>
 <tr>
@@ -43,182 +43,279 @@
 </tr>
 <tr>
 	<td style="width:100px;">
-		<!--投稿日時--><center>2013-12-18 23:15:06</center>
+		<!--投稿日時--><center>2017-10-18 15:22:25</center>
 	</td>
 	<td style="width:200px;">
 		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
 	</td>
 	<td style="width:150px;">
 		<!--タグ-->
-		<center><b>[JavaScript]</b> <b>[AngularJS]</b> </center>
+		<center><b>[Python]</b> <b>[自然言語処理]</b> <b>[機械学習]</b> <b>[MachineLearning]</b> </center>
 	</td>
 	<td style="width:350px;">
 		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>JavaScriptフレームワークに興味あるし、Angular.jsを使ってみようかな・・・</p>
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>さまざまなニュースアプリ、ブログ、SNSと近年テキストの情報はますます増えています。日々たくさんの情報が配信されるため、Twitterやまとめサイトを見ていたら数時間たっていた・・・なんてこともよくあると思います。世はまさに大自然言語時代。</p>
 
-<p>そんな純真無垢なあなたを混沌の世紀末に引きずり込むのが、ほかでもない<a href="http://docs.angularjs.org/tutorial/" rel="nofollow noopener" target="_blank">Tutorial</a>なのです。</p>
+<p><a href="https://camo.qiitausercontent.com/890215ed7d661fea6ffd4facea8a987820a6caa6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f37643965306231372d646530642d323431632d366439652d6536313265616634333066302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/890215ed7d661fea6ffd4facea8a987820a6caa6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f37643965306231372d646530642d323431632d366439652d6536313265616634333066302e706e67" alt="growth_of_data.PNG" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/7d9e0b17-de0d-241c-6d9e-e612eaf430f0.png"></a><br>
+<em>from <a href="https://www.signiant.com/articles/file-transfer/the-historical-growth-of-data-why-we-need-a-faster-transfer-solution-for-large-data-sets/" rel="nofollow noopener" target="_blank">THE HISTORICAL GROWTH OF DATA: WHY WE NEED A FASTER TRANSFER SOLUTION FOR LARGE DATA SETS</a><br>
+テキスト、音声、画像、動画といった非構造データの増加を示したグラフ</em></p>
 
-<p>TutorialではほぼControllerしか出てこないので、素直にこの通り書いているとまず間違いなく３カウントでControllerにコードが集中するいわゆるFat Controllerになり、せっかくMVCフレームワークも地獄の荒野になります。</p>
+<p>そこで注目される技術が、「要約」です。膨大な情報を要点をまとめた短い文章にすることができれば、単純に時間の節約になるだけでなく、多様な視点から書かれた情報を並べて吟味することもできます。<br>
+本文書は、この文書要約(Text Summarization)についてその概観を示すことを目的として書かれています。具体的には、以下の順に沿って解説をしていきます。</p>
 
-<p>実は、Angular.jsでまず目を通すべきなのは<a href="http://docs.angularjs.org/guide/concepts" rel="nofollow noopener" target="_blank">Developer GuideのConceptual Overview</a>です。これを読めばどう処理を分割するかがきちんと書かれていますが、以下ではそれ＋経験をもとにAngular.jsで正しくMVCを使用するためのポイントをまとめました。</p>
+<ol>
+<li>要約というタスクの種類</li>
+<li>要約を作成する手法</li>
+<li>良い要約の評価</li>
+<li>要約の作成に使えるツール</li>
+<li>要約を試すためのデータセット</li>
+</ol>
 
 <h1>
-<span id="angularjsの３原則" class="fragment"></span><a href="#angularjs%E3%81%AE%EF%BC%93%E5%8E%9F%E5%89%87"><i class="fa fa-link"></i></a>Angular.jsの３原則</h1>
+<span id="1-要約というタスクの種類" class="fragment"></span><a href="#1-%E8%A6%81%E7%B4%84%E3%81%A8%E3%81%84%E3%81%86%E3%82%BF%E3%82%B9%E3%82%AF%E3%81%AE%E7%A8%AE%E9%A1%9E"><i class="fa fa-link"></i></a>1. 要約というタスクの種類</h1>
+
+<p>単純に「要約」といっても、いろいろな種類があるためまずはそれらを整理します。今後要約に取り組みたいと思ったときに、どんな「要約」に挑戦しようとしているのかをはっきりさせる足掛かりにしていただければと思います。</p>
+
+<p>要約というタスクを整理する観点としては、3つの観点があります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/5cfb665efb466e7d67cc6529db68fee691aee663/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f30653635343863642d373231312d346466612d616130372d6330663465396561343931322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/5cfb665efb466e7d67cc6529db68fee691aee663/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f30653635343863642d373231312d346466612d616130372d6330663465396561343931322e706e67" alt="summarization_task.PNG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/0e6548cd-7211-4dfa-aa07-c0f4e9ea4912.png"></a></p>
+
+<ol>
+<li>要約のインプットとなる文書</li>
+<li>要約作成に対する意思入れ</li>
+<li>作成される要約の内容</li>
+</ol>
+
+<p>第一に、要約するのは単一の文書なのか、複数の文書なのかといった観点があります。単一の場合は<strong>Single document summarization</strong>、複数の場合は<strong>Multi-document summarization</strong>と呼ばれます。</p>
+
+<p>第二に、要約に際して何らかの指示を与えるかという観点があります。何も指示をせず単純に要約を作成する処理を<strong>Generic summarization</strong>と呼びます。これに対して、何らかのトピックやキーワードを指定してそれを中心とした要約を作成させることを<strong>Query focused summarization</strong>と呼びます。この特殊なケースとして、文章の更新前後の差分に着目する<strong>Update summarization</strong>があります。これは例えば、メールの要約を行う際に前回のメールとの差分に特に注目して要約を行うといったようなタスクになります。<br>
+実用的な側面としては、指示を与えない単純な要約(Generic summarization)は意味がないという議論もあります(<a href="https://www.cl.cam.ac.uk/archive/ksj21/ksjdigipapers/summbook99.pdf" rel="nofollow noopener" target="_blank">Automatic summarizing: factors and directions</a>)。これは個人的にはかなり共感する意見です(実際作成してみた要約を見ると特にそう感じます)。</p>
+
+<p>最後に、作成する要約の内容、スタイルについての観点があります。内容については、例えば書籍や映画を紹介するために要約する場合、ネタバレしてしまうと困るでしょう。その場合内容全体まではわからないように要約を作成することになりますが、こうした要約を<strong>Indicative summary</strong>と呼びます。これとは逆に、すべての内容をもとに作成する要約を<strong>Informative summary</strong>と呼びます。<br>
+要約のスタイルは、長さや形式といった観点です。特に一行でまとめるような要約を<strong>Headline summary</strong>と呼びます。また文ではなく、単語だけを抽出するようなスタイルを<strong>Keyword summary</strong>と呼びます。</p>
+
+<p>要約に取り組む際は、これら3つの観点を元にどういったタスクかを定義することで、先行研究の調査が行いやすくなります。</p>
+
+<h1>
+<span id="2-要約を作成する手法" class="fragment"></span><a href="#2-%E8%A6%81%E7%B4%84%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B%E6%89%8B%E6%B3%95"><i class="fa fa-link"></i></a>2. 要約を作成する手法</h1>
+
+<p>要約を作成するには、主に抽出型(Extractive)と抽象型(Abstractive)の2つのアプローチがあります。本節では、各アプローチの概要とその代表的なアルゴリズムについて解説を行います。</p>
 
 <h2>
-<span id="1controllerはイベントハンドリングとdata-bindingに集中する" class="fragment"></span><a href="#1controller%E3%81%AF%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%83%8F%E3%83%B3%E3%83%89%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%A8data-binding%E3%81%AB%E9%9B%86%E4%B8%AD%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>1.ControllerはイベントハンドリングとData Bindingに集中する</h2>
+<span id="21-抽出型extractive" class="fragment"></span><a href="#21-%E6%8A%BD%E5%87%BA%E5%9E%8Bextractive"><i class="fa fa-link"></i></a>2.1 抽出型(Extractive)</h2>
 
-<p>これはAngular.jsに限らず、あらゆるフレームワークで言えることです。JavaScriptフレームワークにおけるControllerの役割は以下２つで、それに集中していることが望ましいです。</p>
+<p>抽出型は、要約対象の文章の中から重要と思われる文を抽出して要約を作成するというアプローチです。そのメリットとデメリットは、以下のようになります。</p>
 
 <ul>
-<li><p>バインディング(Model -&gt; View)<br>
-Controller内で管理するModel(またはそのリスト)の変更を、Viewに反映します。具体的には<code>ng-bind</code>/<code>ng-model</code>、<code>ng-repeat</code>の設定に該当します。Angular.jsではこれらを設定するだけで自動的に変更が反映されます。</p></li>
-<li><p>イベントハンドリング(View -&gt; Model)<br>
-イベントの発生を検知し、対応する動作(関数)を呼び出します。具体的には<code>ng-click</code>等の設定に該当します。<br>
-呼び出す関数は、Controllerに直接実装する以外に、Modelクラス、Serviceによる実装などの選択肢があります。この関数の実装をどのように分割するのかが、Fat Controllerを避けるポイントとなります(後述)。</p></li>
+<li>メリット： 元の文章中にある文を選択して要約を作成するため、まったく内容がつかめない要約になる可能性が低く、文法的におかしな要約になることもない</li>
+<li>デメリット： 文中にない単語を利用することはできないため、抽象化や言い換え、読みやすくするための接続詞の使用などができない。このため、作成された要約は粗雑な印象になる。</li>
+</ul>
+
+<p>続いて、抽出型の代表的な手法をいくつか紹介します。</p>
+
+<h3>
+<span id="211-graph-base-methods" class="fragment"></span><a href="#211-graph-base-methods"><i class="fa fa-link"></i></a>2.1.1 Graph Base Methods</h3>
+
+<p>グラフベースの手法は、文章をグラフ構造で表現し各ノード(=文や単語)の関係性を元に要約を作成するという手法です。代表的なアルゴリズムとしては、<a href="https://web.eecs.umich.edu/%7Emihalcea/papers/mihalcea.emnlp04.pdf" rel="nofollow noopener" target="_blank">TextRank</a>があります。TextRankは、Google検索の基礎となっている<a href="https://en.wikipedia.org/wiki/PageRank" rel="nofollow noopener" target="_blank">PageRank</a>という手法を文章に応用した手法です。PageRankの基本的な考えは、リンクされているページは良いページで、さらに多くリンクされているページ(=人気のページ)からのリンクは高く評価されるというものです。この評価は、ページに対するユーザーの流入量と等価になります(多くのページからリンクが張られていれば流入しやすく、人気のページからの流入は通常のページからの流入より大きい)。ページ間のリンクは行列で表現することができ、各ページにおけるリンクの総数で割ることでこの行列はユーザーがそのページからリンクが張られた別のページに遷移する確率の行列になります(下図$M$)。これを利用し、ユーザーが各ページに滞在する確率(下図$P$)=ページの評価を求めることがPageRankの目的です。</p>
+
+<p><a href="https://camo.qiitausercontent.com/62485ee6e3e9cbe420acb6d133bb29d4ec8c9195/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f62336439636339632d373862322d616532342d386339362d3864663464626539303661642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/62485ee6e3e9cbe420acb6d133bb29d4ec8c9195/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f62336439636339632d373862322d616532342d386339362d3864663464626539303661642e706e67" alt="page_rank_2.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/b3d9cc9c-78b2-ae24-8c96-8df4dbe906ad.png"></a></p>
+
+<p>$P$を求めるには、固有値問題を解く方法とページ遷移の試行を繰り返す方法の2つのアプローチがあります。何れも、多くの回数ページ遷移を繰り返していけば、最終的にページの滞在確率は安定する($MP=P$が成立する)という前提に基づいています。固有値問題を解く方法はこれを実現する$P$を直接求めることができますが、行列のサイズが大きくなると解くのにすごく時間がかかります。試行ベースの方は、一発では解けませんがページ数が多い場合でも$P$を求めることができます。<br>
+PageRankの説明が長くなりましたが、TextRankはこれを文章に応用した手法になります。TextRankのポイントは以下の2点です。</p>
+
+<ul>
+<li>何をNodeとするか：単語、文etc..</li>
+<li>何をEdgeとするか：単語/文の類似度、参照関係etc</li>
+</ul>
+
+<p>この定義が決まれば、あとはPageRankと同じ手法で解くことができます。なお、<a href="https://www.cs.cmu.edu/afs/cs/project/jair/pub/volume22/erkan04a-html/erkan04a.html" rel="nofollow noopener" target="_blank">LexRank</a>はNodeに文、Edge/Weightに類似度を使用した手法になります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/5deebd245f373d0df4c492a6d6c3e6e19a694a7e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f37336638653132652d633138362d396430312d313435312d3962326237656638363538362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/5deebd245f373d0df4c492a6d6c3e6e19a694a7e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f37336638653132652d633138362d396430312d313435312d3962326237656638363538362e706e67" alt="lexrank.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/73f8e12e-c186-9d01-1451-9b2b7ef86586.png"></a></p>
+
+<h3>
+<span id="212-feature-base-methods" class="fragment"></span><a href="#212-feature-base-methods"><i class="fa fa-link"></i></a>2.1.2 Feature Base Methods</h3>
+
+<p>文の特徴を定義して、その特徴による重みづけ(スコアリング)を行うことで文選択を行うのがFeature Baseの手法です。例えば、以下の論文がFeature Baseの手法として挙げられます。</p>
+
+<p><a href="http://oldwww.iiit.ac.in/cgi-bin/techreports/display_detail.cgi?id=IIIT/TR/2008/97" rel="nofollow noopener" target="_blank">Sentence Extraction Based Single Document Summarization</a></p>
+
+<p>この論文では、文のスコアリングをした後に、文の選択を行っています。文のスコアリングには、以下の特徴が使用されています。</p>
+
+<ul>
+<li>文章における、文の位置</li>
+<li>文に動詞が含まれるか否か</li>
+<li>文の長さ</li>
+<li>単語の出現頻度</li>
+<li>単語の固有表現</li>
+<li>単語に適用されているフォントスタイル</li>
+</ul>
+
+<p>・・・などです。これらの特徴は、以下の計算式で一つのスコアにまとめられます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/654d27b0835799577f4539d5553a31d6481f28d5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f62613366373530622d663465362d623335632d373966622d3537653166616134323830662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/654d27b0835799577f4539d5553a31d6481f28d5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f62613366373530622d663465362d623335632d373966622d3537653166616134323830662e706e67" alt="feature_base_score.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/ba3f750b-f4e6-b35c-79fb-57e1faa4280f.png"></a></p>
+
+<p>単語ベースの特徴を掛け合わせて$Score(l, w)$を算出し、文中に含まれる各単語のスコアを合計しています。なお、前の文章への参照を考慮するために、<em>No.of coreferences</em>を使用しています。これは単純に文の前半に含まれる代名詞の数で、代名詞の数分だけ一つ前の文章の平均スコア($Score$を$length$で割った$SPW$)をかけています。<br>
+特徴ベースの歴史は古く、古典的な<a href="http://courses.ischool.berkeley.edu/i256/f06/papers/luhn58.pdf" rel="nofollow noopener" target="_blank">Luhn’s Algorithm</a>では、単語の出現頻度から「重要度」を算出し、それが文を区切ったバケットにどれだけ含まれるかでスコアリングを行っています。</p>
+
+<p>続いて、文の選択には算出したスコアだけでなく「選択済み」の文に含まれる単語との一致率が考慮されています。これは、既に選択した文との情報の重複を避けるための工夫です。さらに、そのあと文のつながりを自然にするために疑問形の削除や特定接続詞の削除などを行っています(Refinement)。</p>
+
+<p>なお、文選択のプロセスはFeature Baseだけでなく抽出型全体において重要なプロセスです。というのも、単純にスコアの高い順から文を選択していくと情報の重複などが起こってしまうためです。文選択後のブラッシュアップであるRefinementについても同様のことが言えます。</p>
+
+<h3>
+<span id="213-topic-base-methods" class="fragment"></span><a href="#213-topic-base-methods"><i class="fa fa-link"></i></a>2.1.3 Topic Base Methods</h3>
+
+<p>Topic Baseの手法は、文章のトピックを算出し、そのトピックに沿った文を選択するという手法です。重要なトピックに近い文を選択する、各トピックの代表文を選ぶ、などです。Topic Baseの手法については、以下の論文によくまとめられています。</p>
+
+<p><a href="https://www.researchgate.net/publication/220195824_Text_summarization_using_Latent_Semantic_Analysis" rel="nofollow noopener" target="_blank">Text summarization using Latent Semantic Analysis</a></p>
+
+<p>Topic Baseの手法ではLSA(Latent Semantic Analysis)という手法が良く用いられます。これは、縦に文、横に単語をとった文章行列を特異値分解(Singular Value Decomposition=SVD)にかけて、その固有ベクトル(=トピック)を算出するという手法です。以下の図は、SVDを実行して得られた2つのトピック成分上に各文をプロットした図(左)と、各トピックごとに最も高い値を持つ文を選択している図になります(右)。</p>
+
+<p><a href="https://camo.qiitausercontent.com/c5841eb1a392e86bcdade7b69cbdfa173fb413f4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f36663334313233652d336232382d376430652d343137302d3135303263343133323461382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/c5841eb1a392e86bcdade7b69cbdfa173fb413f4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f36663334313233652d336232382d376430652d343137302d3135303263343133323461382e706e67" alt="topic_base.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/6f34123e-3b28-7d0e-4170-1502c41324a8.png"></a></p>
+
+<p>特異値分解の結果得られた固有ベクトルや固有値をどのように使って文のスコアを算出するのか、またどのように文を選択していくのか、という点で様々なバリエーションがあります。</p>
+
+<h2>
+<span id="22-抽象型abstractive" class="fragment"></span><a href="#22-%E6%8A%BD%E8%B1%A1%E5%9E%8Babstractive"><i class="fa fa-link"></i></a>2.2 抽象型(Abstractive)</h2>
+
+<p>抽象型は、人が要約を作成するときのように、文章の意味を汲み取ったうえで(=抽象化した上で)適切な要約を作成する手法です。そのメリットとデメリットは、以下のようになります。</p>
+
+<ul>
+<li>メリット： 元の文中にはない単語を自由に使って要約を作成できるため、より自然な要約を作成できる。また、要約の長さに対する自由度が大きい。</li>
+<li>デメリット： 文法的に違和感がなく、また前後の文脈で不整合が生じないような自然な文を生成することが難しい。</li>
+</ul>
+
+<p>抽象型の代表的な手法としては、Encoder-Decoderモデルがあります。</p>
+
+<h3>
+<span id="221-encoder-decoder-model" class="fragment"></span><a href="#221-encoder-decoder-model"><i class="fa fa-link"></i></a>2.2.1 Encoder-Decoder Model</h3>
+
+<p>Encoder-Decoderモデルは、Encoderで文を潜在表現に圧縮し、Decoderは圧縮された表現から文を生成する、というモデルです。翻訳のタスクでよく使用されるモデルで、翻訳元の文をEncoderで圧縮し、翻訳先の文にDecodeするといった形で利用されています。</p>
+
+<p><a href="https://camo.qiitausercontent.com/3e4315d391094491b8534802c5a98df344f9ae16/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f35316331666565622d666463322d626334322d616564632d3462613532666134633131662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/3e4315d391094491b8534802c5a98df344f9ae16/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f35316331666565622d666463322d626334322d616564632d3462613532666134633131662e706e67" alt="encoder-decoder.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/51c1feeb-fdc2-bc42-aedc-4ba52fa4c11f.png"></a><br>
+<a href="https://www.slideshare.net/YusukeOda1/encoderdecoder-tis" rel="nofollow noopener" target="_blank">Encoder-decoder 翻訳 (TISハンズオン資料)</a></p>
+
+<p>要約に適用する場合、文章をEncoder入れていきDecoderから要約を生成させる形になります。文章から直接要約を生成するという形になるため、End-to-Endのモデルともいわれます。TensorFlowには、この形式で要約を作成するモデルが組み込まれています。</p>
+
+<p><a href="https://research.googleblog.com/2016/08/text-summarization-with-tensorflow.html" rel="nofollow noopener" target="_blank">Text summarization with TensorFlow</a></p>
+
+<p>なお、抽出型と抽象型のいい所どりをする研究も近年は進められています。以下の研究は、抽出と生成をスイッチする確率p_genを算出しながら要約を作成するとうアイデアです。</p>
+
+<p><a href="https://arxiv.org/abs/1704.04368" rel="nofollow noopener" target="_blank">Get To The Point: Summarization with Pointer-Generator Networks</a></p>
+
+<p><a href="https://camo.qiitausercontent.com/22c73a774131f4f6063ea51fe657b9de42055928/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f61343533373737622d376337322d666561342d623335302d6666653830326364636162312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/22c73a774131f4f6063ea51fe657b9de42055928/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f61343533373737622d376337322d666561342d623335302d6666653830326364636162312e706e67" alt="pointer-generator-network.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/a453777b-7c72-fea4-b350-ffe802cdcab1.png"></a></p>
+
+<h1>
+<span id="3-良い要約の評価" class="fragment"></span><a href="#3-%E8%89%AF%E3%81%84%E8%A6%81%E7%B4%84%E3%81%AE%E8%A9%95%E4%BE%A1"><i class="fa fa-link"></i></a>3. 良い要約の評価</h1>
+
+<p>要約を評価する観点としては、通常の機械学習と同様適合率(Precision)と再現率(Recall)の観点があります。</p>
+
+<h2>
+<span id="31-rouge-nカバー率の評価" class="fragment"></span><a href="#31-rouge-n%E3%82%AB%E3%83%90%E3%83%BC%E7%8E%87%E3%81%AE%E8%A9%95%E4%BE%A1"><i class="fa fa-link"></i></a>3.1 <a href="https://en.wikipedia.org/wiki/ROUGE_(metric)" rel="nofollow noopener" target="_blank">ROUGE-N</a>　カバー率の評価</h2>
+
+<p>ROUGE-NのNはN-gramのNで、生成した要約と人間が作成した要約がN-gram単位でどれだけ一致しているかを計測した指標です。ROUGE-1なら単語単位、ROUGE-2ならbi-gram単位の一致になります。例えば、"いちご ばなな"と"ばなな いちご"は、ROUGE-1単位(単語単位)では一致しますが、ROUGE-2、つまりbi-gramなら"いちご ばなな"が一単位になるため一致はしなくなります。これは即ち正解の要約文中にあるN-gramの組み合わせがどれだけ生成した要約に出てくるかを表しており、乱暴に言えば要約文をすごく長くすればそれだけROUGEスコアは高くなる傾向があります。そうした意味で、ROUGEによる評価はRecall的といえます。もちろん、これだけでは「実際の要約にはない」単語=ミスが評価されません。そこで出てくるのが、次のBLEUスコアです。</p>
+
+<h2>
+<span id="32-bleu--一致率の評価" class="fragment"></span><a href="#32-bleu--%E4%B8%80%E8%87%B4%E7%8E%87%E3%81%AE%E8%A9%95%E4%BE%A1"><i class="fa fa-link"></i></a>3.2 <a href="http://www.aclweb.org/anthology/P02-1040.pdf" rel="nofollow noopener" target="_blank">BLEU</a>  一致率の評価</h2>
+
+<p>BLEUは、生成した要約のN-gram中のどれだけが実際の要約に登場するかで評価されます(なお、この場合長い文は短い文に比べてN-gram数が大きくなり不利になるため、調整が行われています)。BLEUは分母に生成した要約のN-gram数が来るため、乱発すればそれだけ一致する率は下がることになります。このため、Precision的な評価が可能になります。なお、BLEUは翻訳のタスクでよく使用されています。</p>
+
+<p>実際には、評価ではROUGEが使われることが多いです。というのも、たいていの場合要約の長さには制限があり、「長々生成してスコアを稼ぐ」という戦略自体が利用できないためです。</p>
+
+<h1>
+<span id="4要約の作成に使えるツールデータセット" class="fragment"></span><a href="#4%E8%A6%81%E7%B4%84%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%AB%E4%BD%BF%E3%81%88%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88"><i class="fa fa-link"></i></a>4.要約の作成に使えるツール・データセット</h1>
+
+<p>要約を作成してみたいという熱が高まったに違いないと思うので、最後に実際に要約を作成できるツールとデータセットを紹介します。</p>
+
+<h2>
+<span id="41-ツール" class="fragment"></span><a href="#41-%E3%83%84%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>4.1 ツール</h2>
+
+<p>これまで紹介した、抽出型/抽象型の要約の手法ごとに紹介します。</p>
+
+<p>抽出型(Extractive)</p>
+
+<ul>
+<li>Graph Base
+
+<ul>
+<li><a href="https://radimrehurek.com/gensim/summarization/summariser.html" rel="nofollow noopener" target="_blank">gensim</a></li>
+<li><a href="https://github.com/ceteri/pytextrank" rel="nofollow noopener" target="_blank">pytextrank</a></li>
+</ul>
+</li>
+<li>Feature Base
+
+<ul>
+<li>
+<a href="https://github.com/MojoJolo/textteaser" rel="nofollow noopener" target="_blank">TextTeaser</a> </li>
+<li><a href="https://github.com/xiaoxu193/PyTeaser" rel="nofollow noopener" target="_blank">PyTeaser</a></li>
+</ul>
+</li>
+<li>Topic Base
+
+<ul>
+<li><a href="https://radimrehurek.com/gensim/models/lsimodel.html" rel="nofollow noopener" target="_blank">gensim models.lsimodel</a></li>
+</ul>
+</li>
+</ul>
+
+<p><a href="https://github.com/miso-belica/sumy" rel="nofollow noopener" target="_blank">sumy</a>は、抽出型の手法を広くカバーするソフトウェアになっています。</p>
+
+<p>抽象型(Abstractive)</p>
+
+<ul>
+<li><a href="https://github.com/tensorflow/models/tree/master/research/textsum" rel="nofollow noopener" target="_blank">TensorFlow textsum</a></li>
 </ul>
 
 <h2>
-<span id="2viewが複雑になったらdirectivefilterを使う" class="fragment"></span><a href="#2view%E3%81%8C%E8%A4%87%E9%9B%91%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89directivefilter%E3%82%92%E4%BD%BF%E3%81%86"><i class="fa fa-link"></i></a>2.Viewが複雑になったらDirective・Filterを使う</h2>
+<span id="42-データセット" class="fragment"></span><a href="#42-%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88"><i class="fa fa-link"></i></a>4.2 データセット</h2>
 
-<p>サイト内で共通で使用するデザインなどは、これを別途templateにしdirectiveとしてコンポーネント化することができます。<br>
-下記では、<code>template.html</code>にデザインを分離し、それを<code>myTemplate</code>というdirectiveにして使用しています。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&lt;div ng-repeat="m in models"&gt;
- &lt;my-template&gt;&lt;/my-template&gt; &lt;!-- Directiveを呼び出し --&gt;
-&lt;/div&gt;
-
-&lt;script&gt;
-    var myApp = angular.module("myApp",[]);
-    ・・・
-    myApp.directive("myTemplate",function(){ //template.htmlへ切り出し
-        return {
-        restrict: 'E',
-        templateUrl: 'template.html'
-        };
-    })
-&lt;/script&gt;
-</pre></div></div>
-
-<p>directiveについての詳細は<a href="http://docs.angularjs.org/guide/directive" rel="nofollow noopener" target="_blank">公式ドキュメント</a>、また手前味噌ですが<a href="http://qiita.com/icoxfog417/items/59a07c9a74084114fe23" id="reference-dc8ba0f871d4d7d53c7a">こちらの記事</a>を参照ください。<br>
-これでデザインをコンポーネント化できるほか、表示用のロジックをControllerから分離することができます。</p>
-
-<p>FilterはいわゆるHelperのように使用することができ、数値を通貨で表示したりカンマ区切りで表示したりといった、細かいところに使えます。<br>
-例としては、以下のような感じです。<code>date</code>は最初から組み込まれているFilterなので、何にも書かないでもこれだけで動作します。Filterへは、<code>:</code>で引数を渡すことができます。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&lt;div ng-app&gt;
-    {{1288323623006 | date:'yyyy/MM/dd'}}&lt;br&gt;
-&lt;/div&gt;
-</pre></div></div>
-
-<p>また、こちらも組み込まれている<code>filter</code>(紛らわしいですが、filterというFilterです)を配列に適用することで絞り込みもできます(この使い方のイメージのほうが強いかもしれません)。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&lt;div ng-app ng-init="names = ['john','risa','mike','jhonasan','kensiro']"&gt;
-    &lt;input type="text" ng-model="searchText" /&gt;
-    &lt;div ng-repeat="n in names | filter:searchText" &gt;{{n}}&lt;/div&gt;
-&lt;/div&gt;
-</pre></div></div>
-
-<h2>
-<span id="3serviceによるコンポーネント化を行う" class="fragment"></span><a href="#3service%E3%81%AB%E3%82%88%E3%82%8B%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E5%8C%96%E3%82%92%E8%A1%8C%E3%81%86"><i class="fa fa-link"></i></a>3.Serviceによるコンポーネント化を行う</h2>
-
-<p><code>ng-click</code>で呼び出される関数が数百行あって、Controller内には特定のイベントでしか使わないグローバル変数があふれる・・・という事態になっては、JavaScriptフレームワークを利用するメリットがありません。ここは適切にコンポーネント化を行いましょう。そのためにAngular.jsに用意されている仕組みが、Serviceになります。</p>
-
-<p>ここでいったん用語を整理しておきますが、Angular.jsを構築するオブジェクトは以下2つに分けられます。</p>
+<p>要約を行うためのデータセットとしては、以下のデータセットがあります。</p>
 
 <ul>
-<li>Service<br>
-ユーザーがAPIを自由に決められるもの。なお、すべてsingletonとして扱われます(インスタンスは一つしか作成されず、使いまわされる)。</li>
-<li>Specialized object<br>
-controllerや directiveなど、Angular.jsによりAPIが定められているもの。</li>
+<li>
+<a href="http://www.cis.upenn.edu/%7Enlp/corpora/sumrepo.html" rel="nofollow noopener" target="_blank">DUC 2004</a>
+
+<ul>
+<li>最もメジャーですが、ダウンロードをするのに署名してメール送信しないといけないなどハードルが高いです</li>
+</ul>
+</li>
+<li>
+<a href="https://catalog.ldc.upenn.edu/LDC2012T21" rel="nofollow noopener" target="_blank">Annotated English Gigaword</a>
+
+<ul>
+<li>こちらは有料のデータセットになります</li>
+</ul>
+</li>
+<li><a href="http://kavita-ganesan.com/opinosis-opinion-dataset" rel="nofollow noopener" target="_blank">Opinosis Dataset - Topic related review sentences</a></li>
+<li><a href="http://www.l3s.de/%7Egtran/timeline/" rel="nofollow noopener" target="_blank">17 Timelines</a></li>
+<li><a href="http://archive.ics.uci.edu/ml/datasets/Legal+Case+Reports" rel="nofollow noopener" target="_blank">Legal Case Reports Data Set</a></li>
 </ul>
 
-<p>そしてServiceの作成方法(recipe)には以下の種類があります。</p>
+<h1>
+<span id="x参考文献" class="fragment"></span><a href="#x%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><i class="fa fa-link"></i></a>X.参考文献</h1>
 
-<h3>
-<span id="value" class="fragment"></span><a href="#value"><i class="fa fa-link"></i></a>Value</h3>
+<p>Papers</p>
 
-<p>値を定義するServiceを作成するrecipeです。具体的にはサーバーサイドのAPIのURLなど、アプリケーション全体の定数管理などに利用します。</p>
+<ul>
+<li><a href="https://www.cis.upenn.edu/%7Enenkova/1500000015-Nenkova.pdf" rel="nofollow noopener" target="_blank">Automatic summarization</a></li>
+<li><a href="https://www.cl.cam.ac.uk/archive/ksj21/ksjdigipapers/summbook99.pdf" rel="nofollow noopener" target="_blank">Automatic summarizing: factors and directions</a></li>
+<li><a href="https://web.eecs.umich.edu/%7Emihalcea/papers/mihalcea.emnlp04.pdf" rel="nofollow noopener" target="_blank">TextRank: Bringing Order into Texts</a></li>
+<li><a href="https://www.cs.cmu.edu/afs/cs/project/jair/pub/volume22/erkan04a-html/erkan04a.html" rel="nofollow noopener" target="_blank">LexRank: Graph-based Lexical Centrality as Salience in Text Summarization</a></li>
+<li><a href="http://oldwww.iiit.ac.in/cgi-bin/techreports/display_detail.cgi?id=IIIT/TR/2008/97" rel="nofollow noopener" target="_blank">Sentence Extraction Based Single Document Summarization</a></li>
+<li><a href="http://courses.ischool.berkeley.edu/i256/f06/papers/luhn58.pdf" rel="nofollow noopener" target="_blank">Luhn’s Algorithm</a></li>
+<li><a href="https://www.researchgate.net/publication/220195824_Text_summarization_using_Latent_Semantic_Analysis" rel="nofollow noopener" target="_blank">Text summarization using Latent Semantic Analysis</a></li>
+<li><a href="https://arxiv.org/abs/1704.04368" rel="nofollow noopener" target="_blank">Get To The Point: Summarization with Pointer-Generator Networks</a></li>
+</ul>
 
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>var myApp = angular.module('myApp', []);
-myApp.value('clientId', 'a12345654321x');
-</pre></div></div>
+<p>Blog/Wikis</p>
 
-<h3>
-<span id="factory" class="fragment"></span><a href="#factory"><i class="fa fa-link"></i></a>Factory</h3>
-
-<p>Valueだけでは処理を記述できないので、引数を取った関数を記載できるrecipeです。<br>
-先程の<code>clientId</code>をFactoryベースで書き直すと、以下のようになります。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>myApp.factory('clientId', function clientIdFactory() {
-  return 'a12345654321x';
-});
-</pre></div></div>
-
-<p>当然、下記のように関数も記載できます。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>myModule.factory('greeter', function($window) {
-  return {
-    greet: function(text) {
-      $window.alert(text);
-    }
-  };
-});
-</pre></div></div>
-
-<p>このように<code>factory</code>は単一の値だけでなく、関数やオブジェクトなども返却でき、その意味では最も汎用的に利用できるrecipeとなります。</p>
-
-<h3>
-<span id="service" class="fragment"></span><a href="#service"><i class="fa fa-link"></i></a>Service</h3>
-
-<p>JavaScriptクラスを生成するrecipeとなり、「ServiceをService recipeで作る」と、そうした意味になります。このため、Angular.js界隈で「Service」といった場合、どちらの文脈で話しているか判断する必要があります。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>function Greeter(clientId) {
-  this.clientId = clientId;
-  this.greet = function() {
-    return "Hello " + this.clientId;
-  }
-}
-myApp.service('Greeter', ["clientId", Greeting]);
-</pre></div></div>
-
-<p>ValueやFactoryと異なり、指定(return)した値がそのまま利用されるのでなく、オブジェクトがnewされて利用されます(上記の場合、new Greeterが行われます。ただ、シングルトンとして扱われるためnewされるのは1回のみです)。</p>
-
-<p>既存資産がオブジェクト指向に則りJavaScriptクラスを利用して設計されているなら、Serviceとの相性が良くなります。</p>
-
-<h3>
-<span id="provider" class="fragment"></span><a href="#provider"><i class="fa fa-link"></i></a>Provider</h3>
-
-<p>Providerは一番汎用的なrecipeで、他のrecipeはすべてProviderの簡易記法に該当します。<br>
-Factory/Serviceと異なり、<code>config</code>でも利用できるという特性がありますが、逆に言うと<code>config</code>でどうしても利用したい場合を除き使うべきでないようです。</p>
-
-<h3>
-<span id="constant" class="fragment"></span><a href="#constant"><i class="fa fa-link"></i></a>Constant</h3>
-
-<p>Valueと同様ですが、<code>config</code>でも利用できるという特性があります。見た感じとドキュメントの位置的なものから、Providerとセットで使うような印象を受けます。普通の定数/パラメーター管理ならValueで十分でしょう。</p>
-
-<p>上記の詳細は、公式の<a href="https://docs.angularjs.org/guide/providers" rel="nofollow noopener" target="_blank">Providers</a>を参照ください。かなり詳しく書かれています。</p>
-
-<p>過去、FactoryとServiceどちらを使えばよいのか、ということがたびたび議論されてきましたが、<code>1.2.7</code>以降のドキュメント整備と<code>Value</code>recipeの登場により、明確に境界を引くことができるようになりました。</p>
-
-<p><strong>値の管理ならValue、関数ならFactory、JavaScriptクラスならServiceを利用する。</strong></p>
-
-<p>定数管理はValue、それ以外はFactoryを利用して記述しておき、Factoryで書いていたけれども一定のまとまりが出てきたもの、あるいはconstructorによる初期化処理が必要になったなどしてクラス化したくなった場合、Serviceにするというのが素直かなと思います(既に手元にJavaScriptクラス資産がある場合この限りでない)。<br>
-Controllerを除くSpecialized object(directiveやfilterなど)もFactoryで実装されており、全体としてFactoryで実装するというのは筋にかなっているかなと思います。<br>
-Serviceにする場合でも、上記のとおりrecipeの切り替えによる記載の変更はわずかであり、切り替えの負担はそれほどないと思います。</p>
-
-<p>Service recipeを利用した処理のモジュール化の実例として、<a href="http://jsfiddle.net/icoxfog417/DG24c/" rel="nofollow noopener" target="_blank">サンプル</a>を作ってみました。</p>
-
-<p>Serviceに切り出す対象の処理は、「Modelにメソッドとして実装するのも、Controllerに実装するのも適切ではない処理」ということなのでどんなサンプルにするか悩みましたが、こんな形のゲームっぽいものにしました。</p>
-
-<p>1秒ごとに草がはえていき、牛を投入すると草を食べてくれるが5回食べるとおなか一杯で死んじゃうというものです。</p>
-
-<p>Modelでは牛の状態(今までどれだけ草を食ったか)、Controllerでは経過秒数を管理しています。そして、経過秒数による状態の評価(草＆牛の数の計算)をServiceとして切り出しました。<br>
-これをControllerで実装していたらまさに「ロジックがControllerに混在している」状態となり、かといって、牛Modelで扱うには不適当・・・なので、まさにServiceの出番なはず。</p>
-
-<p>こんな視点でServiceをうまく使うことができれば、ゲームなどModelの状態変化が複雑に絡み合う場合でもうまく実装できると思います(そしてAngular.jsの場合単体テストが簡単になるというのもうれしいポイント)。</p>
-
-<p>上記の３原則を覚えておけば、お前のAngular.jsはもうMVCではない・・・と言われないハズ。</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/PageRank" rel="nofollow noopener" target="_blank">PageRank</a></li>
+<li><a href="https://rare-technologies.com/text-summarization-in-python-extractive-vs-abstractive-techniques-revisited/" rel="nofollow noopener" target="_blank">Text Summarization in Python: Extractive vs. Abstractive techniques revisited</a></li>
+<li><a href="https://www.slideshare.net/YusukeOda1/encoderdecoder-tis" rel="nofollow noopener" target="_blank">Encoder-decoder 翻訳 (TISハンズオン資料)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/ROUGE_(metric)" rel="nofollow noopener" target="_blank">ROUGE-N</a></li>
+<li><a href="http://www.aclweb.org/anthology/P02-1040.pdf" rel="nofollow noopener" target="_blank">BLEU</a></li>
+<li><a href="http://www2.nict.go.jp/astrec-att/member/mutiyama/corpmt/4.pdf" rel="nofollow noopener" target="_blank">4. 自動評価尺度 BLEU</a></li>
+</ul>
 </div>
 	</td>
 </tr>
@@ -227,1781 +324,9 @@ Serviceにする場合でも、上記のとおりrecipeの切り替えによる�
 <table border="1">
 <tr>
 	<td rowspan="3"><center>icoxfog417さんの<br />2位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>885</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/3c68e1a4de7121658e29">新・三大JavaScriptフレームワークの実践(Backbone.js Knockout.js Angular.js)</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-09-15 21:03:09</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Backbone.js]</b> <b>[AngularJS]</b> <b>[knockoutjs]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>JavaScriptフレームワークは<a href="http://codebrief.com/2012/01/the-top-10-javascript-mvc-frameworks-reviewed/" rel="nofollow noopener" target="_blank">数多い</a>が、結局どれを選んだらよいのかよくわからん、ということはよくある。</p>
-
-<p>今回は、メジャーどころの三大フレームワークを使ってまったく同じ機能のTodoアプリを作成してみました。<br>
-そのソースコードは、下記の通りjsFiddleで参照＆稼働させてみることができます。これで（きれいごとではない）クセやコード量などを感じてみてもらえればよいと思います。</p>
-
-<table>
-<thead>
-<tr>
-<th style="text-align: left">FW</th>
-<th style="text-align: left">jsFiddle</th>
-<th style="text-align: left">所感</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left">Backbone.js</td>
-<td style="text-align: left"><a href="http://jsfiddle.net/icoxfog417/pfxP5/" rel="nofollow noopener" target="_blank">Todo①</a></td>
-<td style="text-align: left">大規模開発向きか。簡単なアプリなら割に合わない</td>
-</tr>
-<tr>
-<td style="text-align: left">Knockout.js</td>
-<td style="text-align: left"><a href="http://jsfiddle.net/icoxfog417/sujqa/" rel="nofollow noopener" target="_blank">Todo②</a></td>
-<td style="text-align: left">わかりやすい。面倒な面はあるが、不可解でドツボにはまることがあまりない</td>
-</tr>
-<tr>
-<td style="text-align: left">Angular.js</td>
-<td style="text-align: left"><a href="http://jsfiddle.net/icoxfog417/nLC3g/" rel="nofollow noopener" target="_blank">Todo③</a></td>
-<td style="text-align: left">便利。ただ、自由度が高すぎて統制をかけたい場合は向かないかも</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>Todoリストの機能</strong><br>
-1.テキストボックスから、Enterで追加できる<br>
-2.登録したTodoはダブルクリックで編集可能になり、Enterで編集確定できる<br>
-3.登録されているTodoの総件数がフッターに表示される<br>
-4.完了したTodoがある場合、それらをリストから消すボタンが表示される<br>
-5.全選択/解除を行うチェックボックスがある</p>
-
-<h2>
-<span id="個人的な結論" class="fragment"></span><a href="#%E5%80%8B%E4%BA%BA%E7%9A%84%E3%81%AA%E7%B5%90%E8%AB%96"><i class="fa fa-link"></i></a>個人的な結論</h2>
-
-<p>趣味開発で使うならAngular.js・仕事で使うならKnockout.jsをお勧めしたい。</p>
-
-<p>まず、フレームワークを選択する際は、以下3つの選択基準を持つとよいと思う。</p>
-
-<p><strong>1.開発の規模</strong><br>
-大規模ならBackbone.jsはお勧めできる。<br>
-書き方が決まっていて、チュートリアルに目を通せば(面倒なのは置いておいて)何を作らなければならないかは簡単に理解できる。そこそこの人数で長い時間の開発を行うなら、UIチームはアプリケーションとView、サーバーサイドはModelとCollection、という感じで分業もしやすいと思う。UIバインディング型のフレームワークは性質上画面DOMありきなので、バインディング部分のモジュール化は結構頭を使う必要があると思う。</p>
-
-<p><strong>2.フレームワークに求めるもの</strong><br>
-コードを構造化したいのか、生産性を上げたいのか、両方の場合どちらの優先度が高いのかを考えるとよいと思う。<br>
-生産性の向上ならUIバインディング型のKnockout.jsやAngular.jsがお勧めだ。<br>
-これらは、普通に使ってて便利！と思える瞬間が多い。個人で開発する場合構造化に迫られる人はあんまりいないと思うので、そういう場合にも良い。</p>
-
-<p><strong>3.趣味</strong><br>
-使い始めるとその後拘束されることになるので、なんだかんだ言って第一印象は重要だ。今回は実際に書いたコードを掲載しているので、参考になれば。</p>
-
-<p>以下は、所感の詳細。</p>
-
-<h2>
-<span id="backbonejs" class="fragment"></span><a href="#backbonejs"><i class="fa fa-link"></i></a>Backbone.js</h2>
-
-<p>確かにこれを使えばJavaScriptはきれいに書ける気がする。が、手間はかなりかかる。<br>
-今回Todoリストを表示するのに、まずTodoのModel、これを表示するためのView、リスト表示するためのCollection、そして最後にアプリケーション、と4つもオブジェクトを作る必要がある。<br>
-将来的な使いまわしを考えるならこれが活きてくるのかもしれないが、そうするとそこそこ大規模でないと割に合わないと思う。あと「軽い」とよく言われるがその分他ライブラリ(jQuery/Underscore.js etc)に依存しているので、そこは要注意(特にjQueryはすでにプロジェクトで使っているバージョンがあったりするので)。</p>
-
-<h2>
-<span id="knockoutjs" class="fragment"></span><a href="#knockoutjs"><i class="fa fa-link"></i></a>Knockout.js</h2>
-
-<p>わかりやすい、というのが第一印象。DOMとJavaScript側ViewModelの対応関係は見通しがよく、理解しやすい。<br>
-イベント/テンプレートバインディングなど効果の実感できる機能がすぐに使え、JavaScriptフレームワークを初めて使う、またチームで展開してみたい、という時にお勧めできる。<br>
-独自タグがないのでHTMLはHTMLとして完成されるのもポイントが高い(他のフレームワークは、そんな属性ない警告や不明タグ警告がそこそこ出る)・・・が、その分煩雑な記述が要求されることも多い(特にIF文)のは注意。</p>
-
-<h2>
-<span id="angularjs" class="fragment"></span><a href="#angularjs"><i class="fa fa-link"></i></a>Angular.js</h2>
-
-<p>形としてはKnockout.jsに近いが、より簡単にかける。<br>
-具体的に簡単な点としては、Knockout.jsだと単純に値を書きたい場合でも<code>&lt;span data-bind="text:hoge"&gt;&lt;/span&gt;</code>みたいな形でDOMを経由しないといけないが、Angular.jsでは<code>{{hoge}}</code>と一発でかける(ただ、逆にng-click="function(){xxx}"みたいにはかけないので、一長一短?)。<br>
-今回のTodoアプリでは、選択しているのが1つなら"item"、複数なら"items"にするというようなしちめんどくさい機能があるのだが、こういう細かい実装があるときこの差が結構出てくる。</p>
-
-<p>ただ、自由に書ける反面統制がききにくそうで、そこは注意が必要と感じた。チームで使うなら、Model定義とtemplateについては要ルール整備と思う→カオスにならないためということで、<a href="http://qiita.com/icoxfog417/items/2ac773c33a8b34288551" id="reference-0324f77939e3923fc6a2">まとめました</a>。<br>
-また、Backbone.jsにおけるUnderscore.js、Knockoutにおけるko.utilsみたいなサポートライブラリがないので、「配列から画面で選択された要素を削除する」みたいな簡単な処理でも書くのが面倒なことがある(今回のTodoリストでも・・・)。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />3位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>383</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/98e34c0555991033afec">JavaScriptのGridライブラリ決定版 - SlickGrid</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-09-23 20:59:51</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[JavaScript]</b> <b>[jQuery]</b> <b>[slickgrid]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>JavaScriptでグリッド表示を行ってくれるライブラリは色々あるが、その中でも一番しっくりきたSlickGridをご紹介。</p>
-
-<p>※2016/3現在、SlickGridは更新が停止しています(2014/3/5より)。その代り、6pacという方が主要なバグフィックス(パッチ)を取り込んだ<a href="https://github.com/6pac/SlickGrid/wiki" rel="nofollow noopener" target="_blank">alternative master</a>を運用してくれているので、こちらの方を使うとよいです(<a href="https://github.com/mleibman/SlickGrid/commit/bf4705a96c40fea088216034def4d0256a335e65" rel="nofollow noopener" target="_blank">オフィシャルからの公認</a>も出ています)。</p>
-
-<p>JavaScriptのグリッド系ライブラリは下表のようにいろいろある。</p>
-
-<table>
-<thead>
-<tr>
-<th style="text-align: left">ライブラリ名</th>
-<th style="text-align: left">概要</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left"><a href="https://github.com/mleibman/SlickGrid/wiki/Examples" rel="nofollow noopener" target="_blank">SlickGrid</a></td>
-<td style="text-align: left">今回お勧め。表示速度・編集機能に優れる</td>
-</tr>
-<tr>
-<td style="text-align: left"><a href="https://datatables.net/examples/" rel="nofollow noopener" target="_blank">DataTable</a></td>
-<td style="text-align: left">初回の表示速度が若干遅いが、一旦表示したら早い</td>
-</tr>
-<tr>
-<td style="text-align: left"><a href="http://trirand.com/blog/jqgrid/jqgrid.html" rel="nofollow noopener" target="_blank">jqGrid</a></td>
-<td style="text-align: left">使ったことがないが、Exampleが豊富。ただ、オプションが書きにくい印象</td>
-</tr>
-<tr>
-<td style="text-align: left"><a href="http://dhtmlx.com/docs/products/dhtmlxGrid/" rel="nofollow noopener" target="_blank">dhtmlGrid</a></td>
-<td style="text-align: left">多機能でExampleも豊富。Excelにインポートできるのは圧巻。ただ、商用だと有料</td>
-</tr>
-<tr>
-<td style="text-align: left"><a href="http://flexigrid.info/" rel="nofollow noopener" target="_blank">FlexGrid</a></td>
-<td style="text-align: left">使ったことなし。あんまり更新されてないような・・・</td>
-</tr>
-</tbody>
-</table>
-
-<p>正直、表示だけするならどれも高機能で大差ないと思う。<br>
-ただ、多くのグリッド系ライブラリは、高機能な代わりに遅い＆書きにくかったり、編集機能はあるものの表示→編集モードへの切り替えがもっさりしていたり保存機能が書きにくかったりする。</p>
-
-<p>その中で高速な表示、Excelかのような編集機能を備えているのがSlickGridだ。<br>
-「Excelみたいにできないの？」とはよく言われることでその言葉にそんな簡単じゃねーんだよ、とイラッとしたことがある人も多いかと思うが、SlickGridを使うことでお互いストレスフリーな関係を築けるだろう。</p>
-
-<p>では、SlickGridのパワーが実感できる例を紹介したい。</p>
-
-<h2>
-<span id="1パフォーマンス" class="fragment"></span><a href="#1%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9"><i class="fa fa-link"></i></a>1.パフォーマンス</h2>
-
-<p>このExampleで表示しているデータは、なんど500,000件である。他のグリッドが数万件表示可能！と言っているそばで、ケタが違う。何せExcel(2003)の限界行より多いんだからビックリだ。<br>
-<a href="http://mleibman.github.io/SlickGrid/examples/example-optimizing-dataview.html" class="autolink" rel="nofollow noopener" target="_blank">http://mleibman.github.io/SlickGrid/examples/example-optimizing-dataview.html</a></p>
-
-<h2>
-<span id="2編集機能" class="fragment"></span><a href="#2%E7%B7%A8%E9%9B%86%E6%A9%9F%E8%83%BD"><i class="fa fa-link"></i></a>2.編集機能</h2>
-
-<p>セル内編集が本当にスムーズである。下記のExampleで、Auto-edit ON のボタンを押してもらえればそのスムーズさを体感してもらえると思う。<br>
-<a href="http://mleibman.github.io/SlickGrid/examples/example3-editing.html" class="autolink" rel="nofollow noopener" target="_blank">http://mleibman.github.io/SlickGrid/examples/example3-editing.html</a><br>
-私は編集可能なグリッドライブラリを無償・有料関係なく探し回ったが、これほどスムーズなのは他になかった。しかも、Editorは自分で簡単に拡張可能だ。</p>
-
-<h2>
-<span id="3値表示の自由度" class="fragment"></span><a href="#3%E5%80%A4%E8%A1%A8%E7%A4%BA%E3%81%AE%E8%87%AA%E7%94%B1%E5%BA%A6"><i class="fa fa-link"></i></a>3.値表示の自由度</h2>
-
-<p>例えば10を10%としてメーターで表示したり、0/1の数字をチェックマークで表示したりと、各列に応じて値をどう表示するかを自由にカスタマイズできる。多くのGridが行の色ぐらいしかいじれない中で、セル内の値をDOMレベルで編集できる機能は表現力の面で非常に大きい。<br>
-<a href="http://mleibman.github.io/SlickGrid/examples/example2-formatters.html" class="autolink" rel="nofollow noopener" target="_blank">http://mleibman.github.io/SlickGrid/examples/example2-formatters.html</a></p>
-
-<h2>
-<span id="その他の機能" class="fragment"></span><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E6%A9%9F%E8%83%BD"><i class="fa fa-link"></i></a>その他の機能</h2>
-
-<p>他に独特なのは、以下のExampleだ。<br>
-・非同期の描画処理。表示が重たい処理(行内グラフなど)などは、非同期で処理できる。<br>
-<a href="http://mleibman.github.io/SlickGrid/examples/example10-async-post-render.html" class="autolink" rel="nofollow noopener" target="_blank">http://mleibman.github.io/SlickGrid/examples/example10-async-post-render.html</a></p>
-
-<p>・Undo機能まで実装可能。<br>
-<a href="http://mleibman.github.io/SlickGrid/examples/example3b-editing-with-undo.html" class="autolink" rel="nofollow noopener" target="_blank">http://mleibman.github.io/SlickGrid/examples/example3b-editing-with-undo.html</a></p>
-
-<p>もちろん、セル/行のイベントハンドリングやソート機能など、普通のグリッドライブラリにあるようなものはきちんとそろっている。<br>
-ぜひ使ってみていただきたい一品である(なお前提ライブラリとしてjQuery/jQuery.event.dragが必要。jQuery UIはcssがいるがjsは読み込まなくても動かせる)。<br>
-<a href="https://camo.qiitausercontent.com/dbec1f7681aa402590bf2202e6cbc0b282c21154/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f34653565393637632d666230612d303333332d313363652d3835343366333961636530642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/dbec1f7681aa402590bf2202e6cbc0b282c21154/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f34653565393637632d666230612d303333332d313363652d3835343366333961636530642e706e67" alt="slickgrid.PNG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/4e5e967c-fb0a-0333-13ce-8543f39ace0d.png"></a></p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />4位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>235</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/8ac0ac21434fd229395f">Railsの逆を行く、デザイナと開発者が協力するためのScala Liftフレームワーク</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2014-01-03 13:57:04</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Rails]</b> <b>[Scala]</b> <b>[Lift]</b> <b>[sbt]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>最近のフレームワーク、っていうとどれもRailsと似たような感じで実装言語が違うだけでしょ？という感じですが、Liftはそんな中完全に逆を行ってます。</p>
-
-<p>その思想は他の言語でも通用するはずなので、ぜひScalaなんぞ知らんという方も読んでいただければと思います。</p>
-
-<h1>
-<span id="liftの特徴" class="fragment"></span><a href="#lift%E3%81%AE%E7%89%B9%E5%BE%B4"><i class="fa fa-link"></i></a>Liftの特徴</h1>
-
-<p>公式な特徴は<a href="http://liftweb.net/" rel="nofollow noopener" target="_blank">ホームページに記載</a>されていますが、個人的にプッシュしたいのは以下点です。これらは、<a href="http://demo.liftweb.net/templating/" rel="nofollow noopener" target="_blank">Templating</a>に詳しく書かれています(<a href="http://oss.infoscience.co.jp/scala/www.assembla.com/wiki/show/liftweb/View_First.html" rel="nofollow noopener" target="_blank">日本語訳</a>)。</p>
-
-<p>1 デザイナフレンドリー<br>
-2 コントローラーがない<br>
-3 速い</p>
-
-<h2>
-<span id="デザイナフレンドリー" class="fragment"></span><a href="#%E3%83%87%E3%82%B6%E3%82%A4%E3%83%8A%E3%83%95%E3%83%AC%E3%83%B3%E3%83%89%E3%83%AA%E3%83%BC"><i class="fa fa-link"></i></a>デザイナフレンドリー</h2>
-
-<p>自分の手元にあるerbやらjspやらasp(chtml/vbhtml)やらのファイルを見て、これをサーバーサイド側の言語を知らない人間に手渡せるか？と考えたときYesと言える人はどれくらいいるでしょうか。</p>
-
-<p>それらのファイルにはそこそこコードが入り組んでいて、特にRailsの場合顕著ですがHelperが紛れ込んでいる場合その筋の人でもよく分からんということも多いのではと思います。</p>
-
-<p>これは正直開発者の生産性を重要視し続けた結果でもあり、異なるスキルを持つ人との協業を難しくしています。</p>
-
-<p>そこでLiftですが、LiftのViewはhtmlです。変な拡張子ではないですし中身にScalaのコードがしゃしゃり出てくることもありません。DreamWeaverなどのデザインツールにも取り込むことができます。</p>
-
-<p>ただ、その反面Scala側にHTMLが多少混じります。サーバーサイドにHTMLタグが入るということにやっぱり嫌な感じはありますが、それはRubyやらJavaのコードがViewに紛れ込んでいるのと同じことです。</p>
-
-<p>これは完全にトレードオフで、Liftは他のフレームワークとは逆の選択をしたということです。実際、サーバーからレンダリングしないといけないタグは正直大したことない量なので、それほど気になりません。</p>
-
-<h2>
-<span id="コントローラーがない" class="fragment"></span><a href="#%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%BC%E3%81%8C%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>コントローラーがない</h2>
-
-<p>猫も杓子もMVCでControllerですが、そもそもなんでControllerなんぞないといけないんでしょうか？邪魔だと思ったことはないですか？</p>
-
-<p>大体1Viewに1Controllerが相場(?)ですが、多くのリッチな画面は画面上で複数の処理が走っているのが普通です。Qiitaの投稿画面でも、投稿件数、記事の自動保存といった非同期処理から、記事の投稿、画像のアップロードといった同期処理まで多数の処理が動いています。</p>
-
-<p>これらを1Controllerにまとめるのは正直現実的ではありません。何らかの形で分割はするのでしょうが、それが難しいからこそFat Controllerという問題が起きてきたりJavaScript側のフレームワークがないと手に負えなくなってきたりするのだと思います。</p>
-
-<p>LiftにはControllerなんかありません。投稿件数の表示なら表示、投稿なら投稿、と画面上のアクションに応じて完全にコードを分離できます(これをsnippetと呼びます)。</p>
-
-<p>なんだか怖い気もしますが、でもこれは当然な気もします。<br>
-「画面上にある機能を分割し、それに応じてコードが書ける」。多くのフレームワークがMVCにこだわって失った機能の分割という利点を(Controllerを経由しないといけないという性質上、MVCで機能分割が行いにくいのはある意味必然)、Liftは逆を行くことで非常に理にかなったモジュール化を行うことができます。</p>
-
-<h2>
-<span id="速い" class="fragment"></span><a href="#%E9%80%9F%E3%81%84"><i class="fa fa-link"></i></a>速い</h2>
-
-<p>Scalaという静的型言語でしかも非同期に強いということだけでイケてますが、上記のようにControllerを廃してViewの機能分割(snippet化)を可能にしたことで、並列実行による部分View描画が可能になっています。</p>
-
-<p><a href="http://demo.liftweb.net/parallel" rel="nofollow noopener" target="_blank">こちら</a>にサンプルがありますが、これだけ簡単に書けるフレームワークは他にないと思います。</p>
-
-<p>そういう意味では、snippetの思想からしてWebアプリケーションを関数型で記述しているような感がLiftにはあります。</p>
-
-<p>主流に逆らいさまざまなメリットを得たLiftフレームワーク、ぜひ一度お試しあれ。</p>
-
-<p>・・・といっても、情報がかなり少ないので(HelloWorld的なものしかない)、作り方についてまとめました。<br>
-<a href="http://qiita.com/icoxfog417/items/f5136a2bae229f45f108" id="reference-6e174f3f0946f40f5a60">View First で始める Scala Liftフレームワーク</a></p>
-
-<p>そして、作っているうちにやっぱりそんなバラ色というわけにもいかないこともわかってきたので、<a href="http://qiita.com/icoxfog417/items/186f526288addcc2b12b" id="reference-cd8db35e367f09c16c46">こちら</a>を追記しました。。。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />5位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>233</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/8b16681213d0fd33602c">Git 特定のフォルダのみcloneする</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2014-03-07 17:34:25</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Git]</b> <b>[GitHub]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>リポジトリのここのフォルダだけcloneしたいんだ、Subversionでいうところのcheckoutだ、という場合は<code>sparsecheckout</code>の機能を使用する。</p>
-
-<p>特定のフォルダだけclone、という以外に絶対にcommitしたくないファイルを外したりできるので、覚えておくと便利(設定ファイルを個人ごとに書き換えなければならない場合など)。</p>
-
-<ol>
-<li><code>git clone xxx</code></li>
-<li><code>git config core.sparsecheckout true</code></li>
-<li><code>echo I_want/this_folder/ &gt; .git/info/sparse-checkout</code></li>
-<li><p><code>git read-tree -m -u HEAD</code></p></li>
-<li><p><code>echo I_forget/this_folder/ &gt;&gt; .git/info/sparse-checkout</code></p></li>
-</ol>
-
-<p>まずは普通にcloneをしてきて、そのあとsparsecheckoutを有効にする。</p>
-
-<p>次に、<code>.git/info/sparse-checkout</code>というファイルに残しておきたいフォルダ(<code>I_want/this_folder/</code>)を書き込む。</p>
-
-<p>そして、<code>git read-tree -m -u HEAD</code>という呪文を唱えると先程記載しておいたフォルダ以外は姿を消すことになる。</p>
-
-<p>上記5では、指定するのを忘れたフォルダを追記している。この場合、既存ファイルへの追記なので&gt;&gt;となる点に注意。もちろん普通にファイルを編集してもOK。</p>
-
-<p>これで不要なファイルは除外できるが、フォルダ階層は調整できない(aaa/bbbをd/にcloneする、といったことができずd/aaa/bbbになる)。<br>
-ここはうまい方法はなさそうな気配。</p>
-
-<p>＜参考＞<br>
-<a href="http://blog.quilitz.de/2010/03/checkout-sub-directories-in-git-sparse-checkouts/" class="autolink" rel="nofollow noopener" target="_blank">http://blog.quilitz.de/2010/03/checkout-sub-directories-in-git-sparse-checkouts/</a><br>
-<a href="http://jasonkarns.com/blog/subdirectory-checkouts-with-git-sparse-checkout/" class="autolink" rel="nofollow noopener" target="_blank">http://jasonkarns.com/blog/subdirectory-checkouts-with-git-sparse-checkout/</a></p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />6位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>173</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/5776e0f0f758f0f0e48a">リモートから特定のブランチを指定してcloneする</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2014-01-22 17:17:20</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Git]</b> <b>[GitHub]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>リモートから特定のブランチを指定してcloneする方法</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git clone -b ブランチ名 https://リポジトリのアドレス
-</pre></div></div>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />7位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>172</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/b0594efcf46e7eeb2821">新・三大JavaScript タッチ対応ライブラリ比較(Hammer.js/QuoJS/ TouchSwipe)</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-12-09 20:25:42</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[JavaScript]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>モバイルデバイス全盛の昨今、サイトのデザインだけでなく動きも対応しなくては！というケースがあります（私はありました）。</p>
-
-<p>そんなわけで、JavaScriptのタッチ対応ライブラリについて評価を行ってみました。ライブラリの一覧については<a href="http://www.queness.com/post/11755/11-multi-touch-and-touch-events-javascript-libraries" rel="nofollow noopener" target="_blank">こちらのサイト</a>が詳しく、ここから対応イベント・更新頻度を基に評価対象を表題の３つに絞り、その動作を比較してみました。</p>
-
-<p>各ライブラリによるタッチの挙動は、以下で比較可能です(おまけでTouchyも入ってます)。</p>
-
-<p><strong><a href="http://jsfiddle.net/icoxfog417/uQBvP/embedded/result/" rel="nofollow noopener" target="_blank">Gesture Detector</a></strong> </p>
-
-<p>今スマホやタブレット的な何かでこの記事を読まれているあなた！はぜひ実際に動かしてみて下さい。<br>
-私はAndroid4.0デバイスしか持ってないので、xxで動かんぞ、ということがあるかもしれないです。そんな時はコメントなどで連絡いただけたらうれしいです。また、コードは<a href="http://jsfiddle.net/icoxfog417/uQBvP/" rel="nofollow noopener" target="_blank">こちら</a>。</p>
-
-<h2>
-<span id="結論" class="fragment"></span><a href="#%E7%B5%90%E8%AB%96"><i class="fa fa-link"></i></a>結論</h2>
-
-<p><strong>結論としてはHammer.jsをお勧めしたい。</strong>ただ、１つに絞るならという話で、QuoJSも遜色ない。<br>
-デバイス・ブラウザの数は今後も増えていくはずで、そうなるとこうしたライブラリを選択する際「メンテナンスの継続性」は一番考慮すべきポイントと思う。そうなると、開発者以外の人の手で機能拡張プラグインなどがリリースされているHammer.jsにやはり軍配かなと。</p>
-
-<p>以下は、簡単な所感。</p>
-
-<table>
-<thead>
-<tr>
-<th style="text-align: left">ライブラリ</th>
-<th style="text-align: left">所感</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left"><a href="http://eightmedia.github.io/hammer.js/" rel="nofollow noopener" target="_blank">Hammer.js</a></td>
-<td style="text-align: left">対応イベントは豊富で精度もいい。カスタムジェスチャー・プラグインなどを追加可</td>
-</tr>
-<tr>
-<td style="text-align: left"><a href="http://quojs.tapquo.com/" rel="nofollow noopener" target="_blank">QuoJS</a></td>
-<td style="text-align: left">必要十分なイベントを十分な精度で検知してくれる。優秀。</td>
-</tr>
-<tr>
-<td style="text-align: left"><a href="http://labs.rampinteractive.co.uk/touchSwipe/demos/" rel="nofollow noopener" target="_blank">TouchSwipe</a></td>
-<td style="text-align: left">不安な実装だが、指の数やジェスチャーの時間など結構細かいパラメーターをくれる。</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>＜他ライブラリについて＞</strong><br>
-<a href="http://pep.briangonzalez.org/" rel="nofollow noopener" target="_blank">jQuery.pep.js</a><br>
-ドラッグ＆ドロップ特化だが、特化している分惚れ惚れするほど動きが滑らか。ぜひリンクからサンプルを試してもらいたい。ドラッグ＆ドロップの実装が必要なら、これ＋不足分を上記のライブラリでカバー、というスタイルをおすすめしたい。</p>
-
-<p><a href="http://touchyjs.org/" rel="nofollow noopener" target="_blank">Touchy</a><br>
-Exampleが面白い。タッチイベント全般というよりは特定のジェスチャー(FlickやWheel)に特化している感じで、そうしたジェスチャーがまさに必要なら上記のようなライブラリで対応するより滑らかに動いてくれるはず。ただ、mouseイベントに一切反応してくれないのでPCサイトと共用したいならちと面倒。</p>
-
-<p><a href="http://touchpunch.furf.com/" rel="nofollow noopener" target="_blank">jQuery UI Touch Punch</a><br>
-一言で言えば動かない。jQuery UIをタッチ対応させるというコンセプトは非常に良くjQuery touch で検索しても結構ヒットするのだが、Exampleは動かずissueも放置されている。もう更新は止まっている？</p>
-
-<p>以下、詳細。</p>
-
-<h2>
-<span id="hammerjs" class="fragment"></span><a href="#hammerjs"><i class="fa fa-link"></i></a>Hammer.js</h2>
-
-<p>単体として使うだけでなく、jQuery Pluginとしても導入できる。ジェスチャー検知時のオプションも豊富で、環境によってのチューニングもできそう。また、カスタムのジェスチャーも実装可能。ただ、rotateについてはQuoJSのようにLeft/Rightがないので注意。<br>
-機能拡張用プラグインも幾つかありより高度なタッチ機能を実装していきたいなら発展性があるHammer.jsは魅力だと思う。</p>
-
-<h2>
-<span id="quojs" class="fragment"></span><a href="#quojs"><i class="fa fa-link"></i></a>QuoJS</h2>
-
-<p>対応しているイベント、検知精度、共に十分。ライブラリはjQueryライクな実装で使いやすく、jQueryでサポート外となってしまったbrowserなどが取れるのもモバイル対応時にはありがたい。<br>
-ただ、タッチイベント対応時に必須なpreventDefaultを行う機能がライブラリ標準でないので、これは自分で行っておく必要がある(いつか対応される気もするが)。これをやっておかないと悲惨なのでその点は要注意。</p>
-
-<h2>
-<span id="touchswipe" class="fragment"></span><a href="#touchswipe"><i class="fa fa-link"></i></a>TouchSwipe</h2>
-
-<p>ExampleのPinch In と Outが逆な気がしたり(ソースを見るかぎりほんとに逆？)、動作が不自然だったりと不安なオーラを放っている・・・が、イベント発生時取得できる情報が多いためカスタマイズの幅は広いと思う（独自ジェスチャーを作るなど）。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />8位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>102</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/3d23aa154b483ef611d3">初めてのPull Requestを送りたいあなたへ</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2014-02-22 13:13:23</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Git]</b> <b>[GitHub]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>OSS活動をしてみたい、Pull Requestを送ってみたい・・・！</p>
-
-<p>だけどそんな気になるリポジトリもないし（あってもRubyやRailsみたいに敷居が高い）、コントリビューターになれるほどの技術力もそこまで・・・と、そんな状態の人は結構多いんじゃないかと思います。</p>
-
-<p>私自身もそうで今も大して変わりませんが、Pull Requestは送ることがあるという状態になってきたので、こうすればいいんじゃないかということをまとめてみたいと思います。</p>
-
-<h2>
-<span id="1webサービスやアプリを自分で作ってみる" class="fragment"></span><a href="#1web%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%84%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E8%87%AA%E5%88%86%E3%81%A7%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B"><i class="fa fa-link"></i></a>1.Webサービスやアプリを自分で作ってみる</h2>
-
-<p>仕事でも趣味でも構いません。まずはWebサービスなりモバイルのアプリなり作ってみるのがいいと思います。<br>
-今時は開発していてOSSを一切使わないなんてことはほぼないと思うので、これでまず「身近なOSS」を増やしていきます。</p>
-
-<p>そもそも何をつくったらいいのかわからん、それほど作りたいものもない、ということもあると思います。<br>
-そういう時は、以下の方法がお勧めです。</p>
-
-<ul>
-<li><p>他の人に聞く<br>
-「どんなアプリがあったら便利かな？」みたいな話をすると結構みんないろいろ言ってくれます。自分に作りたいものが特になければ、誰かにとって便利なものを作ってみるのがいいと思います(私はこれで作りました)。</p></li>
-<li><p>日頃使っているサービスのAPIを使ってみる<br>
-GitHubやQiitaはAPIを提供してくれています。自分が普段使っているアプリの情報を抽出して何かできないか考えてみるとアイデアが出てくるかもしれません。</p></li>
-<li><p>コンテストのサイトを見る<br>
-<a href="https://info.cookpad.com/24contest" rel="nofollow noopener" target="_blank">Cookpadのコンテスト</a>や<a href="http://ma9.mashupaward.jp/" rel="nofollow noopener" target="_blank">Mash up Award</a>のサイトを見てみると、テーマや応募作品などが見られます。これをヒントにすると作りやすいんじゃないかと思います。<br>
-特にMasu up Awardは<a href="http://ma9.mashupaward.jp/apis" rel="nofollow noopener" target="_blank">APIの一覧</a>があるので、これは結構ヒントになります。</p></li>
-</ul>
-
-<p>くだらないことでもいいので、思いついたらとにかくメモっておいた方がいいです。いざ作ろうと思って机の前に向かうとアイデアがなかなか出てきません。</p>
-
-<h2>
-<span id="2issueを作る見る" class="fragment"></span><a href="#2issue%E3%82%92%E4%BD%9C%E3%82%8B%E8%A6%8B%E3%82%8B"><i class="fa fa-link"></i></a>2.issueを作る・見る</h2>
-
-<p>OSSを使っていると、バグを発見したり「ここ、こうできないのかな？」みたいなことが出てきます。</p>
-
-<p>普通にみんな使っているOSSなのでバグを発見することは稀ですが、JavaScript系のライブラリはIEで動かすと結構バグが出てきてそれがとっかかりになりやすいです(幸か不幸か・・・)。私が初めてissue、Pull Requestを出したのも使っているライブラリのIE6のバグでした。jQueryのプラグインなどはコード量もそれほど多くないものが多く、とっつきやすいと思います。<br>
-自分で作る場合は理想的な環境で作ると思うので、バグについては仕事での方が発見する機会が多いかもしれません。</p>
-
-<p>それでGitHubなどのリポジトリのissueを見てみると、自分と同じ現象で悩んでいたりあるいは「これなら自分でも解決できそうだな」というissueがあったりします。あんまり大きいリポジトリよりは、小～中のプラグイン的なポジションのものの方が見つけやすいと思います。</p>
-
-<p>発見したバグのissueをあげる、もしくは解決できそうなissueを見つけたら、Pull Requestはもう目の前です。<br>
-※issueをあげる際は、ルールがある場合があるのでそこのところはきちんと確認。例えば、私がお世話になっているSlickGridというライブラリでは、<a href="https://github.com/mleibman/SlickGrid/wiki/Rules-of-conduct" rel="nofollow noopener" target="_blank">issueはバグ報告のみに限定</a>されています。</p>
-
-<h2>
-<span id="3pull-requestを送る" class="fragment"></span><a href="#3pull-request%E3%82%92%E9%80%81%E3%82%8B"><i class="fa fa-link"></i></a>3.Pull Requestを送る</h2>
-
-<p>ここから先の手順はいろいろなところにまとめられているので(<a href="http://kik.xii.jp/archives/179" rel="nofollow noopener" target="_blank">こちらなど</a>)、そこを参考にすればよいと思います。<br>
-基本的には、以下原則を外していなければそう身構えなくてもよいと思います。</p>
-
-<ul>
-<li>masterで作業しない<br>
-issueがすでにあるので、<code>issue10</code>みたいなissue番号がわかるブランチで作業すればよいと思います。他の人のPull Requestを見て参考にすると良い。</li>
-<li>ルールを確認する<br>
-Pull Requestを送る際はこうしてくれ、というルールがままあります(例：<a href="https://contribute.jquery.org/commits-and-pull-requests/" rel="nofollow noopener" target="_blank">jQueryの場合</a>)。それをきっちり確認しましょう。</li>
-<li>送る前に差分を確認する<br>
-特に注意すべきなのが、エンコードやインデントです。タブと空白の違いで差分が異常に出ていたりしたらNGですし、forやifのインデント、細かいですが<code>a=b</code>なのか<code>a = b</code>なのか、みたいなものも他ときちんと合わせておくことが重要です。
-また、差分はPull Requestを送る直前の状態と比較してとらないと意味がありません。<a href="http://qiita.com/xtetsuji/items/555a1ef19ed21ee42873" id="reference-389aedf60153e2542314">upstream</a>でmasterをきっちり最新に合わせておきましょう。</li>
-</ul>
-
-<p>issueからのPull Requestだと、#10の修正です、みたいな感じで送る際の文面も書きやすいです。<br>
-英語も含めた最後のチェックをして、Pull Requestを送ったらそれがOSS活動の第一歩です！</p>
-
-<p>しばらくコメントがついてないか何回も確認したりしてドキドキしますが、マージされることを祈り気長に待ちましょう。リポジトリによると思いますが、当然OSS活動が本業という人は少ないので、すぐにリアクションがあることは稀です。</p>
-
-<p>また、Pull Requestを送らないまでも情報が足りていないと思えばWikiに追記したり記事を書いたり、バグのissueで「私の環境ではxxだった」と情報を追加するなど、できることは色々とあります。</p>
-
-<p>もしこの記事を読んでPull Requestを初めて送った方がいたら、これほどうれしいことはないです。<br>
-よきOSSライフを！</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />9位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>65</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/2425b2b3dd70cef3f705">Angular.jsで実践 アニメーション</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-12-15 17:11:09</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[JavaScript]</b> <b>[AngularJS]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>スライドの動きやフリック時の画面遷移、昔アニメーションといえばゲームなイメージでしたが、モバイル端末が登場して以来結構身近なものになりました。</p>
-
-<p>ただ、身近だから簡単というわけでもなく、動作にアニメーションをつけるのは結構面倒。「これちょっとさ、下からひゅっと出てくる感じにしてよ」と言われてそんな簡単じゃないんだよとイラッとすることもあるだろう。<br>
-「アニメーションはもうデザインみたいなもんだし、CSSで書いてよろしくやってくれたらな・・・」とJQueryで実装しながら見るはかない夢・・・を現実にしてしまうのが、Angular.jsのng-Animateなのであります！</p>
-
-<h2>
-<span id="準備" class="fragment"></span><a href="#%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>準備</h2>
-
-<p>アニメーションを使用するには、angular.js本体意外にangular-animate.jsが必要となります。Googleがホスティングしてくださっているので、ありがたく使わせていただきましょう。<br>
-<a href="https://developers.google.com/speed/libraries/devguide#angularjs" rel="nofollow noopener" target="_blank">Google Hosted Library</a><br>
-//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular.min.js<br>
-//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-animate.js</p>
-
-<p>X.Y.Zはバージョン番号になります。これらをロードした上で、以下宣言をしておけばOK。</p>
-
-<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span>  <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'app'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'ngAnimate'</span><span class="p">]);</span> <span class="c1">//Animateモジュールの導入</span>
-</pre></div></div>
-
-<h2>
-<span id="css定義" class="fragment"></span><a href="#css%E5%AE%9A%E7%BE%A9"><i class="fa fa-link"></i></a>CSS定義</h2>
-
-<p>以下のようにCSSクラスの定義を行います。</p>
-
-<div class="code-frame" data-lang="css"><div class="highlight"><pre><span></span> <span class="p">.</span><span class="nc">demo</span><span class="p">.</span><span class="nc">ng-enter</span> <span class="p">{</span> <span class="p">}</span>            <span class="c">/* enter 処理の開始値 */</span>
- <span class="p">.</span><span class="nc">demo</span><span class="p">.</span><span class="nc">ng-enter-active</span> <span class="p">{</span> <span class="p">}</span>     <span class="c">/* enter 処理の終了値 */</span>
- <span class="p">.</span><span class="nc">demo</span><span class="p">.</span><span class="nc">ng-leave</span> <span class="p">{</span> <span class="p">}</span>            <span class="c">/* leave 処理の開始値 */</span>
- <span class="p">.</span><span class="nc">demo</span><span class="p">.</span><span class="nc">ng-leave-active</span> <span class="p">{</span> <span class="p">}</span>     <span class="c">/* leave 処理の終了値 */</span>
-</pre></div></div>
-
-<p>アニメーション実装は<a href="https://developer.mozilla.org/ja/docs/Web/Guide/CSS/Using_CSS_transitions" rel="nofollow noopener" target="_blank">CSS3のtransition</a>なので、ブラウザが対応していないと動かない点には注意(業務で使用しているのはIE？それは残念だ)。<br>
-以下のようにアニメーションさせたいDOMにクラス(この場合<code>demo</code>)を指定することで動作させることができます。実際のCSS3定義より簡単。</p>
-
-<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span> <span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-view</span> <span class="na">class</span><span class="o">=</span><span class="s">"demo"</span><span class="p">&gt;</span>Animate!<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</pre></div></div>
-
-<p>なお、1.2.5の段階ではアニメーションが使用可能なdirectiveは以下のようになっています。</p>
-
-<table>
-<thead>
-<tr>
-<th style="text-align: left">Directive</th>
-<th style="text-align: left">Supported Animations</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left">ngRepeat</td>
-<td style="text-align: left">enter, leave and move</td>
-</tr>
-<tr>
-<td style="text-align: left">ngView</td>
-<td style="text-align: left">enter and leave</td>
-</tr>
-<tr>
-<td style="text-align: left">ngInclude</td>
-<td style="text-align: left">enter and leave</td>
-</tr>
-<tr>
-<td style="text-align: left">ngSwitch</td>
-<td style="text-align: left">enter and leave</td>
-</tr>
-<tr>
-<td style="text-align: left">ngIf</td>
-<td style="text-align: left">enter and leave</td>
-</tr>
-<tr>
-<td style="text-align: left">ngClass</td>
-<td style="text-align: left">add and remove</td>
-</tr>
-<tr>
-<td style="text-align: left">ngShow &amp; ngHide</td>
-<td style="text-align: left">add and remove (the ng-hide class value)</td>
-</tr>
-</tbody>
-</table>
-
-<h2>
-<span id="実践" class="fragment"></span><a href="#%E5%AE%9F%E8%B7%B5"><i class="fa fa-link"></i></a>実践</h2>
-
-<p>実際作成してみたのがこちら。Animationに必要ないコードはなるべく省きました。</p>
-
-<p><a href="http://jsfiddle.net/icoxfog417/x94jb/" class="autolink" rel="nofollow noopener" target="_blank">http://jsfiddle.net/icoxfog417/x94jb/</a></p>
-
-<p>作ってみて気づいた点など。<br>
-* アニメーションで使用できる種類(linear/ease-inなど)は、CSS3のtransitionに準拠しています→<a href="http://webdev-nekodama.xii.jp/css/pDetail.php?g=animations&amp;p=animation-timing-function&amp;v=ease-in" rel="nofollow noopener" target="_blank">参考</a><br>
-* add/removeなど、要素の追加/削除にのみ反応するようで、単純に表示/非表示が切り替わる際は反応しない<br>
-* どんなanimationにしようかな、と思ったときはパワポのアニメーションとかが参考になる。実装は<a href="http://www.nganimate.org/" rel="nofollow noopener" target="_blank">こちら</a>に色々なサンプルがあるのでご参考。</p>
-
-<p>最後に、公式ドキュメントは<a href="http://code.angularjs.org/1.2.5/docs/api/ngAnimate" rel="nofollow noopener" target="_blank">こちら</a>。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />10位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>62</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/42d1a84439e30b1f0b11">GitHubでのリンク(issue/pull request/wiki etc)</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-11-20 12:51:56</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[GitHub]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>GitHub上でIssueを上げたりする際、リンクってどうやって張ったかな？と思うことがままあるためまとめておく。<br>
-※余談だが、テーブルのセル内で | を使いたいときは<code>&amp;#124;</code>を使う。</p>
-
-<table>
-<thead>
-<tr>
-<th style="text-align: left">記法</th>
-<th style="text-align: left">リンク先</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left">#番号</td>
-<td style="text-align: left">Issue または Pull Requestへのリンク (*)</td>
-</tr>
-<tr>
-<td style="text-align: left">commit番号</td>
-<td style="text-align: left">commitへのリンク(番号だけでOK)</td>
-</tr>
-<tr>
-<td style="text-align: left">@ユーザー名</td>
-<td style="text-align: left">ユーザーへのリンク</td>
-</tr>
-<tr>
-<td style="text-align: left">[[テキスト|WikiPage名]]</td>
-<td style="text-align: left">Wikiページへのリンク(Wikiページでのみ有効)</td>
-</tr>
-</tbody>
-</table>
-
-<ul>
-<li>Issue と Pull Request には共通の通し番号が使われ、重複はしないのでご安心あれ。</li>
-</ul>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />11位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>55</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/f5136a2bae229f45f108">View First で始める Scala Liftフレームワーク</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2014-01-03 21:42:01</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Scala]</b> <b>[Lift]</b> <b>[sbt]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>普通Webサイトを作るというときは画面から作ると思いますが、ことWebアプリケーションとなるとそうではないことが多いのではないでしょうか。</p>
-
-<p>それというのも、Railsをはじめとする昨今のフレームワークでは、画面に至るにはControllerが必要ですしModel定義がないと記述できないこともままあります。</p>
-
-<p>・・・まず簡単に画面を作らせてくれ。そこからModelの構成や画面遷移を検討したいんだ。</p>
-
-<p>そんな心の声を実現するフレームワーク、それがLiftなのです。</p>
-
-<h1>
-<span id="lift-フレームワークの-1--2--3" class="fragment"></span><a href="#lift-%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%AE-1--2--3"><i class="fa fa-link"></i></a>Lift フレームワークの 1 ・ 2 ・ 3</h1>
-
-<p>ここでLiftの紹介をしているとそれだけで終わってしまうので、それは<a href="http://qiita.com/icoxfog417/items/8ac0ac21434fd229395f" id="reference-5a93eff51d4eceaa2d78">こちら</a>を見ていただくとして、ここでは実際にLiftを使ったアプリケーションの作成方法を紹介します。そのStepは以下の通り。</p>
-
-<p>1 初期設定<br>
-2 Viewを作る<br>
-3 Modelを作る</p>
-
-<p>チュートリアル用のコードは<a href="https://github.com/icoxfog417/lift_tutorial" rel="nofollow noopener" target="_blank">こちら</a>。ソース中には関連する情報へのリンクなども記載するようにしました。</p>
-
-<h2>
-<span id="1初期設定" class="fragment"></span><a href="#1%E5%88%9D%E6%9C%9F%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>1.初期設定</h2>
-
-<p>まずScalaとそのビルドツールであるsbtがないと話が始まらないので、まずこれらをセットアップします・・・が、これだけでもえらく長いのでここは3分クッキングばりにすでにできているものとして話を始めます。<br>
-→Windowsの方は、<a href="http://qiita.com/icoxfog417/items/31d88358942d8dd0eb8b" id="reference-04ef77cd6733fb8ecda3">セットアップ方法をまとめた記事</a>を書きましたのでご参考ください。</p>
-
-<p>そして公式サイトにサンプルが置いてあるので、これをダウンロードしてきます。<br>
-<a href="http://liftweb.net/download" class="autolink" rel="nofollow noopener" target="_blank">http://liftweb.net/download</a><br>
-<a href="https://github.com/lift" rel="nofollow noopener" target="_blank">LiftのGithub</a>にもリポジトリがあるので、こちらからcloneするのでもOKです。</p>
-
-<p>あとはサイトに書いてある通り、試しにダウンロードしたフォルダ内にあるlift_basicでsbtコマンドを実行し、<code>container:start</code>を実行すれば<code>http://localhost:8080</code>にサイトが立ち上がるはずです。</p>
-
-<h2>
-<span id="2viewを作る" class="fragment"></span><a href="#2view%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>2.Viewを作る</h2>
-
-<p>ここからがLiftの本領発揮、まずは画面を作ります。<br>
-Viewで出番になるのは、主に以下のフォルダ内のファイルです。</p>
-
-<p>src/main/webapp<br>
-src/main/scala/code/snippet</p>
-
-<p>src/main/scala/code/view というもっともらしいフォルダがありますが、基本的にこいつの出番はありません。<a href="https://github.com/lift/examples/blob/master/combo/example/src/main/scala/net/liftweb/example/view/XmlFun.scala" rel="nofollow noopener" target="_blank">example</a>を見るとページを直接レンダリングする際に使うみたいですが(Response.writeでタグを打っていくイメージ)、そんな機会はほぼないと思います。</p>
-
-<p>基本的にはwebapp配下のhtmlファイルでレイアウトを整え、サーバーサイドでの処理が必要な部分をsnippetで記載する、といったイメージになります。</p>
-
-<h3>
-<span id="atemplateを作る" class="fragment"></span><a href="#atemplate%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>a.templateを作る</h3>
-
-<p>templateなどはwebapp配下のtemplate-hiddenに格納します。<br>
-ちなみに、Liftでは<code>-hidden</code>がついたフォルダ、<code>.</code>や<code>_</code>で始まるテンプレートファイルはHTTPアクセスを発生させないでロードされるようです(<a href="http://demo.liftweb.net/templating/surround" rel="nofollow noopener" target="_blank">こちら</a>)。</p>
-
-<p>ページのベースとなるようなhtml、共通で使いたいメニューやフッターといった部品はこの中に格納しておきます。</p>
-
-<h3>
-<span id="bviewを作る" class="fragment"></span><a href="#bview%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>b.Viewを作る</h3>
-
-<p>作成したテンプレートを使いながらViewを作成します。テンプレートの呼び出し方法は、主に以下２つです(その他は<a href="https://www.assembla.com/spaces/liftweb/wiki/Templates_and_Binding" rel="nofollow noopener" target="_blank">こちら</a>)。</p>
-
-<p><em>Surround</em><br>
-要素を囲う、逆に言えばtemplateの中に埋め込むような感じになります。<br>
-指定方法は以下のようにclassへ指定を行います。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&lt;body class="lift:content_id=main"&gt;
-  &lt;div id="main" class="lift:surround?with=default;at=content"&gt;
-    default.html内のid="content"に埋め込まれます
-  &lt;/div&gt;
-&lt;/body&gt;
-</pre></div></div>
-
-<p>Surroundされる側は、上記のように<code>class="lift:content_id=main"</code>と埋め込まれるcontentを指定しておく。</p>
-
-<p><em>Embed</em><br>
-要素を追加します。こちらは、<code>what</code>でファイル名のhtmlを除いた部分を指定します。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&lt;span class="lift:embed?what=_copywrite"&gt;&lt;/span&gt;
-</pre></div></div>
-
-<div class="code-frame" data-lang="html">
-<div class="code-lang"><span class="bold">_copywrite.html</span></div>
-<div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">"http://www.w3.org/1999/xhtml"</span> <span class="na">lift:content_id</span><span class="o">=</span><span class="s">"copywrite"</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;&lt;</span><span class="nt">meta</span> <span class="na">content</span><span class="o">=</span><span class="s">"text/html; charset=UTF-8"</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">"content-type"</span> <span class="p">/&gt;&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">body</span> <span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">"copywrite"</span><span class="p">&gt;</span>Copyright 20xx - 20yy All Rights Reserved.<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-
-<h3>
-<span id="csnippetを作る" class="fragment"></span><a href="#csnippet%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>c.snippetを作る</h3>
-
-<p>サーバーサイドで処理をしたい箇所についてはsnippetを作成します。ControllerはないのでPOSTなどを受け取るFORM処理もsnippetで実装しますが、最初は一旦Modelや永続化の方法は脳内から消し去り、画面の動きをhtmlで記述することに注力します。</p>
-
-<p><em>c1.snippetの呼び出し</em></p>
-
-<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">"lift:helloWorld.howdy"</span><span class="p">&gt;</span>
- Welcome to your Lift app at <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">"time"</span><span class="p">&gt;</span>Time goes here<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-</pre></div></div>
-
-<p>HTML側の記載は、CSS classに<code>lift:クラス名.メソッド名</code>で呼び出すsnippetを記載します。<br>
-注目すべきは<code>&lt;span id="time"&gt;Time goes here&lt;/span&gt;</code>と書いてある箇所ですが、ここは実際にはsnippetで処理されて置き換えられる部分です。<br>
-これが何を意味しているかというと、「snippetの実装がまだ済んでいない箇所はサンプルデータ・タグをいれておくことができるし、実装後もそれを消す必要はない」という点です。<br>
-これにより、サーバーサイドの実装はいったん忘れてデザインに集中することができます。</p>
-
-<div class="code-frame" data-lang="scala"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
-  <span class="k">lazy</span> <span class="k">val</span> <span class="n">date</span><span class="k">:</span> <span class="kt">Box</span><span class="o">[</span><span class="kt">Date</span><span class="o">]</span> <span class="k">=</span> <span class="nc">DependencyFactory</span><span class="o">.</span><span class="n">inject</span><span class="o">[</span><span class="kt">Date</span><span class="o">]</span> <span class="c1">// inject the date</span>
-
-  <span class="c1">// replace the contents of the element with id "time" with the date</span>
-  <span class="k">def</span> <span class="n">howdy</span> <span class="k">=</span> <span class="s">"#time *"</span> <span class="o">#&gt;</span> <span class="n">date</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">toString</span><span class="o">)</span>
-<span class="o">}</span>
-</pre></div></div>
-
-<p>snippet側はこちら。<code>src/main/scala/code/snippet</code>に突っ込んでいきます(snippetが検索されるフォルダは、Boot.scalaの<code>LiftRules.addToPackages("code")</code>で定義されています)。</p>
-
-<p>注目すべきは <code>#&gt;</code> という見慣れない演算子ですが、こいつはjQueryのSelectorのようなものです。<br>
-引数として渡されるのはclassが指定されたDOMですが、その中から処理をしたい部分をidやclassを指定して抜き出すことができます。この場合は「id=timeの要素全部」が対象になります。<br>
-その種類については<a href="https://www.assembla.com/wiki/show/liftweb/binding_via_css_selectors" rel="nofollow noopener" target="_blank">こちら</a>参照。</p>
-
-<p><em>c2.snippetでのリクエストの処理</em><br>
-フォームなどによるリクエスト処理は以下のように行います。</p>
-
-<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">"lift:TodoView.add?form=post"</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"text"</span> <span class="na">name</span><span class="o">=</span><span class="s">"title"</span> <span class="na">class</span><span class="o">=</span><span class="s">"column span-10"</span><span class="p">/&gt;</span>
-  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"submit"</span> <span class="na">value</span><span class="o">=</span><span class="s">"Add Todo!"</span> <span class="na">style</span><span class="o">=</span><span class="s">"margin-top:5px;"</span><span class="p">/&gt;</span>
-<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-</pre></div></div>
-
-<div class="code-frame" data-lang="scala"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="n">add</span><span class="o">(</span><span class="n">form</span><span class="k">:</span> <span class="kt">NodeSeq</span><span class="o">)</span><span class="k">:</span> <span class="kt">NodeSeq</span> <span class="o">=</span> <span class="o">{</span>
-  <span class="k">var</span> <span class="n">title</span> <span class="k">=</span> <span class="s">""</span>
-
-  <span class="k">def</span> <span class="n">addTodo</span><span class="o">()</span> <span class="k">=</span> <span class="o">{</span>
-    <span class="k">var</span> <span class="n">todo</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Todo</span><span class="o">(</span><span class="n">title</span><span class="o">)</span>   
-    <span class="n">todo</span><span class="o">.</span><span class="n">validate</span> <span class="k">match</span><span class="o">{</span>
-      <span class="k">case</span> <span class="nc">Nil</span> <span class="k">=&gt;</span> <span class="n">todo</span><span class="o">.</span><span class="n">save</span><span class="o">();</span> <span class="n">S</span><span class="o">.</span><span class="n">notice</span><span class="o">(</span><span class="s">"Added "</span> <span class="o">+</span> <span class="n">todo</span><span class="o">.</span><span class="n">title</span><span class="o">)</span>
-      <span class="k">case</span> <span class="n">x</span> <span class="k">=&gt;</span> <span class="n">S</span><span class="o">.</span><span class="n">error</span><span class="o">(</span><span class="n">x</span><span class="o">);</span> <span class="n">S</span><span class="o">.</span><span class="n">mapSnippet</span><span class="o">(</span><span class="s">"TodoView.add"</span><span class="o">,</span> <span class="n">doBind</span><span class="o">)</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-
-  <span class="k">def</span> <span class="n">doBind</span><span class="o">(</span><span class="n">form</span><span class="k">:</span> <span class="kt">NodeSeq</span><span class="o">)</span><span class="k">:</span> <span class="kt">NodeSeq</span> <span class="o">=</span> <span class="o">{</span>
-    <span class="k">var</span> <span class="n">sel</span> <span class="k">=</span> 
-        <span class="s">"name=title"</span> <span class="o">#&gt;</span> <span class="nc">SHtml</span><span class="o">.</span><span class="n">onSubmit</span><span class="o">(</span><span class="n">title</span> <span class="k">=</span> <span class="k">_</span><span class="o">)</span> <span class="o">&amp;</span>
-        <span class="s">"type=submit"</span> <span class="o">#&gt;</span> <span class="nc">SHtml</span><span class="o">.</span><span class="n">onSubmitUnit</span><span class="o">(</span><span class="n">addTodo</span><span class="o">)</span> <span class="o">;</span>
-        <span class="k">return</span> <span class="n">sel</span><span class="o">(</span><span class="n">form</span><span class="o">)</span>
-    <span class="o">}</span>
-
-  <span class="n">doBind</span><span class="o">(</span><span class="n">form</span><span class="o">)</span>
-
-<span class="o">}</span>
-
-</pre></div></div>
-
-<p>リクエスト処理は、JavaScriptのコールバックのような形で記載を行います。<br>
-scala側の<code>doBind</code>で、submit時に受け取る値と処理関数(この場合<code>addTodo</code>)を指定しており、実際の処理はこの<code>addTodo</code>内で行っています。</p>
-
-<p>つまり、Liftにおけるフォーム処理snippetは、1.サーバーサイドの変数/関数とDOMのバインド、2.実際処理、の2つを実装するのが基本(のはず)です。</p>
-
-<p><em>c3.Ajax処理</em><br>
-Ajaxの簡単なサンプルはこちらになります(<a href="http://cookbook.liftweb.net/#AjaxFormProcessing" rel="nofollow noopener" target="_blank">Lift cookbook</a>より)。</p>
-
-<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">data-lift</span><span class="o">=</span><span class="s">"form.ajax"</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-lift</span><span class="o">=</span><span class="s">"EchoForm"</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"text"</span> <span class="na">name</span><span class="o">=</span><span class="s">"name"</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">"What's your name?"</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"submit"</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"result"</span><span class="p">&gt;</span>Your name will be echoed here<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</pre></div></div>
-
-<div class="code-frame" data-lang="scala"><div class="highlight"><pre><span></span><span class="k">object</span> <span class="nc">EchoForm</span> <span class="k">extends</span> <span class="o">{</span>
-  <span class="k">def</span> <span class="n">render</span> <span class="k">=</span> <span class="o">{</span>
-    <span class="k">var</span> <span class="n">name</span> <span class="k">=</span> <span class="s">""</span>
-    <span class="k">def</span> <span class="n">process</span><span class="o">()</span> <span class="k">:</span> <span class="kt">JsCmd</span> <span class="o">=</span> <span class="nc">SetHtml</span><span class="o">(</span><span class="s">"result"</span><span class="o">,</span> <span class="nc">Text</span><span class="o">(</span><span class="n">name</span><span class="o">))</span>
-
-    <span class="s">"@name"</span> <span class="o">#&gt;</span> <span class="n">text</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">s</span> <span class="k">=&gt;</span> <span class="n">name</span> <span class="k">=</span> <span class="n">s</span><span class="o">)</span> <span class="o">&amp;</span>
-    <span class="s">"type=submit"</span> <span class="o">#&gt;</span> <span class="n">ajaxSubmit</span><span class="o">(</span><span class="s">"Click Me"</span><span class="o">,</span> <span class="n">process</span><span class="o">)</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div></div>
-
-<p><code>ajaxSubmit</code>をバインドしているように、ここまでは基本的にフォーム処理と同じです(<code>ajaxText</code>のように、あらかじめAjaxイベントが発生する要素をレンダリングすることも可能です。また、イベントに合わせて<code>"button [onclick]" #&gt; SHtml.ajaxInvoke(callback)</code>のように記載することもできます)。</p>
-
-<p>ただ、Ajax処理の場合コールバック処理の帰り値は<code>NodeSeq</code>でなく<code>JsCmd</code>である必要があります。上記では<code>def process() : JsCmd = SetHtml("result", Text(name))</code>の部分になりますが、これは該当IDの部分を置き換えるJavaScript処理を返却・・・という意味合いになります。使用可能なJsCmdは<a href="http://liftweb.net/api/26/api/#net.liftweb.http.js.JsCmds%24" rel="nofollow noopener" target="_blank">API</a>の通りなので、ここを見つつ実装する感じになります。</p>
-
-<p>この辺りは実装しているとJavaScriptの方が断然楽、というところがいくつもあるので、棲み分けを考える必要があると思います(サーバーサイド処理を呼び出すだけのTemplateを作って、jQuery Ajaxで処理する、Jsonでやり取りするなど・・・)。</p>
-
-<h2>
-<span id="modelを作る" class="fragment"></span><a href="#model%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>Modelを作る</h2>
-
-<p>LiftにはRailsにおけるActiveRecordのような便利野郎はいないので、もうちょい実テーブルに近い形で記述します。これは一見デメリットのようにも見えますが、実際のテーブルがあまり隠蔽されずちゃんと扱ってる感があるというメリットもあります。</p>
-
-<h3>
-<span id="db設定" class="fragment"></span><a href="#db%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>DB設定</h3>
-
-<p>DBへアクセスを行うModelを作成するためには、いろいろと設定が必要なのでまずそれを行います。</p>
-
-<p><em>mapperライブラリを追加</em><br>
-Modelを定義するにあたりmapperのライブラリが必要なため、以下のような感じでこいつを<code>build.sbt</code>に追加します。また、DBドライバも当然必要なのでそちらも追加(今回はh2dbのドライバを設定)。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>libraryDependencies ++= {
-  val liftVersion = "2.6-M2"
-  Seq(
-    "net.liftweb"       %% "lift-webkit"        % liftVersion        % "compile",
-    "net.liftweb"       %% "lift-mapper"        % liftVersion        % "compile",
-    "net.liftmodules"   %% "lift-jquery-module_2.6" % "2.5",
-・・・
-    "com.h2database"    % "h2"                  % "1.3.167"
-</pre></div></div>
-
-<p>Eclipseを使っている場合は、sbtを実行後eclipseコマンドで依存関係をEclipse側のプロジェクトに反映する。</p>
-
-<p><em>DBドライバの追加</em><br>
-当然DBへ接続できないと話にならないので、その設定を追加します。こうしたプロパティ関係は<code>src/main/scala/bootstrap/liftweb/Boot.scala</code>へ記載します。<br>
-この設定はちょっと長めなので、lift_basicの中の<a href="https://github.com/lift/lift_26_sbt/blob/master/scala_210/lift_basic/src/main/scala/bootstrap/liftweb/Boot.scala" rel="nofollow noopener" target="_blank">こちら</a>をご参照ください。</p>
-
-<h3>
-<span id="modelを作成する" class="fragment"></span><a href="#model%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Modelを作成する</h3>
-
-<p>LiftでのModel定義は以下のように行います。ポイントとしては、Mapperを継承してModel classを作成し、それを扱う(findしたりsaveしたりする)オブジェクトをMetaMapper traitを使用して作成するという点です。</p>
-
-<p>MapperはLongKeyedをはじめ複数の種類があり、キーの形態に合わせて使います。<br>
-Mapper内の項目はMappedStringなどの項目用のクラスを使って定義していきます。これはちょうど「オブジェクト上の項目(メンバ)とDB上のカラムをMapしている」感じになります。<br>
-→バリデーションや型定義などもここへ記載していきます。</p>
-
-<p>種類と使い方はちょっと書ききれないので、詳細は<a href="https://www.assembla.com/wiki/show/liftweb/Mapper" rel="nofollow noopener" target="_blank">こちら</a>、また<a href="http://liftweb.net/api/26/api/#package" rel="nofollow noopener" target="_blank">APIドキュメント</a>をご参照ください。</p>
-
-<div class="code-frame" data-lang="scala"><div class="highlight"><pre><span></span><span class="k">object</span> <span class="nc">Todo</span> <span class="k">extends</span> <span class="nc">Todo</span> <span class="k">with</span> <span class="nc">LongKeyedMetaMapper</span><span class="o">[</span><span class="kt">Todo</span><span class="o">]{</span>
-  <span class="k">override</span> <span class="k">def</span> <span class="n">dbTableName</span> <span class="k">=</span> <span class="s">"todos"</span> <span class="c1">// define the DB table name</span>
-
-  <span class="c1">// add static method (like findById etc ...)</span>
-<span class="o">}</span>
-
-<span class="k">class</span> <span class="nc">Todo</span> <span class="k">extends</span> <span class="nc">LongKeyedMapper</span><span class="o">[</span><span class="kt">Todo</span><span class="o">]</span> <span class="k">with</span> <span class="nc">IdPK</span> <span class="o">{</span>
-  <span class="k">def</span> <span class="n">getSingleton</span> <span class="k">=</span> <span class="nc">Todo</span>
-
-  <span class="k">object</span> <span class="nc">todo</span> <span class="k">extends</span> <span class="nc">MappedString</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="mi">100</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">override</span> <span class="k">def</span> <span class="n">validations</span> <span class="k">=</span> <span class="n">valMaxLen</span><span class="o">(</span><span class="mi">256</span><span class="o">,</span> <span class="s">"message must be under 256 characters long "</span><span class="o">)</span> <span class="k">_</span> <span class="o">::</span> <span class="k">super</span><span class="o">.</span><span class="n">validations</span>
-  <span class="o">}</span>
-  <span class="k">object</span> <span class="nc">done</span> <span class="k">extends</span> <span class="nc">MappedBoolean</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
-
-  <span class="k">object</span> <span class="nc">minutes</span> <span class="k">extends</span> <span class="nc">MappedDecimal</span><span class="o">(</span><span class="k">this</span><span class="o">,</span><span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">override</span> <span class="k">def</span> <span class="n">defaultValue</span> <span class="k">=</span> <span class="mi">5</span>
-  <span class="o">}</span>  
-<span class="o">}</span>
-</pre></div></div>
-
-<p>Modelの作成が終わったら、Boot.scalaにDBテーブルとの連動設定を追記します。<br>
-<code>Schemifier.schemify(true, Schemifier.infoF _, Todo)</code></p>
-
-<p>※scalaにはJavaで言うところのstaticがありません。クラス間で共通の変数はobjectで宣言してそこにまとめることになってます(objectはシングルトンとして扱われる)。クラスと同盟のオブジェクトはコンパニオンオブジェクトと呼ばれます。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />12位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>54</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/59a07c9a74084114fe23">Angular.js レンダリング処理をカスタマイズする</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-12-10 00:09:16</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[JavaScript]</b> <b>[AngularJS]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Angular.jsを使っていてこんな風に思ったことはないだろうか。</p>
-
-<ul>
-<li>ループ内のDOMをテンプレート化したいな</li>
-<li>レンダリング処理を部品化してカスタムタグで呼び出したい</li>
-<li>jQuery UIとかを使いたいけど、どこで処理すればいいのか(document.readyだと新規追加したものに適用されない)</li>
-</ul>
-
-<p>そんな願いをかなえるのがAngular.jsのdirectiveです。directiveは、一言で言えば  <strong>ModelとDOMを受け取ってレンダリング処理(compile)を行う関数</strong>  で、これを使って上記のようなカスタマイズをすることができます。</p>
-
-<p>そんなわけで、作成したサンプルは<a href="http://jsfiddle.net/icoxfog417/uvyaD/" rel="nofollow noopener" target="_blank">こちら</a>。このコードを使って解説をしていきたいと思います。</p>
-
-<h2>
-<span id="テンプレート化する" class="fragment"></span><a href="#%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E5%8C%96%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>テンプレート化する</h2>
-
-<p>テンプレート化は、以下のようにかけます。<br>
-<code>&lt;disp-destination &gt;&lt;/disp-destination&gt;</code>、これがdirectiveを呼び出しレンダリングしている箇所です。何このタグ？というのは次のセクションで語るとして、ここではscriptタグで宣言したテンプレートをdirectiveでどう使っているのかを解説します。</p>
-
-<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span>・・・
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"itemList"</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"item"</span> <span class="na">ng-repeat</span><span class="o">=</span><span class="s">"d in destinations"</span> <span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">disp-destination</span> <span class="p">&gt;&lt;/</span><span class="nt">disp-destination</span><span class="p">&gt;</span><span class="c">&lt;!-- directiveによるレンダリング --&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-・・・
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">"text/html"</span> <span class="na">id</span><span class="o">=</span><span class="s">"template"</span><span class="p">&gt;</span><span class="c">&lt;!--</span> <span class="nx">こちらがテンプレート</span> <span class="o">--&gt;</span>
-    <span class="p">{{</span><span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">}}</span><span class="o">:</span><span class="p">{{</span><span class="nx">d</span><span class="p">.</span><span class="nx">address</span><span class="p">}}</span>
-    <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"complete"</span> <span class="nx">style</span><span class="o">=</span><span class="s2">"font-size:8px"</span> <span class="nx">range</span><span class="o">-</span><span class="nx">select</span> <span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div></div>
-
-<p>こちらがdirectiveの宣言。moduleに<code>dispDestination</code>を追加しています。directiveではテンプレートを返すことができ、ここでjQueryで取得したテンプレートのhtml DOMを渡しています。これでテンプレートによるレンダリングが行われるのだ。</p>
-
-<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">santaApp</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s2">"santaApp"</span><span class="p">,[]);</span>
-<span class="err">・・・</span>
-<span class="nx">santaApp</span><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s2">"dispDestination"</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="c1">//テンプレートをid指定で取得、htmlを設定</span>
-    <span class="k">return</span> <span class="p">{</span>
-      <span class="nx">restrict</span><span class="o">:</span> <span class="s1">'E'</span><span class="p">,</span>
-      <span class="nx">template</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#template"</span><span class="p">).</span><span class="nx">html</span><span class="p">()</span>
-    <span class="p">};</span>
-<span class="p">})</span>
-</pre></div></div>
-
-<p>そしてお気づきかもしれないが、directiveは定義するときはキャメルケースだが使うときはハイフンつなぎになる(customDirectiveならcustom-directiveになる)。この点は要注意。</p>
-
-<h2>
-<span id="カスタムタグを使いたい" class="fragment"></span><a href="#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%BF%E3%82%B0%E3%82%92%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84"><i class="fa fa-link"></i></a>カスタムタグを使いたい</h2>
-
-<p>先ほどのJavaScriptコードで<code>restrict 'E'</code>という記載がありましたが、これがキモ。restrictがdirectiveの指定方法を表しています(EだとElement、つまりタグで判断する)。<br>
-指定の方法はいくつかあり下記にまとめていますが、正直AかEしか使わないので他のrestrictについてはドキュメント上存在するが動作は未確認。。。</p>
-
-<table>
-<thead>
-<tr>
-<th style="text-align: left">restrict</th>
-<th style="text-align: left">directiveの指定方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left">A(デフォルト)</td>
-<td style="text-align: left">属性として指定： &lt;div custom-directive&gt;&lt;/div&gt;</td>
-</tr>
-<tr>
-<td style="text-align: left">E</td>
-<td style="text-align: left">タグとして指定： &lt;custom-directive&gt;&lt;/custom-directive&gt;</td>
-</tr>
-<tr>
-<td style="text-align: left">C</td>
-<td style="text-align: left">クラスとして指定： &lt;div class="custom-directive"&gt;&lt;/div&gt;</td>
-</tr>
-<tr>
-<td style="text-align: left">M</td>
-<td style="text-align: left">コメントとして指定： &lt;!-- directive: custom-directive --&gt;</td>
-</tr>
-</tbody>
-</table>
-
-<p>このrestrictをうまく使用することで、モジュール化を行うとともに可読性の高いViewを作成できます。</p>
-
-<h2>
-<span id="レンダリングしたdomを処理したいjquery-uiなど" class="fragment"></span><a href="#%E3%83%AC%E3%83%B3%E3%83%80%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9Fdom%E3%82%92%E5%87%A6%E7%90%86%E3%81%97%E3%81%9F%E3%81%84jquery-ui%E3%81%AA%E3%81%A9"><i class="fa fa-link"></i></a>レンダリングしたDOMを処理したい(jQuery UIなど)</h2>
-
-<p>今回はjQuery UI からSliderを使用しました。ポイントは以下2点。</p>
-
-<p>1 directiveを使用し、DOM要素をSliderオブジェクトにする( <code>$("xxx").slider()</code> を行う)<br>
-2 Sliderをスライドさせたイベントを検知し、scope内のModelに反映する</p>
-
-<p>directiveでは以下の変数を受け取ることができ、elementがあれば①はもうクリア可能です。問題は②のイベントハンドリングで、ここはSlider側で検知したイベントからAngular内のscopeを更新する必要があります。</p>
-
-<p><strong>directiveで受け取れる変数</strong><br>
-* scope：グローバルでなくローカルスコープなので注意。この場合、ループ中のスコープになるため d というループ中で使用している変数にアクセスできる<br>
-* element：directiveが付与されたDOM<br>
-* attr：指定された属性の情報</p>
-
-<p>解決策として今回とったのは、Angularのscopeにあらかじめ値同期用の関数を用意しておき、それをイベント処理内で呼び出す方法です。<br>
-→ng-Modelを設定したフォーム項目を用意しておいてそこの値を変えればOKかなと思ったがうまくいかなかった。他にいいやり方があったら教えてください。。。</p>
-
-<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">santaApp</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s2">"santaApp"</span><span class="p">,[]);</span>
-<span class="nx">santaApp</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s2">"santaAppCtrl"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">){</span>
-    <span class="nx">$scope</span><span class="p">.</span><span class="nx">title</span>  <span class="o">=</span> <span class="s2">"Santa Claus Delivery List"</span><span class="p">;</span>
-    <span class="nx">$scope</span><span class="p">.</span><span class="nx">destinations</span> <span class="o">=</span> 
-        <span class="p">[</span><span class="k">new</span> <span class="nx">Destination</span><span class="p">(</span><span class="s2">"Mike"</span><span class="p">,</span><span class="s2">"NewYork"</span><span class="p">),</span>
-         <span class="k">new</span> <span class="nx">Destination</span><span class="p">(</span><span class="s2">"Bekky"</span><span class="p">,</span><span class="s2">"Japan"</span><span class="p">),</span>
-         <span class="k">new</span> <span class="nx">Destination</span><span class="p">(</span><span class="s2">"Bob"</span><span class="p">,</span><span class="s2">"Africa"</span><span class="p">)];</span>
-    <span class="c1">//受け取ったindex要素にcompleteの値を反映する関数</span>
-    <span class="nx">$scope</span><span class="p">.</span><span class="nx">applyComplete</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="nx">complete</span><span class="p">){</span>
-        <span class="nx">$scope</span><span class="p">.</span><span class="nx">destinations</span><span class="p">[</span><span class="nx">index</span><span class="p">].</span><span class="nx">complete</span> <span class="o">=</span> <span class="nx">complete</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">})</span>
-
-<span class="nx">santaApp</span><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s2">"rangeSelect"</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">attrs</span><span class="p">){</span>
-        <span class="nx">$</span><span class="p">(</span><span class="nx">element</span><span class="p">[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">slider</span><span class="p">({</span>
-              <span class="nx">range</span><span class="o">:</span> <span class="s2">"min"</span><span class="p">,</span>
-              <span class="nx">value</span><span class="o">:</span> <span class="nx">scope</span><span class="p">.</span><span class="nx">d</span><span class="p">.</span><span class="nx">complete</span><span class="p">,</span>
-              <span class="nx">min</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-              <span class="nx">max</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-              <span class="nx">slide</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">event</span><span class="p">,</span> <span class="nx">ui</span> <span class="p">)</span> <span class="p">{</span>
-                  <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#itemList .complete"</span><span class="p">).</span><span class="nx">index</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-                  <span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">element</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#delivery"</span><span class="p">)).</span><span class="nx">scope</span><span class="p">();</span> <span class="c1">//グローバルスコープ取得</span>
-                  <span class="nx">scope</span><span class="p">.</span><span class="nx">applyComplete</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="nx">ui</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span> <span class="c1">//slideイベントからscope内の値を更新</span>
-              <span class="p">}</span>
-        <span class="p">});</span>
-    <span class="p">}</span>
-<span class="p">})</span>
-</pre></div></div>
-
-<p>以上が、Angular.jsにおけるレンダリング処理のカスタマイズ方法です。ここを知っていると大分活用の幅が広がるので、ぜひお試しされたし！<br>
-公式ドキュメントは<a href="http://docs.angularjs.org/guide/directive" rel="nofollow noopener" target="_blank">こちら</a>。英語だが、結構丁寧でわかりやすい。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />13位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>54</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/9d8ba004c6476d2320c8">ApacheのSSLCipherSuiteにRC4を設定すべきではない</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-09-01 12:52:21</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Apache]</b> <b>[セキュリティ]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Apacheに限らないが、暗号化方式としてRC4暗号が最優先に設定されていることがままある。<br>
-これは必ずしもいいとは言えない・・・ので、その理由をまとめてみた。</p>
-
-<p>そもそもRC4がよく設定されているのには理由がある。<br>
-過去BEASTという攻撃方法が発見されCBC暗号(Cipher Block Chaining：一定の長さごとに暗号化を行う方式)は全部危ない！？という感じになった。そこで登場したのがストリーム暗号の代表格RC4であり、これに設定すればＯＫ、という流れが今にも至っているのだ。<br>
-<a href="http://bizex.goo.ne.jp/column/ip_16/84/61/" rel="nofollow noopener" target="_blank">BEAST攻撃について</a></p>
-
-<p>ただ当時とは状況が変わり、RC4を設定するのが最適とは言えなくなってきた。</p>
-
-<h2>
-<span id="理由1-rc4は非推奨となった" class="fragment"></span><a href="#%E7%90%86%E7%94%B11-rc4%E3%81%AF%E9%9D%9E%E6%8E%A8%E5%A5%A8%E3%81%A8%E3%81%AA%E3%81%A3%E3%81%9F"><i class="fa fa-link"></i></a>理由1 RC4は非推奨となった</h2>
-
-<p>まず有権者に訴えたいのは、現在RC4は脆弱性が発見され、「電子政府における調達のために参照すべき暗号のリスト（CRYPTREC暗号リスト）」にて推奨されない運用監視暗号の対象になっている、ということであります。</p>
-
-<p><a href="http://search.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&amp;id=595212035&amp;Mode=2" rel="nofollow noopener" target="_blank">電子政府における調達のために参照すべき暗号のリスト（CRYPTREC暗号リスト）</a></p>
-
-<p>少なくとも攻撃が困難であるSSL/TLS1.0以上で運用を行う必要がある。<br>
-<a href="http://www.cryptrec.go.jp/estimation/techrep_id2205.pdf" rel="nofollow noopener" target="_blank">ストリーム暗号RC4の安全性評価</a></p>
-
-<h2>
-<span id="理由2cbc暗号利用時の対策が実装されている" class="fragment"></span><a href="#%E7%90%86%E7%94%B12cbc%E6%9A%97%E5%8F%B7%E5%88%A9%E7%94%A8%E6%99%82%E3%81%AE%E5%AF%BE%E7%AD%96%E3%81%8C%E5%AE%9F%E8%A3%85%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B"><i class="fa fa-link"></i></a>理由2.CBC暗号利用時の対策が実装されている</h2>
-
-<p>当初は TLS1.1/1.2 でないと対策はできず、これに対応しているサーバー/ブラウザはほとんどないから実質無理、ということだった。<br>
-<a href="http://contextis.com/research/blog/server-technologies-https-beast-attack/" rel="nofollow noopener" target="_blank">SERVER TECHNOLOGIES - HTTPS BEAST ATTACK</a></p>
-
-<p>実際今もこの状況はあまり変わっていないが、その代わりTLS1.0でも対応できる対策がOpenSSL0.9.6dから実装されている。<br>
-<a href="http://arcticdog.wordpress.com/2012/08/29/beast-openssl-and-apache/" rel="nofollow noopener" target="_blank">BEAST, OpenSSL and Apache</a></p>
-
-<p>SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS というオプションを <strong>無効にする</strong> ことで対応が可能になっている。これはSSL_OP_ALLの設定にも含まれるが、SSL_OP_ALLを設定するとバージョンによってはバグが発生したり他の対策とバッティングしてSSL_OP_DONT_INSERT~が有効になってしまうこともあるので注意が必要だ（命が惜しかったら最新版にすべきか。こちらを要確認→<a href="http://www.openssl.org/" rel="nofollow noopener" target="_blank">OpenSSL</a>）。<br>
-※また、SSL_OP_DONT_INSERT~を無効にすると一部携帯端末のブラウザで表示ができなくなることがあるので、設定時は要確認。</p>
-
-<p><a href="http://www.ipa.go.jp/security/vuln/documents/2005/JVN_23632449_OpenSSL.html" rel="nofollow noopener" target="_blank">「OpenSSL」におけるバージョン・ロールバックの脆弱性 (0.9.8未満)</a><br>
-<a href="http://www.ipa.go.jp/security/vuln/documents/2005/JVN_23632449_OpenSSL.html" rel="nofollow noopener" target="_blank">OpenSSL における暗号スイートのダウングレードに関する脆弱性 (0.9.8q未満、1.0.0c未満)</a><br>
-<a href="https://issues.apache.org/bugzilla/show_bug.cgi?id=53899" rel="nofollow noopener" target="_blank">SSL_OP_ALLを設定するとBEAST対策の設定が無効化される(Apache2.4.4)</a></p>
-
-<h2>
-<span id="理由3-そもそもbeastの攻撃条件はかなり厳しい" class="fragment"></span><a href="#%E7%90%86%E7%94%B13-%E3%81%9D%E3%82%82%E3%81%9D%E3%82%82beast%E3%81%AE%E6%94%BB%E6%92%83%E6%9D%A1%E4%BB%B6%E3%81%AF%E3%81%8B%E3%81%AA%E3%82%8A%E5%8E%B3%E3%81%97%E3%81%84"><i class="fa fa-link"></i></a>理由3 そもそもBEASTの攻撃条件はかなり厳しい</h2>
-
-<p>BEASTを成立させるためには1.パケットを全部盗聴できて 2.任意のリクエストをサーバーに送信できる必要がある。最近はどのブラウザでもSameOriginPolicyの実装があり、2は厳しい(BEASTのデモでもJavaアプレット/Websocket脆弱性を利用していたようだ(当然もう修正されている))。</p>
-
-<p>またブラウザ側の対策も進んでいる。<br>
-<a href="http://j-net21.smrj.go.jp/develop/digital/entry/001-20120229-01.html" rel="nofollow noopener" target="_blank">BEAST/SSLの脆弱性を突く「BEAST攻撃」って何だ？</a><br>
-<a href="http://d.hatena.ne.jp/sen-u/20110922/p1" rel="nofollow noopener" target="_blank">SSL/TLSの脆弱性を攻撃する”BEAST”を防ぐ修正をChromeが追加</a></p>
-
-<p>当然新しい技術と共に抜け穴は出てくるであろうが、それと同じくらい対策も進んでいるといえる。<br>
-そのため、「BEASTが怖いからRC4」というのはより怖いほうを選択してしまっているのでは？という気がするのである。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />14位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>41</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/6e62268426ffd6f16ca6">VB.NET C#/Java/Scala/Rubyを超える至高の言語</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-12-01 14:20:17</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Qiita]</b> <b>[VB.Net]</b> <b>[GitHub]</b> <b>[C#]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>私はQiitaに一言言いたい。なぜVB.NETのタグがないのかと。<br>
-私はGitHubに一言言いたい。 Visual BasicはVBとVB.NETで区別すべきじゃない!?と。<br>
-そして一言言っておきたい。これは別に他言語に対しケンカを売っているわけではなく、VB.NETの低すぎる地位を改善するためのものです、と。<br>
-こちらの記事もぜひご一読いただきたい。<a href="http://el.jibun.atmarkit.co.jp/wonderfulworld/2012/08/visual-basic-ea8b.html" rel="nofollow noopener" target="_blank">Visual Basicさん、やればできる子なのに。</a></p>
-
-<p>今まで色々な言語でプログラムを書いてきたが、VB.NETの書きやすさは群を抜いていると思う。また、書きやすさだけでなく、C#から流れてきたオブジェクト指向・関数言語型的実装も取り込んでいる多機能な言語だ。<br>
-「VB.NET?Excelマクロでしょ?」「VB.NET?昔使われてた低機能言語でしょ?」「VBといったらコードが汚くて読みづらいったらない」・・・</p>
-
-<p><strong>そんなイメージの一切を払拭する。そのための記事である。</strong></p>
-
-<h2>
-<span id="vbnetの凄さ可読性" class="fragment"></span><a href="#vbnet%E3%81%AE%E5%87%84%E3%81%95%E5%8F%AF%E8%AA%AD%E6%80%A7"><i class="fa fa-link"></i></a>VB.NETの凄さ①　可読性</h2>
-
-<p>VB.NETでの宣言は以下のように行う(タグはないけどコードハイライトはある。サンキューQiita)。</p>
-
-<div class="code-frame" data-lang="vbnet">
-<div class="code-lang"><span class="bold">declaration</span></div>
-<div class="highlight"><pre><span></span><span class="k">Dim</span> <span class="n">hoge</span> <span class="ow">As</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"xxx"</span> <span class="c">'変数の宣言</span>
-<span class="k">Function</span> <span class="nf">func</span><span class="p">(</span><span class="n">name</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">)</span> <span class="ow">As</span> <span class="kt">String</span> <span class="c">'関数(メソッド)の宣言(戻り値がない場合Sub)</span>
-</pre></div>
-</div>
-
-<p>一見して分かりやすいかどうかは人によると思うが、初めて見る人にとっては、JavaやC#より分かりやすいと断言できる。なぜか？ <strong>言語の順序と宣言方法が一致しているからである。</strong></p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>変数 hoge は String型で 値は "xxx" である。
-関数 func は引数 name で戻り値はStringである。
-</pre></div></div>
-
-<p>このように、宣言方法が言語の自然な文法順序と一致する。多くの言語は変数の宣言はまず型から、関数の宣言は戻り値が先頭に来るが正直これは分かりやすい順序とは言えない。この可読性の高さはVB.NETの強みの一つである。<code>MustInherit</code>や<code>MustOverride</code>、<code>Overridable</code>なども分かりやすさを意識した宣言文と思う(これらはC#(に限らないが)では<code>abstract</code>や<code>virtual</code>で、プログラムの概念を理解した上でないと分かりにくい)。</p>
-
-<p>なお、変数宣言については複数同時も可能だ。関連する変数宣言を1ラインにまとめ可読性を上げることができる(<a href="/corocorococoro" class="user-mention js-hovercard" title="corocorococoro" data-hovercard-target-type="user" data-hovercard-target-name="corocorococoro">@corocorococoro</a> さんより。サンキューです。)。</p>
-
-<div class="code-frame" data-lang="vbnet"><div class="highlight"><pre><span></span><span class="k">Dim</span> <span class="n">errorCount</span> <span class="p">,</span> <span class="n">totalCount</span>  <span class="ow">As</span> <span class="kt">Integer</span>
-<span class="k">Dim</span> <span class="n">message</span> <span class="ow">As</span> <span class="kt">String</span> <span class="p">,</span> <span class="n">occuredAt</span> <span class="ow">As</span> <span class="kt">Integer</span>
-</pre></div></div>
-
-<p>また、JavaやC#で下記のようにイライラしたことはないだろうか。<br>
-<code>SuperLongNameClassHoge a = new SuperLongNameClassHoge()</code><br>
-長いクラス名を二度書かないといけないこの地獄。VB.NETは以下のように書ける。</p>
-
-<p><strong><code>Dim a As New SuperLongNameClassHoge()</code></strong></p>
-
-<p>・・・グレイト。これだけでVB.NETを選ぶのに十分な理由だ。<br>
-※C#はvarを使えば同様に書くことは可能だが、あんまり型を省略していると怒られるかもしれないので注意</p>
-
-<h2>
-<span id="vbnetの凄さ機能の豊富さ" class="fragment"></span><a href="#vbnet%E3%81%AE%E5%87%84%E3%81%95%E6%A9%9F%E8%83%BD%E3%81%AE%E8%B1%8A%E5%AF%8C%E3%81%95"><i class="fa fa-link"></i></a>VB.NETの凄さ②　機能の豊富さ</h2>
-
-<p>よく言われるオブジェクト指向・関数型、これらは当然VB.NETにも実装されている。C#も同様だが、これに加えLINQに代表される.NET Frameworkの強力な機能も魅力の一つだ。その力の一端をお見せしよう。<br>
-レンタルビデオで有効期限が今日切れたものについて期限切れのメッセージを書く、という例。</p>
-
-<div class="code-frame" data-lang="vbnet"><div class="highlight"><pre><span></span><span class="k">Dim</span> <span class="n">expired</span> <span class="o">=</span> <span class="n">From</span> <span class="n">v</span> <span class="ow">As</span> <span class="n">Video</span> <span class="ow">In</span> <span class="n">Videos</span> <span class="n">Where</span> <span class="n">v</span><span class="p">.</span><span class="n">expire</span> <span class="o">&lt;</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span> <span class="k">Select</span> <span class="n">v</span>
-<span class="n">expired</span><span class="p">.</span><span class="n">ToList</span><span class="p">().</span><span class="n">ForEach</span><span class="p">(</span><span class="n">Function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">x</span><span class="p">.</span><span class="n">notification</span> <span class="o">=</span> <span class="s">"有効期限切れです"</span> <span class="p">)</span>
-</pre></div></div>
-
-<p>・・・アンビリーバブル。配列要素に対するクエリ操作を可能とするLINQ、匿名関数を利用した要素処理。<br>
-これが.NET。これがVB.NETの真の姿である。</p>
-
-<p>VB.NETの機能はこれに留まらない。特に文字列周りの処理。<br>
-半角全角の変換やひらがなカタカナ変換など、通常はライブラリが必要な処理もVB.NETは一発で出来る(Rubyのこのエンコード周りのぞんざいさは正直どうかしてると思う)。</p>
-
-<div class="code-frame" data-lang="vbnet"><div class="highlight"><pre><span></span><span class="k">Dim</span> <span class="n">hankaku</span> <span class="ow">As</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">StrConv</span><span class="p">(</span><span class="s">"あいうえおかきくけこ"</span><span class="p">,</span><span class="n">vbNarrow</span><span class="p">)</span>
-<span class="k">Dim</span> <span class="n">katakana</span> <span class="ow">As</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">StrConv</span><span class="p">(</span><span class="s">"あいうえおかきくけこ"</span><span class="p">,</span><span class="n">vbKatakana</span><span class="p">)</span>
-</pre></div></div>
-
-<p>・・・アメージング。こんな日本的処理そうそうないよ、と思うかもしれないが、それはあまちゃんである。<br>
-システムの入り口はほぼ検索から始まり、検索とは非定型のユーザー文字列を内部データとマッチングさせる処理である。「どらえもん」でも「ドラエモン」でも「ドラえもん」でも同じくヒットさせる必要があるのだ。<br>
-VB.NETはVB時代に培われたそうした必須機能もしかと継承しているのである。これは長年生きている言語にしか出せない力だ。</p>
-
-<h2>
-<span id="vbnetの凄さ開発環境によるサポート" class="fragment"></span><a href="#vbnet%E3%81%AE%E5%87%84%E3%81%95%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%81%AB%E3%82%88%E3%82%8B%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88"><i class="fa fa-link"></i></a>VB.NETの凄さ③　開発環境によるサポート</h2>
-
-<p>{ } ; 。これらは一回省略する快感を覚えるとなかなか元に戻れない。VB.NETは括弧いらず・行末いらずだ。<br>
-コードの補完が効いていればまだ良いのだが、C#については補完が { だけで一行取りたがるので正直辟易とする(namespaceがあればなおさら)。そして、なぜか閉じる括弧を自動的に入れてくれない。</p>
-
-<p>その点VB.NETのコード補完はかなり強力だ。<code>If</code>なら<code>End IF</code>、<code>For</code>なら<code>Next</code>とバリバリコードを補完してくれる。私はC#とVB.NET両方書くが、VB.NETの方が明らかに優遇されている感がある(補完がなければタイピング量が多すぎるというのも事実だが)。</p>
-
-<p>書いていて全くストレスがたまらない。これもVB.NETの魅力の一つである。</p>
-
-<p>まだ語り尽くせないところは多いが、少しでも魅力を感じていただけたら幸いである。<br>
-そして「VB.NETいいと思うんだけどそう言うの恥ずかしいな」と思っているそこのあなた！には、ぜひ積極的に情報を発信していただきたいと思うのだ。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />15位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>38</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/31d88358942d8dd0eb8b">WindowsではじめるScala</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2014-01-01 13:30:56</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Scala]</b> <b>[sbt]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>基本的にはここに書かれている。  そしてまとめてみたら意外と分量があった。<br>
-<a href="http://www.scala-lang.org/download/" class="autolink" rel="nofollow noopener" target="_blank">http://www.scala-lang.org/download/</a></p>
-
-<h2>
-<span id="1java-16以上のインストール" class="fragment"></span><a href="#1java-16%E4%BB%A5%E4%B8%8A%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>1.Java 1.6以上のインストール</h2>
-
-<p>ScalaはJVM上で動くので、Javaの環境が必要。そんなわけで、java と打って返事がないただの屍のようだ、となるか1.6未満の場合Javaをインストールする(※前提JREは今後変わる可能性もあるので、この辺りはインストール前によく確認)。<br>
-こちらからJava Platform (JDK) をダウンロード。<br>
-<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" class="autolink" rel="nofollow noopener" target="_blank">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></p>
-
-<p>余談だが、Java、ダウンロードサイズ120MBというのはいかがなものか。開発環境じゃあるまいに・・・<br>
-Scalaも60MBあるので、こやつらを合計するとEclipse Standardとほぼ同じ重さになる。</p>
-
-<h2>
-<span id="2scalaのインストール" class="fragment"></span><a href="#2scala%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>2.Scalaのインストール</h2>
-
-<p>JDKのインストールが終わったら、念願のscalaをインストールする。<br>
-<a href="http://www.scala-lang.org/download/" class="autolink" rel="nofollow noopener" target="_blank">http://www.scala-lang.org/download/</a><br>
-バイナリ版があるので、普通にインストールすればOK。</p>
-
-<h2>
-<span id="3環境変数の設定" class="fragment"></span><a href="#3%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0%E3%81%AE%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>3.環境変数の設定</h2>
-
-<p>コマンドから使えるよう、JDKとScalaの環境変数設定を行う。コントロールパネル＞システム　の、「システムの詳細設定」から設定可能。<br>
-ユーザー定義環境変数に新規追加で、名前：PATH、値：JDKをインストールしたフォルダにあるbinフォルダまでのパス＋Scalaをインストールした以下同文の値を設定(値は<code>;</code>で区切る)。<br>
-（システム環境変数でもＯＫだが、自分で設定したものとあらかじめ設定してあるものがごっちゃになるのでユーザー側を使用することを推奨）。<br>
-コマンドプロンプトから javac、scalaを打って何かしら反応があれば設定は完了。</p>
-
-<h2>
-<span id="4開発環境のインストール" class="fragment"></span><a href="#4%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>4.開発環境のインストール</h2>
-
-<p>俺はメモ帳でいくぜ！という場合はスルーしても可だが、開発環境を入れる。<br><br>
-環境はEclipseかIntelliJがお勧めで、どちらを使っても構わない。以前はEclipseだったが、IntelliJは最近Android Studioのベースに使われたりPython開発をサポートするPyCharmがあったりと勢いがかなりあるので、流れはIntelliJという気がしないでもない。ただ、これは宗教論争に発展するのでこれ以上の言及は避ける。</p>
-
-<p>Eclipseを初めて入れる場合は、今時Webアプリケーション一つも作らんということもない気がするので、「Eclipse IDE for Java EE Developers」がよいと思う。</p>
-
-<h2>
-<span id="5scala開発用プラグインの設定" class="fragment"></span><a href="#5scala%E9%96%8B%E7%99%BA%E7%94%A8%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%AE%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>5.Scala開発用プラグインの設定</h2>
-
-<p>この辺りは開発環境に依存するので、それぞれ設定を行う。<br>
-Eclipseの場合は、こちらをご参考。<br>
-<a href="http://scala-ide.org/download/current.html" class="autolink" rel="nofollow noopener" target="_blank">http://scala-ide.org/download/current.html</a><br>
-メモリが足りないかも、といわれるのでこちらを参考にeclipse.iniの設定を変更。<br>
-<a href="http://wiki.eclipse.org/FAQ_How_do_I_increase_the_heap_size_available_to_Eclipse%3F" class="autolink" rel="nofollow noopener" target="_blank">http://wiki.eclipse.org/FAQ_How_do_I_increase_the_heap_size_available_to_Eclipse%3F</a></p>
-
-<h2>
-<span id="asbtのインストール" class="fragment"></span><a href="#asbt%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>a.sbtのインストール</h2>
-
-<p>現段階で十分開発可能だが、Webアプリケーションなど色々依存関係がある複雑なアプリケーションを作成するにはプラグインは力不足なので、sbtというビルドツールの出番になる。<br>
-これはJavaで言うところのMavenにあたり、プロジェクトに必要なパッケージやライブラリの依存関係、またパッケージング処理などを行ってくれる。<br>
-現時点(2014/1)では、MavenのようにEclipseからGUIベースで操作できる環境はないので、sbtコマンドで処理-&gt;eclipseに反映、というのが基本スタイルになる。<br>
-そのため、まずコアとなるsbtをダウンロード、そのあとにsbt上の設定をeclipseに反映するsbteclipseを導入する。</p>
-
-<p>sbtのインストール。WindowsならMSIインストーラーが断然楽。<br>
-<a href="http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html#" class="autolink" rel="nofollow noopener" target="_blank">http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html#</a><br>
-そして例のごとく環境変数を設定。設定が終わったら、コマンドプロンプトからsbtを実行。これで必要モジュールがダウンロードされる。</p>
-
-<p>sbtpluginの設定を追加する。以下のGithubに設定方法が記載されている(pluginのフォルダの中にplugin.sbtを作成、記載を追加)。<br>
-<a href="https://github.com/typesafehub/sbteclipse" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/typesafehub/sbteclipse</a><br>
-再度sbtを実行すると、プラグインのセットアップが行われる。なお、ファイルのエンコードがUTF-8でなくUTF-8Nでないとエラーになった。うまくいかない場合はここを疑ってみるといいかも。</p>
-
-<p>いったんsbt側でプロジェクトを作成したら、こいつでeclipseコマンドを実行し、eclipseのプロジェクト用ファイルを作成する。<br>
-コマンドプロンプトとEclipse、2つ立ち上げるのかよという場合は<a href="http://sctfarch.blogspot.jp/2012/12/eclipse.html" rel="nofollow noopener" target="_blank">こちら</a>を参考にして、Eclipseから打てるようにするとよい。ただ、なんかうまく動かないこともあるような・・・</p>
-
-<p>以上で環境設定は終了。お疲れ様でした。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />16位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>38</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/708a0512130391f2a7ff">実践的なAngular.jsにおけるView実装</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-11-03 15:08:24</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[JavaScript]</b> <b>[AngularJS]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Angular.jsは優れたフレームワークだ。ただ、使ってみると問題と感じる点もある。<br>
-具体的には、Viewが片手落ちな点だ。</p>
-
-<p>通常はHTML DOMがView・モデルとなるJavaScriptオブジェクトをcontrollerでバインディング、これで問題ない。しかし、jQuery Plugin(jQuery UI draggable等)で加工したい場合その処理を普通に書ける場所がない。<br>
-これらの処理はDOMレンダリング後に行う必要があるが、 <strong>Angular.jsではafter renderのイベントがAPIにない(ng-rendered的なものがない)</strong> のだ。<br>
-では、追加されるdivに<code>$("#id").draggable()</code>などをしたい時、どこで実行できるのか？</p>
-
-<p><strong>結論としては、<code>directive</code>を使用する。</strong> <code>directive</code>を使用するんだ（二回）。<br>
-実例としてjsFiddleのサンプルを用意したので、こちらを参照されたし。これは、明確にMVCを分割することを意識して書いている。</p>
-
-<p><a href="http://jsfiddle.net/icoxfog417/nj7Lw/" rel="nofollow noopener" target="_blank">サンプルコード</a></p>
-
-<p>これを書き終えてからカーリングというスポーツを根本的に勘違いしていたことに気づいたが、そんなことは問題ではない。Angular.jsにはdirectiveという仕組みが用意されており、これを利用することでレンダリング処理に介入できる。つまり「V」における片手落ち部分を補完できるのだ。</p>
-
-<p>実際はもっと色々な使い方ができるので、公式ドキュメントなどをぜひ参照されたし（分かりにくいけど・・・ここはノウハウが溜まったらまとめたい）。</p>
-
-<p>なお、controller内ではまだレンダリングが開始されていないため、jQuery Plugin等の処理は記述できない。強制的に<code>$scope.$apply()</code>でレンダリングを走らせられるが、デフォルトの処理とかぶっておかしくなるので注意が必要だ。</p>
-
-<p>これが役に立つのが、モバイルデバイス対応だ。Angular.jsにはタッチ系イベントのための属性がないため、モバイル対応をする際は<a href="http://eightmedia.github.io/hammer.js/" rel="nofollow noopener" target="_blank">Hammer.js</a>などで自分で対応することになる。この実装をする際、directiveを使えばDOMのイベントハンドラを拡張することができる。<br>
-directiveに書かず外部でイベントを検知して<code>$scope</code>のメソッドを実行する方法もあるが、この際は<code>angular.element($("xxx")).scope();</code>で<code>$scope</code>オブジェクトを取得できるということを覚えておけば対応できるだろう。</p>
-
-<p>最後に・・・これは愚痴だ。これを読んでも読まなくても差し支えない。<br>
-2013/11現在、Angular.jsはStableが1.0.8で開発中が1.2.0。マイナーバージョンにして2の開き。有権者の方に訴えたいのは、こんなに開いていてOKなのでありましょうか、ということだ。<br>
-→とブツブツ言っていたが、Angular.jsは1.1が開発中で1.2が次期安定版として使い分けられているので、この状態は全く普通なのだった(<a href="http://blog.angularjs.org/2012/07/angularjs-10-12-roadmap.html" rel="nofollow noopener" target="_blank">こちら参照</a>)。</p>
-
-<p>ただ、現在のStable(1.0.x)にはまだ<code>ngIf</code>などのあったらすぐに使いたい便利属性がないのは事実。<br>
-<a href="http://docs.angularjs.org/api/" rel="nofollow noopener" target="_blank">Angular.jsのAPIドキュメント</a>を見る際は、バージョンを選択することを忘れないようにして新バージョンのリリースを待とう！</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />17位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>37</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/186f526288addcc2b12b">Scala Liftの教訓</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2014-02-02 01:29:21</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Scala]</b> <b>[Lift]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Scala LiftのView Firstの思想に刺激され<a href="http://qiita.com/icoxfog417/items/8ac0ac21434fd229395f" id="reference-86ada3a789e5a699d4eb">紹介記事</a>を書き、実際に<a href="http://qiita.com/icoxfog417/items/f5136a2bae229f45f108" id="reference-7b04329d170c0edadeef">使ってみて</a>たどり着いたのは、これはちょっと使えないなという悲しい結末・・・とはあの頃予想できただろうか(いや、できない)。</p>
-
-<p>正月とこれまで幾日かの土日を費やしたどり着いた結論は以下の通りだ。</p>
-
-<h2>
-<span id="結論" class="fragment"></span><a href="#%E7%B5%90%E8%AB%96"><i class="fa fa-link"></i></a>結論</h2>
-
-<p>UIから作るViewFirstで開発を行いたい！場合、Angular.jsやKnockout.jsのようなフレームワークを導入し画面側から開発を行い、Model設計(JavaScriptクラス)が固まってきたらサーバーサイドで永続化の処理を実装するのがベストだ。<br>
-ロジック混入を回避する場合はAngular.jsならDirective、Knockout.jsでも普通にtemplateを使えば隠蔽可能だ(モジュール化をきちんとやるならAngular.jsの方がカスタマイズ性は高い)。</p>
-
-<p>JavaScriptフレームワークの登場により、アプリケーションの画面動作はhtmlとJavaScriptでほぼ書けるようになってきている。WebComponentsなども登場しリッチな画面を簡単に作れるようになってきたこの状況では、サーバーサイド側からDOMを出力する(悪く言えば介入する)ViewFirstのフレームワークは逆に足枷になってしまうだろう。</p>
-
-<p>特にLiftに関していえば、学習コストが高く情報が少ないのもデメリットとして上げられる。だから悪い、というわけではないのだが仕事(チーム)で開発するならこの壁は厚い。<br>
-Scalaでやりたい、というこだわりがなくMicrosoftに敵意がないのであれば、ViewFirstのフレームワークとしてはASP.NET WebFormの方が完成されているので使いたい場合こちらの方がお勧めできる。</p>
-
-<p>もちろん今後Liftが進化を遂げクライアントサイドのフレームワークと連携をうまく取れる日が来るのかもしれない。ただ、その時まで、Liftは心の中にしまっておこう・・・と思う。</p>
-
-<h2>
-<span id="具体的な難点" class="fragment"></span><a href="#%E5%85%B7%E4%BD%93%E7%9A%84%E3%81%AA%E9%9B%A3%E7%82%B9"><i class="fa fa-link"></i></a>具体的な難点</h2>
-
-<p>色々(本当にいろいろ)あるが、一番はsnippet間の連携が取れない点だ。<br>
-ViewFirstなのだから、画面をsnippetで分割してそれらの間で連携をとりながら更新できる・・・のかと思いきやそうではないのだ。</p>
-
-<p>これはある意味しかたがないことで、Webでは1Requestに対し1Responseなのだから「Aというsnippetを更新したらBも連動して更新する」というのは通常できない(例えば、投稿をポストしたらヘッダ領域の投稿件数を更新する、みたいな)。<br>
-そういう意味では、この点がサーバーサイドでViewFirstが実現できない最大の理由かもしれない。1Request(1event)に対しマルチレスポンスを返したいなら今のところクライアントサイドでやるしかないのだ。</p>
-
-<p>ただ、Liftではサーバーサイドからのプッシュが可能なCometがサポートされているため、頑張れば上記のような実装も不可能ではない。<br>
-ただ、それを実装するということはクライアント/サーバー間をすべてAjax/Cometで制御するということだし、なによりCometで配信したら接続中の全クライアントに配信されてしまうので1:1の制御が必要になる・・・がこの機構がLiftにはない。<br>
-この点を突き詰めるなら、socket.ioやSignalRといったWebsocketの仕組みとクライアント側フレームワークをうまく組み合わせ、クライアントサイドの変更はJavaScriptフレームワーク、サーバーでの処理が必要なものはsocket.io/SignalRで送信し他クライアントに配信する、という方がいいだろう(これは面白い・・・かもしれない)。</p>
-
-<p>別の解として全画面を親となる一つのsnippetで囲んでしまうという手もある。これなら全画面Post-&gt;全画面返却なので好きな部分を複数更新できる。<br>
-で、実はこの思想を実現しているのがASP.NET WebFormなのである。私はこれをやった時なんで全画面をわざわざ送っているのか理解できなかったが、くしくもLiftに触れることでその理由を悟った。。。</p>
-
-<p>ASP.NET WebForm はMicrosoftらしくVisual Studioのサポートもあいまってかなり簡単に開発できるし情報もLiftからすると相当多い。もちろんLiftではjQueryライクなセレクタがあるため書きやすいと言えば書きやすいが、そうするともはやサーバーサイドでjQueryを書いているのと変わらなくなってきて、それならわざわざサーバーでやらんでも・・・という話になってしまう。</p>
-
-<p>そんなわけで、リアルでの更新を突き詰めるならsocket.io/SignalR、サーバーサイドでやっていくならASP.NET WebFormかな・・・となってしまうのである。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />18位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>32</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/ba7d596b0f722c9a1d54">「作らない」開発　サイボウズkintoneを利用した新型スタイル</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-12-28 14:07:25</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[VB.Net]</b> <b>[C#]</b> <b>[kintone]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>デザイン・操作性、そしてセキュリティ・・・と、昨今のWebシステムに求められるものは多く、自前で開発するのはますます大変、なにより高くつくようになってきています。</p>
-
-<p>それらを「作らない」で、あるもの=クラウド上のサービスを利用して開発してしまおう、というのが今回のお話です。システム構成としては、フロントとしてクラウドサービスを使用しデータはAPIで連携するイメージです。</p>
-
-<p>こうした開発のスタイルは、下記のようなメリットがあります。</p>
-
-<h2>
-<span id="開発者にとってのメリット" class="fragment"></span><a href="#%E9%96%8B%E7%99%BA%E8%80%85%E3%81%AB%E3%81%A8%E3%81%A3%E3%81%A6%E3%81%AE%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88"><i class="fa fa-link"></i></a>開発者にとってのメリット</h2>
-
-<ul>
-<li>各種ブラウザ対応やセキュリティ対策といった、面倒だが手を抜けない部分を自前で開発しなくて済む</li>
-<li>サービス側で提供される機能は作る必要がないので、コアな機能の開発集中できる</li>
-<li>画面の操作性やデザインといったところでもめなくて済む</li>
-</ul>
-
-<h2>
-<span id="ユーザーにとってのメリット" class="fragment"></span><a href="#%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%81%AB%E3%81%A8%E3%81%A3%E3%81%A6%E3%81%AE%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88"><i class="fa fa-link"></i></a>ユーザーにとってのメリット</h2>
-
-<ul>
-<li>実際動かせるものができるまでが、安い＆速い</li>
-<li>不要になったらすぐに辞められる(=必要な期間だけ使える)</li>
-<li>ちょっとした改修は自分でできる</li>
-</ul>
-
-<p>とはいえ実際のところどうなの！？ということで、今のプロジェクトでクラウドにサイボウズのkintone、バックエンドをASP.NETで連携させているので、その所感についてまとめます。</p>
-
-<h2>
-<span id="kintoneについて" class="fragment"></span><a href="#kintone%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>kintoneについて</h2>
-
-<p>kintoneとはサイボウズ社が提供しているクラウドサービスです。<br>
-Web上にてドラッグ＆ドロップでフォーム画面を作成することができ、簡単にデータの共有を行うことができます。フォーム＋データベースだけでなく、ワークフローや権限管理、アラートといった業務での「あるある」機能が搭載されており、こうした機能を安価な値段で使用することができます。</p>
-
-<p>普通に「インターネット経由でデータが共有できて、承認フローがあるシステムを作りたい」という場合、多分2人月は行くと思いますが、この場合おそらく200万円前後になると思います。<br>
-これはkintoneの月額料金880円(2013/12現在)の2272ヶ月分、実に189年分なのでどんだけ安いかがわかります。おまけにアプリはほぼ作り放題なので、実際の価値としてはこれ以上です。</p>
-
-<p>こうした現象は、「Excelで簡単にできるのにシステム会社に見積りを頼んだらｘ百万円と言われた」というのと同じような現象です。実際Excelやこうしたクラウドサービスは広く浅く料金を取っているからこの値段なわけですが、それは正直ユーザーにとっては関係のないことです。</p>
-
-<p>そうした意味でも、今後「一から開発する」というのは何よりユーザーにとって割に合わなくなってくると思います。Excelも含めてですが、あるものをいかに活用するか、という視点は今後かなり重要になってくるのではないかと思います。</p>
-
-<p>より詳しい情報は<a href="https://kintone.cybozu.com/jp/feature/" rel="nofollow noopener" target="_blank">公式サイト</a>をご参照あれ！</p>
-
-<h2>
-<span id="kintone-apiでの連携" class="fragment"></span><a href="#kintone-api%E3%81%A7%E3%81%AE%E9%80%A3%E6%90%BA"><i class="fa fa-link"></i></a>kintone APIでの連携</h2>
-
-<p>kintoneはクラウド上単体で動くだけでなく、APIを利用することで他システムと連携させることができます。<br>
-APIは具体的にはREST形式のAPIで、HTTPリクエスト(やり取りは当然HTTPSですが)が飛ばせる言語であれば、kintone上で作成したアプリにデータを転送したり取り込んだりすることができます。</p>
-
-<p>今回の開発では、kintone上で入力したデータをOracleに取り込んで他システム(ASP.NET)のデータと連携させています。そのため、画面は全く作ってなく、データ連携と業務用件のからむ複雑な帳票だけ開発してます。</p>
-
-<p>データの連携については、Java/iOSはSDKが提供されていますし、.NETは<a href="https://github.com/icoxfog417/kintoneDotNET" rel="nofollow noopener" target="_blank">kintoneDotNET</a>があり、特段困ることはありません(商用サービスをつかうなら、DataSpiderが<a href="http://www.appresso.com/news/2013/10/pr20131017.html" rel="nofollow noopener" target="_blank">連携機能を提供しています</a>)。<br>
-RESTという形態からして実装はJavaScriptが一番楽なので、データ連携だけなら思い切ってNode.jsを使うのもアリだと思います。</p>
-
-<h2>
-<span id="所感" class="fragment"></span><a href="#%E6%89%80%E6%84%9F"><i class="fa fa-link"></i></a>所感</h2>
-
-<p>画面を作らなくていいというのはかなり楽です。<br>
-というのも、画面はバッチなどと違って実際画面を起動させないといけないので最もUnitTest化しにくい部分だからです。おまけにデザインでもめだしたらきりがないので、そういう意味でも良かったです。<br>
-今回は帳票が結構複雑でしたが、そこに集中できるという意味でも効果がありました。</p>
-
-<p>・・・と、なんだか回し者のようなバラ色記事を書いていますが、当然実際は苦しむことも結構あります。<br>
-主に困ったのは以下の点です。</p>
-
-<h3>
-<span id="キー設定" class="fragment"></span><a href="#%E3%82%AD%E3%83%BC%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>キー設定</h3>
-
-<p>kintone上のアプリケーションはデータベースのようなものなので、当然重複データを防ぐためキーを張りたくなります。また、このキー設定はルックアップという、ほかのアプリのデータを参照して設定する機能(例えば受注伝票登録時に品目を検索するみたいな)でも必要になってきます。</p>
-
-<p>そんな重要なキー設定ですが、kintoneではかなり制約があります。例えば、複合キー設定ができない・キーにできないフォーム項目があるなどです。複合キーの場合は値を連結させて設定・・・と思うのですが、これまた連結に使えるフォーム項目にも制限があり、また条件式などは書けません。</p>
-
-<p>今回は連結できるところは標準機能、無理なところはJavaScriptのAPIを使い設定している・・・のですが、JavaScriptAPIはログインユーザーの権限でしか動かないため、キーのようにユーザーに触られたら困るので入力不可にしておきたい、という場合ユーザーが入力不可ならJavaScriptAPIも入力不可です。一応保存時にセットしているのでいじられても大丈夫ではあるのですが、入力不可にすることも見えなくすることもできないのでちょっとムムムという感じです。</p>
-
-<h3>
-<span id="開発機本番機の考え方" class="fragment"></span><a href="#%E9%96%8B%E7%99%BA%E6%A9%9F%E6%9C%AC%E7%95%AA%E6%A9%9F%E3%81%AE%E8%80%83%E3%81%88%E6%96%B9"><i class="fa fa-link"></i></a>開発機/本番機の考え方</h3>
-
-<p>データ連携機能を開発する場合、特にkintone側を更新するようなケースは当然いきなり本番で試すわけにはいかないので開発環境が欲しくなります。</p>
-
-<p>アプリのコピー機能があるのでそれで必要都度本番をコピーすれば良いのですが、他のアプリと連携するような項目(上述のルックアップなど)は参照先が元のままなのでこれを直していく必要があります(今はコピーするだけにして、細かいとこは直してないです)。</p>
-
-<p>kintone側のバージョンアップなどが行われるときもこれは問題になるので、この点は今後も考えていかないといけない問題だと思います。</p>
-
-<h3>
-<span id="ユーザーの理解" class="fragment"></span><a href="#%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%81%AE%E7%90%86%E8%A7%A3"><i class="fa fa-link"></i></a>ユーザーの理解</h3>
-
-<p>「クラウド」＋「API連携」＝情報漏えい、という考えというかイメージのユーザーはまだたくさんいると思います。前述の開発機/本番機もそうですが、ある程度理解あるユーザーの方がいなければこうした開発は進めにくいのが現状だと思います。今回はユーザーの方から提案があったのでスムーズでしたが・・・</p>
-
-<p>正直システム会社としては、普通に社内システムで作ってくれと言われても全然かまいませんし、リスクは許さんと言われたらこうした形態では開発しません。ただその分当然高くなります。<br>
-そうした意味では、ユーザー自身がリスクをとる、というのがこうした開発の第一歩になる思います。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />19位</center></td>
-	<td colspan="3">
+	<td colspan="4">
 		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>30</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/74b5b950933e3411e642">さらばExcelフローチャート　UnitTestを活用した設計手法</a>
+		<a target="_blank" href="https://qiita.com/icoxfog417/items/429f3dddede4786234a4">Pythonプログラムのパフォーマンスを解析し、可視化する</a>
 	</td>
 </tr>
 <tr>
@@ -2012,968 +337,86 @@ RESTという形態からして実装はJavaScriptが一番楽なので、デー
 </tr>
 <tr>
 	<td style="width:100px;">
-		<!--投稿日時--><center>2014-03-16 20:39:54</center>
+		<!--投稿日時--><center>2017-10-23 18:12:48</center>
 	</td>
 	<td style="width:200px;">
 		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
 	</td>
 	<td style="width:150px;">
 		<!--タグ-->
-		<center><b>[Java]</b> <b>[Ruby]</b> <b>[VB.Net]</b> <b>[C#]</b> </center>
+		<center><b>[Python]</b> </center>
 	</td>
 	<td style="width:350px;">
 		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>「コーディングする前には設計書という文書がなくてはならない」</p>
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>パフォーマンスチューニングを行う際、改修前後で効果があらわれているか確認するのは重要です。Pythonにはデフォルトで<a href="https://docs.python.jp/3/library/profile.html" rel="nofollow noopener" target="_blank">パフォーマンス解析を行うモジュールが組み込まれている</a>のですが、そのままではちょっと使いづらいく出力結果も見にくいです。そこで、簡易な記法で計測できる＋結果の可視化を行うツールを作りました。</p>
 
-<p>多くのシステム開発におけるこの暗黙の不文律、苦痛と感じたことはないでしょうか(私はあります)。特にオフショアに出す時なんかはちゃんと書かないと危ないということでしっかり描くわけですが、夜なべしてExcelフローチャートを書きながら「いいよもう俺が開発するよ」なんてため息つくこともよくあるわけです。</p>
+<p><a href="https://github.com/icoxfog417/pyfbi" rel="nofollow noopener" target="_blank">icoxfog417/pyfbi</a></p>
 
-<p>今回紹介するのは最近のプロジェクトで試した方法で、端的に言えばJUnitなどのUnitTestフレームワークを使用し、「動く設計書」を作るアプローチです。</p>
+<p>まず、実行結果(<code>dump_stats</code>などで保存したファイル)を以下のようにグラフ・表で可視化できます。インストールすると<code>pyfbi_viz</code>というコマンドが使えるので、それでファイルを保存したディレクトリを指定すればOKです。改修前の計測、改修後の計測2つのファイルをフォルダに入れておけば前後の可視化が可能です。</p>
 
-<h2>
-<span id="実施ガイド" class="fragment"></span><a href="#%E5%AE%9F%E6%96%BD%E3%82%AC%E3%82%A4%E3%83%89"><i class="fa fa-link"></i></a>実施ガイド</h2>
-
-<p>要件定義からUnitTest？コーディングかよ、というのに違和感もあるかと思います。<br>
-実際行うときも、UnitTestのコードだけでやっていたわけではありません。具体的な手順は以下の通りです。</p>
-
-<ol>
-<li>システム化の背景と業務要件の把握<br>
-そもそもなぜシステム化したいのか、について背景となっている課題と、現在の業務の進め方を確認。</li>
-<li>システム構成の設計<br>
-必要な画面とその関連(動線)、データベーステーブル、バッチなど大まかな全体フローを設計。</li>
-<li>詳細な仕様確認<br>
-複雑な業務ルール、理屈ではわかるけどコード上での書き方が微妙なところをUnitTestで記載。</li>
-</ol>
-
-<p>1、2は普通だと思います。3は、通常外部設計書/内部設計書と呼ばれる成果物を作成するところですが、ここをUnitTestを使用したコード/APIドキュメントに置き換えました、その方が効率が良かったです、というのが本文書の主張です。</p>
-
-<h2>
-<span id="メリット" class="fragment"></span><a href="#%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88"><i class="fa fa-link"></i></a>メリット</h2>
-
-<p>実際行ってみて、以下のようなメリットを感じました。</p>
-
-<ul>
-<li>実装上の難点や簡単そうに聞こえるけど難しい点が早めに把握でき、クラス設計などに反映できた</li>
-<li>コードで説明ができて、引継ぎが楽だった。引き継いだパートナーさんからも好評。</li>
-<li>API仕様書(JavaDocなどで生成するドキュメント)が設計書になり、無駄な工数が省けた。また、ソースコード中にしっかりしたコメントが残るようになった。</li>
-</ul>
-
-<p>コーディングを行うことで統合開発環境の力を生かすことができるのも大きいです。</p>
-
-<p>例として、ちょっと具体的なコードを書いてみました(作ったのは人事系のシステムだったので、それを元に)。</p>
-
-<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span>
-<span class="cm">/**</span>
-<span class="cm"> * 転入してきた社員を登録します。&lt;br/&gt;</span>
-<span class="cm"> * 社員番号は原則3始まりですが、関連会社からの転入の場合関連会社の社員番号を引き継ぎます。</span>
-<span class="cm"> */</span>
-<span class="nd">@Test</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">newEmployee</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">//新入社員</span>
-    <span class="n">Employee</span> <span class="n">newCommer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="o">(</span><span class="s">"社員　太郎"</span><span class="o">);</span>
-
-    <span class="c1">//社員番号は、3で始まる</span>
-    <span class="n">assertTrue</span><span class="o">(</span><span class="n">newCommer</span><span class="o">.</span><span class="na">No</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"3"</span><span class="o">));</span>
-
-    <span class="c1">//関連会社からの転入の場合、既にある社員番号をセットします。</span>
-    <span class="c1">//TODO 関連会社の社員番号の体系は?DBの項目長などに影響あり。</span>
-    <span class="n">Employee</span> <span class="n">transferred</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="o">(</span><span class="s">"関連　太郎"</span><span class="o">,</span><span class="s">"11220011"</span><span class="o">);</span>
-
-<span class="o">}</span>
-
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>pyfbi_viz stat_dir=ファイルを保存したディレクトリ
 </pre></div></div>
 
-<p>まず、コーディング中に発見した不明点などはTODOコメントどで残しておくことで確認漏れが防げます。<br>
-また仕様変更などがあった際、Subversion/Gitなどのバージョン管理ツールが入っていれば変更内容を差分管理できます(チケット管理システムと連携させればより強力になります)。システム内のロジックがTestメソッドとして並び、一覧として管理できるのも大きいです。<br>
-これらはよくある仕様変更一覧(Excel)、課題管理一覧(Excel)より優秀に働いてくれる場面も多いわけです。</p>
+<p><a href="https://camo.qiitausercontent.com/5470419476a7ad583241b807d1f71539bccbd12c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f33343930363663362d653433362d363435312d303532652d6637316564663366303431392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/5470419476a7ad583241b807d1f71539bccbd12c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f33343930363663362d653433362d363435312d303532652d6637316564663366303431392e706e67" alt="pyfbi_viz_2.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/349066c6-e436-6451-052e-f71edf3f0419.png"></a></p>
 
-<p>なお、APIドキュメントについてはJavaなら日本語クラス/メソッドが使えるので以下くらいにはわかりやすくなります。日本語名での実装はちょっと・・・という場合は、日本語でガラだけのテストクラス/メソッドを作成し、内部では英語名のクラスに処理を委譲するという手もあります。</p>
-
-<p><a href="https://camo.qiitausercontent.com/0a95eb80d73f690d87407ef28f6618f47ad0d2b8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f32326438616463392d333436302d303736392d336134662d3965663439363339643635632e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/0a95eb80d73f690d87407ef28f6618f47ad0d2b8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f32326438616463392d333436302d303736392d336134662d3965663439363339643635632e6a706567" alt="shain.JPG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/22d8adc9-3460-0769-3a4f-9ef49639d65c.jpeg"></a></p>
-
-<h2>
-<span id="結論" class="fragment"></span><a href="#%E7%B5%90%E8%AB%96"><i class="fa fa-link"></i></a>結論</h2>
-
-<p>適材適所の媒体を使用するのが良い、ということです。</p>
-
-<p>設計が適切な媒体で行われていることは、メンテナンスのしやすさにもつながると思います。<br>
-コードの修正だけでも大変なのに、Excelで書かれたジャングルみたいなフローチャートも修正しないといけない、となったらはっきり言って二度手間なわけです。</p>
-
-<p>効率の良い開発、ひいては運用保守を行っていくためにも、コーディング=開発と限定せずその表現力を使える場所では使っていくことが肝要ではないか・・・と思います。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />20位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>25</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/71718196cc4f335892d4">プロジェクトをNugetパッケージにして公開する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2014-02-06 13:17:43</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[VB.Net]</b> <b>[C#]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>作成したクラスライブラリなどをNugetパッケージとして公開する方法のまとめ。</p>
-
-<h2>
-<span id="1nuget-galleryアカウントの取得" class="fragment"></span><a href="#1nuget-gallery%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AE%E5%8F%96%E5%BE%97"><i class="fa fa-link"></i></a>1.Nuget Galleryアカウントの取得</h2>
-
-<p>Nugetパッケージを公開している<a href="https://www.nuget.org/" rel="nofollow noopener" target="_blank">Nuget Gallery</a>のアカウントを取得する。<br>
-パッケージを発行する際のAPIキーの取得に必要</p>
-
-<h2>
-<span id="2nugetをインストールする" class="fragment"></span><a href="#2nuget%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>2.Nugetをインストールする</h2>
-
-<p><a href="http://docs.nuget.org/docs/start-here/installing-nuget" rel="nofollow noopener" target="_blank">Nugetのインストールページ</a>からCommand-Line Utilityをダウンロードする。<br>
-環境変数にパスを通し、コマンドラインから使えるようにしておく。</p>
-
-<h2>
-<span id="3プロジェクトアセンブリを編集しておく" class="fragment"></span><a href="#3%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA%E3%82%92%E7%B7%A8%E9%9B%86%E3%81%97%E3%81%A6%E3%81%8A%E3%81%8F"><i class="fa fa-link"></i></a>3.プロジェクトアセンブリを編集しておく</h2>
-
-<p>Nuget発行時にバージョンや発行者の情報が必要になります(これらはnuspecというファイルに記載される)。<br>
-プロジェクトのMy Project&gt;アプリケーションに「アセンブリ情報」のボタンがあるので、ここからパッケージ名やバージョンなどを編集しておきます。<br>
-※なお、これらの情報は発行後パッケージの画面からWebで編集できるのでそんなに気にしなくてもいい</p>
-
-<h2>
-<span id="4nugetコマンドでパッケージ化を行う" class="fragment"></span><a href="#4nuget%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%A7%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E5%8C%96%E3%82%92%E8%A1%8C%E3%81%86"><i class="fa fa-link"></i></a>4.Nugetコマンドでパッケージ化を行う</h2>
-
-<p>パッケージ化を行うコマンドは以下の通り。</p>
-
-<p>プロジェクトファイルをパッケージ化する(Releaseビルドを使用したい場合は、-Propオプションを指定)。<br>
-プロジェクトファイルがあるフォルダで実行すれば、パスの指定は必要ない模様。<br>
-<code>nuget pack [path]\MyProject.csproj</code><br>
-<code>nuget pack [path]\MyProject.csproj -Prop Configuration=Release　</code></p>
-
-<p>プロジェクトのシンボル情報をパッケージ化する(これでデバッグ時ステップインできる)<br>
-<code>nuget pack MyProject.csproj –symbols</code></p>
-
-<h2>
-<span id="5nuget-galleryに発行する" class="fragment"></span><a href="#5nuget-gallery%E3%81%AB%E7%99%BA%E8%A1%8C%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>5.Nuget Galleryに発行する</h2>
-
-<p>Nuget Galleryのアカウント情報にAPI KEYが出ているので、これをコピペしておく。</p>
-
-<p>以下のコマンドでパッケージをNugetに発行する<br>
-<code>nuget push &lt;package path&gt; [API key] [options]</code></p>
-
-<p>APIキーは、事前に設定しておくことができる。</p>
-
-<p><code>nuget setapikey [API KEY]</code></p>
-
-<p>こちらの方が楽かも。</p>
-
-<p><code>nuget push *.nupkg</code></p>
-
-<p>あとは、パッケージの画面からSummaryなどを適宜編集する。</p>
-
-<h2>
-<span id="参考情報" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E6%83%85%E5%A0%B1"><i class="fa fa-link"></i></a>参考情報</h2>
-
-<p>Nuget Command Reference<br>
-<a href="http://docs.nuget.org/docs/reference/command-line-reference#Push_Command_Usage" class="autolink" rel="nofollow noopener" target="_blank">http://docs.nuget.org/docs/reference/command-line-reference#Push_Command_Usage</a></p>
-
-<p>パッケージを作成して NuGet で公開する<br>
-<a href="http://msdn.microsoft.com/ja-jp/magazine/hh708753.aspx" class="autolink" rel="nofollow noopener" target="_blank">http://msdn.microsoft.com/ja-jp/magazine/hh708753.aspx</a></p>
-
-<p>NuGet パッケージを作成して公開する<br>
-<a href="http://sakapon.wordpress.com/2013/07/16/nugetpackage/" class="autolink" rel="nofollow noopener" target="_blank">http://sakapon.wordpress.com/2013/07/16/nugetpackage/</a></p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />21位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>23</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/c9c300007adec9d82a8f">JavaScriptクラスをきれいに書く</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-08-24 11:43:37</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[JavaScript]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>JavaScriptでクラスを書こう！という時、いろんな記事でいろんな書き方をしていて困ることがある。<br>
-(これくらい・・・ <a href="http://d.hatena.ne.jp/amachang/20060516/1147778600" class="autolink" rel="nofollow noopener" target="_blank">http://d.hatena.ne.jp/amachang/20060516/1147778600</a>)</p>
-
-<p>そんな時は、ここ、TypeScriptのサイトを参考にすると良い。  </p>
-
-<p><a href="http://www.typescriptlang.org/Playground/" class="autolink" rel="nofollow noopener" target="_blank">http://www.typescriptlang.org/Playground/</a><br><br>
-<a href="https://camo.qiitausercontent.com/007c95aefd5d83ab8e16b4692318bc1b901a5a5d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f39386662633931302d373139632d666461612d633839612d3161383034333737393030352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/007c95aefd5d83ab8e16b4692318bc1b901a5a5d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f39386662633931302d373139632d666461612d633839612d3161383034333737393030352e706e67" alt="キャプチャ.PNG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/98fbc910-719c-fdaa-c89a-1a8043779005.png"></a></p>
-
-<p>左側にコードを書けば、右側にいい感じのJavaScriptを出力してくれる。TypeScriptがわからなくても、サンプルを見れば書き方は何となく想像がつくので問題ない。<br><br>
-これで初めてクラスを書くときも安心だ。  </p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />22位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/97fc26a1b23aa831595f">Oracle/SqlServer構文対応表</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2014-01-18 12:50:39</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[SQLServer]</b> <b>[oracle]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>最近またOracleとSqlServerの違いに苦しめられたので、前に作成した一覧を最新化。</p>
-
-<p>いつかここにすべてのDBを乗せるのが夢だが、そもそも統一されているのが最大の夢だ。</p>
-
-<p><a href="https://docs.google.com/spreadsheet/ccc?key=0AuJhzhTx2bOydEJJRHlDMzdsaFhGRGFKZWpOMjVpU3c&amp;usp=sharing#gid=0" rel="nofollow noopener" target="_blank">各種DB構文対応表</a></p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />23位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/617094c6f9018149f41f">使い始める Git</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-07-21 13:09:08</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Git]</b> <b>[GitHub]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
-<h2>
-<span id="インストール" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>インストール</h2>
-
-<p><a href="http://git-scm.com/downloads" class="autolink" rel="nofollow noopener" target="_blank">http://git-scm.com/downloads</a></p>
-
-<h2>
-<span id="初期設定" class="fragment"></span><a href="#%E5%88%9D%E6%9C%9F%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>初期設定</h2>
-
-<p>ユーザー名/メールアドレスを設定</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git config --global user.name "git taro" 
-git config --global user.email git.taro@example.com
-</pre></div></div>
-
-<p>プロキシ配下の場合(認証がある場合はuser:passにユーザーIDとパスワードを設定)<br>
-※パスワードに@があってうまくいかん！という場合は@をURLエンコードした値(%40)を使用する</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$git config --global http.proxy http://proxy.server.com:port
-$git config --global http.proxy http://user:pass@proxy.server.com:port
-</pre></div></div>
-
-<p><code>git config --global --list</code> <br>
-で設定確認</p>
-
-<h2>
-<span id="基本操作" class="fragment"></span><a href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><i class="fa fa-link"></i></a>基本操作</h2>
-
-<p>Gitに限らず、バージョン管理系のソフトはファイルの変更を「コミット」(記録)することで、変更履歴を作成する。<br>
-この変更履歴にはメッセージを付けることができるので、「何のために」「ソースコードのどの箇所を変更したのか」を記録していくことができる。</p>
-
-<p>Gitでの基本的な操作は、以下のようになる。</p>
-
-<ul>
-<li>リポジトリの作成: バージョン管理を行っているフォルダを「リポジトリ」という(ざっくり言えば)。これは、外からとってくる方法と自分で作成する方法がある。
+<p><a href="https://camo.qiitausercontent.com/1eaf0a293828175ff7ce7e44f0b2a231cbf0838c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f31346666303037302d646464362d666338322d613234302d6663363962356565343036332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1eaf0a293828175ff7ce7e44f0b2a231cbf0838c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f31346666303037302d646464362d666338322d613234302d6663363962356565343036332e706e67" alt="pyfbi_viz_1.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/14ff0070-ddd6-fc82-a240-fc69b5ee4063.png"></a></p>
 
 <ul>
 <li>
-<code>git init</code>: 自分で作成。フォルダをGitリポジトリにする。</li>
-<li>
-<code>git clone</code>: 外からとってくる</li>
-</ul>
-</li>
-<li>コミットの作成
-
-<ul>
-<li>
-<code>git add</code>: コミット対象の(変更された)ファイルを登録</li>
-<li>
-<code>git commit</code>: 変更を記録する</li>
-</ul>
-</li>
-<li>(コミットの送信): リポジトリがオンラインにある場合は、手元で行ったコミットを外部のリポジトリに送信する必要がある。
-
-<ul>
-<li> <code>git push</code>: ローカルのコミットを外部のリポジトリに送信する</li>
-</ul>
-</li>
+<code>pure</code>は内部で呼び出している関数の実行時間を加味しない、純粋な実行時間になります(<code>tottime</code>)。<code>total</code>は、呼び出している関数の実行時間も含めた実際の処理時間になります(<code>cumtime</code>に相当)。<code>/call</code>は呼び出し一回当たりの時間になります。</li>
 </ul>
 
-<h3>
-<span id="基本" class="fragment"></span><a href="#%E5%9F%BA%E6%9C%AC"><i class="fa fa-link"></i></a>基本</h3>
+<p>計測に際しては、以下のように<code>pyfbi.target</code>を設定したところだけ計測を行うことが可能です。<code>with pyfbi.watch</code>で開始して抜けるまで観測が行われます。</p>
 
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span># フォルダを作成
-mkdir myRepository
+<div class="code-frame" data-lang="py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">pyfbi</span>
 
-# git リポジトリにする
-git init
 
-# ~何かしらファイルを変更~
+<span class="nd">@pyfbi.target</span>
+<span class="k">def</span> <span class="nf">func1</span><span class="p">():</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-# 変更の登録
-git add -A
+<span class="k">def</span> <span class="nf">func2</span><span class="p">():</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
-# 変更の記録
-git commit -m "commit message"
+
+<span class="k">with</span> <span class="n">pyfbi</span><span class="o">.</span><span class="n">watch</span><span class="p">():</span>
+    <span class="p">[</span><span class="n">f</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">(</span><span class="n">func1</span><span class="p">,</span> <span class="n">func2</span><span class="p">)]</span>
+<span class="n">pyfbi</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># func2は計測されない</span>
+<span class="n">pyfbi</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="s2">"your_stat_file_path"</span><span class="p">)</span>  <span class="c1"># ファイルに保存</span>
 </pre></div></div>
 
-<h3>
-<span id="取り消しを行う場合" class="fragment"></span><a href="#%E5%8F%96%E3%82%8A%E6%B6%88%E3%81%97%E3%82%92%E8%A1%8C%E3%81%86%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>取り消しを行う場合</h3>
+<p>もちろん、特に指定せず全てを対象にすることも可能です。その場合は以下のように<code>global_watch=True</code>を設定します。</p>
 
-<p>上からadd、commitの取り消し、commit メッセージの修正</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git rm -r --cached .
-git reset --soft HEAD~ 
-git commit --amend -m "new message"
+<div class="code-frame" data-lang="py"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pyfbi</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">global_watch</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="p">[</span><span class="n">f</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">(</span><span class="n">func1</span><span class="p">,</span> <span class="n">func2</span><span class="p">)]</span>
+<span class="n">pyfbi</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># func2も計測される</span>
 </pre></div></div>
 
-<h3>
-<span id="commitログの修正" class="fragment"></span><a href="#commit%E3%83%AD%E3%82%B0%E3%81%AE%E4%BF%AE%E6%AD%A3"><i class="fa fa-link"></i></a>commitログの修正</h3>
+<p>定期的な実行を行うことも可能です(x秒ごとに観測してファイルを保存するなど)。</p>
 
-<p><code>git rebase -i HEAD~3</code><br>
-HEAD~で修正するコミットログの範囲を設定(3なら、直近3回のコミットを修正)</p>
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>import pyfbi
 
-<h3>
-<span id="変更内容の確認" class="fragment"></span><a href="#%E5%A4%89%E6%9B%B4%E5%86%85%E5%AE%B9%E3%81%AE%E7%A2%BA%E8%AA%8D"><i class="fa fa-link"></i></a>変更内容の確認</h3>
+(set target to your function)
 
-<p>上からadd、commit、commitログの確認</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git diff --cached --name-only 
-git diff HEAD^ --name-only 
-git log --pretty=oneline --abbrev-commit 
+stat_dir = os.path.join(os.path.dirname(__file__), "stats")
+# You can use global_watch=True if you want to profile all functions.
+with pyfbi.watch_periodic(seconds=5, stat_dir=stat_dir):
+    for f in [func1, func2, func2, func3, func1, func1]:
+        f()
 </pre></div></div>
 
 <h2>
-<span id="branchの作成" class="fragment"></span><a href="#branch%E3%81%AE%E4%BD%9C%E6%88%90"><i class="fa fa-link"></i></a>branchの作成</h2>
+<span id="作成した背景" class="fragment"></span><a href="#%E4%BD%9C%E6%88%90%E3%81%97%E3%81%9F%E8%83%8C%E6%99%AF"><i class="fa fa-link"></i></a>作成した背景</h2>
 
-<p>まとまった変更を行うときは、ブランチという作業スペースを作成し、そこで変更を行っていき後で統合(マージ)を行う。<br>
-以下はブランチの作成/作成したブランチへの移動/削除/確認のコマンド</p>
+<p>画像中の関数を見てピンと来た方がいるかもしれませんが、これは<a href="http://isucon.net/archives/50188676.html" rel="nofollow noopener" target="_blank">ISUCON7</a>に向けて作成されたツールです。実地でも「計測する」「改修する」「改善を確認してMergeする」というプロセスを踏んで行くのに役立ちました(実際は画像のキャッシュに気付くという壁を超えることができずその改善効果が日の目を見ることはほぼなかったのだが・・・)。</p>
 
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git branch xxx
-git checkout xxx
-git branch -D xxx
-</pre></div></div>
+<p>ベンチの値は非常に変動が大きく、またある程度待ち時間もあるため改修結果を測るのに使うのは難しかったです。その意味でも、確かな計測値が手に入るのは良かったです。</p>
 
-<h2>
-<span id="その他" class="fragment"></span><a href="#%E3%81%9D%E3%81%AE%E4%BB%96"><i class="fa fa-link"></i></a>その他</h2>
+<p>予選通過はならずでしたが、せっかく作ったものなのでパフォーマンス改善の折にはぜひ使っていただければと思います。</p>
 
-<h3>
-<span id="標準エディタの使い方" class="fragment"></span><a href="#%E6%A8%99%E6%BA%96%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9"><i class="fa fa-link"></i></a>標準エディタの使い方</h3>
-
-<p>git commit とかでメッセージを入れ忘れたり　git rebase するとカラフルフォントの謎なモードになってわけわからん！となるがこれが標準のエディタなのである。<br>
-とりあえず以下のコマンドさえ覚えていれば困らない。むしろ、手軽で使いやすい。</p>
-
-<table>
-<thead>
-<tr>
-<th style="text-align: left">コマンド</th>
-<th style="text-align: left">説明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left">dd</td>
-<td style="text-align: left">行削除</td>
-</tr>
-<tr>
-<td style="text-align: left">i</td>
-<td style="text-align: left">編集モードに入る。これでメッセージを編集できる</td>
-</tr>
-<tr>
-<td style="text-align: left">escキー</td>
-<td style="text-align: left">編集モードから抜ける</td>
-</tr>
-<tr>
-<td style="text-align: left">:w</td>
-<td style="text-align: left">編集内容を保存する</td>
-</tr>
-<tr>
-<td style="text-align: left">:q</td>
-<td style="text-align: left">エディタモードを終了する</td>
-</tr>
-</tbody>
-</table>
-
-<h3>
-<span id="オンラインリポジトリgithub--bitbucket関連" class="fragment"></span><a href="#%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AAgithub--bitbucket%E9%96%A2%E9%80%A3"><i class="fa fa-link"></i></a>オンラインリポジトリ(GitHub / Bitbucket)関連</h3>
-
-<p>リモートリポジトリの登録/削除/確認</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git remote add xxx https://xxxx 
-git remote -rm xxx
-git remote show xxx
-git remote 
-</pre></div></div>
-
-<p>リポジトリのダウンロード<br>
-<code>git clone https://xxxxx</code></p>
-
-<p>コミットの送信(remote名・ブランチ名で宛先指定)<br>
-<code>git push xxx master</code></p>
-
-<p>リポジトリ側の更新をローカルに反映<br>
-<code>git pull xxx master</code></p>
-
-<p><strong>Pull Request</strong><br>
-・必ずbranchを作って作業する<br>
-・送る前に、送り先に更新がないか確認する <code>git pull  fork元 master</code>で<br>
-・それぞれのリポジトリでルールがあったりするので、それは確認しておく</p>
-
-<p>これだけ気にしておけばいいと思う</p>
-
-<h2>
-<span id="参考リンク" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E3%83%AA%E3%83%B3%E3%82%AF"><i class="fa fa-link"></i></a>参考リンク</h2>
-
-<p>上記は使えるコマンドだけ抜粋している。そもそもHEADとか何？みたいな話ははしょっているので、詳細に知りたい方は下記参照。</p>
-
-<p><a href="http://d.hatena.ne.jp/murank/20110320/1300619118" rel="nofollow noopener" target="_blank">git diff の使い方がほんの少し理解できた</a><br>
-<a href="http://www.backlog.jp/git-guide/stepup/stepup7_5.html" rel="nofollow noopener" target="_blank">rebase -i でコミットをまとめる</a><br>
-<a href="http://d.hatena.ne.jp/hnw/20110528" rel="nofollow noopener" target="_blank">GitHubへpull requestする際のベストプラクティス</a></p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />24位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/5bf83f474ee345b1700f">HerokuでWebsocketを使いたいときの注意点</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2014-02-22 11:56:43</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Heroku]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>よく以下のようにやればいい、と書いてあるのだが実際やってみると「labsなんてコマンドないよ」みたいなメッセージが出てはまったことがあった。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>heroku labs:enable websockets -a myapp
-</pre></div></div>
-
-<p>heroku labsは実はプラグインなので、インストールが必要(あまり困っている人がいないところを見ると最近は最初から入っているのか？一応<code>gem update heroku</code>をかけたのだが・・・)。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>heroku plugins:install https://github.com/heroku/heroku-labs.git
-</pre></div></div>
-
-<p>これで晴れてwebsocketを使えるようになった。</p>
-
-<p>＜参考＞<br>
-<a href="https://devcenter.heroku.com/articles/heroku-labs-websockets" rel="nofollow noopener" target="_blank">Heroku Labs: WebSockets</a><br>
-<a href="https://github.com/heroku/heroku-labs" rel="nofollow noopener" target="_blank">heroku-labs</a></p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />25位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/39c67ca6972d5f253b8b">jsFiddleでGitHubリポジトリ上のソースを参照する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-09-19 00:35:32</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[GitHub]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>jsFiddleを作成したいときに、GitHub上のソースを参照したいことがある。<br>
-例：jsFiddleがサポートしていないフレームワークを使いたい時、Pull Requestを送るときのサンプルコードetc・・・</p>
-
-<p>そんな時は、まずRAWのボタンを押してファイルを参照する。<br>
-<a href="https://camo.qiitausercontent.com/d966a1234fe3c353908ea24f1bfe093692d866de/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f34616565343162662d623730352d303130362d383563342d3931323035393337376665332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d966a1234fe3c353908ea24f1bfe093692d866de/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f34616565343162662d623730352d303130362d383563342d3931323035393337376665332e706e67" alt="picture1.PNG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/4aee41bf-b705-0106-85c4-912059377fe3.png"></a></p>
-
-<p>この時のURLはmime-typeがtext/htmlになっており、このまま指定しても読み込んでくれない。<br>
-そこで、URL前半の <strong>raw.githubusercontent.com・・・</strong> を <strong>rawgit.com・・・</strong> に変更すると（ドットをとる）、きちんと読み込んでくれるようになる、という裏ワザ。<br>
-<strong>※なお、これはGistでも使用可能なワザ</strong></p>
-
-<p>ちなみに、参照をする時はmasterブランチではなく、tagsがあればそちらの方を参照したほうが良い。<br>
-ソースが変わった時に動かなくなったりするからである(そうしたゾンビjsFiddleは世の中にたくさんある)。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />26位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/6b0c1475c61292b42244">Gitで特定のコミットの状態のブランチを作成する</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2014-01-22 17:37:49</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Git]</b> <b>[GitHub]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>リポジトリの特定のコミットの状態のブランチを作成して、当時の状態と現在の状態で差分を取る方法。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git branch -l ブランチ名 コミット番号
-</pre></div></div>
-
-<p>もしくは、いったんチェックアウトした後にブランチを作成する。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git checkout コミット番号
-git checkout -b ブランチ名
-</pre></div></div>
-
-<p>これでmasterと比較をとる、と。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />27位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/3e716d790c67c23eb73e">Apacheのバージョンを特定する [対象：2.2.x～2.2.21/脆弱性：CVE-2012-0053]</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-10-01 22:47:10</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Apache]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Apacheのバージョンは、素直にHTTPヘッダに出してくれていることもあればそうでないこともある。隠されているけれどもバージョンを判定しないといけない場合は、各バージョンに存在する脆弱性を確認することで対応できる。</p>
-
-<h2>
-<span id="cve-2012-0053を利用した判定" class="fragment"></span><a href="#cve-2012-0053%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%9F%E5%88%A4%E5%AE%9A"><i class="fa fa-link"></i></a>CVE-2012-0053を利用した判定</h2>
-
-<p>CVE-2012-0053は、Bad Requestが発生した場合HttpOnly Cookieがエラーページに出てしまうという脆弱性だ。<br>
-<a href="http://jvndb.jvn.jp/ja/contents/2012/JVNDB-2012-001258.html" class="autolink" rel="nofollow noopener" target="_blank">http://jvndb.jvn.jp/ja/contents/2012/JVNDB-2012-001258.html</a><br>
-<a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-0053" class="autolink" rel="nofollow noopener" target="_blank">http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-0053</a></p>
-
-<p>この脆弱性はApache 2.2.22 で修正されたため、逆に言えば脆弱性が存在すれば2.2.22未満(=2.2.x～2.2.21)ということになる。<br>
-<a href="http://www.apache.jp/news/apache-http-server-2.2.22-released" class="autolink" rel="nofollow noopener" target="_blank">http://www.apache.jp/news/apache-http-server-2.2.22-released</a></p>
-
-<p>では、これを実際に試してみる。<br>
-まずはApache2.2.21をインストールし、HTTPクライアント(※)を利用し脆弱性の原因となる長大なCookieを送り付ける。これで、CookieがBad Requestのページで表示されてしまうかどうかを確認する。<br>
-※今回は<a href="http://fiddler2.com/" rel="nofollow noopener" target="_blank">Fiddler</a>を使用。HTTPリクエストを送れる手軽なブラウザツールは結構あるが、多くの場合ブラウザのセキュリティ実装によりCookieは送れないため、専用ツールを使用するのが吉。</p>
-
-<p>FiddlerではComposerというタブから任意のリクエストを送ることができる。<br>
-<a href="https://camo.qiitausercontent.com/01d2ce798544cdbb78b7561e46d7bdab5c01a0f8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f65643030383732382d633739352d333965392d653435632d6633346539303836323531312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/01d2ce798544cdbb78b7561e46d7bdab5c01a0f8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f65643030383732382d633739352d333965392d653435632d6633346539303836323531312e706e67" alt="send1.PNG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/ed008728-c795-39e9-e45c-f34e90862511.png"></a></p>
-
-<p>まず普通のCookieを送った場合、正常に返ってくることを確認。<br>
-<a href="https://camo.qiitausercontent.com/239493a0aa1b47ad1e394bd1ff4997a023180507/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f34313765626435632d383065322d626334342d656336372d3939316537383937373337642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/239493a0aa1b47ad1e394bd1ff4997a023180507/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f34313765626435632d383065322d626334342d656336372d3939316537383937373337642e706e67" alt="ok.PNG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/417ebd5c-80e2-bc44-ec67-991e7897737d.png"></a></p>
-
-<p>そして本題の長大なCookieを送った場合。Bad Requestのレスポンスで、preタグ内でCookieがさらされてしまっているのが確認できる。<br>
-<a href="https://camo.qiitausercontent.com/b2519eda446790a1781de9b4a1a5372df4c41299/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f65373961663937612d663062652d613538352d343864322d3537353866316231313733622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b2519eda446790a1781de9b4a1a5372df4c41299/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f65373961663937612d663062652d613538352d343864322d3537353866316231313733622e706e67" alt="ng.PNG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/e79af97a-f0be-a585-48d2-5758f1b1173b.png"></a></p>
-
-<p>2.2.22以降だと、<code>&lt;pre&gt;Cookie&lt;/pre&gt;/</code>となり、内容は表示されなくなる。<br>
-なお、この判定方法はカスタムのエラーページが使用されている場合無力なので注意。</p>
-
-<p>以下、コピペ用のHTTPリクエストヘッダ。Cookieの元ネタは<a href="https://gist.github.com/icoxfog417/1e23959dbcd0b2ebf32c" rel="nofollow noopener" target="_blank">こちらのExploitコード</a>。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Cookie: z0=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;z1=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;z2=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;z3=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;z4=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;z5=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;z6=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;z7=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;z8=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;z9=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-</pre></div></div>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />28位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/df5eb3a708859c3809ac">Git サブディレクトリ配下の特定ファイルのみ対象とする</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2014-03-07 09:48:20</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Git]</b> <b>[GitHub]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>以下のようなフォルダ構成で、<code>/hoge/file1.txt</code>だけcommitしたいよ、という場合。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>/hoge
-/hoge/file1.txt
-/hoge/file2.txt
-/hoge/file3.txt
-/.gitignore
-</pre></div></div>
-
-<p><code>.gitignore</code> をこのようにする。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>*.*
-!/hoge/file1.txt
-</pre></div></div>
-
-<p><code>/*</code>というかどこかに/を入れるとその配下のディレクトリが除外対象になってしまい、後から<code>!</code>で指定しても除外されたままになってしまう。<br>
-そのため、「あらゆるファイル」のみを除外し、そこから対象のファイルを<code>!</code>で設定するようにする。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />29位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/17ebe8813809093c67a3">Windowsに複数バージョンのApacheをインストールする</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-10-01 23:37:49</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Apache]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>検証などの関係で、一台のPCに複数バージョンのApacheを入れたいことがあったりする。<br>
-そんな時、普通にインストールしようとすると「あなたのPCには既にApacheが・・・」というメッセージが出てきてインストールできない(ウルサイそんなことは分かっているんだ)。</p>
-
-<p>というわけで、複数バージョンをインストールする方法。</p>
-
-<h2>
-<span id="1最初は普通にインストールする" class="fragment"></span><a href="#1%E6%9C%80%E5%88%9D%E3%81%AF%E6%99%AE%E9%80%9A%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>1.最初は普通にインストールする</h2>
-
-<p>複数バージョンの最初の一台は、普通にインストールする。これは、普通にインストールしないとhttpd.confなどの設定ファイルが作成されないためだ。</p>
-
-<h2>
-<span id="2コマンドラインからインストールを行いmsiファイルを展開する" class="fragment"></span><a href="#2%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%82%92%E8%A1%8C%E3%81%84msi%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E5%B1%95%E9%96%8B%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>2.コマンドラインからインストールを行い、msiファイルを展開する</h2>
-
-<p>次に、別バージョンのインストール。<br>
-落としてきたmsiファイルを、下記のコマンドで解凍する(msiファイル名とTARGETDIRは適宜読み替え)。<br>
-<code>msiexec /a apache.msi /qb TARGETDIR=C:\Apache</code></p>
-
-<p>これを実行すると幾つかフォルダができるが、その中のprogram filesのフォルダにApacheのフォルダがある。これをコピーして適当なフォルダに配置する。</p>
-
-<h2>
-<span id="3設定ファイルのコピーと書き換え" class="fragment"></span><a href="#3%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%B3%E3%83%94%E3%83%BC%E3%81%A8%E6%9B%B8%E3%81%8D%E6%8F%9B%E3%81%88"><i class="fa fa-link"></i></a>3.設定ファイルのコピーと書き換え</h2>
-
-<p>コマンドラインインストールした場合、confのなかは空っぽになっているので、1の手順で普通にインストールしたApacheのconfファイルをコピーする。<br>
-<code>ServerRoot</code>や<code>DocumentRoot</code>は当然コピー元のApacheで設定されているので、これは適宜書き換えを行う(置換してしまえばOK)。<br>
-あとは、ルートディレクトリにlogsのフォルダを作成すれば、作業完了。</p>
-
-<h2>
-<span id="注意点" class="fragment"></span><a href="#%E6%B3%A8%E6%84%8F%E7%82%B9"><i class="fa fa-link"></i></a>注意点</h2>
-
-<p>Apacheはメジャーバージョンが異なるとLoadModuleの名前が変わっていたりするので（2.0-&gt;2.2ではmod_accessがmod_authz_hostになったりとか・・・）、この方法で複数バージョンやろうとするとhttpd.confでエラーが発生する可能性がある。<br>
-その際は公式ページを見ながらモジュールを書き換え都度頑張るか、もうやだ、となった場合はおとなしくアンインストール/インストールする。アンインストールしてもconfファイルは残るので、2以降の手順で複数バージョンインストールは行うことができる。</p>
-
-<p>＜参考＞<br>
-<a href="http://splike.com/wiki/Multiple_Apache_HTTPD_versions_in_Windows" rel="nofollow noopener" target="_blank">Multiple Apache HTTPD versions in Windows</a></p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />30位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/ae80441bd76fff96fd2a">モバイル対応サイトのデバッグ</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-11-22 13:29:30</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[JavaScript]</b> <b>[Mobile]</b> <b>[ASP.NET]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>モバイル対応を行う際、タッチイベントやレスポンシブルデザインのデバッグが必要になります。しかしPCでこれをやるのはなかなかに困難。そんな場合に役立つ情報をまとめました。</p>
-
-<h2>
-<span id="タッチイベントのデバッグ" class="fragment"></span><a href="#%E3%82%BF%E3%83%83%E3%83%81%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%81%AE%E3%83%87%E3%83%90%E3%83%83%E3%82%B0"><i class="fa fa-link"></i></a>タッチイベントのデバッグ</h2>
-
-<p>PC上でタッチイベントを検証する方法がいくつかあります。</p>
-
-<p><strong>1.Chromeのデバッグ機能を使用する</strong><br>
-もう知っている人もいるかもしれませんが、実はChromeにはデバイスのエミュレート機能があるのです。<br>
-右下の歯車マークから・・・<br>
-<a href="https://camo.qiitausercontent.com/bbaa535a58878ddf27c6795e67f377437e12a55c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f66356634323665382d666235322d306231392d363661622d6339666239326434353538312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/bbaa535a58878ddf27c6795e67f377437e12a55c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f66356634323665382d666235322d306231392d363661622d6339666239326434353538312e706e67" alt="touch1.PNG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/f5f426e8-fb52-0b19-66ab-c9fb92d45581.png"></a></p>
-
-<p>環境設定画面を開き、エミュレートする内容を設定。右上にエミュレート中の情報が表示されます<br>
-<a href="https://camo.qiitausercontent.com/29a754874297462b8e26d0787a57b62ed73dede4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f35366135653734332d376234352d383462352d333265392d3462363832383630663865622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/29a754874297462b8e26d0787a57b62ed73dede4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f35366135653734332d376234352d383462352d333265392d3462363832383630663865622e706e67" alt="touch2.PNG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/56a5e743-7b45-84b5-32e9-4b682860f8eb.png"></a><br>
-ただし、回転やピンチイン/アウトなど指二本使うものはさすがに無理。</p>
-
-<p><strong>2.Surface SDK を使用する</strong><br>
-SurfaceのSDKを利用することでタッチイベントをエミュレートすることができるらしい・・・ですが、試そうとしたところVisual Studio 2010でないとダメな模様(2013/11/22現在。Visual Studio 2012だとダメ)。<br>
-インストールできるならば、試してみる価値はあるだろう。</p>
-
-<h2>
-<span id="デザイン" class="fragment"></span><a href="#%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3"><i class="fa fa-link"></i></a>デザイン</h2>
-
-<p>こちらのサイトが優秀<br>
-<a href="http://quirktools.com/screenfly/" class="autolink" rel="nofollow noopener" target="_blank">http://quirktools.com/screenfly/</a></p>
-
-<p>下記のような感じで、各種デバイスを選択し横にしたり縦にしたりできます。<br>
-<a href="https://camo.qiitausercontent.com/641a39d84f770753b88faa0801b9776b3735391e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f65383035316638392d633562652d643631652d363930362d3466656261643863346338352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/641a39d84f770753b88faa0801b9776b3735391e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32353939302f65383035316638392d633562652d643631652d363930362d3466656261643863346338352e706e67" alt="touch3.PNG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/25990/e8051f89-c5be-d61e-6906-4febad8c4c85.png"></a></p>
-
-<p>iPhone/iPad対応を行う際使用しましたが、ここでうまく出てなかったらまず本番でもうまく動かない。そんな感じです(逆に、ここで動いているからといって油断はできない)。まあ、MacがあるならIOSシミュレータを使うのが早いですが・・・。</p>
-
-<h2>
-<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h2>
-
-<p>Surface Proを買ってVisual Studio入れてしまって開発するのが手っ取り早いのかな？とも思ったりします(開発環境が入るようなタブレットってSurfaceくらいしかないので)。<br>
-あとはクラウド環境にデプロイして実機で確認するのもありだと思います。RubyなどならHerokuが使えますし、.NETでもAppharborが利用できます(Azureに金を払いたくない場合)。私はASP.NET MVC開発時Appharborにデプロイしてデザインを実機で確認してました。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />31位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/3e6329a18390c70e2876">Scala Liftフレームワークの参考文献</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2013-12-23 21:52:57</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Scala]</b> <b>[Lift]</b> <b>[sbt]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>いろいろ情報が散在しているのでまとめ。</p>
-
-<p><a href="http://cookbook.liftweb.net/#_lift_cookbook" rel="nofollow noopener" target="_blank">Lift cookbook</a><br>
-<a href="http://demo.liftweb.net/" rel="nofollow noopener" target="_blank">Lift Demo</a><br>
-<a href="http://simply.liftweb.net/" rel="nofollow noopener" target="_blank">Simply Lift</a><br>
-<a href="http://exploring.liftweb.net/" rel="nofollow noopener" target="_blank">Exploring Lift</a></p>
-
-<p><a href="http://demo.liftweb.net/" rel="nofollow noopener" target="_blank">Lift Demo</a>と<a href="https://github.com/lift/examples" rel="nofollow noopener" target="_blank">Github</a>コードを見比べるのがいい感じだ。</p>
-</div>
-	</td>
-</tr>
-</table>
-<br />
-<table border="1">
-<tr>
-	<td rowspan="3"><center>icoxfog417さんの<br />32位</center></td>
-	<td colspan="3">
-		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
-		<a target="_blank" href="https://qiita.com/icoxfog417/items/cb31772f9a229b9104aa">Scala xsbt-web-plugin で Jetty を扱う際のTips</a>
-	</td>
-</tr>
-<tr>
-	<td style="width:100px;"><center>投稿日時</center></td>
-	<td style="width:200px;"><center>投稿者</center></td>
-	<td style="width:150px;"><center>タグ</center></td>
-	<td style="width:350px;"><center>本文</center></td>
-</tr>
-<tr>
-	<td style="width:100px;">
-		<!--投稿日時--><center>2014-02-14 09:17:26</center>
-	</td>
-	<td style="width:200px;">
-		@icoxfog417<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/25990/profile-images/1484303516">
-	</td>
-	<td style="width:150px;">
-		<!--タグ-->
-		<center><b>[Scala]</b> <b>[sbt]</b> </center>
-	</td>
-	<td style="width:350px;">
-		<!--本文-->
-		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>ScalaでWebアプリケーションコンテナを扱うためのプラグインxsbt-web-pluginについて。<br>
-sbtを0.13.1にして使用するとJettyの起動/終了で以下のエラーが発生していた。</p>
-
-<p>起動時<br>
-<code>java.lang.ClassNotFoundException: javax.servlet.jsp.JspPage</code></p>
-
-<p>終了時<br>
-<code>java.nio.channels.AsynchronousCloseException</code></p>
-
-<p>0.13.0ではこれは起こらない。<br>
-「0.7.0で直したよ」というもののいまだエラーが出ていたのだが、issueにこんなコメントが。</p>
-
-<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>"org.eclipse.jetty" % "jetty-webapp" % "9.1.2.v20140210" % "container",
-"org.eclipse.jetty" % "jetty-plus" % "9.1.2.v20140210" % "container"
-</pre></div></div>
-
-<p>「jetty-plusを入れれば回避できるみたい」だそうだ。<br>
-まだ試していないが、0.7.0とこの対応で何とかなりそう。</p>
-
-<p>しかしstart/stopを繰り返していると異常に重たくなる(リークが起きているのか？)のだが、それも例外が発生しなくなれば解消するのか・・・試してみたい。</p>
-
-<p>＜参考issue＞<br>
-<a href="https://github.com/earldouglas/xsbt-web-plugin/issues/142#issuecomment-35021903" rel="nofollow noopener" target="_blank">Exceptions on start and stop with sbt 0.13.1</a></p>
-
-<p>GitHubのissueをストックしておく機能がほしいところだ。APIもあるので検討。</p>
+<p><a href="https://github.com/icoxfog417/pyfbi" rel="nofollow noopener" target="_blank">icoxfog417/pyfbi</a><br>
+(Starを頂けると予選敗退の心が癒されます m(_ _)m)</p>
 </div>
 	</td>
 </tr>
