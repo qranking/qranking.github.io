@@ -1,0 +1,324 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (diescake)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (diescake さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>diescakeさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>610</kbd>
+		<a target="_blank" href="https://qiita.com/diescake/items/4f354a5dc7cb738efd4f">布団から腕すら出さずに会社を休む [Google Home]</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-30 03:34:02</center>
+	</td>
+	<td style="width:200px;">
+		@diescake<br />(ACCESS CO., LTD 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/38837/profile-images/1498821682">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[gmail]</b> <b>[ifttt]</b> <b>[joke]</b> <b>[GoogleHome]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="時は遡ること1年前" class="fragment"></span><a href="#%E6%99%82%E3%81%AF%E9%81%A1%E3%82%8B%E3%81%93%E3%81%A81%E5%B9%B4%E5%89%8D"><i class="fa fa-link"></i></a>時は遡ること1年前…</h1>
+
+<p>以前、こんな記事を書きました。</p>
+
+<p><a href="https://camo.qiitausercontent.com/efbc0406dc75ac419ff5397abf2c7dd8aff9d144/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f63636435313663372d333836642d376632372d316237362d6636383163666139316164342e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/efbc0406dc75ac419ff5397abf2c7dd8aff9d144/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f63636435313663372d333836642d376632372d316237362d6636383163666139316164342e6a706567" width="450px" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38837/ccd516c7-386d-7f27-1b76-f681cfa91ad4.jpeg"></a><br>
+<a href="https://qiita.com/diescake/items/d4e1fb2dccc2fd4c92d8" id="reference-be4ce317fbd3123835d4">会社が休みになるボタンを作ってみた [Amazon Dash Button]</a></p>
+
+<p>しかし、この Amazon Dash Button をハックした方式では以下の問題点がありました。</p>
+
+<ul>
+<li><strong>同ネットワーク内にサーバを立てておく必要がある</strong></li>
+<li><strong>ハック的な使い方をしているため、動作不安定</strong></li>
+<li>目を開ける必要がある</li>
+<li>ボタンを押す動作すら面倒くさい</li>
+<li>ノールックでボタンを押そうとするとボタン(半休/全休)を間違える</li>
+</ul>
+
+<p>そのくらい我慢しろや！という項目もありますが、<br>
+やはり運用していく上で一番面倒だったのは、自サーバをローカルに立てておく必要がある点でした。</p>
+
+<p>ネットワークに流れる ARP パケットをイベントのトリガーにする仕組みなので、<br>
+サーバをクラウドへ持っていくことができなかったのです。<br>
+(あくまで、一般向けの Amazon Dash Button をハックして利用している場合の話)</p>
+
+<p>というわけで、結局すぐに使わなくなってしまったのでした…</p>
+
+<h1>
+<span id="時は満ちた" class="fragment"></span><a href="#%E6%99%82%E3%81%AF%E6%BA%80%E3%81%A1%E3%81%9F"><i class="fa fa-link"></i></a>時は満ちた。</h1>
+
+<p>さて、<strong>Google Home</strong> が発売されました。</p>
+
+<p>キャズム前方へ陣取る皆様側は、既に手に入れている方も多いものと思いますが、<br>
+今回 Google Home を利用することで、上述した問題点をほぼ解決し、<br>
+比較的安定して運用できているためご紹介します。オススメです！</p>
+
+<p>先に断っておくと、<strong>コードは1行も書いていません。</strong><br>
+IFTTT 連携の設定をするだけで実現できてしまいました。</p>
+
+<p>(前回見たくコードを書く気満々でいたので不完全燃焼感が・・・)</p>
+
+<h1>
+<span id="会社を布団から腕すら出さずに休むボタンとは" class="fragment"></span><a href="#%E4%BC%9A%E7%A4%BE%E3%82%92%E5%B8%83%E5%9B%A3%E3%81%8B%E3%82%89%E8%85%95%E3%81%99%E3%82%89%E5%87%BA%E3%81%95%E3%81%9A%E3%81%AB%E4%BC%91%E3%82%80%E3%83%9C%E3%82%BF%E3%83%B3%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>会社を布団から腕すら出さずに休むボタンとは？</h1>
+
+<h2>
+<span id="ユースケース" class="fragment"></span><a href="#%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9"><i class="fa fa-link"></i></a>ユースケース</h2>
+
+<p>俺「ねぇ、Google、午前半休したい」<br>
+Home「イエス、ユアハイネス」</p>
+
+<p>➔ 会社に勤怠メールが送られる！！＼(^o^)／</p>
+
+<h2>
+<span id="というわけでデモ動画" class="fragment"></span><a href="#%E3%81%A8%E3%81%84%E3%81%86%E3%82%8F%E3%81%91%E3%81%A7%E3%83%87%E3%83%A2%E5%8B%95%E7%94%BB"><i class="fa fa-link"></i></a>というわけで、デモ動画</h2>
+
+<p>相変わらず地味…</p>
+
+<blockquote class="twitter-tweet">
+<p>布団から腕すら出さずに会社を休む [Google Home]<a href="https://t.co/YOeaA0UQqT" rel="nofollow noopener" target="_blank">https://t.co/YOeaA0UQqT</a> <a href="https://t.co/8KmSklEf5D" rel="nofollow noopener" target="_blank">pic.twitter.com/8KmSklEf5D</a></p>— diescake (@pomeranian_dev) <a href="https://twitter.com/pomeranian_dev/status/924722132923252736?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年10月29日</a>
+</blockquote>
+
+
+
+<h2>
+<span id="仕組み" class="fragment"></span><a href="#%E4%BB%95%E7%B5%84%E3%81%BF"><i class="fa fa-link"></i></a>仕組み</h2>
+
+<p>Google Home と <strong>IFTTT(If This Then That)</strong> の連携で実現します。</p>
+
+<p>IFTTT の詳細については他記事へ譲りますが、<br>
+一言でいえば、何かをトリガー(This)に、何かのイベント(That)を発生させる、というルール(レシピ)を設定できるウェブサービスです。</p>
+
+<p>IFTTT の凄いところは、この <strong>This</strong> と <strong>That</strong> に設定可能なウェブサービスが広く網羅されているため、<br>
+これらを組み合わせるだけで、多岐にわたるユーザの要求を実現したり、<br>
+アイデア次第ではキラーな機能を <strong>コードを書かずに</strong> 実現できることです。</p>
+
+<h2>
+<span id="ifttt-でレシピをつくる" class="fragment"></span><a href="#ifttt-%E3%81%A7%E3%83%AC%E3%82%B7%E3%83%94%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B"><i class="fa fa-link"></i></a>IFTTT でレシピをつくる</h2>
+
+<p>というわけで、レシピの作成手順です。<br>
+今回は下記レシピを作ります。</p>
+
+<ul>
+<li>
+<strong>This</strong>: Google Assistant</li>
+<li>
+<strong>Then</strong>: Gmail</li>
+</ul>
+
+<h3>
+<span id="作成手順" class="fragment"></span><a href="#%E4%BD%9C%E6%88%90%E6%89%8B%E9%A0%86"><i class="fa fa-link"></i></a>作成手順</h3>
+
+<p>IFTTT や Google アカウントは別途ご用意ください。<br>
+途中、Gmail へのアクセス許可が求められる場合があります。</p>
+
+<p>また、以下は PC 版ベースの手順となりますが、iOS/Android アプリでも同様に設定が可能です。</p>
+
+<p><a href="https://camo.qiitausercontent.com/7319668ae7232ed9085f0fd74d6d7ec8a907dc07/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f37386564393637302d393030632d346534342d636633392d6231366135323535626365622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7319668ae7232ed9085f0fd74d6d7ec8a907dc07/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f37386564393637302d393030632d346534342d636633392d6231366135323535626365622e706e67" alt="01.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38837/78ed9670-900c-4e44-cf39-b16a5255bceb.png"></a></p>
+
+<p>My Applets 画面から New Applet を選択<br>
+ちなみに、スクショにはテレビのチャンネルを制御するレシピ(NatureRemo)が見えてますねｗ</p>
+
+<hr>
+
+<p><a href="https://camo.qiitausercontent.com/d5d535679abe9c7d6e893cf9474dea144e89eaaa/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f34653564333739612d363735622d386638362d356264312d3665653936353938623165352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d5d535679abe9c7d6e893cf9474dea144e89eaaa/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f34653564333739612d363735622d386638362d356264312d3665653936353938623165352e706e67" alt="02.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38837/4e5d379a-675b-8f86-5bd1-6ee96598b1e5.png"></a></p>
+
+<p>まずは this から設定していきます。</p>
+
+<hr>
+
+<p><a href="https://camo.qiitausercontent.com/ce9de60036624819400892240319cfc77057b1d0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f31353435663034322d643436302d303365342d316130392d6566303531353035353566632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ce9de60036624819400892240319cfc77057b1d0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f31353435663034322d643436302d303365342d316130392d6566303531353035353566632e706e67" alt="03.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38837/1545f042-d460-03e4-1a09-ef05150555fc.png"></a></p>
+
+<p>Google Assistant を探して選択。</p>
+
+<hr>
+
+<p><a href="https://camo.qiitausercontent.com/e7a3741270011440e12bb2644587fc2e2ea05659/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f34356635623838642d653838322d616566632d396366652d3635616231343537363162622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e7a3741270011440e12bb2644587fc2e2ea05659/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f34356635623838642d653838322d616566632d396366652d3635616231343537363162622e706e67" alt="04.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38837/45f5b88d-e882-aefc-9cfe-65ab145761bb.png"></a></p>
+
+<p>ここでは "Say a simple phrase" を選択。<br>
+もし、Google Home に命令するフレーズの中に変数や数値を持たせたければ、内容に応じて他の項目を選択します。</p>
+
+<p>例えば、"体調不良"とか"私用"といった休暇理由を言葉で指定したければ、<br>
+"Say a phrase with a text ingredient" を選択することで実現できます。</p>
+
+<p>実際のフレーズとしては、「ねぇ、Google、今日は○○で午前休したい」のようなイメージです。<br>
+ちなみに、<strong>変数をフレーズの冒頭に使えない</strong>ので、"今日は"を挟んでいます。</p>
+
+<p>日本語だと、目的語が前にくるためいまいちな点ではあります。</p>
+
+<hr>
+
+<p><a href="https://camo.qiitausercontent.com/626f3c4ddbb555de6b89b0258c79759d3b8ffaac/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f61356164323639342d646634352d383932632d353062382d6433373538643930363562642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/626f3c4ddbb555de6b89b0258c79759d3b8ffaac/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f61356164323639342d646634352d383932632d353062382d6433373538643930363562642e706e67" alt="05.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38837/a5ad2694-df45-892c-50b8-d3758d9065bd.png"></a></p>
+
+<p>まず、Google Home が認識するフレーズを指定していきます。</p>
+
+<p>3フレーズまで指定が可能で、<br>
+ここでは、"午前半休したい" or "午前休したい" or "午前休" のいずれかのフレーズに反応するように指定しています。</p>
+
+<p>ここでいくつか注意点があります。</p>
+
+<p>まず、<strong>フレーズは一字一句完全にマッチしないと認識しない</strong>という点です。</p>
+
+<p>この場合だと、"午前半休" や "午前半休をしたい" といったフレーズには反応しないので注意が必要。<br>
+一番最初に頭に浮かんだフレーズをそのまま登録するのがオススメです。</p>
+
+<p>加えて <strong>Google Home が漢字の読み方を誤る</strong>場合があります。<br>
+その結果、正しく伝えたつもりでも Google Home の解釈するフレーズとマッチせず、反応しないという場合もあるので、<br>
+怪しい場合はひらがなで入力したほうが良いかもしれません。</p>
+
+<p>2点目、<strong>予約済みのフレーズ(意味)があり、衝突すると IFTTT で指定した動作が呼び出されません。</strong></p>
+
+<p>具体的には、IFTTT で "照明をつけて" というフレーズを設定しておいても、<br>
+Google のスマートホーム関連に処理を奪われ、IFTTT で指定した処理には繋がりません。</p>
+
+<p>こういう場合は思いっきりフレーズを変えるか、<br>
+"照明をスタート" といったちょっと怪しい日本語を探すのが良さそうです。</p>
+
+<p>続いて、Google Home の応答メッセージを指定します。<br>
+ここでは "イエス ユア ハイネス"と指定しています。</p>
+
+<p>フレーズに変数を用意した場合は、<br>
+変数が正しく伝わっているか確認する意味で、レスポンスに含めるのが良いでしょう。</p>
+
+<p>最後に、言語は Japanese を指定します。<br>
+これは忘れないよう注意です。</p>
+
+<hr>
+
+<p><a href="https://camo.qiitausercontent.com/e61660404c0536a6a2b1644924cb58d090235cdd/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f38353835666565302d336434632d316238362d626464302d6436366532316639613864382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e61660404c0536a6a2b1644924cb58d090235cdd/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f38353835666565302d336434632d316238362d626464302d6436366532316639613864382e706e67" alt="06.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38837/8585fee0-3d4c-1b86-bdd0-d66e21f9a8d8.png"></a></p>
+
+<p>this の設定が終わったため that を設定していきます。</p>
+
+<hr>
+
+<p><a href="https://camo.qiitausercontent.com/84ba1e20e5d15f961e9209667b68358772ab358b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f38626366633364342d363431352d366334392d653737352d3038333062666139633561302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/84ba1e20e5d15f961e9209667b68358772ab358b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f38626366633364342d363431352d366334392d653737352d3038333062666139633561302e706e67" alt="07.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38837/8bcfc3d4-6415-6c49-e775-0830bfa9c5a0.png"></a></p>
+
+<p>Gmail を選択します。</p>
+
+<hr>
+
+<p><a href="https://camo.qiitausercontent.com/2267ea3dabdb3fbc85c2761609cc532cae1a970c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f34376534393536322d313038312d623537342d633365612d3535626366666265613638662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/2267ea3dabdb3fbc85c2761609cc532cae1a970c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f34376534393536322d313038312d623537342d633365612d3535626366666265613638662e706e67" alt="08.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38837/47e49562-1081-b574-c3ea-55bcffbea68f.png"></a></p>
+
+<p>"Send an email" を選択。<br>
+その他には、自身へメールを送る機能や、下書きを追加する機能があります。</p>
+
+<p>下書き追加は、簡単なメモを残したい時に良いかも。</p>
+
+<hr>
+
+<p><a href="https://camo.qiitausercontent.com/61acba8f6b83943c7cd7351b5b1f8693e3831cb8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f36303636613336332d613761622d616264302d613632352d3932316463393664623963612e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/61acba8f6b83943c7cd7351b5b1f8693e3831cb8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f36303636613336332d613761622d616264302d613632352d3932316463393664623963612e706e67" alt="09.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38837/6066a363-a7ab-abd0-a625-921dc96db9ca.png"></a></p>
+
+<p><strong><font color="red">【追記】<br>
+Body に改行を含む場合は &lt;pre&gt;&lt;/pre&gt; で文章全体を括ってください！</font></strong><br>
+<strong>括らないと改行が半角スペースに変換されてしまうようです。</strong><br>
+<strong>上図の場合でいえば Body 欄は、下記のように入力する必要があります。</strong><br>
+<strong>&lt;pre&gt;</strong><br>
+<strong>みなさま</strong></p>
+
+<p><strong>お疲れ様です。diescake です。</strong><br>
+<strong>(略)</strong><br>
+<strong>よろしくお願いいたします。</strong><br>
+<strong>&lt;/pre&gt;</strong></p>
+
+<p>メールの内容詳細を設定していきます。<br>
+項目通りにそのまま入力していけば特に問題はないと思います。</p>
+
+<p>メールは <strong>IFTTT に連携している Gmail アカウント</strong> から送られます。<br>
+Google Home と連携している Gmail アカウントと分けることできる点は捗りますね。</p>
+
+<p>また、Google Assistant の設定で、フレーズに変数や数値を含める方式を選択していた場合は、<br>
+"Add Ingredient" のボタンで読み出すことができます。</p>
+
+<p>例えば、休暇理由をフレーズ内に含めるようにしていた場合は、<br>
+Body の欄で "Add Ingredient" を選択し、"体調不良"のキーワードを変数に置き換えることで実現が可能です。</p>
+
+<hr>
+
+<p><a href="https://camo.qiitausercontent.com/483fc6f5ff57749ab49780854fdbe98111c90654/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f39326432643639302d653532312d616637382d383462342d6639646133353265396633642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/483fc6f5ff57749ab49780854fdbe98111c90654/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f39326432643639302d653532312d616637382d383462342d6639646133353265396633642e706e67" alt="10.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38837/92d2d690-e521-af78-84b4-f9da352e9f3d.png"></a></p>
+
+<p>最後にレシピ自体の名前を設定します。<br>
+この名前はなんでも構いませんが、下部の notification のスイッチは切っておくのがおすすめです。</p>
+
+<p>スイッチが有効になっていると、本レシピが実行された際に都度メールで通知されるようになります。<br>
+今回のユースケースでは不要でしょう。</p>
+
+<hr>
+
+<p><a href="https://camo.qiitausercontent.com/7855754a85d90e3f165ca95546d680a7ea0d6c5e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f61613035326134302d613530372d663362662d303131622d3237373339616563336134382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7855754a85d90e3f165ca95546d680a7ea0d6c5e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f61613035326134302d613530372d663362662d303131622d3237373339616563336134382e706e67" alt="11.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38837/aa052a40-a507-f3bf-011b-27739aec3a48.png"></a></p>
+
+<p>できました！<br>
+一時的にこのレシピを無効化したい場合は、このスイッチで disable に切り替えることができます。</p>
+
+<hr>
+
+<p><a href="https://camo.qiitausercontent.com/c59c036a1601dbe52ba183fd06586632e5b4c6b3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f63366661323266312d613466372d393837632d323765392d3361636662333563313334302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/c59c036a1601dbe52ba183fd06586632e5b4c6b3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383833372f63366661323266312d613466372d393837632d323765392d3361636662333563313334302e706e67" alt="12.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38837/c6fa22f1-a4f7-987c-27e9-3acfb35c1340.png"></a></p>
+
+<p>一覧にも追加されていますね！</p>
+
+<p>この記事を見ると、長々と作業が必要なように思えますが、<br>
+実際やってみると非常に単純で5分もかからないと思います。</p>
+
+<h1>
+<span id="感想とか" class="fragment"></span><a href="#%E6%84%9F%E6%83%B3%E3%81%A8%E3%81%8B"><i class="fa fa-link"></i></a>感想とか</h1>
+
+<p><strong>Google Home すごい。IFTTT すごい。</strong></p>
+
+<p>私は色々なガジェットや新しいものにはすぐ飛びつく方で、Google Home も深く考えず手に入れましたが、<br>
+思っていたより遥かに完成度が高く、ストレスなく、快適に使えて感動しました。</p>
+
+<p>私は LINE Wave(Clova) も先行生産版を所持していますが、<br>
+まだ、一部の新し物好き向けの製品という枠はでていないと感じました。</p>
+
+<p>一方 Google Home は認識精度や応答速度などの基本的な性能が高いことに加えて、<br>
+IFTTT との連携が非常に強力で、この勤怠メールの他にも、家電の制御(NatureRemo) や twitter 連携など、生活の中で自然に活用できています。<br>
+あとは TODO 管理アプリの <strong>Trello</strong> も IFTTT 対応していて that へ指定できるようなので、これもレシピを作ったら便利そうかな。</p>
+
+<p>今後、さらに基本機能が洗練されて、<br>
+スキルのインストールといったエコシステムが構築されれば、<br>
+機能追加のために、こういった一手間も不要になって一般家庭にも浸透していくだろう、と強く感じました。</p>
+
+<p>国内向けの Alexa にも期待ですね（╹◡╹）</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

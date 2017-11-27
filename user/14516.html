@@ -1,0 +1,473 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (neka-nat@github)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (neka-nat@github さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>neka-nat@githubさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>107</kbd>
+		<a target="_blank" href="https://qiita.com/neka-nat@github/items/aaab6184aea7d285b103">逆強化学習を理解する</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-06 01:20:12</center>
+	</td>
+	<td style="width:200px;">
+		@neka-nat@github<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/14516/profile-images/1509901398">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[MachineLearning]</b> <b>[DeepLearning]</b> <b>[強化学習]</b> <b>[逆強化学習]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="逆強化学習" class="fragment"></span><a href="#%E9%80%86%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92"><i class="fa fa-link"></i></a>逆強化学習</h1>
+
+<p>一般的な強化学習では、エージェントが環境からの報酬を得ることで最適な行動を獲得します。しかし現実の問題においては、この報酬を設計することが困難な場合があります。<br>
+例えば運転技術を獲得する場合、うまい運転というのはただ目的地に速く着くだけでなく、急発進・急ブレーキしない、混んでなさそうな道を選ぶなど実際の報酬関数として考慮しづらい要素が存在します。  <strong>逆強化学習ではエキスパートによる行動から報酬を推定する</strong> ことによって、このような表現しにくい報酬を求めることができます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/e15fb9b8d74b541ab616ef7023f8da60c38e6078/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31343531362f31323430613533662d316463612d626334632d653433332d3464363031653866356435372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e15fb9b8d74b541ab616ef7023f8da60c38e6078/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31343531362f31323430613533662d316463612d626334632d653433332d3464363031653866356435372e706e67" alt="逆強化学習.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/14516/1240a53f-1dca-bc4c-e433-4d601e8f5d57.png"></a></p>
+
+<h2>
+<span id="逆強化学習の手法" class="fragment"></span><a href="#%E9%80%86%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92%E3%81%AE%E6%89%8B%E6%B3%95"><i class="fa fa-link"></i></a>逆強化学習の手法</h2>
+
+<p>この記事では逆強化学習の手法としてよく取り上げられる手法の中で以下の3つについて解説したいと思います。</p>
+
+<ul>
+<li>線形計画法を用いた逆強化学習</li>
+<li>Maximum Entropy IRL</li>
+<li>Maximum Entropy Deep IRL</li>
+</ul>
+
+<h2>
+<span id="マルコフ決定過程mdp" class="fragment"></span><a href="#%E3%83%9E%E3%83%AB%E3%82%B3%E3%83%95%E6%B1%BA%E5%AE%9A%E9%81%8E%E7%A8%8Bmdp"><i class="fa fa-link"></i></a>マルコフ決定過程(MDP)</h2>
+
+<p>逆強化学習に入る前にまずMDPについて説明します。<br>
+マルコフ決定過程は簡単には $(S, A, T, R)$ の組みからなる確率的な過程を示します。</p>
+
+<ul>
+<li>$S(=1,2,...,M) $ : 有限状態空間</li>
+<li>$A$ : 状態$i \in S $でとり得るアクションの有限集合</li>
+<li>$T$ : 状態$i$で行動$a \in A $をとったとき、つぎの時刻で状態$j \in S $に遷移する確率</li>
+<li>$R$ : 状態$i$で行動$a$をとったときの期待即時コスト</li>
+</ul>
+
+<p>今回はMDPとしてよく使われるGrid Worldを環境として使用します。OpenAI Gymを使ったものがすでに存在するので<a href="https://github.com/dennybritz/reinforcement-learning/blob/master/lib/envs/gridworld.py" rel="nofollow noopener" target="_blank">これ</a>を使います。<br>
+インポートして実行すると以下のように動きます。実行結果のxがエージェントの現在位置を示しています。</p>
+
+<div class="code-frame" data-lang="py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gridworld</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">gridworld</span><span class="o">.</span><span class="n">GridworldEnv</span><span class="p">()</span>
+<span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+<span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">gridworld</span><span class="o">.</span><span class="n">UP</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+<span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">gridworld</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+</pre></div></div>
+
+<p>実行結果</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>T  o  o  o
+o  o  o  o
+o  x  o  o
+o  o  o  T
+
+T  o  o  o
+o  x  o  o
+o  o  o  o
+o  o  o  T
+
+T  o  o  o
+x  o  o  o
+o  o  o  o
+o  o  o  T
+</pre></div></div>
+
+<p>また報酬のマップは以下のようになります。赤が報酬が高い、青が報酬が低いところです。</p>
+
+<p><a href="https://camo.qiitausercontent.com/367f0adb76659519a4a9acb3393a77997f1302b0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31343531362f62373931376433612d303134352d366633642d663830642d6132613933613866646437332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/367f0adb76659519a4a9acb3393a77997f1302b0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31343531362f62373931376433612d303134352d366633642d663830642d6132613933613866646437332e706e67" alt="ground_truth.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/14516/b7917d3a-0145-6f3d-f80d-a2a93a8fdd73.png"></a></p>
+
+<h2>
+<span id="価値反復法" class="fragment"></span><a href="#%E4%BE%A1%E5%80%A4%E5%8F%8D%E5%BE%A9%E6%B3%95"><i class="fa fa-link"></i></a>価値反復法</h2>
+
+<p>MDPにおいて最適な価値関数$V^*(s)$を求めるベルマンの最適方程式は以下のように書けます。</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>V^*(s)=\max_a \Bigl( R(s,a) + \gamma \sum_{s'} P(s'|s,a)V^*(s') \Bigr)
+</pre></div></div>
+
+<p>今回は報酬関数を状態のみの関数にしようと思っているので、以下のように$\max$が後ろの項にのみかかります。</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>V^*(s)= R(s) + \gamma \max_a \Bigl( \sum_{s'} P(s'|s,a)V^*(s') \Bigr)
+</pre></div></div>
+
+<p>この式を上で作成したGrid環境に適応し、全状態の最適な価値を求められる関数は以下のようになります。</p>
+
+<div class="code-frame" data-lang="py"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">value_iteration</span><span class="p">(</span><span class="n">trans_probs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.001</span><span class="p">):</span>
+    <span class="sd">"""Solving an MDP by value iteration."""</span>
+    <span class="n">n_states</span><span class="p">,</span> <span class="n">n_actions</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">trans_probs</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">U1</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_states</span><span class="p">)}</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">U</span> <span class="o">=</span> <span class="n">U1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_states</span><span class="p">):</span>
+            <span class="n">Rs</span> <span class="o">=</span> <span class="n">reward</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+            <span class="n">U1</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="nb">max</span><span class="p">([</span><span class="nb">sum</span><span class="p">([</span><span class="n">p</span> <span class="o">*</span> <span class="n">U</span><span class="p">[</span><span class="n">s1</span><span class="p">]</span> <span class="k">for</span> <span class="n">s1</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">trans_probs</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="p">:])])</span>
+                                      <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_actions</span><span class="p">)])</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">U1</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">-</span> <span class="n">U</span><span class="p">[</span><span class="n">s</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="n">delta</span> <span class="o">&lt;</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">gamma</span><span class="p">)</span> <span class="o">/</span> <span class="n">gamma</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">U</span>
+</pre></div></div>
+
+<p>この関数を用いて、各状態での価値を描画したものが下図になります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/ee0584dcc0d4af09edb146fe357fe0939fbbbbe0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31343531362f35326261643636622d666362332d663361332d633935662d3833323035373330303965302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ee0584dcc0d4af09edb146fe357fe0939fbbbbe0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31343531362f35326261643636622d666362332d663361332d633935662d3833323035373330303965302e706e67" alt="value_map.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/14516/52bad66b-fcb3-f3a3-c95f-8320573009e0.png"></a></p>
+
+<p>次に求めた価値関数から最適な方策を求めます。最適な価値$V^*$を用いて求める方策の式は以下のようになります。</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>\pi (s) = arg \max_{a \in A} \sum_{s'} P(s'|s,a)V^*(s')
+</pre></div></div>
+
+<p>コードは以下のようになります。</p>
+
+<div class="code-frame" data-lang="py"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">expected_utility</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">trans_probs</span><span class="p">):</span>
+    <span class="sd">"""The expected utility of doing a in state s, according to the MDP and U."""</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">p</span> <span class="o">*</span> <span class="n">U</span><span class="p">[</span><span class="n">s1</span><span class="p">]</span> <span class="k">for</span> <span class="n">s1</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">trans_probs</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="p">:])])</span>
+
+<span class="k">def</span> <span class="nf">best_policy</span><span class="p">(</span><span class="n">trans_probs</span><span class="p">,</span> <span class="n">U</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Given an MDP and a utility function U, determine the best policy,</span>
+<span class="sd">    as a mapping from state to action.</span>
+<span class="sd">    """</span>
+    <span class="n">n_states</span><span class="p">,</span> <span class="n">n_actions</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">trans_probs</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">pi</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_states</span><span class="p">):</span>
+        <span class="n">pi</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_actions</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="n">expected_utility</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">trans_probs</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pi</span>
+</pre></div></div>
+
+<p>これを用いて実際に各状態での最適な方策を描画したものが下図になります。ゴールの矢印は初期値のままなので無視してもらって、それ以外は実際にゴールに向かうように矢印が流れているのが分かると思います。</p>
+
+<p><a href="https://camo.qiitausercontent.com/5afce31be254fcfae4b753dd5b3875b5ac3700e8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31343531362f66303131656233662d346434342d326162652d616661352d6266356162656232383033612e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/5afce31be254fcfae4b753dd5b3875b5ac3700e8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31343531362f66303131656233662d346434342d326162652d616661352d6266356162656232383033612e706e67" alt="pi_map.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/14516/f011eb3f-4d44-2abe-afa5-bf5abeb2803a.png"></a></p>
+
+<h2>
+<span id="線形計画法を用いた逆強化学習" class="fragment"></span><a href="#%E7%B7%9A%E5%BD%A2%E8%A8%88%E7%94%BB%E6%B3%95%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E9%80%86%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92"><i class="fa fa-link"></i></a>線形計画法を用いた逆強化学習</h2>
+
+<p>まず最初に<a href="http://ai.stanford.edu/%7Eang/papers/icml00-irl.pdf" rel="nofollow noopener" target="_blank">Ngらによる線形計画法を用いた逆強化学習</a>について説明します。<br>
+ここでは逆強化学習では各状態$s_i(i=1,2,...,M)$における最適な行動$a_1$(上で計算した方策)が既知であるとします。このとき各状態における報酬を表したベクトル$R$を求めます。これは以下のような最適化を解く問題になります。</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>maximize: \sum_{i \in S} \min_{a \in A \setminus a_1} \Bigl\{ \bigl(P_{a_1}(i) - P_a(i) \bigr) {\bigl(I - \gamma P_{a_1}(i) \bigr)}^{-1} R \Bigr\} - \lambda ||R||_1 \\
+
+subject: \bigl(P_{a_1}(i) - P_a(i) \bigr) {\bigl(I - \gamma P_{a_1}(i) \bigr)}^{-1} R \geq 0 \\
+|R_i| \leq R_{max}
+</pre></div></div>
+
+<p>この式の意味について少し考えてみます。<br>
+この式の中で重要なのは$\bigl(P_{a_1}(i) - P_a(i) \bigr) {\bigl(I - \gamma P_{a_1}(i) \bigr)}^{-1} R$の部分になります。<br>
+これは最適な行動$a_1$とそれ以外の行動の期待報酬の差を求めています。つまりこの <strong>目的関数は$a_1$との期待報酬の差が最も小さい行動(2番めに良い行動)との期待報酬の差を最も大きくするような報酬ベクトル</strong> を求めていることになります。<br>
+上の式はこの状態では線形計画問題として扱うことができないので、新たに$t_i, u_i$という変数を用意し以下のように変換します。</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>maximize: \sum_{i \in S} \bigl\{ t_i - \lambda u_i \bigr\} \\
+subject: \bigl(P_{a_1}(i) - P_a(i) \bigr) {\bigl(I - \gamma P_{a_1}(i) \bigr)}^{-1} R \geq t_i \\
+\bigl(P_{a_1}(i) - P_a(i) \bigr) {\bigl(I - \gamma P_{a_1}(i) \bigr)}^{-1} R \geq 0 \\
+-u \leq R \leq u \\
+|R_i| \leq R_{max}
+</pre></div></div>
+
+<p>これをコード化してみます。</p>
+
+<div class="code-frame" data-lang="py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">linprog</span>
+
+<span class="k">def</span> <span class="nf">lp_irl</span><span class="p">(</span><span class="n">trans_probs</span><span class="p">,</span> <span class="n">policy</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">l1</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">Rmax</span><span class="o">=</span><span class="mf">5.0</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Solve Linear programming for Inverse Reinforcement Learning</span>
+<span class="sd">    """</span>
+    <span class="n">n_states</span><span class="p">,</span> <span class="n">n_actions</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">trans_probs</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_actions</span><span class="p">))</span>
+    <span class="n">tp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">trans_probs</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">ones_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_states</span><span class="p">)</span>
+    <span class="n">eye_ss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_states</span><span class="p">)</span>
+    <span class="n">zero_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_states</span><span class="p">)</span>
+    <span class="n">zero_ss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_states</span><span class="p">))</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">tp</span><span class="p">[</span><span class="n">policy</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">s</span><span class="p">]</span> <span class="o">-</span> <span class="n">tp</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">s</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">eye_ss</span> <span class="o">-</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">tp</span><span class="p">[</span><span class="n">policy</span><span class="p">[</span><span class="n">s</span><span class="p">]]))</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">zero_s</span><span class="p">,</span> <span class="n">ones_s</span><span class="p">,</span> <span class="o">-</span><span class="n">l1</span> <span class="o">*</span> <span class="n">ones_s</span><span class="p">]</span>
+    <span class="n">zero_stack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_actions</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">n_states</span><span class="p">))</span>
+    <span class="n">T_stack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="o">-</span><span class="n">T</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_states</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">A</span> <span class="o">-</span> <span class="p">{</span><span class="n">policy</span><span class="p">[</span><span class="n">s</span><span class="p">]}])</span>
+    <span class="n">I_stack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_states</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_states</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">A</span> <span class="o">-</span> <span class="p">{</span><span class="n">policy</span><span class="p">[</span><span class="n">s</span><span class="p">]}])</span>
+
+    <span class="n">A_ub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bmat</span><span class="p">([[</span><span class="n">T_stack</span><span class="p">,</span> <span class="n">I_stack</span><span class="p">,</span> <span class="n">zero_stack</span><span class="p">],</span>    <span class="c1"># -TR &lt;= t</span>
+                    <span class="p">[</span><span class="n">T_stack</span><span class="p">,</span> <span class="n">zero_stack</span><span class="p">,</span> <span class="n">zero_stack</span><span class="p">],</span> <span class="c1"># -TR &lt;= 0</span>
+                    <span class="p">[</span><span class="o">-</span><span class="n">eye_ss</span><span class="p">,</span> <span class="n">zero_ss</span><span class="p">,</span> <span class="o">-</span><span class="n">eye_ss</span><span class="p">],</span>  <span class="c1"># -R &lt;= u</span>
+                    <span class="p">[</span><span class="n">eye_ss</span><span class="p">,</span> <span class="n">zero_ss</span><span class="p">,</span> <span class="o">-</span><span class="n">eye_ss</span><span class="p">],</span>   <span class="c1"># R &lt;= u</span>
+                    <span class="p">[</span><span class="o">-</span><span class="n">eye_ss</span><span class="p">,</span> <span class="n">zero_ss</span><span class="p">,</span> <span class="n">zero_ss</span><span class="p">],</span>  <span class="c1"># -R &lt;= Rmax</span>
+                    <span class="p">[</span><span class="n">eye_ss</span><span class="p">,</span> <span class="n">zero_ss</span><span class="p">,</span> <span class="n">zero_ss</span><span class="p">]])</span>  <span class="c1"># R &lt;= Rmax</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_actions</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n_states</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
+                   <span class="n">Rmax</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_states</span><span class="p">,</span> <span class="mi">1</span><span class="p">))])</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">linprog</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">A_ub</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="s2">"x"</span><span class="p">][:</span><span class="n">n_states</span><span class="p">]</span>
+</pre></div></div>
+
+<p>この関数を使って、線形計画法によって得られる報酬マップを求めてみます。関数の引数<code>trans_probs</code>は状態遷移確率を示しておりGrid環境内にあるメンバ変数<code>P</code>から求めることができます。<code>policy</code>は上の価値反復法から求めた最適方策を用います。<br>
+実際に推定した結果を描画したものが下図になります。正解は上の報酬マップのように左上と右下のみに色が付けば良いですが、それなりに推定できているようです。</p>
+
+<p><a href="https://camo.qiitausercontent.com/b8d322d366bdac9879a0ed17bafa69651685ff44/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31343531362f33656132613761632d323334342d633534372d313562362d6234353233353061346261632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b8d322d366bdac9879a0ed17bafa69651685ff44/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31343531362f33656132613761632d323334342d633534372d313562362d6234353233353061346261632e706e67" alt="lp_irl.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/14516/3ea2a7ac-2344-c547-15b6-b452350a4bac.png"></a></p>
+
+<h2>
+<span id="maximum-entropy-irl" class="fragment"></span><a href="#maximum-entropy-irl"><i class="fa fa-link"></i></a>Maximum Entropy IRL</h2>
+
+<p>Maximum Entropy IRLでは報酬関数$r(s)$をパラメタ$\theta$を用いて以下のような線形関数で近似します。</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>r_{\theta}(s) = {\theta}^T\phi(s)
+</pre></div></div>
+
+<p>ここで$\phi(s) \in R^{|S|}$は特徴ベクトルといって、状態$s$を表現する特徴量です。今回は単純にone-hotベクトルを用います。<br>
+このときMaximum Entropy IRLでは熟練者は以下のような確率で経路$\zeta=[(s_0, a_0),(s_1, a_1),...,(s_T, a_T)]$を選択していると仮定します。</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>P(\zeta |\theta ) = \frac{\exp{(R_{\theta}(\zeta ))}}{Z}
+</pre></div></div>
+
+<p>ここで、</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>R_{\theta}(\zeta ) = \sum_t r_{\theta}(s_t) \\
+Z=\sum_{\zeta} \exp{(R_{\theta}(\zeta ))}
+</pre></div></div>
+
+<p>上式を用いて最適な$N$個の行動列$D=[ {\zeta}^{(0)} , {\zeta}^{(1)} ,..., {\zeta}^{(N)} ]$が与えられた際に、以下の対数尤度関数$L(\theta)$を最大にする$\theta$を求めることで報酬関数を推定します。</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>L(\theta) = -\sum_i \log P({\zeta}^{(i)}| \theta )
+</pre></div></div>
+
+<p>尤度最大化を行うために$L(\theta)$の勾配を求めます。</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>L(\theta) = -\sum_i \log \frac{\exp{(R_{\theta}({\zeta}^{(i)} ))}}{Z} =  \sum_i R_{\theta}({\zeta}^{(i)} ) - N \log{Z} =  \sum_i R_{\theta}({\zeta}^{(i)} ) - N \log \sum_i \exp{(R_{\theta}({\zeta}^{(i)}))} \\
+\begin{eqnarray}
+{\nabla}_{\theta} L(\theta) &amp;=&amp; \sum_i \frac{dR_{\theta}({\zeta}^{(i)} )}{d\theta} - N \frac{1}{\sum_i \exp{(R_{\theta}({\zeta}^{(i)}))}} \sum_i \exp{(R_{\theta}({\zeta}^{(i)}))} \frac{dR_{\theta}({\zeta}^{(i)})}{d\theta} \\
+&amp;=&amp; \sum_i \frac{dR_{\theta}({\zeta}^{(i)} )}{d\theta} - N \sum_i \frac{\exp{(R_{\theta}({\zeta}^{(i)}))}}{\sum_i \exp{(R_{\theta}({\zeta}^{(i)}))}} \frac{dR_{\theta}({\zeta}^{(i)})}{d\theta} \\
+&amp;=&amp; \sum_i \frac{dR_{\theta}({\zeta}^{(i)} )}{d\theta} - N \sum_i P({\zeta}^{(i)}| \theta ) \frac{dR_{\theta}({\zeta}^{(i)})}{d\theta} \\
+&amp;=&amp; \sum_s \frac{dr_{\theta}(s)}{d\theta} -N \sum_s p(s | \theta ) \frac{dr_{\theta}(s)}{d\theta}
+\end{eqnarray}
+</pre></div></div>
+
+<p>ここで$p(s | \theta )$はstate visitation freqencyと呼ばれており、状態$s$を訪れた頻度を表しています。<br>
+これらを踏まえて、Maximum Entropy IRLのコードは以下のようになります。</p>
+
+<div class="code-frame" data-lang="py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">value_iteration</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">expected_svf</span><span class="p">(</span><span class="n">trans_probs</span><span class="p">,</span> <span class="n">trajs</span><span class="p">,</span> <span class="n">policy</span><span class="p">):</span>
+    <span class="n">n_states</span><span class="p">,</span> <span class="n">n_actions</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">trans_probs</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">n_t</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">trajs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="n">n_t</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">traj</span> <span class="ow">in</span> <span class="n">trajs</span><span class="p">:</span>
+        <span class="n">mu</span><span class="p">[</span><span class="n">traj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">mu</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">mu</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">trajs</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_t</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_states</span><span class="p">):</span>
+            <span class="n">mu</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">mu</span><span class="p">[</span><span class="n">pre_s</span><span class="p">,</span> <span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">trans_probs</span><span class="p">[</span><span class="n">pre_s</span><span class="p">,</span> <span class="n">policy</span><span class="p">[</span><span class="n">pre_s</span><span class="p">],</span> <span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">pre_s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_states</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">max_ent_irl</span><span class="p">(</span><span class="n">feature_matrix</span><span class="p">,</span> <span class="n">trans_probs</span><span class="p">,</span> <span class="n">trajs</span><span class="p">,</span>
+                <span class="n">gamma</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">n_epoch</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="n">n_states</span><span class="p">,</span> <span class="n">d_states</span> <span class="o">=</span> <span class="n">feature_matrix</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">n_actions</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">trans_probs</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">feature_exp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">d_states</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="n">trajs</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">episode</span><span class="p">:</span>
+            <span class="n">feature_exp</span> <span class="o">+=</span> <span class="n">feature_matrix</span><span class="p">[</span><span class="n">step</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">:]</span>
+    <span class="n">feature_exp</span> <span class="o">=</span> <span class="n">feature_exp</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">trajs</span><span class="p">)</span>
+
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">d_states</span><span class="p">,))</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epoch</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">feature_matrix</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">value_iteration</span><span class="p">(</span><span class="n">trans_probs</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+        <span class="n">pi</span> <span class="o">=</span> <span class="n">best_policy</span><span class="p">(</span><span class="n">trans_probs</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">exp_svf</span> <span class="o">=</span> <span class="n">expected_svf</span><span class="p">(</span><span class="n">trans_probs</span><span class="p">,</span> <span class="n">trajs</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
+        <span class="n">grad</span> <span class="o">=</span> <span class="n">feature_exp</span> <span class="o">-</span> <span class="n">feature_matrix</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">exp_svf</span><span class="p">)</span>
+        <span class="n">theta</span> <span class="o">+=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">grad</span>
+
+    <span class="k">return</span> <span class="n">feature_matrix</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div></div>
+
+<p>Maximum Entropy IRLでは熟練者の経路が必要であり、上の関数の引数<code>trajs</code>がそれに当たります。<br>
+熟練者による経路は最適方策を用いて以下のように計算するようにしました。</p>
+
+<div class="code-frame" data-lang="py"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_demons</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy</span><span class="p">,</span> <span class="n">n_trajs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">len_traj</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">trajs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_trajs</span><span class="p">):</span>
+        <span class="n">episode</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len_traj</span><span class="p">):</span>
+            <span class="n">cur_s</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">s</span>
+            <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">policy</span><span class="p">[</span><span class="n">cur_s</span><span class="p">])</span>
+            <span class="n">episode</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">cur_s</span><span class="p">,</span> <span class="n">policy</span><span class="p">[</span><span class="n">cur_s</span><span class="p">],</span> <span class="n">state</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">done</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">len_traj</span><span class="p">):</span>
+                    <span class="n">episode</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">state</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">state</span><span class="p">))</span>
+                <span class="k">break</span>
+        <span class="n">trajs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">episode</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">trajs</span>
+</pre></div></div>
+
+<p>生成した経路を用いてMaximum Entropy IRLによって報酬を推定した結果が以下になります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/77d2eef62c53520f4c513e8d3f3137bc753f02d1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31343531362f36653466323765362d623039352d373837642d303039312d3765306133303765636234312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/77d2eef62c53520f4c513e8d3f3137bc753f02d1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31343531362f36653466323765362d623039352d373837642d303039312d3765306133303765636234312e706e67" alt="max_ent_irl.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/14516/6e4f27e6-b095-787d-0091-7e0a307ecb41.png"></a></p>
+
+<p>こちらもまあまあ推定できています。LPを使った方法と違って、 <strong>実際の最適な方策まで分かってなくても熟練者からの軌道列のみを用いて推定できる</strong> のがメリットと言えます。</p>
+
+<h2>
+<span id="maximum-entropy-deep-irl" class="fragment"></span><a href="#maximum-entropy-deep-irl"><i class="fa fa-link"></i></a>Maximum Entropy Deep IRL</h2>
+
+<p>Maximum Entropy IRLと深層学習を組み合わせた手法がこれになります。通常のMaximum Entropy IRLでは線形関数によって報酬関数$r(s)$を近似しましたが、これをニューラルネットで表現したものに置き換えます。<br>
+ネットワークの更新のために、最適化を行う尤度関数を以下のように熟練者の経路による項と正則化項に分離します。</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>L(\theta)=\log P(D, \theta|r) = \underbrace{\log P(D|r)}_{L_D} + \underbrace{\log P(\theta)}_{L_{\theta}}
+</pre></div></div>
+
+<p>この尤度関数の$L_D=\log P(D|r)$のパラメタ微分を求めて式変形することで、楽に勾配を求めることができます。<br>
+式変形を少し端折りますが、実際には以下のような勾配を求めることになります。</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>\frac{\partial L_D(\theta)}{\partial \theta} = (\mu_D - E[\mu]) \frac{\partial r_{\theta}(s)}{\partial \theta}
+</pre></div></div>
+
+<p>ここで、上式の$\mu_D$は熟練者の経路から求めた状態頻度で、$E[\mu]$は状態頻度の期待値を表します。<br>
+コードはほぼMaximum Entropy IRLと同じ形になります。報酬関数がニューラルネットに変更され、それに伴いパラメタ更新のところなどが変わっています。今回、深層学習部分の実装にはChainerを用いています。</p>
+
+<div class="code-frame" data-lang="py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">chainer</span>
+<span class="kn">import</span> <span class="nn">chainer.links</span> <span class="kn">as</span> <span class="nn">L</span>
+<span class="kn">import</span> <span class="nn">chainer.functions</span> <span class="kn">as</span> <span class="nn">F</span>
+<span class="kn">from</span> <span class="nn">chainer</span> <span class="kn">import</span> <span class="n">optimizers</span>
+<span class="kn">from</span> <span class="nn">value_iteration</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">max_ent_irl</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">Reward</span><span class="p">(</span><span class="n">chainer</span><span class="o">.</span><span class="n">Chain</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_input</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Reward</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">l1</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_input</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">),</span>
+            <span class="n">l2</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">),</span>
+            <span class="n">l3</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">h1</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">h2</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="p">(</span><span class="n">h1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">l3</span><span class="p">(</span><span class="n">h2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">max_ent_deep_irl</span><span class="p">(</span><span class="n">feature_matrix</span><span class="p">,</span> <span class="n">trans_probs</span><span class="p">,</span> <span class="n">trajs</span><span class="p">,</span>
+                     <span class="n">gamma</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">n_epoch</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+    <span class="n">n_states</span><span class="p">,</span> <span class="n">d_states</span> <span class="o">=</span> <span class="n">feature_matrix</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">n_actions</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">trans_probs</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">reward_func</span> <span class="o">=</span> <span class="n">Reward</span><span class="p">(</span><span class="n">d_states</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizers</span><span class="o">.</span><span class="n">AdaGrad</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">reward_func</span><span class="p">)</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="n">chainer</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">WeightDecay</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">))</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="n">chainer</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">GradientClipping</span><span class="p">(</span><span class="mf">100.0</span><span class="p">))</span>
+
+    <span class="n">feature_exp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">d_states</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="n">trajs</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">episode</span><span class="p">:</span>
+            <span class="n">feature_exp</span> <span class="o">+=</span> <span class="n">feature_matrix</span><span class="p">[</span><span class="n">step</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">:]</span>
+    <span class="n">feature_exp</span> <span class="o">=</span> <span class="n">feature_exp</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">trajs</span><span class="p">)</span>
+
+    <span class="n">fmat</span> <span class="o">=</span> <span class="n">chainer</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">feature_matrix</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epoch</span><span class="p">):</span>
+        <span class="n">reward_func</span><span class="o">.</span><span class="n">zerograds</span><span class="p">()</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">reward_func</span><span class="p">(</span><span class="n">fmat</span><span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">value_iteration</span><span class="p">(</span><span class="n">trans_probs</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_states</span><span class="p">,)),</span> <span class="n">gamma</span><span class="p">)</span>
+        <span class="n">pi</span> <span class="o">=</span> <span class="n">best_policy</span><span class="p">(</span><span class="n">trans_probs</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">exp_svf</span> <span class="o">=</span> <span class="n">expected_svf</span><span class="p">(</span><span class="n">trans_probs</span><span class="p">,</span> <span class="n">trajs</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
+        <span class="n">grad_r</span> <span class="o">=</span> <span class="n">feature_exp</span> <span class="o">-</span> <span class="n">exp_svf</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="o">-</span><span class="n">grad_r</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_states</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">reward_func</span><span class="p">(</span><span class="n">fmat</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_states</span><span class="p">,))</span>
+</pre></div></div>
+
+<p>本来は尤度関数に正則化項を足す必要があるのですが、同じような効果があるWeight Decayに置き換えています。<br>
+いろいろとチューニングしてみて思ったのは、最適化はAdamのほうが安定している気がしましたが、論文に基づいて今回はAdaGradのままで最適化しています。</p>
+
+<p><a href="https://camo.qiitausercontent.com/19753159f157622f7ab5a6f2968d17cd8c0e47f9/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31343531362f61363637663331352d666464392d343033372d626435662d6362613235626264656263362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/19753159f157622f7ab5a6f2968d17cd8c0e47f9/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31343531362f61363637663331352d666464392d343033372d626435662d6362613235626264656263362e706e67" alt="max_ent_deep_irl.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/14516/a667f315-fdd9-4037-bd5f-cba25bbdebc6.png"></a></p>
+
+<p>こちらも報酬マップが推定できているのがわかります。</p>
+
+<h2>
+<span id="感想" class="fragment"></span><a href="#%E6%84%9F%E6%83%B3"><i class="fa fa-link"></i></a>感想</h2>
+
+<p>深層学習を使えば簡単に精度よく推定できるのかと思いましたが、それなりにチューニングは必要でした。<br>
+論文だともっと複雑な報酬マップに対して、深層学習を使った手法だけが格段に推定できているので、今回の環境よりももっと複雑な環境でやってみると明らかな差が出るのかなと思いました。</p>
+
+<h2>
+<span id="発展応用" class="fragment"></span><a href="#%E7%99%BA%E5%B1%95%E5%BF%9C%E7%94%A8"><i class="fa fa-link"></i></a>発展・応用</h2>
+
+<p>GANとの関連やロボットに応用したGuided Cost Learningなどの発展的内容にも注目していきたいです。</p>
+
+<ul>
+<li><a href="https://arxiv.org/abs/1611.03852" rel="nofollow noopener" target="_blank">A Connection between Generative Adversarial Networks, Inverse Reinforcement Learning, and Energy-Based Models</a></li>
+<li><a href="https://arxiv.org/abs/1603.00448" rel="nofollow noopener" target="_blank">Guided Cost Learning</a></li>
+</ul>
+
+<h2>
+<span id="使用したコード" class="fragment"></span><a href="#%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>使用したコード</h2>
+
+<p>今回使用したコードはすべてgithubにあげています。<br>
+<a href="https://github.com/neka-nat/inv_rl" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/neka-nat/inv_rl</a></p>
+
+<h2>
+<span id="参考文献" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><i class="fa fa-link"></i></a>参考文献</h2>
+
+<ul>
+<li><a href="https://www.slideshare.net/ohtaman/tensor-flow-63359654" rel="nofollow noopener" target="_blank">TensorFlowで逆強化学習</a></li>
+<li><a href="http://www.morikita.co.jp/books/book/3034" rel="nofollow noopener" target="_blank">これからの強化学習</a></li>
+<li><a href="http://ai.stanford.edu/%7Eang/papers/icml00-irl.pdf" rel="nofollow noopener" target="_blank">Algorithm for Inverse Reinforcement Learning</a></li>
+<li><a href="https://www.aaai.org/Papers/AAAI/2008/AAAI08-227.pdf" rel="nofollow noopener" target="_blank">Maximum Entropy Inverse Reinforcement Learning</a></li>
+<li><a href="https://arxiv.org/abs/1507.04888" rel="nofollow noopener" target="_blank">Maximum Entropy Deep Inverse Reinforcement Learning</a></li>
+<li><a href="http://2boy.org/%7Eyuta/publications/tsuboi-jsice-rl.pdf" rel="nofollow noopener" target="_blank">自然言語処理における逆強化学習・模倣学習の適用</a></li>
+<li><a href="http://people.eecs.berkeley.edu/%7Ecbfinn/_files/bootcamp_inverserl.pdf" rel="nofollow noopener" target="_blank">Inverse Reinforcement Learning</a></li>
+<li><a href="https://github.com/stormmax/irl-imitation" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/stormmax/irl-imitation</a></li>
+<li><a href="https://github.com/MatthewJA/Inverse-Reinforcement-Learning" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/MatthewJA/Inverse-Reinforcement-Learning</a></li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

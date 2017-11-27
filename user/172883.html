@@ -1,0 +1,1170 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (port-development)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (port-development さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>port-developmentさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>252</kbd>
+		<a target="_blank" href="https://qiita.com/port-development/items/8ab04aee45dc7f5f96ab">Dockerfileはなぜ複雑になるのか</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-25 14:23:30</center>
+	</td>
+	<td style="width:200px;">
+		@port-development<br />(ポート株式会社 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/172883/profile-images/1491369544">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[docker]</b> <b>[dockerfile]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<ul>
+<li>Dockerfileとは
+
+<ul>
+<li>docker imageを作成する際のコマンドをコード化したもの</li>
+<li><a href="https://docs.docker.com/engine/reference/builder/" rel="nofollow noopener" target="_blank">公式ドキュメント</a></li>
+</ul>
+</li>
+</ul>
+
+<p>Dockerfileは「コンテナを動かす」ためだけなら簡単に作成することが出来るが、工夫せずに書くと運用上いろいろな問題が発生する。<br>
+それらの問題点のほとんどは書き方のテクニックによって回避することが出来るが、それらのテクニックを駆使すると、今度はDockerfileの中が複雑になっていく。</p>
+
+<ul>
+<li>Dockerfileはなぜ複雑にならざるを得ないのか</li>
+</ul>
+
+<p>発生する問題とそれに対するテクニックを例を上げて説明していくことで理解してもらう。</p>
+
+<p><a href="https://github.com/gomesuit/larning-dockerfile" rel="nofollow noopener" target="_blank">rails5.1 hello world project</a>を例に説明する。</p>
+
+<h1>
+<span id="簡単なdockerfileの例" class="fragment"></span><a href="#%E7%B0%A1%E5%8D%98%E3%81%AAdockerfile%E3%81%AE%E4%BE%8B"><i class="fa fa-link"></i></a>簡単なDockerfileの例</h1>
+
+<p>重要なのは<code>FROM</code>と<code>RUN</code>と<code>COPY</code>のみ</p>
+
+<ul>
+<li>FROM
+
+<ul>
+<li>ベースとなるimageの指定</li>
+<li><a href="https://docs.docker.com/engine/reference/builder/#from" class="autolink" rel="nofollow noopener" target="_blank">https://docs.docker.com/engine/reference/builder/#from</a></li>
+</ul>
+</li>
+<li>RUN
+
+<ul>
+<li>コマンドの実行</li>
+<li><a href="https://docs.docker.com/engine/reference/builder/#run" class="autolink" rel="nofollow noopener" target="_blank">https://docs.docker.com/engine/reference/builder/#run</a></li>
+</ul>
+</li>
+<li>COPY
+
+<ul>
+<li>ローカルからdocker imageへのファイルの転送</li>
+<li><a href="https://docs.docker.com/engine/reference/builder/#copy" class="autolink" rel="nofollow noopener" target="_blank">https://docs.docker.com/engine/reference/builder/#copy</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="code-frame" data-lang="docker">
+<div class="code-lang"><span class="bold">Dockerfile.base</span></div>
+<div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> ruby:2.4.1</span>
+
+<span class="c"># timezone</span>
+<span class="k">RUN</span> cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+<span class="k">EXPOSE</span><span class="s"> 3000</span>
+<span class="k">WORKDIR</span><span class="s"> /home/port/app</span>
+
+<span class="c"># install dependency package</span>
+<span class="k">RUN</span> apt-get update
+<span class="k">RUN</span> apt-get install -y apt-transport-https libssl-dev
+
+<span class="c"># install nodejs</span>
+<span class="k">RUN</span> curl -s -L git.io/nodebrew <span class="p">|</span> perl - setup
+<span class="k">ENV</span><span class="s"> PATH /root/.nodebrew/current/bin:$PATH</span>
+<span class="k">RUN</span> nodebrew install-binary v8.7.0
+<span class="k">RUN</span> nodebrew use v8.7.0
+
+<span class="c"># install yarn</span>
+<span class="c"># https://yarnpkg.com/en/docs/install#linux-tab</span>
+<span class="k">RUN</span> curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg <span class="p">|</span> apt-key add -
+<span class="k">RUN</span> <span class="nb">echo</span> <span class="s2">"deb https://dl.yarnpkg.com/debian/ stable main"</span> <span class="p">|</span> tee /etc/apt/sources.list.d/yarn.list
+<span class="k">RUN</span> apt-get update
+<span class="k">RUN</span> apt-get install -y yarn
+
+<span class="k">RUN</span> gem install bundler
+
+COPY . /home/port/app
+
+<span class="c"># bundle install</span>
+<span class="k">RUN</span> bundle install --without development <span class="nb">test</span> --path vendor/bundle
+
+<span class="c"># yarn install</span>
+<span class="k">RUN</span> yarn install
+
+<span class="c"># assets precompile</span>
+<span class="k">RUN</span> <span class="nv">RAILS_ENV</span><span class="o">=</span>production bundle <span class="nb">exec</span> rails assets:precompile
+
+<span class="k">CMD</span><span class="s"> bundle exec puma -t 5:5 -p 3000 -e "$RAILS_ENV" -C config/puma.rb</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="text">
+<div class="code-lang"><span class="bold">.dockerignore</span></div>
+<div class="highlight"><pre><span></span>*
+!app
+!bin
+!config
+!db
+!lib
+!public/*.html
+!public/*.png
+!public/favicon.ico
+!public/robots.txt
+!config.ru
+!Gemfile
+!Gemfile.lock
+!package.json
+!yarn.lock
+!.postcssrc.yml
+!.babelrc
+!Rakefile
+!log/.keep
+!tmp/.keep
+</pre></div>
+</div>
+
+<ul>
+<li>dockerignoreについて
+
+<ul>
+<li>gitignoreみたいなもの</li>
+<li>ビルド及び実行に必要のないファイルを除外する</li>
+<li><a href="https://docs.docker.com/engine/reference/builder/#dockerignore-file" rel="nofollow noopener" target="_blank">公式ドキュメント</a></li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="概要" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>概要</h3>
+
+<ul>
+<li>ruby:2.4.1の公式imageをベースに指定</li>
+<li>apt-getで環境依存しているパッケージをインストール</li>
+<li>nodeとyarnとbundlerをインストール</li>
+<li>ソースコードを全てimageにコピー</li>
+<li>gemインストール</li>
+<li>nodeパッケージインストール</li>
+<li>assets precompile</li>
+<li>1つのRUNに1つのコマンド</li>
+</ul>
+
+<h3>
+<span id="ビルドする" class="fragment"></span><a href="#%E3%83%93%E3%83%AB%E3%83%89%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>ビルドする</h3>
+
+<div class="code-frame" data-lang="shell-session"><div class="highlight"><pre><span></span><span class="gp">$</span> docker-compose build rails-base
+<span class="go">Building rails-base</span>
+<span class="go">Step 1/20 : FROM ruby:2.4.1</span>
+<span class="go"> ---&gt; ceb1a85dc7b4</span>
+<span class="go">Step 2/20 : RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; 7c2be593e2b6</span>
+<span class="go">Step 3/20 : EXPOSE 3000</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; 0eac29b48116</span>
+<span class="go">Step 4/20 : WORKDIR /home/port/app</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; 0313aa07291d</span>
+<span class="go">Step 5/20 : RUN apt-get update</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; 3da49f68bc04</span>
+<span class="go">Step 6/20 : RUN apt-get install -y apt-transport-https libssl-dev</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; a070a1b5e21e</span>
+<span class="go">Step 7/20 : RUN curl -s -L git.io/nodebrew | perl - setup</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; da6e0f8812f2</span>
+<span class="go">Step 8/20 : ENV PATH /root/.nodebrew/current/bin:$PATH</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; c81c90973400</span>
+<span class="go">Step 9/20 : RUN nodebrew install-binary v8.7.0</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; ac337962e5ac</span>
+<span class="go">Step 10/20 : RUN nodebrew use v8.7.0</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; ca4ba4f7988f</span>
+<span class="go">Step 11/20 : RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; ac3af5d6d3ff</span>
+<span class="go">Step 12/20 : RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; b2a62c0af10f</span>
+<span class="go">Step 13/20 : RUN apt-get update</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; 9f585a492494</span>
+<span class="go">Step 14/20 : RUN apt-get install -y yarn</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; c02e113291cf</span>
+<span class="go">Step 15/20 : RUN gem install bundler</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; f5c3db51041c</span>
+<span class="go">Step 16/20 : COPY . /home/port/app</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; 90887301369c</span>
+<span class="go">Step 17/20 : RUN bundle install --without development test --path vendor/bundle</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; f1c7abb31617</span>
+<span class="go">Step 18/20 : RUN yarn install</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; 3bc9c402c2dc</span>
+<span class="go">Step 19/20 : RUN RAILS_ENV=production bundle exec rails assets:precompile</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; 6dff320a2996</span>
+<span class="go">Step 20/20 : CMD bundle exec puma -t 5:5 -p 3000 -e "$RAILS_ENV" -C config/puma.rb</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go"> ---&gt; 241c086a76d5</span>
+<span class="go">Successfully built 241c086a76d5</span>
+<span class="go">Successfully tagged dockerfilesample_rails-base:latest</span>
+</pre></div></div>
+
+<h3>
+<span id="ビルド時のキャッシュについて" class="fragment"></span><a href="#%E3%83%93%E3%83%AB%E3%83%89%E6%99%82%E3%81%AE%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>ビルド時のキャッシュについて</h3>
+
+<ul>
+<li>Step毎にキャッシュが効く</li>
+<li>
+<code>Using cache</code>となっていればキャッシュが使われている</li>
+<li>一度ビルドが完了すれば、ソースコードを変更しない限りキャッシュが使われるので２度目以降は一瞬で完了する</li>
+</ul>
+
+<h3>
+<span id="上記のdockerfileの問題点" class="fragment"></span><a href="#%E4%B8%8A%E8%A8%98%E3%81%AEdockerfile%E3%81%AE%E5%95%8F%E9%A1%8C%E7%82%B9"><i class="fa fa-link"></i></a>上記のDockerfileの問題点</h3>
+
+<ul>
+<li>
+<p>ソースコードを変更する度にbuildに時間がかかる</p>
+
+<ul>
+<li>
+<p>例えば<code>app/controllers/application_controller.rb</code>を修正すると毎回bundle installから実行されてしまう</p>
+
+<div class="code-frame" data-lang="shell-session"><div class="highlight"><pre><span></span><span class="gp">$</span> docker-compose build rails-base <span class="c1"># 1回目のビルド</span>
+<span class="gp">$</span> <span class="c1"># application_controller.rbに改行を挿入</span>
+<span class="gp">$</span> <span class="nb">echo</span> <span class="err">'</span>
+<span class="go">' &gt;&gt; app/controllers/application_controller.rb</span>
+<span class="gp">$</span> docker-compose build rails-base <span class="c1"># 2回目のビルドはStep17から実行されてしまう</span>
+</pre></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>image sizeが大きい</p>
+
+<ul>
+<li>上記のDockerfileで<code>1.05GB</code>
+</li>
+<li>image sizeが大きいほどpullに時間がかかる</li>
+<li>複数サーバにデプロイするとネットワーク帯域を逼迫する</li>
+</ul>
+</li>
+<li>
+<p>railsの実行ユーザがrootになっている</p>
+
+<ul>
+<li>仮にハッキングされて任意のコマンドが実行される状態になってしまうと、コンテナ内のファイルを自由に変更されてしまう。</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<span id="各問題に対する回避テクニック" class="fragment"></span><a href="#%E5%90%84%E5%95%8F%E9%A1%8C%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E5%9B%9E%E9%81%BF%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF"><i class="fa fa-link"></i></a>各問題に対する回避テクニック</h1>
+
+<h2>
+<span id="ソースコードを変更する度にbuildに時間がかかる問題" class="fragment"></span><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B%E5%BA%A6%E3%81%ABbuild%E3%81%AB%E6%99%82%E9%96%93%E3%81%8C%E3%81%8B%E3%81%8B%E3%82%8B%E5%95%8F%E9%A1%8C"><i class="fa fa-link"></i></a>ソースコードを変更する度にbuildに時間がかかる問題</h2>
+
+<h3>
+<span id="可能な限りステップ毎のキャッシュが使われるようにする" class="fragment"></span><a href="#%E5%8F%AF%E8%83%BD%E3%81%AA%E9%99%90%E3%82%8A%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E6%AF%8E%E3%81%AE%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E3%81%8C%E4%BD%BF%E3%82%8F%E3%82%8C%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>可能な限りステップ毎のキャッシュが使われるようにする</h3>
+
+<ul>
+<li>更新頻度の低いものをDockerfileの上部に、多いものを下部に記載する</li>
+<li>
+<code>COPY</code>を細分化する</li>
+</ul>
+
+<div class="code-frame" data-lang="docker">
+<div class="code-lang"><span class="bold">Dockerfile.1</span></div>
+<div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> ruby:2.4.1</span>
+
+〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜同じ〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
+
+<span class="k">RUN</span> gem install bundler
+
+<span class="c"># bundle install</span>
+COPY Gemfile Gemfile.lock ./
+<span class="k">RUN</span> bundle install --without development <span class="nb">test</span> --path vendor/bundle
+
+<span class="c"># yarn install</span>
+COPY package.json yarn.lock .postcssrc.yml ./
+<span class="k">RUN</span> yarn install
+
+<span class="c"># assets precompile</span>
+COPY Rakefile .babelrc ./
+COPY config config
+COPY app/assets app/assets
+COPY app/javascript app/javascript
+COPY bin bin
+<span class="k">RUN</span> <span class="nv">RAILS_ENV</span><span class="o">=</span>production bundle <span class="nb">exec</span> rails assets:precompile
+
+COPY . /home/port/app
+
+<span class="k">CMD</span><span class="s"> bundle exec puma -t 5:5 -p 3000 -e "$RAILS_ENV" -C config/puma.rb</span>
+</pre></div>
+</div>
+
+<h3>
+<span id="変更点の概要" class="fragment"></span><a href="#%E5%A4%89%E6%9B%B4%E7%82%B9%E3%81%AE%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>変更点の概要</h3>
+
+<ul>
+<li>
+<code>COPY</code>時のファイルをに直後のRUN毎に必要な分だけ行うようにする</li>
+<li>Gemfileを変更したときだけbundle installが実行される</li>
+<li>package.jsonを変更したときだけyarn installが実行される</li>
+<li>
+<code>app/controllers/application_controller.rb</code>を修正してもassets:precompileが実行されない</li>
+<li>bundleとyarnのどちらを上に書くかはプロジェクトによって決める</li>
+</ul>
+
+<h2>
+<span id="image-sizeが大きい問題" class="fragment"></span><a href="#image-size%E3%81%8C%E5%A4%A7%E3%81%8D%E3%81%84%E5%95%8F%E9%A1%8C"><i class="fa fa-link"></i></a>image sizeが大きい問題</h2>
+
+<h3>
+<span id="パッケージマネージャapt-get-yumなどの最適化" class="fragment"></span><a href="#%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3apt-get-yum%E3%81%AA%E3%81%A9%E3%81%AE%E6%9C%80%E9%81%A9%E5%8C%96"><i class="fa fa-link"></i></a>パッケージマネージャ（apt-get, yumなど）の最適化</h3>
+
+<ul>
+<li>実行に不要なライブラリはインストールしない</li>
+<li>staticライブラリはビルド後（同じRUN内）に削除する
+
+<ul>
+<li>２種類のライブラリ
+
+<ul>
+<li>staticライブラリ
+
+<ul>
+<li>コンパイル時にbinaryに取り込まれる</li>
+</ul>
+</li>
+<li>sharedライブラリ
+
+<ul>
+<li>プログラム実行時に読み込まれる</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="code-frame" data-lang="docker">
+<div class="code-lang"><span class="bold">Dockerfile.2</span></div>
+<div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> ruby:2.4.1</span>
+
+〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜同じ〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
+
+<span class="c"># install dependency package</span>
+<span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    apt-get install -y --no-install-recommends apt-transport-https libssl-dev <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    apt-get clean <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    rm -rf /var/lib/apt/lists/*
+
+<span class="c"># install nodejs</span>
+<span class="k">RUN</span> curl -s -L git.io/nodebrew <span class="p">|</span> perl - setup
+<span class="k">ENV</span><span class="s"> PATH /root/.nodebrew/current/bin:$PATH</span>
+<span class="k">RUN</span> nodebrew install-binary v8.7.0
+<span class="k">RUN</span> nodebrew use v8.7.0
+
+<span class="c"># install yarn</span>
+<span class="c"># https://yarnpkg.com/en/docs/install#linux-tab</span>
+<span class="k">RUN</span> curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg <span class="p">|</span> apt-key add -
+<span class="k">RUN</span> <span class="nb">echo</span> <span class="s2">"deb https://dl.yarnpkg.com/debian/ stable main"</span> <span class="p">|</span> tee /etc/apt/sources.list.d/yarn.list
+<span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    apt-get install -y --no-install-recommends apt-transport-https yarn <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    apt-get clean <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    rm -rf /var/lib/apt/lists/*
+
+<span class="k">RUN</span> gem install bundler
+
+〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜同じ〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
+
+<span class="k">CMD</span><span class="s"> bundle exec puma -t 5:5 -p 3000 -e "$RAILS_ENV" -C config/puma.rb</span>
+</pre></div>
+</div>
+
+<h3>
+<span id="変更点の概要-1" class="fragment"></span><a href="#%E5%A4%89%E6%9B%B4%E7%82%B9%E3%81%AE%E6%A6%82%E8%A6%81-1"><i class="fa fa-link"></i></a>変更点の概要</h3>
+
+<ul>
+<li>1.05GB -&gt; 1.03GB</li>
+<li>RUN内ではじめに<code>apt-get update</code>、最後に<code>apt-get clean</code>、<code>rm -rf /var/lib/apt/lists/*</code>を行うことでサイズが増えるのを防ぐ</li>
+</ul>
+
+<h3>
+<span id="base-imageを小さいものに変更する" class="fragment"></span><a href="#base-image%E3%82%92%E5%B0%8F%E3%81%95%E3%81%84%E3%82%82%E3%81%AE%E3%81%AB%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>base imageを小さいものに変更する</h3>
+
+<ul>
+<li>alpine(軽量でセキュアなLinuxディストリビューション)を使う</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>image</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ruby:2.4.1</td>
+<td>684MB</td>
+</tr>
+<tr>
+<td>ruby:2.4.1-slim</td>
+<td>224MB</td>
+</tr>
+<tr>
+<td>ruby:2.4.1-alpine3.6</td>
+<td>84.4MB</td>
+</tr>
+</tbody>
+</table>
+
+<div class="code-frame" data-lang="docker">
+<div class="code-lang"><span class="bold">Dockerfile.3</span></div>
+<div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> ruby:2.4.1-alpine3.6</span>
+
+<span class="c"># timezone</span>
+<span class="k">RUN</span> apk add --no-cache tzdata <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    apk del --purge tzdata
+
+<span class="k">EXPOSE</span><span class="s"> 3000</span>
+<span class="k">WORKDIR</span><span class="s"> /home/port/app</span>
+
+<span class="c"># install nodejs</span>
+<span class="k">ENV</span><span class="s"> NODE_VERSION 8.7.0</span>
+<span class="k">RUN</span> addgroup -g <span class="m">1000</span> node <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> adduser -u <span class="m">1000</span> -G node -s /bin/sh -D node <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> apk add --no-cache <span class="se">\</span>
+        libstdc++ <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> apk add --no-cache --virtual .build-deps <span class="se">\</span>
+        binutils-gold <span class="se">\</span>
+        curl <span class="se">\</span>
+        g++ <span class="se">\</span>
+        gcc <span class="se">\</span>
+        gnupg <span class="se">\</span>
+        libgcc <span class="se">\</span>
+        linux-headers <span class="se">\</span>
+        make <span class="se">\</span>
+        python <span class="se">\</span>
+  # gpg keys listed at https://github.com/nodejs/node#release-team
+  <span class="o">&amp;&amp;</span> <span class="k">for</span> key in <span class="se">\</span>
+    9554F04D7259F04124DE6B476D5A82AC7E37093B <span class="se">\</span>
+    94AE36675C464D64BAFA68DD7434390BDBE9B9C5 <span class="se">\</span>
+    FD3A5288F042B6850C66B31F09FE44734EB7990E <span class="se">\</span>
+    71DCFD284A79C3B38668286BC97EC7A07EDE3FC1 <span class="se">\</span>
+    DD8F2338BAE7501E3DD5AC78C273792F7D83545D <span class="se">\</span>
+    B9AE9905FFD7803F25714661B63B535A4C206CA9 <span class="se">\</span>
+    C4F0DFFF4E8C1A8236409D08E73BC641CC11F4C8 <span class="se">\</span>
+    56730D5401028683275BD23C23EFEFE93C4CFFFE <span class="se">\</span>
+  <span class="p">;</span> <span class="k">do</span> <span class="se">\</span>
+    gpg --keyserver pgp.mit.edu --recv-keys <span class="s2">"</span><span class="nv">$key</span><span class="s2">"</span> <span class="o">||</span> <span class="se">\</span>
+    gpg --keyserver keyserver.pgp.com --recv-keys <span class="s2">"</span><span class="nv">$key</span><span class="s2">"</span> <span class="o">||</span> <span class="se">\</span>
+    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys <span class="s2">"</span><span class="nv">$key</span><span class="s2">"</span> <span class="p">;</span> <span class="se">\</span>
+  <span class="k">done</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> curl -SLO <span class="s2">"https://nodejs.org/dist/v</span><span class="nv">$NODE_VERSION</span><span class="s2">/node-v</span><span class="nv">$NODE_VERSION</span><span class="s2">.tar.xz"</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> curl -SLO --compressed <span class="s2">"https://nodejs.org/dist/v</span><span class="nv">$NODE_VERSION</span><span class="s2">/SHASUMS256.txt.asc"</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> grep <span class="s2">" node-v</span><span class="nv">$NODE_VERSION</span><span class="s2">.tar.xz\$"</span> SHASUMS256.txt <span class="p">|</span> sha256sum -c - <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> tar -xf <span class="s2">"node-v</span><span class="nv">$NODE_VERSION</span><span class="s2">.tar.xz"</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="s2">"node-v</span><span class="nv">$NODE_VERSION</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> ./configure <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> make -j<span class="k">$(</span>getconf _NPROCESSORS_ONLN<span class="k">)</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> make install <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> apk del .build-deps <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> <span class="nb">cd</span> .. <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> rm -Rf <span class="s2">"node-v</span><span class="nv">$NODE_VERSION</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> rm <span class="s2">"node-v</span><span class="nv">$NODE_VERSION</span><span class="s2">.tar.xz"</span> SHASUMS256.txt.asc SHASUMS256.txt
+
+<span class="c"># install yarn</span>
+<span class="k">ENV</span><span class="s"> YARN_VERSION 1.2.0</span>
+<span class="k">RUN</span> apk add --no-cache --virtual .build-deps-yarn curl gnupg tar <span class="se">\</span>
+  <span class="o">&amp;&amp;</span> <span class="k">for</span> key in <span class="se">\</span>
+    6A010C5166006599AA17F08146C2130DFD2497F5 <span class="se">\</span>
+  <span class="p">;</span> <span class="k">do</span> <span class="se">\</span>
+    gpg --keyserver pgp.mit.edu --recv-keys <span class="s2">"</span><span class="nv">$key</span><span class="s2">"</span> <span class="o">||</span> <span class="se">\</span>
+    gpg --keyserver keyserver.pgp.com --recv-keys <span class="s2">"</span><span class="nv">$key</span><span class="s2">"</span> <span class="o">||</span> <span class="se">\</span>
+    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys <span class="s2">"</span><span class="nv">$key</span><span class="s2">"</span> <span class="p">;</span> <span class="se">\</span>
+  <span class="k">done</span> <span class="se">\</span>
+  <span class="o">&amp;&amp;</span> curl -fSLO --compressed <span class="s2">"https://yarnpkg.com/downloads/</span><span class="nv">$YARN_VERSION</span><span class="s2">/yarn-v</span><span class="nv">$YARN_VERSION</span><span class="s2">.tar.gz"</span> <span class="se">\</span>
+  <span class="o">&amp;&amp;</span> curl -fSLO --compressed <span class="s2">"https://yarnpkg.com/downloads/</span><span class="nv">$YARN_VERSION</span><span class="s2">/yarn-v</span><span class="nv">$YARN_VERSION</span><span class="s2">.tar.gz.asc"</span> <span class="se">\</span>
+  <span class="o">&amp;&amp;</span> gpg --batch --verify yarn-v<span class="nv">$YARN_VERSION</span>.tar.gz.asc yarn-v<span class="nv">$YARN_VERSION</span>.tar.gz <span class="se">\</span>
+  <span class="o">&amp;&amp;</span> mkdir -p /opt/yarn <span class="se">\</span>
+  <span class="o">&amp;&amp;</span> tar -xzf yarn-v<span class="nv">$YARN_VERSION</span>.tar.gz -C /opt/yarn --strip-components<span class="o">=</span><span class="m">1</span> <span class="se">\</span>
+  <span class="o">&amp;&amp;</span> ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn <span class="se">\</span>
+  <span class="o">&amp;&amp;</span> ln -s /opt/yarn/bin/yarn /usr/local/bin/yarnpkg <span class="se">\</span>
+  <span class="o">&amp;&amp;</span> rm yarn-v<span class="nv">$YARN_VERSION</span>.tar.gz.asc yarn-v<span class="nv">$YARN_VERSION</span>.tar.gz <span class="se">\</span>
+  <span class="o">&amp;&amp;</span> apk del .build-deps-yarn
+
+<span class="k">RUN</span> gem install bundler
+
+COPY . /home/port/app
+
+<span class="c"># bundle install</span>
+<span class="k">RUN</span> apk --no-cache --virtual gem-builddeps add alpine-sdk sqlite-dev <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    bundle install --without development <span class="nb">test</span> --path vendor/bundle <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    apk del --purge gem-builddeps
+
+<span class="c"># yarn install</span>
+<span class="k">RUN</span> yarn install
+
+<span class="c"># assets precompile</span>
+<span class="k">RUn</span> apk --no-cache add tzdata sqlite-libs
+<span class="k">RUN</span> <span class="nv">RAILS_ENV</span><span class="o">=</span>production bundle <span class="nb">exec</span> rails assets:precompile
+
+<span class="k">CMD</span><span class="s"> bundle exec puma -t 5:5 -p 3000 -e "$RAILS_ENV" -C config/puma.rb</span>
+</pre></div>
+</div>
+
+<h3>
+<span id="変更点の概要-2" class="fragment"></span><a href="#%E5%A4%89%E6%9B%B4%E7%82%B9%E3%81%AE%E6%A6%82%E8%A6%81-2"><i class="fa fa-link"></i></a>変更点の概要</h3>
+
+<ul>
+<li>1.05GB -&gt; 405MB</li>
+<li>alpineではapkを使って依存パッケージをインストールする</li>
+</ul>
+
+<h2>
+<span id="railsの実行ユーザがrootになっている問題" class="fragment"></span><a href="#rails%E3%81%AE%E5%AE%9F%E8%A1%8C%E3%83%A6%E3%83%BC%E3%82%B6%E3%81%8Croot%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E5%95%8F%E9%A1%8C"><i class="fa fa-link"></i></a>railsの実行ユーザがrootになっている問題</h2>
+
+<h3>
+<span id="一般ユーザで動作させる" class="fragment"></span><a href="#%E4%B8%80%E8%88%AC%E3%83%A6%E3%83%BC%E3%82%B6%E3%81%A7%E5%8B%95%E4%BD%9C%E3%81%95%E3%81%9B%E3%82%8B"><i class="fa fa-link"></i></a>一般ユーザで動作させる</h3>
+
+<ul>
+<li><a href="https://docs.docker.com/engine/security/security/" rel="nofollow noopener" target="_blank">公式ドキュメント(docker security)</a></li>
+</ul>
+
+<div class="code-frame" data-lang="docker">
+<div class="code-lang"><span class="bold">Dockerfile.4</span></div>
+<div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> ruby:2.4.1</span>
+
+<span class="c"># timezone</span>
+<span class="k">RUN</span> cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+<span class="k">EXPOSE</span><span class="s"> 3000</span>
+
+<span class="c"># create user</span>
+<span class="k">RUN</span> useradd port -u <span class="m">3333</span> -d /home/port <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    mkdir -p /home/port/app <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    chown port.port -R /home/port
+
+<span class="k">WORKDIR</span><span class="s"> /home/port/app</span>
+
+〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜同じ〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
+
+<span class="c"># assets precompile</span>
+<span class="k">RUN</span> <span class="nv">RAILS_ENV</span><span class="o">=</span>production bundle <span class="nb">exec</span> rails assets:precompile
+
+<span class="k">RUN</span> chown port.port log <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    chown port.port -R db
+USER port
+
+<span class="k">CMD</span><span class="s"> bundle exec puma -t 5:5 -p 3000 -e "$RAILS_ENV" -C config/puma.rb</span>
+</pre></div>
+</div>
+
+<h3>
+<span id="変更点の概要-3" class="fragment"></span><a href="#%E5%A4%89%E6%9B%B4%E7%82%B9%E3%81%AE%E6%A6%82%E8%A6%81-3"><i class="fa fa-link"></i></a>変更点の概要</h3>
+
+<ul>
+<li>一般ユーザを作成</li>
+<li>最低限権限が必要なディレクトリ・ファイルのオーナーを変更する</li>
+<li>
+<code>USER</code>で実行ユーザを変更する</li>
+</ul>
+
+<h2>
+<span id="応用multi-stage-build" class="fragment"></span><a href="#%E5%BF%9C%E7%94%A8multi-stage-build"><i class="fa fa-link"></i></a>(応用)multi stage build</h2>
+
+<ul>
+<li>Docker 17.05以降のみ使用可能</li>
+<li>imageを小さくするためのテクニック( staticライブラリをビルド後に削除する)により、Dockerfileが複雑になることを防ぐ</li>
+<li>公式imageが存在するものは同じディストリビューションのものからビルド済みバイナリをコピーすることが出来る（無くても自分で作成すれば同じことが出来る）</li>
+<li><a href="https://docs.docker.com/engine/userguide/eng-image/multistage-build/#before-multi-stage-builds" rel="nofollow noopener" target="_blank">公式ドキュメント(Use multi-stage builds)</a></li>
+</ul>
+
+<div class="code-frame" data-lang="docker">
+<div class="code-lang"><span class="bold">Dockerfile.5</span></div>
+<div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> node:8.7.0 as node</span>
+
+<span class="k">FROM</span><span class="s"> ruby:2.4.1</span>
+
+〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜同じ〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
+
+<span class="c"># install dependency package</span>
+<span class="k">RUN</span> apt-get update
+<span class="k">RUN</span> apt-get install -y apt-transport-https libssl-dev
+
+<span class="c"># install nodejs yarn</span>
+COPY --from<span class="o">=</span>node /usr/local/bin/node /usr/local/bin/node
+COPY --from<span class="o">=</span>node /usr/local/include/node /usr/local/include/node
+COPY --from<span class="o">=</span>node /usr/local/lib/node_modules /usr/local/lib/node_modules
+COPY --from<span class="o">=</span>node /opt/yarn /opt/yarn
+<span class="k">RUN</span> ln -s /usr/local/bin/node /usr/local/bin/nodejs <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn
+
+<span class="k">RUN</span> gem install bundler
+
+COPY . /home/port/app
+
+〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜同じ〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
+
+<span class="k">CMD</span><span class="s"> bundle exec puma -t 5:5 -p 3000 -e "$RAILS_ENV" -C config/puma.rb</span>
+</pre></div>
+</div>
+
+<h3>
+<span id="変更点の概要-4" class="fragment"></span><a href="#%E5%A4%89%E6%9B%B4%E7%82%B9%E3%81%AE%E6%A6%82%E8%A6%81-4"><i class="fa fa-link"></i></a>変更点の概要</h3>
+
+<ul>
+<li>
+<code>FROM node:8.7.0 as XXXX</code>でコピー元のimageを指定
+
+<ul>
+<li>コピー元のimageのディストリビューションをコピー先のものと一致させる
+
+<ul>
+<li>
+<a href="https://hub.docker.com/_/ruby/" class="autolink" rel="nofollow noopener" target="_blank">https://hub.docker.com/_/ruby/</a>
+
+<ul>
+<li><a href="https://github.com/docker-library/ruby/blob/135c84979b1401a6963e75f3c95161bfe5be2336/2.4/jessie/Dockerfile" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/docker-library/ruby/blob/135c84979b1401a6963e75f3c95161bfe5be2336/2.4/jessie/Dockerfile</a></li>
+</ul>
+</li>
+<li>
+<a href="https://hub.docker.com/_/node/" class="autolink" rel="nofollow noopener" target="_blank">https://hub.docker.com/_/node/</a>
+
+<ul>
+<li><a href="https://github.com/nodejs/docker-node/blob/15d780e932fc8cd4a145a36cff405610c8c71b0c/8.7/Dockerfile" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/nodejs/docker-node/blob/15d780e932fc8cd4a145a36cff405610c8c71b0c/8.7/Dockerfile</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<code>COPY --from=XXXX</code>で必要なファイル（今回はnodeとyarn）をコピーする</li>
+</ul>
+
+<h2>
+<span id="全てのテクニックを適用したdockerfile" class="fragment"></span><a href="#%E5%85%A8%E3%81%A6%E3%81%AE%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF%E3%82%92%E9%81%A9%E7%94%A8%E3%81%97%E3%81%9Fdockerfile"><i class="fa fa-link"></i></a>全てのテクニックを適用したDockerfile</h2>
+
+<div class="code-frame" data-lang="docker">
+<div class="code-lang"><span class="bold">Dockerfile.6</span></div>
+<div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> node:8.7.0-alpine as node</span>
+
+<span class="k">FROM</span><span class="s"> ruby:2.4.1-alpine3.6</span>
+
+<span class="c"># timezone</span>
+<span class="k">RUN</span> apk add --no-cache tzdata <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    apk del --purge tzdata
+
+<span class="k">EXPOSE</span><span class="s"> 3000</span>
+
+<span class="c"># user</span>
+<span class="k">RUN</span> apk --no-cache add shadow
+<span class="k">RUN</span> useradd port -u <span class="m">3333</span> -d /home/port <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    mkdir -p /home/port/app <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    chown port.port -R /home/port
+
+<span class="k">WORKDIR</span><span class="s"> /home/port/app</span>
+
+<span class="c"># install nodejs yarn</span>
+COPY --from<span class="o">=</span>node /usr/local/bin/node /usr/local/bin/node
+COPY --from<span class="o">=</span>node /usr/local/include/node /usr/local/include/node
+COPY --from<span class="o">=</span>node /usr/local/lib/node_modules /usr/local/lib/node_modules
+COPY --from<span class="o">=</span>node /opt/yarn /opt/yarn
+<span class="k">RUN</span> ln -s /usr/local/bin/node /usr/local/bin/nodejs <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn
+
+<span class="k">RUN</span> gem install bundler
+
+<span class="c"># install dependency package</span>
+<span class="k">RUN</span> apk --no-cache add tzdata sqlite-libs libstdc++
+
+<span class="c"># bundle install</span>
+COPY Gemfile Gemfile.lock ./
+<span class="k">RUN</span> apk --no-cache --virtual gem-builddeps add alpine-sdk sqlite-dev <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    bundle install --without development <span class="nb">test</span> --path vendor/bundle <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    apk del --purge gem-builddeps
+
+<span class="c"># yarn install</span>
+COPY package.json yarn.lock .postcssrc.yml ./
+<span class="k">RUN</span> yarn install
+
+<span class="c"># assets precompile</span>
+COPY Rakefile .babelrc ./
+COPY config config
+COPY app/assets app/assets
+COPY app/javascript app/javascript
+COPY bin bin
+<span class="k">RUN</span> <span class="nv">RAILS_ENV</span><span class="o">=</span>production bundle <span class="nb">exec</span> rails assets:precompile
+
+COPY . /home/port/app
+
+<span class="k">RUN</span> chown port.port log <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    chown port.port -R db
+USER port
+
+<span class="k">CMD</span><span class="s"> bundle exec puma -t 5:5 -p 3000 -e "$RAILS_ENV" -C config/puma.rb</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<ul>
+<li>Dockerfileはある程度複雑になってしまう</li>
+<li>理由
+
+<ul>
+<li>キャッシュを有効に活用しbuildの時間を短縮するため</li>
+<li>実行時に不要なstaticライブラリをimage内に残さないため</li>
+<li>一般ユーザで実行するため</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<ul>
+<li><a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/" rel="nofollow noopener" target="_blank">公式ドキュメント(Best practices for writing Dockerfiles)</a></li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>port-developmentさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
+		<a target="_blank" href="https://qiita.com/port-development/items/45b90f922aea5501db66">日本の自治体の一覧が欲しい</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-26 11:11:13</center>
+	</td>
+	<td style="width:200px;">
+		@port-development<br />(ポート株式会社 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/172883/profile-images/1491369544">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[CSV]</b> <b>[GovTech]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>政府が公開しているデータがいくらかある。</p>
+
+<h1>
+<span id="全国地方公共団体コード" class="fragment"></span><a href="#%E5%85%A8%E5%9B%BD%E5%9C%B0%E6%96%B9%E5%85%AC%E5%85%B1%E5%9B%A3%E4%BD%93%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a><a href="http://www.soumu.go.jp/denshijiti/code.html" rel="nofollow noopener" target="_blank">全国地方公共団体コード</a>
+</h1>
+
+<h2>
+<span id="利点" class="fragment"></span><a href="#%E5%88%A9%E7%82%B9"><i class="fa fa-link"></i></a>利点</h2>
+
+<ul>
+<li>データ構成はシンプル</li>
+<li>「市」と「区 (東京23区)」と「町」「村」が同じ階層</li>
+</ul>
+
+<h2>
+<span id="欠点" class="fragment"></span><a href="#%E6%AC%A0%E7%82%B9"><i class="fa fa-link"></i></a>欠点</h2>
+
+<ul>
+<li>
+<strong>Microsoft Excel 97-2003 形式</strong>
+
+<ul>
+<li>MacならNumbers使えばCSVに変換できるが</li>
+</ul>
+</li>
+<li>政令指定都市の「区」は別のシート
+
+<ul>
+<li>NumbersでCSVに変換すると、別のCSVファイルとして書き出される</li>
+</ul>
+</li>
+<li>(「区」を持つ) 政令指定都市とその他の市の区別がデータ上ない</li>
+<li>「郡」の情報がない</li>
+<li>都道府県も同じ列に並んでいる</li>
+<li>市区町村と都道府県の結びつきが弱い</li>
+</ul>
+
+<h1>
+<span id="統計に用いる標準地域コード" class="fragment"></span><a href="#%E7%B5%B1%E8%A8%88%E3%81%AB%E7%94%A8%E3%81%84%E3%82%8B%E6%A8%99%E6%BA%96%E5%9C%B0%E5%9F%9F%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a><a href="http://www.soumu.go.jp/toukei_toukatsu/index/seido/9-5.htm" rel="nofollow noopener" target="_blank">統計に用いる標準地域コード</a>
+</h1>
+
+<h2>
+<span id="利点-1" class="fragment"></span><a href="#%E5%88%A9%E7%82%B9-1"><i class="fa fa-link"></i></a>利点</h2>
+
+<ul>
+<li>最初からCSV形式で用意されている</li>
+<li>地方公共団体コードが <a href="https://www.j-lis.go.jp/data/open/cnt/3/1090/1/specifications20080401.pdf" rel="nofollow noopener" target="_blank">仕様 (PDF)</a> に従って分割されている。可読性は下がるが、
+
+<ul>
+<li>都道府県と結びつけやすい</li>
+<li>(相変わらず都道府県と市区町村が同列に並んでいるが) プログラムで分類しやすい</li>
+</ul>
+</li>
+<li>「郡」の情報がある (ただし…)</li>
+<li>政令指定都市の区が同一ファイルに記載されている (ただし…)</li>
+</ul>
+
+<h2>
+<span id="欠点-1" class="fragment"></span><a href="#%E6%AC%A0%E7%82%B9-1"><i class="fa fa-link"></i></a>欠点</h2>
+
+<ul>
+<li>文字コードが <strong>Shift_JIS</strong> なので文字化け注意
+
+<ul>
+<li>変換すればいいんだけどさ…</li>
+</ul>
+</li>
+<li>データ階層がめちゃくちゃ
+
+<ul>
+<li>政令指定都市と「郡」と「総合振興局」(北海道限定) が同じ階層</li>
+<li> 北海道の自治体で「総合振興局」がある場合、「郡」の情報はない</li>
+<li>東京都の島嶼部の「支庁」の情報が混ざる (現在、正式な地名ではない)</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="対策" class="fragment"></span><a href="#%E5%AF%BE%E7%AD%96"><i class="fa fa-link"></i></a>対策</h2>
+
+<p>上記の地方公共団体コード仕様から、各行がどのデータに当てはまるか分類することができる。</p>
+
+<ul>
+<li>
+<code>sityouson-code</code> が
+
+<ul>
+<li>0: 都道府県</li>
+<li>100以上199以下:
+
+<ul>
+<li>10の倍数: 政令指定都市または「東京都特別区部」</li>
+<li>それ以外: 「区」</li>
+</ul>
+</li>
+<li>201以上299以下: 市</li>
+<li>300以上:「郡」または「総合振興局」または「支庁」または「町村」
+
+<ul>
+<li>北海道の場合
+
+<ul>
+<li>30の倍数: 総合振興局</li>
+<li>それ以外: 町村</li>
+</ul>
+</li>
+<li>沖縄県の場合 (※)
+
+<ul>
+<li>300, 320, 340, 370, 380: 郡</li>
+<li>それ以外: 町村</li>
+</ul>
+</li>
+<li>その他の都府県の場合:
+
+<ul>
+<li>20の倍数: 郡</li>
+<li>それ以外: 町村</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>※沖縄県島尻郡の例外</p>
+
+<blockquote>
+<p>沖縄県島尻郡は 341 からなので本来なら 341～359 が割り当てだが、町村数が多く 362 まで使用しており、341～369 が割り当てられている。次の宮古郡の割り当てはその分減らされ 371～379 である。</p>
+</blockquote>
+
+<p>参考:  <a href="https://ja.wikipedia.org/wiki/%E5%85%A8%E5%9B%BD%E5%9C%B0%E6%96%B9%E5%85%AC%E5%85%B1%E5%9B%A3%E4%BD%93%E3%82%B3%E3%83%BC%E3%83%89" rel="nofollow noopener" target="_blank">Wikipediaによる解説</a>と上記の仕様書</p>
+
+<p>これらに気をつければ、標準地域コードから充分正規化された市町村データが取得できそう。</p>
+
+<h1>
+<span id="市区町村の一覧を取得" class="fragment"></span><a href="#%E5%B8%82%E5%8C%BA%E7%94%BA%E6%9D%91%E3%81%AE%E4%B8%80%E8%A6%A7%E3%82%92%E5%8F%96%E5%BE%97"><i class="fa fa-link"></i></a>市区町村の一覧を取得</h1>
+
+<p>今回はそんなに細かい分類は求められていなかったので、以下の方針とした。</p>
+
+<ul>
+<li>政令指定都市は市名と区名を結合する (ex. 「札幌市中央区」)</li>
+<li>その他の市および東京特別区は市名そのまま (ex. 「鹿児島市」「千代田区」)</li>
+<li>町村については
+
+<ul>
+<li>北海道の <code>/.*総合振興局/</code> は無視し町村名のみ (ex. 「西興部村」)</li>
+<li>東京都の離島地域の「支庁」は無視し町村名のみ (ex. 「小笠原村」)</li>
+<li>その他の町村は郡名と町村名を結合する (ex. 「夷隅郡大多喜町」)</li>
+</ul>
+</li>
+</ul>
+
+<p>入力は上記のCSV, 出力はYML形式とする。</p>
+
+<div class="code-frame" data-lang="yaml">
+<div class="code-lang"><span class="bold">cities.yml</span></div>
+<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">:prefecture_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+  <span class="l l-Scalar l-Scalar-Plain">:name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">札幌市中央区</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">:prefecture_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+  <span class="l l-Scalar l-Scalar-Plain">:name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">札幌市北区</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">:prefecture_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+  <span class="l l-Scalar l-Scalar-Plain">:name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">札幌市東区</span>
+<span class="c1"># ...以下省略</span>
+</pre></div>
+</div>
+
+<p>で、できたコードがこちら</p>
+
+<p><a href="https://gist.github.com/strviola/71f5be723306c08979b9b7277aa4759f" rel="nofollow noopener" target="_blank">GitHub Gist - strviola / convert_prefecture_cities.rb</a></p>
+
+<h1>
+<span id="結論" class="fragment"></span><a href="#%E7%B5%90%E8%AB%96"><i class="fa fa-link"></i></a>結論</h1>
+
+<p>「市町村コードの値」じゃなくてYAMLかなんかで正規化してほしかったな…</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>port-developmentさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/port-development/items/a1c551f8e761204e5b2c">FactoryGirlで固定されたデータを扱う</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-26 19:52:03</center>
+	</td>
+	<td style="width:200px;">
+		@port-development<br />(ポート株式会社 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/172883/profile-images/1491369544">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[RSpec]</b> <b>[FactoryGirl]</b> <b>[RubyOnRails]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>Webアプリケーションを作っていると、ユーザー入力値ではなく固定されたマスターデータをDBで扱うことがしばしばあると思います。例えば都道府県など。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">prefectures.rb</span></div>
+<div class="highlight"><pre><span></span><span class="c1"># == Schema Information</span>
+<span class="c1">#</span>
+<span class="c1"># Table name: prefectures # 都道府県</span>
+<span class="c1">#</span>
+<span class="c1">#  id         :integer          not null, primary key</span>
+<span class="c1">#  name       :string(255)      not null</span>
+<span class="c1">#  created_at :datetime         not null</span>
+<span class="c1">#  updated_at :datetime         not null</span>
+<span class="c1">#</span>
+
+<span class="k">class</span> <span class="nc">Prefecture</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">has_many</span> <span class="ss">:cities</span>
+  <span class="n">has_many</span> <span class="ss">:addresses</span><span class="p">,</span> <span class="ss">through</span><span class="p">:</span> <span class="ss">:cities</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<p>このモデルの FactroryGirl の設定を考えます。一般的なモデルにならうと</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">prefectures.rb</span></div>
+<div class="highlight"><pre><span></span><span class="no">FactoryGirl</span><span class="o">.</span><span class="n">define</span> <span class="k">do</span>
+  <span class="n">factory</span> <span class="ss">:prefecture</span> <span class="k">do</span>
+    <span class="nb">name</span> <span class="s1">'東京都'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<p>となりますが、これだとテストを実行する度に東京都がたくさん生成されます。しかも、場合によっては Prefecture のインスタンス数が47を超えます。現実的でありませんね。かといって</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">prefectures.rb</span></div>
+<div class="highlight"><pre><span></span><span class="no">FactoryGirl</span><span class="o">.</span><span class="n">define</span> <span class="k">do</span>
+  <span class="n">factory</span> <span class="ss">:prefecture</span> <span class="k">do</span>
+    <span class="nb">id</span> <span class="mi">13</span>
+    <span class="nb">name</span> <span class="s1">'東京都'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="c1"># ActiveRecord::RecordNotUnique: Mysql2::Error: Duplicate entry '13' for key 'PRIMARY': INSERT INTO `prefectures` (`id`, `name`, `created_at`, `updated_at`) VALUES (13, '東京都', '2017-10-26 10:31:00', '2017-10-26 10:31:00')</span>
+<span class="c1"># from /Users/***/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/mysql2-0.4.5/lib/mysql2/client.rb:120:in `_query'</span>
+</pre></div>
+</div>
+
+<p>としてしまうと今度はDBの一意性制約に引っかかって怒られます。</p>
+
+<h1>
+<span id="initialize_with-を使う" class="fragment"></span><a href="#initialize_with-%E3%82%92%E4%BD%BF%E3%81%86"><i class="fa fa-link"></i></a><code>initialize_with</code> を使う</h1>
+
+<p>FactoryGirl が用意している <code>initialize_with</code> メソッドを使用すると、何回 <code>build</code> や <code>create</code> を呼んでも特定のインスタンス (テスト用DBの同一のレコード) を返す Factory が定義できます。</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">prefectures.rb</span></div>
+<div class="highlight"><pre><span></span><span class="no">FactoryGirl</span><span class="o">.</span><span class="n">define</span> <span class="k">do</span>
+  <span class="n">factory</span> <span class="ss">:prefecture</span> <span class="k">do</span>
+    <span class="nb">id</span> <span class="mi">13</span>
+    <span class="nb">name</span> <span class="s1">'東京都'</span>
+
+    <span class="n">initialize_with</span> <span class="k">do</span>
+      <span class="no">Prefecture</span><span class="o">.</span><span class="n">find_or_initialize_by</span><span class="p">(</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span>
+        <span class="nb">name</span><span class="p">:</span> <span class="s1">'東京都'</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<p><code>find_or_initialize_by</code> を使っているので、これはデータベースが真っさらな状態でも期待通り動きます。</p>
+
+<p>しかも、 <code>association</code> でつながっている他のFactoryを <code>create</code> や <code>build</code> した時、SQLの <code>CREATE</code> ではなく <code>SELECT</code> が走るので、SQLの実行時間ひいてはテストの実行時間を削減できることが期待できます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>[7] pry(main)&gt; FactoryGirl.create(:city)
+  Prefecture Load (0.4ms)  SELECT  `prefectures`.* FROM `prefectures` WHERE `prefectures`.`id` = 13 AND `prefectures`.`region_id` = 3 AND `prefectures`.`name` = '東京都' LIMIT 1
+  SQL (27.7ms)  INSERT INTO `cities` (`prefecture_id`, `name`, `created_at`, `updated_at`) VALUES (13, '新宿区', '2017-10-26 10:43:52', '2017-10-26 10:43:52')
+   (2.8ms)  COMMIT
+</pre></div></div>
+
+<p><code>prefectures</code> テーブルに対する <code>CREATE</code> 文が走っていないことが分かります。</p>
+
+<h2>
+<span id="注意点" class="fragment"></span><a href="#%E6%B3%A8%E6%84%8F%E7%82%B9"><i class="fa fa-link"></i></a>注意点</h2>
+
+<p>ただし、これを使うと本当に他の値を使いたくてもできなくなるという欠点があります。データ作成時に <code>CREATE</code> ではなく <code>UPDATE</code> が走るためです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>[5] pry(main)&gt; FactoryGirl.create(:prefecture, id: 14, name: '神奈川県')
+  SQL (5.1ms)  UPDATE `prefectures` SET `id` = 14, `name` = '神奈川県', `updated_at` = '2017-10-26 10:39:14' WHERE `prefectures`.`id` = 13
+ActiveRecord::StatementInvalid: Mysql2::Error: Cannot delete or update a parent row: a foreign key constraint fails (`***_development`.`cities`, CONSTRAINT `fk_rails_cc74ecd368` FOREIGN KEY (`prefecture_id`) REFERENCES `prefectures` (`id`)): UPDATE `prefectures` SET `id` = 14, `name` = '神奈川県', `updated_at` = '2017-10-26 10:39:14' WHERE `prefectures`.`id` = 13
+</pre></div></div>
+
+<p>外部キー制約に引っかかっています。</p>
+
+<h2>
+<span id="対策" class="fragment"></span><a href="#%E5%AF%BE%E7%AD%96"><i class="fa fa-link"></i></a>対策</h2>
+
+<p>この場合は Factory を使わず <code>ActiveModel.create</code> を使います。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>[11] pry(main)&gt; Prefecture.create(name: '神奈川県')
+   (0.2ms)  BEGIN
+  SQL (9.0ms)  INSERT INTO `prefectures` (`name`, `created_at`, `updated_at`) VALUES ('神奈川県', '2017-10-26 10:46:44', '2017-10-26 10:46:44')
+   (6.7ms)  COMMIT
+</pre></div></div>
+
+<p>これは新規Factoryつまりダミーデータが非常に作りにくくなる事実を示しています。カラムが多いレコードに対してここで紹介した方法を使うのは得策でないでしょう。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<ul>
+<li>
+<code>initialize_with</code> と <code>find_or_initialize_by</code> を使うと、固定されたデータから参照する形式のFactoryが定義できる。</li>
+<li>しかし新規ダミーデータを作成するのは大変になる。</li>
+<li>使いどころが肝心</li>
+</ul>
+
+<p>以上になります。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

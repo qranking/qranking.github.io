@@ -1,0 +1,1396 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (takasek)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (takasek さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>takasekさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>208</kbd>
+		<a target="_blank" href="https://qiita.com/takasek/items/693c57dc9ddc6c1eb1ba">よりよいネーミングを目指して</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-12 17:42:43</center>
+	</td>
+	<td style="width:200px;">
+		@takasek<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/34405/profile-images/1475591355">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[オブジェクト指向]</b> <b>[命名規則]</b> <b>[Swift]</b> <b>[ネーミング]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>この記事は、<a href="https://orecon.connpass.com/event/64285/" rel="nofollow noopener" target="_blank">俺コン Vol.1 / Day. 2 - connpass</a>での発表を、文章としてリライトしたものです。</p>
+
+<p>スライド版:<br>
+<a href="https://speakerdeck.com/takasek/20171003-number-orecon-ios-number-akibaswift" rel="nofollow noopener" target="_blank"><br>
+<img src="https://camo.qiitausercontent.com/9f7055ea95b5d88a62a76ecd3500c2649aa843e8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f63333133366433322d343163632d383639632d626435392d3539323732333436656435632e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/34405/c3136d32-41cc-869c-bd59-59272346ed5c.png"><br>
+https://speakerdeck.com/takasek/20171003-number-orecon-ios-number-akibaswift<br>
+</a></p>
+
+<h1>
+<span id="前置き" class="fragment"></span><a href="#%E5%89%8D%E7%BD%AE%E3%81%8D"><i class="fa fa-link"></i></a>前置き</h1>
+
+<p><a href="https://camo.qiitausercontent.com/7e7eb5fa8760fe682f33fad04642a63ffb7cba41/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f63656434306331662d393339322d313962302d383238642d3039396534666237353363302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7e7eb5fa8760fe682f33fad04642a63ffb7cba41/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f63656434306331662d393339322d313962302d383238642d3039396534666237353363302e706e67" alt="mujun.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/34405/ced40c1f-9392-19b0-828d-099e4fb753c0.png"></a></p>
+
+<p>このアスキーアートは、「矛盾塊」と呼ばれるそうです。矛盾する情報が同時に与えられたとき、人は混乱してしまいます。ここはQiitaなのでコードで書きますと、</p>
+
+<p><a href="https://camo.qiitausercontent.com/8b4864d2400fac04998c059ee436a2718d3d0759/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f35656665346532662d396336662d613563642d363036622d3935303031653530373231632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/8b4864d2400fac04998c059ee436a2718d3d0759/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f35656665346532662d396336662d613563642d363036622d3935303031653530373231632e706e67" alt="mujun_code.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/34405/5efe4e2f-9c6f-a5cd-606b-95001e50721c.png"></a></p>
+
+<p>コードになっても混乱しますね。<br>
+こんな矛盾に溢れたコードを、業務では見たくないですよね。しかし矛盾塊コードは、程度の差はあれ、普段の業務コードの中にも潜んでいるものです。たとえば、</p>
+
+<ul>
+<li>
+<code>update()</code> で特定の条件ではupdateせずに戻る</li>
+<li>
+<code>fetch()</code> といいつつUIの更新もしてる</li>
+<li>名前に困って <code>func didReceive(hoge: Hoge)</code>
+</li>
+</ul>
+
+<p>このような矛盾塊コードをそのままにしてしまう理由は、様々あるかと思います。めんどくさいとか、動いているコードに触りたくないとか、適切な名前が思いつかないとか、まあ全体を読めば理解できるし…とか。でもまあ、要は、バグってわけじゃないし、そこまで実害を感じないからこそ、見逃してしまうのでしょう。<br>
+しかし、そこには明確な実害があります。</p>
+
+<h2>
+<span id="矛盾塊コードの実害1-コードリーティングを遅くする" class="fragment"></span><a href="#%E7%9F%9B%E7%9B%BE%E5%A1%8A%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E5%AE%9F%E5%AE%B31-%E3%82%B3%E3%83%BC%E3%83%89%E3%83%AA%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%82%92%E9%81%85%E3%81%8F%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>矛盾塊コードの実害1: コードリーティングを遅くする</h2>
+
+<p>矛盾塊を見るときに受ける混乱を、心理学用語で「<a href="https://ja.wikipedia.org/wiki/%E3%82%B9%E3%83%88%E3%83%AB%E3%83%BC%E3%83%97%E5%8A%B9%E6%9E%9C" rel="nofollow noopener" target="_blank">ストループ効果</a>」というそうです。Wikipediaからの孫引きですが、</p>
+
+<blockquote>
+<p>例えば、色名を答える質問を行った場合、赤インクで書かれた「あか」の色名を答える場合より、青インクで書かれた「あか」の色名（『あお』）を答える方が時間がかかる事をいう。</p>
+</blockquote>
+
+<p>そう。矛盾塊コードは、コードリーディングを遅くする。これが心理学に裏付けされた真実なのです。</p>
+
+<h2>
+<span id="矛盾塊コードの実害2-関係ない処理が入り込む隙ができる" class="fragment"></span><a href="#%E7%9F%9B%E7%9B%BE%E5%A1%8A%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E5%AE%9F%E5%AE%B32-%E9%96%A2%E4%BF%82%E3%81%AA%E3%81%84%E5%87%A6%E7%90%86%E3%81%8C%E5%85%A5%E3%82%8A%E8%BE%BC%E3%82%80%E9%9A%99%E3%81%8C%E3%81%A7%E3%81%8D%E3%82%8B"><i class="fa fa-link"></i></a>矛盾塊コードの実害2: 関係ない処理が入り込む隙ができる</h2>
+
+<p>矛盾塊コードには、もっと危険な実害があります。<br>
+名前に混乱を来したまま開発を進めると、本来関係のない処理が入り込む隙に繋がります。つまり、型やメソッドの<strong>責務の範囲</strong>が定まらなかったり、型やメソッドが肥大化する・処理が各所に分散する。そして最悪、バグが仕込まれます。<br>
+そうしてみると、さっき「まあいいかな」と思えたコードも、実は隙だらけだとわかってきます。</p>
+
+<ul>
+<li>
+<code>update()</code> で特定の条件ではupdateせずに戻った結果、データ更新後も画面は更新されない。…と思ったら処理が途中でguardされていた</li>
+<li>
+<code>fetch()</code> といいつつUIの更新もした」結果、思わぬ時にAlertが表示される</li>
+<li>名前に困って <code>func didReceive(hoge: Hoge)</code>と名付けた結果、 <code>isFetching: Bool</code> の管理箇所が分散してしまった</li>
+</ul>
+
+<p>全体を注意深く読めば防げると思われるかもしれませんが、そんなのは無理です。それよりは、<strong>注意深くなくても大丈夫な仕組みをつくる</strong>ほうが大事です。<br>
+それが「しっかりしたネーミング」を徹底する理由です。<br>
+良い名前をつけることの重要性、おわかりいただけたでしょうか。適切なネーミングは、コードを読みやすくするばかりでなく、設計を正しく保ち、バグの混入を防ぐのです。良い名前をつけましょう。</p>
+
+<h1>
+<span id="ではどうすれば" class="fragment"></span><a href="#%E3%81%A7%E3%81%AF%E3%81%A9%E3%81%86%E3%81%99%E3%82%8C%E3%81%B0"><i class="fa fa-link"></i></a>では、どうすれば？</h1>
+
+<h2>
+<span id="リーダブルコードより名前に情報を詰め込む" class="fragment"></span><a href="#%E3%83%AA%E3%83%BC%E3%83%80%E3%83%96%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89%E3%82%88%E3%82%8A%E5%90%8D%E5%89%8D%E3%81%AB%E6%83%85%E5%A0%B1%E3%82%92%E8%A9%B0%E3%82%81%E8%BE%BC%E3%82%80"><i class="fa fa-link"></i></a>「リーダブルコード」より：「名前に情報を詰め込む」</h2>
+
+<p>ネーミングの指針として定評あるのが、「<a href="https://www.amazon.co.jp/dp/4873115655" rel="nofollow noopener" target="_blank">リーダブルコード ―より良いコードを書くためのシンプルで実践的なテクニック</a>」という本です。<br>
+この本では「名前に情報を詰め込む」ための6つのテクニックを紹介しています。</p>
+
+<ol>
+<li>明確な単語を選ぶ</li>
+<li>汎用的な名前を避ける（あるいは、使う状況を選ぶ）</li>
+<li>抽象的な名前よりも具体的な名前を使う</li>
+<li>接尾辞や接頭辞を使って情報を追加する</li>
+<li>名前の長さを決める</li>
+<li>名前のフォーマットで情報を伝える</li>
+</ol>
+
+<hr>
+
+<h3>
+<span id="名前に情報を詰め込む明確な単語を選ぶ" class="fragment"></span><a href="#%E5%90%8D%E5%89%8D%E3%81%AB%E6%83%85%E5%A0%B1%E3%82%92%E8%A9%B0%E3%82%81%E8%BE%BC%E3%82%80%E6%98%8E%E7%A2%BA%E3%81%AA%E5%8D%98%E8%AA%9E%E3%82%92%E9%81%B8%E3%81%B6"><i class="fa fa-link"></i></a>「名前に情報を詰め込む」①明確な単語を選ぶ</h3>
+
+<p>まず最初のテクニックが「明確な単語を選ぶ」こと。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// ❌</span>
+<span class="n">HogeStorage</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="n">fuga</span><span class="p">)</span>
+
+<span class="c1">// ⭕️</span>
+<span class="n">HogeStorage</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="n">fuga</span><span class="p">)</span>
+</pre></div></div>
+
+<p>たとえばストレージに対してなら、setという無味乾燥な単語よりは、storeという単語のほうがイメージしやすくなります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// ❌</span>
+<span class="n">RxSwift</span><span class="p">.</span><span class="n">Observable</span>
+
+<span class="c1">// ⭕️</span>
+<span class="n">RxSwift</span><span class="p">.</span><span class="n">Single</span><span class="p">`</span> <span class="c1">// as you can!</span>
+</pre></div></div>
+
+<p>また、RxSwiftではObservable型が広く使われていますが、もし一度しかイベントの発生しないストリームであれば、ObservableよりもSingle型を使った方が、その意図が明確になります。</p>
+
+<p>また、Swiftには引数ラベルがあります。これを活用しましょう。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// ❌️</span>
+<span class="n">employees</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">view</span><span class="p">.</span><span class="n">dismiss</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">text</span> <span class="p">=</span> <span class="n">words</span><span class="p">.</span><span class="bp">split</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="c1">// ⭕️</span>
+<span class="n">employees</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">at</span><span class="p">:</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">view</span><span class="p">.</span><span class="n">dismiss</span><span class="p">(</span><span class="n">animated</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">text</span> <span class="p">=</span> <span class="n">words</span><span class="p">.</span><span class="bp">split</span><span class="p">(</span><span class="n">maxSplits</span><span class="p">:</span> <span class="mi">12</span><span class="p">)</span>
+
+<span class="c1">// ※出典: https://swift.org/documentation/api-design-guidelines/</span>
+</pre></div></div>
+
+<p><code>remove(x)</code> と言われると、xという要素を削除するのかと思ってしまいます。しかし、atというラベルを入れ、<code>remove(at: x)</code> とするることで、x番目の要素を削除するという意図が明確になります。</p>
+
+<hr>
+
+<h3>
+<span id="名前に情報を詰め込む汎用的な名前を避けるあるいは使う状況を選ぶ" class="fragment"></span><a href="#%E5%90%8D%E5%89%8D%E3%81%AB%E6%83%85%E5%A0%B1%E3%82%92%E8%A9%B0%E3%82%81%E8%BE%BC%E3%82%80%E6%B1%8E%E7%94%A8%E7%9A%84%E3%81%AA%E5%90%8D%E5%89%8D%E3%82%92%E9%81%BF%E3%81%91%E3%82%8B%E3%81%82%E3%82%8B%E3%81%84%E3%81%AF%E4%BD%BF%E3%81%86%E7%8A%B6%E6%B3%81%E3%82%92%E9%81%B8%E3%81%B6"><i class="fa fa-link"></i></a>「名前に情報を詰め込む」②汎用的な名前を避ける（あるいは、使う状況を選ぶ）</h3>
+
+<p>続いてのテクニックが「汎用的な名前を避ける」ことです。ViewControllerのプロパティに、marginと、defaultSizeがあったとします。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// ❌</span>
+<span class="kr">final</span> <span class="kd">class</span> <span class="nc">HogeViewController</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">margin</span><span class="p">:</span> <span class="n">CGFloat</span> <span class="p">=</span> <span class="mf">2.0</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">defaultSize</span> <span class="p">=</span> <span class="bp">CGSize</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>なんのマージンとサイズやねん、って感じですよね。このような名前は、避けましょう。<br>
+ただし、汎用的な名前が常にNGというわけではありません。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// ⭕️</span>
+<span class="kd">func</span> <span class="nf">calculateComponentWidth</span>
+<span class="p">(</span><span class="n">paralleling</span> <span class="n">contentSizes</span><span class="p">:</span> <span class="p">[</span><span class="bp">CGSize</span><span class="p">])</span> <span class="p">-&gt;</span> <span class="n">CGFloat</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">contentSizes</span><span class="p">.</span><span class="bp">reduce</span><span class="p">(</span><span class="n">margin</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span><span class="p">,</span> <span class="n">size</span> <span class="k">in</span>
+        <span class="kd">let</span> <span class="nv">margin</span><span class="p">:</span> <span class="n">CGFloat</span> <span class="p">=</span> <span class="mi">2</span>
+        <span class="n">result</span> <span class="o">+</span> <span class="n">size</span><span class="p">.</span><span class="n">width</span> <span class="o">+</span> <span class="n">margin</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nv">userID</span><span class="p">:</span> <span class="nb">Int</span><span class="p">?</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="kc">self</span><span class="p">.</span><span class="n">userState</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="p">.</span><span class="n">id</span><span class="p">(</span><span class="n">id</span><span class="p">):</span> <span class="k">return</span> <span class="n">id</span>
+    <span class="k">case</span> <span class="p">.</span><span class="n">entity</span><span class="p">(</span><span class="n">e</span><span class="p">):</span> <span class="k">return</span> <span class="n">e</span><span class="p">.</span><span class="n">id</span>
+    <span class="k">case</span> <span class="p">.</span><span class="n">unavailable</span><span class="p">:</span> <span class="k">return</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>メソッドの中など、スコープが狭く限定的な場合には、汎用的な名前はむしろ良いものです。<br>
+また、Enum の associated value を取り出すときなどに、変数が一時的なものだと示すために、あえて雑な名前をつけるのもアリだと思います。</p>
+
+<hr>
+
+<h3>
+<span id="名前に情報を詰め込む抽象的な名前よりも具体的な名前を使う" class="fragment"></span><a href="#%E5%90%8D%E5%89%8D%E3%81%AB%E6%83%85%E5%A0%B1%E3%82%92%E8%A9%B0%E3%82%81%E8%BE%BC%E3%82%80%E6%8A%BD%E8%B1%A1%E7%9A%84%E3%81%AA%E5%90%8D%E5%89%8D%E3%82%88%E3%82%8A%E3%82%82%E5%85%B7%E4%BD%93%E7%9A%84%E3%81%AA%E5%90%8D%E5%89%8D%E3%82%92%E4%BD%BF%E3%81%86"><i class="fa fa-link"></i></a>「名前に情報を詰め込む」③抽象的な名前よりも具体的な名前を使う</h3>
+
+<p>テクニック3番目。「抽象的な名前よりも具体的な名前を使う」。まずは悪い例のメソッドの、インタフェースだけごらんください。HogeListViewControllerに生えているメソッドです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// ❌</span>
+<span class="kd">class</span> <span class="nc">HogeListViewController</span> <span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="kd">func</span> <span class="nf">fetch</span><span class="p">()</span>
+    <span class="kd">func</span> <span class="nf">fetchBackground</span><span class="p">()</span>
+    <span class="kd">func</span> <span class="nf">fetchReally</span><span class="p">(</span><span class="kc">_</span> <span class="n">id</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">show</span><span class="p">:</span> <span class="nb">Bool</span><span class="p">)</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><code>fetch</code> 、 <code>fetchBackground</code> , <code>fetchReally</code> 。<br>
+どれがどういう役割を持ったものだか、ぱっと理解できるでしょうか。 <code>fetchReally</code> があるということは、普通の <code>fetch</code> はリアリーじゃないんでしょうか。 <code>bakcground</code> ってどういうことでしょうか。謎は深まるばかりです。<br>
+実装の中身を見てみます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">HogeListViewController</span> <span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
+
+    <span class="c1">/// 通信して、失敗したらアラートを表示する</span>
+    <span class="kd">func</span> <span class="nf">fetch</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">fetchReally</span><span class="p">(</span><span class="n">textField</span><span class="p">.</span><span class="n">text</span><span class="p">!,</span> <span class="n">show</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// 通信して、失敗してもアラートは表示しない</span>
+    <span class="kd">func</span> <span class="nf">fetchBackground</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">fetchReally</span><span class="p">(</span><span class="n">textField</span><span class="p">.</span><span class="n">text</span><span class="p">!,</span> <span class="n">show</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+        <span class="c1">// 👆どうやら「アラートを表示しない」からbackgroundというらしい。嘘だろ!?</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">fetchReally</span><span class="p">(</span><span class="kc">_</span> <span class="n">id</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">show</span><span class="p">:</span> <span class="nb">Bool</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">api</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="p">{</span> <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="n">models</span> <span class="k">in</span>
+            <span class="kc">self</span><span class="p">?.</span><span class="n">didReceive</span><span class="p">(</span><span class="n">models</span><span class="p">:</span> <span class="n">models</span><span class="p">,</span> <span class="n">showsAlertIfFailed</span><span class="p">:</span> <span class="n">show</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="c1">// 👆「具体的な通信処理が書いてある」からreallyというらしい</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>蓋を開けてみると、 <code>fetch</code> と <code>fetchBackground</code> は、どちらも <code>fetchReally</code> を呼ぶ処理が1行書いてあるだけでした。違いは、 <code>fetch</code> では通信失敗時のアラートを出すけれど、 <code>fetchBackground</code> では出さないらしいです。アラートを出さないから「バックグラウンド」というメソッド名…嘘だろって感じです。<br>
+あと <code>Really</code> については…おそらく、開発初期にあったのは <code>fetch</code> メソッドだけで、 <code>fetchBackground</code> の誕生時に通信処理を切り出したものの、元メソッドをリネームしなかった結果こんな名前になっちゃったんでしょう。<br>
+が、経緯はともかく、今目の前にあるのは、わけのわからない矛盾塊です。<br>
+<code>fetch</code> と <code>fetchBackground</code> の違いが、アラートの出し分けの有無なのであれば、それを具体的な名前で表すべきです。また、<br>
+ <code>Really</code> という副詞は何も言っていないのと変わりません。<br>
+こうしましょう。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// ❌</span>
+<span class="kd">func</span> <span class="nf">fetch</span><span class="p">()</span>
+<span class="kd">func</span> <span class="nf">fetchBackground</span><span class="p">()</span>
+<span class="kd">func</span> <span class="nf">fetchReally</span><span class="p">(</span><span class="kc">_</span> <span class="n">id</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">show</span><span class="p">:</span> <span class="nb">Bool</span><span class="p">)</span>
+
+<span class="c1">// ⭕️</span>
+<span class="kd">func</span> <span class="nf">startFetchingHogesWithFailureAlert</span><span class="p">()</span>
+<span class="kd">func</span> <span class="nf">startFetchingHogesWithoutFailureAlert</span><span class="p">()</span>
+<span class="kd">func</span> <span class="nf">fetchHoges</span><span class="p">(</span><span class="n">withID</span> <span class="n">id</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">showsAlertIfFailed</span><span class="p">:</span> <span class="nb">Bool</span><span class="p">)</span>
+</pre></div></div>
+
+<p>これなら、初めて読む人でも理解できる、具体的な名前になります。</p>
+
+<hr>
+
+<h3>
+<span id="名前に情報を詰め込む接尾辞や接頭辞を使って情報を追加する" class="fragment"></span><a href="#%E5%90%8D%E5%89%8D%E3%81%AB%E6%83%85%E5%A0%B1%E3%82%92%E8%A9%B0%E3%82%81%E8%BE%BC%E3%82%80%E6%8E%A5%E5%B0%BE%E8%BE%9E%E3%82%84%E6%8E%A5%E9%A0%AD%E8%BE%9E%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E6%83%85%E5%A0%B1%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>「名前に情報を詰め込む」④接尾辞や接頭辞を使って情報を追加する</h3>
+
+<p>4番目のテクニック。「接尾辞や接頭辞を使って情報を追加する」についてです。<br>
+以下に示すのは、URLエンコードされた文字列をデコードする一連の処理です。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// ❌️</span>
+<span class="kd">let</span> <span class="nv">text1</span> <span class="p">=</span> <span class="s">"100%25%E5%8B%87%E6%B0%97"</span>
+<span class="kd">let</span> <span class="nv">text2</span> <span class="p">=</span> <span class="n">text1</span><span class="p">.</span><span class="n">removingPercentEncoding</span><span class="p">!</span> <span class="c1">// "100%勇気"</span>
+<span class="kd">let</span> <span class="nv">text3</span> <span class="p">=</span> <span class="n">text2</span><span class="p">.</span><span class="n">removingPercentEncoding</span><span class="p">!</span> <span class="c1">// CRASH😣</span>
+
+<span class="c1">// ⭕️</span>
+<span class="kd">let</span> <span class="nv">encodedText</span> <span class="p">=</span> <span class="s">"100%25%E5%8B%87%E6%B0%97"</span>
+<span class="kd">let</span> <span class="nv">decodedText</span> <span class="p">=</span> <span class="n">encodedText</span><span class="p">.</span><span class="n">removingPercentEncoding</span><span class="p">!</span> <span class="c1">// "100%勇気"</span>
+<span class="c1">// もう👆はdecode済みだとわかる</span>
+</pre></div></div>
+
+<p>悪い例では、text1,2,3という変数名のため、どれがデコードされたものかわかりません。<br>
+良い例では、変数名にencoded, decodedという接頭辞をつけることで、その意味が明確になりました。</p>
+
+<hr>
+
+<h3>
+<span id="名前に情報を詰め込む名前の長さを決める" class="fragment"></span><a href="#%E5%90%8D%E5%89%8D%E3%81%AB%E6%83%85%E5%A0%B1%E3%82%92%E8%A9%B0%E3%82%81%E8%BE%BC%E3%82%80%E5%90%8D%E5%89%8D%E3%81%AE%E9%95%B7%E3%81%95%E3%82%92%E6%B1%BA%E3%82%81%E3%82%8B"><i class="fa fa-link"></i></a>「名前に情報を詰め込む」⑤名前の長さを決める</h3>
+
+<p>5番目のテクニック、「名前の長さを決める」です。</p>
+
+<p><code>NSLayoutManager</code> には、 <code>func drawStrikethrough(forGlyphRange glyphRange: NSRange, strikethroughType strikethroughVal: NSUnderlineStyle, baselineOffset: CGFloat, lineFragmentRect lineRect: CGRect, lineFragmentGlyphRange lineGlyphRange: NSRange, containerOrigin: CGPoint)</code> というメソッドがあります。目眩を覚える長さです。少しでも短くなるように努力すべきでしょうか。たとえば Gryph という単語が頻出するので、それを <code>Gp</code> などと略せば文字数を減らせそうです。<br>
+しかし、リーダブルコードによれば、それは否です。長い名前の入力自体は問題ではありません。IDEのコード補完に任せれば一文字のミスもなく入力できるからです。名前に読みづらいだけの省略形を使う意味はありません。避けましょう。</p>
+
+<p>かといって、名前を冗長にしろということではありません。リーダブルコードは「不要な単語を投げ捨てろ」と断じています。<br>
+Swift の 2 から 3 にかけてのAPIの変化は、まさに、不要な単語を投げ捨てるものでした。</p>
+
+<p><a href="https://camo.qiitausercontent.com/74401167fc2363dd39c74295a3de28fde893c5d5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f37663364363634632d333337662d323061382d303962662d6461633733633939326530302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/74401167fc2363dd39c74295a3de28fde893c5d5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f37663364363634632d333337662d323061382d303962662d6461633733633939326530302e706e67" alt="swift2.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/34405/7f3d664c-337f-20a8-09bf-dac73c992e00.png"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/8bc365afb24fdd1c9b5432f3f2b1fc2f949dfe83/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f39623763303735382d663631312d663965612d363330352d3839376565623536343532382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/8bc365afb24fdd1c9b5432f3f2b1fc2f949dfe83/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f39623763303735382d663631312d663965612d363330352d3839376565623536343532382e706e67" alt="swift3.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/34405/9b7c0758-f611-f9ea-6305-897eeb564528.png"></a></p>
+
+<p>Swift2での長ったらしいメソッド名は、Swift3では、こんなふうに変わりました。劇的ですね。ラベルでの意味の補強も合わせて、とても書きやすいものになりました。見倣いましょう。</p>
+
+<hr>
+
+<h3>
+<span id="名前に情報を詰め込む名前のフォーマットで情報を伝える" class="fragment"></span><a href="#%E5%90%8D%E5%89%8D%E3%81%AB%E6%83%85%E5%A0%B1%E3%82%92%E8%A9%B0%E3%82%81%E8%BE%BC%E3%82%80%E5%90%8D%E5%89%8D%E3%81%AE%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%88%E3%81%A7%E6%83%85%E5%A0%B1%E3%82%92%E4%BC%9D%E3%81%88%E3%82%8B"><i class="fa fa-link"></i></a>「名前に情報を詰め込む」⑥名前のフォーマットで情報を伝える</h3>
+
+<p>最後のテクニックは名前のフォーマットについてのものですが、Swiftではあまり使われないものですね。<br>
+「大文字始まりは型名、それ以外は小文字始まり」というざっくりしたルールがある程度です。ただ、「アンダースコア始まりのAPIはpublicなものではない」ということは覚えておくと良いことが時々ありそうです。<br>
+たとえば、 <code>_kvcKeyPathString</code> というAPIがあります。<a href="https://bugs.swift.org/browse/SR-5220" rel="nofollow noopener" target="_blank">privateなものなので、publicにしてくれというバグレポが出ている</a>のですが、これがpublicではないと気付けるのは名前のフォーマットのおかげですね。</p>
+
+<hr>
+
+<h3>
+<span id="名前に情報を詰め込むまとめ" class="fragment"></span><a href="#%E5%90%8D%E5%89%8D%E3%81%AB%E6%83%85%E5%A0%B1%E3%82%92%E8%A9%B0%E3%82%81%E8%BE%BC%E3%82%80%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>「名前に情報を詰め込む」まとめ</h3>
+
+<p>以上が「名前に情報を詰め込む」でした。</p>
+
+<ol>
+<li>明確な単語を選ぶ</li>
+<li>汎用的な名前を避ける（あるいは、使う状況を選ぶ）</li>
+<li>抽象的な名前よりも具体的な名前を使う</li>
+<li>接尾辞や接頭辞を使って情報を追加する</li>
+<li>名前の長さを決める</li>
+<li>名前のフォーマットで情報を伝える</li>
+</ol>
+
+<p>以上6つのテクニックで、適切なネーミングには大きく近づけました。</p>
+
+<hr>
+
+<h2>
+<span id="リファクタリングより" class="fragment"></span><a href="#%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0%E3%82%88%E3%82%8A"><i class="fa fa-link"></i></a>「リファクタリング」より</h2>
+
+<p>「リファクタリング」もいいこと言ってましたので、引用します。<sup id="fnref1"><a href="#fn1" rel="footnote" title="「新装版　リファクタリング　既存のコードを安全に改善する」2014年 P77">1</a></sup></p>
+
+<blockquote>
+<p>メソッド名には、内部でどのように処理をしているかでなく、そのコードが何をするのかという意図を示します。<br>
+置き換えによって、以前よりコードが長くなったとしても、意図が明確になっていれば良しとします。ここで重要なことは、メソッドの長さを切り詰めるのではなく、メソッド名と、その実装との距離を埋めることだからです。</p>
+</blockquote>
+
+<p>たとえば、 <code>User</code> が格納されている配列から最初の3要素を取得する処理を、 <code>firstThreeUsers</code> とするのではなく <code>usersForFirstView</code> とする…というような感じでしょうか。</p>
+
+<hr>
+
+<h2>
+<span id="swift-の-api-design-guideline-に従う" class="fragment"></span><a href="#swift-%E3%81%AE-api-design-guideline-%E3%81%AB%E5%BE%93%E3%81%86"><i class="fa fa-link"></i></a>Swift の API design guideline に従う</h2>
+
+<p>また、Swiftを書くなら重要なのは、<a href="https://swift.org/documentation/api-design-guidelines/#naming" rel="nofollow noopener" target="_blank">SwiftのAPI design guideline</a>に従うことです。<br>
+抜粋すると、</p>
+
+<ul>
+<li>流暢な英文に見えるように</li>
+<li>変数・引数・付属型のネーミングは、その制約よりも<strong>役割</strong>に応じて行う</li>
+<li>メソッド名の品詞を、副作用あるなしで変化させる
+
+<ul>
+<li>副作用なし: 名詞、動詞の過去分詞、現在分詞を使う
+
+<ul>
+<li>e.g. <code>array.sorted</code>
+</li>
+</ul>
+</li>
+<li>副作用あり: 動詞の命令形を使う。あるいは <code>form</code> を頭につける
+
+<ul>
+<li>e.g. <code>array.sort</code> 　/　 <code>y.formUnion()</code>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>前例を採用しましょう</li>
+<li>etc... </li>
+</ul>
+
+<p>他にも重要な記述ばかりですので、まずは全員原文を読みましょう。日本語じゃないと嫌！という人は、最近Qiitaに日本語訳も上がっていました。</p>
+
+<p><a href="https://qiita.com/yamoridon/items/b89a18a037631b6770b9" id="reference-aafcdfdec3b58afd5b46">Swift API デザインガイドライン - Qiita</a></p>
+
+<hr>
+
+<h2>
+<span id="swift-foundation--cocoaの流儀に従う" class="fragment"></span><a href="#swift-foundation--cocoa%E3%81%AE%E6%B5%81%E5%84%80%E3%81%AB%E5%BE%93%E3%81%86"><i class="fa fa-link"></i></a>Swift Foundation / Cocoaの流儀に従う</h2>
+
+<p>APIガイドラインに「前例を採用しましょう」とあったとおり、SwiftのFoundationやCocoaのAPI名になるべく近づけることも大事です。<br>
+プログラマの間では、Boolの命名についてよく議論になったりします。be動詞ではない場合にどうするか、たとえば <code>exists</code> にするか、文法的におかしくても <code>isExist</code> にするか、 <code>is</code> も省略するか、などの論争が起こりがちです。しかし他の言語ではともかく、Swiftであれば<strong>「be動詞ならisつけましょう、一般動詞なら三人称単数現在にしましょう、あるいは <code>can〜</code> 、<code>needs〜</code> などで始めましょう」</strong>という一択です。<br>
+あるいは、delegateメソッドの名付けでは、よく委譲元の型名が省略されているコードを見かけます。しかし、Cocoaの流儀に則れば、委譲元が明示される命名規則に辿り着くことができます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// ❌️</span>
+<span class="kd">func</span> <span class="nf">willBlog</span><span class="p">(</span><span class="kc">_</span> <span class="n">blog</span><span class="p">:</span> <span class="n">Blog</span><span class="p">)</span>
+
+<span class="c1">// ⭕️</span>
+<span class="kd">func</span> <span class="nf">atendeeWillBlog</span><span class="p">(</span><span class="kc">_</span> <span class="n">blog</span><span class="p">:</span> <span class="n">Blog</span><span class="p">)</span>
+</pre></div></div>
+
+<p>どういった名付けがスタンダードなんだっけ？　と迷ったときのためには、Appleのリファレンスを簡単に検索できるようにしておくと便利です。自分は<a href="https://kapeli.com/dash" rel="nofollow noopener" target="_blank">Dash</a>というドキュメント検索アプリを活用したり、ランチャーアプリの<a href="https://www.alfredapp.com/%08" rel="nofollow noopener" target="_blank">Alfred</a>で <code>https://developer.apple.com/search/?q={query}&amp;type=Reference</code> というクエリを即座に呼び出せるようにしています。</p>
+
+<h1>
+<span id="そもそも適切なネーミングができない例もある" class="fragment"></span><a href="#%E3%81%9D%E3%82%82%E3%81%9D%E3%82%82%E9%81%A9%E5%88%87%E3%81%AA%E3%83%8D%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%8C%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E4%BE%8B%E3%82%82%E3%81%82%E3%82%8B"><i class="fa fa-link"></i></a>そもそも適切なネーミングができない例もある</h1>
+
+<p>以上、紹介したような手段でネーミングは完璧！と言いたいところですが、小手先のネーミングテクニックだけではしっくりこないことも多いです。<br>
+そんな例を2つほどご紹介します。</p>
+
+<h2>
+<span id="適切なネーミングができない例非同期処理" class="fragment"></span><a href="#%E9%81%A9%E5%88%87%E3%81%AA%E3%83%8D%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%8C%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E4%BE%8B%E9%9D%9E%E5%90%8C%E6%9C%9F%E5%87%A6%E7%90%86"><i class="fa fa-link"></i></a>適切なネーミングができない例①非同期処理</h2>
+
+<p>まずは、先程リーダブルコードの説明のときに例に出したコードを見てみましょう。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">HogeListViewController</span> <span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="kd">func</span> <span class="nf">startFetchingHogesWithFailureAlert</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">fetchHoges</span><span class="p">(</span><span class="n">withID</span><span class="p">:</span> <span class="n">textField</span><span class="p">.</span><span class="n">text</span><span class="p">!,</span>
+                   <span class="n">showsAlertIfFailed</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">startFetchingHogesWithoutFailureAlert</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">fetchHoges</span><span class="p">(</span><span class="n">withID</span><span class="p">:</span> <span class="n">textField</span><span class="p">.</span><span class="n">text</span><span class="p">!,</span>
+                   <span class="n">showsAlertIfFailed</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">fetchHoges</span><span class="p">(</span><span class="n">withID</span> <span class="n">id</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">showsAlertIfFailed</span><span class="p">:</span> <span class="nb">Bool</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">api</span><span class="p">.</span><span class="n">fetchHoges</span><span class="p">(</span><span class="n">withID</span><span class="p">:</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span> <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="n">hoges</span> <span class="k">in</span>
+            <span class="kc">self</span><span class="p">?.</span><span class="n">didReceive</span><span class="p">(</span>
+                <span class="n">hoges</span><span class="p">:</span> <span class="n">hoges</span><span class="p">,</span>
+                <span class="n">showsAlertIfFailed</span><span class="p">:</span> <span class="n">showsAlertIfFailed</span>
+            <span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>小手先のネーミングで、最初よりはだいぶマシになりました。しかし、これ、正直言うと、違和感が残ります。どこかというと、これです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">fetchHoges</span><span class="p">(</span><span class="n">withID</span> <span class="n">id</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">showsAlertIfFailed</span><span class="p">:</span> <span class="nb">Bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">api</span><span class="p">.</span><span class="n">fetchHoges</span><span class="p">(</span><span class="n">withID</span><span class="p">:</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span> <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="n">hoges</span> <span class="k">in</span>
+        <span class="kc">self</span><span class="p">?.</span><span class="n">didReceive</span><span class="p">(</span>
+            <span class="n">hoges</span><span class="p">:</span> <span class="n">hoges</span><span class="p">,</span>
+            <span class="n">showsAlertIfFailed</span><span class="p">:</span> <span class="n">showsAlertIfFailed</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>fetchしてから、受け取ったデータを <code>didReceive</code> というメソッドに渡す。でも、この「受け取ったものをどうする」という情報が、<code>fetchHoges</code> というメソッド名だけではまったく伝わらないのです。引数に何かフラグはあるけど、失敗時に他にやってることは何なのか、成功時にはどうしてるのか、何も分からない。<br>
+どうネーミングを頑張っても、この違和感は解決できません。何故こんなしっくりしない現象が起きてしまうのか。それは、<strong>構造化プログラミングの大原則に起因します</strong>。<br>
+構造化プログラミングでは、原則として、メソッドは <code>入口(引数)</code> と <code>出口(戻り値)</code> を持ちます。しかし非同期処理を愚直に書くと、戻り値には反映されない処理が、メソッドに混ざってしまう。そうすると必然的に、メソッド名と処理内容は乖離してしまいます。<br>
+非同期処理は、根本的にそういう問題を孕んでいるのです。<br>
+ではどうするか。<br>
+非同期処理の結果を、なんらかの手段を使って<strong>引数か戻り値で受けるようにしてしまえばいい</strong>のです。そのために使えるのが、 コールバックやPromiseパターンといったデザインパターンです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// 🤔</span>
+<span class="kd">func</span> <span class="nf">fetchHoges</span><span class="p">(</span><span class="n">withID</span> <span class="n">id</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">showsAlertIfFailed</span><span class="p">:</span> <span class="nb">Bool</span><span class="p">)</span>
+
+
+<span class="c1">// 👍callback</span>
+<span class="kd">func</span> <span class="nf">fetchHoges</span><span class="p">(</span><span class="n">withID</span> <span class="n">id</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">([</span><span class="n">Hoge</span><span class="p">]</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">))</span>
+
+<span class="c1">// 💯promise</span>
+<span class="kd">func</span> <span class="nf">fetchHoges</span><span class="p">(</span><span class="n">withID</span> <span class="n">id</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">RxSwift</span><span class="p">.</span><span class="n">Single</span><span class="o">&lt;</span><span class="p">[</span><span class="n">Hoge</span><span class="p">]</span><span class="o">&gt;</span>
+</pre></div></div>
+
+<p><code>fetchHoges</code> メソッドではHogesをfetchする以外のことは行わない。fetchの結果は、メソッドの外でハンドリングするようにしましょう。コールバックなら <code>completion</code> というクロージャを引数に含める。Promiseパターンなら、結果の取得を監視するための型を、戻り値で受け取る。<br>
+これで、ネーミングと処理内容が一致しました。<br>
+ちなみに引数を使ったコールバックよりも、戻り値を使ったPromiseパターンのほうが優れています。なぜなら、コールバック関数は呼び忘れるリスクがありますが、戻り値は絶対に返ってくることがコンパイラレベルで保証されるからです。</p>
+
+<h2>
+<span id="適切なネーミングができない例引数の表現力が弱い" class="fragment"></span><a href="#%E9%81%A9%E5%88%87%E3%81%AA%E3%83%8D%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%8C%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E4%BE%8B%E5%BC%95%E6%95%B0%E3%81%AE%E8%A1%A8%E7%8F%BE%E5%8A%9B%E3%81%8C%E5%BC%B1%E3%81%84"><i class="fa fa-link"></i></a>適切なネーミングができない例②引数の表現力が弱い</h2>
+
+<p>以下のメソッドを見てください。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">postProfileWith</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">?,</span>
+                     <span class="n">address</span><span class="p">:</span> <span class="nb">String</span><span class="p">?,</span>
+                     <span class="n">tel</span><span class="p">:</span> <span class="nb">String</span><span class="p">?,</span>
+                     <span class="n">profileImage</span><span class="p">:</span> <span class="bp">UIImage</span><span class="p">?,</span>
+                     <span class="n">profileImageURL</span><span class="p">:</span> <span class="n">URL</span><span class="p">?)</span>
+                     <span class="p">-&gt;</span> <span class="n">RxSwift</span><span class="p">.</span><span class="n">Single</span><span class="p">&lt;</span><span class="nb">Bool</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<p>おそらくプロフィール情報をAPIにPOSTするメソッドなのでしょう。<br>
+短くて意図が明確、シンプルで分かりやすい…と思われたでしょうか。<br>
+本当に、そうでしょうか？<br>
+メソッド基部だけ見れば、シンプルです。しかし、引数まで注目してみると…よくわからないことだらけです。</p>
+
+<ul>
+<li>Optionalばかりだけど、必須パラメータは何なのか</li>
+<li>tel ☎️ はどういうフォーマットで文字列化すればいいのか</li>
+<li>何故 <code>profileImage</code> と <code>profileImageURL</code> が両方あるのか。どちらも渡したら、あるいはどちらも渡さなかったらどうなるのか。</li>
+</ul>
+
+<p>そう、このメソッドは、引数の表現力が弱すぎるのです。<br>
+お分かりでしょうか。引数もネーミングの内です（もちろん戻り値も）。メソッドをよりよく名付けるためには、基部だけではなく、引数の表現力を高める必要があります。<br>
+以下のようにすると、どうでしょうか。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">postProfileWith</span><span class="p">(</span><span class="n">textData</span><span class="p">:</span> <span class="n">ProfileTextData</span><span class="p">?,</span>
+                     <span class="n">imageData</span><span class="p">:</span> <span class="n">ProfileImageData</span><span class="p">)</span>
+                     <span class="p">-&gt;</span> <span class="n">RxSwift</span><span class="p">.</span><span class="n">Single</span><span class="p">&lt;</span><span class="nb">Bool</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<p>大量にあった引数を、ふたつの独自型、 <code>ProfileTextData</code> , <code>ProfileImageData</code> という型を作って整理しました。<br>
+ <code>ProfileImageData</code> のほうはOptionalすらなくなっていますね。<br>
+型の定義を見てみると、</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">struct</span> <span class="nc">ProfileTextData</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">let</span> <span class="nv">address</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">let</span> <span class="nv">tel</span><span class="p">:</span> <span class="n">Tel</span><span class="p">?</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span> <span class="nc">ProfileImageData</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">image</span><span class="p">(</span><span class="bp">UIImage</span><span class="p">)</span>
+    <span class="k">case</span> <span class="n">url</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><code>ProfileTextData</code> はテキストで表されるプロフィールのデータの組のようです。structで包むことで、必要なデータが揃っていること、つまり<strong>要素のAND条件</strong>を型として表現できました。<br>
+また、 <code>ProfileImageData</code> のほうはenumで包まれています。UIImageか、URLか。いずれかの要素があればいいということ、つまり<strong>要素のOR条件</strong>を、型として表現できました。<br>
+型の定義を理解すると、メソッドの意図が明確に伝わるようになりました。 <code>postProfile</code> メソッドに渡す引数は2つ。<br>
+ <code>ProfileTextData</code> はname,address,telを揃えて渡すか、完全にスルーする。 <code>ProfileImageData</code> は、UIImageかURLの、いずれかを引数にする。なるほど、明確ですね！</p>
+
+<h1>
+<span id="リファクタリング" class="fragment"></span><a href="#%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>リファクタリング</h1>
+
+<h2>
+<span id="適切な名前を考える--設計の見直し" class="fragment"></span><a href="#%E9%81%A9%E5%88%87%E3%81%AA%E5%90%8D%E5%89%8D%E3%82%92%E8%80%83%E3%81%88%E3%82%8B--%E8%A8%AD%E8%A8%88%E3%81%AE%E8%A6%8B%E7%9B%B4%E3%81%97"><i class="fa fa-link"></i></a>適切な名前を考える ⊃ 設計の見直し</h2>
+
+<p>非同期通信の例、postProfileの例。<br>
+ふたつの例をご紹介しましたとおり、適切な名前を考えるためには、ときには設計を見直すことも必要です。つまり、ネーミングの改善に必要なのは、リファクタリングです。<br>
+しっかりした名前をつけようとすると長くなるとか、うまく名付けられないとかで、不正確に要約してしまいたくなることが時々あります。しかし、それは現実から目を背け、設計の問題を隠蔽しているだけです。<br>
+やってることが複雑すぎて一言で言い表せないメソッドがあった場合、それは設計の黄信号。リファクタリングが必要だというサインなのです。<br>
+ではここからは、本「<a href="https://www.amazon.co.jp/dp/427405019X" rel="nofollow noopener" target="_blank">新装版 リファクタリング―既存のコードを安全に改善する―</a>」を引用しつつ、よりよいネーミングに向かうためのテクニックをご紹介します。</p>
+
+<h2>
+<span id="引数を型にまとめる" class="fragment"></span><a href="#%E5%BC%95%E6%95%B0%E3%82%92%E5%9E%8B%E3%81%AB%E3%81%BE%E3%81%A8%E3%82%81%E3%82%8B"><i class="fa fa-link"></i></a>「引数を型にまとめる」</h2>
+
+<p>種明かしすると、実は先程話した、引数をまとめた型を作るテクニックも、「リファクタリング」に紹介されているテクニックのひとつです。</p>
+
+<h2>
+<span id="メソッドオブジェクト" class="fragment"></span><a href="#%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88"><i class="fa fa-link"></i></a>「メソッドオブジェクト」</h2>
+
+<p>また、メソッドオブジェクトというアプローチもあります。端的に言うと、以下のようなテクニックです。</p>
+
+<ul>
+<li>メソッド自身 → 名詞化して型(オブジェクト) に</li>
+<li>全てのローカル変数 → 型のプロパティ に</li>
+<li>メソッド → 型内のメソッド群 に</li>
+</ul>
+
+<p>先程の事例だった <code>postProfile</code> というメソッドを、メソッドオブジェクト化してみましょう。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">ProfilePoster</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">textData</span><span class="p">:</span> <span class="n">ProfileTextData</span><span class="p">?</span>
+    <span class="kd">let</span> <span class="nv">imageData</span><span class="p">:</span> <span class="n">ProfileImageData</span>
+
+    <span class="kd">func</span> <span class="nf">run</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">RxSwift</span><span class="p">.</span><span class="n">Single</span><span class="p">&lt;</span><span class="nb">Bool</span><span class="p">&gt;</span>
+
+    <span class="kd">private</span> <span class="kd">func</span> <span class="p">...</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>「リファクタリング」ではメソッド名を <code>compute</code> としろと言っていましたが、そこは別に好きにすりゃいいんじゃないかと思います。</p>
+
+<h2>
+<span id="特性の横恋慕" class="fragment"></span><a href="#%E7%89%B9%E6%80%A7%E3%81%AE%E6%A8%AA%E6%81%8B%E6%85%95"><i class="fa fa-link"></i></a>「特性の横恋慕」</h2>
+
+<p>「リファクタリング」P80に、次のような記述があります。</p>
+
+<blockquote>
+<p>オブジェクト指向には、処理および処理に必要なデータを1つにまとめてしまうという重要な考え方があります。あるメソッドが、自分のクラスよりも他のクラスに興味を持つような場合には、古典的な誤りを犯しています。特に属性については注意しなければなりません。</p>
+</blockquote>
+
+<p>以下のコードを見てください。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// ❌️</span>
+<span class="kd">class</span> <span class="nc">ProfilePoster</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">isTelValid</span><span class="p">(</span><span class="n">tel</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">try</span><span class="p">!</span> <span class="bp">NSRegularExpression</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="s">"^[0-9]+-[0-9]+-[0-9]+$"</span><span class="p">))</span>
+            <span class="p">.</span><span class="n">firstMatch</span><span class="p">(</span><span class="k">in</span><span class="p">:</span> <span class="n">tel</span><span class="p">,</span>
+                        <span class="n">range</span><span class="p">:</span> <span class="n">NSRange</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="p">(</span><span class="n">tel</span> <span class="k">as</span> <span class="bp">NSString</span><span class="p">).</span><span class="n">length</span><span class="p">))</span> <span class="o">!=</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>メソッドオブジェクト <code>ProfilePoster</code> を実行する間、いくつか処理が呼ばれているとします。そのうちのひとつが、電話番号のバリデーションを行うプライベートメソッド、 <code>isTelValid(tel:)</code> です。しかし、このメソッドは、ProfileをPostすること自体には興味がありません。興味があるのは、電話番号それ自身。<br>
+これが横恋慕状態です。<br>
+解決するためには、新しい型、電話番号に興味を持つ型を用意する必要があります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// ⭕️</span>
+<span class="kd">extension</span> <span class="nc">NSRange</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">wholeRange</span><span class="p">(</span><span class="k">for</span> <span class="n">string</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">NSRange</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">NSRange</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="p">(</span><span class="n">string</span> <span class="k">as</span> <span class="bp">NSString</span><span class="p">).</span><span class="n">length</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">extension</span> <span class="nc">String</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">matches</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">try</span> <span class="bp">NSRegularExpression</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="n">pattern</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">firstMatch</span><span class="p">(</span><span class="k">in</span><span class="p">:</span> <span class="kc">self</span><span class="p">,</span> <span class="n">range</span><span class="p">:</span> <span class="p">.</span><span class="n">wholeRange</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="kc">self</span><span class="p">))</span> <span class="o">!=</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">struct</span> <span class="nc">Tel</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">value</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">var</span> <span class="nv">isValid</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">try</span><span class="p">!</span> <span class="n">value</span><span class="p">.</span><span class="n">matches</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="s">"^[0-9]+-[0-9]+-[0-9]+$"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>横恋慕が収まりました。それだけでなく、ネーミングの点でも良いことをもたらすのがおわかりでしょうか。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// 🤔before🤔</span>
+<span class="n">ProfilePoster</span><span class="p">.</span><span class="n">isTelValid</span><span class="p">(</span><span class="n">tel</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span>
+
+<span class="c1">// 🎉after🎉</span>
+<span class="n">Tel</span><span class="p">.</span><span class="n">isValid</span><span class="p">:</span> <span class="nb">Bool</span>
+</pre></div></div>
+
+<p>元々のメソッド名が長ったらしかったのに対し、移動した後のcomputed varはシンプルで明瞭です。<br>
+主語となる型に処理を託すことで、処理対象を型自身が説明してくれる上に、対象がselfとなるぶん、渡さなければいけなかった引数も消えます。良いことづくめですね。</p>
+
+<h3>
+<span id="少し脱線telisvalid-bool-よりも良い設計" class="fragment"></span><a href="#%E5%B0%91%E3%81%97%E8%84%B1%E7%B7%9Atelisvalid-bool-%E3%82%88%E3%82%8A%E3%82%82%E8%89%AF%E3%81%84%E8%A8%AD%E8%A8%88"><i class="fa fa-link"></i></a>少し脱線：　<code>Tel.isValid: Bool</code> よりも良い設計</h3>
+
+<p>話の流れ上、 <code>isValid: Bool</code> というcomputed varを生やしましたが、そもそも不正なTel型を作れないようにするほうがよいです。型をinitするタイミングで同時にバリデートするのです。つまりこういうことです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">struct</span> <span class="nc">Tel</span> <span class="p">{</span>
+    <span class="kd">enum</span> <span class="nc">Error</span><span class="p">:</span> <span class="n">Swift</span><span class="p">.</span><span class="n">Error</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">invalidFormat</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nv">value</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="k">guard</span> <span class="k">try</span> <span class="n">value</span><span class="p">.</span><span class="n">matches</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="s">"^[0-9]+-[0-9]+-[0-9]+$"</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">Error</span><span class="p">.</span><span class="n">invalidFormat</span>
+        <span class="p">}</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">value</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>余談でした。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>お気づきでしょうか。<br>
+引数を型にまとめるテクニックも、メソッドオブジェクトも、特性の横恋慕の解決も、要は<strong>「適切な型を作る」</strong>という話でした。<br>
+型を用意することで、豊かに、かつ端的に意図を表現できるようになるのです。型ってすごい！<br>
+考えてみれば当たり前で、オブジェクト指向で書く限り、メソッドもプロパティも何らかの型のメンバです。<br>
+つまりネーミングの際には、メソッドであれば「何をする」、プロパティであれば「何である」という情報に意識が向きがちです。しかし、それだけでなく<strong>「誰がそれをする」「誰のものである」</strong>という部分に目を向けることで、よりよいネーミングに近づけるのではないでしょうか。</p>
+
+<p>一言で言えば、<strong>「よりよいネーミングのためには、ちゃんとオブジェクト指向しようね」</strong>という話でした。</p>
+
+<p>Happy Naming!😃　皆さんのコードが、よきネーミングとともにありますように。</p>
+
+<h1>
+<span id="おまけ-より豊かなネーミングのために" class="fragment"></span><a href="#%E3%81%8A%E3%81%BE%E3%81%91-%E3%82%88%E3%82%8A%E8%B1%8A%E3%81%8B%E3%81%AA%E3%83%8D%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>おまけ: より豊かなネーミングのために</h1>
+
+<p>ここからは、15分の発表枠では入らなかったよしなしごとをいくつか。</p>
+
+<h2>
+<span id="returns-optional-vs-throws" class="fragment"></span><a href="#returns-optional-vs-throws"><i class="fa fa-link"></i></a><code>returns Optional</code> vs <code>throws</code>
+</h2>
+
+<p>先程の余談では、throwsなinitが登場しました。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">struct</span> <span class="nc">Tel</span> <span class="p">{</span>
+    <span class="kd">enum</span> <span class="nc">Error</span><span class="p">:</span> <span class="n">Swift</span><span class="p">.</span><span class="n">Error</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">invalidFormat</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nv">value</span><span class="p">:</span> <span class="nb">String</span>     <span class="err">👇</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="k">guard</span> <span class="k">try</span> <span class="n">value</span><span class="p">.</span><span class="n">matches</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="s">"^[0-9]+-[0-9]+-[0-9]+$"</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">Error</span><span class="p">.</span><span class="n">invalidFormat</span>
+        <span class="p">}</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">value</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>しかし、Failable Initializerを使う( <code>init?(value: String)</code> )という手もあります。<br>
+これらの利点・弱点を比較してみます。</p>
+
+<ul>
+<li>returns Optional
+
+<ul>
+<li>👍 お手軽簡単に扱える</li>
+<li>👿 付加情報が乏しい</li>
+</ul>
+</li>
+<li>例外処理(throws)
+
+<ul>
+<li>👍「失敗しうる」ことを明確に表せる</li>
+<li>👍 <code>try?</code> 構文でOptionalに変換可能</li>
+<li>👍 <code>Error</code> を定義して細やかに失敗原因を伝えられる</li>
+<li>👿 <code>Error</code> を定義する必要がある</li>
+</ul>
+</li>
+</ul>
+
+<p>どちらも一長一短ではあります。<br>
+しかし、ネーミングとは意図を表現するものであり、より豊かに意図を表現できるのはどちらかと考えると、自分はthrowsを積極的に使っていきたいです。<br>
+もちろんそこまでの表現力を求めていない場合もあるでしょうから、そこではOptionalも充分な選択肢に入ります。この判断基準をもっと掘り下げたい方は、<a href="https://qiita.com/koher/items/a7a12e7e18d2bb7d8c77" id="reference-4664098368cff40c9e8a">Swiftのエラー4分類が素晴らしすぎるのでみんなに知ってほしい - Qiita</a>の「simple domain error」「recoverble error」について読むとヒントが得られるのではと思います。</p>
+
+<h2>
+<span id="言語機能を駆使しよう" class="fragment"></span><a href="#%E8%A8%80%E8%AA%9E%E6%A9%9F%E8%83%BD%E3%82%92%E9%A7%86%E4%BD%BF%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>言語機能を駆使しよう</h2>
+
+<p>自然言語も同じですが、細かい意図を表現するには、語彙を増やすことが欠かせません。プログラミング言語では、言語機能をどれだけ駆使できるかが、豊かな語彙に繋がります。前項の throws / optional　の話もそうですね。他には、ネーミングに活用できるSwiftの言語機能には以下のようなものがあります。</p>
+
+<ul>
+<li>自分自身の型を返すstatic func</li>
+<li>operator
+
+<ul>
+<li>記号による処理を定義する</li>
+<li>前置・中置・後置</li>
+</ul>
+</li>
+<li>subscript
+
+<ul>
+<li>e.g.　 <code>reversiBoard[x: 10, y: 8]</code>
+</li>
+<li>複数の引数、ラベル付与も可能</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="コマンドクエリ分離原則cqrs" class="fragment"></span><a href="#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%82%AF%E3%82%A8%E3%83%AA%E5%88%86%E9%9B%A2%E5%8E%9F%E5%89%87cqrs"><i class="fa fa-link"></i></a>コマンド・クエリ分離原則(CQRS)</h2>
+
+<p>非同期処理の話では、引数や戻り値に結果を含めるデザインパターンを紹介しました。しかし、すべての処理結果を入力と出力で明示できるわけではありません。つまり、処理は<strong>副作用</strong>があるよね？　ということです。<br>
+その現実と戦うためのテクニックで、「コマンド・クエリ分離原則(CQRS)」というものがあります。</p>
+
+<ul>
+<li>コマンド（戻り値なし、副作用を起こす）</li>
+<li>クエリ（戻り値を期待、何度呼んでも同じ結果(冪等)）</li>
+</ul>
+
+<p>を分けると設計とネーミングがすっきりします。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nv">canFetch</span><span class="p">:</span> <span class="nb">Bool</span> <span class="c1">// クエリ</span>
+<span class="kd">func</span> <span class="nf">startFetching</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span> <span class="c1">// コマンド</span>
+<span class="kd">let</span> <span class="nv">hoges</span><span class="p">:</span> <span class="n">Rx</span><span class="p">.</span><span class="n">Observable</span><span class="o">&lt;</span><span class="p">[</span><span class="n">Hoge</span><span class="p">]</span><span class="o">&gt;</span> <span class="c1">// 結果は通知される</span>
+</pre></div></div>
+
+<p>以上です。</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>「新装版　リファクタリング　既存のコードを安全に改善する」2014年 P77 <a href="#fnref1">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>takasekさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>19</kbd>
+		<a target="_blank" href="https://qiita.com/takasek/items/3f727f976e27daf00309">Swift4の機能を活用してGoogle画像検索結果を利用する</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-09 18:57:27</center>
+	</td>
+	<td style="width:200px;">
+		@takasek<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/34405/profile-images/1475591355">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Swift]</b> <b>[GoogleCustomSearchAPI]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Google画像検索APIをiOSで利用する - Qiita<br>
+<a href="https://qiita.com/ukandori/items/234156f97eb6dad77966" class="autolink" id="reference-c5f630a5e37ef6ea174e">https://qiita.com/ukandori/items/234156f97eb6dad77966</a><br>
+などの先人を参考に。Codableや<del>新しいreduce</del>URLComponentsを使ったらだいぶシンプルになりました。<br>
+(追記)コメントを受けて、URLComponentsに書き替えました。こちらのほうがStringでやるより適切ですね。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// Structure defined by https://developers.google.com/custom-search/json-api/v1/reference/cse/list#response</span>
+<span class="kd">struct</span> <span class="nc">CustomSearchedResult</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+    <span class="kd">struct</span> <span class="nc">Item</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+        <span class="kd">struct</span> <span class="nc">Image</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+            <span class="kd">let</span> <span class="nv">contextLink</span><span class="p">:</span> <span class="nb">String</span>
+            <span class="kd">let</span> <span class="nv">thumbnailLink</span><span class="p">:</span> <span class="nb">String</span>
+            <span class="kd">let</span> <span class="nv">thumbnailHeight</span><span class="p">:</span> <span class="nb">Int</span>
+            <span class="kd">let</span> <span class="nv">thumbnailWidth</span><span class="p">:</span> <span class="nb">Int</span>
+        <span class="p">}</span>
+        <span class="kd">let</span> <span class="nv">link</span><span class="p">:</span> <span class="n">URL</span>
+        <span class="kd">let</span> <span class="nv">displayLink</span><span class="p">:</span> <span class="n">URL</span>
+        <span class="kd">let</span> <span class="nv">mime</span><span class="p">:</span> <span class="nb">String</span>
+        <span class="kd">let</span> <span class="nv">image</span><span class="p">:</span> <span class="n">Image</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nv">items</span><span class="p">:</span> <span class="p">[</span><span class="n">Item</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nv">query</span> <span class="p">=</span> <span class="s">"ほげほげ"</span>
+<span class="kd">var</span> <span class="nv">urlComponents</span> <span class="p">=</span> <span class="n">URLComponents</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="s">"https://www.googleapis.com/customsearch/v1"</span><span class="p">)</span><span class="o">!</span>
+<span class="n">urlComponents</span><span class="p">.</span><span class="n">queryItems</span> <span class="p">=</span> <span class="p">[</span>
+    <span class="n">URLQueryItem</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">"searchType"</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">"image"</span><span class="p">),</span>
+    <span class="n">URLQueryItem</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">"q"</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">query</span><span class="p">),</span>
+    <span class="c1">// To get `key`, create your own project from https://console.developers.google.com/projectcreate</span>
+    <span class="n">URLQueryItem</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">"key"</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">"xxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span><span class="p">),</span><span class="err">　</span>
+    <span class="c1">// To get `cx`, create your own search engine from https://cse.google.com/cse/create/new</span>
+    <span class="n">URLQueryItem</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">"cx"</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">"000000000000000000000:xxxxxxxxxxx"</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">urlComponents</span><span class="p">.</span><span class="n">string</span><span class="p">!)</span>
+
+<span class="kd">let</span> <span class="nv">task</span> <span class="p">=</span> <span class="n">URLSession</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">dataTask</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">urlComponents</span><span class="p">.</span><span class="n">url</span><span class="p">!)</span> <span class="p">{</span> <span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="k">guard</span> <span class="kd">let</span> <span class="nv">jsonData</span> <span class="p">=</span> <span class="n">data</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">error</span> <span class="k">as</span> <span class="nb">Any</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">result</span> <span class="p">=</span> <span class="k">try</span> <span class="n">JSONDecoder</span><span class="p">().</span><span class="n">decode</span><span class="p">(</span><span class="n">CustomSearchedResult</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">jsonData</span><span class="p">)</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="kd">let</span> <span class="nv">task</span> <span class="p">=</span> <span class="n">URLSession</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">dataTask</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">result</span><span class="p">.</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">link</span><span class="p">)</span> <span class="p">{</span><span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+            <span class="k">guard</span> <span class="kd">let</span> <span class="nv">image</span> <span class="p">=</span> <span class="n">data</span><span class="p">.</span><span class="n">flatMap</span><span class="p">(</span><span class="bp">UIImage</span><span class="p">.</span><span class="kd">init</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="bp">print</span><span class="p">(</span><span class="n">error</span> <span class="k">as</span> <span class="nb">Any</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="p">}</span>
+            <span class="c1">// imageとれた</span>
+        <span class="p">}</span>
+        <span class="n">task</span><span class="p">.</span><span class="n">resume</span><span class="p">()</span>
+    <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="kd">let</span> <span class="nv">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">task</span><span class="p">.</span><span class="n">resume</span><span class="p">()</span>
+</pre></div></div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>takasekさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>15</kbd>
+		<a target="_blank" href="https://qiita.com/takasek/items/d1f11394b6df2f3f3cc0">privateなAPIをテストする方法を考えてみた</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-11 13:59:25</center>
+	</td>
+	<td style="width:200px;">
+		@takasek<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/34405/profile-images/1475591355">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Swift]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><blockquote class="twitter-tweet">
+<p>うーん、公開したいわけじゃないけど細かく意味のある単位に分割してテストしたいって普通にあると思うんだけどなぁ。ロジックが複雑な場合細かく分割してテストした方が効率的なことが多いし。全部パッケージプライベートにするのもパッケージ内での可視性がガバガバになるし。 <a href="https://t.co/T7JgQwQmlm" rel="nofollow noopener" target="_blank">https://t.co/T7JgQwQmlm</a></p>— koher (@koher) <a href="https://twitter.com/koher/status/929165484246704129?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年11月11日</a>
+</blockquote>
+
+
+
+<p>すこぶる同意。<br>
+ということで考えた。</p>
+
+<h1>
+<span id="型にprivateだけどtestしたいメンバがあるパターン" class="fragment"></span><a href="#%E5%9E%8B%E3%81%ABprivate%E3%81%A0%E3%81%91%E3%81%A9test%E3%81%97%E3%81%9F%E3%81%84%E3%83%A1%E3%83%B3%E3%83%90%E3%81%8C%E3%81%82%E3%82%8B%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3"><i class="fa fa-link"></i></a>型に、privateだけどtestしたいメンバがあるパターン</h1>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">Hoge.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">struct</span> <span class="nc">Hoge</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span> <span class="kc">self</span><span class="p">.</span><span class="n">x</span> <span class="p">=</span> <span class="n">x</span> <span class="p">}</span>
+
+    <span class="c1">/// privateだけどTestしたいメンバ</span>
+    <span class="n">fileprivate</span> <span class="kd">let</span> <span class="nv">x</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="n">fileprivate</span> <span class="kd">func</span> <span class="nf">doSomething</span><span class="p">(</span><span class="n">with</span> <span class="n">string</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span> <span class="k">return</span> <span class="s">"</span><span class="si">\(</span><span class="n">string</span><span class="si">)</span><span class="s"> </span><span class="si">\(</span><span class="n">x</span><span class="si">)</span><span class="s">"</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>Targeted Extensionを使うとよさそう。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">protocol</span> <span class="nc">PrivatePublicatable</span> <span class="p">{</span>
+    <span class="n">associatedtype</span> <span class="n">Publicater</span>
+    <span class="kd">var</span> <span class="p">`</span><span class="kd">private</span><span class="p">`:</span> <span class="n">Publicater</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">public</span> <span class="kr">final</span> <span class="kd">class</span> <span class="nc">Private</span><span class="p">&lt;</span><span class="n">Base</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">let</span> <span class="nv">base</span><span class="p">:</span> <span class="n">Base</span>
+    <span class="kd">public</span> <span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">base</span><span class="p">:</span> <span class="n">Base</span><span class="p">)</span> <span class="p">{</span> <span class="kc">self</span><span class="p">.</span><span class="n">base</span> <span class="p">=</span> <span class="n">base</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">public</span> <span class="kd">extension</span> <span class="nc">PrivatePublicatable</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="p">`</span><span class="kd">private</span><span class="p">`:</span> <span class="n">Private</span><span class="p">&lt;</span><span class="kc">Self</span><span class="p">&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">Private</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>↑こういうのを用意して…<br>
+<code>Hoge.swift</code> 内にextensionを書く。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">Hoge.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">extension</span> <span class="nc">Hoge</span><span class="p">:</span> <span class="n">PrivatePublicatable</span> <span class="p">{}</span>
+<span class="kd">public</span> <span class="kd">extension</span> <span class="nc">Private</span> <span class="k">where</span> <span class="n">Base</span> <span class="p">==</span> <span class="n">Hoge</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">x</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">{</span> <span class="k">return</span> <span class="n">base</span><span class="p">.</span><span class="n">x</span> <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">doSomething</span><span class="p">(</span><span class="n">with</span> <span class="n">string</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">base</span><span class="p">.</span><span class="n">doSomething</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>すると…</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">HogeTests.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">hoge</span> <span class="p">=</span> <span class="n">Hoge</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">hoge</span><span class="p">.</span><span class="kd">private</span><span class="p">.</span><span class="n">x</span> <span class="c1">// 1</span>
+<span class="n">hoge</span><span class="p">.</span><span class="kd">private</span><span class="p">.</span><span class="n">doSomething</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="s">"ほげ"</span><span class="p">)</span> <span class="c1">// ほげ 1</span>
+</pre></div>
+</div>
+
+<p>外からアクセスできるけどprivateっぽさを明示できる。</p>
+
+<h1>
+<span id="そもそも型自身がprivateなパターン" class="fragment"></span><a href="#%E3%81%9D%E3%82%82%E3%81%9D%E3%82%82%E5%9E%8B%E8%87%AA%E8%BA%AB%E3%81%8Cprivate%E3%81%AA%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3"><i class="fa fa-link"></i></a>そもそも型自身がprivateなパターン</h1>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">Fuga.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kd">struct</span> <span class="nc">Fuga</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">x</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="kd">let</span> <span class="nv">y</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="kd">func</span> <span class="nf">doSomething</span><span class="p">(</span><span class="n">with</span> <span class="n">string</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span> <span class="k">return</span> <span class="s">"</span><span class="si">\(</span><span class="n">string</span><span class="si">)</span><span class="s"> </span><span class="si">\(</span><span class="n">x</span><span class="si">)</span><span class="s"> </span><span class="si">\(</span><span class="n">y</span><span class="si">)</span><span class="s">"</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>型自体が外部から見えないので、アダプタとなる型を用意しないとどうしようもない。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">Fuga.swift</span></div>
+<div class="highlight"><pre><span></span><span class="c1">/// Fugaをprivateに保つために作るTest用ラッパー。Fugaと同じファイル内に書く</span>
+<span class="kr">final</span> <span class="kd">class</span> <span class="nc">FugaTester</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">base</span><span class="p">:</span> <span class="n">Fuga</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">Int</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">base</span> <span class="p">=</span> <span class="n">Fuga</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">args</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">args</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nv">x</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">{</span> <span class="k">return</span> <span class="n">base</span><span class="p">.</span><span class="n">x</span> <span class="p">}</span>
+    <span class="kd">var</span> <span class="nv">y</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">{</span> <span class="k">return</span> <span class="n">base</span><span class="p">.</span><span class="n">y</span> <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">doSomething</span><span class="p">(</span><span class="n">with</span> <span class="n">string</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">base</span><span class="p">.</span><span class="n">doSomething</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">FugaTests.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">tester</span> <span class="p">=</span> <span class="n">FugaTester</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">tester</span><span class="p">.</span><span class="n">x</span> <span class="c1">// 1</span>
+<span class="n">tester</span><span class="p">.</span><span class="n">y</span> <span class="c1">// 2</span>
+<span class="n">tester</span><span class="p">.</span><span class="n">doSomething</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="s">"ふが"</span><span class="p">)</span> <span class="c1">// "ふが 1 2"</span>
+</pre></div>
+</div>
+
+<p>辛い…本当にこの道しかないんでしょうか…<br>
+ないとしても、ボイラープレートの山なので、Testerは自動生成したさありますね。<br>
+（すごい要望があればXcode Source Editor Extensionを作るのもやぶさかではない）</p>
+
+<h1>
+<span id="補足" class="fragment"></span><a href="#%E8%A3%9C%E8%B6%B3"><i class="fa fa-link"></i></a>補足</h1>
+
+<blockquote class="twitter-tweet">
+<p>はい。internalでも気にならないものであれば、そうしたほうがシンプルですね。しかし本来見えてほしくないものがプロダクトコードで補完に出てしまうのもノイズになるので、「テストコード以外では見えてほしくない」という意図を現状の言語仕様の上で表現するならこうなるかなと考えました。</p>— takasek (@takasek) <a href="https://twitter.com/takasek/status/929227557446103040?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年11月11日</a>
+</blockquote>
+
+
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>takasekさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
+		<a target="_blank" href="https://qiita.com/takasek/items/112f866386d4594dc313">AWS API Gateway(SDK version ≧2.6)の自動生成コードを、ちゃんとコンパイルが通るSwiftyなコードで置き換える</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-04 18:55:18</center>
+	</td>
+	<td style="width:200px;">
+		@takasek<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/34405/profile-images/1475591355">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[AWS]</b> <b>[Swift]</b> <b>[APIGateway]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="http://tokyo.serverlessconf.io/" rel="nofollow noopener" target="_blank">Serverlessconf Tokyo 2017</a> に行ってきました。楽しかったです。<br>
+これをきっかけに、AWSのAPI Gatewayを使ってみたのですが、サーバ知識が弱い自分でも特に難しいことなくREST APIを作ることができて、今後のiOSアプリ製作に向けての夢が広がりました。<br>
+ただ、使っていて一番気になったのは、API Gatewayのジェネレートしてくれるクライアントコードの質があまり良くないことでした。</p>
+
+<p><a href="https://camo.qiitausercontent.com/6ed571d1dac138202b5c09677eb341299b3176e2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f32306434653333662d366663382d343363312d623931392d3235643132323862663538632e706e67" target="_blank" rel="nofollow noopener"><img width="1220" alt="2017-11-04 09.44.49.png" src="https://camo.qiitausercontent.com/6ed571d1dac138202b5c09677eb341299b3176e2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f32306434653333662d366663382d343363312d623931392d3235643132323862663538632e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/34405/20d4e33f-6fc8-43c1-b919-25d1228bf58c.png"></a></p>
+
+<p>API Gatewayでは、ステージエディタという画面から、APIの定義に従ってクライアントコードをジェネレートしてくれます。<br>
+しかし、いくつか不満があります。</p>
+
+<h1>
+<span id="api-gateway--swift-の不満点" class="fragment"></span><a href="#api-gateway--swift-%E3%81%AE%E4%B8%8D%E6%BA%80%E7%82%B9"><i class="fa fa-link"></i></a>API Gateway × Swift の不満点</h1>
+
+<h2>
+<span id="コードの対応しているsdk-versionが253" class="fragment"></span><a href="#%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E5%AF%BE%E5%BF%9C%E3%81%97%E3%81%A6%E3%81%84%E3%82%8Bsdk-version%E3%81%8C253"><i class="fa fa-link"></i></a>コードの対応しているSDK versionが2.5.3</h2>
+
+<ul>
+<li>最新SDK(2.6.5)に追従していない</li>
+<li>SDKには破壊的変更が入っており、そのままコードを使おうとするとビルドエラーになる</li>
+</ul>
+
+<h2>
+<span id="ジェネレートしたコードのままだとapigatewayと直接やりとりをする層以外の場所にawsのsdkの型が漏れ出す" class="fragment"></span><a href="#%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%83%88%E3%81%97%E3%81%9F%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E3%81%BE%E3%81%BE%E3%81%A0%E3%81%A8apigateway%E3%81%A8%E7%9B%B4%E6%8E%A5%E3%82%84%E3%82%8A%E3%81%A8%E3%82%8A%E3%82%92%E3%81%99%E3%82%8B%E5%B1%A4%E4%BB%A5%E5%A4%96%E3%81%AE%E5%A0%B4%E6%89%80%E3%81%ABaws%E3%81%AEsdk%E3%81%AE%E5%9E%8B%E3%81%8C%E6%BC%8F%E3%82%8C%E5%87%BA%E3%81%99"><i class="fa fa-link"></i></a>ジェネレートしたコードのままだと、APIGatewayと直接やりとりをする層以外の場所にAWSのSDKの型が漏れ出す</h2>
+
+<ul>
+<li>リクエスト時の引数として <code>class AWSModel</code> を継承した型が必要</li>
+<li>パースされるオブジェクトが <code>class AWSModel</code> を継承している
+
+<ul>
+<li>数値が <code>NSNumber</code> だったり色々アレ</li>
+<li>できれば純粋なstructにしたい</li>
+<li>今ならCodableも活用できるはず</li>
+</ul>
+</li>
+<li>非同期処理の実現に <code>AWSTask</code> を使っている
+
+<ul>
+<li>外からのインタフェースとしては、クロージャでのコールバックで受けたい</li>
+<li>もし可能ならば <code>RxSwift.Single</code> に寄せたい</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="そこで" class="fragment"></span><a href="#%E3%81%9D%E3%81%93%E3%81%A7"><i class="fa fa-link"></i></a>そこで、</h2>
+
+<p>コンパイルを通しつつ、さらに既存の設計の不満を解決するため、小さなラッパーを書いてみました。</p>
+
+<h1>
+<span id="やること" class="fragment"></span><a href="#%E3%82%84%E3%82%8B%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やること</h1>
+
+<h2>
+<span id="ジェネレートされたコード-prefixapi名client-のinitを書き替える" class="fragment"></span><a href="#%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%9F%E3%82%B3%E3%83%BC%E3%83%89-prefixapi%E5%90%8Dclient-%E3%81%AEinit%E3%82%92%E6%9B%B8%E3%81%8D%E6%9B%BF%E3%81%88%E3%82%8B"><i class="fa fa-link"></i></a>ジェネレートされたコード( <code>{PREFIX}{API名}Client</code> )のinitを書き替える</h2>
+
+<p>そもそもビルド通らないので、以下のように置き換えます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span>    <span class="kd">init</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="n">AWSServiceConfiguration</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+
+        <span class="kd">var</span> <span class="nv">urlString</span> <span class="p">=</span> <span class="s">"https://xxxxxxxxxx.execute-api.{region}.amazonaws.com/{stage名}"</span>
+        <span class="k">if</span> <span class="n">urlString</span><span class="p">.</span><span class="n">hasSuffix</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">urlString</span> <span class="p">=</span> <span class="nb">String</span><span class="p">(</span><span class="n">urlString</span><span class="p">.</span><span class="bp">dropLast</span><span class="p">())</span>
+        <span class="p">}</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">configuration</span> <span class="p">=</span> <span class="n">AWSServiceConfiguration</span><span class="p">(</span>
+            <span class="n">region</span><span class="p">:</span> <span class="n">configuration</span><span class="p">.</span><span class="n">regionType</span><span class="p">,</span>
+            <span class="n">endpoint</span><span class="p">:</span> <span class="n">AWSEndpoint</span><span class="p">(</span><span class="n">region</span><span class="p">:</span> <span class="n">configuration</span><span class="p">.</span><span class="n">regionType</span><span class="p">,</span> <span class="n">service</span><span class="p">:</span> <span class="p">.</span><span class="n">APIGateway</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">urlString</span><span class="p">)),</span>
+            <span class="n">credentialsProvider</span><span class="p">:</span> <span class="n">configuration</span><span class="p">.</span><span class="n">credentialsProvider</span>
+        <span class="p">)</span>
+
+        <span class="kd">let</span> <span class="nv">signer</span> <span class="p">=</span> <span class="n">AWSSignatureV4Signer</span><span class="p">(</span><span class="n">credentialsProvider</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">configuration</span><span class="p">.</span><span class="n">credentialsProvider</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">configuration</span><span class="p">.</span><span class="n">endpoint</span><span class="p">)</span><span class="o">!</span>
+        <span class="k">if</span> <span class="kd">let</span> <span class="nv">endpoint</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">configuration</span><span class="p">.</span><span class="n">endpoint</span> <span class="p">{</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">configuration</span><span class="p">.</span><span class="n">baseURL</span> <span class="p">=</span> <span class="n">endpoint</span><span class="p">.</span><span class="n">url</span>
+        <span class="p">}</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">configuration</span><span class="p">.</span><span class="n">requestInterceptors</span> <span class="p">=</span> <span class="p">[</span><span class="n">AWSNetworkingRequestInterceptor</span><span class="p">(),</span> <span class="n">signer</span><span class="p">]</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<h2>
+<span id="prefixapi名client-のラッパーを用意する" class="fragment"></span><a href="#prefixapi%E5%90%8Dclient-%E3%81%AE%E3%83%A9%E3%83%83%E3%83%91%E3%83%BC%E3%82%92%E7%94%A8%E6%84%8F%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a><code>{PREFIX}{API名}Client</code> のラッパーを用意する</h2>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">/// API Gatewayの自動生成コードをラップする構造体</span>
+<span class="kd">struct</span> <span class="nc">APIGateway</span> <span class="p">{</span>
+    <span class="kd">enum</span> <span class="nc">Method</span><span class="p">:</span> <span class="nb">String</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">GET</span>
+        <span class="k">case</span> <span class="n">POST</span>
+        <span class="k">case</span> <span class="n">PUT</span>
+        <span class="k">case</span> <span class="n">DELETE</span>
+        <span class="k">case</span> <span class="n">HEAD</span>
+        <span class="k">case</span> <span class="n">PATCH</span>
+        <span class="k">case</span> <span class="n">OPTIONS</span>
+    <span class="p">}</span>
+    <span class="kd">enum</span> <span class="nc">DecodingError</span><span class="p">:</span> <span class="n">Swift</span><span class="p">.</span><span class="n">Error</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">unknown</span>
+    <span class="p">}</span>
+    <span class="kd">enum</span> <span class="nc">Result</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">success</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+        <span class="k">case</span> <span class="n">error</span><span class="p">(</span><span class="n">Swift</span><span class="p">.</span><span class="n">Error</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// 作成したAPI/ステージなどの環境に応じて書き替える</span>
+    <span class="n">fileprivate</span> <span class="kd">typealias</span> <span class="n">GeneratedClient</span> <span class="p">=</span> <span class="p">{</span><span class="n">PREFIX</span><span class="p">}{</span><span class="n">API</span><span class="err">名</span><span class="p">}</span><span class="n">Client</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">let</span> <span class="nv">clientKey</span> <span class="p">=</span> <span class="s">"適当な文字列"</span>
+
+    <span class="c1">/// didFinishLaunchingWithOptionsで呼ぶやつ</span>
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">credentialProvider</span> <span class="p">=</span> <span class="n">AWSCognitoCredentialsProvider</span><span class="p">(</span><span class="n">regionType</span><span class="p">:</span> <span class="p">.</span><span class="n">APNortheast1</span><span class="p">,</span> <span class="n">identityPoolId</span><span class="p">:</span> <span class="s">"ap-northeast-1:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">configuration</span> <span class="p">=</span> <span class="n">AWSServiceConfiguration</span><span class="p">(</span><span class="n">region</span><span class="p">:</span> <span class="p">.</span><span class="n">APNortheast1</span><span class="p">,</span> <span class="n">credentialsProvider</span><span class="p">:</span> <span class="n">credentialProvider</span><span class="p">)</span><span class="o">!</span>
+        <span class="n">GeneratedClient</span><span class="p">.</span><span class="n">registerClient</span><span class="p">(</span><span class="n">withConfiguration</span><span class="p">:</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="n">clientKey</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="n">fileprivate</span> <span class="kd">static</span> <span class="kd">var</span> <span class="nv">generated</span><span class="p">:</span> <span class="n">GeneratedClient</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">GeneratedClient</span><span class="p">.</span><span class="n">client</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="n">clientKey</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// AWSAPIGatewayRequest, AWSTaskをラップしてSwiftyにAPI定義を記述するためのプロトコル</span>
+<span class="kd">protocol</span> <span class="nc">APIGatewayRequest</span> <span class="p">{</span>
+    <span class="n">associatedtype</span> <span class="n">Response</span>
+
+    <span class="kd">var</span> <span class="nv">httpMethod</span><span class="p">:</span> <span class="n">APIGateway</span><span class="p">.</span><span class="n">Method</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+    <span class="kd">var</span> <span class="nv">urlString</span><span class="p">:</span> <span class="nb">String</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+    <span class="kd">var</span> <span class="nv">queryParameters</span><span class="p">:</span> <span class="p">[</span><span class="n">AnyHashable</span><span class="p">:</span> <span class="nb">Any</span><span class="p">]</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+    <span class="kd">var</span> <span class="nv">headerParameters</span><span class="p">:</span> <span class="p">[</span><span class="n">AnyHashable</span><span class="p">:</span> <span class="nb">Any</span><span class="p">]</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+    <span class="kd">var</span> <span class="nv">httpBody</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">extension</span> <span class="nc">APIGatewayRequest</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">headerParameters</span><span class="p">:</span> <span class="p">[</span><span class="n">AnyHashable</span><span class="p">:</span> <span class="nb">Any</span><span class="p">]</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s">"Content-Type"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">,</span>
+            <span class="s">"Accept"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nv">queryParameters</span><span class="p">:</span> <span class="p">[</span><span class="n">AnyHashable</span><span class="p">:</span> <span class="nb">Any</span><span class="p">]</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[:]</span> <span class="p">}</span>
+    <span class="kd">var</span> <span class="nv">httpBody</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">nil</span> <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">awsRequest</span><span class="p">:</span> <span class="n">AWSAPIGatewayRequest</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">AWSAPIGatewayRequest</span><span class="p">(</span>
+            <span class="n">httpMethod</span><span class="p">:</span> <span class="n">httpMethod</span><span class="p">.</span><span class="n">rawValue</span><span class="p">,</span>
+            <span class="n">urlString</span><span class="p">:</span> <span class="n">urlString</span><span class="p">,</span>
+            <span class="n">queryParameters</span><span class="p">:</span> <span class="n">queryParameters</span><span class="p">,</span>
+            <span class="n">headerParameters</span><span class="p">:</span> <span class="n">headerParameters</span><span class="p">,</span>
+            <span class="n">httpBody</span><span class="p">:</span> <span class="n">httpBody</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">/// レスポンスが必要なエンドポイントに使う。Codableを活用する。</span>
+<span class="kd">extension</span> <span class="nc">APIGatewayRequest</span> <span class="k">where</span> <span class="n">Response</span><span class="p">:</span> <span class="n">Decodable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">invoke</span><span class="p">(</span><span class="n">completion</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">APIGateway</span><span class="p">.</span><span class="n">Result</span><span class="p">&lt;</span><span class="n">Response</span><span class="p">&gt;)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">APIGateway</span><span class="p">.</span><span class="n">generated</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">awsRequest</span><span class="p">).</span><span class="n">continueWith</span><span class="p">(</span><span class="n">block</span><span class="p">:</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="kd">let</span> <span class="nv">data</span> <span class="p">=</span> <span class="nv">$0</span><span class="p">.</span><span class="n">result</span><span class="p">?.</span><span class="n">responseData</span> <span class="p">{</span>
+                <span class="k">do</span> <span class="p">{</span>
+                    <span class="kd">let</span> <span class="nv">t</span> <span class="p">=</span> <span class="k">try</span> <span class="n">JSONDecoder</span><span class="p">().</span><span class="n">decode</span><span class="p">(</span><span class="n">Response</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
+                    <span class="n">completion</span><span class="p">(.</span><span class="n">success</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+                <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="kd">let</span> <span class="nv">e</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">completion</span><span class="p">(.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+                <span class="p">}</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">completion</span><span class="p">(.</span><span class="n">error</span><span class="p">(</span><span class="nv">$0</span><span class="p">.</span><span class="n">error</span> <span class="p">??</span> <span class="n">APIGateway</span><span class="p">.</span><span class="n">DecodingError</span><span class="p">.</span><span class="n">unknown</span><span class="p">))</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="kc">nil</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">/// レスポンスが不要なエンドポイントに使う</span>
+<span class="kd">extension</span> <span class="nc">APIGatewayRequest</span> <span class="k">where</span> <span class="n">Response</span> <span class="p">==</span> <span class="nb">Void</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">invoke</span><span class="p">(</span><span class="n">completion</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">APIGateway</span><span class="p">.</span><span class="n">Result</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">APIGateway</span><span class="p">.</span><span class="n">generated</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">awsRequest</span><span class="p">).</span><span class="n">continueWith</span><span class="p">(</span><span class="n">block</span><span class="p">:</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nv">$0</span><span class="p">.</span><span class="n">result</span><span class="p">?.</span><span class="n">responseData</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="n">completion</span><span class="p">(.</span><span class="n">success</span><span class="p">(</span><span class="nb">Void</span><span class="p">()))</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">completion</span><span class="p">(.</span><span class="n">error</span><span class="p">(</span><span class="nv">$0</span><span class="p">.</span><span class="n">error</span> <span class="p">??</span> <span class="n">APIGateway</span><span class="p">.</span><span class="n">DecodingError</span><span class="p">.</span><span class="n">unknown</span><span class="p">))</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="kc">nil</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - RxSwift.Singleに寄せたい場合は以下を使う</span>
+
+<span class="kd">import</span> <span class="nc">RxSwift</span>
+<span class="kd">extension</span> <span class="nc">Single</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">from</span><span class="p">&lt;</span><span class="n">T</span><span class="p">:</span> <span class="n">APIGatewayRequest</span><span class="p">&gt;(</span><span class="kc">_</span> <span class="n">request</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Single</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span><span class="p">.</span><span class="n">Response</span> <span class="p">==</span> <span class="n">Element</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span><span class="n">Response</span><span class="p">:</span> <span class="n">Decodable</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Single</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;.</span><span class="n">create</span> <span class="p">{</span> <span class="n">emitter</span> <span class="k">in</span>
+            <span class="n">request</span><span class="p">.</span><span class="n">invoke</span> <span class="p">{</span>
+                <span class="k">switch</span> <span class="nv">$0</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="kd">let</span> <span class="nv">t</span><span class="p">):</span> <span class="n">emitter</span><span class="p">(.</span><span class="n">success</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+                <span class="k">case</span> <span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="kd">let</span> <span class="nv">t</span><span class="p">):</span> <span class="n">emitter</span><span class="p">(.</span><span class="n">error</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">Disposables</span><span class="p">.</span><span class="n">create</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">from</span><span class="p">&lt;</span><span class="n">T</span><span class="p">:</span> <span class="n">APIGatewayRequest</span><span class="p">&gt;(</span><span class="kc">_</span> <span class="n">request</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Single</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span><span class="p">.</span><span class="n">Response</span> <span class="p">==</span> <span class="n">Element</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span><span class="n">Response</span> <span class="p">==</span> <span class="nb">Void</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Single</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;.</span><span class="n">create</span> <span class="p">{</span> <span class="n">emitter</span> <span class="k">in</span>
+            <span class="n">request</span><span class="p">.</span><span class="n">invoke</span> <span class="p">{</span>
+                <span class="k">switch</span> <span class="nv">$0</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="kd">let</span> <span class="nv">t</span><span class="p">):</span> <span class="n">emitter</span><span class="p">(.</span><span class="n">success</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+                <span class="k">case</span> <span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="kd">let</span> <span class="nv">t</span><span class="p">):</span> <span class="n">emitter</span><span class="p">(.</span><span class="n">error</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">Disposables</span><span class="p">.</span><span class="n">create</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h2>
+<span id="appdelegateでregisterする" class="fragment"></span><a href="#appdelegate%E3%81%A7register%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>AppDelegateでregisterする</h2>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span>    <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="kc">_</span> <span class="n">application</span><span class="p">:</span> <span class="bp">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="n">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="n">UIApplicationLaunchOptionsKey</span><span class="p">:</span> <span class="nb">Any</span><span class="p">]?)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+        <span class="n">APIGateway</span><span class="p">.</span><span class="n">register</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="kc">true</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<h2>
+<span id="レスポンスの型はpure-swift-な-structで定義する" class="fragment"></span><a href="#%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B9%E3%81%AE%E5%9E%8B%E3%81%AFpure-swift-%E3%81%AA-struct%E3%81%A7%E5%AE%9A%E7%BE%A9%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>レスポンスの型はpure Swift な structで定義する</h2>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">/// Pure Swift struct brought as the response from APIGateway.</span>
+<span class="kd">struct</span> <span class="nc">Hoge</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">id</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="kd">let</span> <span class="nv">userID</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="kd">let</span> <span class="nv">url</span><span class="p">:</span> <span class="n">URL</span>
+
+    <span class="kd">private</span> <span class="kd">enum</span> <span class="nc">CodingKeys</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">CodingKey</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">id</span>
+        <span class="k">case</span> <span class="n">userID</span> <span class="p">=</span> <span class="s">"user_id"</span>
+        <span class="k">case</span> <span class="n">url</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h2>
+<span id="apigatewayrequest-プロトコルに適合したエンドポイント定義を書いて使う" class="fragment"></span><a href="#apigatewayrequest-%E3%83%97%E3%83%AD%E3%83%88%E3%82%B3%E3%83%AB%E3%81%AB%E9%81%A9%E5%90%88%E3%81%97%E3%81%9F%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E5%AE%9A%E7%BE%A9%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6%E4%BD%BF%E3%81%86"><i class="fa fa-link"></i></a><code>APIGatewayRequest</code> プロトコルに適合したエンドポイント定義を書いて、使う</h2>
+
+<h3>
+<span id="例-urlパラメータを渡しcodableな型を受け取る" class="fragment"></span><a href="#%E4%BE%8B-url%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%82%92%E6%B8%A1%E3%81%97codable%E3%81%AA%E5%9E%8B%E3%82%92%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8B"><i class="fa fa-link"></i></a>例① URLパラメータを渡し、Codableな型を受け取る</h3>
+
+<h4>
+<span id="作りたいもの" class="fragment"></span><a href="#%E4%BD%9C%E3%82%8A%E3%81%9F%E3%81%84%E3%82%82%E3%81%AE"><i class="fa fa-link"></i></a>作りたいもの</h4>
+
+<p><a href="https://camo.qiitausercontent.com/d783d70ac4df3dc5b93c58e405bc89b7495c12f1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f39373932383963372d393637622d346433362d633333632d6238643231623662623661382e706e67" target="_blank" rel="nofollow noopener"><img width="692" alt="2017-11-04 11.09.10.png" src="https://camo.qiitausercontent.com/d783d70ac4df3dc5b93c58e405bc89b7495c12f1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f39373932383963372d393637622d346433362d633333632d6238643231623662623661382e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/34405/979289c7-967b-4d36-c33c-b8d21b6bb6a8.png"></a></p>
+
+<h4>
+<span id="エンドポイント定義" class="fragment"></span><a href="#%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E5%AE%9A%E7%BE%A9"><i class="fa fa-link"></i></a>エンドポイント定義</h4>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">struct</span> <span class="nc">HogeGetRequest</span><span class="p">:</span> <span class="n">APIGatewayRequest</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="n">Response</span> <span class="p">=</span> <span class="p">[</span><span class="n">Hoge</span><span class="p">]</span>
+
+    <span class="kd">let</span> <span class="nv">httpMethod</span><span class="p">:</span> <span class="n">APIGateway</span><span class="p">.</span><span class="n">Method</span> <span class="p">=</span> <span class="p">.</span><span class="n">GET</span>
+    <span class="kd">let</span> <span class="nv">urlString</span> <span class="p">=</span> <span class="s">"/hoges"</span>
+    <span class="kd">let</span> <span class="nv">queryParameters</span><span class="p">:</span> <span class="p">[</span><span class="n">AnyHashable</span><span class="p">:</span> <span class="nb">Any</span><span class="p">]</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">userID</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">queryParameters</span> <span class="p">=</span> <span class="p">[</span>
+            <span class="s">"user_id"</span><span class="p">:</span> <span class="n">userID</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h4>
+<span id="呼び出し方" class="fragment"></span><a href="#%E5%91%BC%E3%81%B3%E5%87%BA%E3%81%97%E6%96%B9"><i class="fa fa-link"></i></a>呼び出し方</h4>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span>        <span class="c1">// 通信後の処理をコールバックで記述</span>
+        <span class="n">HogeGetRequest</span><span class="p">(</span><span class="n">userID</span><span class="p">:</span> <span class="mi">1</span><span class="p">).</span><span class="n">invoke</span> <span class="p">{</span>
+            <span class="k">switch</span> <span class="nv">$0</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="kd">let</span> <span class="nv">hoges</span><span class="p">):</span> <span class="bp">print</span><span class="p">(</span><span class="n">hoges</span><span class="p">)</span>
+            <span class="k">case</span> <span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="kd">let</span> <span class="nv">error</span><span class="p">):</span> <span class="bp">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// RxSwiftを使っているならこうも書ける</span>
+        <span class="n">Single</span><span class="p">.</span><span class="n">from</span><span class="p">(</span><span class="n">HogeGetRequest</span><span class="p">(</span><span class="n">userID</span><span class="p">:</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">onSuccess</span><span class="p">:</span> <span class="p">{</span> <span class="n">hoges</span> <span class="k">in</span>
+                <span class="bp">print</span><span class="p">(</span><span class="n">hoges</span><span class="p">)</span>
+            <span class="p">})</span>
+            <span class="p">.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">disposeBag</span><span class="p">)</span>
+</pre></div></div>
+
+<h3>
+<span id="例-applicationjson-をbodyで渡し200レスポンスが返ってくればそれでいい" class="fragment"></span><a href="#%E4%BE%8B-applicationjson-%E3%82%92body%E3%81%A7%E6%B8%A1%E3%81%97200%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B9%E3%81%8C%E8%BF%94%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8C%E3%81%B0%E3%81%9D%E3%82%8C%E3%81%A7%E3%81%84%E3%81%84"><i class="fa fa-link"></i></a>例② <code>application/json</code> をbodyで渡し、200レスポンスが返ってくればそれでいい</h3>
+
+<h4>
+<span id="作りたいもの-1" class="fragment"></span><a href="#%E4%BD%9C%E3%82%8A%E3%81%9F%E3%81%84%E3%82%82%E3%81%AE-1"><i class="fa fa-link"></i></a>作りたいもの</h4>
+
+<p><a href="https://camo.qiitausercontent.com/cde630d581c17e6846fcb01c6ef41607bf3d41f0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f36626432346136302d643366642d626564362d653733392d6238663436653034663164632e706e67" target="_blank" rel="nofollow noopener"><img width="681" alt="2017-11-04 11.07.04.png" src="https://camo.qiitausercontent.com/cde630d581c17e6846fcb01c6ef41607bf3d41f0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33343430352f36626432346136302d643366642d626564362d653733392d6238663436653034663164632e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/34405/6bd24a60-d3fd-bed6-e739-b8f46e04f1dc.png"></a></p>
+
+<h4>
+<span id="エンドポイント定義-1" class="fragment"></span><a href="#%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E5%AE%9A%E7%BE%A9-1"><i class="fa fa-link"></i></a>エンドポイント定義</h4>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">struct</span> <span class="nc">HogePostRequest</span><span class="p">:</span> <span class="n">APIGatewayRequest</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="n">Response</span> <span class="p">=</span> <span class="nb">Void</span>
+
+    <span class="kd">let</span> <span class="nv">httpMethod</span><span class="p">:</span> <span class="n">APIGateway</span><span class="p">.</span><span class="n">Method</span> <span class="p">=</span> <span class="p">.</span><span class="n">POST</span>
+    <span class="kd">let</span> <span class="nv">urlString</span> <span class="p">=</span> <span class="s">"/hoges"</span>
+    <span class="kd">let</span> <span class="nv">httpBody</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?</span>
+
+    <span class="kd">struct</span> <span class="nc">Parameters</span><span class="p">:</span> <span class="n">Encodable</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">url</span><span class="p">:</span> <span class="n">URL</span>
+    <span class="p">}</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">parameters</span><span class="p">:</span> <span class="n">Parameters</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">httpBody</span> <span class="p">=</span> <span class="k">try</span><span class="p">!</span> <span class="n">JSONEncoder</span><span class="p">().</span><span class="n">encode</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h4>
+<span id="呼び出し方-1" class="fragment"></span><a href="#%E5%91%BC%E3%81%B3%E5%87%BA%E3%81%97%E6%96%B9-1"><i class="fa fa-link"></i></a>呼び出し方</h4>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span>        <span class="c1">// 通信後の処理をコールバックで記述</span>
+        <span class="n">HogePostRequest</span><span class="p">(</span><span class="n">parameters</span><span class="p">:</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="s">"https://aws.amazon.com"</span><span class="p">)</span><span class="o">!</span>
+            <span class="p">))</span>
+            <span class="p">.</span><span class="n">invoke</span> <span class="p">{</span>
+                <span class="k">switch</span> <span class="nv">$0</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="p">.</span><span class="n">success</span><span class="p">:</span> <span class="p">()</span> <span class="c1">// Void</span>
+                <span class="k">case</span> <span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="kd">let</span> <span class="nv">error</span><span class="p">):</span> <span class="bp">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// RxSwiftを使っているならこうも書ける</span>
+        <span class="n">Single</span><span class="p">.</span><span class="n">from</span><span class="p">(</span><span class="n">HogePostRequest</span><span class="p">(</span><span class="n">parameters</span><span class="p">:</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="s">"https://aws.amazon.com"</span><span class="p">)</span><span class="o">!</span>
+            <span class="p">)))</span>
+            <span class="p">.</span><span class="n">subscribe</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">disposeBag</span><span class="p">)</span>
+</pre></div></div>
+
+<h3>
+<span id="後始末" class="fragment"></span><a href="#%E5%BE%8C%E5%A7%8B%E6%9C%AB"><i class="fa fa-link"></i></a>後始末</h3>
+
+<p>メソッドを置き換える際、 <code>{PREFIX}{API名}Client</code> にジェネレートされていたAPIアクセス用のメソッドと、そこで使われている <code>AWSModel</code> を継承した型は、不要なので消してしまいましょう。<br>
+これでスッキリしました。</p>
+
+<h1>
+<span id="というか" class="fragment"></span><a href="#%E3%81%A8%E3%81%84%E3%81%86%E3%81%8B"><i class="fa fa-link"></i></a>というか</h1>
+
+<p>AWSのジェネレートするコードが良くなってくれればワークアラウンドがなくても済む話なので、進化を期待してます。<br>
+AWSの中の人の皆様方、よろしくお願いします <img alt=":pray:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f64f.png" title=":pray:" width="20"></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

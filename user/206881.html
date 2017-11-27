@@ -1,0 +1,1089 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (skanmera)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (skanmera さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>skanmeraさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>244</kbd>
+		<a target="_blank" href="https://qiita.com/skanmera/items/d1dea61a7077f320524e">Excelファイルを比較するツールを作ってみた</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-29 19:04:20</center>
+	</td>
+	<td style="width:200px;">
+		@skanmera<br><img width="80" height="80" src="https://secure.gravatar.com/avatar/f5d819f88c168f60a31758ce87cda455">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> <b>[C#]</b> <b>[Mercurial]</b> <b>[Excel]</b> <b>[diff]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="https://camo.qiitausercontent.com/28bef8fc1314490664ac7a1af9fece42c52da46e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f38646464636164302d353136652d616538622d366666302d6162383538393534376534332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/28bef8fc1314490664ac7a1af9fece42c52da46e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f38646464636164302d353136652d616538622d366666302d6162383538393534376534332e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/8dddcad0-516e-ae8b-6ff0-ab8589547e43.png"></a></p>
+
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>Excelファイルの比較には<strong><em>WinMerge</em></strong>に<strong><em>xdocdiff</em></strong>のプラグインを入れて使っていたのですが、<br>
+列が揃ってなかったり、ヘッダを固定できなかったりと少し不便に感じていました。<br>
+そんなわけでExcelファイルを比較するツールを自作してみたので、紹介と使い方を書いていこうと思います。</p>
+
+<h1>
+<span id="注意" class="fragment"></span><a href="#%E6%B3%A8%E6%84%8F"><i class="fa fa-link"></i></a>注意</h1>
+
+<p>このツールは筆者の仕事環境において必要最低限の要件で作成しています</p>
+
+<h1>
+<span id="インストール" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>インストール</h1>
+
+<h3>
+<span id="ここ-から最新のmsiをダウンロードする" class="fragment"></span><a href="#%E3%81%93%E3%81%93-%E3%81%8B%E3%82%89%E6%9C%80%E6%96%B0%E3%81%AEmsi%E3%82%92%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a><a href="https://github.com/skanmera/ExcelMerge/releases" rel="nofollow noopener" target="_blank">ここ</a> から最新の.msiをダウンロードする</h3>
+
+<p><a href="https://camo.qiitausercontent.com/aa0de83068737cdbdb243016b8ecc8ed29a5c4f5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f62376336306633642d643433652d396533642d646563322d3333653464633632323162382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/aa0de83068737cdbdb243016b8ecc8ed29a5c4f5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f62376336306633642d643433652d396533642d646563322d3333653464633632323162382e706e67" alt="SnapCrab_NoName_2017-10-29_16-4-52_No-00.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/b7c60f3d-d43e-9e3d-dec2-33e4dc6221b8.png"></a></p>
+
+<h3>
+<span id="ダウンロードしてインストーラーを実行する" class="fragment"></span><a href="#%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89%E3%81%97%E3%81%A6%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A9%E3%83%BC%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>ダウンロードしてインストーラーを実行する</h3>
+
+<p>※電子署名をしていないので、以下のウィンドウが表示されると思います。「詳細」→「実行」で実行できます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/3320a049a83e33fdfc62dee42c1572bc49451b19/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f39323134333666632d356162342d373266612d333366632d3161346661353661353339302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/3320a049a83e33fdfc62dee42c1572bc49451b19/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f39323134333666632d356162342d373266612d333366632d3161346661353661353339302e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/921436fc-5ab4-72fa-33fc-1a4fa56a5390.png"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/2890793ef5b3d7eacf81fb760a5a9231865b8918/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f65636336313031622d633734622d663864312d373736382d6163633732323731343761372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/2890793ef5b3d7eacf81fb760a5a9231865b8918/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f65636336313031622d633734622d663864312d373736382d6163633732323731343761372e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/ecc6101b-c74b-f8d1-7768-acc7227147a7.png"></a></p>
+
+<h3>
+<span id="nextを選択" class="fragment"></span><a href="#next%E3%82%92%E9%81%B8%E6%8A%9E"><i class="fa fa-link"></i></a>Nextを選択</h3>
+
+<p><a href="https://camo.qiitausercontent.com/7e3679d5a265302d52ec6864eb02f84bee6b9d6a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f63373566613734342d383433352d626133622d666233642d3466643765376639653830372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7e3679d5a265302d52ec6864eb02f84bee6b9d6a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f63373566613734342d383433352d626133622d666233642d3466643765376639653830372e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/c75fa744-8435-ba3b-fb3d-4fd7e7f9e807.png"></a> </p>
+
+<h3>
+<span id="インストールするディレクトリとユーザーを選択-特に指定がなければそのままnext" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%81%A8%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%92%E9%81%B8%E6%8A%9E-%E7%89%B9%E3%81%AB%E6%8C%87%E5%AE%9A%E3%81%8C%E3%81%AA%E3%81%91%E3%82%8C%E3%81%B0%E3%81%9D%E3%81%AE%E3%81%BE%E3%81%BEnext"><i class="fa fa-link"></i></a>インストールするディレクトリと、ユーザーを選択 (特に指定がなければそのままNext)</h3>
+
+<p><a href="https://camo.qiitausercontent.com/4334e7a3da8983f3b32b19f9e9cdb945b6da4676/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f39623038373464372d323564642d303034322d663966362d3334353730363836366437342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/4334e7a3da8983f3b32b19f9e9cdb945b6da4676/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f39623038373464372d323564642d303034322d663966362d3334353730363836366437342e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/9b0874d7-25dd-0042-f9f6-345706866d74.png"></a></p>
+
+<h3>
+<span id="nextを選択-1" class="fragment"></span><a href="#next%E3%82%92%E9%81%B8%E6%8A%9E-1"><i class="fa fa-link"></i></a>Nextを選択</h3>
+
+<p><a href="https://camo.qiitausercontent.com/65ac884f4f01acefc5043815cc235e854a296c53/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f31343563313932312d363139342d313964312d623361372d3962333238663739386534392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/65ac884f4f01acefc5043815cc235e854a296c53/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f31343563313932312d363139342d313964312d623361372d3962333238663739386534392e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/145c1921-6194-19d1-b3a7-9b328f798e49.png"></a></p>
+
+<h1>
+<span id="起動方法" class="fragment"></span><a href="#%E8%B5%B7%E5%8B%95%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>起動方法</h1>
+
+<h3>
+<span id="ショートカットアイコン" class="fragment"></span><a href="#%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3"><i class="fa fa-link"></i></a>　ショートカットアイコン</h3>
+
+<p>インストールが完了すると、デスクトップにショートカットアイコンが作成されるので、起動して上部メニューの「ファイル」から比較するファイルを選択する</p>
+
+<p><a href="https://camo.qiitausercontent.com/a45727e879f0ed027dad9661810a1d8b23092d49/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f64643832626465632d393164642d613664652d376261382d6634643133376163323262652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a45727e879f0ed027dad9661810a1d8b23092d49/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f64643832626465632d393164642d613664652d376261382d6634643133376163323262652e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/dd82bdec-91dd-a6de-7ba8-f4d137ac22be.png"></a></p>
+
+<h3>
+<span id="エクスプローラのコンテキストメニュー" class="fragment"></span><a href="#%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%97%E3%83%AD%E3%83%BC%E3%83%A9%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC"><i class="fa fa-link"></i></a>エクスプローラのコンテキストメニュー</h3>
+
+<p>エクスプローラでファイルを選択した状態でコンテキストメニューを開き、ExcelMergeを選択する</p>
+
+<p><a href="https://camo.qiitausercontent.com/81cdcb82a4e6e864ee6a981315f462f3019c3306/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f61313130616563612d356565382d346630642d396530382d3133333534326131323462632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/81cdcb82a4e6e864ee6a981315f462f3019c3306/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f61313130616563612d356565382d346630642d396530382d3133333534326131323462632e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/a110aeca-5ee8-4f0d-9e08-133542a124bc.png"></a></p>
+
+<h3>
+<span id="コマンドライン" class="fragment"></span><a href="#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3"><i class="fa fa-link"></i></a>コマンドライン</h3>
+
+<p>コマンドラインからオプションを指定して起動することもできます<br>
+オプションに関しては <a href="https://github.com/skanmera/ExcelMerge#from-command-line" rel="nofollow noopener" target="_blank">README</a> を参照してください</p>
+
+<h1>
+<span id="使い方" class="fragment"></span><a href="#%E4%BD%BF%E3%81%84%E6%96%B9"><i class="fa fa-link"></i></a>使い方</h1>
+
+<h2>
+<span id="差分を抽出する" class="fragment"></span><a href="#%E5%B7%AE%E5%88%86%E3%82%92%E6%8A%BD%E5%87%BA%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>差分を抽出する</h2>
+
+<p>ファイルを選択している状態で「差分抽出」を実行することで選択中のシートの比較結果が表示されます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/a313ddd763bf6f9b89e5de4b5c3ea2f39f99ce68/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f63666263306434642d636534642d336637612d663333622d3632316666383763306132622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a313ddd763bf6f9b89e5de4b5c3ea2f39f99ce68/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f63666263306434642d636534642d336637612d663333622d3632316666383763306132622e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/cfbc0d4d-ce4d-3f7a-f33b-621ff87c0a2b.png"></a></p>
+
+<p>コンテキストメニューやコマンドラインから起動した場合、差分が抽出可能であれば自動で抽出されます。</p>
+
+<h2>
+<span id="列ヘッダ行ヘッダを変更する" class="fragment"></span><a href="#%E5%88%97%E3%83%98%E3%83%83%E3%83%80%E8%A1%8C%E3%83%98%E3%83%83%E3%83%80%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>列ヘッダ、行ヘッダを変更する</h2>
+
+<p>デフォルトで列ヘッダは0行目の内容が、行ヘッダは行のインデックスが表示されます。<br>
+変更するには変更したい行、または列の任意のセルを選択した状態でコンテキストメニューを開き「列ヘッダに設定」または「行ヘッダに設定」を選択します</p>
+
+<p>デフォルトで表示されている行インデックスから「氏名」に変更する場合<br>
+<a href="https://camo.qiitausercontent.com/d4a82776f1c110a4b2f4cfbab0894c9870a1fce7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f35343962356135652d383664342d353339342d633233362d3737636631623033383636632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d4a82776f1c110a4b2f4cfbab0894c9870a1fce7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f35343962356135652d383664342d353339342d633233362d3737636631623033383636632e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/549b5a5e-86d4-5394-c236-77cf1b03866c.png"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/b265bfca8967084075d555818f7a6472c54a97c1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f36316666383166612d396232362d363530642d366432652d3266353738373830656464652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b265bfca8967084075d555818f7a6472c54a97c1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f36316666383166612d396232362d363530642d366432652d3266353738373830656464652e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/61ff81fa-9b26-650d-6d2e-2f578780edde.png"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/8f520a94adcdf953509cab61e5088efdd6aef828/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f35353238383336662d366665382d383934652d623038382d3266313265393433393264382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/8f520a94adcdf953509cab61e5088efdd6aef828/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f35353238383336662d366665382d383934652d623038382d3266313265393433393264382e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/5528836f-6fe8-894e-b088-2f12e94392d8.png"></a></p>
+
+<h2>
+<span id="ファイルごとに設定を作成する" class="fragment"></span><a href="#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%94%E3%81%A8%E3%81%AB%E8%A8%AD%E5%AE%9A%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>ファイルごとに設定を作成する</h2>
+
+<p>毎回列ヘッダや行ヘッダを設定するのは面倒なので、事前にファイルごとに設定を行います<br>
+上部メニューの「設定」から「ファイル設定」を選択し、追加ボタンを選択します</p>
+
+<p><a href="https://camo.qiitausercontent.com/168ce538e3624f1078d6eb80d0f2cb4238706311/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f36383861373231352d613761642d613237352d623931322d3235343162356632396632352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/168ce538e3624f1078d6eb80d0f2cb4238706311/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f36383861373231352d613761642d613237352d623931322d3235343162356632396632352e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/688a7215-a7ad-a275-b912-2541b5f29f25.png"></a></p>
+
+<p>設定を追加します<br>
+<a href="https://camo.qiitausercontent.com/d70c1bd77b59e0875bd4251fad7291982d690c43/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f31333039343163392d656530632d633461622d323161632d3831326530636465363562302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d70c1bd77b59e0875bd4251fad7291982d690c43/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f31333039343163392d656530632d633461622d323161632d3831326530636465363562302e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/130941c9-ee0c-c4ab-21ac-812e0cde65b0.png"></a></p>
+
+<ul>
+<li>「名前」はファイル名か正規表現で記述します</li>
+<li>「行ヘッダインデックス」は-1で行インデックスが表示されます</li>
+<li>「行ヘッダ」名は「行ヘッダインデックス」が指定しにくい場合などに、列ヘッダの名前で指定します。※同じ列ヘッダ名が複数存在するときは最初に一致したものを表示します</li>
+<li>ファイル名を指定した場合は完全一致をチェックします</li>
+</ul>
+
+<h2>
+<span id="バージョン管理ツールのdiffツールとして使用する" class="fragment"></span><a href="#%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E7%AE%A1%E7%90%86%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AEdiff%E3%83%84%E3%83%BC%E3%83%AB%E3%81%A8%E3%81%97%E3%81%A6%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>バージョン管理ツールのDiffツールとして使用する</h2>
+
+<h3>
+<span id="外部ツールを登録する" class="fragment"></span><a href="#%E5%A4%96%E9%83%A8%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E7%99%BB%E9%8C%B2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>外部ツールを登録する</h3>
+
+<p>バージョン管理ツールのDiffツールとして使用する場合、テキストファイルや画像ファイルなどは通常のDiffツールで開く必要があるので、<br>
+サポート対象外のファイルの場合に起動する外部ツールを登録する必要があります。<br>
+※ここではWinMergeを外部ツールとして登録します</p>
+
+<p>上部メニューの「設定」から「外部コマンド」を選択し、追加ボタンを選択します</p>
+
+<p><a href="https://camo.qiitausercontent.com/50a67dd249de5e049932c9d305f202d5f1fee443/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f36626236343937302d393065332d366237392d376236332d6662316363353236353563372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/50a67dd249de5e049932c9d305f202d5f1fee443/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f36626236343937302d393065332d366237392d376236332d6662316363353236353563372e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/6bb64970-90e3-6b79-7b63-fb1cc52655c7.png"></a></p>
+
+<ul>
+<li>「名前」はこのコマンドの名前を登録します。コマンドラインから起動する際に指定されます</li>
+<li>「実行ファイル」は実行するexeなどのパスを指定します</li>
+<li>「引数」には実行ファイルに渡す引数を指定します</li>
+</ul>
+
+<h4>
+<span id="利用可能な変数" class="fragment"></span><a href="#%E5%88%A9%E7%94%A8%E5%8F%AF%E8%83%BD%E3%81%AA%E5%A4%89%E6%95%B0"><i class="fa fa-link"></i></a>利用可能な変数</h4>
+
+<table>
+<thead>
+<tr>
+<th>変数</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${SRC}</code></td>
+<td>右側のファイルパス</td>
+</tr>
+<tr>
+<td><code>${DST}</code></td>
+<td>左側のファイルパス</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<span id="gitの外部ツールとして登録する" class="fragment"></span><a href="#git%E3%81%AE%E5%A4%96%E9%83%A8%E3%83%84%E3%83%BC%E3%83%AB%E3%81%A8%E3%81%97%E3%81%A6%E7%99%BB%E9%8C%B2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Gitの外部ツールとして登録する</h3>
+
+<p>.gitconfigにdiffツールを追加します</p>
+
+<div class="code-frame" data-lang="ini">
+<div class="code-lang"><span class="bold">.gitconfig</span></div>
+<div class="highlight"><pre><span></span><span class="k">[diff]</span>
+<span class="na">tool</span> <span class="o">=</span> <span class="s">WinMerge</span>
+
+<span class="k">[difftool "WinMerge"]</span>
+<span class="na">cmd</span> <span class="o">=</span> <span class="s">\"C:/Project/Github/excelmerge/ExcelMerge.GUI/bin/Debug/ExcelMerge.GUI.exe\" diff -s \"$LOCAL\" -d \"$REMOTE\" -c WinMerge -i -w -v -k </span>
+</pre></div>
+</div>
+
+<ul>
+<li>-c で先ほど登録した外部ツール(WinMerge)を指定しています</li>
+<li>-i で .xls .xlsx .csv　以外のファイルの場合はダイアログなしで外部ツールが起動するように指定しています</li>
+<li>-v で拡張子のチェックをします (-v 指定がないと例外が発生→外部ツール起動 となります)</li>
+<li>-w で外部ツールのプロセス終了を待つようにします (プロセスを待たないと一時ファイルが削除されるため)</li>
+</ul>
+
+<p>これでSourceTreeからも使用が可能になります<br>
+<a href="https://camo.qiitausercontent.com/a6854b9d290584ca07adf871513a6fe14c42aab2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f30356432643933312d313562612d353762312d653465322d6366376264623864386332612e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a6854b9d290584ca07adf871513a6fe14c42aab2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f30356432643933312d313562612d353762312d653465322d6366376264623864386332612e676966" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/05d2d931-15ba-57b1-e4e2-cf7bdb8d8c2a.gif"></a></p>
+
+<h3>
+<span id="mercurialの外部ツールとして登録する" class="fragment"></span><a href="#mercurial%E3%81%AE%E5%A4%96%E9%83%A8%E3%83%84%E3%83%BC%E3%83%AB%E3%81%A8%E3%81%97%E3%81%A6%E7%99%BB%E9%8C%B2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Mercurialの外部ツールとして登録する</h3>
+
+<p>mercurial.iniにdiffツールを追加します</p>
+
+<div class="code-frame" data-lang="ini">
+<div class="code-lang"><span class="bold">mercurial.ini</span></div>
+<div class="highlight"><pre><span></span><span class="k">[merge-tools]</span>
+<span class="na">excelmerge.executable</span> <span class="o">=</span> <span class="s">C:\Program Files (x86)\ExcelMerge\ExcelMerge.GUI.exe</span>
+<span class="na">excelmerge.diffargs</span> <span class="o">=</span> <span class="s">diff -s $parent1 -d $child -c WinMerge -i -w -v -e empty -k</span>
+
+<span class="k">[tortoisehg]</span>
+<span class="na">vdiff</span> <span class="o">=</span> <span class="s">excelmerge</span>
+
+<span class="k">[extdiff]</span>
+<span class="c1">#extdiffはコメントアウトする</span>
+<span class="c1">#cmd.wmdiff = C:\Program Files\WinMerge\WinMergeU.exe</span>
+<span class="c1">#opts.wmdiff = /r /e /x /ub</span>
+</pre></div>
+</div>
+
+<p>Gitの場合とオプションはほぼ同じですが、追加、削除のステータスのファイルを比較するときにemptyというファイル名で空のファイル名が渡されるので<br>
+-e で空のファイル名を指定しています</p>
+
+<h3>
+<span id="変更ログを出力する" class="fragment"></span><a href="#%E5%A4%89%E6%9B%B4%E3%83%AD%E3%82%B0%E3%82%92%E5%87%BA%E5%8A%9B%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>変更ログを出力する</h3>
+
+<p>コミットログなどに記載する際に、変更点をログとして出力できます。<br>
+変更点をログとして出力したいセルを範囲選択します。(全部の場合はCtrl + A)で全選択<br>
+コンテキストメニューの「ログを出力」を選択します</p>
+
+<p><a href="https://camo.qiitausercontent.com/9e854f0ea51949f22db398e34a07a1cb41007b65/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f32363666356433612d373630312d333363662d626261322d3434323638373963356538392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/9e854f0ea51949f22db398e34a07a1cb41007b65/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f32363666356433612d373630312d333363662d626261322d3434323638373963356538392e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/266f5d3a-7601-33cf-bba2-4426879c5e89.png"></a></p>
+
+<p>ログのフォーマットは「差分抽出設定」から変更可能です。</p>
+
+<h2>
+<span id="ショートカットキー" class="fragment"></span><a href="#%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%82%AD%E3%83%BC"><i class="fa fa-link"></i></a>ショートカットキー</h2>
+
+<table>
+<thead>
+<tr>
+<th>キー</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + →</td>
+<td>次の変更されたセルに移動</td>
+</tr>
+<tr>
+<td>Ctrl + ←</td>
+<td>前の変更されたセルに移動</td>
+</tr>
+<tr>
+<td>Ctrl + ↓</td>
+<td>次の変更された行に移動</td>
+</tr>
+<tr>
+<td>Ctrl + ↑</td>
+<td>前の変更された行に移動</td>
+</tr>
+<tr>
+<td>Ctrl + K</td>
+<td>次の追加された行に移動</td>
+</tr>
+<tr>
+<td>Ctrl + I</td>
+<td>前の追加された行に移動</td>
+</tr>
+<tr>
+<td>Ctrl + L</td>
+<td>次の削除された行に移動</td>
+</tr>
+<tr>
+<td>Ctrl + O</td>
+<td>前の削除された行に移動</td>
+</tr>
+<tr>
+<td>Ctrl + F</td>
+<td>セルを検索</td>
+</tr>
+<tr>
+<td>F9</td>
+<td>次の検索結果に一致するセルに移動</td>
+</tr>
+<tr>
+<td>F8</td>
+<td>前の検索結果に一致するセルに移動</td>
+</tr>
+<tr>
+<td>Ctrl + C</td>
+<td>選択したセルをタブ区切りでコピー(エクセルへの貼り付け)</td>
+</tr>
+<tr>
+<td>Ctrl + Shift + C</td>
+<td>選択したセルをカンマ区切りでコピー</td>
+</tr>
+<tr>
+<td>Ctrl + D</td>
+<td>コンソールを表示(隠す)</td>
+</tr>
+<tr>
+<td>Ctrl + B</td>
+<td>選択範囲の差分をログとして出力</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="問題点" class="fragment"></span><a href="#%E5%95%8F%E9%A1%8C%E7%82%B9"><i class="fa fa-link"></i></a>問題点</h1>
+
+<p>列の追加、削除が複数ある場合、列の並び順が想定通りにならないことがあります。<br>
+この場合、コンテキストメニューから正しい列ヘッダ(できるだけ一意なヘッダ)を指定して差分を取ると正常に表示されることがあります。</p>
+
+<h1>
+<span id="プロジェクト" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88"><i class="fa fa-link"></i></a>プロジェクト</h1>
+
+<p>プロジェクトは<a href="https://github.com/skanmera/ExcelMerge" rel="nofollow noopener" target="_blank">GitHub</a> で公開しています</p>
+
+<p>Gridはパフォーマンスを優先するため <a href="https://fastwpfgrid.codeplex.com/" rel="nofollow noopener" target="_blank">FastWpfGrid</a> を使用しています</p>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>今回作成したツールを実際に業務で少し使ってみましたが、<br>
+コミット前の差分確認やコンフリクトの解消にかかる時間とストレスを少し軽減できたような気がします。<br>
+最終的にはマージする機能を実装することなので、今後も更新していくつもりです。</p>
+
+<p>※この記事で使用したExcelファイルは  <a href="https://hogehoge.tk/personal/generator/" rel="nofollow noopener" target="_blank">こちら</a> のサイトを利用しました 　 </p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>skanmeraさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>10</kbd>
+		<a target="_blank" href="https://qiita.com/skanmera/items/1f4f39678488223da53d">【Unity】3次元でのFunnelアルゴリズム</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-22 13:57:04</center>
+	</td>
+	<td style="width:200px;">
+		@skanmera<br><img width="80" height="80" src="https://secure.gravatar.com/avatar/f5d819f88c168f60a31758ce87cda455">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[C#]</b> <b>[Unity]</b> <b>[Pathfinding]</b> <b>[Funnel]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="https://camo.qiitausercontent.com/d3d466184fe98500849d30987449dfe3b61168c6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f63663237306339372d353739362d656335622d613762342d6436326566346365643334632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d3d466184fe98500849d30987449dfe3b61168c6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f63663237306339372d353739362d656335622d613762342d6436326566346365643334632e706e67" alt="demo 911.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/cf270c97-5796-ec5b-a7b4-d62ef4ced34c.png"></a></p>
+
+<h1>
+<span id="funnelアルゴリズムとは" class="fragment"></span><a href="#funnel%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>Funnelアルゴリズムとは</h1>
+
+<p>Funnel(ファンネル)アルゴリズムとは<strong><em>1辺を共有する三角形リストの始点から終点までの最短経路を求めるアルゴリズム</em></strong>です。<br>
+ダイクストラ法やA*から得られた経路を平滑化する方法として使用されています。<br>
+<br></p>
+
+<p><a href="https://camo.qiitausercontent.com/190d4181007d542a61b8ee0ba1b24ed305dcd2ab/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f63383235666636382d386237332d646139632d653839612d3237633831343936666163312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/190d4181007d542a61b8ee0ba1b24ed305dcd2ab/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f63383235666636382d386237332d646139632d653839612d3237633831343936666163312e706e67" alt="イメージ" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/c825ff68-8b73-da9c-e89a-27c81496fac1.png"></a></p>
+
+<p>Funnelは日本語で<strong><em>漏斗</em></strong>の意味です。<br>
+言葉通り漏斗をイメージしながら解いていくアルゴリズムです。</p>
+
+<h1>
+<span id="実装記事にした理由" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85%E8%A8%98%E4%BA%8B%E3%81%AB%E3%81%97%E3%81%9F%E7%90%86%E7%94%B1"><i class="fa fa-link"></i></a>実装、記事にした理由</h1>
+
+<ul>
+<li>
+<a href="http://digestingduck.blogspot.jp/2010/03/simple-stupid-funnel-algorithm.html" rel="nofollow noopener" target="_blank">ここ</a> を参考にして実装したが動作しないパターンがあった</li>
+<li>Unityで使いたい</li>
+<li>3次元に適用したい</li>
+<li>日本語で詳説しているサイトが見つからなかった</li>
+</ul>
+
+<h1>
+<span id="大まかな流れ" class="fragment"></span><a href="#%E5%A4%A7%E3%81%BE%E3%81%8B%E3%81%AA%E6%B5%81%E3%82%8C"><i class="fa fa-link"></i></a>大まかな流れ</h1>
+
+<ol>
+<li>与えられた三角形リストから3次元における左右の頂点配列を作成する</li>
+<li>1で作成した配列をコピーしたものをXY平面の2次元に変換する</li>
+<li>先端、左側の頂点リスト、右側の頂点リスト から形成されるFunnelを更新しながら経路を求める</li>
+<li>求めた経路と三角形リストの連結部分(共有辺)の交点を挿入する</li>
+<li>経路上の全ての点の法線を求める </li>
+<li>3次元に復元する</li>
+<li>パスを生成する</li>
+</ol>
+
+<h1>
+<span id="解説" class="fragment"></span><a href="#%E8%A7%A3%E8%AA%AC"><i class="fa fa-link"></i></a>解説</h1>
+
+<p>※この記事ではソースコード上でArray型となっているものを～配列、それ以外のコレクションを～リストと表記しています。<br>
+  また、ベクトルやクオータニオンの演算に対してある程度知識があることを前提としています。</p>
+
+<h2>
+<span id="与えられた三角形リストから3次元における左右の頂点配列を作成する-createvertices3dメソッド" class="fragment"></span><a href="#%E4%B8%8E%E3%81%88%E3%82%89%E3%82%8C%E3%81%9F%E4%B8%89%E8%A7%92%E5%BD%A2%E3%83%AA%E3%82%B9%E3%83%88%E3%81%8B%E3%82%893%E6%AC%A1%E5%85%83%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%B7%A6%E5%8F%B3%E3%81%AE%E9%A0%82%E7%82%B9%E9%85%8D%E5%88%97%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B-createvertices3d%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89"><i class="fa fa-link"></i></a>与えられた三角形リストから3次元における左右の頂点配列を作成する (CreateVertices3Dメソッド)</h2>
+
+<h3>
+<span id="三角形リストから共有辺のリストを作成する" class="fragment"></span><a href="#%E4%B8%89%E8%A7%92%E5%BD%A2%E3%83%AA%E3%82%B9%E3%83%88%E3%81%8B%E3%82%89%E5%85%B1%E6%9C%89%E8%BE%BA%E3%81%AE%E3%83%AA%E3%82%B9%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>三角形リストから共有辺のリストを作成する</h3>
+
+<blockquote>
+<p>前後の三角形から共有辺を探してリストにします。共有辺が見つからない場合は連結してないので失敗とします。</p>
+
+<p><a href="https://camo.qiitausercontent.com/d6198043f13a8107c9e2fec1aae64a989e54d972/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f39626136636366342d613032612d613263642d663436622d3866383464373530343130642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d6198043f13a8107c9e2fec1aae64a989e54d972/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f39626136636366342d613032612d613263642d663436622d3866383464373530343130642e706e67" alt="02.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/9ba6ccf4-a02a-a2cd-f46b-8f84d750410d.png"></a></p>
+</blockquote>
+
+<h3>
+<span id="始点を求めて左右の3次元頂点配列に追加する" class="fragment"></span><a href="#%E5%A7%8B%E7%82%B9%E3%82%92%E6%B1%82%E3%82%81%E3%81%A6%E5%B7%A6%E5%8F%B3%E3%81%AE3%E6%AC%A1%E5%85%83%E9%A0%82%E7%82%B9%E9%85%8D%E5%88%97%E3%81%AB%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>始点を求めて、左右の3次元頂点配列に追加する</h3>
+
+<blockquote>
+<p>最初の三角形の頂点のうち、共有辺と向かい合う(共有辺に含まれない)頂点が始点となる</p>
+
+<p><a href="https://camo.qiitausercontent.com/f6614b1aad9f167e06bb262af9fe2d28c23b25d5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f33356463343563332d356139332d326637352d653266362d6164326436303363323066362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f6614b1aad9f167e06bb262af9fe2d28c23b25d5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f33356463343563332d356139332d326637352d653266362d6164326436303363323066362e706e67" alt="11.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/35dc45c3-5a93-2f75-e2f6-ad2d603c20f6.png"></a></p>
+
+<p>[<font color="Red">赤</font>]を左側の頂点、[<font color="blue">青</font>]を右側の頂点 とします。</p>
+</blockquote>
+
+<h3>
+<span id="共有辺の頂点が左右どちらの3次元配列の末尾と一致するかで左右に振り分けていく" class="fragment"></span><a href="#%E5%85%B1%E6%9C%89%E8%BE%BA%E3%81%AE%E9%A0%82%E7%82%B9%E3%81%8C%E5%B7%A6%E5%8F%B3%E3%81%A9%E3%81%A1%E3%82%89%E3%81%AE3%E6%AC%A1%E5%85%83%E9%85%8D%E5%88%97%E3%81%AE%E6%9C%AB%E5%B0%BE%E3%81%A8%E4%B8%80%E8%87%B4%E3%81%99%E3%82%8B%E3%81%8B%E3%81%A7%E5%B7%A6%E5%8F%B3%E3%81%AB%E6%8C%AF%E3%82%8A%E5%88%86%E3%81%91%E3%81%A6%E3%81%84%E3%81%8F"><i class="fa fa-link"></i></a>共有辺の頂点が左右どちらの3次元配列の末尾と一致するかで左右に振り分けていく</h3>
+
+<blockquote>
+<p><a href="https://camo.qiitausercontent.com/e5cecdcefcde1211b5a2868bc5a752171c71e877/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f63323665373963352d633664642d386133372d626230382d6238623439306435303132302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e5cecdcefcde1211b5a2868bc5a752171c71e877/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f63323665373963352d633664642d386133372d626230382d6238623439306435303132302e706e67" alt="03.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/c26e79c5-c6dd-8a37-bb08-b8b490d50120.png"></a></p>
+
+<p>この場合、現在の共有辺の下側の頂点が右側の頂点配列の末尾と一致するので、右側の頂点配列に追加します。<br>
+反対側の頂点は左側の頂点配列に追加します。</p>
+</blockquote>
+
+<h3>
+<span id="終点を求めて左右の3次元頂点配列に追加する" class="fragment"></span><a href="#%E7%B5%82%E7%82%B9%E3%82%92%E6%B1%82%E3%82%81%E3%81%A6%E5%B7%A6%E5%8F%B3%E3%81%AE3%E6%AC%A1%E5%85%83%E9%A0%82%E7%82%B9%E9%85%8D%E5%88%97%E3%81%AB%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>終点を求めて、左右の3次元頂点配列に追加する</h3>
+
+<blockquote>
+<p>始点同様、終点は最後の三角形の頂点のうち、直前の共有辺に向かい合う頂点を採用します。</p>
+
+<p>最終的には以下のようになります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/86400ad680ffcc91b2275d86d64a956d2ca4ea42/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f35383630653633662d353139382d643434332d326561372d3033353533363138363839612e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/86400ad680ffcc91b2275d86d64a956d2ca4ea42/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f35383630653633662d353139382d643434332d326561372d3033353533363138363839612e706e67" alt="04.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/5860e63f-5198-d443-2ea7-03553618689a.png"></a></p>
+
+<p>※ここで重複する点を削除しないことが重要になります。</p>
+</blockquote>
+
+<h1>
+<span id="3次元配列を2次元配列にコピーする" class="fragment"></span><a href="#3%E6%AC%A1%E5%85%83%E9%85%8D%E5%88%97%E3%82%922%E6%AC%A1%E5%85%83%E9%85%8D%E5%88%97%E3%81%AB%E3%82%B3%E3%83%94%E3%83%BC%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>3次元配列を2次元配列にコピーする</h1>
+
+<blockquote>
+<p>先ほど作成した3次元配列のコピーを作成します。<br>
+コピーするだけなので2次元配列といってもこの段階では3次元座標が入っています。<br>
+3次元配列は2次元から3次元に復元する際に必要なので、そのまま保持します。</p>
+</blockquote>
+
+<h1>
+<span id="xy平面の2次元に変換する" class="fragment"></span><a href="#xy%E5%B9%B3%E9%9D%A2%E3%81%AE2%E6%AC%A1%E5%85%83%E3%81%AB%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>XY平面の2次元に変換する</h1>
+
+<p>先ほどコピーしたものを2次元に変換していきます。</p>
+
+<h2>
+<span id="最初の三角形の平面上に展開する-convertto2dメソッド" class="fragment"></span><a href="#%E6%9C%80%E5%88%9D%E3%81%AE%E4%B8%89%E8%A7%92%E5%BD%A2%E3%81%AE%E5%B9%B3%E9%9D%A2%E4%B8%8A%E3%81%AB%E5%B1%95%E9%96%8B%E3%81%99%E3%82%8B-convertto2d%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89"><i class="fa fa-link"></i></a>最初の三角形の平面上に展開する (ConvertTo2Dメソッド)</h2>
+
+<blockquote>
+<p>イメージとしては三角形リストの連結部分(折れている箇所)を順番に伸ばして平行にしていく感じです。<br>
+起点となる点に対し、共有辺を軸として対象の点を回転させます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/6611209747295a3b1583433d9fab8972910a84b6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f37333331323536612d366562372d643531332d633635612d6461333438646261623133622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/6611209747295a3b1583433d9fab8972910a84b6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f37333331323536612d366562372d643531332d633635612d6461333438646261623133622e706e67" alt="12.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/7331256a-6eb7-d513-c65a-da348dbab13b.png"></a></p>
+
+<p>対象の点を回転した後は、現在の共有辺以降の全ての頂点に同じ回転を適用させます。<br>
+これを始点まで繰り返すことで全ての頂点が同一平面上に展開されます。<br>
+※通常の展開図作成アルゴリズムでは重なりを考慮する必要がありますが、ここでは気にしなくて良い問題です。</p>
+</blockquote>
+
+<h2>
+<span id="xy平面に展開する-converttoxyplane-メソッド" class="fragment"></span><a href="#xy%E5%B9%B3%E9%9D%A2%E3%81%AB%E5%B1%95%E9%96%8B%E3%81%99%E3%82%8B-converttoxyplane-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89"><i class="fa fa-link"></i></a>XY平面に展開する (ConvertToXYPlane メソッド)</h2>
+
+<blockquote>
+<p>同一平面上に展開できたので、今度はXY平面上に変換します。<br>
+まずは始点を原点に移動する平行移動量と、現在の面をXY平面に重なるように回転する回転を求めます。<br>
+全ての頂点に対して求めた平行移動と回転を適用します。</p>
+</blockquote>
+
+<h2>
+<span id="funnelを更新しながら2次元での経路を求める-updatefunnelメソッド" class="fragment"></span><a href="#funnel%E3%82%92%E6%9B%B4%E6%96%B0%E3%81%97%E3%81%AA%E3%81%8C%E3%82%892%E6%AC%A1%E5%85%83%E3%81%A7%E3%81%AE%E7%B5%8C%E8%B7%AF%E3%82%92%E6%B1%82%E3%82%81%E3%82%8B-updatefunnel%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89"><i class="fa fa-link"></i></a>Funnelを更新しながら2次元での経路を求める (UpdateFunnelメソッド)</h2>
+
+<p>これでFunnelアルゴリズムを適用する準備が整いました。</p>
+
+<h3>
+<span id="funnelの先端左側の頂点リスト右側の頂点リストを初期化する" class="fragment"></span><a href="#funnel%E3%81%AE%E5%85%88%E7%AB%AF%E5%B7%A6%E5%81%B4%E3%81%AE%E9%A0%82%E7%82%B9%E3%83%AA%E3%82%B9%E3%83%88%E5%8F%B3%E5%81%B4%E3%81%AE%E9%A0%82%E7%82%B9%E3%83%AA%E3%82%B9%E3%83%88%E3%82%92%E5%88%9D%E6%9C%9F%E5%8C%96%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Funnelの先端、左側の頂点リスト、右側の頂点リストを初期化する</h3>
+
+<blockquote>
+<p>Funnelの先端(以下Apex)は次の情報を保持します<br>
+・2次元頂点配列のインデックス<br>
+・座標 (インデックスから所得できるが説明のしやすさのため)<br>
+・左か右かのフラグ</p>
+
+<p>左右の頂点リストはそれぞれ対応するサイドの2次元頂点配列のインデックスをリストとして保持します。</p>
+
+<p>最初のFunnelは次のようになります。<br>
+Apex → 始点<br>
+左側の頂点リスト → [1]<br>
+右側の頂点リスト → [1]</p>
+
+<p><a href="https://camo.qiitausercontent.com/ea1015d82d4cb561f01687ab08a78453fff617eb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f64356636633835382d663836392d323766642d383238382d6663346661373461666336622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ea1015d82d4cb561f01687ab08a78453fff617eb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f64356636633835382d663836392d323766642d383238382d6663346661373461666336622e706e67" alt="06.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/d5f6c858-f869-27fd-8288-fc4fa74afc6b.png"></a></p>
+
+<p>左右の頂点リストはそれぞれ対応するサイドの2次元頂点配列のインデックスをリストとして保持します。</p>
+
+<p>最初のFunnelは次のようになります。<br>
+Apex → 始点<br>
+左側の頂点リスト → [1]<br>
+右側の頂点リスト → [1]</p>
+</blockquote>
+
+<h3>
+<span id="funnelの左右交互に頂点を追加していく-pushメソッド" class="fragment"></span><a href="#funnel%E3%81%AE%E5%B7%A6%E5%8F%B3%E4%BA%A4%E4%BA%92%E3%81%AB%E9%A0%82%E7%82%B9%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%84%E3%81%8F-push%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89"><i class="fa fa-link"></i></a>Funnelの左右交互に頂点を追加していく (Pushメソッド)</h3>
+
+<blockquote>
+<p>Funnelの左右どちらかの頂点リストを1つ進めます。<br>
+このとき2つのことをチェックします。</p>
+
+<h4>
+<span id="1-funnelが絞られないか-istightenedメソッド" class="fragment"></span><a href="#1-funnel%E3%81%8C%E7%B5%9E%E3%82%89%E3%82%8C%E3%81%AA%E3%81%84%E3%81%8B-istightened%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89"><i class="fa fa-link"></i></a>1. Funnelが絞られないか (IsTightenedメソッド)</h4>
+
+<p>Funnelが絞られる場合は頂点リストを一度クリアしたあとに追加します。<br>
+なぜかというと、Apexから追加する頂点まで直進する場合に、現在のFunnelの壁と衝突することがないからです。</p>
+
+<p><a href="https://camo.qiitausercontent.com/7472f997caf1cb056942d8c1f111ee9881720359/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f34643563363662612d316234622d393532622d323338612d6362616364636561613332372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7472f997caf1cb056942d8c1f111ee9881720359/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f34643563363662612d316234622d393532622d323338612d6362616364636561613332372e706e67" alt="07.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/4d5c66ba-1b4b-952b-238a-cbacdceaa327.png"></a></p>
+
+<p>Funnelが絞られるかの判定は<br>
+[<font color="red">1</font>]のベクトルと [<font color="blue">1</font>]のベクトルの内積と<br>
+[<font color="red">2</font>]のベクトルと [<font color="blue">1</font>]のベクトルの内積を比較します。</p>
+
+<h4>
+<span id="2-反対の頂点リストを追い越さないかiscrossedoppositeverticesメソッド" class="fragment"></span><a href="#2-%E5%8F%8D%E5%AF%BE%E3%81%AE%E9%A0%82%E7%82%B9%E3%83%AA%E3%82%B9%E3%83%88%E3%82%92%E8%BF%BD%E3%81%84%E8%B6%8A%E3%81%95%E3%81%AA%E3%81%84%E3%81%8Biscrossedoppositevertices%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89"><i class="fa fa-link"></i></a>2. 反対の頂点リストを追い越さないか(IsCrossedOppositeVerticesメソッド)</h4>
+
+<p><a href="https://camo.qiitausercontent.com/13958cfbdc9db26c04252f49eccfa474ff8fbd0a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f31306530363737612d346564372d313135332d353831642d6433636131303964653130302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/13958cfbdc9db26c04252f49eccfa474ff8fbd0a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f31306530363737612d346564372d313135332d353831642d6433636131303964653130302e706e67" alt="08.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/10e0677a-4ed7-1153-581d-d3ca109de100.png"></a></p>
+
+<p>反対側の頂点リストを追い越す場合は、追い越された頂点をApexに設定して、左右の頂点リストを初期化します<br>
+このとき以前のApexをリストに追加します</p>
+
+<p><a href="https://camo.qiitausercontent.com/dfa796c48b68ea1d3e068b9d192bdfc883b1b2a8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f35363464393066312d303037382d303465382d376663632d3466666163653937373964662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/dfa796c48b68ea1d3e068b9d192bdfc883b1b2a8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f35363464393066312d303037382d303465382d376663632d3466666163653937373964662e706e67" alt="13.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/564d90f1-0078-04e8-7fcc-4fface9779df.png"></a></p>
+
+<p>追い越しの判定は<br>
+Apexから反対側の頂点への[<font color="blue">ベクトル</font>]に対する 先端から対象の頂点への[<font color="red">ベクトル</font>]の外積を比べることで判定します。</p>
+
+<p>これを終点まで繰り返し、Apexの座標を結べば2次元での最短経路が求まります。</p>
+</blockquote>
+
+<h2>
+<span id="パスを生成する-makepathメソッド" class="fragment"></span><a href="#%E3%83%91%E3%82%B9%E3%82%92%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B-makepath%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89"><i class="fa fa-link"></i></a>パスを生成する (MakePathメソッド)</h2>
+
+<p>処理の都合上、大まかな流れでの以下の工程をまとめて、パスを生成する工程とします。</p>
+
+<ul>
+<li>求めた経路と三角形リストの連結部分(共有辺)の交点を挿入する</li>
+<li>経路上の全ての点の法線を求める </li>
+<li>3次元に復元する</li>
+</ul>
+
+<p>2次元の場合は必要ないですが、3次元の場合は求めた経路と共有辺の交点が必要になります。(理由はデモ動画をご覧いただければわかるかと思います)<br>
+交点の計算は単純に2直線の交点を求めるだけでよいのですが、3次元に復元するときにもとの座標を保持していないため工夫が必要です。<br>
+いろいろ方法はあると思うのですが、筆者がとった方法は、2次元上で片方の頂点からの距離の割合を保持しておき、3次元に復元した後に適用して交点を求める<br>
+方法を採用しました。</p>
+
+<p>また、求めた経路上の法線も求めておくと何かと使えそうなので、一緒に法線も計算しています。<br>
+※法線の計算は言葉で説明するのが難しいのでコードを読んで頂いたほうが分かりやすいかと思います。</p>
+
+<p><br><br>
+<a href="https://camo.qiitausercontent.com/9bd7dcfb72cfa8af5a4f73121fe4018f217fe73f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f36623366656430382d306333622d653762312d653862312d3239666635353233313832312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/9bd7dcfb72cfa8af5a4f73121fe4018f217fe73f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363838312f36623366656430382d306333622d653762312d653862312d3239666635353233313832312e706e67" alt="10.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206881/6b3fed08-0c3b-e7b1-e8b1-29ff55231821.png"></a></p>
+
+<p><br></p>
+
+<p>あとは、保持していた3次元頂点配列から対応する座標に変換して3次元に復元して完了です。</p>
+
+<h1>
+<span id="デモ" class="fragment"></span><a href="#%E3%83%87%E3%83%A2"><i class="fa fa-link"></i></a>デモ</h1>
+
+<p><a href="http://www.youtube.com/watch?v=1FPxM0ZPPBU" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/838c7ba590621228493b1c3c6c6557a77df8d433/687474703a2f2f696d672e796f75747562652e636f6d2f76692f314650784d305a505042552f302e6a7067" alt="デモ" data-canonical-src="http://img.youtube.com/vi/1FPxM0ZPPBU/0.jpg"></a></p>
+
+<p>青色のラインは法線です。</p>
+
+<h1>
+<span id="プロジェクト" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88"><i class="fa fa-link"></i></a>プロジェクト</h1>
+
+<p>今回作成したプロジェクトを<a href="https://github.com/skanmera/FunnelAlgorithm" rel="nofollow noopener" target="_blank">GitHub</a>で公開しています。</p>
+
+<p>※メインロジックはある程度テストして本記事に合わせてコメントを書いていますが、Editor拡張などの箇所は適当にサクッと実装したので挙動が不自然な箇所があります。<br>
+デモのモデルはProBuilderを使用しています。</p>
+
+<h1>
+<span id="ソースコード" class="fragment"></span><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>ソースコード</h1>
+
+<p>一応メインのソースコードも載せておきます。</p>
+
+<div class="code-frame" data-lang="csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">FunnelAlgorithm</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="nc">Apex</span>
+    <span class="p">{</span>
+        <span class="c1">// 左側もしくは右側の頂点配列のインデックス</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Index</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">// 位置</span>
+        <span class="k">public</span> <span class="n">Vector3</span> <span class="n">Position</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">// 左側か右側のフラグ</span>
+        <span class="k">public</span> <span class="kt">bool</span> <span class="n">IsLeft</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="k">public</span> <span class="nf">Apex</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">position</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">isLeft</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Index</span> <span class="p">=</span> <span class="n">index</span><span class="p">;</span>
+            <span class="n">Position</span> <span class="p">=</span> <span class="n">position</span><span class="p">;</span>
+            <span class="n">IsLeft</span> <span class="p">=</span> <span class="n">isLeft</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Pathfinder</span>
+    <span class="p">{</span>
+        <span class="c1">/// 3次元における左側の頂点配列</span>
+        <span class="k">private</span> <span class="n">Vector3</span><span class="p">[]</span> <span class="n">leftVertices3d</span><span class="p">;</span>
+
+        <span class="c1">/// ３次元における右側の頂点配列</span>
+        <span class="k">private</span> <span class="n">Vector3</span><span class="p">[]</span> <span class="n">rightVertices3d</span><span class="p">;</span>
+
+        <span class="c1">/// 2次元における左側の頂点配列</span>
+        <span class="k">private</span> <span class="n">Vector3</span><span class="p">[]</span> <span class="n">leftVertices2d</span><span class="p">;</span>
+
+        <span class="c1">/// 2次元における右側の頂点配列</span>
+        <span class="k">private</span> <span class="n">Vector3</span><span class="p">[]</span> <span class="n">rightVertices2d</span><span class="p">;</span>
+
+        <span class="c1">/// Funnelの先端</span>
+        <span class="k">private</span> <span class="n">Apex</span> <span class="n">apex</span><span class="p">;</span>
+
+        <span class="c1">/// Funnelの右側の頂点リスト</span>
+        <span class="k">private</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">leftIndices</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+
+        <span class="c1">/// Funnelの左側の頂点リスト</span>
+        <span class="k">private</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">rightIndices</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+
+        <span class="c1">/// Funnelの先端リスト</span>
+        <span class="k">private</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Apex</span><span class="p">&gt;</span> <span class="n">apexes</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Apex</span><span class="p">&gt;();</span>
+
+        <span class="k">public</span> <span class="n">Path</span> <span class="nf">FindPath</span><span class="p">(</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Triangle</span><span class="p">&gt;</span> <span class="n">triangles</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 三角形の数が2つ未満の場合は計算できないので空のパスを返す</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">triangles</span><span class="p">.</span><span class="n">Count</span><span class="p">()</span> <span class="p">&lt;</span> <span class="m">2</span><span class="p">)</span>
+                <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+
+            <span class="c1">// 与えられた三角形リストから３次元における左右の頂点配列を作成する</span>
+            <span class="k">if</span> <span class="p">(!</span><span class="n">CreateVertices3D</span><span class="p">(</span><span class="n">triangles</span><span class="p">))</span>
+                <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+
+            <span class="c1">// 3次元における頂点配列を２次元における頂点配列にコピーする</span>
+            <span class="n">CopyVertices3DToVertices2D</span><span class="p">();</span>
+
+            <span class="c1">// コピーした頂点配列を2次元に変換する</span>
+            <span class="n">ConvertTo2D</span><span class="p">();</span>
+
+            <span class="c1">// XY平面上に変換する</span>
+            <span class="n">ConvertToXYPlane</span><span class="p">();</span>
+
+            <span class="c1">// Funnelの先端を始点にセットする (右側も左側も同じなのでどっちを採用してももいい。ここでは左側を採用)</span>
+            <span class="n">apex</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Apex</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="m">0</span><span class="p">],</span> <span class="k">true</span><span class="p">);</span>
+
+            <span class="c1">// Funnelの左側の頂点リストに最初の頂点を追加する(先端から1つ進んだとこから開始する)</span>
+            <span class="n">leftIndices</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+
+            <span class="c1">// Funnelの右側の頂点リストに最初の頂点を追加する(先端から1つ進んだとこから開始する)</span>
+            <span class="n">rightIndices</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+
+            <span class="c1">// 終点にたどり着くまでFunnelに頂点を追加していく</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">UpdateFunnel</span><span class="p">())</span> <span class="p">{</span> <span class="p">}</span>
+
+            <span class="c1">// 終点にたどり着いたら現在のFunnelの先端を追加する</span>
+            <span class="n">apexes</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">apex</span><span class="p">);</span>
+
+            <span class="c1">// 終点を追加する(ここも左、右側のどちらを採用してもOK)</span>
+            <span class="n">apexes</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Apex</span><span class="p">(</span><span class="n">leftVertices2d</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="m">1</span><span class="p">,</span> <span class="n">leftVertices2d</span><span class="p">.</span><span class="n">Last</span><span class="p">(),</span> <span class="k">true</span><span class="p">));</span>
+
+            <span class="c1">// 共有辺との交点()を求め、最終的なパスを計算する</span>
+            <span class="kt">var</span> <span class="n">path</span> <span class="p">=</span> <span class="n">MakePath</span><span class="p">();</span>
+
+            <span class="k">return</span> <span class="n">path</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="kt">bool</span> <span class="nf">CreateVertices3D</span><span class="p">(</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Triangle</span><span class="p">&gt;</span> <span class="n">triangles</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 三角形リストから共有辺のリストを作成する</span>
+            <span class="kt">var</span> <span class="n">commonEdges</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Edge</span><span class="p">&gt;();</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">pair</span> <span class="k">in</span> <span class="n">triangles</span><span class="p">.</span><span class="n">MakePairs</span><span class="p">())</span>
+            <span class="p">{</span>
+                <span class="c1">// 前後の三角形から共有辺を探す</span>
+                <span class="kt">var</span> <span class="n">commonEdge</span> <span class="p">=</span> <span class="n">pair</span><span class="p">.</span><span class="n">Left</span><span class="p">.</span><span class="n">FindCommonEdge</span><span class="p">(</span><span class="n">pair</span><span class="p">.</span><span class="n">Right</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">commonEdge</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="c1">// 共有辺が見つからない場合は連結してないので失敗</span>
+                    <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="n">commonEdges</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">commonEdge</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="c1">// ３次元における頂点配列を初期化する。 長さは 始点 + 終点 + 共有辺の数 になる</span>
+            <span class="n">leftVertices3d</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Vector3</span><span class="p">[</span><span class="n">commonEdges</span><span class="p">.</span><span class="n">Count</span> <span class="p">+</span> <span class="m">2</span><span class="p">];</span>
+            <span class="n">rightVertices3d</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Vector3</span><span class="p">[</span><span class="n">commonEdges</span><span class="p">.</span><span class="n">Count</span> <span class="p">+</span> <span class="m">2</span><span class="p">];</span>
+
+            <span class="c1">// 始点を求める。始点は最初の三角形の頂点の内、最初の共有辺に向かいあう頂点</span>
+            <span class="kt">var</span> <span class="n">startPoint</span> <span class="p">=</span> <span class="n">triangles</span><span class="p">.</span><span class="n">First</span><span class="p">().</span><span class="n">FindOppositeVertex</span><span class="p">(</span><span class="n">commonEdges</span><span class="p">.</span><span class="n">First</span><span class="p">()).</span><span class="n">Value</span><span class="p">;</span>
+            <span class="c1">// 始点を両サイドの頂点配列に追加</span>
+            <span class="n">leftVertices3d</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="n">startPoint</span><span class="p">;</span>
+
+            <span class="c1">// 共有辺の頂点を左、右に分けていく</span>
+            <span class="kt">var</span> <span class="n">i</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">commonEdge</span> <span class="k">in</span> <span class="n">commonEdges</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">nextOrigin</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">zero</span><span class="p">;</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="p">==</span> <span class="m">1</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">commonEdge</span><span class="p">.</span><span class="n">A</span><span class="p">;</span>
+                    <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">commonEdge</span><span class="p">.</span><span class="n">B</span><span class="p">;</span>
+                    <span class="n">nextOrigin</span> <span class="p">=</span> <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="c1">// 頂点配列の最後と一致するかを調べて一致する場合はそのサイドに配列に追加する。一致しないほうは逆サイドに追加する。　必ずどちらかに一致する</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">commonEdge</span><span class="p">.</span><span class="n">A</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">leftVertices3d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">])</span> <span class="p">||</span> <span class="n">commonEdge</span><span class="p">.</span><span class="n">B</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">]))</span>
+                    <span class="p">{</span>
+                        <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">commonEdge</span><span class="p">.</span><span class="n">A</span><span class="p">;</span>
+                        <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">commonEdge</span><span class="p">.</span><span class="n">B</span><span class="p">;</span>
+
+                        <span class="n">nextOrigin</span> <span class="p">=</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                    <span class="p">}</span>
+                    <span class="k">else</span>
+                    <span class="p">{</span>
+                        <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">commonEdge</span><span class="p">.</span><span class="n">B</span><span class="p">;</span>
+                        <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">commonEdge</span><span class="p">.</span><span class="n">A</span><span class="p">;</span>
+
+                        <span class="n">nextOrigin</span> <span class="p">=</span> <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+
+                <span class="n">i</span><span class="p">++;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 終点を求める。終点は最後の三角形の頂点の内、最後の共有辺に向かいある頂点</span>
+            <span class="kt">var</span> <span class="n">endPoint</span> <span class="p">=</span> <span class="n">triangles</span><span class="p">.</span><span class="n">Last</span><span class="p">().</span><span class="n">FindOppositeVertex</span><span class="p">(</span><span class="n">commonEdges</span><span class="p">.</span><span class="n">Last</span><span class="p">()).</span><span class="n">Value</span><span class="p">;</span>
+            <span class="c1">// 終点を両サイドの頂点配列に追加</span>
+            <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">leftVertices3d</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="m">1</span><span class="p">]</span> <span class="p">=</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">leftVertices3d</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="m">1</span><span class="p">]</span> <span class="p">=</span> <span class="n">endPoint</span><span class="p">;</span>
+
+            <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">CopyVertices3DToVertices2D</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="c1">// 3次元における頂点配列をそのままコピーする</span>
+            <span class="c1">// コピーしたものをあとで2次元に変換する</span>
+            <span class="n">leftVertices2d</span> <span class="p">=</span> <span class="n">leftVertices3d</span><span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">v</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">z</span><span class="p">)).</span><span class="n">ToArray</span><span class="p">();</span>
+            <span class="n">rightVertices2d</span> <span class="p">=</span> <span class="n">rightVertices3d</span><span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">v</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">z</span><span class="p">)).</span><span class="n">ToArray</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">ConvertTo2D</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">origin</span> <span class="p">=</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">count</span> <span class="p">=</span> <span class="n">leftVertices2d</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="c1">// 回転対象の頂点をもとめる</span>
+                <span class="kt">var</span> <span class="n">isLeftEqual</span> <span class="p">=</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Equals</span><span class="p">(</span><span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">]);</span>
+                <span class="kt">var</span> <span class="n">target</span> <span class="p">=</span> <span class="n">isLeftEqual</span> <span class="p">?</span> <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">:</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+
+                <span class="c1">// origin - edge 平面の法線</span>
+                <span class="kt">var</span> <span class="n">originNormal</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">Cross</span><span class="p">(</span><span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">],</span> <span class="n">origin</span> <span class="p">-</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">]).</span><span class="n">normalized</span><span class="p">;</span>
+
+                <span class="c1">// target - edge 平面の法線</span>
+                <span class="kt">var</span> <span class="n">targetNormal</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">Cross</span><span class="p">(</span><span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">],</span> <span class="n">target</span> <span class="p">-</span> <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">]).</span><span class="n">normalized</span><span class="p">;</span>
+
+                <span class="c1">// 2つの法線間の角度を求める</span>
+                <span class="kt">var</span> <span class="n">angle</span> <span class="p">=</span> <span class="n">MathUtility</span><span class="p">.</span><span class="n">SignedVectorAngle</span><span class="p">(</span><span class="n">originNormal</span><span class="p">,</span> <span class="n">targetNormal</span><span class="p">,</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">]);</span>
+
+                <span class="c1">// edge を軸としてangleだけ回転するQuaternionを求める</span>
+                <span class="kt">var</span> <span class="n">rotation</span> <span class="p">=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="n">AngleAxis</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">]);</span>
+
+                <span class="c1">// 回転軸に回転を適用して平行移動量を求める</span>
+                <span class="kt">var</span> <span class="n">translation</span> <span class="p">=</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="p">(</span><span class="n">rotation</span> <span class="p">*</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">]);</span>
+
+                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="p">&lt;</span> <span class="n">leftVertices2d</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">j</span><span class="p">++)</span>
+                <span class="p">{</span>
+                    <span class="c1">// 求めた変換パラメータを現在の頂点以降の頂点全てに適用する</span>
+                    <span class="c1">// 適用する順番は回転-&gt;平行移動の順にすること</span>
+
+                    <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">=</span> <span class="n">rotation</span> <span class="p">*</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+                    <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">=</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">+</span> <span class="n">translation</span><span class="p">;</span>
+
+                    <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">=</span> <span class="n">rotation</span> <span class="p">*</span> <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+                    <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">=</span> <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">+</span> <span class="n">translation</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="c1">// 次の回転の起点を求める</span>
+                <span class="kt">var</span> <span class="n">nextOrigin</span> <span class="p">=</span> <span class="n">isLeftEqual</span> <span class="p">?</span> <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">]</span> <span class="p">:</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">];</span>
+                <span class="n">origin</span> <span class="p">=</span> <span class="n">nextOrigin</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">ConvertToXYPlane</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="c1">// 始点を原点に移動するパラメータを求める</span>
+            <span class="kt">var</span> <span class="n">origin</span> <span class="p">=</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
+            <span class="kt">var</span> <span class="n">translation</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">zero</span> <span class="p">-</span> <span class="n">origin</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">normal</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">Cross</span><span class="p">(</span><span class="n">leftVertices2d</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">origin</span><span class="p">,</span> <span class="n">rightVertices2d</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">origin</span><span class="p">).</span><span class="n">normalized</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">rotation</span> <span class="p">=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="n">FromToRotation</span><span class="p">(</span><span class="n">normal</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">));</span>
+
+            <span class="c1">// 全ての頂点に対してパラメータを適用する</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">leftVertices2d</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">rotation</span> <span class="p">*</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">+</span> <span class="n">translation</span><span class="p">;</span>
+                <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span><span class="p">,</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span><span class="p">);</span>
+
+                <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">rotation</span> <span class="p">*</span> <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">+</span> <span class="n">translation</span><span class="p">;</span>
+                <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span><span class="p">,</span> <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="n">Path</span> <span class="nf">MakePath</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">positions</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Vector3</span><span class="p">&gt;();</span>
+            <span class="kt">var</span> <span class="n">normals</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Vector3</span><span class="p">&gt;();</span>
+
+            <span class="c1">// 先端リストの前後でペアを作成してループで回す</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">pair</span> <span class="k">in</span> <span class="n">apexes</span><span class="p">.</span><span class="n">MakePairs</span><span class="p">())</span>
+            <span class="p">{</span>
+                <span class="c1">// 現在の先端の頂点インデックスを開始インデックスとする</span>
+                <span class="kt">var</span> <span class="n">startIndex</span> <span class="p">=</span> <span class="n">pair</span><span class="p">.</span><span class="n">Left</span><span class="p">.</span><span class="n">Index</span><span class="p">;</span>
+                <span class="c1">// 次の先端の頂点インデックスを終了インデックスとする</span>
+                <span class="kt">var</span> <span class="n">endIndex</span> <span class="p">=</span> <span class="n">pair</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">Index</span><span class="p">;</span>
+
+                <span class="c1">// 現在の先端のポジション(3次元)をパスに追加</span>
+                <span class="kt">var</span> <span class="n">startPoint</span> <span class="p">=</span> <span class="p">(</span><span class="n">pair</span><span class="p">.</span><span class="n">Left</span><span class="p">.</span><span class="n">IsLeft</span> <span class="p">?</span> <span class="n">leftVertices3d</span> <span class="p">:</span> <span class="n">rightVertices3d</span><span class="p">)[</span><span class="n">pair</span><span class="p">.</span><span class="n">Left</span><span class="p">.</span><span class="n">Index</span><span class="p">];</span>
+                <span class="n">positions</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">startPoint</span><span class="p">);</span>
+
+                <span class="c1">// 現在の先端の法線を求める</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">startIndex</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="c1">// 始点の場合</span>
+                    <span class="n">normals</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Vector3</span><span class="p">.</span><span class="n">Cross</span><span class="p">(</span><span class="n">rightVertices3d</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">leftVertices3d</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">leftVertices3d</span><span class="p">[</span><span class="m">0</span><span class="p">]).</span><span class="n">normalized</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="kt">var</span> <span class="n">opposite</span> <span class="p">=</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">startIndex</span><span class="p">].</span><span class="n">Equals</span><span class="p">(</span><span class="n">rightVertices3d</span><span class="p">[</span><span class="n">startIndex</span> <span class="p">-</span> <span class="m">1</span><span class="p">])</span> <span class="p">?</span> <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">startIndex</span> <span class="p">-</span> <span class="m">1</span><span class="p">]</span> <span class="p">:</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">startIndex</span> <span class="p">-</span> <span class="m">1</span><span class="p">];</span>
+                    <span class="n">normals</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Vector3</span><span class="p">.</span><span class="n">Cross</span><span class="p">(</span><span class="n">rightVertices3d</span><span class="p">[</span><span class="n">startIndex</span><span class="p">]</span> <span class="p">-</span> <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">startIndex</span><span class="p">],</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">startIndex</span><span class="p">]</span> <span class="p">-</span> <span class="n">opposite</span><span class="p">).</span><span class="n">normalized</span><span class="p">);</span>
+                <span class="p">}</span>
+
+                <span class="c1">// 開始インデックスから終了インデックスまでの共有辺との交点を求める</span>
+                <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">i</span> <span class="k">in</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="n">startIndex</span> <span class="p">+</span> <span class="m">1</span><span class="p">,</span> <span class="n">endIndex</span> <span class="p">-</span> <span class="n">startIndex</span><span class="p">))</span>
+                <span class="p">{</span>
+                    <span class="n">Vector3</span> <span class="n">intersection</span><span class="p">;</span>
+                    <span class="c1">// 現在の先端 - 次の先端 の線分と 共有辺との交点を求める</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">MathUtility</span><span class="p">.</span><span class="n">SegmentSegmentIntersection</span><span class="p">(</span><span class="k">out</span> <span class="n">intersection</span><span class="p">,</span> <span class="n">pair</span><span class="p">.</span><span class="n">Left</span><span class="p">.</span><span class="n">Position</span><span class="p">,</span> <span class="n">pair</span><span class="p">.</span><span class="n">Right</span><span class="p">.</span><span class="n">Position</span><span class="p">,</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+                    <span class="p">{</span>
+                        <span class="c1">// 後から3次元に変換できるように共有辺の左側の頂点から交点までの長さを割合として計算する</span>
+                        <span class="kt">var</span> <span class="n">lerp</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">Distance</span><span class="p">(</span><span class="n">intersection</span><span class="p">,</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">/</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">Distance</span><span class="p">(</span><span class="n">rightVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">leftVertices2d</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+
+                        <span class="c1">// 各サイドの3次元における頂点を取得</span>
+                        <span class="kt">var</span> <span class="n">left3dpos</span> <span class="p">=</span> <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                        <span class="kt">var</span> <span class="n">right3dpos</span> <span class="p">=</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+
+                        <span class="c1">// 先ほど求めた割合から3次元における交点を算出する</span>
+                        <span class="kt">var</span> <span class="n">position</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">MoveTowards</span><span class="p">(</span><span class="n">left3dpos</span><span class="p">,</span> <span class="n">right3dpos</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">Distance</span><span class="p">(</span><span class="n">left3dpos</span><span class="p">,</span> <span class="n">right3dpos</span><span class="p">)</span> <span class="p">*</span> <span class="n">lerp</span><span class="p">);</span>
+
+                        <span class="c1">// 現在の面の法線を求める</span>
+                        <span class="kt">var</span> <span class="n">currentOpposite</span> <span class="p">=</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Equals</span><span class="p">(</span><span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">])</span> <span class="p">?</span> <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">]</span> <span class="p">:</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span> <span class="p">-</span> <span class="m">1</span><span class="p">];</span>
+                        <span class="kt">var</span> <span class="n">currentNormal</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">Cross</span><span class="p">(</span><span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">-</span> <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">-</span> <span class="n">currentOpposite</span><span class="p">);</span>
+
+                        <span class="c1">// 次の面の法線を求める</span>
+                        <span class="kt">var</span> <span class="n">nextOpposite</span> <span class="p">=</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span> <span class="p">+</span> <span class="m">1</span><span class="p">].</span><span class="n">Equals</span><span class="p">(</span><span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">?</span> <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">:</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                        <span class="kt">var</span> <span class="n">nextNormal</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">Cross</span><span class="p">(</span><span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span> <span class="p">+</span> <span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">i</span> <span class="p">+</span> <span class="m">1</span><span class="p">],</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">i</span> <span class="p">+</span> <span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">nextOpposite</span><span class="p">);</span>
+
+                        <span class="kt">var</span> <span class="n">normal</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Vector3</span><span class="p">((</span><span class="n">currentNormal</span><span class="p">.</span><span class="n">x</span> <span class="p">+</span> <span class="n">nextNormal</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="p">/</span> <span class="m">2.0f</span><span class="p">,</span> <span class="p">(</span><span class="n">currentNormal</span><span class="p">.</span><span class="n">y</span> <span class="p">+</span> <span class="n">nextNormal</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="p">/</span> <span class="m">2.0f</span><span class="p">,</span> <span class="p">(</span><span class="n">currentNormal</span><span class="p">.</span><span class="n">z</span> <span class="p">+</span> <span class="n">nextNormal</span><span class="p">.</span><span class="n">z</span><span class="p">)</span> <span class="p">/</span> <span class="m">2.0f</span><span class="p">).</span><span class="n">normalized</span><span class="p">;</span>
+
+                        <span class="c1">// パスに追加</span>
+                        <span class="n">positions</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">position</span><span class="p">);</span>
+                        <span class="n">normals</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">normal</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 3次元における終点をパスに追加</span>
+            <span class="kt">var</span> <span class="n">endPoint</span> <span class="p">=</span> <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">leftVertices3d</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="m">1</span><span class="p">];</span>
+            <span class="n">positions</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">endPoint</span><span class="p">);</span>
+
+            <span class="c1">// 終点の法線を求める</span>
+            <span class="kt">var</span> <span class="n">endNormal</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">Cross</span><span class="p">(</span><span class="n">leftVertices3d</span><span class="p">[</span><span class="n">leftVertices3d</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="m">2</span><span class="p">]</span> <span class="p">-</span> <span class="n">rightVertices3d</span><span class="p">[</span><span class="n">rightVertices3d</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="m">2</span><span class="p">],</span> <span class="n">leftVertices3d</span><span class="p">[</span><span class="n">leftVertices3d</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="m">2</span><span class="p">]</span> <span class="p">-</span> <span class="n">leftVertices3d</span><span class="p">.</span><span class="n">Last</span><span class="p">()).</span><span class="n">normalized</span><span class="p">;</span>
+            <span class="n">normals</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">endNormal</span><span class="p">);</span>
+
+            <span class="k">return</span> <span class="nf">MakePath</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">normals</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="n">Path</span> <span class="nf">MakePath</span><span class="p">(</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Vector3</span><span class="p">&gt;</span> <span class="n">positions</span><span class="p">,</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Vector3</span><span class="p">&gt;</span> <span class="n">normals</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 同じポジションでグループ化する</span>
+            <span class="kt">var</span> <span class="n">positionGroups</span> <span class="p">=</span> <span class="n">positions</span><span class="p">.</span><span class="n">SplitByEquality</span><span class="p">();</span>
+
+            <span class="c1">// 法線を合成する</span>
+            <span class="kt">var</span> <span class="n">resultNormals</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Vector3</span><span class="p">&gt;();</span>
+            <span class="kt">int</span> <span class="n">skipCount</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">g</span> <span class="k">in</span> <span class="n">positionGroups</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// ポジションリストに対応する法線リストを取得して合成する</span>
+                <span class="kt">var</span> <span class="n">resultNormal</span> <span class="p">=</span> <span class="n">MathUtility</span><span class="p">.</span><span class="n">Synthesize</span><span class="p">(</span><span class="n">normals</span><span class="p">.</span><span class="n">Skip</span><span class="p">(</span><span class="n">skipCount</span><span class="p">).</span><span class="n">Take</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">Count</span><span class="p">()));</span>
+                <span class="n">resultNormals</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">resultNormal</span><span class="p">);</span>
+                <span class="n">skipCount</span> <span class="p">+=</span> <span class="n">g</span><span class="p">.</span><span class="n">Count</span><span class="p">();</span>
+            <span class="p">}</span>
+
+            <span class="kt">var</span> <span class="n">resultPositions</span> <span class="p">=</span> <span class="n">positionGroups</span><span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">g</span> <span class="p">=&gt;</span> <span class="n">g</span><span class="p">.</span><span class="n">First</span><span class="p">());</span>
+
+            <span class="k">return</span> <span class="k">new</span> <span class="nf">Path</span><span class="p">(</span><span class="n">resultPositions</span><span class="p">.</span><span class="n">Reverse</span><span class="p">&lt;</span><span class="n">Vector3</span><span class="p">&gt;(),</span> <span class="n">resultNormals</span><span class="p">.</span><span class="n">Reverse</span><span class="p">&lt;</span><span class="n">Vector3</span><span class="p">&gt;());</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="kt">bool</span> <span class="nf">UpdateFunnel</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="c1">// Funnelの左側の頂点リストが終点にたどり着いたら終了 (右側も終点になるはずなので左側のチェックでよい)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">leftVertices2d</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="m">1</span> <span class="p">&lt;=</span> <span class="n">leftIndices</span><span class="p">.</span><span class="n">Last</span><span class="p">())</span>
+                <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+
+            <span class="c1">// Funnelの左側に頂点を追加する</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Push</span><span class="p">(</span><span class="n">leftVertices2d</span><span class="p">,</span> <span class="n">rightVertices2d</span><span class="p">,</span> <span class="k">ref</span> <span class="n">leftIndices</span><span class="p">,</span> <span class="k">ref</span> <span class="n">rightIndices</span><span class="p">,</span> <span class="k">true</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="c1">// 左側に追加できた場合は右側に追加する</span>
+                <span class="n">Push</span><span class="p">(</span><span class="n">rightVertices2d</span><span class="p">,</span> <span class="n">leftVertices2d</span><span class="p">,</span> <span class="k">ref</span> <span class="n">rightIndices</span><span class="p">,</span> <span class="k">ref</span> <span class="n">leftIndices</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="kt">bool</span> <span class="nf">Push</span><span class="p">(</span><span class="n">Vector3</span><span class="p">[]</span> <span class="n">targets</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">[]</span> <span class="n">opposites</span><span class="p">,</span> <span class="k">ref</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">targetIndices</span><span class="p">,</span> <span class="k">ref</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">oppositeIndices</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">isLeft</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 進めた際にFunnnelの反対側の頂点リストを追い越さないかを調べる</span>
+            <span class="kt">var</span> <span class="n">crossedIndex</span> <span class="p">=</span> <span class="n">IsCrossedOppositeVertices</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">opposites</span><span class="p">,</span> <span class="n">targetIndices</span><span class="p">,</span> <span class="n">oppositeIndices</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">crossedIndex</span> <span class="p">&gt;</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="n">crossedIndex</span> <span class="p">&lt;</span> <span class="n">targets</span><span class="p">.</span><span class="n">Count</span><span class="p">()</span> <span class="p">-</span> <span class="m">1</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// 追い越した場合は現在のFunnelの先端を記録する</span>
+                <span class="n">apexes</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">apex</span><span class="p">);</span>
+
+                <span class="c1">// Funnelの先端を追い越されたほうの頂点にセットする</span>
+                <span class="n">apex</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Apex</span><span class="p">(</span><span class="n">crossedIndex</span><span class="p">,</span> <span class="n">opposites</span><span class="p">[</span><span class="n">crossedIndex</span><span class="p">],</span> <span class="p">!</span><span class="n">isLeft</span><span class="p">);</span>
+
+                <span class="c1">// Funnelの両サイドのインデックスをセットする</span>
+                <span class="kt">var</span> <span class="n">nextIndex</span> <span class="p">=</span> <span class="n">apex</span><span class="p">.</span><span class="n">Index</span> <span class="p">+</span> <span class="m">1</span><span class="p">;</span>
+                <span class="k">while</span> <span class="p">(</span><span class="n">opposites</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="n">nextIndex</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="c1">// Funnelの先端と同じ座標にいる場合は座標が変わるまでインデックスを進める</span>
+                    <span class="k">if</span> <span class="p">(!</span><span class="n">apex</span><span class="p">.</span><span class="n">Position</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">opposites</span><span class="p">[</span><span class="n">nextIndex</span><span class="p">]))</span>
+                        <span class="k">break</span><span class="p">;</span>
+
+                    <span class="n">nextIndex</span><span class="p">++;</span>
+                <span class="p">}</span>
+
+                <span class="n">targetIndices</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;()</span> <span class="p">{</span> <span class="n">nextIndex</span> <span class="p">};</span>
+                <span class="n">oppositeIndices</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">{</span> <span class="n">nextIndex</span> <span class="p">};</span>
+
+                <span class="c1">// 進めることができなかったのでFalseを返す</span>
+                <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 進めることができる</span>
+
+            <span class="kt">var</span> <span class="n">next</span> <span class="p">=</span> <span class="n">targetIndices</span><span class="p">.</span><span class="n">Last</span><span class="p">()</span> <span class="p">+</span> <span class="m">1</span><span class="p">;</span>
+            <span class="c1">// 進めた場合Funnelが絞られるかを調べる</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">IsTightened</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">opposites</span><span class="p">,</span> <span class="n">targetIndices</span><span class="p">,</span> <span class="n">oppositeIndices</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="c1">// Funnelが絞られるので一度頂点リストをクリアする</span>
+                <span class="n">targetIndices</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 新しい頂点として追加</span>
+            <span class="n">targetIndices</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">next</span><span class="p">);</span>
+
+            <span class="c1">// 進めることができたのでTrueを返す</span>
+            <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="kt">bool</span> <span class="nf">IsTightened</span><span class="p">(</span><span class="n">Vector3</span><span class="p">[]</span> <span class="n">targets</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">[]</span> <span class="n">opposites</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">targetIndices</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">oppositeIndices</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 先端から、進める側の最後の頂点に向かうベクトル</span>
+            <span class="kt">var</span> <span class="n">lastVec</span> <span class="p">=</span> <span class="p">(</span><span class="n">targets</span><span class="p">[</span><span class="n">targetIndices</span><span class="p">.</span><span class="n">Last</span><span class="p">()</span> <span class="p">+</span> <span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">apex</span><span class="p">.</span><span class="n">Position</span><span class="p">).</span><span class="n">normalized</span><span class="p">;</span>
+            <span class="c1">// 先端から、進める側の最初の頂点に向かうベクトル</span>
+            <span class="kt">var</span> <span class="n">firstVec</span> <span class="p">=</span> <span class="p">(</span><span class="n">targets</span><span class="p">[</span><span class="n">targetIndices</span><span class="p">.</span><span class="n">First</span><span class="p">()]</span> <span class="p">-</span> <span class="n">apex</span><span class="p">.</span><span class="n">Position</span><span class="p">).</span><span class="n">normalized</span><span class="p">;</span>
+            <span class="c1">// 先端から、反対側の最初の頂点に向かうベクトル</span>
+            <span class="kt">var</span> <span class="n">oppositeVec</span> <span class="p">=</span> <span class="p">(</span><span class="n">opposites</span><span class="p">[</span><span class="n">oppositeIndices</span><span class="p">.</span><span class="n">First</span><span class="p">()]</span> <span class="p">-</span> <span class="n">apex</span><span class="p">.</span><span class="n">Position</span><span class="p">).</span><span class="n">normalized</span><span class="p">;</span>
+
+            <span class="k">return</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">Dot</span><span class="p">(</span><span class="n">lastVec</span><span class="p">,</span> <span class="n">oppositeVec</span><span class="p">)</span> <span class="p">&gt;</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">Dot</span><span class="p">(</span><span class="n">firstVec</span><span class="p">,</span> <span class="n">oppositeVec</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="kt">int</span> <span class="nf">IsCrossedOppositeVertices</span><span class="p">(</span><span class="n">Vector3</span><span class="p">[]</span> <span class="n">targets</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">[]</span> <span class="n">opposites</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">targetIndices</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">oppositeIndices</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 先端から、進める側の最後の頂点に向かうベクトル</span>
+            <span class="kt">var</span> <span class="n">lastVec</span> <span class="p">=</span> <span class="n">targets</span><span class="p">[</span><span class="n">targetIndices</span><span class="p">.</span><span class="n">Last</span><span class="p">()]</span> <span class="p">-</span> <span class="n">apex</span><span class="p">.</span><span class="n">Position</span><span class="p">;</span>
+            <span class="c1">// 先端から、進める側の追加する頂点に向かうベクトル</span>
+            <span class="kt">var</span> <span class="n">nextVec</span> <span class="p">=</span> <span class="n">targets</span><span class="p">[</span><span class="n">targetIndices</span><span class="p">.</span><span class="n">Last</span><span class="p">()</span> <span class="p">+</span> <span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">apex</span><span class="p">.</span><span class="n">Position</span><span class="p">;</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">i</span> <span class="k">in</span> <span class="n">oppositeIndices</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// 先端から、反対側のi番目の頂点に向かうベクトル</span>
+                <span class="kt">var</span> <span class="n">oppositeVec</span> <span class="p">=</span> <span class="n">opposites</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">-</span> <span class="n">apex</span><span class="p">.</span><span class="n">Position</span><span class="p">;</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">IsCrossed</span><span class="p">(</span><span class="n">oppositeVec</span><span class="p">,</span> <span class="n">lastVec</span><span class="p">,</span> <span class="n">nextVec</span><span class="p">))</span>
+                    <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="kt">bool</span> <span class="nf">IsCrossed</span><span class="p">(</span><span class="n">Vector3</span> <span class="n">target</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">current</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">next</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 不正なベクトルの場合はダメ</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">target</span> <span class="p">==</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">zero</span> <span class="p">||</span> <span class="n">current</span> <span class="p">==</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">zero</span> <span class="p">||</span> <span class="n">next</span> <span class="p">==</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">zero</span><span class="p">)</span>
+                <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+
+            <span class="c1">// 更新前のベクトルと基準となるベクトルの外積をとる</span>
+            <span class="kt">var</span> <span class="n">currentCross</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">Cross</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">current</span><span class="p">).</span><span class="n">normalized</span><span class="p">;</span>
+            <span class="c1">// 更新後のベクトルと基準となるベクトルの外積をとる</span>
+            <span class="kt">var</span> <span class="n">nextCross</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">Cross</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">next</span><span class="p">).</span><span class="n">normalized</span><span class="p">;</span>
+
+            <span class="kt">var</span> <span class="n">dot</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">Dot</span><span class="p">(</span><span class="n">currentCross</span><span class="p">,</span> <span class="n">nextCross</span><span class="p">);</span>
+
+            <span class="c1">// 外積が反対方向なら追い越したことになる</span>
+            <span class="k">return</span> <span class="n">dot</span> <span class="p">&lt;=</span> <span class="m">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h1>
+<span id="最後に" class="fragment"></span><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB"><i class="fa fa-link"></i></a>最後に</h1>
+
+<p>今回記事を書くにあたって、説明しやすいように処理を冗長に書いたり、変数を多くしたりしているので、最適化の余地がかなりあります。(左右の配列をまとめるなど)<br>
+また、Funnelアルゴリズムを3Dに適用するロジックは筆者が考えたものであり、他に最適なアルゴリズムが存在するかもしれません。<br>
+あくまで1つの方法として捉えて頂ければと思います。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

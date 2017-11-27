@@ -1,0 +1,394 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (Lugendre)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (Lugendre さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>Lugendreさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>199</kbd>
+		<a target="_blank" href="https://qiita.com/Lugendre/items/70e517e59698e0e435f5">Haskellの入門から中級者になるまでの指針</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-05 20:00:59</center>
+	</td>
+	<td style="width:200px;">
+		@Lugendre<br><img width="80" height="80" src="https://avatars3.githubusercontent.com/u/28984959?v=4">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Haskell]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>プログラミング言語の学習は一般に大変である。<br>
+最初にどのようなことをすればいいのか、どの本をよむべきなのか等疑問は尽きない。マイナーな言語で情報が少なければなおさらである。<br>
+この記事では諸事情でHaskellに入門することになった方にむけて、どのように勉強していくか、参考にすべき本や記事を紹介する。<br>
+より良い指針にするためにも、指摘、感想等はコメントや私のTwitterアカウント(<a href="/Lugendre" class="user-mention js-hovercard" title="Lugendre" data-hovercard-target-type="user" data-hovercard-target-name="Lugendre">@Lugendre</a>)に投稿して頂けるとありがたい。</p>
+
+<h1>
+<span id="入門初心者" class="fragment"></span><a href="#%E5%85%A5%E9%96%80%E5%88%9D%E5%BF%83%E8%80%85"><i class="fa fa-link"></i></a>入門〜初心者</h1>
+
+<h2>
+<span id="環境構築" class="fragment"></span><a href="#%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89"><i class="fa fa-link"></i></a>環境構築</h2>
+
+<p>まずどんなプログラミング言語においても、プログラミングをする環境が必要である。Haskellにおいては <strong>Stack</strong>と呼ばれるツールをインストールすることによって、コンパイラ(GHC)、モジュールのインストール、ビルドなど自動でやってくれるようになるので、とりあえず脳死でStackをインストールしておけば良い。<br>
+以下の<a href="/igrep" class="user-mention js-hovercard" title="igrep" data-hovercard-target-type="user" data-hovercard-target-name="igrep">@igrep</a>さんの記事が参考にすると良い。<br>
+<a href="https://qiita.com/igrep/items/da1d8df6d40eb001a561" id="reference-ff0068c2eae469e06ed7">Stackでやる最速Haskell Hello world! (GHCのインストール付き！)</a></p>
+
+<p>他にも<a href="http://amzn.asia/cjNcHXP" rel="nofollow noopener" target="_blank">Haskell 教養としての関数型プログラミング</a>や先日発売した<a href="http://amzn.asia/dZIoGJ7" rel="nofollow noopener" target="_blank">Haskell入門</a>にも詳しく書いてある。</p>
+
+<p>Haskellには優れたIDEとして広く知られているものはない。どうしても優れたIDEで開発したいというのならば自分で作るしか無いのが現状である。よって現状の開発環境としては自分の好きなテキストエディタとStackで十分である。好きなテキストエディタが無いのであればAtomを利用するのが良いだろう。</p>
+
+<p>また、Haskellらしいきれいなコードを意識するためにも <strong>stylish-haskell</strong> や <strong>hlint</strong> を使うことを強くおすすめする。<br>
+これらのツールはStackよりインストールできる。詳しくは<a href="/ncaq" class="user-mention js-hovercard" title="ncaq" data-hovercard-target-type="user" data-hovercard-target-name="ncaq">@ncaq</a>さんの以下の記事を参考されたし。<br>
+<a href="https://www.ncaq.net/2017/10/07/" rel="nofollow noopener" target="_blank">2017-10-07<br>
+Haskellを書くときはstylish-haskellとhlintを使って労せずして綺麗なコードを書きましょう</a></p>
+
+<h2>
+<span id="基本的な文法考え方について知る" class="fragment"></span><a href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E6%96%87%E6%B3%95%E8%80%83%E3%81%88%E6%96%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E7%9F%A5%E3%82%8B"><i class="fa fa-link"></i></a>基本的な文法、考え方について知る</h2>
+
+<p>Haskell入門の鉄板本である<a href="http://amzn.asia/2RhgBDl" rel="nofollow noopener" target="_blank">すごいHaskellたのしく学ぼう！</a>(通称すごいH本)を読むのが良い。ネット上の下手なHaskell入門記事を読むよりもこれを読もう。お金がないのであれば、<a href="http://learnyouahaskell.com/chapters" rel="nofollow noopener" target="_blank">英語版</a>を読むと良い。ここで注意すべきはすごいH本は環境構築のお話が若干古いので、参考にしないこと。<br>
+加えて、<a href="http://amzn.asia/dZIoGJ7" rel="nofollow noopener" target="_blank">Haskell入門</a>も必読である。名前に反し、すごいH本よりも若干高度な内容が扱われているが、Haskellを実践で扱うのに必要な内容が余すことなく書いてある。<br>
+Haskellにおける関数型プログラミングの考え方になれるためにも、手を動かしながら読むと良い。<br>
+わからないところがあれば後に紹介するHaskell-jpのSlackやTwitterで質問をすると初心者に飢えたHaskellerたちがこぞって教えてくれる。</p>
+
+<h2>
+<span id="モナドについて" class="fragment"></span><a href="#%E3%83%A2%E3%83%8A%E3%83%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>モナドについて</h2>
+
+<p>度々話題になるモナドについてだが、基本的には具体的なモナド(StateやMaybe, IOなど)をただ使えるようになれば良い。数学の圏論の話などはまったく知らなくて良い。<sup id="fnref1"><a href="#fn1" rel="footnote" title="私はいずれは知るべきだと考えているが、すくなくともこの段階で知るべきことではない。">1</a></sup>すごいH本を読んで行けば具体的な使い方が出てくるので、一緒に手を動かしながら使い方を学ぶと良い。残念ながら <strong>すごいH本だけではモナドに関して十分な理解は得られない。</strong> <a href="http://amzn.asia/dZIoGJ7" rel="nofollow noopener" target="_blank">Haskell入門</a>も同時に参照するとよい。</p>
+
+<h2>
+<span id="演習簡単なものを作ってみる" class="fragment"></span><a href="#%E6%BC%94%E7%BF%92%E7%B0%A1%E5%8D%98%E3%81%AA%E3%82%82%E3%81%AE%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B"><i class="fa fa-link"></i></a>[演習]簡単なものを作ってみる</h2>
+
+<p>ここらまで来たらちょっとした演習としてパーサーコンビネータを作ってみよう。これは題材として非常に優秀で、基本的なモナドの使い方とその威力を体感することができる。<a href="http://amzn.asia/d4uxed3" rel="nofollow noopener" target="_blank">Haskellによる関数プログラミングの思考法</a>(IFPH)の11章や<a href="http://www.geocities.jp/m_hiroi/func/haskell32.html" rel="nofollow noopener" target="_blank">お気楽Haskellプログラミング入門</a>や<a href="http://dev.stephendiehl.com/hask/" rel="nofollow noopener" target="_blank">WHAT I WISH I KNEW WHEN LEARNING HASKELL</a>を参考にすると良い。</p>
+
+<p>ここまで来たら初心者卒業と言っても良いだろう。おめでとう！</p>
+
+<h1>
+<span id="脱初心者を目指す" class="fragment"></span><a href="#%E8%84%B1%E5%88%9D%E5%BF%83%E8%80%85%E3%82%92%E7%9B%AE%E6%8C%87%E3%81%99"><i class="fa fa-link"></i></a>脱初心者を目指す</h1>
+
+<h2>
+<span id="実践的内容を知る" class="fragment"></span><a href="#%E5%AE%9F%E8%B7%B5%E7%9A%84%E5%86%85%E5%AE%B9%E3%82%92%E7%9F%A5%E3%82%8B"><i class="fa fa-link"></i></a>実践的内容を知る</h2>
+
+<p>残念ながら、上記の内容だけではHaskellで実践的なプログラミングはできない。ここでは実践的なプログラミングに必要な幾つかの要素を紹介する。</p>
+
+<p>複数のモナドを扱うのに必要な <strong>モナド変換子</strong> は<a href="http://amzn.asia/dZIoGJ7" rel="nofollow noopener" target="_blank">Haskell入門</a>で詳しく紹介されている。<a href="/7shi" class="user-mention js-hovercard" title="7shi" data-hovercard-target-type="user" data-hovercard-target-name="7shi">@7shi</a>さんの<a href="https://qiita.com/7shi/items/4408b76624067c17e933" id="reference-e9dfc5f30ef8b56039e7">Haskell モナド変換子超入門</a>も良いだろう。<br>
+また、<a href="http://amzn.asia/dZIoGJ7" rel="nofollow noopener" target="_blank">Haskell入門</a>は各モナドの使い分けや使用方法に関しても詳しく載っている。一度目を通しておくべきだ。</p>
+
+<p>また、標準ライブラリやよく使うライブラリ、フレームワークについても知っておくべきだろう。これに関しても<a href="http://amzn.asia/dZIoGJ7" rel="nofollow noopener" target="_blank">Haskell入門</a>によくまとめられている。<br>
+特に <strong>Lens/Prism</strong>はHaskellで複雑なデータ構造を扱う上で欠かせない。<a href="http://amzn.asia/dZIoGJ7" rel="nofollow noopener" target="_blank">Haskell入門</a>でも紹介されているが、Lensの最低限の使い方のみであるがこの段階ではそれで十分だろう。<br>
+他にもテストは<strong>doctest</strong>, <strong>QuickCheck</strong>, <strong>Hspec</strong>, <strong>HUnit</strong>がある。テストフレームワークとしては<strong>test-framework</strong>がある。QuickCheckは<a href="http://amzn.asia/0viF1bE" rel="nofollow noopener" target="_blank">関数プログラミングの楽しみ</a>や<a href="http://amzn.asia/fMnNyyE" rel="nofollow noopener" target="_blank">関数プログラミング実践入門</a>で、doctestは<a href="http://amzn.asia/fMnNyyE" rel="nofollow noopener" target="_blank">関数プログラミング実践入門</a>で, HUnitは<a href="http://amzn.asia/dZIoGJ7" rel="nofollow noopener" target="_blank">Haskell入門</a>で取り上げられている。test-frameworkやHspecなどはライブラリのドキュメントを見ると良いだろう。</p>
+
+<p><strong>遅延評価</strong> はプログラミングのパフォーマンスに直結する。適度に正格評価をしてやる必要があるが、当然デメリットも有る。GHCと遅延評価の話題に関しては<a href="http://amzn.asia/d4uxed3" rel="nofollow noopener" target="_blank">Haskellによる関数プログラミングの思考法</a>(IFPH)やGHCの公式ドキュメント、反駁不可パターンなどは<a href="http://dev.stephendiehl.com/hask/" rel="nofollow noopener" target="_blank">WHAT I WISH I KNEW WHEN LEARNING HASKELL</a>を参照すると良い。</p>
+
+<h2>
+<span id="演習webアプリケーションを作ってみる" class="fragment"></span><a href="#%E6%BC%94%E7%BF%92web%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B"><i class="fa fa-link"></i></a>[演習]Webアプリケーションを作ってみる</h2>
+
+<p>ここまでの知識を用いて実践的なプログラミングとして、Webアプリケーションを作ってみるのは良い練習になる。<a href="http://amzn.asia/dZIoGJ7" rel="nofollow noopener" target="_blank">Haskell入門</a>では最後にWebアプリケーションを作っているので、一緒に作っているのが良いだろう。関数プログラミングの基礎的な考え方も身につく。</p>
+
+<p>ここまでできれば中級者だ。実践的なプログラミングも十分に可能だろう。</p>
+
+<h2>
+<span id="並列並行プログラミング" class="fragment"></span><a href="#%E4%B8%A6%E5%88%97%E4%B8%A6%E8%A1%8C%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>並列・並行プログラミング</h2>
+
+<p>Haskellは並列・並行プログラミングが得意であると言われている。<br>
+これらに関しては<a href="http://amzn.asia/dZIoGJ7" rel="nofollow noopener" target="_blank">Haskell入門</a>、<a href="http://amzn.asia/3VgbyYr" rel="nofollow noopener" target="_blank">Haskellによる並列・並行プログラミング</a>を参照すると良い。</p>
+
+<h1>
+<span id="更に深くおまけ" class="fragment"></span><a href="#%E6%9B%B4%E3%81%AB%E6%B7%B1%E3%81%8F%E3%81%8A%E3%81%BE%E3%81%91"><i class="fa fa-link"></i></a>更に深く(おまけ)</h1>
+
+<p>Haskellを極めたい、更に深く知りたいという方に対する指針。</p>
+
+<h2>
+<span id="データ構造とアルゴリズム" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E6%A7%8B%E9%80%A0%E3%81%A8%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0"><i class="fa fa-link"></i></a>データ構造とアルゴリズム</h2>
+
+<p>関数型言語には関数型言語のデータ構造とアルゴリズムがある。<a href="http://amzn.asia/hFHLLoy" rel="nofollow noopener" target="_blank">純粋関数型データ構造</a><sup id="fnref2"><a href="#fn2" rel="footnote" title="残念ながらHaskellで書かれていない.">2</a></sup>や<a href="http://amzn.asia/6N5w9B5" rel="nofollow noopener" target="_blank">関数プログラミング 珠玉のアルゴリズムデザイン</a>を読むと良い。</p>
+
+<h2>
+<span id="関数プログラミングの考え方を学ぶ" class="fragment"></span><a href="#%E9%96%A2%E6%95%B0%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%AE%E8%80%83%E3%81%88%E6%96%B9%E3%82%92%E5%AD%A6%E3%81%B6"><i class="fa fa-link"></i></a>関数プログラミングの考え方を学ぶ</h2>
+
+<p><a href="http://amzn.asia/0viF1bE" rel="nofollow noopener" target="_blank">関数プログラミングの楽しみ</a>はHaskellによる関数プログラミングの事例が多く載っている。また、Haskellのテスト方法やArrowと言った非常に便利な型クラスの使い方も詳しく載っている。Haskellerならぜひ一度読んでおくべきである。<br>
+練習問題も豊富なので、腕試しとしても使える。</p>
+
+<h2>
+<span id="ghc拡張について" class="fragment"></span><a href="#ghc%E6%8B%A1%E5%BC%B5%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>GHC拡張について</h2>
+
+<p>GHC拡張とは, Haskellの言語仕様にはない機能を提供するGHCの言語拡張である。ほぼ必須なものから使い所がわからないものまで多種多様である。それぞれの使用方法とモチベーションはGHCの公式ドキュメントや<a href="http://dev.stephendiehl.com/hask/" rel="nofollow noopener" target="_blank">WHAT I WISH I KNEW WHEN LEARNING HASKELL</a>に書いてある。よく使う、話題に上がる拡張については別記事で紹介、または追記する。<sup id="fnref3"><a href="#fn3" rel="footnote" title="多分紹介する。多分">3</a></sup></p>
+
+<h2>
+<span id="型システムと意味論" class="fragment"></span><a href="#%E5%9E%8B%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%A8%E6%84%8F%E5%91%B3%E8%AB%96"><i class="fa fa-link"></i></a>型システムと意味論</h2>
+
+<p>関数プログラミング(特にHaskell)は意味論や型システムと密接な関わりがある。またいくつかのよく使われるGHC拡張には型システムの知識を要求するものがある。これらを知っておくことはHaskellだけでなく他のプログラミングに於いても有用だろう。型システムや操作的意味論、λ計算の基本は<a href="http://amzn.asia/6Q1Gd9x" rel="nofollow noopener" target="_blank">型システム入門</a>で、カテゴリ理論を含む各種意味論は<a href="http://amzn.asia/dbMhj4K" rel="nofollow noopener" target="_blank">プログラム意味論</a>で学ぶことができる。<br>
+Hindley-Milner型システムに関しては知っておく必要があるだろう。</p>
+
+<h3>
+<span id="演習型で遊ぶ" class="fragment"></span><a href="#%E6%BC%94%E7%BF%92%E5%9E%8B%E3%81%A7%E9%81%8A%E3%81%B6"><i class="fa fa-link"></i></a>[演習]型で遊ぶ</h3>
+
+<p>これらで学んだ部分型や全称型、存在型、依存型、高階多相などはGHC拡張などを用いてすぐに試すことができる。<br>
+Haskellで試しながら読み進めていくと良い。<a href="http://dev.stephendiehl.com/hask/" rel="nofollow noopener" target="_blank">WHAT I WISH I KNEW WHEN LEARNING HASKELL</a>では型システム入門よりも発展的な話題についても紹介されている。<br>
+HaskellとGHC拡張による型レベルプログラミングの記事を探しても良いだろう。</p>
+
+<h2>
+<span id="圏論" class="fragment"></span><a href="#%E5%9C%8F%E8%AB%96"><i class="fa fa-link"></i></a>圏論</h2>
+
+<p>Haskellと圏論の関わりは深い。Hackageなどのライブラリの説明に平然と圏論の用語が出てくることも多い。圏論については<a href="http://amzn.asia/hmEqpbh" rel="nofollow noopener" target="_blank">圏論 原著</a>や<a href="http://amzn.asia/0tPSJci" rel="nofollow noopener" target="_blank">圏論の基礎</a>を読むと良い。併せて<a href="https://sites.google.com/site/klovelab/Home/category" rel="nofollow noopener" target="_blank">圏論.hs</a>のスライドや動画を参照するとHaskellとの関連性がわかる。<br>
+HaskellでもCategoryとかArrowとかProfunctorとかBifunctorとか山ほどある。<a href="http://dev.stephendiehl.com/hask/" rel="nofollow noopener" target="_blank">WHAT I WISH I KNEW WHEN LEARNING HASKELL</a>を参照されたし。<sup id="fnref4"><a href="#fn4" rel="footnote" title="困ったことに書きかけだが。">4</a></sup></p>
+
+<h3>
+<span id="演習圏論が背景にあるライブラリを作って遊ぶ" class="fragment"></span><a href="#%E6%BC%94%E7%BF%92%E5%9C%8F%E8%AB%96%E3%81%8C%E8%83%8C%E6%99%AF%E3%81%AB%E3%81%82%E3%82%8B%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E9%81%8A%E3%81%B6"><i class="fa fa-link"></i></a>[演習]圏論が背景にあるライブラリを作って遊ぶ</h3>
+
+<p>有用性や新規性はおいておいて、圏論にある概念をHaskellで書くことができるかチャレンジしてみると良い。</p>
+
+<h2>
+<span id="lensprism" class="fragment"></span><a href="#lensprism"><i class="fa fa-link"></i></a>Lens/Prism</h2>
+
+<p>Lens/Prismに関して更に詳しい情報が知りたければ<a href="/igrep" class="user-mention js-hovercard" title="igrep" data-hovercard-target-type="user" data-hovercard-target-name="igrep">@igrep</a>さんの<a href="http://the.igreque.info/posts/2015-06-09-lens-prism.html" rel="nofollow noopener" target="_blank">Lens&amp;Prism勉強会 私的まとめ</a>に様々な記事、スライドが紹介されている。他にはソースコードを読むくらいしか……<sup id="fnref5"><a href="#fn5" rel="footnote" title="圏論による形式化の論文があった気がするのだが見つからない。">5</a></sup></p>
+
+<h2>
+<span id="もっとモナド" class="fragment"></span><a href="#%E3%82%82%E3%81%A3%E3%81%A8%E3%83%A2%E3%83%8A%E3%83%89"><i class="fa fa-link"></i></a>もっとモナド</h2>
+
+<p>(Haskellにおける)モナドをちゃんと知りたいならば、<a href="http://amzn.asia/0viF1bE" rel="nofollow noopener" target="_blank">関数プログラミングの楽しみ</a>のArrowの章を読んだり、<a href="http://www.cs.cmu.edu/%7Ecrary/819-f09/Moggi91.pdf" rel="nofollow noopener" target="_blank">Notions of computation and monads</a>を読むと良い。<a href="/hiruberuto" class="user-mention js-hovercard" title="hiruberuto" data-hovercard-target-type="user" data-hovercard-target-name="hiruberuto">@hiruberuto</a>さんの<a href="https://qiita.com/hiruberuto/items/8bbc0343bf794c368287" id="reference-a3243b5e7ca6557fce24">モナドはポケモン。数学が出てこないモナド入門</a>も参考になる。<br>
+FreeモナドやOperationalモナドを使えると便利である。<a href="/fumieval" class="user-mention js-hovercard" title="fumieval" data-hovercard-target-type="user" data-hovercard-target-name="fumieval">@fumieval</a>さんの<a href="http://fumieval.hatenablog.com/entry/2013/05/09/223604#f2" rel="nofollow noopener" target="_blank">Freeモナドを超えた!?operationalモナドを使ってみよう</a>で説明されている。</p>
+
+<p>他にもMonad Morphismについて知るのも有用だ。<a href="https://hackage.haskell.org/package/mmorph-1.1.0/docs/Control-Monad-Morph.html" rel="nofollow noopener" target="_blank">Control.Monad.MMorph</a>や<a href="/hiratara" class="user-mention js-hovercard" title="hiratara" data-hovercard-target-type="user" data-hovercard-target-name="hiratara">@hiratara</a>さんの<a href="https://qiita.com/hiratara/items/65fcf38070def7e5a918" id="reference-9a2194c53bf5e82b9f8a">モナドモナド (LT没ネタ)</a>を参照すると良い。</p>
+
+<h3>
+<span id="演習モナドを作る" class="fragment"></span><a href="#%E6%BC%94%E7%BF%92%E3%83%A2%E3%83%8A%E3%83%89%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>[演習]モナドを作る</h3>
+
+<p>この計算ってモナドとして抽象化できるのではと感じたら積極的に試してみよう。<br>
+過去に書いたコードをリファクタリングするのも勉強になる。</p>
+
+<h2>
+<span id="extensible-effect" class="fragment"></span><a href="#extensible-effect"><i class="fa fa-link"></i></a>Extensible Effect</h2>
+
+<p>モナド変換子は合成するモナドの数が多いほど効率が悪くなるなどの問題点がある。そこで、モナドではなくEffect Systemを用いた計算の表現を使う方法もある。詳しくは<a href="http://konn-san.com/prog/haskell/extensible-effects.html" rel="nofollow noopener" target="_blank">Extensible Effects はモナド変換子に対する救世主になり得るか?</a>を参照されたし。<br>
+Effect systemについて知りたければ<a href="http://web.cs.ucla.edu/%7Epalsberg/tba/papers/nielson-nielson-csd99.pdf" rel="nofollow noopener" target="_blank">Type and Effect system</a>という論文を読むと良い。</p>
+
+<h3>
+<span id="演習モナド変換子をextensible-effectに置き換える" class="fragment"></span><a href="#%E6%BC%94%E7%BF%92%E3%83%A2%E3%83%8A%E3%83%89%E5%A4%89%E6%8F%9B%E5%AD%90%E3%82%92extensible-effect%E3%81%AB%E7%BD%AE%E3%81%8D%E6%8F%9B%E3%81%88%E3%82%8B"><i class="fa fa-link"></i></a>[演習]モナド変換子をExtensible Effectに置き換える</h3>
+
+<p>今まで書いたコードのモナド変換子をExtensible Effectに置き換えてみよう。</p>
+
+<h2>
+<span id="arrowとarrow記法" class="fragment"></span><a href="#arrow%E3%81%A8arrow%E8%A8%98%E6%B3%95"><i class="fa fa-link"></i></a>ArrowとArrow記法</h2>
+
+<p>関数プログラミングにおいては、関数のような小さな計算の集まりを合成してプログラムを作るという考え方がある。これを強力にサポートするものとしてArrow型クラスとGHC拡張のArrowsがある。これはGUIのような反応状況モデルと相性が良い。これに関してはGHCの公式ドキュメントと<a href="http://amzn.asia/0viF1bE" rel="nofollow noopener" target="_blank">関数プログラミングの楽しみ</a>を読むと良い。</p>
+
+<h2>
+<span id="融合変換" class="fragment"></span><a href="#%E8%9E%8D%E5%90%88%E5%A4%89%E6%8F%9B"><i class="fa fa-link"></i></a>融合変換</h2>
+
+<p>一般に効率と可読性、保守し易さはトレードオフの関係にある。我々としては可読性が高く、保守しやすいコードを自動で効率のよいコードに変換してほしい。こういった際に融合変換による最適化は有用である。詳しくは<a href="http://amzn.asia/0viF1bE" rel="nofollow noopener" target="_blank">関数プログラミングの楽しみ</a>を読むと良い。</p>
+
+<h2>
+<span id="ffi" class="fragment"></span><a href="#ffi"><i class="fa fa-link"></i></a>FFI</h2>
+
+<p>HaskellではC言語の関数を呼び出すことができる。型安全性が保たれるのかとかなどは私もあまり良くわかっていない。<a href="http://dev.stephendiehl.com/hask/" rel="nofollow noopener" target="_blank">WHAT I WISH I KNEW WHEN LEARNING HASKELL</a>に一応書いてある。</p>
+
+<h2>
+<span id="unsafehaskell" class="fragment"></span><a href="#unsafehaskell"><i class="fa fa-link"></i></a>unsafeHaskell</h2>
+
+<p>GHC拡張などの中にはHaskellの型システムを破壊しうる関数があり、そういった関数はunsafeという接頭辞が付いている。基本的にこれらを使うと深い悲しみに包まれることになるので使わない方が良い。SafeHaskell拡張を使えばこれらを抑制できる。<sup id="fnref6"><a href="#fn6" rel="footnote" title="困ったことにTemplate Haskellも使えなくなる。">6</a></sup></p>
+
+<h2>
+<span id="haskellでオブジェクト指向プログラミングしたい" class="fragment"></span><a href="#haskell%E3%81%A7%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%8C%87%E5%90%91%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84"><i class="fa fa-link"></i></a>Haskellでオブジェクト指向プログラミングしたい！</h2>
+
+<p>基本的にHaskellでOOPをする必要性はないのだが、ゲームの制作などの限られた領域ではOOPは便利である。HaskellでOOPをするにあたって<strong>objective</strong>というライブラリを使うと良い。<a href="/its_out_of_tune" class="user-mention js-hovercard" title="its_out_of_tune" data-hovercard-target-type="user" data-hovercard-target-name="its_out_of_tune">@its_out_of_tune</a>さんの<a href="http://tune.hateblo.jp/entry/2015/03/27/035648" rel="nofollow noopener" target="_blank">Haskellオブジェクト指向に触れてみよう〜初級編〜</a>や生みの親の<a href="/fumieval" class="user-mention js-hovercard" title="fumieval" data-hovercard-target-type="user" data-hovercard-target-name="fumieval">@fumieval</a>さんの<a href="https://fumieval.github.io/papers/ja/2015-Haskell-objects.pdf" rel="nofollow noopener" target="_blank">Haskellでの合成可能なオブジェクトの構成とその応用</a>を参考すると良い。他にも純粋関数型オブジェクト指向<sup id="fnref7"><a href="#fn7" rel="footnote" title="Haskell++とかO'Haskellとかもあるけども……">7</a></sup>に関しては<a href="http://amzn.asia/6Q1Gd9x" rel="nofollow noopener" target="_blank">型システム入門</a>でテーマとして取り扱っている。</p>
+
+<h2>
+<span id="その他" class="fragment"></span><a href="#%E3%81%9D%E3%81%AE%E4%BB%96"><i class="fa fa-link"></i></a>その他</h2>
+
+<p>LiquidHaskell<sup id="fnref8"><a href="#fn8" rel="footnote" title="入門LiquidHaskell−篩型による静的コード解析−はLiquidHaskellに関する唯一(?)の本。">8</a></sup>を使った静的コード解析や定理証明やらも有用。形式手法については知っていたほうが良いだろう。<sup id="fnref9"><a href="#fn9" rel="footnote" title="ここらへんに関しては目下勉強中なもんで。">9</a></sup> 圏論データベースの話も面白い。</p>
+
+<p>ここまで来たら後は様々なコードを読んでイディオムを学んでいくと良い。</p>
+
+<h3>
+<span id="演習elmコンパイラを読む" class="fragment"></span><a href="#%E6%BC%94%E7%BF%92elm%E3%82%B3%E3%83%B3%E3%83%91%E3%82%A4%E3%83%A9%E3%82%92%E8%AA%AD%E3%82%80"><i class="fa fa-link"></i></a>[演習]Elmコンパイラを読む</h3>
+
+<p>これらの知識があればElmのコンパイラのソースコードを読むことが可能だろう。Elmのコンパイラで肩慣らしをしてからGHCのソースコードを読んでみてもよい。ElmやHaskellの言語仕様のみのインタプリタを実装しても良い。</p>
+
+<h1>
+<span id="今すぐ参加すべきコミュニティ" class="fragment"></span><a href="#%E4%BB%8A%E3%81%99%E3%81%90%E5%8F%82%E5%8A%A0%E3%81%99%E3%81%B9%E3%81%8D%E3%82%B3%E3%83%9F%E3%83%A5%E3%83%8B%E3%83%86%E3%82%A3"><i class="fa fa-link"></i></a>今すぐ参加すべきコミュニティ</h1>
+
+<p><a href="https://haskell.jp/" rel="nofollow noopener" target="_blank">Haskell-jp</a>という日本のHaskellerの集まりがある。逆引き辞典や査読付きなので信頼性の高いHaskellの記事がある。誰でも参加できるSlackチームもあり、無限にHaskellの情報が流れてくるは、強いHaskellerたちに質問できるので今すぐ参加しよう！</p>
+
+<h2>
+<span id="haskellもくもく会" class="fragment"></span><a href="#haskell%E3%82%82%E3%81%8F%E3%82%82%E3%81%8F%E4%BC%9A"><i class="fa fa-link"></i></a>Haskellもくもく会</h2>
+
+<p>Haskell-jp主催で<a href="https://haskellmokumoku.connpass.com/" rel="nofollow noopener" target="_blank">Haskellのもくもく会</a>が毎月開催されている。<br>
+初心者も歓迎されるので奮ってご参加を！</p>
+
+<h1>
+<span id="困ったときには" class="fragment"></span><a href="#%E5%9B%B0%E3%81%A3%E3%81%9F%E3%81%A8%E3%81%8D%E3%81%AB%E3%81%AF"><i class="fa fa-link"></i></a>困ったときには</h1>
+
+<ol>
+<li>ググってみる。</li>
+<li>
+<a href="http://dev.stephendiehl.com/hask/" rel="nofollow noopener" target="_blank">WHAT I WISH I KNEW WHEN LEARNING HASKELL</a>に書いてないか確認する。<sup id="fnref10"><a href="#fn10" rel="footnote" title="一応日本語版もあるが古い上に不完全である。">10</a></sup>
+</li>
+<li>Haskell-jpのSlackで聞いてみる。<sup id="fnref11"><a href="#fn11" rel="footnote" title="強そうな質問で溢れており気後れするのも分かるが、初心者の質問も大歓迎される。">11</a></sup>
+</li>
+</ol>
+
+<p>TwitterでHaskellerをフォローして仲良くなると困ったときに助けてくれる。</p>
+
+<h1>
+<span id="アドバイス" class="fragment"></span><a href="#%E3%82%A2%E3%83%89%E3%83%90%E3%82%A4%E3%82%B9"><i class="fa fa-link"></i></a>アドバイス</h1>
+
+<ol>
+<li>すごいH本やHaskell入門は何回も読み返す。</li>
+<li>エラーメッセージは友と思う。めげない。</li>
+<li>英語を忌避しない。</li>
+<li>日本語でググってないときは英語でググるとすぐ出てくる。</li>
+<li>わからないことはすぐ質問する。</li>
+<li>論文を忌避しない。<sup id="fnref12"><a href="#fn12" rel="footnote" title="そこらのネットの記事の100億倍わかりやすいのが論文である。型システム入門を読んでおけばまず理解できるはずだ。">12</a></sup>
+</li>
+<li>演算子や関数がなにかわからないときはHoogleやHayoo!で検索してみる。<sup id="fnref13"><a href="#fn13" rel="footnote" title="hgrksという言葉があるとかないとか。Hayoo!の方はほとんどすべてのパッケージが検索できるとか。">13</a></sup>
+</li>
+<li>圏論の基礎とか型システム入門は辞書的な使い方でも有用なので買っとけ<sup id="fnref14"><a href="#fn14" rel="footnote" title="正直とりあえずで買える値段ではない。">14</a></sup>
+</li>
+</ol>
+
+<h1>
+<span id="結論" class="fragment"></span><a href="#%E7%B5%90%E8%AB%96"><i class="fa fa-link"></i></a>結論</h1>
+
+<p>すごいH本とHaskell入門を買って手を動かしながら読み、わからないところをHaskell-jpのSlackで質問すれば中級者にはなれる。</p>
+
+<h1>
+<span id="この記事で出てきた本-記事の一覧" class="fragment"></span><a href="#%E3%81%93%E3%81%AE%E8%A8%98%E4%BA%8B%E3%81%A7%E5%87%BA%E3%81%A6%E3%81%8D%E3%81%9F%E6%9C%AC-%E8%A8%98%E4%BA%8B%E3%81%AE%E4%B8%80%E8%A6%A7"><i class="fa fa-link"></i></a>この記事で出てきた本, 記事の一覧</h1>
+
+<ul>
+<li><a href="https://qiita.com/igrep/items/da1d8df6d40eb001a561">Stackでやる最速Haskell Hello world! (GHCのインストール付き！)</a></li>
+<li><a href="http://amzn.asia/cjNcHXP" rel="nofollow noopener" target="_blank">Haskell 教養としての関数型プログラミング</a></li>
+<li><a href="http://amzn.asia/dZIoGJ7" rel="nofollow noopener" target="_blank">Haskell入門</a></li>
+<li><a href="https://www.ncaq.net/2017/10/07/" rel="nofollow noopener" target="_blank">2017-10-07
+Haskellを書くときはstylish-haskellとhlintを使って労せずして綺麗なコードを書きましょう</a></li>
+<li><a href="http://amzn.asia/2RhgBDl" rel="nofollow noopener" target="_blank">すごいHaskellたのしく学ぼう！</a></li>
+<li><a href="http://amzn.asia/d4uxed3" rel="nofollow noopener" target="_blank">Haskellによる関数プログラミングの思考法</a></li>
+<li><a href="http://www.geocities.jp/m_hiroi/func/haskell32.html" rel="nofollow noopener" target="_blank">お気楽Haskellプログラミング入門</a></li>
+<li><a href="http://dev.stephendiehl.com/hask/" rel="nofollow noopener" target="_blank">WHAT I WISH I KNEW WHEN LEARNING HASKELL</a></li>
+<li><a href="http://amzn.asia/3VgbyYr" rel="nofollow noopener" target="_blank">Haskellによる並列・並行プログラミング</a></li>
+<li><a href="https://qiita.com/7shi/items/4408b76624067c17e933">Haskell モナド変換子超入門</a></li>
+<li><a href="http://amzn.asia/fMnNyyE" rel="nofollow noopener" target="_blank">関数プログラミング実践入門</a></li>
+<li><a href="http://amzn.asia/hFHLLoy" rel="nofollow noopener" target="_blank">純粋関数型データ構造</a></li>
+<li><a href="http://amzn.asia/6N5w9B5" rel="nofollow noopener" target="_blank">関数プログラミング 珠玉のアルゴリズムデザイン</a></li>
+<li><a href="https://qiita.com/hiruberuto/items/8bbc0343bf794c368287">モナドはポケモン。数学が出てこないモナド入門</a></li>
+<li><a href="http://fumieval.hatenablog.com/entry/2013/05/09/223604#f2" rel="nofollow noopener" target="_blank">Freeモナドを超えた!?operationalモナドを使ってみよう</a></li>
+<li><a href="https://hackage.haskell.org/package/mmorph-1.1.0/docs/Control-Monad-Morph.html" rel="nofollow noopener" target="_blank">Control.Monad.MMorph</a></li>
+<li><a href="https://qiita.com/hiratara/items/65fcf38070def7e5a918">モナドモナド (LT没ネタ)</a></li>
+<li><a href="http://konn-san.com/prog/haskell/extensible-effects.html" rel="nofollow noopener" target="_blank">Extensible Effects はモナド変換子に対する救世主になり得るか?</a></li>
+<li><a href="http://web.cs.ucla.edu/%7Epalsberg/tba/papers/nielson-nielson-csd99.pdf" rel="nofollow noopener" target="_blank">Type and Effect system</a></li>
+<li><a href="http://amzn.asia/6Q1Gd9x" rel="nofollow noopener" target="_blank">型システム入門</a></li>
+<li><a href="http://amzn.asia/dbMhj4K" rel="nofollow noopener" target="_blank">プログラム意味論</a></li>
+<li><a href="http://the.igreque.info/posts/2015-06-09-lens-prism.html" rel="nofollow noopener" target="_blank">Lens&amp;Prism勉強会 私的まとめ</a></li>
+<li><a href="http://amzn.asia/hmEqpbh" rel="nofollow noopener" target="_blank">圏論 原著</a></li>
+<li><a href="http://amzn.asia/0tPSJci" rel="nofollow noopener" target="_blank">圏論の基礎</a></li>
+<li><a href="https://sites.google.com/site/klovelab/Home/category" rel="nofollow noopener" target="_blank">圏論.hs</a></li>
+<li><a href="http://tune.hateblo.jp/entry/2015/03/27/035648" rel="nofollow noopener" target="_blank">Haskellオブジェクト指向に触れてみよう〜初級編〜</a></li>
+<li><a href="https://fumieval.github.io/papers/ja/2015-Haskell-objects.pdf" rel="nofollow noopener" target="_blank">Haskellでの合成可能なオブジェクトの構成とその応用</a></li>
+<li><a href="https://dodgsonlabs.booth.pm/items/490689" rel="nofollow noopener" target="_blank">入門LiquidHaskell−篩型による静的コード解析−</a></li>
+<li><a href="https://haskell.jp/" rel="nofollow noopener" target="_blank">Haskell-jp</a></li>
+</ul>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>私はいずれは知るべきだと考えているが、すくなくともこの段階で知るべきことではない。 <a href="#fnref1">↩</a></p>
+</li>
+
+<li id="fn2">
+<p>残念ながらHaskellで書かれていない. <a href="#fnref2">↩</a></p>
+</li>
+
+<li id="fn3">
+<p>多分紹介する。多分 <a href="#fnref3">↩</a></p>
+</li>
+
+<li id="fn4">
+<p>困ったことに書きかけだが。 <a href="#fnref4">↩</a></p>
+</li>
+
+<li id="fn5">
+<p>圏論による形式化の論文があった気がするのだが見つからない。 <a href="#fnref5">↩</a></p>
+</li>
+
+<li id="fn6">
+<p>困ったことにTemplate Haskellも使えなくなる。 <a href="#fnref6">↩</a></p>
+</li>
+
+<li id="fn7">
+<p>Haskell++とかO'Haskellとかもあるけども…… <a href="#fnref7">↩</a></p>
+</li>
+
+<li id="fn8">
+<p><a href="https://dodgsonlabs.booth.pm/items/490689" rel="nofollow noopener" target="_blank">入門LiquidHaskell−篩型による静的コード解析−</a>はLiquidHaskellに関する唯一(?)の本。 <a href="#fnref8">↩</a></p>
+</li>
+
+<li id="fn9">
+<p>ここらへんに関しては目下勉強中なもんで。 <a href="#fnref9">↩</a></p>
+</li>
+
+<li id="fn10">
+<p>一応<a href="https://github.com/shiatsumat/wiwinwlh-jp/wiki" rel="nofollow noopener" target="_blank">日本語版</a>もあるが古い上に不完全である。 <a href="#fnref10">↩</a></p>
+</li>
+
+<li id="fn11">
+<p>強そうな質問で溢れており気後れするのも分かるが、初心者の質問も大歓迎される。 <a href="#fnref11">↩</a></p>
+</li>
+
+<li id="fn12">
+<p>そこらのネットの記事の100億倍わかりやすいのが論文である。型システム入門を読んでおけばまず理解できるはずだ。 <a href="#fnref12">↩</a></p>
+</li>
+
+<li id="fn13">
+<p>hgrksという言葉があるとかないとか。Hayoo!の方はほとんどすべてのパッケージが検索できるとか。 <a href="#fnref13">↩</a></p>
+</li>
+
+<li id="fn14">
+<p>正直とりあえずで買える値段ではない。 <a href="#fnref14">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

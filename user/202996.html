@@ -1,0 +1,561 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (hogemax)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (hogemax さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>hogemaxさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>486</kbd>
+		<a target="_blank" href="https://qiita.com/hogemax/items/b09abc522e0ec05da4fe">Linus Torvalds氏によるGitの内部構造の解説</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-03 15:40:51</center>
+	</td>
+	<td style="width:200px;">
+		@hogemax<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/202996/profile-images/1506575792">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Linux]</b> <b>[Git]</b> <b>[Linus]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="初めに" class="fragment"></span><a href="#%E5%88%9D%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>初めに</h1>
+
+<p>LinusによるGitのinitial commitのREADMEの訳です。</p>
+
+<p><a href="https://github.com/git/git/tree/e83c5163316f89bfbde7d9ab23ca2e25604af290" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/git/git/tree/e83c5163316f89bfbde7d9ab23ca2e25604af290</a></p>
+
+<p>社内のSVNからの移行を促すために資料を整備していたのですが、SVNでやっていたことを移し替えたりコマンドを覚えたりするより内部構造を知ったほうが早いことに気づきました。</p>
+
+<p>それで、gitの内部構造についての解説資料を色々見ていたのですが、データ構造については原作者のこのREADMEに言い尽くされている気がします。のみならず、gitを使うものが抱くべき精神性のようなものが示されており、深い感銘を覚えました（ヒャッハー）。</p>
+
+<p>※個人的なメモ/社内文書程度で書いておいたのですが、結構読んでいただきびっくりで、いろいろと修正・追補しました。<a href="#%E8%A3%9C%E9%81%BA">補遺</a>もご覧ください。</p>
+
+<h1>
+<span id="readme-git---馬鹿コンテンツトラッカー" class="fragment"></span><a href="#readme-git---%E9%A6%AC%E9%B9%BF%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E3%83%88%E3%83%A9%E3%83%83%E3%82%AB%E3%83%BC"><i class="fa fa-link"></i></a>README: ”GIT - 馬鹿コンテンツトラッカー”</h1>
+
+<p>コミットメッセージ：git, 地獄からきたインフォメーションマネージャ</p>
+
+<h2>
+<span id="gitの意味" class="fragment"></span><a href="#git%E3%81%AE%E6%84%8F%E5%91%B3"><i class="fa fa-link"></i></a>gitの意味</h2>
+
+<p>"git" は何を意味することも出来る、お前の気分次第だ。</p>
+
+<ul>
+<li><p>3文字で、発音可能で、実際のUNIXシステムで共通コマンドとして使われていないものであればなんでも良かったのだ。事実は'get'の発音間違いだ、関係していようがいまいが。</p></li>
+<li><p>バカ。情けなくて浅ましい。単純。その他お前のスラング辞典から拾ってきやがれ。</p></li>
+<li><p>グローバル・インフォメーション・トラッカー(global information tracker):<br>
+お前はいい気分だ、実際にお前の役に立つ。天使達は歌い、光が突如お前の部屋を満たす。</p></li>
+<li><p>くそったれ間抜けなトラック満載のクソ(goddamn idiotic truckload of sh*t): <br>
+壊れた場合。</p></li>
+</ul>
+
+<h2>
+<span id="概要" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>概要</h2>
+
+<p>これは馬鹿（だけど超速い）ディレクトリ・コンテンツ・マネージャだ。<br>
+沢山の事はしないが、効率的にディレクトリの内容を追跡する。</p>
+
+<p>2つのオブジェクト構造がある</p>
+
+<ul>
+<li>オブジェクト・データベース(.git/objects/)</li>
+<li>カレントディレクトリキャッシュ(.git/index)</li>
+</ul>
+
+<h2>
+<span id="オブジェクトデータベースsha1によるファイルディレクトリ" class="fragment"></span><a href="#%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9sha1%E3%81%AB%E3%82%88%E3%82%8B%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA"><i class="fa fa-link"></i></a>オブジェクト・データベース（SHA1によるファイル・ディレクトリ）</h2>
+
+<p>オブジェクト・データベースとは文字通りコンテンツによってアドレス指定可能なオブジェクトの集まりだ。全てのオブジェクトはそのコンテンツによって命名される。オブジェクト自体のSHA1ハッシュ値によって近似される。オブジェクトは他のオブジェクトを(SHA1ハッシュ値により）参照することができるので、お前はオブジェクトの階層構造を構築できる。</p>
+
+<p>このデータベースには複数の種類のオブジェクトがある。全てzlibにより圧縮されており、先頭はファイルタイプによるタグとデータに関するサイズ情報で始まる。SHA1ハッシュ値は圧縮後のものであり、元データのものではない。</p>
+
+<p>特にオブジェクトの一貫性はコンテンツもしくはオブジェクトの種類とは独立して常にテスト出来る。全てのオブジェクトは次のようにして確かめられる。</p>
+
+<ul>
+<li><p>ハッシュ値がファイルのコンテンツにマッチすること</p></li>
+<li><p>オブジェクトが次の形式のバイトストリームとして復号に成功すること<br>
+&lt;スペース無しのascii文字によるタグ&gt; + &lt;space&gt;  + &lt;サイズ情報のasciiによる10進文字列&gt; + &lt;\0&gt; + &lt;バイナリオブジェクトデータ&gt;</p></li>
+</ul>
+
+<h3>
+<span id="blob" class="fragment"></span><a href="#blob"><i class="fa fa-link"></i></a>BLOB</h3>
+
+<p>ブロブオブジェクトはバイナリ・ブロブデータ以外の何をも意味せず、また他への参照も持たない。データの署名や他の検証は持たず、オブジェクトが一貫している限り(SHA1ハッシュ値によりインデックスされているのでデータ自体は正しいとする）他に何の属性も持たない。名前の関連付けも、パーミッションもない。純粋にデータのブロブだ（別の言い方をすると、ファイルの中身だ）。</p>
+
+<h3>
+<span id="tree" class="fragment"></span><a href="#tree"><i class="fa fa-link"></i></a>TREE</h3>
+
+<p>次の階層のオブジェクトの種類は、ツリーオブジェクトだ。ツリーオブジェクトはパーミッション・名前・ブロブデータからなるリストで、名前によりソート済みだ。別の言い方をするとツリーオブジェクトの一意性はコンテンツのセットで決定される。だから2つの別々だが同等のツリーは確実に同じオブジェクトを共有する。</p>
+
+<p>もう一度言うが、ツリーオブジェクトはただの純粋なデータ構造だ。履歴を持たず、署名も持たず、正当性の検証も持たない。コンテンツがハッシュ値によって保護されている以外には。それで、ブロブを信頼するのと同じ理屈でツリーオブジェクトを信頼できるが、お前はコンテンツがどこから来たのか知ることは無い。</p>
+
+<h4>
+<span id="1" class="fragment"></span><a href="#1"><i class="fa fa-link"></i></a>※1</h4>
+
+<p>ツリーオブジェクトがファイル名+コンテンツでソートされているため、お前は2つのツリーを展開せずともdiffを作り出すことが出来る。共通の部分を無視するだけでお前のdiffの見栄えは良くなるだろう。別の言い方をするとお前は2つのどんなランダムなツリーの比較でも、ツリーのサイズではなく、差分の大きさをnとしてO(n)の計算量で効果的かつ効率よくdiffを表現できるというわけだ。</p>
+
+<h4>
+<span id="2" class="fragment"></span><a href="#2"><i class="fa fa-link"></i></a>※2</h4>
+
+<p>ブロブデータの名前は全く独占的にその内容に依存しているため（名前やパーミッションも関係ない）、ブロブの内容が変わらなければお前は細々としたリネームやパーミッションの変化を見る事ができる。しかしながら、データを変えつつリネームというのはもっと賢いdiffが要求されよう。</p>
+
+<h3>
+<span id="チェンジセット" class="fragment"></span><a href="#%E3%83%81%E3%82%A7%E3%83%B3%E3%82%B8%E3%82%BB%E3%83%83%E3%83%88"><i class="fa fa-link"></i></a>チェンジセット</h3>
+
+<p>チェンジセットオブジェクトは履歴反映の概念を導入するオブジェクトだ。他のオブジェクトとは対象的に、ツリーの物理的な状態を表現するだけでなく、どうやって、そしてなぜそこにたどり着いたのかを表現する。</p>
+
+<p>チェンジセットはツリーオブジェクトによって定義され、結果として（0,もしくは1以上）の親チェンジセットや何が起こったのかを表記するコメントを含む。もう一度言うが、チェンジセットそれ自体が認証されたりしているわけではない。コンテンツは明確で全てのレベルにおいて強固な暗号署名のゆえに「安全」であるが、しかしながらツリーが「良い」とかマージ情報が意味を成すとか信じる理由などない。例えば親チェンジセットはその結果について何の関連も持つ必要はない。</p>
+
+<h4>
+<span id="1-1" class="fragment"></span><a href="#1-1"><i class="fa fa-link"></i></a>※1</h4>
+
+<p>本物のソース・コード管理システム（SCM）とは違い、チェンジセットにはリネーム情報やファイルモードの変更情報は含まれない。そういった事はツリー（結果のツリー、及び結果のツリーの親）が明示的に関わることだ。この馬鹿ファイルマネージャがそれらを表現する意味はない。</p>
+
+<h4>
+<span id="2信頼について" class="fragment"></span><a href="#2%E4%BF%A1%E9%A0%BC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>※2「信頼」について</h4>
+
+<p>「信頼」はgitの全く埒外の概念だが、次の事を覚えておけ。まず第一に、全てのものがSHA1によりハッシュ値を与えられているゆえ、お前はオブジェクトがそのままであり外部の源により弄くられていないことを信頼出来る。オブジェクト名により、知られている状態を一意的に識別出来るのだ - 単にお前が信頼したいであろう状態ではない。</p>
+
+<p>さらに、チェンジセットのSHA1署名はツリーのSHA1署名と、更にその親と関連付けられており、単一の名前のチェンジセットが全コンテンツと共に全履歴のセットを規定する。一度お前がチェンジセットの名前を得たなら、後ほど履歴のステップを誤魔化す事はできない。</p>
+
+<p>それで幾つかのシステムにおける現実的な信頼を紹介するとすれば、お前がしなければならないのはトップレベルのチェンジセット名を含む特別な記述一つをデジタル的に署名することだけだ。お前のデジタル署名は他の者にそのチェンジセットが信頼できることを示し、チェンジセットの履歴の不変性は他の者に全履歴が信頼できることを示すであろう。</p>
+
+<p>言い換えるならば、お前はGPG/PGP等のデジタル署名されたemailを使い（SHA1ハッシュ値の）トップのチェンジセットを送るだけで全てのアーカイブの検証を行うことが出来る。</p>
+
+<p>特に、お前や他の者が信頼するドキュメントの複数のトラスト・ポイントやタグから成る分割されたアーカイブを持つことが出来る。もっともそれら「信頼証明」はgitそのものを使っていることからもたらされるわけだが、別に特段gitがお前に何かするというわけでもない。</p>
+
+<p>別の方法で言うならば、git自体はコンテンツの整合性のみ扱い、信頼は外部から付与されるということである。</p>
+
+<h2>
+<span id="カレントディレクトリキャッシュ" class="fragment"></span><a href="#%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%88%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5"><i class="fa fa-link"></i></a>カレント・ディレクトリ・キャッシュ</h2>
+
+<p>カレントディレクトリキャッシュとは単純なバイナリファイルであり、任意の時点での仮想的なディレクトリのコンテンツを効率よく表現したものである。名前、日付、パーミッション、コンテンツ（またはブロブ）を一緒にセットしたものの単純な配列である。キャッシュはいつでも名前順に並べられているが、キャッシュなので長い期間に渡って保持されることを意図してはおらず、いつでも部分的に更新できる。</p>
+
+<p>特に、カレントディレクトリキャッシュは確実に現在のディレクトリの内容と一致しなければならないと言うわけではないが、2つの重要な属性がある。</p>
+
+<ul>
+<li><p>キャッシュしている全ての状態が再生成可能であること<br>
+（ディレクトリ構造だけでなく、ブロブオブジェクトを通して全データも再生成可能であるということ）<br>
+特殊な場合として、明確で重複しないカレントディレクトリキャッシュからツリーオブジェクトへの単一のマッピングが有り、他のデータを見る必要も無くカレントキャッシュディレクトリから効率よく生成できる場合がある。それでディレクトリキャッシュはいつどの時点でもただひとつのユニークに定義されたツリーオブジェクトである（しかしながらツリーオブジェクトとディレクトリ内で何が起こったかを照合するため追加的データを持つ)</p></li>
+<li><p>キャッシュされた状態（裏付けされるのを待っているツリーオブジェクト）と現在の状態との不整合を検出するための効率の良いメソッドを持つ。</p></li>
+</ul>
+
+<p>以上がディレクトリキャッシュが行うたった2つのことである。キャッシュであり、既存のツリーオブジェクトからの完全な再生成や、開発ツリーの更新、既存ツリーとの比較を行うためのものである。もしお前がディレクトリキャッシュを全く吹き飛ばしたとしても、キャッシュで表現されているツリーの名前を保持している限り、何のデータも失わない。</p>
+
+<p>（しかしながらディレクトリキャッシュには実データが入ることもある。特に、まだ裏付けされていない中間状態のツリーの表現を持つことがある。それでキャッシュ本来の意味や用法とは違う場合がある。見方を変えるならカレントディレクトリキャッシュをツリーコミットへの作業中の状態と考えることも出来る）。</p>
+
+<h1>
+<span id="補遺" class="fragment"></span><a href="#%E8%A3%9C%E9%81%BA"><i class="fa fa-link"></i></a>補遺</h1>
+
+<h2>
+<span id="扱われていない内容" class="fragment"></span><a href="#%E6%89%B1%E3%82%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E5%86%85%E5%AE%B9"><i class="fa fa-link"></i></a>扱われていない内容</h2>
+
+<p>原文はデータ構造のみの説明です。<br>
+それ以外（通信系、ホスティングなどは）扱われていません。<br>
+また基本データ構造の応用であるブランチやマージもありません。<br>
+こういったことは初期においては手動・応用スクリプトで対応していたようです。</p>
+
+<h2>
+<span id="文体" class="fragment"></span><a href="#%E6%96%87%E4%BD%93"><i class="fa fa-link"></i></a>文体</h2>
+
+<p>原文の文体の冒頭はスラングと罵倒の羅列です。自作プログラムを馬鹿と卑下する表現もたくさんありますが、問題領域に対してシンプルなデータ構造で解決するんだ、という矜持のようなものも感じられます。当時流行っていた「多機能で信頼可能な」SCMを期待する向きに対して突き放したような表現も多々あります。なおCVSやSVNなど従来型の差分SCMに対するLinusの態度は超攻撃的なことで有名です。</p>
+
+<p>そんなわけで訳文もやや乱暴なテイストにしましたが、不快に思われたらごめんなさい。</p>
+
+<h2>
+<span id="理解のために" class="fragment"></span><a href="#%E7%90%86%E8%A7%A3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>理解のために</h2>
+
+<p>実際に適当なリポジトリを最新のcommitから</p>
+
+<blockquote>
+<p>git cat-file -p &lt;hash&gt;</p>
+</blockquote>
+
+<p>してオブジェクトデータベースを辿ったり、 </p>
+
+<blockquote>
+<p>git ls-files --stage</p>
+</blockquote>
+
+<p>してindexを見てみると、今でもデータに関しては上記以外の事は基本的に何もしていないことがわかります。<br>
+<a href="https://git-scm.com/book/ja/v2/Git%E3%81%AE%E5%86%85%E5%81%B4-%E9%85%8D%E7%AE%A1%EF%BC%88Plumbing%EF%BC%89%E3%81%A8%E7%A3%81%E5%99%A8%EF%BC%88Porcelain%EF%BC%89" rel="nofollow noopener" target="_blank">Pro git 日本語版のGitの内側</a>の章を実際に手を動かしてみると理解が一層深まると思います。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>hogemaxさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>42</kbd>
+		<a target="_blank" href="https://qiita.com/hogemax/items/2a0213292c473f7ed6a6">なぜLinuxカーネル開発ではいまだにEmailを使うのか？</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-01 21:07:08</center>
+	</td>
+	<td style="width:200px;">
+		@hogemax<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/202996/profile-images/1506575792">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Linux]</b> <b>[kernel]</b> <b>[読み物]</b> <b>[Workflow]</b> <b>[patch]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="初めに" class="fragment"></span><a href="#%E5%88%9D%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>初めに</h1>
+
+<p>以下の訳文です。<a href="https://kernel-recipes.org/en/2017/" rel="nofollow noopener" target="_blank">カーネルレシピ</a>の<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%AC%E3%83%83%E3%82%B0%E3%83%BB%E3%82%AF%E3%83%AD%E3%83%BC%EF%BC%9D%E3%83%8F%E3%83%BC%E3%83%88%E3%83%9E%E3%83%B3" rel="nofollow noopener" target="_blank">Greg Kroah-Hartman</a>の話のJonathan Corbetによる要約です。ライセンスは原文に準じます。</p>
+
+<p><a href="https://lwn.net/Articles/702177/" class="autolink" rel="nofollow noopener" target="_blank">https://lwn.net/Articles/702177/</a><br>
+(LICENSE: <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="autolink" rel="nofollow noopener" target="_blank">https://creativecommons.org/licenses/by-sa/4.0/</a>)</p>
+
+<ul>
+<li>見出しは内容の整理のために訳者が勝手に付加したものです。</li>
+<li>ご指摘等ありましたらコメント、編集リクエストでどうぞ。</li>
+</ul>
+
+<p>参考：<br>
+パッチ投稿のフローについては同じGregによる以下の記事（翻訳）が詳しいです。<br>
+<a href="http://blog-ja.intransient.info/2010/09/linux.html" class="autolink" rel="nofollow noopener" target="_blank">http://blog-ja.intransient.info/2010/09/linux.html</a></p>
+
+<h1>
+<span id="なぜカーネル開発ではいまだにemailを使うのか" class="fragment"></span><a href="#%E3%81%AA%E3%81%9C%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%AB%E9%96%8B%E7%99%BA%E3%81%A7%E3%81%AF%E3%81%84%E3%81%BE%E3%81%A0%E3%81%ABemail%E3%82%92%E4%BD%BF%E3%81%86%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>なぜカーネル開発ではいまだにEmailを使うのか？</h1>
+
+<h2>
+<span id="古臭い遺物" class="fragment"></span><a href="#%E5%8F%A4%E8%87%AD%E3%81%84%E9%81%BA%E7%89%A9"><i class="fa fa-link"></i></a>古臭い遺物?</h2>
+
+<p>世の中には見栄えの良い開発ツールやサイトが溢れていますが、カーネルプロジェクトはEmailやメーリングリストに依存しており、懐古趣味に積極的でもなければ古臭く取り残されているだけに思えるでしょう。しかしながら、グレッグ クロー＝ハートマンが <a href="https://kernel-recipes.org/en/2016/" title="kernel recipe" rel="nofollow noopener" target="_blank">Kernel Recipes talk</a> の中で取り上げた「Patches carved into stone tablets(石板に刻まれたパッチ)」と題する話の中で、カーネルコミュニティのその選択にはいくつかの良い理由があると述べています。古い時代の遺物なのではなく,むしろEmailはカーネルのような巨大なプロジェクトを管理するのに最適なツールとして生き残っているのです。</p>
+
+<h2>
+<span id="カーネルプロジェクトの規模" class="fragment"></span><a href="#%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%AB%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E8%A6%8F%E6%A8%A1"><i class="fa fa-link"></i></a>カーネルプロジェクトの規模</h2>
+
+<p>手短に言いますと、グレッグは「カーネル開発者たちはいまだにEmailを使っている。他の方法よりも高速だからだ」と述べています。昨年１年間で、カーネルプロジェクトは400以上の企業によって支えられる4000人の開発者たちから1時間（毎時です）に8件の変更を受け付けました。物事は正しく行われているに違いありません。１日に少なくとも１つのパッチを受け入れたメンテナのリストには75人のエントリがあり、そのリストのトップにグレッグがいるわけですが、グレッグ自身は9781のパッチを昨年一年間に受け付けました。実際に受け付けられるのは1/3程度であることを考慮すると、パッチの投稿率はそれよりかなり高いことは明白です。</p>
+
+<p>このようなパッチの投稿率を管理できるツールを探すのは大変です。グレッグは「下手な職人は道具の文句を並べ立て、腕の立つ職人は良い道具の探し方を知っている」と述べます。</p>
+
+<h2>
+<span id="githubはどうか" class="fragment"></span><a href="#github%E3%81%AF%E3%81%A9%E3%81%86%E3%81%8B"><i class="fa fa-link"></i></a>Githubはどうか？</h2>
+
+<h3>
+<span id="利点" class="fragment"></span><a href="#%E5%88%A9%E7%82%B9"><i class="fa fa-link"></i></a>利点</h3>
+
+<p>では開発に役立つツールは何でしょうか。グレッグはGithubから着目しました。グレッグはそれにはたくさんの利点があると述べます。とっても素敵で、小さなプロジェクトで使用するのが容易で、シンプルなインターフェースはありがたい、とグレッグは述べます。Githubはフリーで帯域制限なしですし、お金を払えば企業のインフラとして運用する事もできます。単発的なパッチの作者たちにとってそれは生きるのを容易にしてくれます。グレッグも<a href="https://github.com/gregkh/usbutils" rel="nofollow noopener" target="_blank">usbutils</a>プロジェクトで散発的なパッチを取得するのにGithubを使っています。</p>
+
+<h3>
+<span id="問題" class="fragment"></span><a href="#%E5%95%8F%E9%A1%8C"><i class="fa fa-link"></i></a>問題</h3>
+
+<p>一方、Githubは大きなプロジェクトにはスケールしません。彼は4000のイシューと511のプルリクエストを持つ<a href="https://github.com/kubernetes/kubernetes" rel="nofollow noopener" target="_blank">Kubernetes</a>プロジェクトについて触れました。Githubのシステムはレビュアーが大勢いる場合にはうまく機能しないとグレッグは述べます。Githubにはプルリクエストに付随した議論のためのスレッドの合理的なメカニズムがあります。Githubはこの特徴のためEmailを複製しますが、しかしそのスレッドは実際にそのプルリクエストに割り当てられた人たちしか見ることができません。</p>
+
+<p>また、GitHubではオンラインのアクセスが必要ですが、たくさんのカーネル開発者たちは、理由は様々ですが作業中にネットへの良いアクセスがありません。一般的には、良くなりつつありますが、Kubernetesのようなプロジェクトはスケールにもっとあったものを探す必要に気づいています。カーネルにおいては、上手くいかないでしょう。</p>
+
+<h2>
+<span id="gerritは" class="fragment"></span><a href="#gerrit%E3%81%AF"><i class="fa fa-link"></i></a>Gerritは・・・</h2>
+
+<h3>
+<span id="実態" class="fragment"></span><a href="#%E5%AE%9F%E6%85%8B"><i class="fa fa-link"></i></a>実態</h3>
+
+<p>話は<a href="https://www.gerritcodereview.com/" rel="nofollow noopener" target="_blank">Gerrit</a>に移ります。グレッグはGerritの利点を列挙し始めましたが、少し休止して、「何も知らなかった」と述べました。実際には、この点です。プロジェクトマネージャ達はGerritを愛しています。グーグルはAndroidプロジェクトでGerritを使用するように促しましたが、グーグルの社内プロジェクト、Androidのプロジェクトでさえも使用していないのです。Gerritは実際には必要とされていないのです。グレッグはこの点を指摘しました。Androidにおいてパッチを取得する込み入った<a href="https://source.android.com/source/life-of-a-patch.html" rel="nofollow noopener" target="_blank">フローチャート</a>の中で、Gerritは小さくて代替可能な位置づけでしかないのです。</p>
+
+<h3>
+<span id="問題-1" class="fragment"></span><a href="#%E5%95%8F%E9%A1%8C-1"><i class="fa fa-link"></i></a>問題</h3>
+
+<p>Gerritは、パッチの提出をきわめて困難にします。<a href="https://code.google.com/p/git-repo/" rel="nofollow noopener" target="_blank">Repo</a>はその点で少しは助けになるかもしれませんが、使用しているプロジェクトはそんなに多くはありません。Gerritはスクリプトで書くことができますが、そうしているのは少数の人々だけです。聴衆の一人が「Gerritを使用することはパッチを提出するごとに納税手続きをするようなものだ」と飛び入りで発言しました。レビューのインターフェースを見るなら、Gerritを使用する開発者はコードレビューには実際に時を費やしていないことは明白です。彼は特にパッチが当てられた全てのファイルを閲覧する際に個別にクリック出来る必要性を指摘しました。Gerritではローカルテストを実施するのが困難であり、一つのパッチのシリーズを追跡することは不可能です。全ての議論はウェブインターフェースを通して行われます。仕事の一部でもなければ誰もレビューはしないでしょう、とグレッグは述べます。</p>
+
+<h2>
+<span id="やっぱりplaint-text-email" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%B1%E3%82%8Aplaint-text-email"><i class="fa fa-link"></i></a>やっぱりplaint text Email</h2>
+
+<h3>
+<span id="汎用性" class="fragment"></span><a href="#%E6%B1%8E%E7%94%A8%E6%80%A7"><i class="fa fa-link"></i></a>汎用性</h3>
+
+<p>ではプレーンテキストのEmailについてはどうでしょうか。Emailは永遠に私たちの周りにあり、だれでも一つや他の形式でアクセス出来ます。フリーメールプロバイダは大量にありますし、クライアントも莫大な数があります。Emailはネイティブでない話者、必要であれば機械翻訳を使うような人もうまく使うことができます。Emailはアクセシビリティーの点でもフレンドリーで、視力障害ある開発者たちを多数取り込む点で貢献してきました。Emailは高速で、ローカルのテストが容易で、離れた場所からテストすることも可能です。Emailパッチを扱うスクリプトを書く作業はたやすくできます。そして作業のために新たなインターフェースを学ぶ必要もありません。</p>
+
+<h3>
+<span id="欠点" class="fragment"></span><a href="#%E6%AC%A0%E7%82%B9"><i class="fa fa-link"></i></a>欠点</h3>
+
+<p>一方、一概にいってEmailクライアントは出来がよくありません。Outlookのようなシステムではパッチが一様に壊れてしまいます。結果として、カーネル開発を行っている企業はパッチを送るために使用するLinuxマシンをどこかに置く傾向があります[*ジョークだろうか]。Gmailでパッチを送るのは苦労しますが、IMAPサーバとしてはとても優秀に動作します。プロジェクトマネージャはEmailを嫌う傾向にあるようです。いずれにせよカーネルのワークフローには、プロジェクトマネージャが関与することなどないので、Gregはそれを利点だ、悪く取ると[彼らには]無関係だ、と考えているように見えます。</p>
+
+<h3>
+<span id="他ツールとの統合" class="fragment"></span><a href="#%E4%BB%96%E3%83%84%E3%83%BC%E3%83%AB%E3%81%A8%E3%81%AE%E7%B5%B1%E5%90%88"><i class="fa fa-link"></i></a>他ツールとの統合</h3>
+
+<p>Emailはたやすく他のシステムと統合することができます。それは例えば<a href="https://01.org/lkp/documentation/0-day-test-service" rel="nofollow noopener" target="_blank">カーネルの0-dayビルドや起動テストシステム</a>でも上手く機能します。<a href="http://jk.ozlabs.org/projects/patchwork/" rel="nofollow noopener" target="_blank">パッチワークシステム</a>からはとてもよくサポートされています。カーネルの数多くのサブシステムの状態を追跡するのにパッチワークシステムは用いられています。パッチワークはメーリングリストを監視し、見つかったパッチを集め、活動を追跡したりします。また、それはプロジェクトマネージャが大好きなステータスリストを提供します。</p>
+
+<h3>
+<span id="コミュニティの形成" class="fragment"></span><a href="#%E3%82%B3%E3%83%9F%E3%83%A5%E3%83%8B%E3%83%86%E3%82%A3%E3%81%AE%E5%BD%A2%E6%88%90"><i class="fa fa-link"></i></a>コミュニティの形成</h3>
+
+<p>要約しますと、Emailはシンプルで、最も大きなグループをサポートし、スケーラブルであるという点が重要なのです。しかしもっとも重要なことはEmailがコミュニティを育てることです。新しい開発者たちがやって来る時、一番最初に学ばなければならないのはプロジェクトがどのように機能しているかということです。それは開発者たちが行っているレビューを読むことも含まれます。それは開発者たちが気にかけていること、ミスを避けるために行っていることを学ぶやり方です。カーネルにおいて、レビューはすべてメーリングリスト上で読むことができます。Gerritのようなシステムでは探し出すだけで一苦労です。</p>
+
+<p>Rusty Russelがかつて語ったように、もしスマートになりたいなら、スマートな人たちと関わることです。Emailベースのワークフローは開発者たちをプロジェクトのスマートな人たちと関わらせ、すべてがスマートになります。グレッグはLinuxが長く続くことを望んでおり、新しい開発者たちを連れてくる助けとなるツールを見たいと思っています。Emailは、欠点だらけとはいえ、その点について言えば他のものよりもいまだに優れているということです。</p>
+
+<h1>
+<span id="雑感" class="fragment"></span><a href="#%E9%9B%91%E6%84%9F"><i class="fa fa-link"></i></a>雑感</h1>
+
+<ul>
+<li>初心者は半年ROMれというコミュニティにおける古の金言を思い出した。</li>
+<li>視覚障害をもつ開発者たちが大勢いると言う点、彼らに配慮されている(結果的にであろうが)という点に励みを受けた。 </li>
+<li>PMをいじめないで、、、</li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>hogemaxさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>13</kbd>
+		<a target="_blank" href="https://qiita.com/hogemax/items/6f9737a5f757497fba70">Redox OS Kernelのコーディングガイドラインが示唆に富んでいたのでメモ</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-26 09:27:05</center>
+	</td>
+	<td style="width:200px;">
+		@hogemax<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/202996/profile-images/1506575792">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[rust]</b> <b>[codingRule]</b> <b>[Redox]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<ul>
+<li><p>Redox OS とは<br>
+Rustで書かれたフルスクラッチのマイクロカーネルOS。OSだけでなく、エコシステム（エディタ、ビルドツールもろもろ）、GUIもRustで書くと言うなかなか壮大なプロジェクト。なお、まだドライバが不十分なため主に仮想環境で動く。<br>
+<a href="https://www.redox-os.org/jp/" class="autolink" rel="nofollow noopener" target="_blank">https://www.redox-os.org/jp/</a><br>
+<a href="https://github.com/redox-os/redox" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/redox-os/redox</a></p></li>
+<li><p>Redox OS kernelとは<br>
+醜くなっていくカーネルをリライトする内部プロジェクト。<br>
+<a href="https://github.com/redox-os/kernel" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/redox-os/kernel</a></p></li>
+</ul>
+
+<h1>
+<span id="readmemdの拙訳" class="fragment"></span><a href="#readmemd%E3%81%AE%E6%8B%99%E8%A8%B3"><i class="fa fa-link"></i></a>README.mdの拙訳</h1>
+
+<p>※1.誤訳、指摘等あればコメントでぜひ。あと、一部わからないところや推測した箇所は[hoge]で付記してあります。<br>
+※2.20170927にREADME.mdが改変され以下の文言は削除されています。目的を達成したようです。</p>
+
+<h2>
+<span id="理由why" class="fragment"></span><a href="#%E7%90%86%E7%94%B1why"><i class="fa fa-link"></i></a>理由(Why?)</h2>
+
+<p>[Redox]カーネルは最初に書いた者しかバグを発見・修正することが出来ないほど急激に汚くなっている。幸いなことに、Redoxカーネルは比較的小さいためこのプロジェクトには数ヶ月しかかからないだろう。</p>
+
+<h2>
+<span id="目標what" class="fragment"></span><a href="#%E7%9B%AE%E6%A8%99what"><i class="fa fa-link"></i></a>目標(What?)</h2>
+
+<p>新たなるカーネルは以下の要求において明確でなければならない。</p>
+
+<p>正しさ：何よりも、カーネルは正しくなくてはならない。ハック禁止、小さくてクールなショートカットに見えたとしても、後に容赦ないバックスラッシュ[バックラッシュにかけた洒落?コメントアウトされるということだろうか]をもたらすだろう。正しさと冗長性を保とう。</p>
+
+<p>可読性とドキュメント：コード品質は高く、（全ての！）APIドキュメントと瑣末でない点に関しての注意深いコメントを含む詳細なドキュメントが付随すべきだ。</p>
+
+<p>パフォーマンス：出来るならやろう。</p>
+
+<h2>
+<span id="ガイドラインguidlines" class="fragment"></span><a href="#%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3guidlines"><i class="fa fa-link"></i></a>ガイドライン(Guidlines)</h2>
+
+<h3>
+<span id="腐った家は腐った土台の上に建てられるa-rotten-house-is-built-on-a-rotten-foundation" class="fragment"></span><a href="#%E8%85%90%E3%81%A3%E3%81%9F%E5%AE%B6%E3%81%AF%E8%85%90%E3%81%A3%E3%81%9F%E5%9C%9F%E5%8F%B0%E3%81%AE%E4%B8%8A%E3%81%AB%E5%BB%BA%E3%81%A6%E3%82%89%E3%82%8C%E3%82%8Ba-rotten-house-is-built-on-a-rotten-foundation"><i class="fa fa-link"></i></a>腐った家は腐った土台の上に建てられる(A rotten house is built on a rotten foundation.)</h3>
+
+<p>自分を騙すのはやめよう。醜いコードに逆戻りなんて嫌だろう。最初から正しい方法でコードを書き、正しい方法で書き終えたときのみ次に移るように確認しよう。</p>
+
+<h3>
+<span id="コメントcomments" class="fragment"></span><a href="#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88comments"><i class="fa fa-link"></i></a>コメント(Comments)</h3>
+
+<p>全ての箇所にコメントを書くのをためらってはならない。</p>
+
+<h3>
+<span id="文書documentations" class="fragment"></span><a href="#%E6%96%87%E6%9B%B8documentations"><i class="fa fa-link"></i></a>文書(Documentations)</h3>
+
+<p>すべての公開物はAPIドキュメントも含むべきだ。</p>
+
+<h3>
+<span id="デバッグアサーションdebug-assertions" class="fragment"></span><a href="#%E3%83%87%E3%83%90%E3%83%83%E3%82%B0%E3%82%A2%E3%82%B5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3debug-assertions"><i class="fa fa-link"></i></a>デバッグアサーション(Debug Assertions)</h3>
+
+<p>デバッグアサーションの乱用はバグを捕捉するのに素晴らしい方法だし、是非ともお勧めしたい。</p>
+
+<h3>
+<span id="静的チェックstatic-checking" class="fragment"></span><a href="#%E9%9D%99%E7%9A%84%E3%83%81%E3%82%A7%E3%83%83%E3%82%AFstatic-checking"><i class="fa fa-link"></i></a>静的チェック(Static checking)</h3>
+
+<p>Rustは素晴しく安全な抽象化機構を作るためにたくさんの型システムが用意されている。機会があればいつでもそれを使うべきだ。</p>
+
+<p>非安全[な状態]は回避されるべきだ。もし幾つかの例外的な状況でそれが引き起こされるなら、アサーションを挿入せよ。カーネルも例外ではない。セキュリティ脆弱性よりカーネルパニックの方がマシだ。</p>
+
+<p>もし到達し得ない状態がある（もしくはあるべきだ）が、[その状態が]不安定で、UB[Undefined Behavior (未定義動作)]につながるような場合、関数のスタートにアサーションを置け。</p>
+
+<h3>
+<span id="落ち着いてbe-gentle" class="fragment"></span><a href="#%E8%90%BD%E3%81%A1%E7%9D%80%E3%81%84%E3%81%A6be-gentle"><i class="fa fa-link"></i></a>落ち着いて(Be gentle)</h3>
+
+<p>できるだけ早くたくさんコードを書こうとしてはならない。時間を取って注意深く。</p>
+
+<h3>
+<span id="コミットcommits" class="fragment"></span><a href="#%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88commits"><i class="fa fa-link"></i></a>コミット(Commits)</h3>
+
+<p>わかりやすいコミットをしよう。わかりやすいコミットを自分に強いるひとつの方法として、 [git に]-m フラグを渡さないというものがある。そうするとエディタがポップアップするので、長いコミットメッセージを書くのに便利だろう。</p>
+
+<h1>
+<span id="所感" class="fragment"></span><a href="#%E6%89%80%E6%84%9F"><i class="fa fa-link"></i></a>所感</h1>
+
+<ul>
+<li><p>カーネルコーディングならではのガイドラインだが、最初から良いコードを書こうと強く意識するのはどのレイヤーのコーディングでも重要だと思った</p></li>
+<li><p>アサーションをガンガン挿入するのは特にテストの書きようがないレガシーコードのリファクタリングに応用できる。</p></li>
+<li><p>まだ実用段階にないカーネルをリライティングするところに意識の高さが伺える（というか今しか出来ないのか）。</p></li>
+<li><p>実際、システムコールのソースは素人目にも何をしているのか追えるくらいに平易。（ <a href="https://github.com/redox-os/kernel/blob/master/src/syscall/fs.rs" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/redox-os/kernel/blob/master/src/syscall/fs.rs</a> ）</p></li>
+<li><p>訳についてご教授下さった方に感謝します。</p></li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>hogemaxさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/hogemax/items/988d455f82d592a7d968">人工知能による自動運用DBMS pelotonをFreeBSD11.1上でビルド（したい）</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-27 21:49:36</center>
+	</td>
+	<td style="width:200px;">
+		@hogemax<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/202996/profile-images/1506575792">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[C++]</b> <b>[FreeBSD]</b> <b>[DBMS]</b> <b>[peloton]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>pelotonとはカーネギーメロン大学が開発中のAI搭載の自動運用DBMSです。C++で書かれています。</p>
+
+<p>結論から言うと、ビルドに成功してません。README.mdの文言が激アツだったので情熱でやっていったところ、俺たちの冒険はこれからだみたいになっている状態です（コンパイルエラーがもりもり出て止まっています）。徐々に加筆していきたいと思います。</p>
+
+<p>以下、README.md拙訳、とにかくパワーのあるREADME.mdです。指摘、誤訳等あればコメントでぜひ。</p>
+
+<p><a href="https://github.com/cmu-db/peloton" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/cmu-db/peloton</a></p>
+
+<h1>
+<span id="readmemd" class="fragment"></span><a href="#readmemd"><i class="fa fa-link"></i></a>README.md</h1>
+
+<h2>
+<span id="peloton-とは" class="fragment"></span><a href="#peloton-%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>peloton とは</h2>
+
+<ul>
+<li>自動運用[self-driving]するSQL DBMS</li>
+<li>人工知能コンポーネント統合により、自律的な最適化が可能</li>
+<li>バイト単位でアドレス指定可能な不揮発メモリストレージ技術を標準でサポート</li>
+<li>リアルタイム分析のため、ロックフリーで複数バージョンをコントロール</li>
+<li>Postgres ネットワークプロトコル及びJDBC互換</li>
+<li>ハイパフォーマンスでロックフリーなBw木によるインデクシング</li>
+<li>100% オープンソース(Apache Software License v2.0)</li>
+</ul>
+
+<h2>
+<span id="解決する課題" class="fragment"></span><a href="#%E8%A7%A3%E6%B1%BA%E3%81%99%E3%82%8B%E8%AA%B2%E9%A1%8C"><i class="fa fa-link"></i></a>解決する課題</h2>
+
+<p>過去20年に渡り、研究者やベンダはデータベースのシステムチューニングや物理的な設計の監視のために専用ツールを開発してきました。それは不完全です。なぜなら未だに変更を確定するためにデータベース内を変化させなければならず、問題が起きた後に解決しようとする古い基準[を採用しているから]です。</p>
+
+<p>この新しいアーキテクチャは真に自動運用[self-driving]するデータベースマネジメントシステム(DBMS)の要求として生まれたもので、自律的に運用するように設計されています。今までの試みとは違うのは、すべてのシステムの側面が統合されたプランニング・コンポーネントによりコントロールされているという点です。カレント・ワークロードについて言えば、将来のワークロード・トレンドを予測しそれに基づいてシステム自身が準備をします。このシステムは何がよい方法か判断するのに人間による決定を不要にし、変化のデプロイにかかる時間を削減し、DMBSがハイパフォーマンスを発揮できるように最適化します。これらのシステムの自動マネジメントは人間の専門家の能力を凌駕します。</p>
+
+<p>Pelotonは複合的なワークロードを自律的に最適化するリレーショナルデータベース管理システムです。詳しくはpelotonのwikiをご覧ください。</p>
+
+<h1>
+<span id="環境ビルドツール" class="fragment"></span><a href="#%E7%92%B0%E5%A2%83%E3%83%93%E3%83%AB%E3%83%89%E3%83%84%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>環境/ビルドツール</h1>
+
+<ul>
+<li>FreeBSD 11.1-RELEASE-p1 FreeBSD 11.1-RELEASE-p1 amd64 </li>
+<li>LLVM Clang 4.0</li>
+<li>Cmake</li>
+<li>ccmake(Cmakeコンフィグレーション用ツール）</li>
+<li>BSD make </li>
+</ul>
+
+<h1>
+<span id="ビルド方法途中" class="fragment"></span><a href="#%E3%83%93%E3%83%AB%E3%83%89%E6%96%B9%E6%B3%95%E9%80%94%E4%B8%AD"><i class="fa fa-link"></i></a>ビルド方法(途中)</h1>
+
+<ul>
+<li>git clone</li>
+<li>cmake .</li>
+<li>peloton/cmake/Depencies.cmakeに依存するライブラリの一覧があるのでそれらをインストールする</li>
+<li>make</li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

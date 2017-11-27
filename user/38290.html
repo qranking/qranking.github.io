@@ -1,0 +1,342 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (kazunori279)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (kazunori279 さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kazunori279さんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>117</kbd>
+		<a target="_blank" href="https://qiita.com/kazunori279/items/fdadbfde58ed133bb9d5">Google HomeにつぶやくとTwitterでつぶやくやつ、IFTTTですぐできた。</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-08 07:38:03</center>
+	</td>
+	<td style="width:200px;">
+		@kazunori279<br />(Google Inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/38290/profile-images/1473687710">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Twitter]</b> <b>[ifttt]</b> <b>[GoogleAssistant]</b> <b>[GoogleHome]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>昨日、日本語版の<a href="https://store.google.com/product/google_home" rel="nofollow noopener" target="_blank">Google Home</a>が届いた。</p>
+
+<p><a href="https://camo.qiitausercontent.com/3cf9cf84fb67938c6a48be5492f792f80a376eb5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f36343031303162612d303366632d343330382d653664642d6635383666353339383432372e706e67" target="_blank" rel="nofollow noopener"><img width="1256" alt="Screen Shot 2017-10-08 at 6.51.36 AM.png" src="https://camo.qiitausercontent.com/3cf9cf84fb67938c6a48be5492f792f80a376eb5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f36343031303162612d303366632d343330382d653664642d6635383666353339383432372e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38290/640101ba-03fc-4308-e6dd-f586f5398427.png"></a></p>
+
+<p>このGoogle Homeと<a href="https://ifttt.com/google_assistant" rel="nofollow noopener" target="_blank">IFTTTのGoogle Assistant連携</a>の組み合わせがとても便利そうなので、さっそく試してみた。15分くらいでTwitter連携できた。</p>
+
+<p><a href="https://camo.qiitausercontent.com/2d889277db0a5ba00cd69dbd40895ad7ead59ba1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f35393634333565332d363031302d613331392d326430322d3639396533613238663764392e706e67" target="_blank" rel="nofollow noopener"><img width="582" alt="Screen Shot 2017-10-08 at 7.07.54 AM.png" src="https://camo.qiitausercontent.com/2d889277db0a5ba00cd69dbd40895ad7ead59ba1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f35393634333565332d363031302d613331392d326430322d3639396533613238663764392e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38290/596435e3-6010-a319-2d02-699e3a28f7d9.png"></a></p>
+
+<p>ちなみに、実行するアクションを入れ替えれば、FacebookやSlackにメッセージを送ったり、家電をオンオフしたり、Google Sheetに記録したりと等々、多彩な連携が可能。</p>
+
+<p>以下に連携方法をメモしておく。</p>
+
+<h2>
+<span id="google-homeの設定" class="fragment"></span><a href="#google-home%E3%81%AE%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>Google Homeの設定</h2>
+
+<p>これは開封後10分くらいで終わる。</p>
+
+<h2>
+<span id="iftttのappletを作る" class="fragment"></span><a href="#ifttt%E3%81%AEapplet%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>IFTTTのAppletを作る</h2>
+
+<p>まずはIFTTTにサインアップしておく。IFTTTでは「コレをトリガーにアレを実行」ってルール設定を「Applet」と呼んでいる。今回は、Google AssistantをトリガーにTwitterでツイートするAppletを作る。</p>
+
+<p><a href="https://ifttt.com/my_applets" rel="nofollow noopener" target="_blank">IFTTTのMy Applets</a>ページを開き、<code>New Applet</code>をクリック。「コレをトリガーに」を指定する部分で、Google Assistantを選ぶと、以下の選択肢が出て来る。</p>
+
+<p><a href="https://camo.qiitausercontent.com/0aeb98c708efe9c693f8eee869ba1480c91ced12/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f35393261616164312d353430362d636438362d316238322d3737646362663330633537662e706e67" target="_blank" rel="nofollow noopener"><img width="986" alt="Screen Shot 2017-10-08 at 7.03.19 AM.png" src="https://camo.qiitausercontent.com/0aeb98c708efe9c693f8eee869ba1480c91ced12/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f35393261616164312d353430362d636438362d316238322d3737646362663330633537662e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38290/592aaad1-5406-cd86-1b82-77dcbf30c57f.png"></a></p>
+
+<p>それぞれ、</p>
+
+<ul>
+<li>Google Assistantで指定のフレーズを認識</li>
+<li>Google Assistantで数値を含む指定のフレーズを認識</li>
+<li>Google Assistantでキーワードを含む指定のフレーズを認識</li>
+<li>Google Assistantで数値やキーワードを含む指定のフレーズを認識</li>
+</ul>
+
+<p>って機能を表す。今回は、キーワード付きのフレーズを認識できる機能<code>Say a phrase with a text ingredient</code>を試してみた。こんな感じだ。</p>
+
+<p><a href="https://camo.qiitausercontent.com/edfb45c45f82516067584e8b43d4f75ce4c21423/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f37393664343066322d643432342d656538382d333439382d6361306535626237643034382e706e67" target="_blank" rel="nofollow noopener"><img width="565" alt="Screen Shot 2017-10-08 at 7.14.45 AM.png" src="https://camo.qiitausercontent.com/edfb45c45f82516067584e8b43d4f75ce4c21423/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f37393664343066322d643432342d656538382d333439382d6361306535626237643034382e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38290/796d40f2-d424-ee88-3498-ca0e5bb7d048.png"></a></p>
+
+<p>ここで引っかかりポイント。「つぶやく」と発音すると、「つぶやく」「呟く」の2パターンで認識されるのだ。なので、上図のように両方とも登録しておかないとうまく認識されない。ちなみに、このように<code>$</code>記号を使って、つぶやきとして認識したいキーワードを取り出せる。</p>
+
+<p>ちなみに、IFTTTのiOSアプリでは日本語入力がバグっていて使い物にならない。Webページからの設定がおすすめ。</p>
+
+<h2>
+<span id="twitter連携設定" class="fragment"></span><a href="#twitter%E9%80%A3%E6%90%BA%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>Twitter連携設定</h2>
+
+<p>つづいて、Appletの「アレを実行」部分として、Twitterでつぶやくルールを以下のように指定する。</p>
+
+<p><a href="https://camo.qiitausercontent.com/93d6bc84965741b4a400cf59f60dd9b324a962c1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f65653666373562322d383336642d613430612d663138342d3666333437363435663536312e706e67" target="_blank" rel="nofollow noopener"><img width="526" alt="Screen Shot 2017-10-08 at 7.18.55 AM.png" src="https://camo.qiitausercontent.com/93d6bc84965741b4a400cf59f60dd9b324a962c1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f65653666373562322d383336642d613430612d663138342d3666333437363435663536312e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38290/ee6f75b2-836d-a40a-f184-6f347645f561.png"></a></p>
+
+<p>ここは好きなテキストをいれてよいが、{{TextField}}ってのを入れた場所にGoogle Assistantで認識したキーワードを挿入できる。</p>
+
+<p>以上。最後に<code>Finish</code>ボタンをクリックしてAppletを登録すると完成。すぐ試せる。</p>
+
+<h2>
+<span id="テストデバッグ" class="fragment"></span><a href="#%E3%83%86%E3%82%B9%E3%83%88%E3%83%87%E3%83%90%E3%83%83%E3%82%B0"><i class="fa fa-link"></i></a>テスト＆デバッグ</h2>
+
+<p>Google Homeに向かって、「OK Google, インターネットで これはテスト とつぶやく」のように話しかけると、うまく行けば数秒でTwitter上にツイートが現れる。成功だ。</p>
+
+<p>つぶやくキーワードが短いと成功しやすいけど、長い文だとあまりうまく動いてくれない。デバッグしたい場合は、Google Homeアプリのマイアクティビティが便利。認識に失敗した場合もすべてここにログとして残る。</p>
+
+<p><a href="https://camo.qiitausercontent.com/a0900d0e44b443a431c7544c0a5b5e0286b9a266/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f36373766616432652d633332372d306463372d346638302d6165303430393137336261652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a0900d0e44b443a431c7544c0a5b5e0286b9a266/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f36373766616432652d633332372d306463372d346638302d6165303430393137336261652e706e67" alt="IMG_0115.PNG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38290/677fad2e-c327-0dc7-4f80-ae0409173bae.png"></a></p>
+
+<p>ちなみに、今回のようにキーワードを含む文章を認識するルールを使うと、認識の成功率はあんまり高くない。日々の生活で使うなら、固定文をトリガーに固定文をつぶやくルールの方が実用性はよさそうだ。</p>
+
+<h2>
+<span id="ifttt連携は使える" class="fragment"></span><a href="#ifttt%E9%80%A3%E6%90%BA%E3%81%AF%E4%BD%BF%E3%81%88%E3%82%8B"><i class="fa fa-link"></i></a>IFTTT連携は使える</h2>
+
+<p>IFTTTはいろいろなサービスやデバイスとの連携をサポートしているので、Twitter以外にもいろいろ遊んでみたくなる。例えば、</p>
+
+<ul>
+<li>FacebookやSlackなどにメッセージ送信</li>
+<li>
+<a href="https://shop.littlebits.cc/products/cloudbit" rel="nofollow noopener" target="_blank">littleBits</a>でおうちIoT連携</li>
+<li>WeMoで家電のオンオフ</li>
+<li>Google Sheetに音声メモ記録</li>
+<li>Gmailでメール送信</li>
+</ul>
+
+<p>といったところがすぐに思いつく。</p>
+
+<p>Google Home＋IFTTT連携、お手軽すぎるので皆さんもお試しあれ。</p>
+
+<hr>
+
+<p>Disclaimer この記事は個人的なものです｡ここで述べられていることは私の個人的な意見に基づくものであり､私の雇用者には関係はありません｡</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kazunori279さんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>88</kbd>
+		<a target="_blank" href="https://qiita.com/kazunori279/items/e3485f00fbe0ad85cce2">Google Home＋IFTTTで、お手軽に家電コントロール</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-09 06:49:30</center>
+	</td>
+	<td style="width:200px;">
+		@kazunori279<br />(Google Inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/38290/profile-images/1473687710">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[ifttt]</b> <b>[IRKit]</b> <b>[GoogleAssistant]</b> <b>[GoogleHome]</b> <b>[WeMo]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>一昨日は、<a href="https://qiita.com/kazunori279/items/fdadbfde58ed133bb9d5" id="reference-b19ccd037fd9e63c5301">Google HomeでつぶやくとTwitterでつぶやく連携</a>がうまく動いた。これでかなり楽しくなってしまい、昨日は<a href="https://ifttt.com/google_assistant" rel="nofollow noopener" target="_blank">IFTTTのGoogle Assistant連携</a>で家電をコントロールする方法をいろいろ試してみた。Home三昧の三連休である。</p>
+
+<p>今回紹介するのは以下の2つ。</p>
+
+<ul>
+<li>Belkin WeMoで家電のAC電源をオンオフ</li>
+<li>IRKitで家電をリモコン制御</li>
+</ul>
+
+<p>WeMoの方は、何も考えずにあっという間に設定できる。IRKitの方は若干のコマンド操作が必要だが、それでも15分くらいで終わる。</p>
+
+<p>ちなみに、IRKitの方で使うIFTTTの<a href="https://ifttt.com/maker_webhooks" rel="nofollow noopener" target="_blank">Webhooks</a>は、HTTP/HTTPSで任意のURLを呼べるアクションである。家電のコントロールは使い方の一例にすぎず、REST APIを備えるいろんな対象を制御できてしまう。Google Home＋IFTTT、なんて強力なのだ。</p>
+
+<p><a href="https://camo.qiitausercontent.com/eb8bd6b446da844f656c405d3bc114151789851e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f62393931313637352d653063332d346236302d343933662d3062353965366265323535322e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/eb8bd6b446da844f656c405d3bc114151789851e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f62393931313637352d653063332d346236302d343933662d3062353965366265323535322e6a706567" alt="47D3977A-B674-4AA9-B1EA-2A84E2C23588.jpeg" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38290/b9911675-e0c3-4b60-493f-0b59e6be2552.jpeg"></a><br>
+IRKit</p>
+
+<h2>
+<span id="belkin-wemoで家電をオンオフ" class="fragment"></span><a href="#belkin-wemo%E3%81%A7%E5%AE%B6%E9%9B%BB%E3%82%92%E3%82%AA%E3%83%B3%E3%82%AA%E3%83%95"><i class="fa fa-link"></i></a>Belkin WeMoで家電をオンオフ</h2>
+
+<p><a href="http://www.belkin.com/us/Products/home-automation/c/wemo-home-automation/" rel="nofollow noopener" target="_blank">Belkin WeMo</a>はBelkinが販売するホームオートメーション製品。WiFi経由でAC電源をオンオフするモジュールや、電球の明るさを調節するモジュールなどがあり、日本でも<a href="http://amzn.asia/8fvvZSF" rel="nofollow noopener" target="_blank">Amazonで購入</a>できる。</p>
+
+<p><a href="https://camo.qiitausercontent.com/fea8d32fb0a000bcaeec514bf96263bec281000f/68747470733a2f2f696d616765732d6e612e73736c2d696d616765732d616d617a6f6e2e636f6d2f696d616765732f492f3331486d2d32634d6e794c2e6a7067" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/fea8d32fb0a000bcaeec514bf96263bec281000f/68747470733a2f2f696d616765732d6e612e73736c2d696d616765732d616d617a6f6e2e636f6d2f696d616765732f492f3331486d2d32634d6e794c2e6a7067" alt="" data-canonical-src="https://images-na.ssl-images-amazon.com/images/I/31Hm-2cMnyL.jpg"></a></p>
+
+<p>普通はWeMoのスマホアプリからオンオフして使うのだが、IFTTT連携にも対応しており、「Google Assistantでトリガー→WeMoの指定デバイスをオンオフ」するAppletも簡単に作れる。Google Assistantをトリガーとする設定は<a href="https://qiita.com/kazunori279/items/fdadbfde58ed133bb9d5#ifttt%E3%81%AEapplet%E3%82%92%E4%BD%9C%E3%82%8B" id="reference-b19ccd037fd9e63c5301">前回説明した方法</a>と同じ。ただし、今回は<code>Say a simple phrase</code>を選択して、固定のフレーズに反応してトリガーを起動する設定にする。</p>
+
+<p><a href="https://camo.qiitausercontent.com/549c178332b77244481e9d5d5454f66d84017f5c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f32353835303661382d633464642d316264372d653661352d3165353731636266313331362e706e67" target="_blank" rel="nofollow noopener"><img width="340" alt="Screen Shot 2017-10-08 at 9.46.35 PM.png" src="https://camo.qiitausercontent.com/549c178332b77244481e9d5d5454f66d84017f5c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f32353835303661382d633464642d316264372d653661352d3165353731636266313331362e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38290/258506a8-c4dd-1bd7-e6a5-1e571cbf1316.png"></a></p>
+
+<p>こののトリガーで起動する先としてWeMoを選択すると、WeMoで実行できるアクションの選択肢が表示される。</p>
+
+<p><a href="https://camo.qiitausercontent.com/8b695f86031943c3ecd95683c1ed27197824e0f5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f34633135323638612d393234372d616431662d396134352d6639653566633530633034362e706e67" target="_blank" rel="nofollow noopener"><img width="970" alt="Screen Shot 2017-10-08 at 9.38.47 PM.png" src="https://camo.qiitausercontent.com/8b695f86031943c3ecd95683c1ed27197824e0f5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f34633135323638612d393234372d616431662d396134352d6639653566633530633034362e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38290/4c15268a-9247-ad1f-9a45-f9e5fc50c046.png"></a></p>
+
+<p>ここで<code>Turn on</code>を選び、電源オンしたいデバイスを指定する。</p>
+
+<p><a href="https://camo.qiitausercontent.com/cb9be770b8b4abf5c49b05e333b7b9103c9f5ada/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f34373565356131382d323262372d333230392d303164642d3663636337663363316236642e706e67" target="_blank" rel="nofollow noopener"><img width="453" alt="Screen Shot 2017-10-08 at 9.39.01 PM.png" src="https://camo.qiitausercontent.com/cb9be770b8b4abf5c49b05e333b7b9103c9f5ada/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f34373565356131382d323262372d333230392d303164642d3663636337663363316236642e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38290/475e5a18-22b7-3209-01dd-6ccc7f3c1b6d.png"></a></p>
+
+<p>設定はこれだけ。<code>Finish</code>をクリックしてAppletを登録すれば、すぐにGoogle Homeで使えるようになる。</p>
+
+<h2>
+<span id="irkitで家電をリモコン制御" class="fragment"></span><a href="#irkit%E3%81%A7%E5%AE%B6%E9%9B%BB%E3%82%92%E3%83%AA%E3%83%A2%E3%82%B3%E3%83%B3%E5%88%B6%E5%BE%A1"><i class="fa fa-link"></i></a>IRKitで家電をリモコン制御</h2>
+
+<p>続いて、<a href="http://getirkit.com/" rel="nofollow noopener" target="_blank">IRKit</a>を使って赤外線リモコンに対応した家電を制御してみよう。IRKitはWiFiの付いた赤外線リモコンで、家電のリモコンの赤外線信号を学習させ、スマホアプリからコントロールできる。こちらも<a href="http://amzn.asia/cd1qxtv" rel="nofollow noopener" target="_blank">Amazonから購入</a>できる（ちょっとお高い）。</p>
+
+<p><a href="https://camo.qiitausercontent.com/19583fb60e3a895be4281ef04df8725bcf06a557/687474703a2f2f67657469726b69742e636f6d2f696d616765732f636f6d706f736974696f6e2e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/19583fb60e3a895be4281ef04df8725bcf06a557/687474703a2f2f67657469726b69742e636f6d2f696d616765732f636f6d706f736974696f6e2e706e67" alt="" data-canonical-src="http://getirkit.com/images/composition.png"></a></p>
+
+<p>我々がIRKitにそそられる点は、とてもお手軽な<a href="http://getirkit.com/#IRKit-Device-API" rel="nofollow noopener" target="_blank">REST API</a>が公開されていること。このAPIをIFTTTのWebhooksから呼び出せば、Google Homeを使ったリモコン制御を簡単に行える。</p>
+
+<h3>
+<span id="irkitのdeviceidとclientkeyを取得する" class="fragment"></span><a href="#irkit%E3%81%AEdeviceid%E3%81%A8clientkey%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>IRKitのdeviceidとclientkeyを取得する</h3>
+
+<p>まずは、IRKitのマニュアルにしたがって専用アプリを使いWiFiに接続しておく。つづいて、APIドキュメントを参考に、以下の手順で<code>deviceid</code>と<code>clientkey</code>を取得する。</p>
+
+<p>まずはIRKitのIPアドレスを調べよう。コンソールから以下のコマンドを実行すると、BonjourでIPアドレスを取得できる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ dns-sd -B _irkit._tcp
+Browsing for _irkit._tcp
+DATE: ---Sun 08 Oct 2017---
+18:49:43.251  ...STARTING...
+Timestamp     A/R    Flags  if Domain               Service Type         Instance Name
+18:49:47.965  Add        2   5 local.               _irkit._tcp.         irkit6ff6
+
+$ dns-sd -G v4 iRKit6ff6.local
+DATE: ---Sun 08 Oct 2017---
+18:52:17.599  ...STARTING...
+Timestamp     A/R Flags if Hostname                               Address                                      TTL
+18:52:18.316  Add     2  5 irkit6ff6.local.                       192.168.1.140                                10
+</pre></div></div>
+
+<p>つづいて、このIPアドレスを使って<code>clienttoken</code>を取得。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ curl -i "http://192.168.1.140/keys" -d '' -H "X-Requested-With: curl"
+
+HTTP/1.0 200 OK
+Access-Control-Allow-Origin: *
+Server: IRKit/3.0.0.0.g85190b1
+Content-Type: text/plain
+
+{"clienttoken":"***clienttokenが入る***"}
+</pre></div></div>
+
+<p>この<code>clienttoken</code>を使い、IRKitのAPIサーバーから<code>deviceid</code>と<code>clientkey</code>を取得する。この2つはどこかにメモしておこう。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ curl -i -d "clienttoken=***clienttokenが入る***" "https://api.getirkit.com/1/keys"
+
+HTTP/1.1 200 OK
+Server: openresty
+Date: Sun, 08 Oct 2017 09:54:43 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 94
+Connection: keep-alive
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: X-Requested-With
+X-Content-Type-Options: nosniff
+
+{"deviceid":"***deviceidが入る***","clientkey":"***clientkeyが入る***"}
+</pre></div></div>
+
+<p>これで<code>deviceid</code>と<code>clientkey</code>が手に入ったので、これらを使いIRKitのAPIサーバー経由でIRKitの機能をいろいろ呼び出せる。</p>
+
+<h3>
+<span id="赤外線信号を読みとる" class="fragment"></span><a href="#%E8%B5%A4%E5%A4%96%E7%B7%9A%E4%BF%A1%E5%8F%B7%E3%82%92%E8%AA%AD%E3%81%BF%E3%81%A8%E3%82%8B"><i class="fa fa-link"></i></a>赤外線信号を読みとる</h3>
+
+<p>では、家電のリモコンの赤外線信号を読み取ろう。以下のコマンドを実行すると、IRKitが外部からの赤外線信号を待機する状態になる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ curl -i "https://api.getirkit.com/1/messages?clientkey=***clientkeyが入る***&amp;clear=1"
+</pre></div></div>
+
+<p>ここで家電のリモコンをIRKitに向けて読み取りたいボタンを押すと、以下のように赤外線信号を表す<code>message</code>プロパティを含むJSONが返る。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>HTTP/1.1 200 OK
+Server: openresty
+Date: Sun, 08 Oct 2017 09:56:37 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 896
+Connection: keep-alive
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: X-Requested-With
+ETag: "-1823812453"
+X-Content-Type-Options: nosniff
+
+{"message":{"format":"raw","freq":38,"data":[4713,1037,2451,1073,1319,1037,2451,1037,1319,1037,2451,1037,1319,1037,1319,1037,2451,1073,1275,1073,1275,1073,1275,1073,1275,56112,4713,1073,2451,1073,1275,1073,2451,1037,1319,1037,2451,1073,1275,1073,1275,1073,2451,1037,1319,1073,1319,1073,1319,1073,1319,56112,4713,1037,2451,1037,1275,1073,2451,1037,1319,1037,2451,1073,1319,1073,1319,1073,2451,1037,1319,1073,1319,1073,1319,1073,1319,56112,4713,1073,2451,1073,1275,1073,2451,1037,1319,1037,2451,1073,1275,1073,1275,1073,2451,1037,1319,1073,1319,1073,1319,1073,1319,56112,4713,1037,2451,1037,1275,1073,2451,1037,1319,1037,2451,1073,1275,1073,1275,1073,2451,1037,1319,1037,1319,1037,1319,1037,1319,56112,4713,1073,2451,1073,1319,1037,2451,1073,1275,1073,2451,1037,1319,1037,1319,1037,2451,1073,1275,1073,1275,1073,1275,1073,1275]},"hostname":"IRKit6FF6","deviceid":"***deviceidが入る***"}
+</pre></div></div>
+
+<p>この<code>message</code>プロパティの値部分をメモしておく。</p>
+
+<h3>
+<span id="curlでテスト" class="fragment"></span><a href="#curl%E3%81%A7%E3%83%86%E3%82%B9%E3%83%88"><i class="fa fa-link"></i></a>curlでテスト</h3>
+
+<p>この段階で、IRKit経由で家電を制御できるかテストしておこう。まずは、赤外線信号を出力するためのURLを以下のように作っておく。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>https://api.getirkit.com/1/messages?clientkey=***clientkeyが入る***&amp;deviceid=***deviceidが入る***&amp;message=
+</pre></div></div>
+
+<p>ここで、<code>message</code>クエリパラメータの値として、先程読み取った赤外線信号の<code>message</code>プロパティの値を埋め込み、以下のような<code>curl</code>コマンドを組み立てる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ curl -i 'https://api.getirkit.com/1/messages?clientkey=***clientkeyが入る***&amp;deviceid=***deviceidが入る***&amp;message={"format":"raw","freq":38,"data":[4713,1037,2451,1073,1319,1037,2451,1037,1319,1037,2451,1037,1319,1037,1319,1037,2451,1073,1275,1073,1275,1073,1275,1073,1275,56112,4713,1073,2451,1073,1275,1073,2451,1037,1319,1037,2451,1073,1275,1073,1275,1073,2451,1037,1319,1073,1319,1073,1319,1073,1319,56112,4713,1037,2451,1037,1275,1073,2451,1037,1319,1037,2451,1073,1319,1073,1319,1073,2451,1037,1319,1073,1319,1073,1319,1073,1319,56112,4713,1073,2451,1073,1275,1073,2451,1037,1319,1037,2451,1073,1275,1073,1275,1073,2451,1037,1319,1073,1319,1073,1319,1073,1319,56112,4713,1037,2451,1037,1275,1073,2451,1037,1319,1037,2451,1073,1275,1073,1275,1073,2451,1037,1319,1037,1319,1037,1319,1037,1319,56112,4713,1073,2451,1073,1319,1037,2451,1073,1275,1073,2451,1037,1319,1037,1319,1037,2451,1073,1275,1073,1275,1073,1275,1073,1275]}'
+</pre></div></div>
+
+<p>これを実行して、うまく家電が動くことを確認しておく。</p>
+
+<p>ちなみに、このAPIはPOSTメソッドで呼び出すので本来はHTTPリクエストのBODY部分にこれらのパラメータを入れればよいはずだが、IFTTTのWebhookではなぜかうまく動作しなかったので上記のようなクエリパラメータ形式を使っている。</p>
+
+<h3>
+<span id="iftttのwebhookで呼び出す" class="fragment"></span><a href="#ifttt%E3%81%AEwebhook%E3%81%A7%E5%91%BC%E3%81%B3%E5%87%BA%E3%81%99"><i class="fa fa-link"></i></a>IFTTTのWebhookで呼び出す。</h3>
+
+<p>最後に、IFTTTのAppletを作成する。Google Assistant連携部分はさきほどの説明とまったく同じで、トリガー時のアクションとしてWebhookを選択し、以下のようにIRKitのURLを指定する。</p>
+
+<p><a href="https://camo.qiitausercontent.com/e3ae287e56586bd21aa1292ed9de92892489a603/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f65653530626338332d303161362d313931622d396532342d3533346134346539383565662e706e67" target="_blank" rel="nofollow noopener"><img width="341" alt="Screen Shot 2017-10-08 at 7.10.54 PM.png" src="https://camo.qiitausercontent.com/e3ae287e56586bd21aa1292ed9de92892489a603/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33383239302f65653530626338332d303161362d313931622d396532342d3533346134346539383565662e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/38290/ee50bc83-01a6-191b-9e24-534a44e985ef.png"></a></p>
+
+<p>ここで、<code>Method</code>にはPOST、<code>ContentType</code>にはtext/plainを指定しておく。</p>
+
+<p>以上で設定は完了。Google Homeから「テレビをつけて」等の指示を出すと、IRKitから赤外線信号が出て、テレビがオンになる。</p>
+
+<p>ちなみに、ウチのソニーのテレビやシャープのエアコン等はこの仕組みでコントロールできたが、エアコン「白くまくん」はなぜかうまく動かなかった。なんだか高機能そうなリモコンで、赤外線信号も長いので、エアコンとリモコン間でなにかやり取りしているのかもしれない。それと、テレビから人の声が流れていると、Homeはそっちを認識してしまってうまく反応してくれない。テレビを見ながらHomeでザッピング、はあんまりうまくいかなかった。</p>
+
+<p>とはいえ、部屋のどこからでも声だけで照明やテレビやエアコンをつけたり消したりできるのはなるほど便利である。お出かけのときに「電気消しといて」ってHomeに頼む感覚だ。</p>
+
+<p>というわけで、IFTTTを使うとGoogle Homeからの家電のコントロールもあっけなく実現できた。ソファに寝そべったままの生活がどんどん推進されてしまいやばいのである。</p>
+
+<hr>
+
+<p>Disclaimer この記事は個人的なものです｡ここで述べられていることは私の個人的な意見に基づくものであり､私の雇用者には関係はありません｡</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

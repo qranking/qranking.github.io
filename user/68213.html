@@ -1,0 +1,985 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (hidehiro98)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (hidehiro98 さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>hidehiro98さんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>528</kbd>
+		<a target="_blank" href="https://qiita.com/hidehiro98/items/841ece65d896aeaa8a2a">ブロックチェーンを作ることで学ぶ 〜ブロックチェーンがどのように動いているのか学ぶ最速の方法は作ってみることだ〜</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-13 13:37:47</center>
+	</td>
+	<td style="width:200px;">
+		@hidehiro98<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/68213/profile-images/1473697771">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[python3]</b> <b>[Bitcoin]</b> <b>[Blockchain]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="この記事について" class="fragment"></span><a href="#%E3%81%93%E3%81%AE%E8%A8%98%E4%BA%8B%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>この記事について</h1>
+
+<p>この記事は<a href="https://medium.com/@vanflymen" rel="nofollow noopener" target="_blank">Daniel van Flymen</a>さんの<a href="https://hackernoon.com/learn-blockchains-by-building-one-117428612f46" rel="nofollow noopener" target="_blank">Learn Blockchains by Building One　- The fastest way to learn how Blockchains work is to build one</a>を本人の許可を得て翻訳したものです。</p>
+
+<p><a href="https://github.com/dvf/blockchain" rel="nofollow noopener" target="_blank">このブロックチェーンのリポジトリ</a>ではPython以外での言語の実装者の募集も行われているので、興味がある方は是非。<br>
+また、この翻訳で出てくる日本語版のリポジトリは<a href="https://github.com/hidehiro98/blockchain_by_dvf" rel="nofollow noopener" target="_blank">こちら</a>にあるので参考にしてみてください。</p>
+
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>あなたがここにいるのは、私と同じように、暗号通貨の盛り上がりに対して心構えが出来ているからだ。そしてあなたはブロックチェーンがどのように動いているのか　-その裏にある基本的なテクノロジー- を理解したいと思っている。</p>
+
+<p>しかしブロックチェーンを理解するのは簡単ではない、少なくとも私にとっては簡単ではなかった。私は多くのビデオを見て、抜け漏れの多いチュートリアルをこなし、少なすぎる事例から来るフラストレーションに苦しんでいた。</p>
+
+<p>私は手を動かして学ぶことが好きだ。手を動かすことは私を、抽象的なことをコードのレベルで扱うことを強制し、コードのレベルで扱うことにより抽象的なことが頭に定着する。もしあなたが同じことをすれば、このガイドが終わる頃には動いているブロックチェーンが、確かな理解とともに手に入るだろう。</p>
+
+<h1>
+<span id="始める前に" class="fragment"></span><a href="#%E5%A7%8B%E3%82%81%E3%82%8B%E5%89%8D%E3%81%AB"><i class="fa fa-link"></i></a>始める前に</h1>
+
+<p>ブロックチェーンとは、<em>不変の、連続した</em>ブロックと呼ばれる記録のチェーンであることを覚えておいてほしい。ブロックは取引、ファイルやあらゆるデータを格納することが出来る。しかし重要なことは、<em>ハッシュ</em>を使って<em>繋がっている</em>ということだ。</p>
+
+<p>もしハッシュが何かについて自信がない場合は、<a href="https://learncryptography.com/hash-functions/what-are-hash-functions" rel="nofollow noopener" target="_blank">ここ</a>に例がある。</p>
+
+<p><strong>この記事の対象者は？</strong>　以下が必要な要素だ。基本的なPythonの読み書きが出来ること、HTTPリクエストがどのように働くかについての理解していること（私達のブロックチェーンはHTTPを介して動くためだ）。</p>
+
+<p><strong>何が必要ですか？</strong>　Python 3.6以上と<code>pip</code>がインストールされていることが必要だ。また、Flaskと素晴らしいRequest libraryもインストールする必要がある。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>pip install Flask==0.12.2 requests==2.18.4
+</pre></div></div>
+
+<p>そうだった、PostmanやcURLのようなHTTPクライアントも必要だ。まあ動けばなんでも大丈夫だ。</p>
+
+<p><strong>最終的なコードはどこ？</strong>　ソースコードは<a href="https://github.com/dvf/blockchain" rel="nofollow noopener" target="_blank">ここ</a>にある。</p>
+
+<h1>
+<span id="ステップ1-ブロックチェーンを作る" class="fragment"></span><a href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%971-%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>ステップ1: ブロックチェーンを作る</h1>
+
+<p>あなたの好きなエディタかIDEを開いてほしい、個人的には<a href="https://www.jetbrains.com/pycharm/" rel="nofollow noopener" target="_blank">PyCharm</a>が好きだ。そして<code>blockchain.py</code>という新しいファイルを作る。私たちは一つのファイルしか使わないが、もしどこにいるのかわからなくなったら、いつでも<a href="https://github.com/dvf/blockchain" rel="nofollow noopener" target="_blank">ソースコード</a>を参照することが出来る。</p>
+
+<h2>
+<span id="ブロックチェーンを書く" class="fragment"></span><a href="#%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3%E3%82%92%E6%9B%B8%E3%81%8F"><i class="fa fa-link"></i></a>ブロックチェーンを書く</h2>
+
+<p>私たちがつくる<code>Blockchain</code>クラスのコンストラクタが、ブロックチェーンを納めるための最初の空のリストと、トランザクションを納めるための空のリストを作る。これが私たちのクラスの設計図だ。</p>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">blockchain.py</span></div>
+<div class="highlight"><pre><span></span><span class="c1"># coding: UTF-8</span>
+
+<span class="k">class</span> <span class="nc">Blockchain</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chain</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_transactions</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">new_block</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 新しいブロックを作り、チェーンに加える</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">new_transaction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#　新しいトランザクションをリストに加える</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">hash</span><span class="p">(</span><span class="n">block</span><span class="p">):</span>
+        <span class="c1"># ブロックをハッシュ化する</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">last_block</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># チェーンの最後のブロックをリターンする</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+
+<p>私たちの<code>Blockchain</code>クラスはチェーンの取り扱いを司っている。チェーンはトランザクションを収納し、新しいブロックをチェーンに加えるためのヘルパーメソッドを持っている。早速いくつかのメソッドを肉付けしていこう。</p>
+
+<h2>
+<span id="ブロックとはどのようなものなのか" class="fragment"></span><a href="#%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E3%81%A8%E3%81%AF%E3%81%A9%E3%81%AE%E3%82%88%E3%81%86%E3%81%AA%E3%82%82%E3%81%AE%E3%81%AA%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>ブロックとはどのようなものなのか</h2>
+
+<p>それぞれのブロックは、<em>インデックス</em>、<em>タイムスタンプ</em>（UNIXタイム）、<em>トランザクションのリスト</em>、<em>プルーフ</em>（詳細は後ほど）そして<em>それまでのブロックのハッシュ</em>を持っている。</p>
+
+<p>これが一つのブロックの例だ。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>block = {
+    'index': 1,
+    'timestamp': 1506057125.900785,
+    'transactions': [
+        {
+            'sender': "8527147fe1f5426f9dd545de4b27ee00",
+            'recipient': "a77f5cdfa2934df3954a5c7c7da5df1f",
+            'amount': 5,
+        }
+    ],
+    'proof': 324984774000,
+    'previous_hash': "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+}
+</pre></div></div>
+
+<p>この時点で、チェーンのアイデアは明確だ -全ての新しいブロックはそれまでのブロックのハッシュを自分自身の中に含んでいる。<strong>これこそがまさにブロックチェーンに不変性を与えているものであり、そのために重要なポイントだ</strong>。もしアタッカーがチェーン初期のブロックを破壊した場合、それに続く<strong>全て</strong>のブロックが不正なハッシュを含むことになる。</p>
+
+<p><em>この意味がわかるだろうか？もし分からなければ、少し考える時間を取ってほしい -これはブロックチェーンのコアとなるアイデアだ。</em></p>
+
+<h2>
+<span id="トランザクションをブロックに加える" class="fragment"></span><a href="#%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B6%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E3%81%AB%E5%8A%A0%E3%81%88%E3%82%8B"><i class="fa fa-link"></i></a>トランザクションをブロックに加える</h2>
+
+<p>私たちにはトランザクションをブロックに加える方法が必要だ。<code>new_transaction()</code>メソッドがそれを司っており、非常に簡単だ。</p>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">blockchain.py</span></div>
+<div class="highlight"><pre><span></span><span class="c1"># coding: UTF-8</span>
+
+<span class="k">class</span> <span class="nc">Blockchain</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">new_transaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sender</span><span class="p">,</span> <span class="n">recipient</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        次に採掘されるブロックに加える新しいトランザクションを作る</span>
+<span class="sd">        :param sender: &lt;str&gt; 送信者のアドレス</span>
+<span class="sd">        :param recipient: &lt;str&gt; 受信者のアドレス</span>
+<span class="sd">        :param amount: &lt;int&gt; 量</span>
+<span class="sd">        :return: &lt;int&gt; このトランザクションを含むブロックのアドレス</span>
+<span class="sd">        """</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_transactions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">'sender'</span><span class="p">:</span> <span class="n">sender</span><span class="p">,</span>
+            <span class="s1">'recipient'</span><span class="p">:</span> <span class="n">recipient</span><span class="p">,</span>
+            <span class="s1">'amount'</span><span class="p">:</span> <span class="n">amount</span><span class="p">,</span>
+        <span class="p">})</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_block</span><span class="p">[</span><span class="s1">'index'</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+
+<p><code>new_transaction()</code>メソッドは、新しいトランザクションをリストに加えた後、そのトランザクションが加えられるブロック -<em>次に採掘されるブロックだ</em>-の<em>インデックス</em>をリターンする。</p>
+
+<h2>
+<span id="新しいブロックを作る" class="fragment"></span><a href="#%E6%96%B0%E3%81%97%E3%81%84%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>新しいブロックを作る</h2>
+
+<p>我々の<code>Blockchain</code>がインスタンス化されるとき、私たちは<em>ジェネシス</em>ブロック　-先祖を持たないブロック- とともにシードする必要がある。それと同時に、ジェネシスブロックに<em>プルーフ</em> -マイニング（またはプルーフ・オブ・ワーク）の結果- も加える必要がある。マイニングについては後で取り上げる。</p>
+
+<p><em>ジェネシス</em>ブロックを加えるのと同時に、<code>new_block()</code>メソッド、<code>last_block()</code>メソッドと<code>hash()</code>メソッドも作成しよう。</p>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">blockchain.py</span></div>
+<div class="highlight"><pre><span></span><span class="c1"># coding: UTF-8</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+
+
+<span class="k">class</span> <span class="nc">Blockchain</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_transactions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chain</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># ジェネシスブロックを作る</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_block</span><span class="p">(</span><span class="n">previous_hash</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">proof</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">new_block</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proof</span><span class="p">,</span> <span class="n">previous_hash</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        ブロックチェーンに新しいブロックを作る</span>
+<span class="sd">        :param proof: &lt;int&gt; プルーフ・オブ・ワークアルゴリズムから得られるプルーフ</span>
+<span class="sd">        :param previous_hash: (オプション) &lt;str&gt; 前のブロックのハッシュ</span>
+<span class="sd">        :return: &lt;dict&gt; 新しいブロック</span>
+<span class="sd">        """</span>
+
+        <span class="n">block</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">'index'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chain</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s1">'timestamp'</span><span class="p">:</span> <span class="n">time</span><span class="p">(),</span>
+            <span class="s1">'transactions'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_transactions</span><span class="p">,</span>
+            <span class="s1">'proof'</span><span class="p">:</span> <span class="n">proof</span><span class="p">,</span>
+            <span class="s1">'previous_hash'</span><span class="p">:</span> <span class="n">previous_hash</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chain</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+        <span class="p">}</span>
+
+        <span class="c1"># 現在のトランザクションリストをリセット</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_transactions</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">block</span>
+
+    <span class="k">def</span> <span class="nf">new_transaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sender</span><span class="p">,</span> <span class="n">recipient</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        次に採掘されるブロックに加える新しいトランザクションを作る</span>
+<span class="sd">        :param sender: &lt;str&gt; 送信者のアドレス</span>
+<span class="sd">        :param recipient: &lt;str&gt; 受信者のアドレス</span>
+<span class="sd">        :param amount: &lt;int&gt; 量</span>
+<span class="sd">        :return: &lt;int&gt; このトランザクションを含むブロックのアドレス</span>
+<span class="sd">        """</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_transactions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">'sender'</span><span class="p">:</span> <span class="n">sender</span><span class="p">,</span>
+            <span class="s1">'recipient'</span><span class="p">:</span> <span class="n">recipient</span><span class="p">,</span>
+            <span class="s1">'amount'</span><span class="p">:</span> <span class="n">amount</span><span class="p">,</span>
+        <span class="p">})</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_block</span><span class="p">[</span><span class="s1">'index'</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">last_block</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">chain</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">hash</span><span class="p">(</span><span class="n">block</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        ブロックの　SHA-256　ハッシュを作る</span>
+<span class="sd">        :param block: &lt;dict&gt; ブロック</span>
+<span class="sd">        :return: &lt;str&gt;</span>
+<span class="sd">        """</span>
+
+        <span class="c1"># 必ずディクショナリ（辞書型のオブジェクト）がソートされている必要がある。そうでないと、一貫性のないハッシュとなってしまう</span>
+        <span class="n">block_string</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">block_string</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+</pre></div>
+</div>
+
+<p>ここで追加したものは非常に簡単なはずだ。何をしたかをクリアにしておくために、いくつかのコメントと<em>docstrings</em>を加えておいた。我々のブロックチェーンはもうすぐ完成だ。だがしかし、ここで新しいブロックかどのように出来るのかを考える必要がある　-鋳造　(forged) か採掘 (mined) か-</p>
+
+<h2>
+<span id="プルーフオブワークを理解する" class="fragment"></span><a href="#%E3%83%97%E3%83%AB%E3%83%BC%E3%83%95%E3%82%AA%E3%83%96%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%92%E7%90%86%E8%A7%A3%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>プルーフ・オブ・ワークを理解する</h2>
+
+<p>プルーフ・オブ・ワークアルゴリズム (PoW) とは、ブロックチェーン上でどのように新しいブロックが作られるか、または<em>採掘</em>されるかということを表している。PoWのゴールは、問題を解く番号を発見することだ。その番号はネットワーク上の誰からも<strong>見つけるのは難しく、確認するのは簡単</strong> -コンピュータ的に言えば- なものでなければならない。これがプルーフ・オブ・ワークのコアとなるアイデアだ。</p>
+
+<p>理解するために簡単な例を見てみよう。</p>
+
+<p>ある整数<code>x</code>かけるある整数<code>y</code>の<em>hash</em>が0で終わらないといけないとしよう。というわけで、<code>hash(x * y) = ac23d...0</code>というようになる。そしてこの簡単な例では、<code>x = 5</code>と固定しよう。Pythonで実装するとこうなる。</p>
+
+<div class="code-frame" data-lang="python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hashlib</span> <span class="kn">import</span> <span class="n">sha256</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># まだこのyがどの数字であるべきかはわからない</span>
+
+<span class="k">while</span> <span class="n">sha256</span><span class="p">(</span><span class="n">f</span><span class="s1">'{x*y}'</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"0"</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'The solution is y = {y}'</span><span class="p">)</span>
+</pre></div></div>
+
+<p>解は<code>y = 21</code>。よってそれにより作られたハッシュは<code>0</code>で終わる。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&gt;&gt;&gt; sha256(f'{5*21}'.encode()).hexdigest()
+'1253e9373e781b7500266caa55150e08e210bc8cd8cc70d89985e3600155e860'
+</pre></div></div>
+
+<p>ビットコインでは、プルーフ・オブ・ワークのアルゴリズムは<a href="https://en.wikipedia.org/wiki/Hashcash" rel="nofollow noopener" target="_blank">ハッシュキャッシュ　 (Hashcash)</a>と呼ばれている。そしてそれはこの基本的な例とそこまで違うものではない。ハッシュキャッシュは、採掘者が競い合って新しいブロックを作るために問題を解く、というものだ。一般的に、難易度は探す文字の数によって決まる。採掘者はその解に対して、報酬としてトランザクションの中でコインを受け取る。</p>
+
+<p>ネットワークは<em>簡単に</em>採掘者の解が正しいかを確認することが出来る。</p>
+
+<h2>
+<span id="基本的なプルーフオブワークを実装する" class="fragment"></span><a href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E3%83%97%E3%83%AB%E3%83%BC%E3%83%95%E3%82%AA%E3%83%96%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>基本的なプルーフ・オブ・ワークを実装する</h2>
+
+<p>私たちのブロックチェーンのために似たアルゴリズムを実装しよう。ルールは上の例と似ている。</p>
+
+<p>前のブロックの解とともにハッシュを作ったときに、最初に4つの<code>0</code>が出てくるような番号<code>p</code>を探そう。</p>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">blockchain.py</span></div>
+<div class="highlight"><pre><span></span><span class="c1"># coding: UTF-8</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+
+<span class="k">class</span> <span class="nc">Blockchain</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">proof_of_work</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">last_proof</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        シンプルなプルーフ・オブ・ワークのアルゴリズム:</span>
+<span class="sd">         - hash(pp') の最初の4つが0となるような p' を探す</span>
+<span class="sd">         - p は前のプルーフ、 p' は新しいプルーフ</span>
+<span class="sd">        :param last_proof: &lt;int&gt;</span>
+<span class="sd">        :return: &lt;int&gt;</span>
+<span class="sd">        """</span>
+
+        <span class="n">proof</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_proof</span><span class="p">(</span><span class="n">last_proof</span><span class="p">,</span> <span class="n">proof</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
+            <span class="n">proof</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">proof</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">valid_proof</span><span class="p">(</span><span class="n">last_proof</span><span class="p">,</span> <span class="n">proof</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        プルーフが正しいかを確認する: hash(last_proof, proof)の最初の4つが0となっているか？</span>
+<span class="sd">        :param last_proof: &lt;int&gt; 前のプルーフ</span>
+<span class="sd">        :param proof: &lt;int&gt; 現在のプルーフ</span>
+<span class="sd">        :return: &lt;bool&gt; 正しければ true 、そうでなれけば false</span>
+<span class="sd">        """</span>
+
+        <span class="n">guess</span> <span class="o">=</span> <span class="n">f</span><span class="s1">'{last_proof}{proof}'</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+        <span class="n">guess_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">guess</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">guess_hash</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"0000"</span>
+</pre></div>
+</div>
+
+<p>アルゴリズムの難易度を調整するためには、最初の0の数を変えることで出来る。しかし4は充分な数だ。0を一つ加えることで、解を見つけるための時間にマンモス級の違いが出ることに気がつくだろう。</p>
+
+<p>私たちのクラスはほとんど完成しているので、HTTPリクエストとともにこのクラスを使ってみよう。</p>
+
+<h1>
+<span id="ステップ2-apiとしての私たちのブロックチェーン" class="fragment"></span><a href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%972-api%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AE%E7%A7%81%E3%81%9F%E3%81%A1%E3%81%AE%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3"><i class="fa fa-link"></i></a>ステップ2: APIとしての私たちのブロックチェーン</h1>
+
+<p>ここではPython Flaskフレームワークを使う。Flaskはマイクロフレームワークであり、簡単にエンドポイントをPythonのファンクションに対応させることが出来る。そして、私たちのブロックチェーンがHTTPリクエストを使ってWebで通信することが出来るようになる。</p>
+
+<p>ここでは3つのメソッドを作る:<br>
+* ブロックへの新しいトランザクションを作るための<code>/transactions/new</code><br>
+* サーバーに対して新しいブロックを採掘するように伝える<code>/mine</code><br>
+* フルブロックチェーンを返す<code>/chain</code></p>
+
+<h2>
+<span id="flaskをセットアップする" class="fragment"></span><a href="#flask%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Flaskをセットアップする</h2>
+
+<p>サーバーは、このブロックチェーンのネットワークに一つのノードを作り出す。早速いくつかの例となるコードを作ろう。</p>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">blockchain.py</span></div>
+<div class="highlight"><pre><span></span><span class="c1"># coding: UTF-8</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">textwrap</span> <span class="kn">import</span> <span class="n">dedent</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+
+<span class="k">class</span> <span class="nc">Blockchain</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="o">...</span>
+
+
+<span class="c1"># ノードを作る</span>
+<span class="c1"># Flaskについて詳しくはこちらを読んでほしい http://flask.pocoo.org/docs/0.12/quickstart/#a-minimal-application</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># このノードのグローバルにユニークなアドレスを作る</span>
+<span class="n">node_identifire</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">())</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'-'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+
+<span class="c1"># ブロックチェーンクラスをインスタンス化する</span>
+<span class="n">blockchain</span> <span class="o">=</span> <span class="n">Blockchain</span><span class="p">()</span>
+
+<span class="c1"># メソッドはPOSTで/transactions/newエンドポイントを作る。メソッドはPOSTなのでデータを送信する</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">'/transactions/new'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">new_transactions</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">'新しいトランザクションを追加します'</span>
+
+<span class="c1"># メソッドはGETで/mineエンドポイントを作る</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">'/mine'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'GET'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">mine</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">'新しいブロックを採掘します'</span>
+
+<span class="c1"># メソッドはGETで、フルのブロックチェーンをリターンする/chainエンドポイントを作る</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">'/chain'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'GET'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">full_chain</span><span class="p">():</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'chain'</span><span class="p">:</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">chain</span><span class="p">,</span>
+        <span class="s1">'length'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">blockchain</span><span class="o">.</span><span class="n">chain</span><span class="p">),</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">200</span>
+
+<span class="c1"># port5000でサーバーを起動する</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">'0.0.0.0'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="トランザクションエンドポイント" class="fragment"></span><a href="#%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B6%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>トランザクションエンドポイント</h2>
+
+<p>これらトランザクションのリクエストの例だ。このようなものをユーザーはサーバーに送る:</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>{
+ "sender": "my address",
+ "recipient": "someone else's address",
+ "amount": 5
+}
+</pre></div></div>
+
+<p>すでにブロックにトランザクションを加えるメソッドは作ってあるため、残りは簡単だ。トランザクションを加えるためのメソッドを書いていこう。</p>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">blockchain.py</span></div>
+<div class="highlight"><pre><span></span><span class="c1"># coding: UTF-8</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">textwrap</span> <span class="kn">import</span> <span class="n">dedent</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="o">...</span>
+
+
+<span class="c1"># メソッドはPOSTで/transactions/newエンドポイントを作る。メソッドはPOSTなのでデータを送信する</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">'/transactions/new'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">new_transaction</span><span class="p">():</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+
+    <span class="c1"># POSTされたデータに必要なデータがあるかを確認</span>
+    <span class="n">required</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'sender'</span><span class="p">,</span> <span class="s1">'recipient'</span><span class="p">,</span> <span class="s1">'amount'</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">k</span> <span class="ow">in</span> <span class="n">values</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">required</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">'Missing values'</span><span class="p">,</span> <span class="mi">400</span>
+
+    <span class="c1"># 新しいトランザクションを作る</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">new_transaction</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s1">'sender'</span><span class="p">],</span> <span class="n">values</span><span class="p">[</span><span class="s1">'recipient'</span><span class="p">],</span> <span class="n">values</span><span class="p">[</span><span class="s1">'amount'</span><span class="p">])</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'message'</span><span class="p">:</span> <span class="n">f</span><span class="s1">'トランザクションはブロック {index} に追加されました'</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">201</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="採掘のエンドポイント" class="fragment"></span><a href="#%E6%8E%A1%E6%8E%98%E3%81%AE%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>採掘のエンドポイント</h2>
+
+<p>採掘のエンドポイントは魔法が起きるところだが、簡単だ。3つのことを行う必要がある。<br>
+1. プルーフ・オブ・ワークを計算する<br>
+2. 1コインを採掘者に与えるトランザクションを加えることで、採掘者（この場合は我々）に利益を与える<br>
+3. チェーンに新しいブロックを加えることで、新しいブロックを採掘する</p>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">blockchain.py</span></div>
+<div class="highlight"><pre><span></span><span class="c1"># coding: UTF-8</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">textwrap</span> <span class="kn">import</span> <span class="n">dedent</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="o">...</span>
+
+
+<span class="c1"># メソッドはGETで/mineエンドポイントを作る</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">'/mine'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'GET'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">mine</span><span class="p">():</span>
+    <span class="c1"># 次のプルーフを見つけるためプルーフ・オブ・ワークアルゴリズムを使用する</span>
+    <span class="n">last_block</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">last_block</span>
+    <span class="n">last_proof</span> <span class="o">=</span> <span class="n">last_block</span><span class="p">[</span><span class="s1">'proof'</span><span class="p">]</span>
+    <span class="n">proof</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">proof_of_work</span><span class="p">(</span><span class="n">last_proof</span><span class="p">)</span>
+
+    <span class="c1"># プルーフを見つけたことに対する報酬を得る</span>
+    <span class="c1"># 送信者は、採掘者が新しいコインを採掘したことを表すために"0"とする</span>
+    <span class="n">blockchain</span><span class="o">.</span><span class="n">new_transaction</span><span class="p">(</span>
+        <span class="n">sender</span><span class="o">=</span><span class="s2">"0"</span><span class="p">,</span>
+        <span class="n">recipient</span><span class="o">=</span><span class="n">node_identifire</span><span class="p">,</span>
+        <span class="n">amount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># チェーンに新しいブロックを加えることで、新しいブロックを採掘する</span>
+    <span class="n">block</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">new_block</span><span class="p">(</span><span class="n">proof</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'message'</span><span class="p">:</span> <span class="s1">'新しいブロックを採掘しました'</span><span class="p">,</span>
+        <span class="s1">'index'</span><span class="p">:</span> <span class="n">block</span><span class="p">[</span><span class="s1">'index'</span><span class="p">],</span>
+        <span class="s1">'transactions'</span><span class="p">:</span> <span class="n">block</span><span class="p">[</span><span class="s1">'transactions'</span><span class="p">],</span>
+        <span class="s1">'proof'</span><span class="p">:</span> <span class="n">block</span><span class="p">[</span><span class="s1">'proof'</span><span class="p">],</span>
+        <span class="s1">'previous_hash'</span><span class="p">:</span> <span class="n">block</span><span class="p">[</span><span class="s1">'previous_hash'</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">200</span>
+</pre></div>
+</div>
+
+<p>採掘されたブロックに含まれるトランザクションの受信者のアドレスは、自分のノードのアドレスであることに注意してほしい。そして、ここで行っていることの殆どは、ブロックチェーンクラスとのインタラクションにすぎない。一旦ここまでにして、このブロックチェーンとのインタラクションを始めよう。</p>
+
+<h1>
+<span id="ステップ3-オリジナルブロックチェーンとのインタラクション" class="fragment"></span><a href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%973-%E3%82%AA%E3%83%AA%E3%82%B8%E3%83%8A%E3%83%AB%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3%E3%81%A8%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%A9%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>ステップ3: オリジナルブロックチェーンとのインタラクション</h1>
+
+<p>cURLかPostmanを使ってAPIを叩いてみよう</p>
+
+<p>サーバーを起動する:</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ python blockchain.py
+* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+</pre></div></div>
+
+<p><code>http://localhost:5000/mine</code>への<code>GET</code>リクエストを作って採掘しよう</p>
+
+<p><a href="https://camo.qiitausercontent.com/6362bb20a4a2a1e6d1fc55c66e319288dbea75a9/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36383231332f38373738666265392d343034652d383139622d316465352d3263376531373436653730352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/6362bb20a4a2a1e6d1fc55c66e319288dbea75a9/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36383231332f38373738666265392d343034652d383139622d316465352d3263376531373436653730352e706e67" alt="blockchain_mining.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/68213/8778fbe9-404e-819b-1de5-2c7e1746e705.png"></a></p>
+
+<p><code>http://localhost:5000/transactions/new</code>への<code>POST</code>リクエストを作って新しいトランザクションを作ろう。ボディに取引の内容を入れておく。</p>
+
+<p><a href="https://camo.qiitausercontent.com/6aa5bc7b15fbba7fd63d79528bfdfe93e2401d27/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36383231332f63336265633166312d356136652d316632332d376134382d3535633539666163626163662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/6aa5bc7b15fbba7fd63d79528bfdfe93e2401d27/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36383231332f63336265633166312d356136652d316632332d376134382d3535633539666163626163662e706e67" alt="blockchain_transaction.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/68213/c3bec1f1-5a6e-1f23-7a48-55c59facbacf.png"></a></p>
+
+<p>もしPostmanを使っていない場合、cURLを使っても同じことが出来る。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ curl -X POST -H "Content-Type: application/json" -d '{
+ "sender": "d4ee26eee15148ee92c6cd394edd974e",
+ "recipient": "someone-other-address",
+ "amount": 5
+}' "http://localhost:5000/transactions/new"
+</pre></div></div>
+
+<p>サーバーを再起動して、2ブロックを採掘した、つまりトータル3ブロックだ。ここでチェーン全体を<code>http://localhost:5000/chain</code>をリクエストすることで見てみよう。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>{
+  "chain": [
+    {
+      "index": 1,
+      "previous_hash": 1,
+      "proof": 100,
+      "timestamp": 1506280650.770839,
+      "transactions": []
+    },
+    {
+      "index": 2,
+      "previous_hash": "c099bc...bfb7",
+      "proof": 35293,
+      "timestamp": 1506280664.717925,
+      "transactions": [
+        {
+          "amount": 1,
+          "recipient": "8bbcb347e0634905b0cac7955bae152b",
+          "sender": "0"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "previous_hash": "eff91a...10f2",
+      "proof": 35089,
+      "timestamp": 1506280666.1086972,
+      "transactions": [
+        {
+          "amount": 1,
+          "recipient": "8bbcb347e0634905b0cac7955bae152b",
+          "sender": "0"
+        }
+      ]
+    }
+  ],
+  "length": 3
+}
+</pre></div></div>
+
+<h1>
+<span id="ステップ4-コンセンサス" class="fragment"></span><a href="#%E3%82%B9%E3%83%86%E3%83%83%E3%83%974-%E3%82%B3%E3%83%B3%E3%82%BB%E3%83%B3%E3%82%B5%E3%82%B9"><i class="fa fa-link"></i></a>ステップ4: コンセンサス</h1>
+
+<p>これはクールだ。トランザクションを受け付けて、新しいブロックを採掘できるブロックチェーンを作ることが出来た。しかしブロックチェーンの重要なポイントは、非中央集権的であることだ。そしてもし非中央集権的であれば、我々はどのように地球上の全員が同じチェーンを反映していると確認することが出来るだろうか。これは<em>コンセンサス</em>の問題と呼ばれており、もし1つより多くのノードをネットワーク上に持ちたければ、コンセンサスのアルゴリズムを実装しなければならない。</p>
+
+<h2>
+<span id="新しいノードを登録する" class="fragment"></span><a href="#%E6%96%B0%E3%81%97%E3%81%84%E3%83%8E%E3%83%BC%E3%83%89%E3%82%92%E7%99%BB%E9%8C%B2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>新しいノードを登録する</h2>
+
+<p>コンセンサスアルゴリズムを実装する前に、ネットワーク上にある他のノードを知る方法を作ろう。それぞれのノードがネットワーク上の他のノードのリストを持っていなければならない。なのでいくつかのエンドポイントが追加で必要となる。</p>
+
+<ol>
+<li>URLの形での新しいノードのリストを受け取るための<code>/nodes/register</code>
+</li>
+<li>あらゆるコンフリクトを解消することで、ノードが正しいチェーンを持っていることを確認するための<code>/nodes/resolve</code>
+</li>
+</ol>
+
+<p>これから、我々のブロックチェーンの構造を編集し、ノード登録のためのメソッドを追加する:</p>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">blockchain.py</span></div>
+<div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
+<span class="o">...</span>
+
+
+<span class="k">class</span> <span class="nc">Blockchain</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">register_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        ノードリストに新しいノードを加える</span>
+<span class="sd">        :param address: &lt;str&gt; ノードのアドレス 例: 'http://192.168.0.5:5000'</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        """</span>
+
+        <span class="n">parsed_url</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">netloc</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<p>ノードのリストを保持するのに<code>set()</code>を使ったことに注意してほしい。これは、新しいノードの追加がべき等 -同じノードを何回加えても、一度しか現れない-　ということを実現するための簡単な方法だ。</p>
+
+<h2>
+<span id="コンセンサスアルゴリズムを実装する" class="fragment"></span><a href="#%E3%82%B3%E3%83%B3%E3%82%BB%E3%83%B3%E3%82%B5%E3%82%B9%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>コンセンサスアルゴリズムを実装する</h2>
+
+<p>以前言及したとおり、コンフリクトはあるノードが他のノードと異なったチェーンを持っているときに発生する。これを解決するために、<em>最も長いチェーンが信頼できる</em>というルールを作る。別の言葉で言うと、ネットワーク上で最も長いチェーンは<em>事実上正しい</em>ものといえる。このアルゴリズムを使って、ネットワーク上のノード間でコンセンサスに到達する。</p>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">blockchain.py</span></div>
+<div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+
+<span class="k">class</span> <span class="nc">Blockchain</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+    <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">valid_chain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chain</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        ブロックチェーンが正しいかを確認する</span>
+
+<span class="sd">        :param chain: &lt;list&gt; ブロックチェーン</span>
+<span class="sd">        :return: &lt;bool&gt; True であれば正しく、 False であればそうではない</span>
+<span class="sd">        """</span>
+
+        <span class="n">last_block</span> <span class="o">=</span> <span class="n">chain</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">current_index</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">current_index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">chain</span><span class="p">):</span>
+            <span class="n">block</span> <span class="o">=</span> <span class="n">chain</span><span class="p">[</span><span class="n">current_index</span><span class="p">]</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'{last_block}'</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'{block}'</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--------------</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+            <span class="c1"># ブロックのハッシュが正しいかを確認</span>
+            <span class="k">if</span> <span class="n">block</span><span class="p">[</span><span class="s1">'previous_hash'</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="n">last_block</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">False</span>
+
+            <span class="c1"># プルーフ・オブ・ワークが正しいかを確認</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_proof</span><span class="p">(</span><span class="n">last_block</span><span class="p">[</span><span class="s1">'proof'</span><span class="p">],</span> <span class="n">block</span><span class="p">[</span><span class="s1">'proof'</span><span class="p">])</span>
+                <span class="k">return</span> <span class="bp">False</span>
+
+            <span class="n">last_block</span> <span class="o">=</span> <span class="n">block</span>
+            <span class="n">current_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">resolve_conflicts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        これがコンセンサスアルゴリズムだ。ネットワーク上の最も長いチェーンで自らのチェーンを</span>
+<span class="sd">        置き換えることでコンフリクトを解消する。</span>
+<span class="sd">        :return: &lt;bool&gt; 自らのチェーンが置き換えられると True 、そうでなれけば False</span>
+<span class="sd">        """</span>
+
+        <span class="n">neighbours</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span>
+        <span class="n">new_chain</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="c1"># 自らのチェーンより長いチェーンを探す必要がある</span>
+        <span class="n">max_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chain</span><span class="p">)</span>
+
+        <span class="c1"># 他のすべてのノードのチェーンを確認</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">neighbours</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="s1">'http://{node}/chain'</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+                <span class="n">length</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'length'</span><span class="p">]</span>
+                <span class="n">chain</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'chain'</span><span class="p">]</span>
+
+                <span class="c1"># そのチェーンがより長いか、有効かを確認</span>
+                <span class="k">if</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="n">max_length</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_chain</span><span class="p">(</span><span class="n">chain</span><span class="p">):</span>
+                    <span class="n">max_length</span> <span class="o">=</span> <span class="n">length</span>
+                    <span class="n">new_chain</span> <span class="o">=</span> <span class="n">chain</span>
+
+        <span class="c1"># もし自らのチェーンより長く、かつ有効なチェーンを見つけた場合それで置き換える</span>
+        <span class="k">if</span> <span class="n">new_chain</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chain</span> <span class="o">=</span> <span class="n">new_chain</span>
+            <span class="k">return</span> <span class="bp">True</span>
+
+        <span class="k">return</span> <span class="bp">False</span>
+</pre></div>
+</div>
+
+<p>この最初のメソッド<code>valid_chain()</code>は、チェーンの中の全てのブロックに対してハッシュとプルーフが正しいかを確認することで、チェーンが有効かどうかの判定を行っている。</p>
+
+<p><code>resolve_conflicts()</code>メソッドは、全てのネットワーク上のノードに対して、それらのチェーンをダウンロードし、上記のメソッドを使うことで確認している。<em>もし有効なチェーンで自らのチェーンよりも長いものがあった場合、それで自らのチェーンを入れ替える。</em></p>
+
+<p>次に2つのエンドポイントをAPIに追加しよう。1つはネットワーク上に他のノードを追加するため、もう1つはコンフリクトを解消するためのものだ。</p>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">blockchain.py</span></div>
+<div class="highlight"><pre><span></span><span class="o">...</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">'/nodes/register'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">register_node</span><span class="p">():</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+
+    <span class="n">nodes</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'nodes'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nodes</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Error: 有効ではないノードのリストです"</span><span class="p">,</span> <span class="mi">400</span>
+
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+        <span class="n">blockchain</span><span class="o">.</span><span class="n">register_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'message'</span><span class="p">:</span> <span class="s1">'新しいノードが追加されました'</span><span class="p">,</span>
+        <span class="s1">'total_nodes'</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">blockchain</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">201</span>
+
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">'/nodes/resolve'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'GET'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">consensus</span><span class="p">():</span>
+    <span class="n">replaced</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">resolve_conflicts</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">replaced</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">'message'</span><span class="p">:</span> <span class="s1">'チェーンが置き換えられました'</span><span class="p">,</span>
+            <span class="s1">'new_chain'</span><span class="p">:</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">chain</span>
+        <span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">'message'</span><span class="p">:</span> <span class="s1">'チェーンが確認されました'</span><span class="p">,</span>
+            <span class="s1">'chain'</span><span class="p">:</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">chain</span>
+        <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">),</span> <span class="mi">200</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+
+<p>ここで、もう1つのマシンがあればそれを使って（訳注：複数マシン間でどのようにアクセスするのかは不明。ngork使うとか？）別のノードを立ち上げる。または、同じマシンで違うポートから別のノードを立ち上げる。すなわち、<code>http://localhost:5000</code>と<code>http://localhost:5001</code>という2つのノードが出来る。</p>
+
+<p>まず、　新しいノードを登録する。</p>
+
+<p>訳注:ターミナルでcurlコマンドで日本語を表示するとユニコードエスケープで表示されてしまいます。その際は、<a href="https://stedolan.github.io/jq/" rel="nofollow noopener" target="_blank">jq</a>をインストールして（macでHomebrewを使っていれば<code>brew install jq</code>で出来ます）、コマンドの後ろに<code>| jq</code>を加えるとデコードされて表示されます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ curl -X POST -H "Content-Type: application/json" -d '{
+    "nodes": ["http://localhost:5001"]
+}' "http://localhost:5000/nodes/register"
+</pre></div></div>
+
+<p><a href="https://camo.qiitausercontent.com/8e10dcfbba489ecfa330adf0c6e48361bacb43a7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36383231332f64313734616639312d666435382d376338612d346336382d3331346633336134633463312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/8e10dcfbba489ecfa330adf0c6e48361bacb43a7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36383231332f64313734616639312d666435382d376338612d346336382d3331346633336134633463312e706e67" alt="blockchain_register.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/68213/d174af91-fd58-7c8a-4c68-314f33a4c4c1.png"></a></p>
+
+<p>そしてノード2のチェーンが長くなるように、いくつか新しいブロックをノード2で採掘する。その後、ノード1で<code>GET /nodes/resolve</code>を行い、コンセンサスアルゴリズムによりチェーンを置き換える。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ curl "http://localhost:5001/mine"
+$ curl "http://localhost:5000/nodes/resolve"
+</pre></div></div>
+
+<p><a href="https://camo.qiitausercontent.com/a05f723ea2ca617f763c92fff5660db43a1f6829/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36383231332f38313035313336382d616139392d346232642d363535622d3661623339366536363465322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a05f723ea2ca617f763c92fff5660db43a1f6829/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36383231332f38313035313336382d616139392d346232642d363535622d3661623339366536363465322e706e67" alt="blockchain_consensus.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/68213/81051368-aa99-4b2d-655b-6ab396e664e2.png"></a></p>
+
+<p>これでおしまいだ。友達と我々のブロックチェーンを試してみてほしい。</p>
+
+<hr>
+
+<p>これがあなたを何か新しいものを作るよう奮い立たせるよう願っている。ブロックチェーンが、我々の経済・政府・記録の保管への考え方を急速に変えていくと信じているので、私は暗号通貨に対して非常に興奮している。</p>
+
+<p><strong>アップデート</strong>: これの続きとなるパート2を計画中だ。そこでは、トランザクションを確認するメカニズムと、このブロックチェーンを実際に使えるようにするためのいくつかの方法についての議論を追加する予定だ。</p>
+
+<p><em>もしこのガイドを楽しんでくれたのなら、または提案や質問があれば、コメントで知らせてほしい。また、バグを見つけたら気軽に<a href="https://github.com/dvf/blockchain" rel="nofollow noopener" target="_blank">ここ</a>にコントリビュートしてほしい！</em></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>hidehiro98さんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/hidehiro98/items/437d029453e317ff2216">RubyMine | Intellij IDEA with Ruby pluginメモ（随時更新）</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-11 11:04:46</center>
+	</td>
+	<td style="width:200px;">
+		@hidehiro98<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/68213/profile-images/1473697771">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[IntelliJ]</b> <b>[IDE]</b> <b>[RubyMine]</b> <b>[JetBrains]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="目的" class="fragment"></span><a href="#%E7%9B%AE%E7%9A%84"><i class="fa fa-link"></i></a>目的</h1>
+
+<p>RubyMineで使うショートカットや表示の名前メモしていく。特に名前は意外と調べるのが大変なので。<br>
+<a href="https://qiita.com/hidehiro98/items/48c3517f98fb064c0eab" id="reference-8d36a572ebb286a67745">macOSでのSublimeとRubyMineのショートカット対応表</a>もどうぞ。</p>
+
+<h1>
+<span id="ショートカット" class="fragment"></span><a href="#%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88"><i class="fa fa-link"></i></a>ショートカット</h1>
+
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>ショートカット</th>
+<th>リファレンス</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VCS Operations Pop-up</td>
+<td>Ctrl v</td>
+<td><a href="https://www.jetbrains.com/help/idea/accessing-vcs-operations.html" rel="nofollow noopener" target="_blank">リンク (Intellij IDEA)</a></td>
+</tr>
+<tr>
+<td>Find usages</td>
+<td>Opt F7</td>
+<td>リンク (Intellij IDEA)](<a href="https://www.jetbrains.com/help/ruby/finding-usages-in-project.html" class="autolink" rel="nofollow noopener" target="_blank">https://www.jetbrains.com/help/ruby/finding-usages-in-project.html</a>)</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="表示の名前" class="fragment"></span><a href="#%E8%A1%A8%E7%A4%BA%E3%81%AE%E5%90%8D%E5%89%8D"><i class="fa fa-link"></i></a>表示の名前</h1>
+
+<table>
+<thead>
+<tr>
+<th>表示</th>
+<th>名前</th>
+<th>リファレンス</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>変数の横に出る小さい文字</td>
+<td>parameter hints</td>
+<td><a href="https://www.jetbrains.com/help/ruby/parameter-names-hinting.html" rel="nofollow noopener" target="_blank">リンク (RubyMine)</a></td>
+</tr>
+<tr>
+<td>エディタの左端に出る電球</td>
+<td>intention action alert (bulb)</td>
+<td><a href="https://www.jetbrains.com/help/ruby/disabling-intention-actions.html" rel="nofollow noopener" target="_blank">リンク (RubyMine)</a></td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="検索系ショートカットまとめ" class="fragment"></span><a href="#%E6%A4%9C%E7%B4%A2%E7%B3%BB%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>検索系ショートカットまとめ</h1>
+
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>ショートカット</th>
+<th>検索範囲</th>
+<th>リファレンス</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Search(ing) Everywhere</td>
+<td>Shift Shift</td>
+<td>files, symbols, tool windows, run configurations, actions, IDE settings</td>
+<td><a href="https://www.jetbrains.com/help/idea/searching-everywhere.html" rel="nofollow noopener" target="_blank">リンク (Intellij IDEA)</a></td>
+</tr>
+<tr>
+<td>Navigating to Action (Find action by name)</td>
+<td>Shift Command a</td>
+<td>actions</td>
+<td><a href="https://www.jetbrains.com/help/idea/navigating-to-action.html" rel="nofollow noopener" target="_blank">リンク (Intellij IDEA)</a></td>
+</tr>
+<tr>
+<td>Navigating to Class by Name</td>
+<td>Shift o</td>
+<td>classes</td>
+<td><a href="https://www.jetbrains.com/help/idea/navigating-to-class-file-or-symbol-by-name.html" rel="nofollow noopener" target="_blank">リンク (Intellij IDEA)</a></td>
+</tr>
+<tr>
+<td>Navigating to File by Name</td>
+<td>Shift Command o</td>
+<td>files</td>
+<td><a href="https://www.jetbrains.com/help/idea/navigating-to-class-file-or-symbol-by-name.html" rel="nofollow noopener" target="_blank">リンク (Intellij IDEA)</a></td>
+</tr>
+<tr>
+<td>Find in Path</td>
+<td>Shift Command f</td>
+<td>text?</td>
+<td><a href="https://www.jetbrains.com/help/idea/find-and-replace-in-path.html" rel="nofollow noopener" target="_blank">リンク (Intellij IDEA)</a></td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="その他" class="fragment"></span><a href="#%E3%81%9D%E3%81%AE%E4%BB%96"><i class="fa fa-link"></i></a>その他</h1>
+
+<ul>
+<li>Pop-upでも出て来る新しいファイルを追加したときに、自動でgitに追加するかどうかは<code>RubyMine | Preferences | Version Control | Confirmation</code>で管理されている（<a href="https://www.jetbrains.com/help/ruby/confirmation.html" rel="nofollow noopener" target="_blank">リンク</a>）。</li>
+</ul>
+
+<h1>
+<span id="資料-初期設定系" class="fragment"></span><a href="#%E8%B3%87%E6%96%99-%E5%88%9D%E6%9C%9F%E8%A8%AD%E5%AE%9A%E7%B3%BB"><i class="fa fa-link"></i></a>資料 (初期設定系)</h1>
+
+<p><a href="https://qiita.com/ogontaro/items/67e7fa83fbea873270d4" id="reference-30c6f9f2ccb033333090">Rubymine / IntelliJ Ideaの導入＆プラグイン＆設定</a><br>
+<a href="https://qiita.com/tmknom/items/0704f48f354c703b2dd2" id="reference-4262c63bcf724c337d0b">Rubymineをインストールしたら最初にやるオススメ設定</a></p>
+
+<h1>
+<span id="資料-rubymine" class="fragment"></span><a href="#%E8%B3%87%E6%96%99-rubymine"><i class="fa fa-link"></i></a>資料 (RubyMine)</h1>
+
+<p><a href="http://docs.sublimetext.info/en/latest/reference/keyboard_shortcuts_osx.html" rel="nofollow noopener" target="_blank"> Sublime Text Unofficial Documentation Keyboard Shortcuts - OSX</a><br>
+<a href="https://resources.jetbrains.com/storage/products/rubymine/docs/RubyMine_ReferenceCard_mac.pdf" rel="nofollow noopener" target="_blank">RubyMine Reference Card Mac pdf file</a><br>
+<a href="https://blog.jetbrains.com/ruby/2014/03/whats-mining-multiple-cursors-and-selection/" rel="nofollow noopener" target="_blank">What’s Mining: Multiple Cursors and Selection</a><br>
+<a href="https://twitter.com/rubymine/status/221226996074692608" rel="nofollow noopener" target="_blank">No need to select a line to copy/cut it. Cmd-C / Ctrl+C &amp; Cmd-Х / Ctrl+X work for the current line #IDEtip</a><br>
+<a href="https://www.shortcutfoo.com/app/dojos/rubymine-mac/cheatsheet" rel="nofollow noopener" target="_blank">RubyMine Cheat Sheet</a><br>
+<a href="https://moduscreate.com/12-intellij-idea-keyboard-shortcuts/" rel="nofollow noopener" target="_blank">12 IntelliJ IDEA Keyboard Shortcuts You Should Know About</a><br>
+<a href="https://qiita.com/jnchito/items/6eda2cd54038ffa829ef" id="reference-c439775506c049ecbe32">【翻訳】絶対見逃せない！RubyMineのショートカット10選</a><br>
+<a href="https://qiita.com/advent-calendar/2014/rubymine">RubyMine アドベントカレンダー 2014</a><br>
+<a href="https://qiita.com/high5/items/dfd20b880e0f5cd51daa" id="reference-6a67a65d92229a086fb7">Rubymine(Jetbrains系IDE)のショートカットのメモ</a><br>
+<a href="https://qiita.com/HirokiTakaba/items/700a46409ece49aa0d4b" id="reference-9b9b806b8f941f884831">RubyMine ティップス</a><br>
+<a href="https://qiita.com/Avene/items/756c17f87d28d2ee47a4" id="reference-8010a9d4b3bf8a160017">知らないと損?RubyMine(IntelliJ)で役立つ細かいテクニック７つ</a><br>
+<a href="http://morizyun.github.io/blog/intellij-rubymine-jetbrain-good-point/" rel="nofollow noopener" target="_blank">複数言語を使うならRubyMine/IntelliJオススメ！ - 酒と泪とRubyとRailsと</a></p>
+
+<h1>
+<span id="資料-intellij-idea-with-ruby-plugin" class="fragment"></span><a href="#%E8%B3%87%E6%96%99-intellij-idea-with-ruby-plugin"><i class="fa fa-link"></i></a>資料 (Intellij IDEA with Ruby plugin)</h1>
+
+<p><a href="https://qiita.com/keita-nishimoto/items/76d6707db7d23fe4ca85" id="reference-bbaa63f1e1724c90965d">IntelliJ IDEA Rubyの開発環境を作成する</a><br>
+<a href="https://qiita.com/sunny4381/items/b9317d73b98eb1470140" id="reference-ccc14d8b106cab655319">IntelliJ と rbenv の組み合わせで Bundler が使えない時</a><br>
+<a href="http://www.task-notes.com/entry/20160508/1462676400" rel="nofollow noopener" target="_blank">IntelliJ IDEAでRuby on Railsプロジェクト開発</a><br>
+<a href="http://gyamin.hatenablog.com/entry/2017/06/12/225351" rel="nofollow noopener" target="_blank">Rails をInnteliJ IDEAでデバッグする</a><br>
+<a href="http://d.hatena.ne.jp/hikitest/20131031/1383233601" rel="nofollow noopener" target="_blank">Intellij IDEAを買った - 毒シューマイ</a><br>
+<a href="http://innossh.hatenablog.com/entry/2015/10/28/001020" rel="nofollow noopener" target="_blank">IntelliJ IDEAでRailsプロジェクトを開く</a><br>
+<a href="http://gyamin.hatenablog.com/entry/2017/06/12/225351" rel="nofollow noopener" target="_blank">Rails をInnteliJ IDEAでデバッグする - gyamin's diary</a><br>
+<a href="http://blog.clock-up.jp/entry/2014/01/28/195844" rel="nofollow noopener" target="_blank">ステップ実行可能なRailsリモートデバッグ環境 - clock-up-blog go-mi-tech</a><br>
+<a href="https://qiita.com/deco/items/f9b3aa90bf39ec4421ad" id="reference-3ecc31c33f699dd60391">IntelliJ Idea ショーカット一覧 Mac version</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

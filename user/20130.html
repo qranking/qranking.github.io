@@ -1,0 +1,1941 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (omochimetaru)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (omochimetaru さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>omochimetaruさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>93</kbd>
+		<a target="_blank" href="https://qiita.com/omochimetaru/items/c5f0eabde516e4713367">Swift に導入予定の Ownership 機能の紹介</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-26 00:12:23</center>
+	</td>
+	<td style="width:200px;">
+		@omochimetaru<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/20130/profile-images/1473682917">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Swift]</b> <b>[swtws]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="この記事について" class="fragment"></span><a href="#%E3%81%93%E3%81%AE%E8%A8%98%E4%BA%8B%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>この記事について</h1>
+
+<p>この記事は <a href="https://swift-tweets.github.io" rel="nofollow noopener" target="_blank">Swift Tweets 2017 Fall</a> での発表内容を記事の形で再編したものです。</p>
+
+<p><a href="https://togetter.com/li/1163227" rel="nofollow noopener" target="_blank">togetterまとめはこちら</a>。</p>
+
+<h1>
+<span id="導入" class="fragment"></span><a href="#%E5%B0%8E%E5%85%A5"><i class="fa fa-link"></i></a>導入</h1>
+
+<p>Swiftはネイティブコンパイルや値型など、高速な動作を意識して設計されていますが、CPUの性能を活かしきるコードを書くには機能が足りていません。コアチームは、その不足している機能群のうち、あるグループに Ownership 機能と名前をつけ、今後の対応方針を <a href="https://github.com/apple/swift/blob/master/docs/OwnershipManifesto.md" rel="nofollow noopener" target="_blank">Ownership Manifesto</a> として文書化しました。</p>
+
+<p>この記事では、この文書に基づいて Ownership 機能を紹介します。その内容のうち、すでにSwiftに導入されているものもありますが、そうでないものについては、あくまで方向性が提示されているものであり、確定した仕様ではないことに注意してください。</p>
+
+<h1>
+<span id="ownership" class="fragment"></span><a href="#ownership"><i class="fa fa-link"></i></a>Ownership</h1>
+
+<p>Ownership は主にコピーの回避を実現します。これまで「コピーしていた」場面で、そのかわりに「貸したり」「渡したり」できるようにして、より高速なコードを書けるようにします。</p>
+
+<h2>
+<span id="コピーコスト" class="fragment"></span><a href="#%E3%82%B3%E3%83%94%E3%83%BC%E3%82%B3%E3%82%B9%E3%83%88"><i class="fa fa-link"></i></a>コピーコスト</h2>
+
+<p>つまり前提として、コピーについてのコスト意識があります。</p>
+
+<p>値型がコピーされるときは、その全ての stored property がコピーされます。参照型がコピーされるときは、参照カウンタの増加が起きます。</p>
+
+<p>値がコピーされた数だけ、それが破棄される可能性があります。値型が破棄されるときは、その全ての stored property が破棄されます。参照型が破棄されるときは、参照カウンタの減少が起こり、もしそれが 0 になると、stored property の破棄とヒープメモリの解放処理が起きます。</p>
+
+<p>これらの処理は stored property を通じて連鎖するので、型のサイズに応じてコストが大きくなります。こうした場面で、不要なコピーが生じないコードを書く手段が提供されます。</p>
+
+<h1>
+<span id="排他則" class="fragment"></span><a href="#%E6%8E%92%E4%BB%96%E5%89%87"><i class="fa fa-link"></i></a>排他則</h1>
+
+<p>Ownership Manifesto では大きく分けて3つの機能が提案されています。第1の機能は、値アクセスの排他則というものです。原文では Law of Exclusivity と書かれています。</p>
+
+<p>排他則とは、ある値への書き込みアクセスが存在するとき、そのアクセスが排他的である事を強制し、その他のアクセスが同時に生じる事を禁止するものです。</p>
+
+<p>これは、今後の機能追加にあたって、その安全性のために先立って必要なもので、現在のSwiftにすでに導入されています。ただ、この機能それ自体も、コンパイル最適化のチャンスを与えるため、高速化に貢献するとされています。</p>
+
+<p>この制約は、コンパイルエラーや実行時エラーとして実現されます。</p>
+
+<p>書き込みアクセスには以下のようなものがあります。</p>
+
+<ul>
+<li>変数への代入</li>
+<li>関数のinout引数に変数を渡す</li>
+<li>mutating func なメソッドを呼ぶ(レシーバに対する書き込みアクセス)</li>
+</ul>
+
+<h2>
+<span id="排他則の適用例" class="fragment"></span><a href="#%E6%8E%92%E4%BB%96%E5%89%87%E3%81%AE%E9%81%A9%E7%94%A8%E4%BE%8B"><i class="fa fa-link"></i></a>排他則の適用例</h2>
+
+<p>例えば、以下のコードはエラーになります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">f0</span><span class="p">(</span><span class="kc">_</span> <span class="n">a</span><span class="p">:</span> <span class="kr">inout</span> <span class="nb">Int</span><span class="p">,</span> <span class="kc">_</span> <span class="n">b</span><span class="p">:</span> <span class="kr">inout</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">x</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="mi">3</span>
+    <span class="n">f0</span><span class="p">(&amp;</span><span class="n">x</span><span class="p">,</span> <span class="p">&amp;</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">main</span><span class="p">()</span>
+</pre></div></div>
+
+<p>以下のエラーメッセージが出ます。</p>
+
+<div class="code-frame" data-lang="text">
+<div class="code-lang"><span class="bold">error.txt</span></div>
+<div class="highlight"><pre><span></span>/Users/omochi/github/omochi/swift-ownership-example/x01_loe-inout/Sources/x01_loe-inout/main.swift:5:12: error: inout arguments are not allowed to alias each other
+    f0(&amp;x, &amp;x)
+           ^~
+/Users/omochi/github/omochi/swift-ownership-example/x01_loe-inout/Sources/x01_loe-inout/main.swift:5:8: note: previous aliasing argument
+    f0(&amp;x, &amp;x)
+       ^~
+/Users/omochi/github/omochi/swift-ownership-example/x01_loe-inout/Sources/x01_loe-inout/main.swift:5:8: error: overlapping accesses to 'x', but modification requires exclusive access; consider copying to a local variable
+    f0(&amp;x, &amp;x)
+       ^~
+/Users/omochi/github/omochi/swift-ownership-example/x01_loe-inout/Sources/x01_loe-inout/main.swift:5:12: note: conflicting access is here
+    f0(&amp;x, &amp;x)
+           ^~
+</pre></div>
+</div>
+
+<p>2つの inout 引数に同じ変数 x を渡しているので、変数 x の値への書き込みアクセスが同時に2つ存在してしまうからです。</p>
+
+<p>以下のコードもエラーになります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">struct</span> <span class="nc">Cat</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">age</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="mi">3</span>
+    <span class="kr">mutating</span> <span class="kd">func</span> <span class="nf">updateAge</span><span class="p">(</span><span class="kc">_</span> <span class="n">f</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">age</span> <span class="p">=</span> <span class="n">f</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">cat</span> <span class="p">=</span> <span class="n">Cat</span><span class="p">()</span>
+    <span class="n">cat</span><span class="p">.</span><span class="n">updateAge</span> <span class="p">{</span>
+        <span class="n">cat</span><span class="p">.</span><span class="n">age</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">main</span><span class="p">()</span>
+</pre></div></div>
+
+<p>以下のエラーメッセージが出ます。</p>
+
+<div class="code-frame" data-lang="text">
+<div class="code-lang"><span class="bold">error.txt</span></div>
+<div class="highlight"><pre><span></span>/Users/omochi/github/omochi/swift-ownership-example/x02_loe-mutating/Sources/x02_loe-mutating/main.swift:10:5: error: overlapping accesses to 'cat', but modification requires exclusive access; consider copying to a local variable
+    cat.updateAge {
+    ^~~
+/Users/omochi/github/omochi/swift-ownership-example/x02_loe-mutating/Sources/x02_loe-mutating/main.swift:11:13: note: conflicting access is here
+        cat.age * 2
+        ~~~~^~~
+</pre></div>
+</div>
+
+<p>updateAge は mutating func なので、このメソッド呼び出しはレシーバ cat に対する書き込みアクセスです。その呼び出しの最中に、引数に渡されたクロージャからも cat に読み込みアクセスをしています。書き込みアクセスの最中は他のアクセスが禁止されるためエラーになります。</p>
+
+<p>このように、排他則はプログラマに制約を課すものであり、一見不便が生じてしまいますが、値の同時アクセスの可能性を考慮したプログラムを書くのは難しく、考慮漏れがあるとバグにつながるため、それを未然に防いでくれます。</p>
+
+<h2>
+<span id="最適化" class="fragment"></span><a href="#%E6%9C%80%E9%81%A9%E5%8C%96"><i class="fa fa-link"></i></a>最適化</h2>
+
+<p>また、排他則があることで適用できるようになる最適化があり、高速なコードにコンパイルできる場合があります。そのような最適化の例として、コピーオンライト型のユニーク性チェックの巻き上げを紹介します。</p>
+
+<p>Arrayのようなコピーオンライトな型では、何か書き込み操作が生じる直前に、その内部ストレージの参照カウンタを調べて、複数箇所から共有参照されているかどうか調べます。一箇所だけから参照されているとき、その参照はユニークなので、これをユニーク性のチェックといいます。もし共有されていた場合は、操作の前にストレージを複製します。</p>
+
+<p>以下のコードを見てください。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">extension</span> <span class="nc">Array</span> <span class="p">{</span>
+    <span class="kr">mutating</span> <span class="kd">func</span> <span class="nf">update</span><span class="p">(</span><span class="kc">_</span> <span class="n">f</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">Element</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">.&lt;</span><span class="bp">count</span> <span class="p">{</span>
+            <span class="kc">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">f</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>このコードはArrayの要素をクロージャの返り値によって更新しています。もしかするとupdateが以下のように呼び出されているかもしれません。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nv">xs</span><span class="p">:</span> <span class="p">[</span><span class="nb">Int</span><span class="p">]</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nv">ys</span><span class="p">:</span> <span class="p">[</span><span class="nb">Int</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="n">xs</span><span class="p">.</span><span class="n">update</span> <span class="p">{</span>
+        <span class="n">ys</span> <span class="p">=</span> <span class="n">xs</span>
+        <span class="k">return</span> <span class="mi">10</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<p>update に渡しているクロージャの中で xs が ys にコピーされています。よって、update 内部で 引数 f を呼び出すと、xs の内部ストレージが ys と共有され、複数箇所から参照された状態になります。</p>
+
+<p>このように、渡されたクロージャが共有を生じさせる可能性があるので、コンパイラはループ内部の self[i] に代入する直前でユニーク性のチェックをするコードを生成しなければなりません。このループは要素数だけ繰り返されるので、チェックコストは大きくなります。</p>
+
+<p>ここで排他則が導入されれば、このようなクロージャが渡される可能性が排除されます<sup id="fnref1"><a href="#fn1" rel="footnote" title="このサンプルコードは、コンパイラの排他則の検証がバグっていて、「間違ってコンパイルできてしまう」ため、バグ報告しておきました。">1</a></sup>。update は mutating func による書き込みアクセスであり、その他のアクセスが禁止されるからです。その結果、ユニーク性のチェックはループ突入前に1度だけ行えばよくなります。これをユニーク性のチェックの巻き上げ最適化といいます。</p>
+
+<h1>
+<span id="shared-参照" class="fragment"></span><a href="#shared-%E5%8F%82%E7%85%A7"><i class="fa fa-link"></i></a>shared 参照</h1>
+
+<p>提案されている第2の機能は、shared 参照というものです。</p>
+
+<p>swift にはすでに inout 参照による inout 渡しがあります。これは関数の引数へ値を渡すときに、値をコピーして渡す代わりに変数への参照を渡すものです。そしてこの参照は変数の値への書き込みアクセスとなります。</p>
+
+<p>通常の引数は、関数を呼び出す際に値がコピーされるため、コストがかかります。実は、 inout 渡しは、そのストレージへのポインタを渡すだけであり、そのようなコピーコストがかからず高速です。</p>
+
+<p>shared 参照はこれの読み取り専用版です。inout 渡しでは、関数内部からその引数を var のように扱い、値を「書き戻す」事ができましたが、shared 渡しでは、その引数は let のように扱われ、読み取り専用となります。</p>
+
+<p>inout 渡しでは、呼び出し側にアンパサンド(&amp;)をつける必要があり、変数などのストレージの式を渡す必要がありますが、 shared はアンパサンドは不要で、一般の値が渡せます。つまり、使い心地は通常の引数とほとんど変わりません。</p>
+
+<p>以下にコード例を示します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">getLength</span><span class="p">(</span><span class="kc">_</span> <span class="n">v</span><span class="p">:</span> <span class="n">shared</span> <span class="n">Vec2</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Float</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">v</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">v</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">getLength</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">1</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>呼び出され側で v を使っているところと、呼び出し側で Vec2 を渡しているところを見ると、特に通常の引数と変わらないことがわかります。このように、shared は使いやすくて高速な引数の渡し方となります。</p>
+
+<p>ただし、shared 渡しされている値は、その関数の呼び出しの間ずっと、読み込みアクセスされることに注意が必要です。先述した排他則により制約をうける場合があります。</p>
+
+<h2>
+<span id="参照仕様の発展" class="fragment"></span><a href="#%E5%8F%82%E7%85%A7%E4%BB%95%E6%A7%98%E3%81%AE%E7%99%BA%E5%B1%95"><i class="fa fa-link"></i></a>参照仕様の発展</h2>
+
+<p>shared と inout は「第一級の参照」にはしないという方針が示されています。返り値や変数の型など、他の型と同じようにどこでも使えるようにはしないということです。第一級の参照が入ると言語や型システムが難解になり、それにより得られるメリットよりも、苦労のほうが大きいとのことです。</p>
+
+<p>第一級にはなりませんが、参照に関する発展的な仕様として、ローカル束縛、for-in 対応、computed property 対応などが議論されています。特に後者の2つはその実現のために言語仕様へのコルーチンの導入が同時に提案されており、今後の方向性として興味深いですが、この記事では省略します。</p>
+
+<h1>
+<span id="コピー不可能な値型" class="fragment"></span><a href="#%E3%82%B3%E3%83%94%E3%83%BC%E4%B8%8D%E5%8F%AF%E8%83%BD%E3%81%AA%E5%80%A4%E5%9E%8B"><i class="fa fa-link"></i></a>コピー不可能な値型</h1>
+
+<p>提案されている第3の機能は、コピー不可能な値型です。値型を定義する際に、これはコピーができない型である、と指定できるようになります。コピー不可能である事を、ムーブのみ可能であると捉えて、 moveonly というキーワードを使用することが提案されています。</p>
+
+<p>ムーブというのは、ある変数からある変数に値を移す操作で、元の変数は未初期化状態に戻って使用不可能になります。以下に例を示します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">moveonly</span> <span class="kd">struct</span> <span class="nc">Stone</span> <span class="p">{}</span>
+
+<span class="kd">var</span> <span class="nv">a</span> <span class="p">=</span> <span class="n">Stone</span><span class="p">()</span>
+
+<span class="c1">// a から b に Stone が移動する</span>
+<span class="kd">var</span> <span class="nv">b</span> <span class="p">=</span> <span class="n">move</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="c1">// a は未初期化であるため、コンパイルエラー</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div></div>
+
+<p>大きな値型を moveonly にしておけば、代入文がコンパイルエラーになるので、<br>
+コストの高い代入文をうっかり書くことを禁止できます。本当に必要な場面では、明示的に init などで複製します。</p>
+
+<h2>
+<span id="raii" class="fragment"></span><a href="#raii"><i class="fa fa-link"></i></a>RAII</h2>
+
+<p>deinit が定義できるので、今まで適用できなかったパターンに値型が適用できるようになります。</p>
+
+<p>例えば、開かれたファイルハンドルを class で表現することがあります。そして init でファイルパスを与えて開き、 deinit でそれを閉じるようにします。すると、そのインスタンスへの参照が無くなった時点でインスタンスの解放と共にファイルハンドルが閉じられるので、閉じ忘れや、二重に閉じてしまうバグが回避できます。このような実装パターンを RAII と呼びます。</p>
+
+<p>しかし、 class の取り回しには参照カウンタ操作やヒープ使用のコストがかかるため、できることなら値型を使いたいのが swift です。ですが、値型ではこのパターンは使えませんでした。deinit が書けないうえ、代入文でコピーできてしまうため、その時点で1つの同一リソースを指す2つの実体が生まれ、破綻してしまうからです。</p>
+
+<p>moveonly では deinit が定義できるうえ、コピーができないので、このような場合に最適です。以下に例を示します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">moveonly</span> <span class="kd">struct</span> <span class="nc">FileHandle</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">fp</span><span class="p">:</span> <span class="nb">UnsafeMutablePointer</span><span class="p">&lt;</span><span class="n">FILE</span><span class="p">&gt;</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fp</span> <span class="p">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">deinit</span> <span class="p">{</span>
+        <span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>なお、関数の引数は呼び出し時にコピーが生じるので、コピー不可能な型は渡せません。そこで、前述した shared 渡し を活用していくことになります。そして、参照を使うことによる重複アクセスによるバグを排他則が防いでくれます。</p>
+
+<h1>
+<span id="終わりに" class="fragment"></span><a href="#%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>終わりに</h1>
+
+<p>以上が Ownership の大きな3つの機能です。</p>
+
+<p>Ownership が入ったら Swift は上級者向けの難解言語になるだろう、といった意見を見たことがありますが、自分はそのようなことは起こらないと考えています。全体の目標として、これまでのSwiftの使いやすさを保ちつつ、高速化の手段を追加的に提供するとあるのですが、現状の提案を見る限り、注意深くそれを達成できていると思うからです。</p>
+
+<p>この記事を見て、 Ownership に興味を持つ人が増えたら嬉しいです。</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>このサンプルコードは、コンパイラの排他則の検証がバグっていて、「間違ってコンパイルできてしまう」ため、<a href="https://bugs.swift.org/browse/SR-6103" rel="nofollow noopener" target="_blank">バグ報告</a>しておきました。 <a href="#fnref1">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>omochimetaruさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>36</kbd>
+		<a target="_blank" href="https://qiita.com/omochimetaru/items/422ddd04e95c55dd3833">Swift で書けるメタプログラミング向けのテンプレートエンジン gysb を作った</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-08 23:12:45</center>
+	</td>
+	<td style="width:200px;">
+		@omochimetaru<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/20130/profile-images/1473682917">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[メタプログラミング]</b> <b>[Swift]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="メタプログラミングとテンプレートエンジン" class="fragment"></span><a href="#%E3%83%A1%E3%82%BF%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%A8%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3"><i class="fa fa-link"></i></a>メタプログラミングとテンプレートエンジン</h1>
+
+<p>プログラミングにおいて、そのプログラミング言語の機能だけではプログラムを書くのが大変だったり難しいときに、外部のツールなどを用いて、「プログラムを出力するプログラム」を作成して対応することがあります。これをメタプログラミングと呼びます。</p>
+
+<h2>
+<span id="pump" class="fragment"></span><a href="#pump"><i class="fa fa-link"></i></a>pump</h2>
+
+<p>例えば、昔からあって有名なものとしては、 Google が作った <a href="https://github.com/google/googletest/blob/master/googletest/docs/PumpManual.md" rel="nofollow noopener" target="_blank">pump</a> というツールがあります。<br>
+pump は主に C++ のメタプログラミングのために設計されたツールで、ユーザーは専用のテンプレート言語でテンプレートを書き、それをツールにかけて C++ プログラムを生成します。このテンプレート言語は専用の変数宣言や if, for など限られた機能だけが使えます。pump 自体は python で実装されており、部分的には python の式も書けるようになっていて、簡単な計算などを組み込むこともできます。ツール自体は C++ 専用というわけではなく、テキストテンプレートエンジンなので、他の言語のメタプログラミングにも使用できます。</p>
+
+<p>pump は <a href="https://github.com/google/googletest/blob/master/googletest/include/gtest/gtest-param-test.h.pump" rel="nofollow noopener" target="_blank">googletest</a> や <a href="https://chromium.googlesource.com/chromium/+/trunk/base/callback.h.pump" rel="nofollow noopener" target="_blank">chromium</a> の内部で使われています。</p>
+
+<h2>
+<span id="gyb" class="fragment"></span><a href="#gyb"><i class="fa fa-link"></i></a>gyb</h2>
+
+<p>Apple は Swift コンパイラの開発において、メタプログラミング用のツールとして <a href="https://github.com/apple/swift/blob/master/utils/gyb.py" rel="nofollow noopener" target="_blank">gyb</a> を作りました。<br>
+こちらは主に Swift のメタプログラミングのために設計されています。これも pump と同様 python で実装されていますが、独自のテンプレート言語ではなく、ほぼそのまま python を書くことができるようになっていて、 pump と比べるとより自由なメタプログラミングが行なえます。</p>
+
+<p>gyb の利用例としては、 swift 標準ライブラリの <a href="https://github.com/apple/swift/blob/master/stdlib/public/core/Arrays.swift.gyb" rel="nofollow noopener" target="_blank">Array の実装</a> に使われている他、こちらも同様に他の言語にも使用可能なため、 <a href="https://github.com/apple/swift/blob/master/lib/Syntax/SyntaxKind.cpp.gyb" rel="nofollow noopener" target="_blank">C++ コードの生成</a> にも使われています。</p>
+
+<h1>
+<span id="gyb-の例" class="fragment"></span><a href="#gyb-%E3%81%AE%E4%BE%8B"><i class="fa fa-link"></i></a>gyb の例</h1>
+
+<p>gyb については <a href="http://moapp.hateblo.jp/entry/2017/06/30/210636" rel="nofollow noopener" target="_blank">moaible さんが gyb を解説したブログ記事</a> がわかりやすいです。簡単に例を示すため、この記事からコードを引用します。</p>
+
+<p>以下のようなテンプレートを書きます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>%{
+  intTypes = [8,16,32,64]
+}%
+
+% for intType in intTypes:
+    % for sign in ['','U']:
+
+/// Extension that adds a few additional functionalities to ${sign}Int${intType}
+extension ${sign}Int${intType} {
+
+    /// Returns a ${sign}Int${intType} with all ones
+        %if sign == '':
+    public static var allOnes:Int${intType} {
+       return Int${intType}(bitPattern: UInt${intType}.max)
+    }
+        %else:
+    public static var allOnes:UInt${intType} {
+       return UInt${intType}.max
+    }
+        %end
+}
+    %end
+%end
+</pre></div></div>
+
+<p><code>%{ }%</code> で挟まれた領域や、 <code>%</code> から始まる行が、テンプレート生成を制御するための python コードを書いている部分、 <code>${ }</code> は python の式が文字列として展開される部分、その他の部分は生成する Swift コードの断片です。 Swift のコードの部分を python の if 文で挟んだり for ループで囲んだりすることで、条件に応じて Swift のコードを書き換えたり、ループが繰り返された分だけ Swift のコードが繰り返されたりします。</p>
+
+<p>このテンプレートコードを gyb コマンドで処理すると、次のような Swift コードが生成されます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">/// Extension that adds a few additional functionalities to Int8</span>
+<span class="kd">extension</span> <span class="nc">Int8</span> <span class="p">{</span>
+
+    <span class="c1">/// Returns a Int8 with all ones</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">var</span> <span class="nv">allOnes</span><span class="p">:</span><span class="nb">Int8</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="nb">Int8</span><span class="p">(</span><span class="n">bitPattern</span><span class="p">:</span> <span class="nb">UInt8</span><span class="p">.</span><span class="bp">max</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// Extension that adds a few additional functionalities to UInt8</span>
+<span class="kd">extension</span> <span class="nc">UInt8</span> <span class="p">{</span>
+
+    <span class="c1">/// Returns a UInt8 with all ones</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">var</span> <span class="nv">allOnes</span><span class="p">:</span><span class="nb">UInt8</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="nb">UInt8</span><span class="p">.</span><span class="bp">max</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// Extension that adds a few additional functionalities to Int16</span>
+<span class="kd">extension</span> <span class="nc">Int16</span> <span class="p">{</span>
+
+    <span class="c1">/// Returns a Int16 with all ones</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">var</span> <span class="nv">allOnes</span><span class="p">:</span><span class="nb">Int16</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="nb">Int16</span><span class="p">(</span><span class="n">bitPattern</span><span class="p">:</span> <span class="nb">UInt16</span><span class="p">.</span><span class="bp">max</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// Extension that adds a few additional functionalities to UInt16</span>
+<span class="kd">extension</span> <span class="nc">UInt16</span> <span class="p">{</span>
+
+    <span class="c1">/// Returns a UInt16 with all ones</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">var</span> <span class="nv">allOnes</span><span class="p">:</span><span class="nb">UInt16</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="nb">UInt16</span><span class="p">.</span><span class="bp">max</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// Extension that adds a few additional functionalities to Int32</span>
+<span class="kd">extension</span> <span class="nc">Int32</span> <span class="p">{</span>
+
+    <span class="c1">/// Returns a Int32 with all ones</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">var</span> <span class="nv">allOnes</span><span class="p">:</span><span class="nb">Int32</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="nb">Int32</span><span class="p">(</span><span class="n">bitPattern</span><span class="p">:</span> <span class="nb">UInt32</span><span class="p">.</span><span class="bp">max</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// Extension that adds a few additional functionalities to UInt32</span>
+<span class="kd">extension</span> <span class="nc">UInt32</span> <span class="p">{</span>
+
+    <span class="c1">/// Returns a UInt32 with all ones</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">var</span> <span class="nv">allOnes</span><span class="p">:</span><span class="nb">UInt32</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="nb">UInt32</span><span class="p">.</span><span class="bp">max</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// Extension that adds a few additional functionalities to Int64</span>
+<span class="kd">extension</span> <span class="nc">Int64</span> <span class="p">{</span>
+
+    <span class="c1">/// Returns a Int64 with all ones</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">var</span> <span class="nv">allOnes</span><span class="p">:</span><span class="nb">Int64</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="nb">Int64</span><span class="p">(</span><span class="n">bitPattern</span><span class="p">:</span> <span class="nb">UInt64</span><span class="p">.</span><span class="bp">max</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// Extension that adds a few additional functionalities to UInt64</span>
+<span class="kd">extension</span> <span class="nc">UInt64</span> <span class="p">{</span>
+
+    <span class="c1">/// Returns a UInt64 with all ones</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">var</span> <span class="nv">allOnes</span><span class="p">:</span><span class="nb">UInt64</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="nb">UInt64</span><span class="p">.</span><span class="bp">max</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>このように、 分岐やループが処理された結果、少しずつ異なる Swift コードをまとめて生成できます。</p>
+
+<p>gyb についての国内の情報は少ないですが、その他にも以下のような事例があります。</p>
+
+<ul>
+<li>僕が <a href="https://github.com/omochi/cpp-rhetoric/blob/master/src/rhetoric/either.h.gyb" rel="nofollow noopener" target="_blank">C++ のライブラリで型パラメータの引数の個数違い</a> を作成するのに使っています。</li>
+<li>
+<a href="https://github.com/tarunon/enum-convertible/blob/master/Sources/EnumConvertible.swift.gyb" rel="nofollow noopener" target="_blank">tarunon さんが swift の型パラメータ引数の個数違い</a> を作成するのに使っています。</li>
+<li>
+<a href="https://github.com/hiragram/Swako" rel="nofollow noopener" target="_blank">hiragram さんが API定義から Swift の自動生成</a> に使っています。</li>
+<li>
+<a href="https://github.com/koher/EasyImagy/blob/master/Sources/EasyImagy/Range.swift.gyb" rel="nofollow noopener" target="_blank">koher さんが 4種類の Range 型の拡張</a> に使っています。</li>
+<li>
+<a href="https://github.com/t-ae/swim/blob/master/Sources/Swim/Specialization/PixelSubscriptSpecialize.swift.gyb" rel="nofollow noopener" target="_blank">t-ae さんが 型パラメータを明示的に特殊化</a> するために使っています。</li>
+</ul>
+
+<p>これらの事例からもわかるように、様々な型のバリエーションに対応したコードを生成するために使われる事が多いです。 Swift のジェネリクスが今後改良されていけば、 gyb を使用しなくとも Swift の言語機能で対応できる場面が増えていくと思いますが、知っておくと便利なこともあるでしょう。また、高度な自動生成に関しては、ジェネリクスの範囲を超えるので、メタプログラミングの需要の一部は残り続けると思います。</p>
+
+<h1>
+<span id="gyb-の問題点" class="fragment"></span><a href="#gyb-%E3%81%AE%E5%95%8F%E9%A1%8C%E7%82%B9"><i class="fa fa-link"></i></a>gyb の問題点</h1>
+
+<p>このように gyb はとても便利なツールですが、致命的な問題点があります。それは、 python を書かなければならないという事です。 Swift プログラマの中には python を知らない人も居ます。メタプログラミングをしたいほど Swift が好きなのに、その Swift を書くために python を書くのはおもしろくありません。</p>
+
+<h1>
+<span id="swift-で書ける-gysb" class="fragment"></span><a href="#swift-%E3%81%A7%E6%9B%B8%E3%81%91%E3%82%8B-gysb"><i class="fa fa-link"></i></a>Swift で書ける gysb</h1>
+
+<p>そこで、 <a href="https://github.com/omochi/gysb" rel="nofollow noopener" target="_blank">Swift で書けるメタプログラミング用のテンプレートエンジンである gysb</a> を作成しました。<br>
+gysb の文法は gyb から丸パクリです。 <code>%{ }</code> と <code>%</code> で制御を書き、 <code>${ }</code> で式展開を書きます。ただ、それを swift で書けます。</p>
+
+<p>先程の moaible さんのサンプルを gysb で書くと以下のようになります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>%{
+  let intTypes = [8,16,32,64]
+}%
+
+% for intType in intTypes {
+    % for sign in ["", "U"] {
+
+/// Extension that adds a few additional functionalities to ${sign}Int${intType}
+extension ${sign}Int${intType} {
+
+    /// Returns a ${sign}Int${intType} with all ones
+        % if sign == "" {
+    public static var allOnes: Int${intType} {
+       return Int${intType}(bitPattern: UInt${intType}.max)
+    }
+        % } else {
+    public static var allOnes: UInt${intType} {
+       return UInt${intType}.max
+    }
+        % }
+}
+    % }
+% }
+</pre></div></div>
+
+<p>これの処理結果は gyb の場合と全く同じです。</p>
+
+<p>swift なので、テンプレート中で変数名を間違えたりすれば、コンパイルエラーとして検出されます。</p>
+
+<h1>
+<span id="gysb-の設計" class="fragment"></span><a href="#gysb-%E3%81%AE%E8%A8%AD%E8%A8%88"><i class="fa fa-link"></i></a>gysb の設計</h1>
+
+<p>gysb はテンプレート構文こそ gyb と同じですが、実装は全く独自になっています。 gysb それ自体ももちろん Swift で実装されています。</p>
+
+<p>gysb ではテンプレートファイルをいったん swift ソースにコンパイルします。そして、その生成された swift ソースを改めてコンパイル、実行すると、テンプレート処理結果のテキストが出力されます。もちろんこの2段コンパイル実行は gysb が内部で行うので、ユーザとしては gysb コマンドを1度呼び出すだけです。</p>
+
+<p>例えば、先程の例のテンプレートをコンパイルした結果は以下のようになります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="kc">_</span> <span class="n">s</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">terminator</span><span class="p">:</span> <span class="s">""</span><span class="p">)</span>
+<span class="p">}</span>
+
+  <span class="kd">let</span> <span class="nv">intTypes</span> <span class="p">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">64</span><span class="p">]</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+ <span class="k">for</span> <span class="n">intType</span> <span class="k">in</span> <span class="n">intTypes</span> <span class="p">{</span>
+     <span class="k">for</span> <span class="n">sign</span> <span class="k">in</span> <span class="p">[</span><span class="s">""</span><span class="p">,</span> <span class="s">"U"</span><span class="p">]</span> <span class="p">{</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"/// Extension that adds a few additional functionalities to "</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">sign</span><span class="p">))</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"Int"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">intType</span><span class="p">))</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"extension "</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">sign</span><span class="p">))</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"Int"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">intType</span><span class="p">))</span>
+<span class="n">write</span><span class="p">(</span><span class="s">" {</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"    /// Returns a "</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">sign</span><span class="p">))</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"Int"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">intType</span><span class="p">))</span>
+<span class="n">write</span><span class="p">(</span><span class="s">" with all ones</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+         <span class="k">if</span> <span class="n">sign</span> <span class="p">==</span> <span class="s">""</span> <span class="p">{</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"    public static var allOnes: Int"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">intType</span><span class="p">))</span>
+<span class="n">write</span><span class="p">(</span><span class="s">" {</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"       return Int"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">intType</span><span class="p">))</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"(bitPattern: UInt"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">intType</span><span class="p">))</span>
+<span class="n">write</span><span class="p">(</span><span class="s">".max)</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"    }</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"    public static var allOnes: UInt"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">intType</span><span class="p">))</span>
+<span class="n">write</span><span class="p">(</span><span class="s">" {</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"       return UInt"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">intType</span><span class="p">))</span>
+<span class="n">write</span><span class="p">(</span><span class="s">".max</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"    }</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+         <span class="p">}</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"}</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div></div>
+
+<p>このように、テンプレートにおいて制御コードだった部分はそのまま Swift コードに、テンプレートにおいて Swift コードだった部分は Swift 上の文字列リテラルに、ちょうど反転するように変換されます。あとはこれを実行すれば処理結果のテキストが得られます。</p>
+
+<p>このテンプレートコンパイル自体も一種のメタプログラミングといえるでしょう。つまり、 Swift メタプログラミングをするために、 Swift メタプログラミングをする Swift のプログラムを書いた、という事になります。楽しいですね。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>omochimetaruさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>32</kbd>
+		<a target="_blank" href="https://qiita.com/omochimetaru/items/5d26b95eb21e022106f0">Swift の Type Erasure の実装パターンの紹介</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-27 17:11:14</center>
+	</td>
+	<td style="width:200px;">
+		@omochimetaru<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/20130/profile-images/1473682917">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Swift]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="type-erasure" class="fragment"></span><a href="#type-erasure"><i class="fa fa-link"></i></a>Type erasure</h1>
+
+<p>swift では protocol を使うのが人気です。ある protocol を満たす複数の型があるとき、それらのどれでも代入できる互換性のある型が欲しくなることがあります。そのような型を type erasure と呼びます。互換性のある型に代入するときに、元の型が失われるからです。</p>
+
+<p>この記事では、複数の type erasure の実装パターンを紹介します。</p>
+
+<h1>
+<span id="シンプルな-protocol" class="fragment"></span><a href="#%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB%E3%81%AA-protocol"><i class="fa fa-link"></i></a>シンプルな protocol</h1>
+
+<h2>
+<span id="言語機能-existential" class="fragment"></span><a href="#%E8%A8%80%E8%AA%9E%E6%A9%9F%E8%83%BD-existential"><i class="fa fa-link"></i></a>言語機能 existential</h2>
+
+<p>swift では言語機能として、シンプルな protocol はそのままの型名で existential として使用できます。シンプルというのは、ここでは associated type を持っていない、かつ、 自身の定義に Self 型を使用していないことを指しています。 existential というのは存在型とも呼び、ある protocol を満たす型の値が代入できる型のことです。</p>
+
+<p>以下のようにシンプルな protocol とそれを満たすクラスがあったとします。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">protocol</span> <span class="nc">AnimalProtocol</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Cat</span> <span class="p">:</span> <span class="n">AnimalProtocol</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>以下のようにして、 protocol の型を existential としてそのまま変数の型に使用可能です。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nv">a</span><span class="p">:</span> <span class="n">AnimalProtocol</span> <span class="p">=</span> <span class="n">Cat</span><span class="p">()</span>
+</pre></div></div>
+
+<h2>
+<span id="自動定義-existential-は不便" class="fragment"></span><a href="#%E8%87%AA%E5%8B%95%E5%AE%9A%E7%BE%A9-existential-%E3%81%AF%E4%B8%8D%E4%BE%BF"><i class="fa fa-link"></i></a>自動定義 existential は不便</h2>
+
+<p>しかし、この方法はそれ自体が自分自身の protocol を満たさないため不便です。</p>
+
+<p>例えば、下記のようなジェネリック関数呼び出しができません。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">g</span><span class="p">&lt;</span><span class="n">X</span><span class="p">:</span> <span class="n">AnimalProtocol</span><span class="p">&gt;(</span><span class="kc">_</span> <span class="n">x</span><span class="p">:</span> <span class="n">X</span><span class="p">)</span> <span class="p">{}</span>
+
+<span class="n">g</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> 
+<span class="c1">// Cannot invoke 'g' with an argument list of type '(AnimalProtocol)'</span>
+</pre></div></div>
+
+<p>また、下記のような型のジェネリックパラメータに使用することができません。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">AnimalHouse</span><span class="p">&lt;</span><span class="n">X</span><span class="p">:</span> <span class="n">AnimalProtocol</span><span class="p">&gt;</span> <span class="p">{}</span>
+
+<span class="n">AnimalHouse</span><span class="p">&lt;</span><span class="n">AnimalProtocol</span><span class="p">&gt;()</span> 
+<span class="c1">// Using 'AnimalProtocol' as a concrete type conforming to protocol 'AnimalProtocol' is not supported</span>
+</pre></div></div>
+
+<h2>
+<span id="type-erasure-existential-方式" class="fragment"></span><a href="#type-erasure-existential-%E6%96%B9%E5%BC%8F"><i class="fa fa-link"></i></a>type erasure: existential 方式</h2>
+
+<p>このように言語機能 existential は不便なので、 type erasure を定義したいことがあります。</p>
+
+<p>シンプルな protocol の type erasure は、言語機能 existential を内部で property として保持するだけで実装できます。これを existential 方式と呼ぶことにします。</p>
+
+<p>以下に例を示します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">AnyAnimal</span> <span class="p">:</span> <span class="n">AnimalProtocol</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">base</span><span class="p">:</span> <span class="n">AnimalProtocol</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">base</span> <span class="p">=</span> <span class="n">base</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">base</span><span class="p">.</span><span class="n">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="n">food</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">base</span><span class="p">:</span> <span class="n">AnimalProtocol</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nv">a</span><span class="p">:</span> <span class="n">AnyAnimal</span> <span class="p">=</span> <span class="n">AnyAnimal</span><span class="p">(</span><span class="n">Cat</span><span class="p">())</span>
+</pre></div></div>
+
+<h1>
+<span id="associated-type-を持つ-protocol" class="fragment"></span><a href="#associated-type-%E3%82%92%E6%8C%81%E3%81%A4-protocol"><i class="fa fa-link"></i></a>associated type を持つ protocol</h1>
+
+<p>protocol が associated type を持っている場合を考えます。以下に例を示します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">protocol</span> <span class="nc">AnimalProtocol</span> <span class="p">{</span>
+    <span class="n">associatedtype</span> <span class="n">Food</span>
+    <span class="kd">func</span> <span class="nf">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="n">Food</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Cat</span> <span class="p">:</span> <span class="n">AnimalProtocol</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>この場合 existential 方式は使えません。 property を定義しているところでエラーになるからです。</p>
+
+<h2>
+<span id="type-erasure-クロージャ方式" class="fragment"></span><a href="#type-erasure-%E3%82%AF%E3%83%AD%E3%83%BC%E3%82%B8%E3%83%A3%E6%96%B9%E5%BC%8F"><i class="fa fa-link"></i></a>type erasure: クロージャ方式</h2>
+
+<p>この場合、それぞれのメソッドをクロージャで包む事によって type erasure を実装できます。これをクロージャ方式と呼ぶことにします。</p>
+
+<p>以下に例を示します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">AnyAnimal</span><span class="p">&lt;</span><span class="n">Food</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">AnimalProtocol</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">&lt;</span><span class="n">X</span><span class="p">:</span> <span class="n">AnimalProtocol</span><span class="p">&gt;(</span><span class="kc">_</span> <span class="n">base</span><span class="p">:</span> <span class="n">X</span><span class="p">)</span>
+        <span class="k">where</span> <span class="n">X</span><span class="p">.</span><span class="n">Food</span> <span class="p">==</span> <span class="n">Food</span>
+    <span class="p">{</span>
+        <span class="n">_eat</span> <span class="p">=</span> <span class="p">{</span> <span class="n">base</span><span class="p">.</span><span class="n">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="n">Food</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_eat</span><span class="p">(</span><span class="n">food</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">_eat</span><span class="p">:</span> <span class="p">(</span><span class="n">Food</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nv">a</span><span class="p">:</span> <span class="n">AnyAnimal</span> <span class="p">=</span> <span class="n">AnyAnimal</span><span class="p">(</span><span class="n">Cat</span><span class="p">())</span>
+</pre></div></div>
+
+<p>associated type を type erasure の型パラメータとし、 protocol のメソッドをクロージャにし、 init でメソッド呼び出しをクロージャに包んで保持します。</p>
+
+<p>この方式はやり方はわかりやすいですが、 protocol のもつメソッド1つに対して、その名前を5回、引数の転送を2回ずつ書かなければならないため、面倒です。<br>
+また、クロージャ1つに付き16バイトのメモリを消費してしまい、メソッド数が多い protocol だと消費量が大きくなります。</p>
+
+<h1>
+<span id="self-を含む-protocol" class="fragment"></span><a href="#self-%E3%82%92%E5%90%AB%E3%82%80-protocol"><i class="fa fa-link"></i></a>Self を含む protocol</h1>
+
+<p>protocol 定義が Self を含む場合を考えます。以下に例を示します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">protocol</span> <span class="nc">AnimalProtocol</span> <span class="p">{</span>
+    <span class="n">associatedtype</span> <span class="n">Food</span>
+    <span class="kd">func</span> <span class="nf">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="n">Food</span><span class="p">)</span>
+    <span class="kd">func</span> <span class="nf">spawn</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="kc">Self</span>
+    <span class="kd">func</span> <span class="nf">fight</span><span class="p">(</span><span class="kc">_</span> <span class="n">x</span><span class="p">:</span> <span class="kc">Self</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Cat</span> <span class="p">:</span> <span class="n">AnimalProtocol</span> <span class="p">{</span>
+    <span class="kr">required</span> <span class="kd">init</span><span class="p">()</span> <span class="p">{}</span>
+
+    <span class="kd">func</span> <span class="nf">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{}</span>
+
+    <span class="kd">func</span> <span class="nf">spawn</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="kc">Self</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">type</span><span class="p">(</span><span class="n">of</span><span class="p">:</span> <span class="kc">self</span><span class="p">).</span><span class="kd">init</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">fight</span><span class="p">(</span><span class="kc">_</span> <span class="n">x</span><span class="p">:</span> <span class="n">Cat</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>この場合、クロージャ方式は使えません。 base.spawn や base.fight をクロージャに包もうとしても、その base の型 X は init の中でしか使えないため、 クロージャの型定義に組み込むことができないからです。</p>
+
+<h2>
+<span id="type-erasure-継承-box-方式" class="fragment"></span><a href="#type-erasure-%E7%B6%99%E6%89%BF-box-%E6%96%B9%E5%BC%8F"><i class="fa fa-link"></i></a>type erasure: 継承 box 方式</h2>
+
+<p>この場合、 protocol を保持するオブジェクトを内側にもう1つ作り、Self を型パラメータに焼いた上で継承でそれを消す事で type erasure が実装できます。これを継承 box 方式と呼ぶことにします。</p>
+
+<p>段階的に例を示します。</p>
+
+<p>まず、 associated type を型パラメータにするための AnyBox を作ります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">AnyAnimalBox</span><span class="p">&lt;</span><span class="n">Food</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="n">Food</span><span class="p">)</span> <span class="p">{</span> <span class="bp">fatalError</span><span class="p">(</span><span class="s">"abstract"</span><span class="p">)</span> <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">spawn</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">AnyAnimalBox</span><span class="p">&lt;</span><span class="n">Food</span><span class="p">&gt;</span> <span class="p">{</span> <span class="bp">fatalError</span><span class="p">(</span><span class="s">"abstract"</span><span class="p">)</span> <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">fight</span><span class="p">(</span><span class="kc">_</span> <span class="n">x</span><span class="p">:</span> <span class="n">AnyAnimalBox</span><span class="p">&lt;</span><span class="n">Food</span><span class="p">&gt;)</span> <span class="p">{</span> <span class="bp">fatalError</span><span class="p">(</span><span class="s">"abstract"</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>それ自体は protocol の準拠は不要です。実装は fatalError にしておきます。Self 部分は AnyBox それ自身を記述します。</p>
+
+<p>次に、具体的な型を保持して、実装を転送するための、 AnyBox のサブクラスの Box を作ります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">AnimalBox</span><span class="p">&lt;</span><span class="n">X</span><span class="p">:</span> <span class="n">AnimalProtocol</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">AnyAnimalBox</span><span class="p">&lt;</span><span class="n">X</span><span class="p">.</span><span class="n">Food</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">base</span><span class="p">:</span> <span class="n">X</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">base</span> <span class="p">=</span> <span class="n">base</span>
+    <span class="p">}</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="n">X</span><span class="p">.</span><span class="n">Food</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">base</span><span class="p">.</span><span class="n">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="n">food</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">spawn</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">AnyAnimalBox</span><span class="p">&lt;</span><span class="n">X</span><span class="p">.</span><span class="n">Food</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">AnimalBox</span><span class="p">&lt;</span><span class="n">X</span><span class="p">&gt;(</span><span class="n">base</span><span class="p">.</span><span class="n">spawn</span><span class="p">())</span>
+    <span class="p">}</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">fight</span><span class="p">(</span><span class="kc">_</span> <span class="n">x</span><span class="p">:</span> <span class="n">AnyAnimalBox</span><span class="p">&lt;</span><span class="n">X</span><span class="p">.</span><span class="n">Food</span><span class="p">&gt;)</span> <span class="p">{</span>
+        <span class="n">base</span><span class="p">.</span><span class="n">fight</span><span class="p">((</span><span class="n">x</span> <span class="k">as</span><span class="p">!</span> <span class="n">AnimalBox</span><span class="p">&lt;</span><span class="n">X</span><span class="p">&gt;).</span><span class="n">base</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">base</span><span class="p">:</span> <span class="n">X</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>protocol の具体的な型を型パラメータで保持し、先程の AnyBox に associated type を当てはめつつ継承します。<br>
+このクラスの内部では具体的な型 X が使えるので、 existential 方式のように base プロパティとしてそれを保持します。<br>
+Self が絡む部分については、返り値方向であれば、 X を AnyBox の init に渡して包み直します。引数方向であれば、 AnyBox からダウンキャストしてから base プロパティにアクセスします。ここのダウンキャストについては、 AnyBox と Box が type erasure 内部でのみ使われることから安全性が保証されます。</p>
+
+<p>最後に type erasure を実装します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kr">final</span> <span class="kd">class</span> <span class="nc">AnyAnimal</span><span class="p">&lt;</span><span class="n">Food</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">AnimalProtocol</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">&lt;</span><span class="n">X</span><span class="p">:</span> <span class="n">AnimalProtocol</span><span class="p">&gt;(</span><span class="kc">_</span> <span class="n">base</span><span class="p">:</span> <span class="n">X</span><span class="p">)</span>
+        <span class="k">where</span> <span class="n">X</span><span class="p">.</span><span class="n">Food</span> <span class="p">==</span> <span class="n">Food</span>
+    <span class="p">{</span>
+        <span class="n">box</span> <span class="p">=</span> <span class="n">AnimalBox</span><span class="p">&lt;</span><span class="n">X</span><span class="p">&gt;(</span><span class="n">base</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="n">Food</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">box</span><span class="p">.</span><span class="n">eat</span><span class="p">(</span><span class="n">food</span><span class="p">:</span> <span class="n">food</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">spawn</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">AnyAnimal</span><span class="p">&lt;</span><span class="n">Food</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">AnyAnimal</span><span class="p">&lt;</span><span class="n">Food</span><span class="p">&gt;(</span><span class="n">box</span><span class="p">:</span> <span class="n">box</span><span class="p">.</span><span class="n">spawn</span><span class="p">())</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">fight</span><span class="p">(</span><span class="kc">_</span> <span class="n">x</span><span class="p">:</span> <span class="n">AnyAnimal</span><span class="p">&lt;</span><span class="n">Food</span><span class="p">&gt;)</span> <span class="p">{</span>
+        <span class="n">box</span><span class="p">.</span><span class="n">fight</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">box</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">init</span><span class="p">(</span><span class="n">box</span><span class="p">:</span> <span class="n">AnyAnimalBox</span><span class="p">&lt;</span><span class="n">Food</span><span class="p">&gt;)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">box</span> <span class="p">=</span> <span class="n">box</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">box</span><span class="p">:</span> <span class="n">AnyAnimalBox</span><span class="p">&lt;</span><span class="n">Food</span><span class="p">&gt;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nv">a</span><span class="p">:</span> <span class="n">AnyAnimal</span> <span class="p">=</span> <span class="n">AnyAnimal</span><span class="p">(</span><span class="n">Cat</span><span class="p">())</span>
+</pre></div></div>
+
+<p>associated type を型パラメータで持ち、 init で X として受け取る形はクロージャ方式と同じです。box をプロパティにもち、その型を AnyBox にしておきます。そして、 init の内部で X の型で Box を作って、 box プロパティにアップキャストして代入します。ここで X の型が box 内部に焼きこまれつつ見かけ上消去されます。</p>
+
+<p>また、 AnyBox を受け取る init も用意しておきます。</p>
+
+<p>あとはそれぞれのメソッドを転送します。 Self が絡む箇所については、返り値方向は AnyBox を受け取る init を使って包み直します。引数方向はプロパティの box にアクセスします。</p>
+
+<p>type erasure 自身は final にしておきます。もしこの final を外そうとすると、 box を受ける init を required にして private を外す必要がありますが、そうすると AnyBox のサブクラスとして Box 以外のオブジェクトが渡される可能性が生じるので、 Box の中で使ったダウンキャストに失敗する可能性が産まれてしまいます。</p>
+
+<p>この方式は3つの型を定義する必要があり、1つのメソッドにつき 5回の名前と2回の転送を書き、 fatalError で埋める必要もあるので、クロージャ方式よりもさらに面倒です。<br>
+ただしメモリ使用量は メソッド数によらず一定です。</p>
+
+<h2>
+<span id="anysequence-の例" class="fragment"></span><a href="#anysequence-%E3%81%AE%E4%BE%8B"><i class="fa fa-link"></i></a>AnySequence の例</h2>
+
+<p>この継承 box 方式は swift 標準ライブラリの AnySequence でも使われています。</p>
+
+<ul>
+<li><a href="https://github.com/apple/swift/blob/24821ccb08832e5d6ef5d21d6730b51f93d9d210/stdlib/public/core/ExistentialCollection.swift.gyb#L179" rel="nofollow noopener" target="_blank">AnySequenceBoxの定義</a></li>
+<li><a href="https://github.com/apple/swift/blob/24821ccb08832e5d6ef5d21d6730b51f93d9d210/stdlib/public/core/ExistentialCollection.swift.gyb#L452" rel="nofollow noopener" target="_blank">SequenceBoxの定義</a></li>
+<li><a href="https://github.com/apple/swift/blob/24821ccb08832e5d6ef5d21d6730b51f93d9d210/stdlib/public/core/ExistentialCollection.swift.gyb#L751" rel="nofollow noopener" target="_blank">AnySequenceの定義</a></li>
+</ul>
+
+<p>gyb が使われているためわかりにくいですが、読んでみると面白いです。</p>
+
+<h1>
+<span id="謝辞" class="fragment"></span><a href="#%E8%AC%9D%E8%BE%9E"><i class="fa fa-link"></i></a>謝辞</h1>
+
+<p>この記事の内容は <a href="https://medium.com/swift-column/discord-ios-20d586e373c0" rel="nofollow noopener" target="_blank">Discordのみなさん</a> と、特に <a href="https://twitter.com/rintaro" rel="nofollow noopener" target="_blank">@rintaro</a> に教わりました。ありがとうございました。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>omochimetaruさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>30</kbd>
+		<a target="_blank" href="https://qiita.com/omochimetaru/items/f32d81eaa4e9750293cd">Swift での Copy on Write の実装方法の解説</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-16 01:50:22</center>
+	</td>
+	<td style="width:200px;">
+		@omochimetaru<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/20130/profile-images/1473682917">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Swift]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Swift の Array や Dictionary は Copy on Write になっていてとても使いやすいです。この記事では、そのような Copy on Write の実装方法を解説します。</p>
+
+<h1>
+<span id="cow-の動作" class="fragment"></span><a href="#cow-%E3%81%AE%E5%8B%95%E4%BD%9C"><i class="fa fa-link"></i></a>CoW の動作</h1>
+
+<p>Copy on Write はよく CoW と略されるので以後そのように呼びます。さて、 CoW はその名の通り、書き込みが生じる時にコピーをするものです。まずはその動作について説明します。</p>
+
+<p>以下のコードを見てください。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nv">a</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="kd">var</span> <span class="nv">b</span> <span class="p">=</span> <span class="n">a</span>
+</pre></div></div>
+
+<p>変数 <code>a</code> に <code>[1, 2, 3]</code> を代入した後、 <code>b</code> にコピーしています。変数 <code>a</code> の配列は 3 つの値が入ったデータ領域を持っていますが、 <code>a</code> が <code>b</code> にコピーされたときには、そのデータ領域はコピーされません。その代わりに、 <code>b</code> は <code>a</code> の持っているデータ領域を共有します。だから、 <code>a</code> の配列の要素がどれだけ多くても、このコピーは高速で消費メモリもとても小さいです。</p>
+
+<p>ただし、このままデータ領域が共有されているだけであれば <code>a</code> に変更を加えたら、 <code>b</code> の値も変化してしまいます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1">// a に値 4 を追加する。</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">// "1, 2, 3, 4" が出力される。</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1">// "1, 2, 3, 4" が出力されてしまうでしょうか？</span>
+</pre></div></div>
+
+<p>実際に Swift を使ってみれば、 <code>b</code> の値はちゃんと <code>[1, 2, 3]</code> のままであることが確認できます。この動作は <code>append</code> を呼び出した時にデータ領域のコピーが行われることで実現されています。つまり <code>append</code> を呼び出した時点で <code>a</code> と <code>b</code> のデータ領域の共有が解除され、それぞれが固有のデータ領域を持った状態に変化します。 <code>append</code> は <code>a</code> に対する変更操作ですから、変更操作 (=Write) のタイミングでデータ領域のコピー (Copy) が行われています。これが、 Copy on Write の動作です。</p>
+
+<p>さてこの時点で、 <code>a</code> は <code>[1, 2, 3, 4]</code> が入ったデータ領域、 <code>b</code> は <code>[1, 2, 3]</code> が入ったデータ領域を保持しています。ここで、さらに <code>a</code> に値を追加する事を考えてみます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div></div>
+
+<p>もし、 <code>append</code> メソッドを呼び出すたびにデータ領域をコピーしていたら、この <code>append</code> の呼び出し時にも、 <code>[1, 2, 3, 4]</code> の入ったデータ領域をコピーしてから、その後で 5 を追加する事になってしまいますが、そのコピーは不要です。現在のデータ領域に 5 を追加するだけで良いからです。実際、この場合はコピーは行われません。</p>
+
+<p>つまり、変更操作のタイミングならいつでもデータ領域のコピーを行うわけではなく、そこには更に条件があります。すなわち、変更操作が生じたとき、データ領域が他のオブジェクトと共有されているならば、データ領域のコピーを行う、というのがより正確な CoW の動作になります。</p>
+
+<h1>
+<span id="cow-の設計" class="fragment"></span><a href="#cow-%E3%81%AE%E8%A8%AD%E8%A8%88"><i class="fa fa-link"></i></a>CoW の設計</h1>
+
+<p>この章では、 CoW をもった配列を自作するためにその設計を示します。まず、配列それ自体の型を用意します。これは値型にします。名前は <code>CoWArray</code> とします。インターフェースを以下に示します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">struct</span> <span class="nc">CoWArray</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">init</span><span class="p">()</span>
+    <span class="kd">public</span> <span class="kd">var</span> <span class="nv">count</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">subscript</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span> <span class="kr">get</span> <span class="kr">set</span> <span class="p">}</span>
+    <span class="kd">public</span> <span class="kr">mutating</span> <span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="kc">_</span> <span class="n">element</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="kr">mutating</span> <span class="kd">func</span> <span class="nf">remove</span><span class="p">(</span><span class="n">at</span> <span class="n">index</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>機能は要素数の取得とサブスクリプトでのアクセス、要素の追加と削除を用意します。サブスクリプトアクセスのセッターと、要素の追加、削除は <code>mutating</code> メソッドになります。</p>
+
+<p>次に、データ領域を表す型を用意します。これは他の配列と共有する必要があるので参照型にします。名前は <code>CowArrayStorage</code> とします。インターフェースを以下に示します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">internal</span> <span class="kd">class</span> <span class="nc">CoWArrayStorage</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">init</span><span class="p">()</span>
+    <span class="kd">public</span> <span class="kd">init</span><span class="p">(</span><span class="n">copy</span><span class="p">:</span> <span class="n">CoWArrayStorage</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;)</span>
+    <span class="kd">public</span> <span class="kd">var</span> <span class="nv">count</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">{</span> <span class="kr">get</span> <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">subscript</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span> <span class="kr">get</span> <span class="kr">set</span> <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="kc">_</span> <span class="n">element</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">remove</span><span class="p">(</span><span class="n">at</span> <span class="n">index</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>定義を <code>CoWArray</code> と見比べると、 <code>init(copy:)</code> が追加されている以外は同じになっています。これがポイントです。</p>
+
+<p><code>CoWArray</code> は内部でプロパティとして <code>CoWArrayStorage</code> を保持します。そして、全てのメソッドはそのストレージの同名メソッドを呼び出すだけにします。ただし、変更が発生するメソッド、つまり <code>mutating</code> なメソッドの場合は、ストレージのメソッドを呼び出す前に、ストレージが他のオブジェクトから共有されているかチェックして、もし共有されている場合はコピーをする処理をはさみます。これが CoW を実現する肝になります。</p>
+
+<p>ストレージが共有されているかどうかは、 Swift 標準ライブラリの <a href="https://developer.apple.com/documentation/swift/2430721-isknownuniquelyreferenced" rel="nofollow noopener" target="_blank"><code>isKnownUniquelyReferenced</code></a> 関数を使います。この関数は、引数で与えた参照型の値が、ユニークであれば、つまり共有されていなければ <code>true</code> を返します。ユニークでなければ、つまり共有されていれば <code>false</code> を返します。内部的には、参照型のオブジェクトが内部に持っている参照カウンタの値を調べて、それが 1 か 2以上かどうかで判定しています。</p>
+
+<p>設計は以上です。</p>
+
+<h1>
+<span id="cow-の実装" class="fragment"></span><a href="#cow-%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>CoW の実装</h1>
+
+<p>この章では実装を行います。まず、配列の機能本体を提供する <code>CoWArrayStorage</code> の実装を示し、次に配列自体を提供する <code>CoWArray</code> の実装を示します。前者の詳細は CoW の実現とは特に関係が無いので読み飛ばしても良いです。後者は CoW の重要なポイントになります。</p>
+
+<p>この手の配列の実装では、 <code>replaceSubrange</code> を実装すれば、 <code>append</code>, <code>insert</code>, <code>remove</code>, <code>subscript set</code> はいずれも <code>replaceSubrange</code> の呼び出しで済ませられますが、今回はシンプルにするために <code>append</code> と <code>remove</code> の直接の実装だけを行います。</p>
+
+<h2>
+<span id="データ領域の実装" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E9%A0%98%E5%9F%9F%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>データ領域の実装</h2>
+
+<h3>
+<span id="データ構造" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E6%A7%8B%E9%80%A0"><i class="fa fa-link"></i></a>データ構造</h3>
+
+<p><code>CoWArrayStorage</code> はメモリ領域を示すポインタ <code>memory</code> と、そのメモリ領域の大きさを示す <code>capacity</code> 、配列に入っている要素の個数を表す <code>count</code> をプロパティとして持ちます。 <code>capacity</code> と <code>count</code> の 2 つを用意することで、配列の要素数よりも余分にメモリ領域を持っておく事ができます。そうすると、 <code>append</code> する時にメモリ領域の拡張を省略できる場合があります。ここまでの実装を示します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">internal</span> <span class="kd">class</span> <span class="nc">CoWArrayStorage</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">memory</span> <span class="p">=</span> <span class="kc">nil</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">capacity</span> <span class="p">=</span> <span class="mi">0</span>
+        <span class="kc">self</span><span class="p">.</span><span class="bp">count</span> <span class="p">=</span> <span class="mi">0</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">memory</span><span class="p">:</span> <span class="nb">UnsafeMutablePointer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;?</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">capacity</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">count</span><span class="p">:</span> <span class="nb">Int</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>なお、 <code>capacity</code> が 0 のときは、 <code>memory</code> は <code>nil</code> にするという規約にします。 <code>deinit</code> ではデータ領域の解放が必要ですが、それは後で書きます。</p>
+
+<h3>
+<span id="subscript" class="fragment"></span><a href="#subscript"><i class="fa fa-link"></i></a>subscript</h3>
+
+<p><code>subscript</code> と <code>count</code> については素直に実装します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kd">private</span><span class="p">(</span><span class="kr">set</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">count</span><span class="p">:</span> <span class="nb">Int</span>
+
+    <span class="kd">public</span> <span class="kd">subscript</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
+        <span class="kr">get</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">memory</span><span class="p">![</span><span class="n">index</span><span class="p">]</span>
+        <span class="p">}</span>
+        <span class="kr">set</span> <span class="p">{</span>
+            <span class="n">memory</span><span class="p">![</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">newValue</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<p><code>subscript</code> の範囲チェックは省略しました。メモリ安全にしたければチェックしてください。</p>
+
+<h3>
+<span id="reservecapacity" class="fragment"></span><a href="#reservecapacity"><i class="fa fa-link"></i></a>reserveCapacity</h3>
+
+<p>メモリ領域のリサイズを行う関数、 <code>reserveCapacity</code> を実装します。</p>
+
+<p>この関数は、はじめに新しい領域を確保し、そこに古い領域のデータをコピーして、さいごに古い領域を解放します。この時に注意しなければならないのが、ポインタの 3 つの状態です。ポインタには、 未確保、未初期化、初期化済の 3種類の状態があります。今回のポインタは連続領域なので、まず領域を指しているかどうかで未確保か確保済みの 2 つがあり、確保済みの場合において、領域の 1 要素ごとに、未初期化か初期化済があります。また、新しいメモリ領域は、大きくなる場合と小さくなる場合があり、小さくなる場合には 0 になる場合もあります。このポインタの状態については、過去に <a href="https://qiita.com/omochimetaru/items/c95e0d36ae7f1b1a9052#%E3%83%9D%E3%82%A4%E3%83%B3%E3%82%BF%E3%81%AE3%E3%81%A4%E3%81%AE%E7%8A%B6%E6%85%8B" id="reference-46f41ef4289aca3663c7">解説記事</a> を書いたので参考にしてください。</p>
+
+<p>まず、大きくなる場合は、古いの領域の要素を全て新しい領域に移す事ができます。これは、新しい領域に対しては 未初期化領域を初期化する操作なので、 <code>initialize</code> 操作になります。古い領域に対しては、初期化済み領域を未初期化に戻す操作なので <code>deinitialize</code> 操作になります。2 つの領域があって、片方を <code>deinitialize</code> しながら別の領域に書き込む操作は <code>move</code> 操作になります。なので <code>moveInitialize</code> を使うと一発で記述できます。</p>
+
+<p>小さくなる場合には、古い領域の要素のうち、新しい領域に入る分と、入り切らない分が出てきます。入りきる分については同様に <code>moveInitialize</code> で移動させて、入り切らない分については破棄します。破棄するためには <code>deinitialize</code> が使えます。この、前半を <code>moveInitialize</code> 、 後半を <code>deinitialize</code> するロジックは、その境界となる要素番号を使って書いてやれば、大きくなる場合とひとまとめに書くことができます。</p>
+
+<p>0 になる場合については、新しい領域のポインタは <code>nil</code> にしておく以外は小さくなる場合と同じです。</p>
+
+<p>最後に 古い領域を <code>deallocate</code> で解放して、 <code>memory</code> プロパティと <code>capacity</code> プロパティを更新して完了です。</p>
+
+<p>なお、 <code>count</code> プロパティについてはこの関数では関与しない規約とします。</p>
+
+<p>以上の方針で実装したコードが下記になります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">reserveCapacity</span><span class="p">(</span><span class="kc">_</span> <span class="n">newCapacity</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">newMemory</span><span class="p">:</span> <span class="nb">UnsafeMutablePointer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;?</span>
+        <span class="k">if</span> <span class="n">newCapacity</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="n">newMemory</span> <span class="p">=</span> <span class="nb">UnsafeMutablePointer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;.</span><span class="n">allocate</span><span class="p">(</span><span class="n">capacity</span><span class="p">:</span> <span class="n">newCapacity</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">newMemory</span> <span class="p">=</span> <span class="kc">nil</span>
+        <span class="p">}</span>
+
+        <span class="kd">let</span> <span class="nv">moveCount</span> <span class="p">=</span> <span class="bp">min</span><span class="p">(</span><span class="bp">count</span><span class="p">,</span> <span class="n">newCapacity</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">deinitCount</span> <span class="p">=</span> <span class="n">capacity</span> <span class="o">-</span> <span class="n">moveCount</span>
+
+        <span class="k">if</span> <span class="kd">let</span> <span class="nv">nmem</span> <span class="p">=</span> <span class="n">newMemory</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="n">moveCount</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+                <span class="n">nmem</span><span class="p">.</span><span class="n">moveInitialize</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">memory</span><span class="p">!,</span> <span class="bp">count</span><span class="p">:</span> <span class="n">moveCount</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="kd">let</span> <span class="nv">mem</span> <span class="p">=</span> <span class="n">memory</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="n">deinitCount</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+                <span class="p">(</span><span class="n">mem</span> <span class="o">+</span> <span class="n">moveCount</span><span class="p">).</span><span class="n">deinitialize</span><span class="p">(</span><span class="bp">count</span><span class="p">:</span> <span class="n">capacity</span> <span class="o">-</span> <span class="n">moveCount</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="n">mem</span><span class="p">.</span><span class="n">deallocate</span><span class="p">(</span><span class="n">capacity</span><span class="p">:</span> <span class="n">capacity</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="n">memory</span> <span class="p">=</span> <span class="n">newMemory</span>
+        <span class="n">capacity</span> <span class="p">=</span> <span class="n">newCapacity</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="deinit-での破棄と解放" class="fragment"></span><a href="#deinit-%E3%81%A7%E3%81%AE%E7%A0%B4%E6%A3%84%E3%81%A8%E8%A7%A3%E6%94%BE"><i class="fa fa-link"></i></a>deinit での破棄と解放</h3>
+
+<p>メモリ確保処理を実装したので、ここで忘れずに <code>deinit</code> でのメモリ解放も記述しておきます。データ領域は先頭から要素数分は初期化済みなので、これの破棄も行います。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span>    <span class="kd">deinit</span> <span class="p">{</span>
+        <span class="n">memory</span><span class="p">?.</span><span class="n">deinitialize</span><span class="p">(</span><span class="bp">count</span><span class="p">:</span> <span class="bp">count</span><span class="p">)</span>
+        <span class="n">reserveCapacity</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="append" class="fragment"></span><a href="#append"><i class="fa fa-link"></i></a>append</h3>
+
+<p><code>append</code> では、最初にメモリ領域が足りているかチェックします。足りていない場合は、先程の <code>reserveCapacity</code> を使ってメモリ確保をします。ここで領域の拡大は要素 1 つ分にせず、一気に領域を 2 倍に広げるようにすると効率的です。連続で <code>append</code> が呼び出される場合に、メモリの再確保の頻度が減らせるからです。しかし、領域の大きさが 0 の場合には 2 倍にしても 0 のままなので、特別に初期値を設定しておきます。メモリ領域の準備ができたら、末尾に要素を追加します。ここもやはり、未初期化領域を初期化する操作なので、 <code>initialize</code> 操作をします。最後に要素数を 1 増やします。以下にコードを示します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="kc">_</span> <span class="n">element</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="bp">count</span> <span class="p">==</span> <span class="n">capacity</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="n">capacity</span> <span class="p">==</span> <span class="mi">0</span> <span class="p">{</span>
+                <span class="n">reserveCapacity</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">reserveCapacity</span><span class="p">(</span><span class="n">capacity</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="p">(</span><span class="n">memory</span><span class="p">!</span> <span class="o">+</span> <span class="bp">count</span><span class="p">).</span><span class="n">initialize</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">element</span><span class="p">)</span>
+        <span class="bp">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="remove" class="fragment"></span><a href="#remove"><i class="fa fa-link"></i></a>remove</h3>
+
+<p><code>remove</code> では、指定されたインデックスの要素を削除した後、後続の要素を 1 つずつ前にずらします。まず、削除する操作は <code>deinitialize</code> です。これによって削除された場所は未初期化になります。そして、 1 つ後ろの要素を、削除された要素のあった場所に移動させるわけですが、これは <code>reserveCapacity</code> のときと同様、移動元が初期化済で、移動先が未初期化なので、 <code>moveInitialize</code> で書けます。最後に要素数を 1 減らします。</p>
+
+<p><a href="https://developer.apple.com/documentation/swift/unsafemutablepointer/2322148-moveinitialize" rel="nofollow noopener" target="_blank"><code>moveInitialize</code></a> は2つのメモリ領域が共有領域を持っていても、要素ごとに move していくのでうまく動きます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">remove</span><span class="p">(</span><span class="n">at</span> <span class="n">index</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">(</span><span class="n">memory</span><span class="p">!</span> <span class="o">+</span> <span class="n">index</span><span class="p">).</span><span class="n">deinitialize</span><span class="p">()</span>
+        <span class="kd">let</span> <span class="nv">moveNum</span> <span class="p">=</span> <span class="bp">count</span> <span class="o">-</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">moveNum</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="p">(</span><span class="n">memory</span><span class="p">!</span> <span class="o">+</span> <span class="n">index</span><span class="p">).</span><span class="n">moveInitialize</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="p">(</span><span class="n">memory</span><span class="p">!</span> <span class="o">+</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="bp">count</span><span class="p">:</span> <span class="n">moveNum</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="bp">count</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="コピー-init" class="fragment"></span><a href="#%E3%82%B3%E3%83%94%E3%83%BC-init"><i class="fa fa-link"></i></a>コピー init</h3>
+
+<p>最後に、コピー用の <code>init</code> を作ります。コピーする要素数でメモリ確保して、確保した未初期化領域をまとめて <code>initialize</code> します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kd">init</span><span class="p">(</span><span class="n">copy</span><span class="p">:</span> <span class="n">CoWArrayStorage</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="bp">count</span> <span class="p">=</span> <span class="n">copy</span><span class="p">.</span><span class="bp">count</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">capacity</span> <span class="p">=</span> <span class="bp">count</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">memory</span> <span class="p">=</span> <span class="nb">UnsafeMutablePointer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;.</span><span class="n">allocate</span><span class="p">(</span><span class="n">capacity</span><span class="p">:</span> <span class="bp">count</span><span class="p">)</span>
+
+        <span class="n">memory</span><span class="p">?.</span><span class="n">initialize</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">copy</span><span class="p">.</span><span class="n">memory</span><span class="p">!,</span> <span class="bp">count</span><span class="p">:</span> <span class="bp">count</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h3>
+
+<p>以上で <code>CoWArrayStorage</code> が実装できました。</p>
+
+<h2>
+<span id="cow-型の実装" class="fragment"></span><a href="#cow-%E5%9E%8B%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>CoW 型の実装</h2>
+
+<p>いよいよ CoW 型の実装をします。まず、データ構造ですが、ストレージオブジェクトを保持するだけです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">struct</span> <span class="nc">CoWArray</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">storage</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">storage</span><span class="p">:</span> <span class="n">CoWArrayStorage</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>次に、 CoW の肝となる、共有されていればストレージをコピーするメソッドを作ります。共有されているかどうかは <code>isKnownUniquelyReference</code> でチェックして、コピーは先程作ったコピー用の <code>init</code> を使います。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kr">mutating</span> <span class="kd">func</span> <span class="nf">copyStorageIfShared</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="n">isKnownUniquelyReferenced</span><span class="p">(&amp;</span><span class="n">storage</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+
+        <span class="n">storage</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">copy</span><span class="p">:</span> <span class="n">storage</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<p>あとは、全てのメソッドを素通ししつつ、 <code>mutating</code> なものについては事前に <code>copyStorageIfShared</code> を呼び出すだけです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kd">var</span> <span class="nv">count</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">storage</span><span class="p">.</span><span class="bp">count</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">subscript</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
+        <span class="kr">get</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">storage</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="p">}</span>
+        <span class="kr">set</span> <span class="p">{</span>
+            <span class="n">copyStorageIfShared</span><span class="p">()</span>
+            <span class="n">storage</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">newValue</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kr">mutating</span> <span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="kc">_</span> <span class="n">element</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">copyStorageIfShared</span><span class="p">()</span>
+        <span class="n">storage</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kr">mutating</span> <span class="kd">func</span> <span class="nf">remove</span><span class="p">(</span><span class="n">at</span> <span class="n">index</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">copyStorageIfShared</span><span class="p">()</span>
+        <span class="n">storage</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">at</span><span class="p">:</span> <span class="n">index</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<p>これで CoW な配列が完成しました。</p>
+
+<h1>
+<span id="ソース" class="fragment"></span><a href="#%E3%82%BD%E3%83%BC%E3%82%B9"><i class="fa fa-link"></i></a>ソース</h1>
+
+<p><a href="https://github.com/omochi/swift-cow-example" rel="nofollow noopener" target="_blank">完成したソースはこちらにアップしてあります。</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>omochimetaruさんの<br />5位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>20</kbd>
+		<a target="_blank" href="https://qiita.com/omochimetaru/items/0625a798f4d4f48477f9">JavaScript の EventEmitter から繋がる Rx の世界を Swift で見通す</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-06 14:54:06</center>
+	</td>
+	<td style="width:200px;">
+		@omochimetaru<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/20130/profile-images/1473682917">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Rx]</b> <b>[Swift]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="導入" class="fragment"></span><a href="#%E5%B0%8E%E5%85%A5"><i class="fa fa-link"></i></a>導入</h1>
+
+<p>この記事では JavaScript の EventEmitter から出発して、それをバインディングパターンを見据えて改良していく過程で Rx になる話を書くことで、両者が近縁な存在である事を示します。実装は Swift で提示しますが、JavaScript と Swift のどちらかがわかれば理解できるように書きます。コードは特に断りがない限りは Swift　です。</p>
+
+<h1>
+<span id="swift-で-eventemitter" class="fragment"></span><a href="#swift-%E3%81%A7-eventemitter"><i class="fa fa-link"></i></a>Swift で EventEmitter</h1>
+
+<p>JavaScript には EventEmitter という有名なパターンがあります。これはいろいろな場面で便利なので、 Swift でも実装して利用する事が考えられます。</p>
+
+<p>まずは簡単に EventEmitter を説明します。</p>
+
+<p>これの原型はおそらく、 <a href="https://developer.mozilla.org/ja/docs/Web/API/EventTarget/addEventListener" rel="nofollow noopener" target="_blank">ブラウザ向けで <code>window.addEventListener</code> として提供されているAPI</a> です。</p>
+
+<p>使い方の例を示します。</p>
+
+<div class="code-frame" data-lang="JavaScript"><div class="highlight"><pre><span></span><span class="c1">// JavaScript</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"keydown"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"keydown:"</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">key</span><span class="p">);</span>
+    <span class="p">});</span>
+</pre></div></div>
+
+<p>このように、 <code>addEventListener</code> メソッドは、第1引数に文字列でイベント名を与えて、第2引数にそのハンドラを書きます。この例では、 <code>"keydown"</code> を与えているので、ハンドラには <code>KeyboardEvent</code> オブジェクトが渡されるため、 <code>event.key</code> で押されたキーを取得できます。</p>
+
+<p>なお、 JS ではハンドラは event listener と呼ばれていますが、この記事では好みの都合でリスナではなくハンドラと呼びます。</p>
+
+<p>その後、Server Side JavaScript 環境の NodeJS にて <a href="https://nodejs.org/api/events.html#events_class_eventemitter" rel="nofollow noopener" target="_blank">EventEmitter という標準ライブラリ</a> が提供されました。</p>
+
+<p>先程の <code>addEventListener</code> メソッドが <code>on</code> という名前に変更されています。その他、イベントを送信するための <code>emit</code> メソッド、一度登録したハンドラを登録解除するための <code>removeListener</code> メソッドなどがあります。</p>
+
+<p>さらにその後、これがブラウザでも使えるように逆輸入され、ライブラリ化されました。ここでは <a href="https://www.npmjs.com/package/eventemitter3" rel="nofollow noopener" target="_blank">EventEmitter3</a> をあげておきます。</p>
+
+<p>これらの利用時には、あるオブジェクトが発生させるイベントは、この <code>on</code> メソッドで全て拾えるようになっていて、 メソッドの第1引数のイベント名で拾い分けます。</p>
+
+<p>さて、このインターフェースを素直に Swift で書くと以下のようになります。実装部は省略しています。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">EventEmitter</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">on</span><span class="p">(</span><span class="n">eventName</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">([</span><span class="nb">Any</span><span class="p">])</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span>
+    <span class="kd">func</span> <span class="nf">emit</span><span class="p">(</span><span class="n">eventName</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="p">[</span><span class="nb">Any</span><span class="p">])</span>
+
+    <span class="kd">func</span> <span class="nf">removeHandler</span><span class="p">(</span><span class="n">eventName</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">([</span><span class="nb">Any</span><span class="p">])</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>利用側のコードは以下のようになります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">window</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="n">eventName</span><span class="p">:</span> <span class="s">"click"</span><span class="p">)</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span> 
+    <span class="bp">print</span><span class="p">(</span><span class="s">"click"</span><span class="p">)</span> 
+<span class="p">}</span>
+<span class="n">window</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="n">eventName</span><span class="p">:</span> <span class="s">"mousedown"</span><span class="p">)</span> <span class="p">{</span> <span class="n">events</span> <span class="k">in</span> 
+    <span class="bp">print</span><span class="p">(</span><span class="s">"mousedown"</span><span class="p">,</span> <span class="p">(</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">as</span><span class="p">!</span> <span class="n">MouseEvent</span><span class="p">).</span><span class="n">button</span><span class="p">)</span> 
+<span class="p">}</span>
+<span class="n">window</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="n">eventName</span><span class="p">:</span> <span class="s">"keydown"</span><span class="p">)</span> <span class="p">{</span> <span class="n">events</span> <span class="k">in</span> 
+    <span class="bp">print</span><span class="p">(</span><span class="s">"keydown"</span><span class="p">,</span> <span class="p">(</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">as</span><span class="p">!</span> <span class="n">KeyboardEvent</span><span class="p">).</span><span class="n">key</span><span class="p">)</span> 
+<span class="p">}</span>
+</pre></div></div>
+
+<p>これにはいくつかの問題があります。</p>
+
+<h2>
+<span id="イベント種類での型分割" class="fragment"></span><a href="#%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E7%A8%AE%E9%A1%9E%E3%81%A7%E3%81%AE%E5%9E%8B%E5%88%86%E5%89%B2"><i class="fa fa-link"></i></a>イベント種類での型分割</h2>
+
+<p>メソッドの型定義に Any 型の配列が出現しているのが残念です。利用側のコードでは、イベントが <code>[Any]</code> で渡ってくるので、0番要素へのアクセスと <code>as!</code> によるダウンキャストが必要です。これは記述も面倒ですし、イベント名を間違えたり typo してしまうと、入っているイベントオブジェクトの型が違ったり配列が空になったりして、クラッシュする恐れがあります。</p>
+
+<p>これは複数の種類のイベントをまとめて1つの EventEmitter で扱っているからです。JavaScript の目線で見れば、本来的にはいずれのメソッドでも、 <code>eventName</code> と連動して <code>handler</code> の引数の型は決まるため、ハンドラの型が決定できますが、 Swift の型システムではそのような他の引数によって決まる型を表現できません。</p>
+
+<p>これを解決するために、1つの EventEmitter が複数のイベントを取り扱うのではなく、1つの EventEmitter が 1つの種類のイベントだけを取り扱うように型を分割します。すると、インターフェースが以下のように変更されます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">EventEmitter</span><span class="p">&lt;</span><span class="n">Event</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">on</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Event</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span>
+    <span class="kd">func</span> <span class="nf">emit</span><span class="p">(</span><span class="kc">_</span> <span class="n">args</span><span class="p">:</span> <span class="n">Event</span><span class="p">)</span>
+
+    <span class="kd">func</span> <span class="nf">removeHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">handler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Event</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>ジェネリッククラスにして、イベントの型を型パラメータにしました。</p>
+
+<p>すると、利用側のコードは以下のように変化します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">window</span><span class="p">.</span><span class="n">clickEvent</span><span class="p">.</span><span class="n">on</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">"click"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">window</span><span class="p">.</span><span class="n">mouseDownEvent</span><span class="p">.</span><span class="n">on</span> <span class="p">{</span> <span class="n">event</span> <span class="k">in</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">"mousedown"</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">button</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">window</span><span class="p">.</span><span class="n">keyDownEvent</span><span class="p">.</span><span class="n">on</span> <span class="p">{</span> <span class="n">event</span> <span class="k">in</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">"keydown"</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">key</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>イベントが個別のプロパティになっているので、 <code>on</code> から受け取る型が静的に解決していて、ダウンキャストなどが不要になっています。また、プロパティ名は静的にチェックされるので、イベント名をtypoする事もありません。</p>
+
+<h2>
+<span id="removehandler-を-on-に統合して-subscribe-にする" class="fragment"></span><a href="#removehandler-%E3%82%92-on-%E3%81%AB%E7%B5%B1%E5%90%88%E3%81%97%E3%81%A6-subscribe-%E3%81%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>removeHandler を on に統合して subscribe にする</h2>
+
+<p>現状のインターフェースでは、 on で登録したハンドラを removeHandler で登録解除するようになっていますが、これは正しく動きません。 Swift ではクロージャの同一性が判定できないので、 removeHandler の内部において on で渡されたハンドラを検索することすらできないからです。</p>
+
+<p>これの対応策の一つは、クロージャを自前で boxing することです。以下のようにラップする型を用意すれば、内部で同一性判定ができます。以下に例を示します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">EventHandler</span><span class="p">&lt;</span><span class="n">Event</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">f</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Event</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span>
+    <span class="kd">func</span> <span class="nf">send</span><span class="p">(</span><span class="kc">_</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">EventEmitter</span><span class="p">&lt;</span><span class="n">Event</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">on</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span> <span class="n">EventHandler</span><span class="p">&lt;</span><span class="n">Event</span><span class="p">&gt;)</span>
+    <span class="kd">func</span> <span class="nf">emit</span><span class="p">(</span><span class="kc">_</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">)</span>
+
+    <span class="kd">func</span> <span class="nf">removeHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">handler</span><span class="p">:</span> <span class="n">EventHandler</span><span class="p">&lt;</span><span class="n">Event</span><span class="p">&gt;)</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>しかしこの方法は on などを呼び出すたびに EventHandler で包む必要があって面倒です。</p>
+
+<p>これを解決する方法として、 on メソッドを呼び出した時点で、その返り値として登録解除用のオブジェクトを返す、という設計があります。これは Rx で用いられているアイデアなので on を subscribe に名前を変更します。登録解除用の型は Disposer とします。すると、 EventEmitter は以下のようになります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Disposer</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">dispose</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nc">EventEmitter</span><span class="p">&lt;</span><span class="n">Event</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Event</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Disposer</span>
+    <span class="kd">func</span> <span class="nf">emit</span><span class="p">(</span><span class="kc">_</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h1>
+<span id="eventemitter-とバインディングパターン" class="fragment"></span><a href="#eventemitter-%E3%81%A8%E3%83%90%E3%82%A4%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3"><i class="fa fa-link"></i></a>EventEmitter とバインディングパターン</h1>
+
+<p>上記の EventEmitter でそれなりにイベント通知パターンには使えると思います。 once メソッドなども、簡単に extension で実装できるでしょう。ここからは、イベント通知ではなく、バインディングに利用範囲を広げることを考えていきます。</p>
+
+<p>ある実用上の課題を考えます。あるオブジェクトがあって、その状態変化に応じて動作する別のオブジェクトを作りたいとします。例えば、 OpenGL で球を 3D CG としてレンダリングする事を考えます。球の情報を持つオブジェクトを用意し、それをレンダリングするための頂点メッシュ情報を構築します。球のプロパティが変化した際には、頂点メッシュを更新する事を考えます。このような場合、それぞれ Sphere と SphereRenderer として、以下のように定義できるでしょう。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Sphere</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">radius</span><span class="p">:</span> <span class="nb">Float</span>
+    <span class="kd">var</span> <span class="nv">color</span><span class="p">:</span> <span class="n">Color</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">SphereRenderer</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">sphere</span><span class="p">:</span> <span class="n">Sphere</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nv">sphere</span><span class="p">:</span> <span class="n">Sphere</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>この場合、 SphereRenderer においては、新しい sphere がセットされた際に GPU リソースを更新する必要があります。また、 sphere オブジェクトの radius や color といったプロパティが変化した際にもそれが必要になります。これらのプロパティの変化に際して、 SphereRenderer は共通の再構築処理を呼び出す場合もあれば、それぞれのプロパティに応じた更新処理を呼び出す場合もあります。</p>
+
+<p>このような、オブジェクトの変化と、それに応じた処理を行うオブジェクトを別々に設計してから繋ぎこむパターンは、一般にバインディングと呼ばれていると思います。バインディングでは、値が変化したときに何か処理をする必要があるので、値が変化した事をイベントとして通知するように EventEmitter を用いて実装できます。そのときにコードがどのようになるか見ていきます。</p>
+
+<p>まず、共通の再構築処理を呼び出す場合を見てみます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Sphere</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">()</span> <span class="p">{}</span>
+
+    <span class="kd">var</span> <span class="nv">radius</span><span class="p">:</span> <span class="nb">Float</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="kr">didSet</span> <span class="p">{</span>
+            <span class="n">radiusChangeEvent</span><span class="p">.</span><span class="n">emit</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nv">radiusChangeEvent</span><span class="p">:</span> <span class="n">EventEmitter</span><span class="p">&lt;</span><span class="nb">Float</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+
+    <span class="kd">var</span> <span class="nv">color</span><span class="p">:</span> <span class="n">Color</span> <span class="p">=</span> <span class="p">[]</span> <span class="p">{</span>
+        <span class="kr">didSet</span> <span class="p">{</span>
+            <span class="n">colorChangeEvent</span><span class="p">.</span><span class="n">emit</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nv">colorChangeEvent</span><span class="p">:</span> <span class="n">EventEmitter</span><span class="p">&lt;</span><span class="n">Color</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">SphereRenderer</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">sphere</span><span class="p">:</span> <span class="n">Sphere</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">sphere</span> <span class="p">=</span> <span class="n">sphere</span>
+
+        <span class="n">reloadSphere</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">deinit</span> <span class="p">{</span>
+        <span class="n">disposers</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">dispose</span><span class="p">()</span> <span class="p">}</span>
+        <span class="n">disposers</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nv">sphere</span><span class="p">:</span> <span class="n">Sphere</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kr">didSet</span> <span class="p">{</span>
+            <span class="n">disposers</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">dispose</span><span class="p">()</span> <span class="p">}</span>
+            <span class="n">disposers</span> <span class="p">=</span> <span class="p">[]</span>
+
+            <span class="n">rebuildMesh</span><span class="p">()</span>
+
+            <span class="kr">unowned</span> <span class="kd">let</span> <span class="nv">uself</span> <span class="p">=</span> <span class="kc">self</span>
+
+            <span class="kd">var</span> <span class="nv">disposer</span> <span class="p">=</span> <span class="n">sphere</span><span class="p">.</span><span class="n">radiusChangeEvent</span><span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span>
+                <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="n">disposers</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">disposer</span><span class="p">)</span>
+
+            <span class="n">disposer</span> <span class="p">=</span> <span class="n">sphere</span><span class="p">.</span><span class="n">colorChangeEvent</span><span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span>
+                <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="n">disposers</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">disposer</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">rebuildMesh</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// using: sphere.radius, sphere.color</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">reloadSphere</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">sphere</span> <span class="p">=</span> <span class="p">{</span> <span class="kc">self</span><span class="p">.</span><span class="n">sphere</span> <span class="p">}()</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">disposers</span><span class="p">:</span> <span class="p">[</span><span class="n">Disposer</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>まず、 Sphere はプロパティに加えて、それの変更イベントを通知する EventEmitter を保持します。そして、それぞれのプロパティの didSet でイベントを emit して送出します。 SphereRenderer では、 sphere プロパティの didSet でバインディングを行います。このイベント購読は、 sphere がセットされるたびに登録されるので、 新しい sphere が来たときと、自身が解放される際には解除する必要があります。その購読解除の処理が、 deinit と didSet の冒頭に書いてあります。そして、渡された sphere に応じて即座に rebuildMesh を呼び出します。 さらに sphere の radius と color の変化に対して、これも rebuildMesh を呼び出すようにします。その subscribe で返ってきた disposer は、あとで解除できるよう disposers に入れておきます。変更イベントからは現在値も渡ってきますが、 rebuildMesh の中で sphere を参照すれば良いので読み捨てています。<br>
+init では sphere の初期値が渡せるようになっていますが、初期化代入の際には didSet は呼ばれないので、 init の末尾で reloadSphere を呼び出して、その中で didSet を発生させています。</p>
+
+<p>初期化代入時に didSet が呼ばれないのは Swift の問題と思うかもしれませんが、もしオブジェクトの初期化が終わってない状態でのメソッド呼び出しを許してしまうと、不完全な self にアクセスしてしまう可能性が生じて安全性が損なわれてしまうので、それを防ぐための正しい仕様です。<br>
+reloadSphere を定義しているのは、 init の実行中でもメソッド経由の代入では didSet が呼び出されるからです。 reloadSphere の内部で右辺をクロージャに包んでいるのは、これがないとコンパイラが無意味な代入としてエラー扱いするので、ワークアラウンドです。</p>
+
+<p>radiusChangeEvent と colorChangeEvent の subscribe メソッドに渡すクロージャでは、 self を unowned な uself という変数を経由してキャプチャしています。これは SphereRenderer を循環参照してしまうのを防ぐためです。 SphereRenderer は deinit で購読を解除するので、 self 解放後にクロージャが呼び出されることは無く、クロージャが呼び出されるときには uself は有効であるため、この unowned は安全です。</p>
+
+<p>やりたいことに対して結構複雑なコードになってしまっています。以下に問題点を挙げます。</p>
+
+<p>Sphere 側のイベント発行部分において、 プロパティとイベントを紐付けているのは名前付けだけです。プロパティの didSet で正しい EventEmitter を指定しなければバグってしまいますし、書き忘れればイベントが発行されません。</p>
+
+<p>SphereRenderer では disposers を解放するための処理が 2箇所に書かれています。プロパティごとに disposer を保持する処理が 2箇所で必要です。 rebuildMesh の呼び出しは 3箇所もあります。</p>
+
+<p>reloadSphere は都合で必要とはいえ煩わしいです。</p>
+
+<p>これらを改善していきます。</p>
+
+<h2>
+<span id="disposerbag" class="fragment"></span><a href="#disposerbag"><i class="fa fa-link"></i></a>DisposerBag</h2>
+
+<p>SphereRenderer の例でもみたような、自身が解放されるときに、保持している購読を全て解除するというパターンは頻出なので、ユーティリティを作ります。 Disposer を複数保持できて、 deinit でそれら全ての dispose を呼び出す型、 DisposerBag を作ります。 DisposerBag に Disposer を追加するメソッドに加えて、 Disposer 側に自身を DisposerBag に渡す逆方向のメソッドも作っておくと便利です。 これらは全て Rx にもあって、 DisposeBag と呼ばれています。</p>
+
+<p>インターフェースは以下のようになります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">DisposerBag</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">dispose</span><span class="p">()</span>
+    <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="kc">_</span> <span class="n">disposer</span><span class="p">:</span> <span class="n">Disposer</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="nc">Disposer</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">disposed</span><span class="p">(</span><span class="n">by</span> <span class="n">disposer</span><span class="p">:</span> <span class="n">DisposerBag</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>これを導入すると SphereRenderer は以下のようになります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SphereRenderer</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">sphere</span><span class="p">:</span> <span class="n">Sphere</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">sphere</span> <span class="p">=</span> <span class="n">sphere</span>
+
+        <span class="n">reloadSphere</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nv">sphere</span><span class="p">:</span> <span class="n">Sphere</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kr">didSet</span> <span class="p">{</span>
+            <span class="n">disposerBag</span><span class="p">.</span><span class="n">dispose</span><span class="p">()</span>
+
+            <span class="n">rebuildMesh</span><span class="p">()</span>
+
+            <span class="kr">unowned</span> <span class="kd">let</span> <span class="nv">uself</span> <span class="p">=</span> <span class="kc">self</span>
+
+            <span class="n">sphere</span><span class="p">.</span><span class="n">radiusChangeEvent</span>
+                <span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span>
+                    <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+                <span class="p">}.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">disposerBag</span><span class="p">)</span>
+
+            <span class="n">sphere</span><span class="p">.</span><span class="n">colorChangeEvent</span>
+                <span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span>
+                    <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+                <span class="p">}.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">disposerBag</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">rebuildMesh</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// using: sphere.radius, sphere.color</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">reloadSphere</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">sphere</span> <span class="p">=</span> <span class="p">{</span> <span class="kc">self</span><span class="p">.</span><span class="n">sphere</span> <span class="p">}()</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">disposerBag</span><span class="p">:</span> <span class="n">DisposerBag</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>DisposerBag のおかげで、 deinit を書く必要がなくなりました。これにより解放漏れのミスが防ぎやすくなります。 Disposer を Bag に入れるところも、メソッドチェーンで書けるので中間変数が不要になりました。</p>
+
+<h2>
+<span id="property" class="fragment"></span><a href="#property"><i class="fa fa-link"></i></a>Property</h2>
+
+<p>Sphere の実装においては、 didSet でイベントを emit するコードを書いています。そして、プロパティごとに対応する EventEmitter を定義しています。このような、値とその変更イベントをペアにしたデータ構造は使いどころが多いため、型にして再利用できるようにします。ここではこれを Property と命名します。インターフェースは以下のようになります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Property</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">value</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span>
+
+    <span class="kd">var</span> <span class="nv">value</span><span class="p">:</span> <span class="n">T</span>
+
+    <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Event</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Disposer</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>EventEmitter と同様の subscribe メソッドを提供します。 value プロパティの setter でイベントが発行されます。</p>
+
+<p>実装は EventEmitter を内部で使用すれば簡単で、以下のように書けます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Property</span><span class="p">&lt;</span><span class="n">Value</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">value</span><span class="p">:</span> <span class="n">Value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">_value</span> <span class="p">=</span> <span class="n">value</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">emitter</span> <span class="p">=</span> <span class="n">EventEmitter</span><span class="p">&lt;</span><span class="n">Value</span><span class="p">&gt;()</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">var</span> <span class="nv">value</span><span class="p">:</span> <span class="n">Value</span> <span class="p">{</span>
+        <span class="kr">get</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">_value</span>
+        <span class="p">}</span>
+        <span class="kr">set</span> <span class="p">{</span>
+            <span class="n">_value</span> <span class="p">=</span> <span class="n">newValue</span>
+            <span class="n">emitter</span><span class="p">.</span><span class="n">emit</span><span class="p">(</span><span class="n">_value</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">(</span><span class="kc">_</span> <span class="n">handler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Value</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Disposer</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">emitter</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span> <span class="n">handler</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">_value</span><span class="p">:</span> <span class="n">Value</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">emitter</span><span class="p">:</span> <span class="n">EventEmitter</span><span class="p">&lt;</span><span class="n">Value</span><span class="p">&gt;</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>これを使って Sphere の実装は以下のように更新されます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Sphere</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">()</span> <span class="p">{}</span>
+
+    <span class="kd">var</span> <span class="nv">radius</span><span class="p">:</span> <span class="nb">Float</span> <span class="p">{</span>
+        <span class="kr">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">radiusProperty</span><span class="p">.</span><span class="n">value</span> <span class="p">}</span>
+        <span class="kr">set</span> <span class="p">{</span> <span class="n">radiusProperty</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">newValue</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nv">radiusProperty</span><span class="p">:</span> <span class="n">Property</span><span class="p">&lt;</span><span class="nb">Float</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="kd">var</span> <span class="nv">color</span><span class="p">:</span> <span class="n">Color</span> <span class="p">{</span>
+        <span class="kr">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">colorProperty</span><span class="p">.</span><span class="n">value</span> <span class="p">}</span>
+        <span class="kr">set</span> <span class="p">{</span> <span class="n">colorProperty</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">newValue</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nv">colorProperty</span><span class="p">:</span> <span class="n">Property</span><span class="p">&lt;</span><span class="n">Color</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">([])</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>radiusProperty と colorProperty が主な機能で、 radius と color はそれらのプロパティの value プロパティに素通しするだけのプロパティです。 これを作っておくと、従来の通常のプロパティの利便性も残すことができます。</p>
+
+<p>通常のプロパティと EventEmitter のペアだった際には、 didSet で emit の呼び出しの実装を忘れるリスクがありましたが、 Property が先にあって追加で簡易プロパティを作る場合には、つなぎこまない限りコンパイルできないので、実装を忘れにくい形になっています。</p>
+
+<p>この Sphere の変更を受けて、 SphereRenderer は以下のようになります。これまで EventEmitter を参照していた場所が、 Property になるだけです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SphereRenderer1</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">sphere</span><span class="p">:</span> <span class="n">Sphere</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">sphere</span> <span class="p">=</span> <span class="n">sphere</span>
+
+        <span class="n">reloadSphere</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nv">sphere</span><span class="p">:</span> <span class="n">Sphere</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kr">didSet</span> <span class="p">{</span>
+            <span class="n">disposerBag</span><span class="p">.</span><span class="n">dispose</span><span class="p">()</span>
+
+            <span class="n">rebuildMesh</span><span class="p">()</span>
+
+            <span class="kr">unowned</span> <span class="kd">let</span> <span class="nv">uself</span> <span class="p">=</span> <span class="kc">self</span>
+
+            <span class="n">sphere</span><span class="p">.</span><span class="n">radiusProperty</span>
+                <span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span>
+                    <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+                <span class="p">}.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">disposerBag</span><span class="p">)</span>
+
+            <span class="n">sphere</span><span class="p">.</span><span class="n">colorProperty</span>
+                <span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span>
+                    <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+                <span class="p">}.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">disposerBag</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">rebuildMesh</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// using: sphere.radius, sphere.color</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">reloadSphere</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">sphere</span> <span class="p">=</span> <span class="p">{</span> <span class="kc">self</span><span class="p">.</span><span class="n">sphere</span> <span class="p">}()</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">disposerBag</span><span class="p">:</span> <span class="n">DisposerBag</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h2>
+<span id="didset-代わりの-property" class="fragment"></span><a href="#didset-%E4%BB%A3%E3%82%8F%E3%82%8A%E3%81%AE-property"><i class="fa fa-link"></i></a>didSet 代わりの Property</h2>
+
+<p>Sphere の radius と color の didSet は、 Property にしたことによって不要になりました。これを SphereRenderer の内部にも適用することができます。つまり、 SphereRenderer の sphere プロパティと didSet で書いていた処理を、 Property 型の sphereProperty プロパティと、そこから間接的に構成する computed property としての sphere プロパティに書き換えることができます。</p>
+
+<p>これ自体にはあまりメリットはありませんが、後の変更の前処理として導入します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SphereRenderer</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">sphere</span><span class="p">:</span> <span class="n">Sphere</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">sphereProperty</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span>
+
+        <span class="kr">unowned</span> <span class="kd">let</span> <span class="nv">uself</span> <span class="p">=</span> <span class="kc">self</span>
+
+        <span class="n">sphereProperty</span>
+            <span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="n">sphere</span> <span class="k">in</span>
+                <span class="n">uself</span><span class="p">.</span><span class="n">disposerBag</span><span class="p">.</span><span class="n">dispose</span><span class="p">()</span>
+
+                <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+
+                <span class="n">sphere</span><span class="p">.</span><span class="n">radiusProperty</span>
+                    <span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span>
+                        <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+                    <span class="p">}.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">uself</span><span class="p">.</span><span class="n">disposerBag</span><span class="p">)</span>
+
+                <span class="n">sphere</span><span class="p">.</span><span class="n">colorProperty</span>
+                    <span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span>
+                        <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+                    <span class="p">}.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">uself</span><span class="p">.</span><span class="n">disposerBag</span><span class="p">)</span>
+            <span class="p">}.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">disposerBag</span><span class="p">)</span>
+
+        <span class="n">reloadSphere</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">rebuildMesh</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// using: sphere.radius, sphere.color</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nv">sphere</span><span class="p">:</span> <span class="n">Sphere</span> <span class="p">{</span>
+        <span class="kr">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">sphereProperty</span><span class="p">.</span><span class="n">value</span> <span class="p">}</span>
+        <span class="kr">set</span> <span class="p">{</span> <span class="n">sphereProperty</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">newValue</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">let</span> <span class="nv">sphereProperty</span><span class="p">:</span> <span class="n">Property</span><span class="p">&lt;</span><span class="n">Sphere</span><span class="p">&gt;</span>
+
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">reloadSphere</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">sphere</span> <span class="p">=</span> <span class="p">{</span> <span class="kc">self</span><span class="p">.</span><span class="n">sphere</span> <span class="p">}()</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">disposerBag</span><span class="p">:</span> <span class="n">DisposerBag</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>sphereProperty プロパティを作って sphere プロパティはそれの簡易アクセスにしました。 init で sphereProperty を初期値付きで構築したあと、もともと sphere の didSet に書いていた内容を、 sphereProperty の subscribe のハンドラとして書いています。最後に呼んでいる reloadSphere の内容はそのままです。 computed property として書き直した sphere プロパティがこれまでどおりに振る舞うからです。</p>
+
+<h2>
+<span id="property-の初回-subscribe" class="fragment"></span><a href="#property-%E3%81%AE%E5%88%9D%E5%9B%9E-subscribe"><i class="fa fa-link"></i></a>Property の初回 subscribe</h2>
+
+<p>さて、 Property では value のセッターでイベントを emit するようにしましたが、ここで一工夫するとより便利になります。それは、 subscribe において、その渡されたハンドラに即座に現在の値を流し込むことです。 Property はバインディング用途で使われることが想定されるため、値が流れてきたらそれに連動して何か同期処理をする事が多いです。ということは、購読を登録する初期化のタイミングでも、即座に現在値で同期を取ることになります。 現在の SphereRenderer においては、 sphereProperty の subscribe の中に書いてある uself.rebuildMesh の呼び出しと、 init の末尾に書いてある reloadSphere の呼び出しがそれに該当します。</p>
+
+<p>ここで subscribe のタイミングで現在値を流してやれば、購読側の同期処理が subscribe のハンドラの挙動として一本化できます。 これは EventEmitter ではできなかったことです。　EventEmitter は emit メソッドでイベントを流すだけで、現在値の概念が無いからです。 Property には常に現在値が何かしら入っているのでこのような事ができます。</p>
+
+<p>具体的に Property の実装としては、 subscribe メソッドが下記のように変更されます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Property</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="p">...</span>
+
+    <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">(</span><span class="kc">_</span> <span class="n">handler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Value</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Disposer</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">disposer</span> <span class="p">=</span> <span class="n">emitter</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span> <span class="n">handler</span><span class="p">)</span>
+        <span class="n">handler</span><span class="p">(</span><span class="n">_value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">disposer</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>これによって、 SphereRenderer を以下のように改善できます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SphereRenderer</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">sphere</span><span class="p">:</span> <span class="n">Sphere</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">sphereProperty</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span>
+
+        <span class="kr">unowned</span> <span class="kd">let</span> <span class="nv">uself</span> <span class="p">=</span> <span class="kc">self</span>
+
+        <span class="n">sphereProperty</span>
+            <span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="n">sphere</span> <span class="k">in</span>
+                <span class="n">uself</span><span class="p">.</span><span class="n">disposerBag</span><span class="p">.</span><span class="n">dispose</span><span class="p">()</span>
+
+                <span class="n">sphere</span><span class="p">.</span><span class="n">radiusProperty</span>
+                    <span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span>
+                        <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+                    <span class="p">}.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">uself</span><span class="p">.</span><span class="n">disposerBag</span><span class="p">)</span>
+
+                <span class="n">sphere</span><span class="p">.</span><span class="n">colorProperty</span>
+                    <span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span>
+                        <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+                    <span class="p">}.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">uself</span><span class="p">.</span><span class="n">disposerBag</span><span class="p">)</span>
+            <span class="p">}.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">disposerBag</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">rebuildMesh</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// using: sphere.radius, sphere.color</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nv">sphere</span><span class="p">:</span> <span class="n">Sphere</span> <span class="p">{</span>
+        <span class="kr">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">sphereProperty</span><span class="p">.</span><span class="n">value</span> <span class="p">}</span>
+        <span class="kr">set</span> <span class="p">{</span> <span class="n">sphereProperty</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">newValue</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">let</span> <span class="nv">sphereProperty</span><span class="p">:</span> <span class="n">Property</span><span class="p">&lt;</span><span class="n">Sphere</span><span class="p">&gt;</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">disposerBag</span><span class="p">:</span> <span class="n">DisposerBag</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>Property が現在値を即座に流すようになったことで、 sphereProperty の subscribe のハンドラ内部の rebuildMesh と、 init 末尾の reloadSphere が削除できました。 reloadSphere メソッドが不要になったこともあり、まあまあな行数を減らすことができました。</p>
+
+<p>気がついた方もいるかもしれませんが、残念ながらこの変更によって、改悪されてしまっている点があります。それは、 sphere の代入の際に rebuildMesh が 2回走ってしまうようになったことです。 rebuildMesh 自体は 2回呼び出しても 結果は正しいものになる実装を想定しているので、描画結果には問題はありませんが、パフォーマンス上は無駄な処理が増えてしまっています。この問題については後々修正します。</p>
+
+<h2>
+<span id="eventsource-と-flatmaplatest" class="fragment"></span><a href="#eventsource-%E3%81%A8-flatmaplatest"><i class="fa fa-link"></i></a>EventSource と flatMapLatest</h2>
+
+<p>sphereProperty の subscribe 冒頭で DisposerBag を叩いていますが、これは radius と color に対する購読が、最新の sphere に対してのみ行われるようにするためでした。新しい sphere が来たら古い radius と color の購読を解除して、新たに購読を接続します。このような場面で、ある外側のイベントストリームがあって、そのイベントごとにさらに内側のイベントストリームが生成されているとき、常に最新の外側のイベントから産まれた内側のイベントストリームだけを購読し、古い外側のイベントは解除する、というパターンを共通化することができます。これを flatMapLatest と呼びます。</p>
+
+<p>これはイベントストリームの話なので、 EventEmitter でも Property でも共通です。つまり、これら両方に共通なメソッドとして提供することができます。これを EventSourceProtocol と命名します。</p>
+
+<p>以下に EventSourceProtocol と flatMapLatest のインターフェースを示します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">protocol</span> <span class="nc">EventSourceProtocol</span> <span class="p">{</span>
+    <span class="n">associatedtype</span> <span class="n">Event</span>
+
+    <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Event</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Disposer</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">EventEmitter</span><span class="p">&lt;</span><span class="n">Event</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">EventSourceProtocol</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Property</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">EventSourceProtocol</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">EventSource</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">EventSourceProtocol</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="kd">extension</span> <span class="nc">EventSourceProtocol</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">flatMapLatest</span><span class="p">&lt;</span><span class="n">USource</span><span class="p">:</span> <span class="n">EventSourceProtocol</span><span class="p">&gt;(</span><span class="kc">_</span> <span class="n">flatMap</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Event</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">USource</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">EventSource</span><span class="p">&lt;</span><span class="n">USource</span><span class="p">.</span><span class="n">Event</span><span class="p">&gt;</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>新たに出てきた EventSource というクラスは、EventSourceProtocol に定義された subscribe メソッドだけを持っている匿名なクラスです。具体的な EventSourceProtocol のインスタンスをラップして生成します。 EventEmitter の emit メソッドや、 Property の value のように、イベントを流すための機能は持っていません。このような型を type erasure と呼びます。つまり EventSource は EventSourceProtocol の type erasure です。</p>
+
+<p>flatMapLatest は EventSourceProtocol に対する extension なので、 EventEmitter と Property のどちらに対しても呼び出せます。引数としてイベントから EventSourceProtocol を返すクロージャを受け取っていて、これが内側のイベントストリームを生成します。返り値は生成される内側のイベントストリームと同じイベントの型を持った EventSource です。内側のイベントストリームは、外側のイベントに応じて何度も新たに生成されますが、返り値のオブジェクトはこれらをつなげた一本のイベントストリームのように振る舞います。</p>
+
+<p>flatMapLatest を使うと SphereRenderer は以下のように書けます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SphereRenderer</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">sphere</span><span class="p">:</span> <span class="n">Sphere</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">sphereProperty</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span>
+
+        <span class="kr">unowned</span> <span class="kd">let</span> <span class="nv">uself</span> <span class="p">=</span> <span class="kc">self</span>
+
+        <span class="n">sphereProperty</span><span class="p">.</span><span class="n">flatMapLatest</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">radiusProperty</span> <span class="p">}</span>
+            <span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span>
+                <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+            <span class="p">}.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">disposerBag</span><span class="p">)</span>
+
+        <span class="n">sphereProperty</span><span class="p">.</span><span class="n">flatMapLatest</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">colorProperty</span> <span class="p">}</span>
+            <span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span>
+                <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+            <span class="p">}.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">disposerBag</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">rebuildMesh</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// using: sphere.radius, sphere.color</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nv">sphere</span><span class="p">:</span> <span class="n">Sphere</span> <span class="p">{</span>
+        <span class="kr">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">sphereProperty</span><span class="p">.</span><span class="n">value</span> <span class="p">}</span>
+        <span class="kr">set</span> <span class="p">{</span> <span class="n">sphereProperty</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">newValue</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">let</span> <span class="nv">sphereProperty</span><span class="p">:</span> <span class="n">Property</span><span class="p">&lt;</span><span class="n">Sphere</span><span class="p">&gt;</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">disposerBag</span><span class="p">:</span> <span class="n">DisposerBag</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>これまで　sphereProperty の subscribe の中でさらに subscribe していた入れ子の形が、 flatMapLatest で radiusProperty や colorProperty を引き出す形になって、 subscribe の入れ子を除去できました。また、 flatMapLatest 自体が古い内側の購読を解除するため、 disposerBag を明示的に叩くコードも不要になりました。</p>
+
+<h2>
+<span id="map-merge-オペレータ" class="fragment"></span><a href="#map-merge-%E3%82%AA%E3%83%9A%E3%83%AC%E3%83%BC%E3%82%BF"><i class="fa fa-link"></i></a>map, merge オペレータ</h2>
+
+<p>SphereRenderer の実装において、 radius と color に関して、後続の処理は同様の内容が重複しています。これを単一化することを考えます。</p>
+
+<p>イベントの型を変換するだけの map と、同じ型をもつ複数のイベントストリームを一本にまとめる merge を導入すると、それらをまとめる事ができます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">extension</span> <span class="nc">EventSourceProtocol</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">map</span><span class="p">&lt;</span><span class="n">U</span><span class="p">&gt;(</span><span class="kc">_</span> <span class="bp">map</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Event</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">U</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">EventSource</span><span class="p">&lt;</span><span class="n">U</span><span class="p">&gt;</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">merge</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">:</span> <span class="n">EventSourceProtocol</span><span class="p">&gt;(</span><span class="kc">_</span> <span class="n">sources</span><span class="p">:</span> <span class="p">[</span><span class="n">TSource</span><span class="p">])</span> <span class="p">-&gt;</span> <span class="n">EventSource</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">.</span><span class="n">Event</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<p>map は EventSourceProtocol のメソッド、 merge はグローバル関数として提供します。そもそも今回の場合は、 radius や color の実際の値は読み捨てていて、変化のイベントだけを取り扱っているので、 map を使って Void 型に変換してしまえば、 2つが同じ型になるので merge して 1つのイベントにする事ができます。つまり、 radius か color のどちらかが変化したことを示すイベントを作れます。</p>
+
+<p>こうして、 SphereRenderer を以下のように書けます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SphereRenderer</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">sphere</span><span class="p">:</span> <span class="n">Sphere</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">sphereProperty</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span>
+
+        <span class="kr">unowned</span> <span class="kd">let</span> <span class="nv">uself</span> <span class="p">=</span> <span class="kc">self</span>
+
+        <span class="n">merge</span><span class="p">([</span><span class="n">sphereProperty</span><span class="p">.</span><span class="n">flatMapLatest</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">radiusProperty</span> <span class="p">}.</span><span class="bp">map</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span> <span class="p">},</span>
+               <span class="n">sphereProperty</span><span class="p">.</span><span class="n">flatMapLatest</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">colorProperty</span> <span class="p">}.</span><span class="bp">map</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span> <span class="p">}])</span>
+            <span class="p">.</span><span class="n">subscribe</span> <span class="p">{</span>
+                <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+            <span class="p">}.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">disposerBag</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">rebuildMesh</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// using: sphere.radius, sphere.color</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nv">sphere</span><span class="p">:</span> <span class="n">Sphere</span> <span class="p">{</span>
+        <span class="kr">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">sphereProperty</span><span class="p">.</span><span class="n">value</span> <span class="p">}</span>
+        <span class="kr">set</span> <span class="p">{</span> <span class="n">sphereProperty</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">newValue</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">let</span> <span class="nv">sphereProperty</span><span class="p">:</span> <span class="n">Property</span><span class="p">&lt;</span><span class="n">Sphere</span><span class="p">&gt;</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">disposerBag</span><span class="p">:</span> <span class="n">DisposerBag</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>これで冗長な記述をほぼ全部削除できました。 SphereRenderer が保持している Sphere の radius か color の変化に際して rebuildMesh を呼び出す、という期待する仕様がシンプルに表せています。<br>
+また些細な点ですが、 Void の読み捨ては省略できるので、 subscribe のハンドラの <code>_ in</code> が不要になっています。</p>
+
+<p>ここまででてきたような map, flatMap, merge といった、イベントストリームを加工する道具をオペレータと呼びます。メソッドや関数といった言語機能から離れて、抽象的なデータ操作として捉えた呼び方です。</p>
+
+<p>これらのオペレータは意味が直交しているので、 map や merge を flatMap の内側に書くこともできます。 </p>
+
+<h2>
+<span id="combine-方式" class="fragment"></span><a href="#combine-%E6%96%B9%E5%BC%8F"><i class="fa fa-link"></i></a>combine 方式</h2>
+
+<p>上記の merge 方式でロジックとしては正しく動作しますが、初期化時や sphere の更新時には、 radius と color のイベントが両方流れるため、処理としては radius について生じる rebuildMesh が完全に無駄です。即座に color についての処理がかかって、 radius の結果は破棄されます。</p>
+
+<p>そこで、複数のストリームをまとめて、1つのタプルを流すストリームにする combine オペレータを導入します。 combine は合成するストリームが流したイベントを記憶しておいて、全てのストリームからイベントが得られたら、タプルにして自身のイベントとして流します。それ以降は、どれか一つのストリームがイベントを流すたびに、タプルのその部分だけ変更してイベントを流します。</p>
+
+<p>これを導入すると以下のように書けます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SphereRenderer</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">sphere</span><span class="p">:</span> <span class="n">Sphere</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">sphereProperty</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span>
+
+        <span class="kr">unowned</span> <span class="kd">let</span> <span class="nv">uself</span> <span class="p">=</span> <span class="kc">self</span>
+
+        <span class="n">sphereProperty</span>
+            <span class="p">.</span><span class="n">flatMapLatest</span> <span class="p">{</span>
+                <span class="n">combine</span><span class="p">(</span><span class="nv">$0</span><span class="p">.</span><span class="n">radiusProperty</span><span class="p">,</span> <span class="nv">$0</span><span class="p">.</span><span class="n">colorProperty</span><span class="p">)</span>
+            <span class="p">}.</span><span class="n">subscribe</span> <span class="p">{</span> <span class="kc">_</span> <span class="k">in</span>
+                <span class="n">uself</span><span class="p">.</span><span class="n">rebuildMesh</span><span class="p">()</span>
+            <span class="p">}.</span><span class="n">disposed</span><span class="p">(</span><span class="n">by</span><span class="p">:</span> <span class="n">disposerBag</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">rebuildMesh</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// using: sphere.radius, sphere.color</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nv">sphere</span><span class="p">:</span> <span class="n">Sphere</span> <span class="p">{</span>
+        <span class="kr">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">sphereProperty</span><span class="p">.</span><span class="n">value</span> <span class="p">}</span>
+        <span class="kr">set</span> <span class="p">{</span> <span class="n">sphereProperty</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">newValue</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">let</span> <span class="nv">sphereProperty</span><span class="p">:</span> <span class="n">Property</span><span class="p">&lt;</span><span class="n">Sphere</span><span class="p">&gt;</span>
+
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">disposerBag</span><span class="p">:</span> <span class="n">DisposerBag</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>combine は flatMapLatest の内側に書いて、 sphere ごとにまとめる必要があります。逆にプロパティの flatMap を combine するように書いてしまうと、2回目以降の sphere では 無駄なイベントが走ってしまいます。 radiusProperty と colorProperty は Property のため、かならず即座に1度はイベントを流す事を保証しているため、 sphere が1つ来て combine が構築されると即座に1つだけタプルを流してくれます。</p>
+
+<p>これで、最初に1回、 sphere の変更時に1回、 radius か color の変更に1回だけ、 rebuildMesh が呼び出される状態になりました。</p>
+
+<h1>
+<span id="rx-とバインディング" class="fragment"></span><a href="#rx-%E3%81%A8%E3%83%90%E3%82%A4%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>Rx とバインディング</h1>
+
+<p>EventEmitter からはじめて、これをバインディングに適用する場合に、オペレータ等を導入していくことでコードが簡潔化できることをみてきました。こうしてできあがった形は、 Rx でバインディングを行うときのコードとほぼ同じです。どこから Rx と同じだったのかというと、出発点の EventEmitter から見ると、実は、イベント種類ごとに分割し、 subscribe メソッドを定義した時点で、型として Rx の Observable と全く同じものになっていました。 Rx の Observable は 今回定義した EventSource と同様、匿名なインターフェースなので、今回の EventEmitter が Rx の Observable の一種になっていると考えられます。 Rx では今回みたようなオペレータがいろいろ提供されていますが、これは Observable の subscribe メソッドの上で追加的に定義されているものなので、今回の EventSource にも同じようにいろいろと定義できます。</p>
+
+<p>今回の EventSource で Rx と決定的に違うのは、 Rx にはエラーと終了を流す機能があることです。 EventSource では Event の型がそのままイベントでしたが、 Rx においてはイベントの型 T に対して、 next(T), error(Error), completed の 3種類がストリームとして流れるようになっています。 EventSource は本質的に無限ストリームですが、 Rx では 終了があるので有限ストリームも扱えます。</p>
+
+<p>今回見てきたように、バインディングタスクにおいては、エラーと終了は特に欲しくありません。 RxSwift においては、 エラーが流れると購読が解除されるため、ドメインロジックで生じたエラーが表示系のバインディングに流れ込まないように、境界で保護したりします。</p>
+
+<h1>
+<span id="非同期" class="fragment"></span><a href="#%E9%9D%9E%E5%90%8C%E6%9C%9F"><i class="fa fa-link"></i></a>非同期</h1>
+
+<p>Rx は非同期処理に使われていますが、今回の EventSource もそのまま非同期処理に適用できます。 Rx で行われるように、 subscribe で処理を開始して、非同期な結果を ストリームに流すようにすることもできますし、 Promise を EventSource の一種として実装することもできます。 Promise における非同期処理の then によるチェーンは、ここでは flatMapLatest になります。ただし、エラーを流す仕組みは無いため、だいたいエラーを伴うことになる非同期処理で使う場合は Result を組み合わせるなどの工夫が必要です。</p>
+
+<h1>
+<span id="実装" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>実装</h1>
+
+<p>記事では EventEmitter 等のコードはインターフェースだけにとどめて実装は省略しました。今回これらをライブラリとしてまとめたので、興味のある方はソースを見たり使ってみたりしてください。</p>
+
+<p><a href="https://github.com/omochi/ReactiveEmitter" rel="nofollow noopener" target="_blank">ReativeEmitter</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

@@ -1,0 +1,2410 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (rana_kualu)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (rana_kualu さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>rana_kualuさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>284</kbd>
+		<a target="_blank" href="https://qiita.com/rana_kualu/items/793f0cbdde6a88f86394">くそったれJavaScript</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-21 22:21:40</center>
+	</td>
+	<td style="width:200px;">
+		@rana_kualu<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/26088/profile-images/1473684492">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[戸田奈津子訳]</b> <b>[WTF]</b> <b>[WTFJS]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>以下は<a href="https://github.com/denysdovhan/wtfjs" rel="nofollow noopener" target="_blank">What the f*ck JavaScript?</a>というリポジトリの戸田奈津子訳です。</p>
+
+<h1>
+<span id="what-the-fck-javascript" class="fragment"></span><a href="#what-the-fck-javascript"><i class="fa fa-link"></i></a>What the f*ck JavaScript?</h1>
+
+<p>JavaScriptは素晴らしい言語です。<br>
+単純な構文、大きなエコシステム、そして最も重要なところはコミュニティです。</p>
+
+<p>同時に、JavaScriptは非常にトリッキーで面倒な言語でもあります。<br>
+幾つかの仕様は我々の仕事を地獄に変え、他の幾つかは笑える仕様です。</p>
+
+<p>WTFJSの大元のアイデアは<a href="https://twitter.com/brianleroux" rel="nofollow noopener" target="_blank">Brian Leroux</a>によるものです。<br>
+以下のリストは2012年のdotJSにおける彼のトーク、<a href="https://www.youtube.com/watch?v=et8xNAc2ic8" rel="nofollow noopener" target="_blank">WTFJS</a>に触発されています。</p>
+
+<h1>
+<span id="node-packaged-manuscript" class="fragment"></span><a href="#node-packaged-manuscript"><i class="fa fa-link"></i></a>Node Packaged Manuscript</h1>
+
+<p>以下の内容はnpmでインストールできます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ npm install -g wtfjs
+</pre></div></div>
+
+<p><code>wtfjs</code>コマンドで読めるようになるはずです。<br>
+駄目だったらここで読みましょう。</p>
+
+<h1>
+<span id="table-of-contents" class="fragment"></span><a href="#table-of-contents"><i class="fa fa-link"></i></a>Table of Contents</h1>
+
+<h2>
+<span id="motivation" class="fragment"></span><a href="#motivation"><i class="fa fa-link"></i></a>Motivation</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>面白半分だ。
+</pre></div></div>
+
+<p><a href="https://en.wikipedia.org/wiki/Just_for_Fun" rel="nofollow noopener" target="_blank">Just for Fun: The Story of an Accidental Revolutionary</a>, Linus Torvalds</p>
+
+<p>このリストの主な目的は、バグった実例を収集し、可能であればどうしてそうなっているのかを解説することです。<br>
+これまで知らなかったことを学ぶのは楽しいでしょう。</p>
+
+<p>初心者は、これらを通じてJavaScriptをより深く理解することができます。<br>
+これらを見ているときっと仕様書を読みたくなることでしょう。</p>
+
+<p>プロの開発者であれば、JavaScriptの持つ罠や予期せぬ挙動の参考資料として役立ててくれると思います。</p>
+
+<p>いずれにせよ、以下を読んでみてください。<br>
+おそらく新しい発見があることでしょう。</p>
+
+<h2>
+<span id="notation" class="fragment"></span><a href="#notation"><i class="fa fa-link"></i></a>Notation</h2>
+
+<p><code>// -&gt;</code>は式の結果を表します。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1">// -&gt; 2</span>
+</pre></div></div>
+
+<p><code>// &gt;</code>はconsole.logもしくはその他の出力内容を表します。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'hello, world!'</span><span class="p">)</span> <span class="c1">// &gt; hello, world!</span>
+</pre></div></div>
+
+<p><code>//</code>は解説用の単なるコメントです。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="c1">// Assigning a function to foo constant</span>
+    <span class="kr">const</span> <span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{}</span>
+</pre></div></div>
+
+<h2>
+<span id="examples" class="fragment"></span><a href="#examples"><i class="fa fa-link"></i></a>Examples</h2>
+
+<h3>
+<span id="-is-equal-" class="fragment"></span><a href="#-is-equal-"><i class="fa fa-link"></i></a>[] is equal ![]</h3>
+
+<p>ArrayはArrayとイコールではない。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">[]</span> <span class="o">==</span> <span class="o">!</span><span class="p">[]</span> <span class="c1">// -&gt; true</span>
+</pre></div></div>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-logical-not-operator" rel="nofollow noopener" target="_blank">12.5.9 Logical NOT Operator (!)</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison" rel="nofollow noopener" target="_blank">7.2.13 Abstract Equality Comparison</a></p>
+
+<h3>
+<span id="true-is-false" class="fragment"></span><a href="#true-is-false"><i class="fa fa-link"></i></a>true is false</h3>
+
+<p>trueはfalseだった。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="o">!!</span><span class="s1">'false'</span> <span class="o">==</span>  <span class="o">!!</span><span class="s1">'true'</span>  <span class="c1">// -&gt; true</span>
+    <span class="o">!!</span><span class="s1">'false'</span> <span class="o">===</span> <span class="o">!!</span><span class="s1">'true'</span> <span class="c1">// -&gt; true</span>
+</pre></div></div>
+
+<p>順番に考えるとわかりやすい。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="c1">// trueは数値扱いされると1になる</span>
+    <span class="kc">true</span> <span class="o">==</span> <span class="s1">'true'</span>    <span class="c1">// -&gt; false</span>
+    <span class="kc">false</span> <span class="o">==</span> <span class="s1">'false'</span>  <span class="c1">// -&gt; false</span>
+
+    <span class="c1">// 'false'は空文字ではないので数値扱いされると1になる</span>
+    <span class="o">!!</span><span class="s1">'false'</span> <span class="c1">// -&gt; true</span>
+    <span class="o">!!</span><span class="s1">'true'</span>  <span class="c1">// -&gt; true</span>
+</pre></div></div>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison" rel="nofollow noopener" target="_blank">7.2.13 Abstract Equality Comparison</a></p>
+
+<h3>
+<span id="banana" class="fragment"></span><a href="#banana"><i class="fa fa-link"></i></a>baNaNa</h3>
+
+<p>バナナ</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="s1">'b'</span> <span class="o">+</span> <span class="s1">'a'</span> <span class="o">+</span> <span class="o">+</span> <span class="s1">'a'</span> <span class="o">+</span> <span class="s1">'a'</span>
+</pre></div></div>
+
+<p>使い古されたジョークのリバイバルで、オリジナルは以下だ。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="s1">'foo'</span> <span class="o">+</span> <span class="o">+</span> <span class="s1">'bar'</span> <span class="c1">// -&gt; 'fooNaN'</span>
+</pre></div></div>
+
+<p>式が<code>'foo' + (+'bar')</code>と解釈され、'bar'は数値ではないので'NaN'という文字列になる。<br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus" rel="nofollow noopener" target="_blank">12.8.3 The Addition Operator (+)</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator" rel="nofollow noopener" target="_blank">12.5.6 Unary + Operator</a></p>
+
+<h3>
+<span id="nan-is-not-a-nan" class="fragment"></span><a href="#nan-is-not-a-nan"><i class="fa fa-link"></i></a>NaN is not a NaN</h3>
+
+<p>NaNはNaNではない。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kc">NaN</span> <span class="o">===</span> <span class="kc">NaN</span> <span class="c1">// -&gt; false</span>
+</pre></div></div>
+
+<p>これは仕様で厳密に決められている。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span> 1. If Type(x) is different from Type(y), return false.
+ 2. If Type(x) is Number, then
+   i. If x is NaN, return false.
+   ii. If y is NaN, return false.
+   iii. ………
+</pre></div></div>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison" rel="nofollow noopener" target="_blank">7.2.14 Strict Equality Comparison</a></p>
+
+<p>IEEEのNaNの仕様に従っている。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Four mutually exclusive relations are possible: less than, equal, greater than, and unordered. The last case arises when at least one operand is NaN. Every NaN shall compare unordered with everything, including itself.
+</pre></div></div>
+
+<p><a href="https://stackoverflow.com/questions/1565164/1573715#1573715" rel="nofollow noopener" target="_blank">What is the rationale for all comparisons returning false for IEEE754 NaN values?</a></p>
+
+<h3>
+<span id="its-a-fail" class="fragment"></span><a href="#its-a-fail"><i class="fa fa-link"></i></a>It's a fail</h3>
+
+<p>信じられないかもしれないが、答えは'fail'だ。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">(</span><span class="o">!</span><span class="p">[]</span><span class="o">+</span><span class="p">[])[</span><span class="o">+</span><span class="p">[]]</span><span class="o">+</span><span class="p">(</span><span class="o">!</span><span class="p">[]</span><span class="o">+</span><span class="p">[])[</span><span class="o">+!+</span><span class="p">[]]</span><span class="o">+</span><span class="p">([</span><span class="o">!</span><span class="p">[]]</span><span class="o">+</span><span class="p">[][[]])[</span><span class="o">+!+</span><span class="p">[]</span><span class="o">+</span><span class="p">[</span><span class="o">+</span><span class="p">[]]]</span><span class="o">+</span><span class="p">(</span><span class="o">!</span><span class="p">[]</span><span class="o">+</span><span class="p">[])[</span><span class="o">!+</span><span class="p">[]</span><span class="o">+!+</span><span class="p">[]]</span>
+    <span class="c1">// -&gt; 'fail'</span>
+</pre></div></div>
+
+<p>以下のパターンが頻出することに気がつくだろう。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">(</span><span class="o">!</span><span class="p">[]</span><span class="o">+</span><span class="p">[])</span> <span class="c1">// -&gt; 'false'</span>
+    <span class="o">!</span><span class="p">[]</span>      <span class="c1">// -&gt; false</span>
+</pre></div></div>
+
+<p><code>false</code>に<code>[]</code>を加算しようとしているため、右オペランドはstringに変換される。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">(</span><span class="o">!</span><span class="p">[]</span><span class="o">+</span><span class="p">[].</span><span class="nx">toString</span><span class="p">())</span> <span class="c1">// 'false'</span>
+</pre></div></div>
+
+<p>文字列に配列アクセスすると該当番目の文字が取得できる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="s1">'false'</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">// -&gt; 'f'</span>
+</pre></div></div>
+
+<p>残りも同じ構造だが、<code>i</code>の取って来かたは少しトリッキーだ。<br>
+文字列'falseundefined'を作って、その10番目を取得している。</p>
+
+<h3>
+<span id="-is-truthy-but-not-true" class="fragment"></span><a href="#-is-truthy-but-not-true"><i class="fa fa-link"></i></a>[] is truthy, but not true</h3>
+
+<p><code>[]</code>はtrueっぽいけどtrueではない。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="o">!!</span><span class="p">[]</span>       <span class="c1">// -&gt; true</span>
+    <span class="p">[]</span> <span class="o">==</span> <span class="kc">true</span> <span class="c1">// -&gt; false</span>
+</pre></div></div>
+
+<p>ECMA-262で決められている仕様である。<br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-logical-not-operator" rel="nofollow noopener" target="_blank">12.5.9 Logical NOT Operator (!)</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison" rel="nofollow noopener" target="_blank">7.2.13 Abstract Equality Comparison</a></p>
+
+<h3>
+<span id="null-is-falsy-but-not-false" class="fragment"></span><a href="#null-is-falsy-but-not-false"><i class="fa fa-link"></i></a>null is falsy, but not false</h3>
+
+<p><code>null</code>はfalseっぽいけどfalseではない。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="o">!!</span><span class="kc">null</span>        <span class="c1">// -&gt; false</span>
+    <span class="kc">null</span> <span class="o">==</span> <span class="kc">false</span> <span class="c1">// -&gt; false</span>
+</pre></div></div>
+
+<p>ところが0や''はfalseとイコールになる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="mi">0</span> <span class="o">==</span> <span class="kc">false</span>  <span class="c1">// -&gt; true</span>
+    <span class="s1">''</span> <span class="o">==</span> <span class="kc">false</span> <span class="c1">// -&gt; true</span>
+</pre></div></div>
+
+<p>これもECMA-262の仕様。<br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison" rel="nofollow noopener" target="_blank">7.2.13 Abstract Equality Comparison</a></p>
+
+<h3>
+<span id="documentall-is-an-object-but-its-undefined" class="fragment"></span><a href="#documentall-is-an-object-but-its-undefined"><i class="fa fa-link"></i></a>document.all is an object, but it's undefined</h3>
+
+<p>document.allは配列のようなobjectであり、DOMノードへのアクセスを提供するが、<code>typeof</code>には何故か<code>undefined</code>を返す。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nb">document</span><span class="p">.</span><span class="nx">all</span> <span class="k">instanceof</span> <span class="nb">Object</span> <span class="c1">// -&gt; true</span>
+    <span class="k">typeof</span> <span class="nb">document</span><span class="p">.</span><span class="nx">all</span>            <span class="c1">// -&gt; 'undefined'</span>
+</pre></div></div>
+
+<p>しかし<code>undefined</code>とイコールではない。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nb">document</span><span class="p">.</span><span class="nx">all</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="c1">// -&gt; false</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">all</span> <span class="o">===</span> <span class="kc">null</span> <span class="c1">// -&gt; false</span>
+</pre></div></div>
+
+<p>緩やかな比較ではイコールになる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nb">document</span><span class="p">.</span><span class="nx">all</span> <span class="o">==</span> <span class="kc">null</span> <span class="c1">// -&gt; true</span>
+</pre></div></div>
+
+<p><code>document.all</code>は主に古いバージョンのIEで使用されていたDOMへのアクセス方法で、標準仕様になったことはないが、古いJavaScriptコードではよく使用されていた。<br>
+<code>getElementById</code>等の新しいAPI標準仕様が普及したのち、この<code>document.all</code>の取り扱いについて決める必要があった。<br>
+JavaScriptの仕様には反していたのだが、広く使用されていたためAPI自体は維持することにした。<br>
+===にfalseを返し、==にtrueを返すのは、<a href="https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all" rel="nofollow noopener" target="_blank">明示された例外事項</a>である。</p>
+
+<h3>
+<span id="minimal-value-is-greater-than-zero" class="fragment"></span><a href="#minimal-value-is-greater-than-zero"><i class="fa fa-link"></i></a>Minimal value is greater than zero</h3>
+
+<p>最小の数値は0より大きい。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nb">Number</span><span class="p">.</span><span class="nx">MIN_VALUE</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="c1">// -&gt; true</span>
+</pre></div></div>
+
+<p><code>Number.MIN_VALUE</code>の値は<code>5e-324</code>であり、これは0より大きい最小の値である。<br>
+浮動小数で表せる最高の解像度を表している。</p>
+
+<p>いわゆる最小値は<code>Number.NEGATIVE_INFINITY</code>として定義されているが、これは厳密には数値ではない。</p>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-number.min_value" rel="nofollow noopener" target="_blank">20.1.2.9 Number.MIN_VALUE</a></p>
+
+<h3>
+<span id="function-is-not-function" class="fragment"></span><a href="#function-is-not-function"><i class="fa fa-link"></i></a>function is not function</h3>
+
+<p>忌々しいundefinedが関数でないことは皆知っているが、では以下は？</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="c1">// nullをextendsする</span>
+    <span class="kr">class</span> <span class="nx">Foo</span> <span class="kr">extends</span> <span class="kc">null</span> <span class="p">{}</span>
+    <span class="c1">// -&gt; [Function: Foo]</span>
+
+    <span class="k">new</span> <span class="nx">Foo</span> <span class="k">instanceof</span> <span class="kc">null</span>
+    <span class="c1">// &gt; TypeError: function is not a function</span>
+</pre></div></div>
+
+<p>これは仕様ではないから、いずれ修正されるだろう。</p>
+
+<h3>
+<span id="adding-arrays" class="fragment"></span><a href="#adding-arrays"><i class="fa fa-link"></i></a>Adding arrays</h3>
+
+<p>2個の配列を加算したい。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>  <span class="c1">// -&gt; '1,2,34,5,6'</span>
+</pre></div></div>
+
+<p>文字列連結になってしまう。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+    <span class="c1">// toString()が呼ばれる</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nx">toString</span><span class="p">()</span> <span class="o">+</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">].</span><span class="nx">toString</span><span class="p">()</span>
+    <span class="c1">// 結合</span>
+    <span class="s1">'1,2,3'</span> <span class="o">+</span> <span class="s1">'4,5,6'</span>
+    <span class="c1">// -&gt;</span>
+    <span class="s1">'1,2,34,5,6'</span>
+</pre></div></div>
+
+<h3>
+<span id="trailing-commas-in-array" class="fragment"></span><a href="#trailing-commas-in-array"><i class="fa fa-link"></i></a>Trailing commas in array</h3>
+
+<p>空要素が4個ある配列を作成した。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[,,,]</span>
+    <span class="nx">a</span><span class="p">.</span><span class="nx">length</span>     <span class="c1">// -&gt; 3</span>
+    <span class="nx">a</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// -&gt; ',,'</span>
+</pre></div></div>
+
+<p>末尾のカンマは要素やプロパティを付け加えたいときに役に立つ。<br>
+前の行に末尾カンマが付いていた場合、その行を変更することなく追加のプロパティを書くだけで済むからだ。<br>
+これによって差分管理もわかりやすくなる。<br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas" rel="nofollow noopener" target="_blank">Trailing commas</a></p>
+
+<h3>
+<span id="array-equality-is-a-monster" class="fragment"></span><a href="#array-equality-is-a-monster"><i class="fa fa-link"></i></a>Array equality is a monster</h3>
+
+<p>配列の==は危険がいっぱい。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">[]</span> <span class="o">==</span> <span class="s1">''</span>   <span class="c1">// -&gt; true</span>
+    <span class="p">[]</span> <span class="o">==</span> <span class="mi">0</span>    <span class="c1">// -&gt; true</span>
+    <span class="p">[</span><span class="s1">''</span><span class="p">]</span> <span class="o">==</span> <span class="s1">''</span> <span class="c1">// -&gt; true</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>   <span class="c1">// -&gt; true</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">''</span>  <span class="c1">// -&gt; false</span>
+    <span class="p">[</span><span class="s1">''</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>  <span class="c1">// -&gt; true</span>
+
+    <span class="p">[</span><span class="kc">null</span><span class="p">]</span> <span class="o">==</span> <span class="s1">''</span>      <span class="c1">// true</span>
+    <span class="p">[</span><span class="kc">null</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>       <span class="c1">// true</span>
+    <span class="p">[</span><span class="kc">undefined</span><span class="p">]</span> <span class="o">==</span> <span class="s1">''</span> <span class="c1">// true</span>
+    <span class="p">[</span><span class="kc">undefined</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>  <span class="c1">// true</span>
+
+    <span class="p">[[]]</span> <span class="o">==</span> <span class="mi">0</span>  <span class="c1">// true</span>
+    <span class="p">[[]]</span> <span class="o">==</span> <span class="s1">''</span> <span class="c1">// true</span>
+
+    <span class="p">[[[[[[]]]]]]</span> <span class="o">==</span> <span class="s1">''</span> <span class="c1">// true</span>
+    <span class="p">[[[[[[]]]]]]</span> <span class="o">==</span> <span class="mi">0</span>  <span class="c1">// true</span>
+
+    <span class="p">[[[[[[</span> <span class="kc">null</span> <span class="p">]]]]]]</span> <span class="o">==</span> <span class="mi">0</span>  <span class="c1">// true</span>
+    <span class="p">[[[[[[</span> <span class="kc">null</span> <span class="p">]]]]]]</span> <span class="o">==</span> <span class="s1">''</span> <span class="c1">// true</span>
+
+    <span class="p">[[[[[[</span> <span class="kc">undefined</span> <span class="p">]]]]]]</span> <span class="o">==</span> <span class="mi">0</span>  <span class="c1">// true</span>
+    <span class="p">[[[[[[</span> <span class="kc">undefined</span> <span class="p">]]]]]]</span> <span class="o">==</span> <span class="s1">''</span> <span class="c1">// true</span>
+</pre></div></div>
+
+<p>空の配列には気をつける必要がある。<br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison" rel="nofollow noopener" target="_blank">7.2.13 Abstract Equality Comparison</a></p>
+
+<h3>
+<span id="undefined-and-number" class="fragment"></span><a href="#undefined-and-number"><i class="fa fa-link"></i></a>undefined and Number</h3>
+
+<p>Numberのコンストラクタに引数を渡さないと、返り値は0になる。<br>
+引数のある関数に引数を渡さなかった場合、仮引数はundefinedになる。<br>
+従ってNumberにundefinedを渡すと返り値もundefinedになるだろうと思うが、実際はNaNになる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nb">Number</span><span class="p">()</span>          <span class="c1">// -&gt; 0</span>
+    <span class="nb">Number</span><span class="p">(</span><span class="kc">undefined</span><span class="p">)</span> <span class="c1">// -&gt; NaN</span>
+</pre></div></div>
+
+<p>仕様によると、<br>
+・引数がなかった場合は0とする<br>
+・それ以外の場合はToNumber()を呼ぶ<br>
+・ToNumber(undefined)はNaNになる</p>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-number-constructor" rel="nofollow noopener" target="_blank">20.1.1 The Number Constructor</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-tonumber" rel="nofollow noopener" target="_blank">7.1.3 ToNumber(argument)</a></p>
+
+<h3>
+<span id="parseint-is-a-bad-guy" class="fragment"></span><a href="#parseint-is-a-bad-guy"><i class="fa fa-link"></i></a>parseInt is a bad guy</h3>
+
+<p>parseIntはバッドガイだ。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'f*ck'</span><span class="p">);</span>     <span class="c1">// -&gt; NaN</span>
+    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'f*ck'</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> <span class="c1">// -&gt; 15</span>
+</pre></div></div>
+
+<p>parseIntは理解できない文字に出会うまでパースを続けるが、出会ったらエラーを出さずにそこまでの値を返してしまう。<br>
+'f*ck'の'f'は16進数で15である。<br>
+parseIntは無限大ですら整数解析してしまう。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'Infinity'</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c1">// -&gt; NaN</span>
+    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'Infinity'</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span> <span class="c1">// -&gt; NaN...</span>
+    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'Infinity'</span><span class="p">,</span> <span class="mi">19</span><span class="p">)</span> <span class="c1">// -&gt; 18</span>
+    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'Infinity'</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span> <span class="c1">// -&gt; 18...</span>
+    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'Infinity'</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span> <span class="c1">// -&gt; 151176378</span>
+    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'Infinity'</span><span class="p">,</span> <span class="mi">29</span><span class="p">)</span> <span class="c1">// -&gt; 385849803</span>
+    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'Infinity'</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span> <span class="c1">// -&gt; 13693557269</span>
+    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'Infinity'</span><span class="p">,</span> <span class="mi">34</span><span class="p">)</span> <span class="c1">// -&gt; 28872273981</span>
+    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'Infinity'</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span> <span class="c1">// -&gt; 1201203301724</span>
+    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'Infinity'</span><span class="p">,</span> <span class="mi">36</span><span class="p">)</span> <span class="c1">// -&gt; 1461559270678...</span>
+    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'Infinity'</span><span class="p">,</span> <span class="mi">37</span><span class="p">)</span> <span class="c1">// -&gt; NaN</span>
+</pre></div></div>
+
+<p>nullにも注意しなければならない。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nb">parseInt</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span> <span class="c1">// -&gt; 23</span>
+</pre></div></div>
+
+<p>nullは何故か文字列'null'に変換されてしまい、その後通常のパースが行われる。<br>
+基数23までは'n'が解析できないのでNaNが返ってくる。<br>
+基数24で'n'が理解できるようになり結果が23になる。<br>
+基数31で'u'までパースされ、結果は1112745になる。<br>
+基数を37以上にすると再びNaNになる。</p>
+
+<p><a href="https://stackoverflow.com/questions/6459758/parseintnull-24-23-wait-what" rel="nofollow noopener" target="_blank">parseInt(null, 24) === 23… wait, what?</a></p>
+
+<p>8進数の罠も忘れてはいけない。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'06'</span><span class="p">);</span> <span class="c1">// 6</span>
+    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'08'</span><span class="p">);</span> <span class="c1">// 8 ES5</span>
+    <span class="nb">parseInt</span><span class="p">(</span><span class="s1">'08'</span><span class="p">);</span> <span class="c1">// 0 ES5未対応</span>
+</pre></div></div>
+
+<p>引数が'0'で始まる場合、基数が8になるか10になるかは実装依存である。<br>
+ES5では10進数であることを要求しているが、全てのブラウザがそのように実装されているとは限らない。<br>
+そのため、parseIntには必ず基数を指定しなければならない。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nb">parseInt</span><span class="p">({</span> <span class="nx">toString</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">valueOf</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="mi">1</span> <span class="p">})</span> <span class="c1">// -&gt; 2</span>
+    <span class="nb">Number</span><span class="p">({</span> <span class="nx">toString</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">valueOf</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="mi">1</span> <span class="p">})</span>   <span class="c1">// -&gt; 1</span>
+</pre></div></div>
+
+<h3>
+<span id="math-with-true-and-false" class="fragment"></span><a href="#math-with-true-and-false"><i class="fa fa-link"></i></a>Math with true and false</h3>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kc">true</span> <span class="o">+</span> <span class="kc">true</span> <span class="c1">// -&gt; 2</span>
+    <span class="p">(</span><span class="kc">true</span> <span class="o">+</span> <span class="kc">true</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="kc">true</span> <span class="o">+</span> <span class="kc">true</span><span class="p">)</span> <span class="o">-</span> <span class="kc">true</span> <span class="c1">// -&gt; 3</span>
+</pre></div></div>
+
+<p>Numberに値を与えると数値に変換されるが、trueを与えると1になるのは自明であろう。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nb">Number</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="c1">// -&gt; 1</span>
+</pre></div></div>
+
+<p>単項演算子<code>+</code>は続く値を数値に変換しようとする。<br>
+これは整数と浮動小数の文字列表現、そしてtrue、false、nullに対応している。<br>
+それ以外の値に対してはNaNになる。<br>
+つまり、<code>+true</code>は1になる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="o">+</span><span class="kc">true</span> <span class="c1">// -&gt; 1</span>
+</pre></div></div>
+
+<p>加算・乗算の際にはJavaScriptの内部関数ToNumber()が呼び出されるが、これは以下のような仕様になっている。<br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-tonumber" rel="nofollow noopener" target="_blank">If argument is true, return 1. If argument is false, return +0.</a><br>
+そのため、真偽値を通常の数値と同じように計算することが可能になってしまうというわけだ。</p>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator" rel="nofollow noopener" target="_blank">12.5.6 Unary + Operator</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus" rel="nofollow noopener" target="_blank">12.8.3 The Addition Operator (+)</a></p>
+
+<h3>
+<span id="html-comments-are-valid-in-javascript" class="fragment"></span><a href="#html-comments-are-valid-in-javascript"><i class="fa fa-link"></i></a>HTML comments are valid in JavaScript</h3>
+
+<p>昔懐かし、HTMLコメント<code>&lt;!--</code>はJavaScriptでも有効なコメントだ。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="c1">// valid comment</span>
+    <span class="c">&lt;!--</span> <span class="nx">valid</span> <span class="nx">comment</span> <span class="nx">too</span>
+</pre></div></div>
+
+<p>HTML形式コメントは、<code>&lt;script&gt;</code>タグを理解しないブラウザで動かなくならないために作られたのものだ。<br>
+しかし、その対象のブラウザ<code>Netscape 1.x</code>はもはや存在しないから、HTML形式コメントを入れる意味は全く無い。</p>
+
+<p>Node.jsはV8エンジンに基づいているから、HTML形式コメントについても未だに対応している。<br>
+むしろ完全に仕様の一部となっている。</p>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-html-like-comments" rel="nofollow noopener" target="_blank">B.1.3 HTML-like Comments</a></p>
+
+<h3>
+<span id="nan-is-a-number" class="fragment"></span><a href="#nan-is-a-number"><i class="fa fa-link"></i></a>NaN is a number</h3>
+
+<p>NaNは数値型である。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="k">typeof</span> <span class="kc">NaN</span> <span class="c1">// -&gt; 'number'</span>
+</pre></div></div>
+
+<p>typeofとinstanceofの仕様は以下のとおりだ。</p>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-typeof-operator" rel="nofollow noopener" target="_blank">12.5.5 The typeof Operator</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-instanceofoperator" rel="nofollow noopener" target="_blank">12.10.4 Runtime Semantics: InstanceofOperator(O,C)</a></p>
+
+<h3>
+<span id="-and-null-are-objects" class="fragment"></span><a href="#-and-null-are-objects"><i class="fa fa-link"></i></a>[] and null are objects</h3>
+
+<p><code>[]</code>とnullはオブジェクトである。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="k">typeof</span> <span class="p">[]</span>   <span class="c1">// -&gt; 'object'</span>
+    <span class="k">typeof</span> <span class="kc">null</span> <span class="c1">// -&gt; 'object'</span>
+
+    <span class="c1">// しかしinstanceではない</span>
+    <span class="kc">null</span> <span class="k">instanceof</span> <span class="nb">Object</span> <span class="c1">// false</span>
+</pre></div></div>
+
+<p>typeof演算子は、<a href="https://www.ecma-international.org/ecma-262/#table-35" rel="nofollow noopener" target="_blank">対応テーブル</a>に従って文字列を返す。<br>
+従ってcallを実装していないオブジェクト、およびnullは"object"になる。</p>
+
+<p>toStringメソッドを使うと、objectの詳しい内容まで確認できる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">([])</span>
+    <span class="c1">// -&gt; '[object Array]'</span>
+
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">)</span>
+    <span class="c1">// -&gt; '[object Date]'</span>
+
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>
+    <span class="c1">// -&gt; '[object Null]'</span>
+</pre></div></div>
+
+<h3>
+<span id="magically-increasing-numbers" class="fragment"></span><a href="#magically-increasing-numbers"><i class="fa fa-link"></i></a>Magically increasing numbers</h3>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="mi">999999999999999</span>  <span class="c1">// -&gt; 999999999999999</span>
+    <span class="mi">9999999999999999</span> <span class="c1">// -&gt; 10000000000000000</span>
+
+    <span class="mi">10000000000000000</span>       <span class="c1">// -&gt; 10000000000000000</span>
+    <span class="mi">10000000000000000</span> <span class="o">+</span> <span class="mi">1</span>   <span class="c1">// -&gt; 10000000000000000</span>
+    <span class="mi">10000000000000000</span> <span class="o">+</span> <span class="mf">1.1</span> <span class="c1">// -&gt; 10000000000000002</span>
+</pre></div></div>
+
+<p>これは浮動小数点演算の標準規格IEEE 754-2008に従った動作であり、このスケールでは最も近い偶数に丸められてしまう。<br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-ecmascript-language-types-number-type" rel="nofollow noopener" target="_blank">6.1.6 The Number Type</a><br>
+<a href="https://en.wikipedia.org/wiki/IEEE_754" rel="nofollow noopener" target="_blank">IEEE 754</a> on Wikipedia</p>
+
+<h3>
+<span id="precision-of-01--02" class="fragment"></span><a href="#precision-of-01--02"><i class="fa fa-link"></i></a>Precision of 0.1 + 0.2</h3>
+
+<p>浮動小数演算では致命的な間違いが発生する。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="c1">// -&gt; 0.30000000000000004</span>
+    <span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">===</span> <span class="mf">0.3</span> <span class="c1">// -&gt; false</span>
+</pre></div></div>
+
+<p>StackOverflowの質問<a href="https://stackoverflow.com/questions/588004/is-floating-point-math-broken" rel="nofollow noopener" target="_blank">Is floating point math broken?</a>に理由が書いてある。<br>
+0.2や0.3という値は、実際は真の値の近似表示である。<br>
+近似値0.2の真の値は見た目の値よりも大きく、近似値0.3の真の値は見た目の値よりも小さい。<br>
+近似値0.1と0.2の和は近似値0.3の真の値よりも大きくなり、そのため近似値0.3の真の値とも一致しない。</p>
+
+<p>この問題は<a href="http://0.30000000000000004.com/" rel="nofollow noopener" target="_blank">0.30000000000000004.com</a>というWebサイトが作られるほどよく知られている話である。<br>
+JavaScriptのみならず、浮動小数点演算の存在する全ての言語で発生する現象だ。</p>
+
+<h3>
+<span id="patching-numbers" class="fragment"></span><a href="#patching-numbers"><i class="fa fa-link"></i></a>Patching numbers</h3>
+
+<p>NumberやStringなどのラッパーオブジェクトに勝手にメソッドを追加できる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nb">Number</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isOne</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nb">Number</span><span class="p">(</span><span class="k">this</span><span class="p">)</span> <span class="o">===</span> <span class="mi">1</span>
+    <span class="p">}</span>
+
+    <span class="mf">1.0</span><span class="p">.</span><span class="nx">isOne</span><span class="p">()</span> <span class="c1">// -&gt; true</span>
+    <span class="mi">1</span><span class="p">..</span><span class="nx">isOne</span><span class="p">()</span>  <span class="c1">// -&gt; true</span>
+    <span class="mf">2.0</span><span class="p">.</span><span class="nx">isOne</span><span class="p">()</span> <span class="c1">// -&gt; false</span>
+    <span class="p">(</span><span class="mi">7</span><span class="p">).</span><span class="nx">isOne</span><span class="p">()</span> <span class="c1">// -&gt; false</span>
+</pre></div></div>
+
+<p>他のオブジェクトと同じように拡張することができるが、到底勧められない。</p>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-number-objects" rel="nofollow noopener" target="_blank">20.1 Number Objects</a></p>
+
+<h3>
+<span id="comparison-of-three-numbers" class="fragment"></span><a href="#comparison-of-three-numbers"><i class="fa fa-link"></i></a>Comparison of three numbers</h3>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="c1">// -&gt; true</span>
+    <span class="mi">3</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="c1">// -&gt; false</span>
+</pre></div></div>
+
+<p>そもそも3数の評価は想定しているだろう動作をしていない。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="c1">// 先に1&lt;2が評価</span>
+    <span class="kc">true</span>  <span class="o">&lt;</span> <span class="mi">3</span> <span class="c1">// trueは数値型にすると1</span>
+    <span class="mi">1</span>     <span class="o">&lt;</span> <span class="mi">3</span> <span class="c1">// -&gt; true</span>
+
+    <span class="mi">3</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="c1">// 先に3&gt;2が評価</span>
+    <span class="kc">true</span>  <span class="o">&gt;</span> <span class="mi">1</span> <span class="c1">// trueは数値型にすると1</span>
+    <span class="mi">1</span>     <span class="o">&gt;</span> <span class="mi">1</span> <span class="c1">// -&gt; false</span>
+</pre></div></div>
+
+<p><code>&gt;</code>を<code>&gt;=</code>にすることで、この場合は動くようになる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="mi">3</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="c1">// true</span>
+</pre></div></div>
+
+<p>関係演算子の詳細については以下を参照。<br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-relational-operators" rel="nofollow noopener" target="_blank">12.10 Relational Operators</a></p>
+
+<h3>
+<span id="funny-math" class="fragment"></span><a href="#funny-math"><i class="fa fa-link"></i></a>Funny math</h3>
+
+<p>JavaScriptでの演算は、想定してなかった結果になることがしばしばある。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>     <span class="mi">3</span>  <span class="o">-</span> <span class="mi">1</span>  <span class="c1">// -&gt; 2</span>
+     <span class="mi">3</span>  <span class="o">+</span> <span class="mi">1</span>  <span class="c1">// -&gt; 4</span>
+    <span class="s1">'3'</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1">// -&gt; 2</span>
+    <span class="s1">'3'</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1">// -&gt; '31'</span>
+
+    <span class="s1">''</span> <span class="o">+</span> <span class="s1">''</span> <span class="c1">// -&gt; ''</span>
+    <span class="p">[]</span> <span class="o">+</span> <span class="p">[]</span> <span class="c1">// -&gt; ''</span>
+    <span class="p">{}</span> <span class="o">+</span> <span class="p">[]</span> <span class="c1">// -&gt; 0</span>
+    <span class="p">[]</span> <span class="o">+</span> <span class="p">{}</span> <span class="c1">// -&gt; '[object Object]'</span>
+    <span class="p">{}</span> <span class="o">+</span> <span class="p">{}</span> <span class="c1">// -&gt; '[object Object][object Object]'</span>
+
+    <span class="s1">'222'</span> <span class="o">-</span> <span class="o">-</span><span class="s1">'111'</span> <span class="c1">// -&gt; 333</span>
+
+    <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span>       <span class="c1">// -&gt; 16</span>
+    <span class="p">[]</span> <span class="o">*</span> <span class="p">[]</span>         <span class="c1">// -&gt; 0</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="c1">// NaN</span>
+</pre></div></div>
+
+<p>最初の4例はどうなっているのか。<br>
+加算演算子でどうなるかの一覧は次のとおりだ。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nb">Number</span>  <span class="o">+</span> <span class="nb">Number</span>  <span class="o">-&gt;</span> <span class="nx">加算</span>
+    <span class="nb">Boolean</span> <span class="o">+</span> <span class="nb">Number</span>  <span class="o">-&gt;</span> <span class="nx">加算</span>
+    <span class="nb">Boolean</span> <span class="o">+</span> <span class="nb">Boolean</span> <span class="o">-&gt;</span> <span class="nx">加算</span>
+    <span class="nb">Number</span>  <span class="o">+</span> <span class="nb">String</span>  <span class="o">-&gt;</span> <span class="nx">文字列連結</span>
+    <span class="nb">String</span>  <span class="o">+</span> <span class="nb">Boolean</span> <span class="o">-&gt;</span> <span class="nx">文字列連結</span>
+    <span class="nb">String</span>  <span class="o">+</span> <span class="nb">String</span>  <span class="o">-&gt;</span> <span class="nx">文字列連結</span>
+</pre></div></div>
+
+<p>それ以外の例についてはどうか。<br>
+<code>[]</code>と<code>{}</code>には、加算の前に暗黙的にToPrimitiveとToStringメソッドが呼び出されているのだ。<br>
+仕様の詳細については以下を参照。</p>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus" rel="nofollow noopener" target="_blank">12.8.3 The Addition Operator (+)</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-toprimitive" rel="nofollow noopener" target="_blank">7.1.1 ToPrimitive(input [,PreferredType])</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-tostring" rel="nofollow noopener" target="_blank">7.1.12 ToString(argument)</a></p>
+
+<h3>
+<span id="addition-of-regexps" class="fragment"></span><a href="#addition-of-regexps"><i class="fa fa-link"></i></a>Addition of RegExps</h3>
+
+<p>正規表現リテラルにアクセスできることを知っているか？</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="c1">// toStringを上書き</span>
+    <span class="nb">RegExp</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">source</span>
+    <span class="p">}</span>
+
+    <span class="o">/</span><span class="mi">7</span><span class="o">/</span> <span class="o">-</span> <span class="sr">/5/</span> <span class="c1">// -&gt; 2</span>
+</pre></div></div>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-get-regexp.prototype.source" rel="nofollow noopener" target="_blank">21.2.5.10 get RegExp.prototype.source</a></p>
+
+<h3>
+<span id="strings-arent-instances-of-string" class="fragment"></span><a href="#strings-arent-instances-of-string"><i class="fa fa-link"></i></a>Strings aren't instances of String</h3>
+
+<p>文字列は文字列型ではない。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="s1">'str'</span> <span class="c1">// -&gt; 'str'</span>
+    <span class="k">typeof</span> <span class="s1">'str'</span> <span class="c1">// -&gt; 'string'</span>
+    <span class="s1">'str'</span> <span class="k">instanceof</span> <span class="nb">String</span> <span class="c1">// -&gt; false</span>
+</pre></div></div>
+
+<p>Stringコンストラクタはstringを返す。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="k">typeof</span> <span class="nb">String</span><span class="p">(</span><span class="s1">'str'</span><span class="p">)</span>   <span class="c1">// -&gt; 'string'</span>
+    <span class="nb">String</span><span class="p">(</span><span class="s1">'str'</span><span class="p">)</span>          <span class="c1">// -&gt; 'str'</span>
+    <span class="nb">String</span><span class="p">(</span><span class="s1">'str'</span><span class="p">)</span> <span class="o">==</span> <span class="s1">'str'</span> <span class="c1">// -&gt; true</span>
+</pre></div></div>
+
+<p>newを付けると結果が変わる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">'str'</span><span class="p">)</span> <span class="o">==</span> <span class="s1">'str'</span> <span class="c1">// -&gt; true</span>
+    <span class="k">typeof</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">'str'</span><span class="p">)</span>   <span class="c1">// -&gt; 'object'</span>
+</pre></div></div>
+
+<p>newのついたStringはObjectだ。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">'str'</span><span class="p">)</span> <span class="c1">// -&gt; [String: 'str']</span>
+</pre></div></div>
+
+<p>Stringコンストラクタの仕様は以下に記載されている。<br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-string-constructor" rel="nofollow noopener" target="_blank">21.1.1 The String Constructor</a></p>
+
+<h3>
+<span id="calling-functions-with-backticks" class="fragment"></span><a href="#calling-functions-with-backticks"><i class="fa fa-link"></i></a>Calling functions with backticks</h3>
+
+<p>引数をそのまま返す関数を実装する。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kd">function</span> <span class="nx">f</span><span class="p">(...</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">args</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<p>以下の結果になることは想像に難くない。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nx">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">// -&gt; [ 1, 2, 3 ]</span>
+</pre></div></div>
+
+<p>だが、関数をバッククォートで呼び出せることは知っているか？</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nx">f</span><span class="sb">`true is </span><span class="si">${</span><span class="kc">true</span><span class="si">}</span><span class="sb">, false is </span><span class="si">${</span><span class="kc">false</span><span class="si">}</span><span class="sb">, array is </span><span class="si">${</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="sb">`</span>
+    <span class="c1">// -&gt; [ [ 'true is ', ', false is ', ', array is ', '' ],</span>
+    <span class="c1">// -&gt;   true,</span>
+    <span class="c1">// -&gt;   false,</span>
+    <span class="c1">// -&gt;   [ 1, 2, 3 ] ]</span>
+</pre></div></div>
+
+<p>これはタグ付きテンプレートリテラルと呼ばれる機能で、バッククォート内に書かれたテキストがタグ関数fに渡されることになる。<br>
+第一引数には文字列を<code>${}</code>で分割した配列が入ってきて、第二引数以降は<code>${}</code>の式の値が順に入ってくる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kd">function</span> <span class="nx">template</span><span class="p">(</span><span class="nx">strings</span><span class="p">,</span> <span class="p">...</span><span class="nx">keys</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// do something with strings and keys…</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<p>JavaScriptの中にCSSを書く<a href="https://www.styled-components.com/" rel="nofollow noopener" target="_blank">styled-components</a>ライブラリは、Reactコミュニティで人気である。</p>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-tagged-templates" rel="nofollow noopener" target="_blank">12.3.7 Tagged Templates</a></p>
+
+<h3>
+<span id="call-call-call" class="fragment"></span><a href="#call-call-call"><i class="fa fa-link"></i></a>Call call call</h3>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">call</span><span class="p">.</span><span class="nx">call</span><span class="p">.</span><span class="nx">call</span><span class="p">.</span><span class="nx">call</span><span class="p">.</span><span class="nx">call</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">a</span> <span class="o">=&gt;</span> <span class="nx">a</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div></div>
+
+<p>警告。<br>
+訓練を受けていない方が真似すると動悸・息切れ・眩暈等の症状が現れたり、最悪の場合死に至ることもあります。</p>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-function.prototype.call" rel="nofollow noopener" target="_blank">19.2.3.3 Function.prototype.call(thisArg, ...args)</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply" rel="nofollow noopener" target="_blank">*<em>19.2.3.1 *</em> Function.prototype.apply(thisArg, argArray)</a></p>
+
+<h3>
+<span id="a-constructor-property" class="fragment"></span><a href="#a-constructor-property"><i class="fa fa-link"></i></a>A constructor property</h3>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kr">const</span> <span class="nx">c</span> <span class="o">=</span> <span class="s1">'constructor'</span>
+    <span class="nx">c</span><span class="p">[</span><span class="nx">c</span><span class="p">][</span><span class="nx">c</span><span class="p">](</span><span class="s1">'console.log("WTF?")'</span><span class="p">)()</span> <span class="c1">// &gt; WTF?</span>
+</pre></div></div>
+
+<p>順に見ていこう。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="c1">// 'constructor'という文字列を定義する</span>
+    <span class="kr">const</span> <span class="nx">c</span> <span class="o">=</span> <span class="s1">'constructor'</span>
+
+    <span class="c1">// cはstring型</span>
+    <span class="nx">c</span> <span class="c1">// -&gt; 'constructor'</span>
+
+    <span class="c1">// stringのコンストラクタ</span>
+    <span class="nx">c</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span> <span class="c1">// -&gt; [Function: String]</span>
+
+    <span class="c1">// コンストラクタのコンストラクタ</span>
+    <span class="nx">c</span><span class="p">[</span><span class="nx">c</span><span class="p">][</span><span class="nx">c</span><span class="p">]</span> <span class="c1">// -&gt; [Function: Function]</span>
+
+    <span class="c1">// Functionコンストラクタに引数を渡す</span>
+    <span class="nx">c</span><span class="p">[</span><span class="nx">c</span><span class="p">][</span><span class="nx">c</span><span class="p">](</span><span class="s1">'console.log("WTF?")'</span><span class="p">)</span> <span class="c1">// -&gt; [Function: anonymous]</span>
+
+    <span class="c1">// 即時関数で呼ぶ</span>
+    <span class="nx">c</span><span class="p">[</span><span class="nx">c</span><span class="p">][</span><span class="nx">c</span><span class="p">](</span><span class="s1">'console.log("WTF?")'</span><span class="p">)()</span> <span class="c1">// &gt; WTF?</span>
+</pre></div></div>
+
+<p><code>Object.prototype.constructor</code>は作成したインスタンスへの参照を返す。<br>
+文字列であればString、数値であればNumberといった具合だ。</p>
+
+<p><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor" rel="nofollow noopener" target="_blank">Object.prototype.constructor</a> at MDN<br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-object.prototype.constructor" rel="nofollow noopener" target="_blank">19.1.3.1 Object.prototype.constructor</a></p>
+
+<h3>
+<span id="object-as-a-key-of-objects-property" class="fragment"></span><a href="#object-as-a-key-of-objects-property"><i class="fa fa-link"></i></a>Object as a key of object's property</h3>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">{</span> <span class="p">[{}]</span><span class="o">:</span> <span class="p">{}</span> <span class="p">}</span> <span class="c1">// -&gt; { '[object Object]': {} }</span>
+</pre></div></div>
+
+<p>これは計算されたプロパティ名という記法だ。<br>
+<code>[]</code>にObjectを渡すと文字列に変換され、'[object Object]'というキー名になる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">({[{}]</span><span class="o">:</span><span class="p">{[{}]</span><span class="o">:</span><span class="p">{}}})[{}][{}]</span> <span class="c1">// -&gt; {}</span>
+
+    <span class="c1">// structure:</span>
+    <span class="c1">// {</span>
+    <span class="c1">//   '[object Object]': {</span>
+    <span class="c1">//     '[object Object]': {}</span>
+    <span class="c1">//   }</span>
+    <span class="c1">// }</span>
+</pre></div></div>
+
+<p>オブジェクトリテラルについては以下を参照。<br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer" rel="nofollow noopener" target="_blank">Object initializer</a> at MDN<br>
+<a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer" rel="nofollow noopener" target="_blank">12.2.6 Object Initializer</a></p>
+
+<h3>
+<span id="accessing-prototypes-with-__proto__" class="fragment"></span><a href="#accessing-prototypes-with-__proto__"><i class="fa fa-link"></i></a>Accessing prototypes with __proto__</h3>
+
+<p>知ってのとおり、プリミティブ型にプロトタイプはない。<br>
+だが__proto__でプロトタイプを取得できる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span> <span class="c1">// -&gt; null</span>
+</pre></div></div>
+
+<p>プリミティブ型のプロトタイプを呼ぼうとすると、ToObjectメソッドが自動的に呼ばれてラッパーオブジェクトになる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">__proto__</span> <span class="c1">// -&gt; [Number: 0]</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span> <span class="c1">// -&gt; {}</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span> <span class="c1">// -&gt; null</span>
+</pre></div></div>
+
+<p>__proto__の詳細については以下を参照。<br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-object.prototype.__proto__" rel="nofollow noopener" target="_blank">B.2.2.1 Object.prototype.proto</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-toobject" rel="nofollow noopener" target="_blank">7.1.13 ToObject(argument)</a></p>
+
+<h3>
+<span id="object" class="fragment"></span><a href="#object"><i class="fa fa-link"></i></a><code>${{Object}}</code>
+</h3>
+
+<p>以下の答えは？</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="sb">`</span><span class="si">${</span><span class="p">{</span><span class="nb">Object</span><span class="si">}</span><span class="sb">}`</span>
+</pre></div></div>
+
+<p>こうなる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="c1">// -&gt; '[object Object]'</span>
+</pre></div></div>
+
+<p>まずはObjectをショートハンド<code>{Object}</code>で定義する。<br>
+次にテンプレートリテラルに突っ込むことでtoStringメソッドが呼ばれ、文字列'[object Object]'になる。</p>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-template-literals" rel="nofollow noopener" target="_blank">12.2.9 Template Literals</a><br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer" rel="nofollow noopener" target="_blank">Object initializer</a> at MDN</p>
+
+<h3>
+<span id="destructuring-with-default-values" class="fragment"></span><a href="#destructuring-with-default-values"><i class="fa fa-link"></i></a>Destructuring with default values</h3>
+
+<p>yはいくつになるか。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kd">let</span> <span class="nx">x</span><span class="p">,</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">}</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span> <span class="p">};</span> <span class="nx">y</span><span class="p">;</span>
+</pre></div></div>
+
+<p>答えは1。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kd">let</span> <span class="nx">x</span><span class="p">,</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">}</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span> <span class="p">};</span> <span class="nx">y</span><span class="p">;</span>
+    <span class="c1">//  ↑       ↑           ↑    ↑</span>
+    <span class="c1">//  1       3           2    4</span>
+</pre></div></div>
+
+<p>1：xを定義。値は未定義。<br>
+2：xをオブジェクトのプロパティにする。<br>
+3：分割代入でプロパティxの値を取り出してyに代入する。未定義なのでデフォルト値1が使われる。<br>
+4：yの値を返す。</p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer" rel="nofollow noopener" target="_blank">Object initializer</a> at MDN</p>
+
+<h3>
+<span id="dots-and-spreading" class="fragment"></span><a href="#dots-and-spreading"><i class="fa fa-link"></i></a>Dots and spreading</h3>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">[...[...</span><span class="s1">'...'</span><span class="p">]].</span><span class="nx">length</span> <span class="c1">// -&gt; 3</span>
+</pre></div></div>
+
+<p>何故3か。<br>
+<a href="http://www.ecma-international.org/ecma-262/6.0/#sec-array-initializer" rel="nofollow noopener" target="_blank">スプレッド演算子</a>を使うと<code>@@iterator</code>メソッドが呼び出され、ループに使うイテレータが返される。<br>
+文字列のイテレータは、文字列を1文字ずつの配列にする。<br>
+文字列'...'は3文字であり、従って答えは3になる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">[...</span><span class="s1">'...'</span><span class="p">]</span>             <span class="c1">// -&gt; [ '.', '.', '.' ]</span>
+    <span class="p">[...[...</span><span class="s1">'...'</span><span class="p">]]</span>        <span class="c1">// -&gt; [ '.', '.', '.' ]</span>
+    <span class="p">[...[...</span><span class="s1">'...'</span><span class="p">]].</span><span class="nx">length</span> <span class="c1">// -&gt; 3</span>
+</pre></div></div>
+
+<p>もっと長くしても結果は同じになる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">[...</span><span class="s1">'...'</span><span class="p">]</span>                 <span class="c1">// -&gt; [ '.', '.', '.' ]</span>
+    <span class="p">[...[...</span><span class="s1">'...'</span><span class="p">]]</span>            <span class="c1">// -&gt; [ '.', '.', '.' ]</span>
+    <span class="p">[...[...[...</span><span class="s1">'...'</span><span class="p">]]]</span>       <span class="c1">// -&gt; [ '.', '.', '.' ]</span>
+    <span class="p">[...[...[...[...</span><span class="s1">'...'</span><span class="p">]]]]</span>  <span class="c1">// -&gt; [ '.', '.', '.' ]</span>
+</pre></div></div>
+
+<h3>
+<span id="labels" class="fragment"></span><a href="#labels"><i class="fa fa-link"></i></a>Labels</h3>
+
+<p>JavaScriptのラベルはあまり知られていないが、多言語とは異なる特徴を持っている。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nx">foo</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'first'</span><span class="p">);</span>
+      <span class="k">break</span> <span class="nx">foo</span><span class="p">;</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'second'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// &gt; first</span>
+    <span class="c1">// -&gt; undefined</span>
+</pre></div></div>
+
+<p>ラベル付きステートメントはbreakおよびcontinueと共に使う。<br>
+ラベルを用いて範囲を指定し、breakで実行を中断するか、continueで次のループに進むかを選択できる。<br>
+上記例では<code>console.log('first');</code>の後でbreakして実行を中断している。</p>
+
+<p><a href="https://tc39.github.io/ecma262/#sec-labelled-statements" rel="nofollow noopener" target="_blank">13.13 Labelled Statements</a><br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label" rel="nofollow noopener" target="_blank">Labeled statements</a> at MDN</p>
+
+<h3>
+<span id="nested-labels" class="fragment"></span><a href="#nested-labels"><i class="fa fa-link"></i></a>Nested labels</h3>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="nx">a</span><span class="o">:</span> <span class="nx">b</span><span class="o">:</span> <span class="nx">c</span><span class="o">:</span> <span class="nx">d</span><span class="o">:</span> <span class="nx">e</span><span class="o">:</span> <span class="nx">f</span><span class="o">:</span> <span class="nx">g</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// -&gt; 5</span>
+</pre></div></div>
+
+<p>ラベルはネストできる。<br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-comma-operator" rel="nofollow noopener" target="_blank">12.16 Comma Operator (,)</a></p>
+
+<h3>
+<span id="insidious-trycatch" class="fragment"></span><a href="#insidious-trycatch"><i class="fa fa-link"></i></a>Insidious try..catch</h3>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">try</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">3</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">})()</span>
+</pre></div></div>
+
+<p>答えは3。<br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-try-statement" rel="nofollow noopener" target="_blank">13.15 The try Statement</a></p>
+
+<h3>
+<span id="is-this-multiple-inheritance" class="fragment"></span><a href="#is-this-multiple-inheritance"><i class="fa fa-link"></i></a>Is this multiple inheritance?</h3>
+
+<p>これは多重継承ではないか？</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="k">new</span> <span class="p">(</span><span class="kr">class</span> <span class="nx">F</span> <span class="kr">extends</span> <span class="p">(</span><span class="nb">String</span><span class="p">,</span> <span class="nb">Array</span><span class="p">)</span> <span class="p">{</span> <span class="p">})</span> <span class="c1">// -&gt; F []</span>
+</pre></div></div>
+
+<p>いいえ。</p>
+
+<p>注目する点は<code>(String, Array)</code>だ。<br>
+グループ化演算子は最後の値を返すので、<code>(String, Array)</code>の値は<code>Array</code>になる。<br>
+従って、このクラスは単に<code>Array</code>を継承しているだけだ。</p>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-class-definitions" rel="nofollow noopener" target="_blank">14.5 Class Definitions</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-comma-operator" rel="nofollow noopener" target="_blank">12.16 Comma Operator (,)</a></p>
+
+<h3>
+<span id="a-generator-which-yields-itself" class="fragment"></span><a href="#a-generator-which-yields-itself"><i class="fa fa-link"></i></a>A generator which yields itself</h3>
+
+<p>自分自身を返すジェネレータを考えてみる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">(</span><span class="kd">function</span><span class="o">*</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span> <span class="k">yield</span> <span class="nx">f</span> <span class="p">})().</span><span class="nx">next</span><span class="p">()</span>
+    <span class="c1">// -&gt; { value: [GeneratorFunction: f], done: false }</span>
+</pre></div></div>
+
+<p>見てのとおり、返ってくるのは値fを持つオブジェクトだ。<br>
+つまり、こうなる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">(</span><span class="kd">function</span><span class="o">*</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span> <span class="k">yield</span> <span class="nx">f</span> <span class="p">})().</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">().</span><span class="nx">next</span><span class="p">()</span>
+    <span class="c1">// -&gt; { value: [GeneratorFunction: f], done: false }</span>
+
+    <span class="c1">// and again</span>
+    <span class="p">(</span><span class="kd">function</span><span class="o">*</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span> <span class="k">yield</span> <span class="nx">f</span> <span class="p">})().</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">().</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">().</span><span class="nx">next</span><span class="p">()</span>
+    <span class="c1">// -&gt; { value: [GeneratorFunction: f], done: false }</span>
+
+    <span class="c1">// and again</span>
+    <span class="p">(</span><span class="kd">function</span><span class="o">*</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span> <span class="k">yield</span> <span class="nx">f</span> <span class="p">})().</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">().</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">().</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">().</span><span class="nx">next</span><span class="p">()</span>
+    <span class="c1">// -&gt; { value: [GeneratorFunction: f], done: false }</span>
+</pre></div></div>
+
+<p>このようになる理由は以下を参照。<br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-control-abstraction-objects" rel="nofollow noopener" target="_blank">25 Control Abstraction Objects</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-generator-objects" rel="nofollow noopener" target="_blank">25.3 Generator Objects</a></p>
+
+<h3>
+<span id="a-class-of-class" class="fragment"></span><a href="#a-class-of-class"><i class="fa fa-link"></i></a>A class of class</h3>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">(</span><span class="k">typeof</span> <span class="p">(</span><span class="k">new</span> <span class="p">(</span><span class="kr">class</span> <span class="p">{</span> <span class="kr">class</span> <span class="p">()</span> <span class="p">{}</span> <span class="p">})))</span> <span class="c1">// -&gt; 'object'</span>
+</pre></div></div>
+
+<p>クラス内でクラスを宣言しており、エラーになるはずなのに文字列'object'が返ってくる。</p>
+
+<p>ES5以降、キーワードもプロパティ名として使用することができる。<br>
+従って以下の文は有効だ。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kr">const</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="kr">class</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span>
+    <span class="p">};</span>
+</pre></div></div>
+
+<p>さて、ES6においてメソッドの短縮構文が導入された。<br>
+つまり上記はこう書ける。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kr">class</span> <span class="p">{</span>
+      <span class="kr">class</span><span class="p">()</span> <span class="p">{}</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<p>これはただのクラスであり、従ってその型は'object'になる。</p>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-method-definitions" rel="nofollow noopener" target="_blank">14.3 Method Definitions</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-class-definitions" rel="nofollow noopener" target="_blank">14.5 Class Definitions</a></p>
+
+<h3>
+<span id="non-coercible-objects" class="fragment"></span><a href="#non-coercible-objects"><i class="fa fa-link"></i></a>Non-coercible objects</h3>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-well-known-symbols" rel="nofollow noopener" target="_blank">well-known symbols</a>の型強制を回避する。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kd">function</span> <span class="nx">nonCoercible</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">'nonCoercible should not be called with null or undefined'</span><span class="p">)</span>
+      <span class="p">}</span>
+
+      <span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span>
+
+      <span class="nx">res</span><span class="p">[</span><span class="nx">Symbol</span><span class="p">.</span><span class="nx">toPrimitive</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">'Trying to coerce non-coercible object'</span><span class="p">)</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="nx">res</span>
+    <span class="p">}</span>
+</pre></div></div>
+
+<p>こうやって使える。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="c1">// objects</span>
+    <span class="kr">const</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">nonCoercible</span><span class="p">({</span><span class="nx">foo</span><span class="o">:</span> <span class="s1">'foo'</span><span class="p">})</span>
+
+    <span class="nx">foo</span> <span class="o">*</span> <span class="mi">10</span>      <span class="c1">// -&gt; TypeError: Trying to coerce non-coercible object</span>
+    <span class="nx">foo</span> <span class="o">+</span> <span class="s1">'evil'</span>  <span class="c1">// -&gt; TypeError: Trying to coerce non-coercible object</span>
+
+    <span class="c1">// strings</span>
+    <span class="kr">const</span> <span class="nx">bar</span> <span class="o">=</span> <span class="nx">nonCoercible</span><span class="p">(</span><span class="s1">'bar'</span><span class="p">)</span>
+
+    <span class="nx">bar</span> <span class="o">+</span> <span class="s1">'1'</span>                 <span class="c1">// -&gt; TypeError: Trying to coerce non-coercible object</span>
+    <span class="nx">bar</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>        <span class="c1">// -&gt; bar1</span>
+    <span class="nx">bar</span> <span class="o">===</span> <span class="s1">'bar'</span>             <span class="c1">// -&gt; false</span>
+    <span class="nx">bar</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="o">===</span> <span class="s1">'bar'</span>  <span class="c1">// -&gt; true</span>
+    <span class="nx">bar</span> <span class="o">==</span> <span class="s1">'bar'</span>              <span class="c1">// -&gt; TypeError: Trying to coerce non-coercible object</span>
+
+    <span class="c1">// numbers</span>
+    <span class="kr">const</span> <span class="nx">baz</span> <span class="o">=</span> <span class="nx">nonCoercible</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="nx">baz</span> <span class="o">==</span> <span class="mi">1</span>             <span class="c1">// -&gt; TypeError: Trying to coerce non-coercible object</span>
+    <span class="nx">baz</span> <span class="o">===</span> <span class="mi">1</span>            <span class="c1">// -&gt; false</span>
+    <span class="nx">baz</span><span class="p">.</span><span class="nx">valueOf</span><span class="p">()</span> <span class="o">===</span> <span class="mi">1</span>  <span class="c1">// -&gt; true</span>
+</pre></div></div>
+
+<p><a href="https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197" rel="nofollow noopener" target="_blank">A gist by Sergey Rubanov</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-well-known-symbols" rel="nofollow noopener" target="_blank">6.1.5.1 Well-Known Symbols</a></p>
+
+<h3>
+<span id="tricky-arrow-functions" class="fragment"></span><a href="#tricky-arrow-functions"><i class="fa fa-link"></i></a>Tricky arrow functions</h3>
+
+<p>アロー関数がある。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kd">let</span> <span class="nx">f</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="mi">10</span>
+    <span class="nx">f</span><span class="p">()</span> <span class="c1">// -&gt; 10</span>
+</pre></div></div>
+
+<p>だが下の例は思った通りに動かない。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kd">let</span> <span class="nx">f</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{}</span>
+    <span class="nx">f</span><span class="p">()</span> <span class="c1">// -&gt; undefined</span>
+</pre></div></div>
+
+<p><code>{}</code>を期待したのに<code>undefined</code>が返ってきた。<br>
+中括弧はアロー関数の構文の一部と見做されるため、関数の本体がなくなる。</p>
+
+<h3>
+<span id="arguments-and-arrow-functions" class="fragment"></span><a href="#arguments-and-arrow-functions"><i class="fa fa-link"></i></a>arguments and arrow functions</h3>
+
+<p>引数のある関数だ。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kd">let</span> <span class="nx">f</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="k">return</span> <span class="nx">arguments</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">f</span><span class="p">(</span><span class="s1">'a'</span><span class="p">);</span> <span class="c1">// -&gt; { '0': 'a' }</span>
+</pre></div></div>
+
+<p>アロー関数にしよう。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kd">let</span> <span class="nx">f</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span>  <span class="nx">arguments</span><span class="p">;</span>
+    <span class="nx">f</span><span class="p">(</span><span class="s1">'a'</span><span class="p">);</span> <span class="c1">// -&gt; Uncaught ReferenceError: arguments is not defined</span>
+</pre></div></div>
+
+<p>アロー関数は文字数が短く、<code>this</code>をレキシカルに固定できる、これまでの<code>function</code>の短縮構文だ。<br>
+ところでアロー関数は引数を<code>arguments</code>にバインドしない。<br>
+かわりにスプレッド演算子で引数を受け取る必要がある。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kd">let</span> <span class="nx">f</span> <span class="o">=</span> <span class="p">(...</span><span class="nx">args</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">args</span><span class="p">;</span>
+    <span class="nx">f</span><span class="p">(</span><span class="s1">'a'</span><span class="p">);</span>
+</pre></div></div>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions" rel="nofollow noopener" target="_blank">Arrow functions</a> at MDN.</p>
+
+<h3>
+<span id="tricky-return" class="fragment"></span><a href="#tricky-return"><i class="fa fa-link"></i></a>Tricky return</h3>
+
+<p>区別が付くだろうか。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span>
+      <span class="p">{</span>
+        <span class="nx">b</span> <span class="o">:</span> <span class="mi">10</span>
+      <span class="p">}</span>
+    <span class="p">})()</span> <span class="c1">// -&gt; undefined</span>
+
+    <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">b</span> <span class="o">:</span> <span class="mi">10</span>
+      <span class="p">}</span>
+    <span class="p">})()</span> <span class="c1">// -&gt; { b: 10 }</span>
+</pre></div></div>
+
+<p>これは自動セミコロン挿入機能によるものである。<br>
+改行の後には、大抵セミコロンが自動的に挿入されてしまう。<br>
+前者の例ではreturnと<code>{</code>の間にセミコロンが入り、関数はundefinedを返し、オブジェクトリテラルが評価されることはない。</p>
+
+<p><a href="https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion" rel="nofollow noopener" target="_blank">11.9.1 Rules of Automatic Semicolon Insertion</a><br>
+<a href="https://www.ecma-international.org/ecma-262/#sec-return-statement" rel="nofollow noopener" target="_blank">13.10 The return Statement</a></p>
+
+<h3>
+<span id="accessing-object-properties-with-arrays" class="fragment"></span><a href="#accessing-object-properties-with-arrays"><i class="fa fa-link"></i></a>Accessing object properties with arrays</h3>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">property</span><span class="o">:</span> <span class="mi">1</span> <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'property'</span><span class="p">]</span>
+
+    <span class="nx">obj</span><span class="p">[</span><span class="nx">array</span><span class="p">]</span> <span class="c1">// -&gt; 1</span>
+</pre></div></div>
+
+<p>多次元配列にしたらどうなる？</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="kd">var</span> <span class="nx">z</span> <span class="o">=</span> <span class="mi">3</span>
+
+    <span class="nx">map</span><span class="p">[[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="nx">map</span><span class="p">[[</span><span class="nx">x</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">true</span>
+
+    <span class="nx">map</span><span class="p">[</span><span class="s2">"1,2,3"</span><span class="p">]</span>  <span class="c1">// -&gt; true</span>
+    <span class="nx">map</span><span class="p">[</span><span class="s2">"11,2,3"</span><span class="p">]</span> <span class="c1">// -&gt; true</span>
+</pre></div></div>
+
+<p>ブラケット記法<code>[]</code>は、渡された値をtoStringに通す。<br>
+配列に要素がひとつしかない場合、その結果は要素だけをtoStringしたのと同じ結果になる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="p">[</span><span class="s1">'property'</span><span class="p">].</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// -&gt; 'property'</span>
+</pre></div></div>
+
+<h3>
+<span id="null-and-relational-operators" class="fragment"></span><a href="#null-and-relational-operators"><i class="fa fa-link"></i></a>Null and Relational Operators</h3>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kc">null</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// false</span>
+    <span class="kc">null</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// false</span>
+
+    <span class="kc">null</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// true</span>
+</pre></div></div>
+
+<p>簡単にまとめると、『もし<code>null&lt;0</code>が<code>false</code>であれば、<code>null&gt;=0</code>は<code>true</code>である』<br>
+詳しい説明は<a href="https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274" rel="nofollow noopener" target="_blank">ここ</a>にある。</p>
+
+<h3>
+<span id="numbertofixed-display-different-numbers" class="fragment"></span><a href="#numbertofixed-display-different-numbers"><i class="fa fa-link"></i></a>Number.toFixed() display different numbers</h3>
+
+<p>Number.toFixedはブラウザによって異なる結果になる。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="mf">0.7875</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> 
+    <span class="c1">// FireFox: -&gt; 0.787</span>
+    <span class="c1">// Chrome: -&gt; 0.787</span>
+    <span class="c1">// IE11: -&gt; 0.788</span>
+<span class="mf">0.7876</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="c1">// FireFox: -&gt; 0.788</span>
+    <span class="c1">// Chrome: -&gt; 0.788</span>
+    <span class="c1">// IE11: -&gt; 0.788</span>
+</pre></div></div>
+
+<p><a href="https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed" rel="nofollow noopener" target="_blank">20.1.3.3 Number.prototype.toFixed (fractionDigits)</a></p>
+
+<h2>
+<span id="other-resources" class="fragment"></span><a href="#other-resources"><i class="fa fa-link"></i></a>Other resources</h2>
+
+<h3>
+<span id="wtfjscom" class="fragment"></span><a href="#wtfjscom"><i class="fa fa-link"></i></a><a href="http://wtfjs.com/" rel="nofollow noopener" target="_blank">wtfjs.com</a>
+</h3>
+
+<p>その不規則で矛盾に満ちていて直感的でないWeb言語について。</p>
+
+<h3>
+<span id="wat" class="fragment"></span><a href="#wat"><i class="fa fa-link"></i></a><a href="https://www.destroyallsoftware.com/talks/wat" rel="nofollow noopener" target="_blank">Wat</a>
+</h3>
+
+<p>Gary Bernhardtが2012年のCodeMashで発表したライトニングトーク。</p>
+
+<h3>
+<span id="what-the-javascript" class="fragment"></span><a href="#what-the-javascript"><i class="fa fa-link"></i></a><a href="https://www.youtube.com/watch?v=2pL28CcEijU" rel="nofollow noopener" target="_blank">What the... JavaScript?</a>
+</h3>
+
+<p>Kyle SimpsonsによるJavaScriptの素敵な仕様についてのトーク。<br>
+彼は、クリーンでエレガントで可読性の高いコードを作成し、オープンソースコミュニティに貢献できるよう人々を導きたいと考えている。</p>
+
+<h2>
+<span id="license" class="fragment"></span><a href="#license"><i class="fa fa-link"></i></a>License</h2>
+
+<p><a href="http://www.wtfpl.net/" rel="nofollow noopener" target="_blank">WTFPL 2.0</a>ライセンスだ。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>知らない仕様や、意味のわからない動作がたくさんあった。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>rana_kualuさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>23</kbd>
+		<a target="_blank" href="https://qiita.com/rana_kualu/items/24f5c037056089ff161a">Nullの奇妙な比較、あるいはJavaScriptの仕様を読むことが重要な理由</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-12 20:00:06</center>
+	</td>
+	<td style="width:200px;">
+		@rana_kualu<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/26088/profile-images/1473684492">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[NULL]</b> <b>[戸田奈津子訳]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>以下は<a href="https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274" rel="nofollow noopener" target="_blank">Javascript : The Curious Case of Null &gt;= 0</a>の戸田奈津子訳です。</p>
+
+<h1>
+<span id="why-its-important-to-read-the-javascript-spec" class="fragment"></span><a href="#why-its-important-to-read-the-javascript-spec"><i class="fa fa-link"></i></a>Why it's important to read the Javascript Spec</h1>
+
+<p><a href="https://camo.qiitausercontent.com/4eabc6b91eb69f72213f8dd4216344eaca79b2b0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f62343462663035362d656236392d616631332d316337312d3862653730633632303466392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/4eabc6b91eb69f72213f8dd4216344eaca79b2b0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f62343462663035362d656236392d616631332d316337312d3862653730633632303466392e706e67" alt="1-F-EDLK-OugJ_4KOgtJqnPA.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/26088/b44bf056-eb69-af13-1c71-8be70c6204f9.png"></a></p>
+
+<p>JavaScriptの速成コースで作ったソースをコンパイルしていたところ、nullの挙動について面白い現象を発見したので周囲に尋ねてみた。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kc">null</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// false</span>
+    <span class="kc">null</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// false</span>
+
+    <span class="kc">null</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// true</span>
+</pre></div></div>
+
+<p>ちょっと待って、これは何？<br>
+全くもってナンセンスだ。</p>
+
+<p>いったいどのような値が、0より大きくなく、0と等しくもなく、0と等しいかそれより大きい状態になるというのだ？</p>
+
+<p>当初、私はこれはJavaScriptだから仕方ないとスルーしていたが、しかしこの動作はとても奇妙で、ついつい興味をそそられてしまった。<br>
+null型とその扱いにどのような関係があるのか、また関係性と等価性のチェックはどのように行われるのだろうか？</p>
+
+<p>そこで、私はこの現象の根本的原因を突き止めるため、JavaScriptの信頼できる唯一の情報源を探すことにした。<br>
+つまり、JavaScriptの仕様だ。</p>
+
+<p>そして私は幻覚的な体験を経験したのだった。</p>
+
+<h1>
+<span id="the-abstract-relational-comparison-algorithm" class="fragment"></span><a href="#the-abstract-relational-comparison-algorithm"><i class="fa fa-link"></i></a>The Abstract Relational Comparison Algorithm</h1>
+
+<p>まずは比較アルゴリズムを見てみよう。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kc">null</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// false</span>
+</pre></div></div>
+
+<p>仕様によると、演算子<code>&gt;</code>と<code>&lt;</code>は、<a href="http://interglacial.com/javascript_spec/a-11.html#a-11.8.5" rel="nofollow noopener" target="_blank">Abstract Relational Comparison Algorithm</a>というアルゴリズムに従って文が<code>true</code>か<code>false</code>かを返す。<br>
+以下は<code>x &lt; y</code>の比較アルゴリズムである。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>1. ToPrimitive(x, Number)を呼んでxをプリミティブ型にする。
+2. ToPrimitive(y, Number)を呼んでyをプリミティブ型にする。
+3. xの型とyの型が共にStringであれば、16に進む。
+4. ToNumber(x)を呼んでxをNumber型にする。
+5. ToNumber(y)を呼んでyをNumber型にする。
+6. xがNaNであれば`undefined`を返して終了。
+7. yがNaNであれば`undefined`を返して終了。
+8. xとyの値が同じであればfalseを返して終了。
+9. xが+0でyが-0であればfalseを返して終了。
+10. xが-0でyが+0であればfalseを返して終了。
+11. xが+∞であればfalseを返して終了。
+12. yが+∞であればtrueを返して終了。
+13. yが-∞であればfalseを返して終了。
+14. xが-∞であればtrueを返して終了。
+15. xの数値がyの数値より小さければtrueを返して終了。それ以外ならfalseを返して終了。この時点でxy両方とも無限大でも0でもない値であることが保証されている。
+16. yの値がxの値のprefixである場合、falseを返して終了。(文字列qが文字列pと文字列rをk連結した結果である場合、pをqのprefixと呼ぶ。rは空文字の可能性もあり、任意の文字列はそれ自身のprefixである。)
+17. xの値がyの値のprefixである場合、trueを返して終了。
+18. xとyの文字列を順に見ていき、最初に異なる文字が現れる位置kを見付ける。(両者がそれぞれのprefixではないので、そのような数kは必ず存在する。)
+19. xのk番目の文字のコードポイントの値をmとする。
+20. yのk番目の文字のコードポイントの値をnとする。
+21. m &lt; nであればtrueを返す。それ以外ならfalseを返す。
+</pre></div></div>
+
+<p>今回の文<code>null &gt; 0</code>で考えてみよう。<br>
+ステップ1と2で、nullと0それぞれにToPrimitiveを呼んでプリミティブ型に変換しようとしている。<br>
+ToPrimitiveの結果は以下のようになる。</p>
+
+<table>
+<thead>
+<tr>
+<th>入力の型</th>
+<th>出力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Undefined</td>
+<td>変更なし</td>
+</tr>
+<tr>
+<td>Null</td>
+<td>変更なし</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>変更なし</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>変更なし</td>
+</tr>
+<tr>
+<td>String</td>
+<td>変更なし</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>デフォルト値を返す。Objectのデフォルト値はobject型の内部メソッドDefaultValueによって決められ、第2引数は無視される。</td>
+</tr>
+</tbody>
+</table>
+
+<p>変換テーブルに従うと、nullも0もどちらも変換されない。<br>
+よってステップ3には当てはまらず、ステップ4と5で両辺がNumberへと変換される。<br>
+Numberへの変換は以下の表のようになっている。</p>
+
+<table>
+<thead>
+<tr>
+<th>入力の型</th>
+<th>出力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Undefined</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>Null</td>
+<td>+0</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>変更なし</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>trueなら1、falseなら+0</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+
+<p>StringとObjectは今回無関係であるため省略した。<br>
+詳細は<a href="http://interglacial.com/javascript_spec/a-9.html#a-9.3" rel="nofollow noopener" target="_blank">ここ</a>から確認できる。</p>
+
+<p>nullは+0となり、0は0のままになる。<br>
+どちらの値もNaNではないのでステップ6と7はスキップする。<br>
+ステップ8で+0と0は等しいと評価され、アルゴリズムはfalseを返すこととなる。<br>
+以上より、</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kc">null</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// false</span>
+    <span class="kc">null</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// false</span>
+</pre></div></div>
+
+<p>両方ともfalseになる。</p>
+
+<h1>
+<span id="the-abstract-equality-comparison-algorithm" class="fragment"></span><a href="#the-abstract-equality-comparison-algorithm"><i class="fa fa-link"></i></a>The Abstract Equality Comparison Algorithm</h1>
+
+<p>次に進もう。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kc">null</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//false</span>
+</pre></div></div>
+
+<p>これは興味深い結果だ。<br>
+<code>==</code>演算子は<a href="http://interglacial.com/javascript_spec/a-11.html#a-11.9.3" rel="nofollow noopener" target="_blank">Abstract Equality Comparison Algorithm</a>というアルゴリズムに従い、<code>true</code>か<code>false</code>を返す。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>1. xとyの型が異なる場合、14に進む。
+2. xの型がundefinedであればtrueを返して終了。
+3. xの型がNullであればtrueを返して終了。
+4. xの型がNumberでない場合、11に進む。
+5. xがNaNであればfalseを返して終了。
+6. yがNaNであればfalseを返して終了。
+7. xとyが同じ数値であればtrueを返して終了。
+8. xが+0でyが-0であればtrueを返して終了。
+9. xが-0でyが+0であればtrueを返して終了。
+10. falseを返して終了。
+11. xの型がStringである場合、xとyの文字列が全く同じであればtrueを返して終了。それ以外ならfalseを返して終了。
+12. xの型がBooleanである場合、xとyの両方がtrueか、両方がfalseであればtrueを返して終了。それ以外ならfalseを返して終了。
+13. xとyが同じObjectを参照しているか、結合オブジェクトである場合、trueを返して終了。それ以外ならfalseを返して終了。
+14. xがnullでyがundefinedであればtrueを返して終了。
+15. xがundefinedでyがnullであればtrueを返して終了。
+16. xの型がNumberでyの型がStringの場合、x==ToNumber(y)の結果を返して終了。
+17. xの型がStringでyの型がNumberの場合、ToNumber(x)==yの結果を返して終了。
+18. xの型がBooleanの場合、ToNumber(x)==yの結果を返して終了。
+19. yの型がBooleanの場合、x==ToNumber(y)の結果を返して終了。
+20. xの型がStringかNumberでyの型がObjectの場合、x==ToPrimitive(y)の結果を返して終了。
+21. xの型がObjectでyの型がStringかNumberの場合、ToPrimitive(x)==yの結果を返して終了。
+22. falseを返して終了。
+</pre></div></div>
+
+<p>nullと0の比較では、まず型が異なるためステップ1からステップ14に飛ぶ。<br>
+nullの型はNullなので、ステップ14から21までは全て当てはまらない。<br>
+最終的にステップ22まで進み、結果はデフォルト値のfalseとなる。<br>
+従って、</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kc">null</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//false</span>
+</pre></div></div>
+
+<p>となる。</p>
+
+<h1>
+<span id="the-greater-than-or-equal-operator--" class="fragment"></span><a href="#the-greater-than-or-equal-operator--"><i class="fa fa-link"></i></a>The Greater-than-or-equal Operator (&gt;= )</h1>
+
+<p>最後に問題のこれをチェックしていこう。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kc">null</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// true</span>
+</pre></div></div>
+
+<p>これは仕様による理解を完全に放棄したところだ。</p>
+
+<p>高度に政治的な判断によると、関係演算子<code>&gt;=</code>は以下のように評価される。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kc">null</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="nx">がfalseであれば</span><span class="err">、</span><span class="kc">null</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="nx">がtrueになる</span>
+</pre></div></div>
+
+<p>Really？</p>
+
+<p>従って、</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kc">null</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// true</span>
+</pre></div></div>
+
+<p>実のところ、この結果は理に叶っている。<br>
+数学的には、2数xyがあって、xがyより小さくないのであれば、xはyより大きいかyと同じでないといけないからだ。</p>
+
+<p>この式の評価は、最適化のため以下のように行われたのではないかと考えている。<br>
+まず<code>x&gt;y</code>を評価する。<br>
+これがfalseだった場合、次に<code>x==y</code>を評価する。<br>
+それでもなければ最後に<code>x&lt;y</code>を評価しなければならないところだが、<code>x&gt;y</code>の結果から即trueを返しているのではないか。</p>
+
+<p>( <code>&gt;=</code>演算子の正確な評価は、<a href="http://interglacial.com/javascript_spec/a-11.html#a-11.8.4" rel="nofollow noopener" target="_blank">ここ</a>で見付けることができる )</p>
+
+<p>・・・</p>
+
+<p>このように些細な疑問でも、答えを調べていく過程でいくつもの新しい発見がありました。<br>
+この記事が貴方の助けになることを願っています。</p>
+
+<p>・・・</p>
+
+<p>もっと助けが必要？<br>
+興味があるなら<a href="https://twitter.com/AbinavSeelan" rel="nofollow noopener" target="_blank">Twitter</a>や<a href="https://github.com/abinavseelan/" rel="nofollow noopener" target="_blank">Github</a>で活動しています。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p><a href="http://interglacial.com/javascript_spec/a-11.html#a-11.8.4" rel="nofollow noopener" target="_blank"><code>&gt;=</code>の評価</a>の項目には、<br>
+【<code>x&lt;y</code>がtrueかundefinedならfalseを返し、それ以外ならtrueを返す】<br>
+つまり<code>x&lt;y</code>と<code>x&gt;=y</code>は反対の値になる、と書かれているように見えるのだが違うのだろうか。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span>    <span class="kc">null</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// false</span>
+    <span class="kc">null</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// false</span>
+    <span class="kc">null</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// false</span>
+
+    <span class="kc">null</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// true</span>
+    <span class="kc">null</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// true</span>
+</pre></div></div>
+
+<p>Oh.</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>rana_kualuさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>22</kbd>
+		<a target="_blank" href="https://qiita.com/rana_kualu/items/2eb626bd48c3b891a49f">CSSの便利なセレクタ10選</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-11 19:45:56</center>
+	</td>
+	<td style="width:200px;">
+		@rana_kualu<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/26088/profile-images/1473684492">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[CSS]</b> <b>[戸田奈津子訳]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>以下は<a href="http://cssmenumaker.com/" rel="nofollow noopener" target="_blank">CSS MENU MAKER</a>というメニューCSS作成サイト内にあるブログ、<a href="http://cssmenumaker.com/blog/10-handy-css-selectors/" rel="nofollow noopener" target="_blank">10 Handy CSS Selectors</a>の戸田奈津子訳です。<br>
+いつも以上に意訳というか適当訳多め。</p>
+
+<h1>
+<span id="10-handy-css-selectors" class="fragment"></span><a href="#10-handy-css-selectors"><i class="fa fa-link"></i></a>10 Handy CSS Selectors</h1>
+
+<p>空の要素、特定の要素、または任意の要素をターゲットにできる強力なCSSセレクタのことを知っていますか？<br>
+経験豊富なフロントエンド開発者は皆知っています。<br>
+古い開発者はこれらの使用を嫌がるかもしれません。<br>
+しかしブラウザの開発はこんにち益々加速しており、今更使用を躊躇するべきではありません。<br>
+上記を念頭に置いて、今すぐ使い始めることができる便利なセレクタを10種類、以下に用意しました。<br>
+古のIEはサポートしていませんが、そのために<a href="http://selectivizr.com/" rel="nofollow noopener" target="_blank">Polyfill</a>というものが存在します。</p>
+
+<h2>
+<span id="" class="fragment"></span><a href="#"><i class="fa fa-link"></i></a>+</h2>
+
+<p>ある要素の直後に存在する要素だけを装飾したい、そのような場合は隣接 しぶりんセレクタ ( Adjacent Sibling Selector ) の出番です。<br>
+たとえば、入力欄にカーソルを置いたときにツールチップを表示させることができます。</p>
+
+<div class="code-frame" data-lang="css">
+<div class="code-lang"><span class="bold">CSS</span></div>
+<div class="highlight"><pre><span></span>    <span class="nt">input</span> <span class="o">+</span> <span class="nt">span</span> <span class="p">{</span>  
+      <span class="k">opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">0.3</span><span class="kt">s</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nt">input</span><span class="p">:</span><span class="nd">hover</span> <span class="o">+</span> <span class="nt">span</span> <span class="p">{</span>  
+      <span class="k">opacity</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">padding-left</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="html">
+<div class="code-lang"><span class="bold">HTML</span></div>
+<div class="highlight"><pre><span></span>    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">"Type here"</span> <span class="p">/&gt;&lt;</span><span class="nt">span</span><span class="p">&gt;</span>I'm a tooltip<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>  
+</pre></div>
+</div>
+
+<p>このようになります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/b74fba6dc292b82db4c98841717c778a65c6e3b1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f39383736313233312d383066632d346564632d396530302d3161303633366238643232392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b74fba6dc292b82db4c98841717c778a65c6e3b1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f39383736313233312d383066632d346564632d396530302d3161303633366238643232392e706e67" alt="01.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/26088/98761231-80fc-4edc-9e00-1a0636b8d229.png"></a></p>
+
+<h2>
+<span id="-1" class="fragment"></span><a href="#-1"><i class="fa fa-link"></i></a>~</h2>
+
+<p>直後のひとつだけではなく、当てはまる要素を全て選択するためには、代わりに一般 しぶりんセレクタ ( General Sibling Selector ) を使用します。<br>
+これによって、ある要素"より後ろ"にある要素の全てを選択することができます。<br>
+ある要素"より前"にある要素を選択するセレクタはありません。</p>
+
+<div class="code-frame" data-lang="css">
+<div class="code-lang"><span class="bold">CSS</span></div>
+<div class="highlight"><pre><span></span>    <span class="nt">input</span> <span class="o">~</span> <span class="nt">span</span> <span class="p">{</span>  
+      <span class="k">opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">0.3</span><span class="kt">s</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nt">input</span><span class="p">:</span><span class="nd">hover</span> <span class="o">~</span> <span class="nt">span</span> <span class="p">{</span>  
+      <span class="k">opacity</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">padding-left</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="html">
+<div class="code-lang"><span class="bold">HTML</span></div>
+<div class="highlight"><pre><span></span>    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">"Type here"</span> <span class="p">/&gt;&lt;</span><span class="nt">span</span><span class="p">&gt;</span>★<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;</span><span class="nt">span</span><span class="p">&gt;</span>★<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;</span><span class="nt">span</span><span class="p">&gt;</span>★<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>  
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/ce92bbdb48a5fed19545ccc6fdba37366643fe38/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f36656238363134662d383237312d346332632d326234642d3033623365306465613863332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ce92bbdb48a5fed19545ccc6fdba37366643fe38/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f36656238363134662d383237312d346332632d326234642d3033623365306465613863332e706e67" alt="02.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/26088/6eb8614f-8271-4c2c-2b4d-03b3e0dea8c3.png"></a></p>
+
+<h2>
+<span id="-2" class="fragment"></span><a href="#-2"><i class="fa fa-link"></i></a>*</h2>
+
+<p>全称セレクタ ( Universal Selector ) は、文字通り全ての要素に適用されるので、使用には注意してください。<br>
+今日ではその主な用途は<a href="http://paulirish.com/2012/box-sizing-border-box-ftw/" rel="nofollow noopener" target="_blank">border-box</a>を適用するためのものですが、他にも<a href="http://css-tricks.com/things-it-might-be-funuseful-to-try-the-universal-selector-on/" rel="nofollow noopener" target="_blank">楽しい使い方</a>が幾つか存在します。</p>
+
+<div class="code-frame" data-lang="css">
+<div class="code-lang"><span class="bold">CSS</span></div>
+<div class="highlight"><pre><span></span>    <span class="o">*</span> <span class="p">{</span>
+      <span class="kp">-moz-</span><span class="k">box-sizing</span><span class="p">:</span> <span class="kc">border-box</span><span class="p">;</span>
+      <span class="kp">-webkit-</span><span class="k">box-sizing</span><span class="p">:</span> <span class="kc">border-box</span><span class="p">;</span>
+      <span class="k">box-sizing</span><span class="p">:</span> <span class="kc">border-box</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="attr" class="fragment"></span><a href="#attr"><i class="fa fa-link"></i></a>[attr]</h2>
+
+<p>おそらく普段はclassやidでのセレクタをよく使っていることでしょうが、要素の属性でもセレクトできることを知っていますか？<br>
+属性セレクタ ( Attribute Selector ) の最もよく見かける使い方は<code>input type</code>ですが、それ以外の任意の属性、またHTML5の<code>data-*</code>属性を使うこともできます。<br>
+さらに、特定の単語で始まる場合など、属性値に対して<a href="https://developer.mozilla.org/en-US/docs/CSS/Attribute_selectors" rel="nofollow noopener" target="_blank">フィルタリングを行う</a>ことも可能です。</p>
+
+<div class="code-frame" data-lang="css">
+<div class="code-lang"><span class="bold">CSS</span></div>
+<div class="highlight"><pre><span></span>    <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="nt">text</span><span class="o">]</span> <span class="p">{</span>  
+      <span class="k">border-color</span><span class="p">:</span> <span class="kc">green</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="nt">password</span><span class="o">]</span> <span class="p">{</span>  
+      <span class="k">border-color</span><span class="p">:</span> <span class="kc">blue</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/c6a9138478469a3d3fa1cf393d2bd8404bc92caf/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f30353739373632652d363162302d646537362d383635642d6333623632396433623736622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/c6a9138478469a3d3fa1cf393d2bd8404bc92caf/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f30353739373632652d363162302d646537362d383635642d6333623632396433623736622e706e67" alt="03.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/26088/0579762e-61b0-de76-865d-c3b629d3b76b.png"></a></p>
+
+<h2>
+<span id="empty" class="fragment"></span><a href="#empty"><i class="fa fa-link"></i></a>:empty</h2>
+
+<p>:empty疑似クラス ( Empty Selector ) はおそらく滅多に使われませんが、必要なときには便利です。<br>
+ショッピングカートにアイテムを突っ込むとその画像が表示される<code>&lt;div&gt;</code>タグがあったとして、カートが空の場合は要素の中身は空っぽで何も表示されません。<br>
+<code>div:empty</code>にスタイルを設定すると、カートが空の場合にだけ特別な表示を行うことができます。</p>
+
+<div class="code-frame" data-lang="css">
+<div class="code-lang"><span class="bold">CSS</span></div>
+<div class="highlight"><pre><span></span>    <span class="nt">div</span><span class="p">:</span><span class="nd">empty</span> <span class="p">{</span>  
+      <span class="k">background</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">images/empty.png</span><span class="p">)</span> <span class="kc">no-repeat</span> <span class="kc">center</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/a771df6b7b54f499f173624bfddf53664598fff6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f65666333393963622d623764362d313061372d333831362d3538346533346132656463322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a771df6b7b54f499f173624bfddf53664598fff6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f65666333393963622d623764362d313061372d333831362d3538346533346132656463322e706e67" alt="04.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/26088/efc399cb-b7d6-10a7-3816-584e34a2edc2.png"></a></p>
+
+<h2>
+<span id="target" class="fragment"></span><a href="#target"><i class="fa fa-link"></i></a>:target</h2>
+
+<p>ページ内の要素にIDを振っている場合、:target疑似クラス ( Target Selector ) を使うことができます。<br>
+:target疑似クラスは、<a href="https://qiita.com/junya/items/c9741fbddb667992a1ef" id="reference-4d580bc72360615e95ad">リンク先の要素にスタイルを適用する</a>ことができるセレクタです。</p>
+
+<div class="code-frame" data-lang="css">
+<div class="code-lang"><span class="bold">CSS</span></div>
+<div class="highlight"><pre><span></span>    <span class="p">#</span><span class="nn">target-example</span><span class="p">:</span><span class="nd">target</span> <span class="p">{</span>
+      <span class="k">background</span><span class="p">:</span> <span class="mh">#FFF9D8</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="only-of-type" class="fragment"></span><a href="#only-of-type"><i class="fa fa-link"></i></a>:only-of-type</h2>
+
+<p>:only-of-type疑似クラス ( Only of Type Selector )は、<code>nth-of-type</code>や<code>nth-child</code>セレクタとよく似ています。<br>
+それらが複数の子要素に対するものであるのに対して、<code>only-of-type</code>は唯一の子要素であるかどうかを確認することができます。<br>
+例えば、あるページに3個のボックスがあり、ブログの最新投稿などが表示されているとします。<br>
+古くなった記事は表示されなくなるとすると、あるときは3点とも表示され、またあるときはひとつだけしか表示されないこともあります。<br>
+ひとつしか無い場合だけは空のボックスを出さずに、全幅で表示するようにすることができます。</p>
+
+<div class="code-frame" data-lang="html">
+<div class="code-lang"><span class="bold">HTML</span></div>
+<div class="highlight"><pre><span></span>    <span class="p">&lt;</span><span class="nt">section</span> <span class="na">class</span><span class="o">=</span><span class="s">"blog-content"</span><span class="p">&gt;</span>  
+      <span class="p">&lt;</span><span class="nt">article</span><span class="p">&gt;</span>Hi, I'm an article<span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">article</span><span class="p">&gt;</span>Hi, I'm an article<span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">article</span><span class="p">&gt;</span>Hi, I'm an article<span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="css">
+<div class="code-lang"><span class="bold">CSS</span></div>
+<div class="highlight"><pre><span></span>    <span class="nt">article</span> <span class="p">{</span>  
+      <span class="k">background</span><span class="p">:</span> <span class="mh">#FAFAFA</span><span class="p">;</span>
+      <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#999</span><span class="p">;</span>
+      <span class="k">float</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span>
+      <span class="k">line-height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+      <span class="k">margin-right</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+      <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nt">article</span><span class="p">:</span><span class="nd">only-of-type</span> <span class="p">{</span>  
+      <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+      <span class="k">margin-right</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/430a46313e589402186e233bcee853dd383d2319/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f66616563666265642d393462392d313734622d663931332d3934616437396330306139392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/430a46313e589402186e233bcee853dd383d2319/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f66616563666265642d393462392d313734622d663931332d3934616437396330306139392e706e67" alt="05.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/26088/faecfbed-94b9-174b-f913-94ad79c00a99.png"></a></p>
+
+<p>普段はこう見えますが、articleがひとつしか存在しない場合は以下のようになります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/57a011c2e9717e4496a2c5d95fa7c0c0a8e37798/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f31663264303862372d643037372d666163352d326666322d3335306361613962366638622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/57a011c2e9717e4496a2c5d95fa7c0c0a8e37798/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f31663264303862372d643037372d666163352d326666322d3335306361613962366638622e706e67" alt="06.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/26088/1f2d08b7-d077-fac5-2ff2-350caa9b6f8b.png"></a></p>
+
+<h2>
+<span id="checked" class="fragment"></span><a href="#checked"><i class="fa fa-link"></i></a>:checked</h2>
+
+<p>Checked疑似クラス ( Checked Selector ) は、いうまでもなく、チェックボックスがチェックされたときにアクティブになります。<br>
+これは上に出てきた一部のセレクタと組み合わせると非常に便利で、さらに<a href="https://css-tricks.com/the-checkbox-hack/" rel="nofollow noopener" target="_blank">チェックボックスのハック</a>にも使用できます。</p>
+
+<div class="code-frame" data-lang="css">
+<div class="code-lang"><span class="bold">CSS</span></div>
+<div class="highlight"><pre><span></span>    <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="nt">checkbox</span><span class="o">]</span><span class="p">:</span><span class="nd">checked</span> <span class="p">{</span>  
+      <span class="k">box-shadow</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">3</span><span class="kt">px</span> <span class="kc">green</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="not" class="fragment"></span><a href="#not"><i class="fa fa-link"></i></a>:not()</h2>
+
+<p>このスーパー便利なセレクタ、否定擬似クラス( Negation Selector )は特定の要素を指定して除外させます。<br>
+not以下にスタイルを適用したくないセレクタを追加することもできます。<br>
+以下は、段落内のリンクの色を全て赤色にします。<br>
+ただし最初の<code>p</code>段落だけはその対象外とします。</p>
+
+<div class="code-frame" data-lang="css">
+<div class="code-lang"><span class="bold">CSS</span></div>
+<div class="highlight"><pre><span></span>    <span class="nt">p</span><span class="p">:</span><span class="nd">not</span><span class="o">(</span><span class="p">:</span><span class="nd">first-child</span><span class="o">)</span> <span class="nt">a</span> <span class="p">{</span>  
+      <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/c53aa3946a2d983bd30099d8e86964781e533c68/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f65623031326466342d653837332d323336662d366332322d3161623061313834353933312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/c53aa3946a2d983bd30099d8e86964781e533c68/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f65623031326466342d653837332d323336662d366332322d3161623061313834353933312e706e67" alt="07.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/26088/eb012df4-e873-236f-6c22-1ab0a1845931.png"></a></p>
+
+<h2>
+<span id="beforeafter" class="fragment"></span><a href="#beforeafter"><i class="fa fa-link"></i></a>:before/:after</h2>
+
+<p>最後は疑似要素 ( Pseudo-element ) です。<br>
+これらのセレクタは、CSSを通して実際に新しい要素を生成します。<br>
+要素にアイコンや画像などを追加するようなことにしばしば使用されています。<br>
+疑似要素はとても強力ですが、使い方はとても簡単です。<br>
+たとえば、<code>p</code>の最初に<code>★</code>を、最後に<code>☺</code>を追加したい場合、以下のようにするだけです。</p>
+
+<div class="code-frame" data-lang="css">
+<div class="code-lang"><span class="bold">CSS</span></div>
+<div class="highlight"><pre><span></span>    <span class="nt">p</span><span class="p">:</span><span class="nd">before</span> <span class="p">{</span>  
+      <span class="k">content</span><span class="p">:</span> <span class="s1">'★'</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nt">p</span><span class="p">:</span><span class="nd">after</span> <span class="p">{</span>  
+      <span class="k">content</span><span class="p">:</span> <span class="s1">'☺'</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/1290f1ea4a33e622df0bd8ed36ada09ff3007df6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f62346433373234362d366235642d353865632d623037652d6335633432323561626334322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1290f1ea4a33e622df0bd8ed36ada09ff3007df6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f32363038382f62346433373234362d366235642d353865632d623037652d6335633432323561626334322e706e67" alt="08.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/26088/b4d37246-6b5d-58ec-b07e-c5c4225abc42.png"></a></p>
+
+<h2>
+<span id="russell-taylor" class="fragment"></span><a href="#russell-taylor"><i class="fa fa-link"></i></a>Russell Taylor</h2>
+
+<p><a href="http://cssmenumaker.com/blog/author/russell/" rel="nofollow noopener" target="_blank">Russell Taylor</a>はコンピュータエンジニアにしてインターネット中毒者です。<br>
+10年以上ウェブデザイン/開発業界で働いていて、リモートワークをエンジョイしているよ。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>専門サイトだから何かすごいのが出てくるかと思って訳してみたが、本当に基本的なものしか書いてなかった。<br>
+あと:target疑似クラスのところは壊れてたので中身を全部書き換えた。</p>
+
+<p>今後は しぶりんセレクタ という呼び名を積極的に普及させていきたい所存。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>rana_kualuさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>19</kbd>
+		<a target="_blank" href="https://qiita.com/rana_kualu/items/fc752de7d4f2224b29ee">オンラインWYSIWYGエディタリンク集</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-03 00:00:37</center>
+	</td>
+	<td style="width:200px;">
+		@rana_kualu<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/26088/profile-images/1473684492">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[wysiwyg]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>以下は<a href="https://github.com/dok/awesome-text-editing" rel="nofollow noopener" target="_blank">Awesome text editing</a>からリンクされているオンラインエディタのリンク集です。<br>
+昔はCKEditorとTinyMCEの二択だったような気がするけど、いつの間にかずいぶん増えていた。<br>
+最近はどれを選んでも十分な機能を持ってるし、脆弱性さえ無ければどれを選んでもまあ問題ないでしょう。</p>
+
+<p>そういやWYSIWYGって聞かなくなったよね。</p>
+
+<h1>
+<span id="エディタ" class="fragment"></span><a href="#%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF"><i class="fa fa-link"></i></a>エディタ</h1>
+
+<h2>
+<span id="trix" class="fragment"></span><a href="#trix"><i class="fa fa-link"></i></a><a href="https://github.com/basecamp/trix" rel="nofollow noopener" target="_blank">Trix</a>
+</h2>
+
+<p><a href="https://trix-editor.org/" rel="nofollow noopener" target="_blank">サンプル</a>。<br>
+一般的な機能。ドキュメントがわかりやすい。</p>
+
+<h2>
+<span id="ckeditor" class="fragment"></span><a href="#ckeditor"><i class="fa fa-link"></i></a><a href="http://ckeditor.com/" rel="nofollow noopener" target="_blank">CKEditor</a>
+</h2>
+
+<p>2003年から存在する老舗中の老舗だが古くささは全くない。<br>
+<a href="https://ckeditor.com/ckeditor-5-builds/#inline" rel="nofollow noopener" target="_blank">インラインエディタ</a>とかすごい。</p>
+
+<h2>
+<span id="squire" class="fragment"></span><a href="#squire"><i class="fa fa-link"></i></a><a href="https://github.com/neilj/Squire" rel="nofollow noopener" target="_blank">Squire</a>
+</h2>
+
+<p><a href="http://neilj.github.io/Squire/" rel="nofollow noopener" target="_blank">サンプル</a>。<br>
+昔のCKEditorっぽい見た目。<br>
+デザイン目的ではなくドキュメントを書くことを重視しているようだ。</p>
+
+<h2>
+<span id="prosemirror" class="fragment"></span><a href="#prosemirror"><i class="fa fa-link"></i></a><a href="http://prosemirror.net/" rel="nofollow noopener" target="_blank">ProseMirror</a>
+</h2>
+
+<p>複数人でのリアルタイム同時編集に対応している。すごい。</p>
+
+<h2>
+<span id="scribe" class="fragment"></span><a href="#scribe"><i class="fa fa-link"></i></a><a href="https://github.com/guardian/scribe" rel="nofollow noopener" target="_blank">Scribe</a>
+</h2>
+
+<p><a href="http://guardian.github.io/scribe/" rel="nofollow noopener" target="_blank">サンプル</a>。<br>
+正直見た目が一番わかりやすい。<br>
+だが公式にはChromeとFirefoxしか対応してないので選択肢としては微妙。</p>
+
+<h2>
+<span id="quill" class="fragment"></span><a href="#quill"><i class="fa fa-link"></i></a><a href="http://quilljs.com/" rel="nofollow noopener" target="_blank">Quill</a>
+</h2>
+
+<p><a href="https://github.com/Khan/KaTeX" rel="nofollow noopener" target="_blank">KaTeX</a>で数式が書ける。<br>
+のはいいのだが全体的にちょっと使いにくい。<br>
+<code>&lt;/&gt;</code>がソース表示しない。</p>
+
+<h2>
+<span id="summernote" class="fragment"></span><a href="#summernote"><i class="fa fa-link"></i></a><a href="http://summernote.org/" rel="nofollow noopener" target="_blank">Summernote</a>
+</h2>
+
+<p>CDNで簡単導入。<br>
+機能はそれなりだがAPIやサンプルがわかりやすい。</p>
+
+<h2>
+<span id="wysihtml" class="fragment"></span><a href="#wysihtml"><i class="fa fa-link"></i></a><a href="http://wysihtml.com/" rel="nofollow noopener" target="_blank">wysihtml</a>
+</h2>
+
+<p>デフォルトデザインが残念なのはどうにかならんだろうか。</p>
+
+<h2>
+<span id="etherpad" class="fragment"></span><a href="#etherpad"><i class="fa fa-link"></i></a><a href="http://etherpad.org/" rel="nofollow noopener" target="_blank">Etherpad</a>
+</h2>
+
+<p><a href="https://demo.sandstorm.io/appdemo/h37dm17aa89yrd8zuqpdn36p6zntumtv08fjpu8a8zrte7q1cn60" rel="nofollow noopener" target="_blank">サンプル</a>。<br>
+複数人同時編集、チャット、多言語対応、無限アンドゥなど多機能だが、Node.jsやら何やらが必要で導入が面倒。<br>
+ファイルを上げて<code>&lt;script src&gt;</code>とはいかないようだ。</p>
+
+<h2>
+<span id="tinymce" class="fragment"></span><a href="#tinymce"><i class="fa fa-link"></i></a><a href="http://www.tinymce.com/" rel="nofollow noopener" target="_blank">TinyMCE</a>
+</h2>
+
+<p>2004年リリースの、CKEditorと並ぶ古典エディタ。<br>
+多機能でありながら使用方法ヘルプが丁寧なので使いやすい。</p>
+
+<h2>
+<span id="mediumjs" class="fragment"></span><a href="#mediumjs"><i class="fa fa-link"></i></a><a href="http://jakiestfu.github.io/Medium.js/docs/" rel="nofollow noopener" target="_blank">Medium.js</a>
+</h2>
+
+<p>今時のエディタとしては機能がかなり少ない。<br>
+逆に色々させたくない場合に、他のエディタを選んで機能削減するよりはこれを選ぶという選択肢はあるかもしれない。</p>
+
+<h2>
+<span id="textboxio" class="fragment"></span><a href="#textboxio"><i class="fa fa-link"></i></a><a href="https://textbox.io/" rel="nofollow noopener" target="_blank">Textbox.IO</a>
+</h2>
+
+<p>デフォルトでブラウザ言語からエディタ言語を自動選択。賢い。<br>
+触ってみた中ではトップクラスにわかりやすかった。</p>
+
+<h2>
+<span id="froala" class="fragment"></span><a href="#froala"><i class="fa fa-link"></i></a><a href="https://www.froala.com/wysiwyg-editor" rel="nofollow noopener" target="_blank">Froala</a>
+</h2>
+
+<p>そこそこ高機能かつわかりやすい。<br>
+画像エディタがかなりすごくて色々できる。</p>
+
+<h2>
+<span id="redactor" class="fragment"></span><a href="#redactor"><i class="fa fa-link"></i></a><a href="http://imperavi.com/redactor/" rel="nofollow noopener" target="_blank">Redactor</a>
+</h2>
+
+<p>機能は普通。<br>
+完全有料ながらもドキュメントや例示は豊富。</p>
+
+<h2>
+<span id="ritzy" class="fragment"></span><a href="#ritzy"><i class="fa fa-link"></i></a><a href="https://github.com/ritzyed/ritzy" rel="nofollow noopener" target="_blank">Ritzy</a>
+</h2>
+
+<p><a href="http://demo-ritzy.rhcloud.com/" rel="nofollow noopener" target="_blank">サンプル</a>が死んでる。</p>
+
+<h2>
+<span id="aloha-editor" class="fragment"></span><a href="#aloha-editor"><i class="fa fa-link"></i></a><a href="http://www.alohaeditor.org/Content.Node/index.html" rel="nofollow noopener" target="_blank">Aloha Editor</a>
+</h2>
+
+<p><a href="http://www.alohaeditor.org/" rel="nofollow noopener" target="_blank">Goodbye, Aloha Editor 2</a><br>
+ビジネスモデル作れなかったので撤退。</p>
+
+<h2>
+<span id="wymeditor" class="fragment"></span><a href="#wymeditor"><i class="fa fa-link"></i></a><a href="http://www.wymeditor.org/" rel="nofollow noopener" target="_blank">WYMeditor</a>
+</h2>
+
+<p>HTMLではなくXHTML対応コードを吐く。<br>
+WYSIWYGではなくWYSIWYMを目指しているそうだ。</p>
+
+<h2>
+<span id="dijit-editor" class="fragment"></span><a href="#dijit-editor"><i class="fa fa-link"></i></a><a href="http://dojotoolkit.org/" rel="nofollow noopener" target="_blank">Dijit Editor</a>
+</h2>
+
+<p><a href="http://dojotoolkit.org/documentation/tutorials/1.10/editor/index.html" rel="nofollow noopener" target="_blank">サンプル</a>。<br>
+Dojo Toolkitに含まれる機能の一部。<br>
+エディタを導入するだけのために選ぶようなものではないが、既に使っているなら選んでみてもいいかも。</p>
+
+<h2>
+<span id="yui-rich-text-editor" class="fragment"></span><a href="#yui-rich-text-editor"><i class="fa fa-link"></i></a><a href="http://yui.github.io/yui2/" rel="nofollow noopener" target="_blank">YUI Rich Text Editor</a>
+</h2>
+
+<p>YUIに含まれる機能の一部。<br>
+<a href="https://yuilibrary.com/" rel="nofollow noopener" target="_blank">YUI</a>は<a href="https://mag.osdn.jp/14/09/02/063600" rel="nofollow noopener" target="_blank">開発中止</a>になったので使わない方がいい。</p>
+
+<h2>
+<span id="kindeditor" class="fragment"></span><a href="#kindeditor"><i class="fa fa-link"></i></a><a href="https://github.com/kindsoft/kindeditor" rel="nofollow noopener" target="_blank">KindEditor</a>
+</h2>
+
+<p><a href="http://kindeditor.org/demo" rel="nofollow noopener" target="_blank">サンプル</a>。<br>
+<a href="http://kindeditor.org/documentation" rel="nofollow noopener" target="_blank">ドキュメント</a>が作りかけで放置されていて、導入するには微妙。</p>
+
+<h2>
+<span id="hallo" class="fragment"></span><a href="#hallo"><i class="fa fa-link"></i></a><a href="https://github.com/bergie/hallo" rel="nofollow noopener" target="_blank">Hallo</a>
+</h2>
+
+<p><a href="http://hallojs.org/" rel="nofollow noopener" target="_blank">サンプル</a>。<br>
+<code>class="editable"</code>って書くだけでどこのテキストも編集可能になる。</p>
+
+<h2>
+<span id="markitup" class="fragment"></span><a href="#markitup"><i class="fa fa-link"></i></a><a href="http://markitup.jaysalvat.com/home/" rel="nofollow noopener" target="_blank">markitup</a>
+</h2>
+
+<p><a href="http://markitup.jaysalvat.com/examples/" rel="nofollow noopener" target="_blank">サンプル</a>。<br>
+HTML以外にTextile、Wiki記法、マークダウン等で記述することができる。<br>
+さすがに相互変換はできないようだ。</p>
+
+<h2>
+<span id="openwysiwyg" class="fragment"></span><a href="#openwysiwyg"><i class="fa fa-link"></i></a><a href="http://www.openwebware.com/" rel="nofollow noopener" target="_blank">openwysiwyg</a>
+</h2>
+
+<p>IE5.5、Firefox1.0、Netscape7といういにしえのブラウザで動作するエディタ。<br>
+そのかわり<a href="https://karenian.wordpress.com/2013/01/23/chrome-fix-openwysiwyg/" rel="nofollow noopener" target="_blank">そのままではChromeで動かない</a>という致命的欠陥がある。</p>
+
+<h2>
+<span id="tejquery" class="fragment"></span><a href="#tejquery"><i class="fa fa-link"></i></a><a href="http://jqueryte.com/" rel="nofollow noopener" target="_blank">tejQuery</a>
+</h2>
+
+<p><a href="http://jqueryte.com/demos" rel="nofollow noopener" target="_blank">サンプル</a>。<br>
+jQueryプラグインで、本体はかなり軽量なので、既にjQueryが入ってるなら選択するとよさそう。</p>
+
+<h2>
+<span id="trumbowyg" class="fragment"></span><a href="#trumbowyg"><i class="fa fa-link"></i></a><a href="http://alex-d.github.io/Trumbowyg/" rel="nofollow noopener" target="_blank">Trumbowyg</a>
+</h2>
+
+<p>画像のBase64埋め込みができるので、画像がアップロードできないようなサーバでも導入可能。</p>
+
+<h2>
+<span id="nicedit" class="fragment"></span><a href="#nicedit"><i class="fa fa-link"></i></a><a href="http://nicedit.com/" rel="nofollow noopener" target="_blank">NicEdit</a>
+</h2>
+
+<p><a href="http://nicedit.com/demos.php" rel="nofollow noopener" target="_blank">サンプル</a>。<br>
+コンポーネントが分かれていて、必要な部分だけ導入できる。<br>
+どうせ入れるなら<a href="https://cmonos.jp/blog/2010010800/1.shtml" rel="nofollow noopener" target="_blank">日本語版</a>がいいかもしれない。</p>
+
+<h2>
+<span id="jwysiwyg" class="fragment"></span><a href="#jwysiwyg"><i class="fa fa-link"></i></a><a href="http://jwysiwyg.github.io/jwysiwyg/" rel="nofollow noopener" target="_blank">jWYSIWYG</a>
+</h2>
+
+<p><a href="https://github.com/jwysiwyg/jwysiwyg" rel="nofollow noopener" target="_blank">GitHub</a>。<br>
+公式からGitHubへのリンクが切れてる時点で選ばない方が良さそうだ。</p>
+
+<h2>
+<span id="alloy" class="fragment"></span><a href="#alloy"><i class="fa fa-link"></i></a><a href="http://alloyeditor.com/" rel="nofollow noopener" target="_blank">Alloy</a>
+</h2>
+
+<p>処理エンジンはCKEditorを使い、フロントとバックエンドを分離させたというエディタ。<br>
+Reactやらgulpやら最近はやりのやつらでわっほいできるようだ。</p>
+
+<h2>
+<span id="draftjs" class="fragment"></span><a href="#draftjs"><i class="fa fa-link"></i></a><a href="http://facebook.github.io/draft-js/" rel="nofollow noopener" target="_blank">Draft.js</a>
+</h2>
+
+<p>Facebook製で、<a href="https://qiita.com/tk1024/items/8d8de5a62ef55bc1532f" id="reference-d81bc21fb3805eaf5fac">Reactが入ってるなら選んどけばいい</a>んじゃないかな。<br>
+正直高々エディタで仮想DOMは必要なのかって気がとてもする。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>名の知れてるところを選んどけ。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>rana_kualuさんの<br />5位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>16</kbd>
+		<a target="_blank" href="https://qiita.com/rana_kualu/items/7bedc24aac5af4311928">詫びソースコード</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-16 19:58:04</center>
+	</td>
+	<td style="width:200px;">
+		@rana_kualu<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/26088/profile-images/1473684492">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[C++]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>※ただの写経です。</p>
+
+<div class="code-frame" data-lang="cpp"><div class="highlight"><pre><span></span><span class="n">CardDatas</span> <span class="n">CardModel</span><span class="o">::</span><span class="n">getMasterCardDatasByIds</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;&amp;</span> <span class="n">masterCardIds</span><span class="p">)</span> <span class="k">const</span>
+<span class="p">{</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">CardDataPtr</span><span class="o">&gt;</span> <span class="n">results</span><span class="p">;</span>
+  <span class="n">results</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">masterCardIds</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+  <span class="kt">size_t</span> <span class="n">exists</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">masterCardIds</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_cardDataCache</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">masterCardIds</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">exists</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">masterCardIds</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">exists</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">results</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">string</span> <span class="n">sql</span> <span class="o">=</span> <span class="n">form</span><span class="p">(</span><span class="s">"SELECT * FROM cache.cards where id IN (%s);"</span><span class="p">,</span> <span class="n">join</span><span class="p">(</span><span class="n">masterCardIds</span><span class="p">,</span> <span class="s">","</span><span class="p">).</span><span class="n">c_str</span><span class="p">());</span>
+
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">DatabaseManager</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">query</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="p">[</span><span class="k">this</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">results</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">](</span><span class="n">sqlite3_stmt</span><span class="o">*</span> <span class="n">stmt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_cardDataCache</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">CardData</span><span class="o">&gt;</span><span class="p">(</span><span class="n">stmt</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="n">results</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>rana_kualuさんの<br />6位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
+		<a target="_blank" href="https://qiita.com/rana_kualu/items/e2d4fbc75cc3271a188e">Linuxのパーミッション一覧</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-07 00:57:27</center>
+	</td>
+	<td style="width:200px;">
+		@rana_kualu<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/26088/profile-images/1473684492">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Linux]</b> <b>[ls]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><code>ls -l</code>したときに出てくるパーミッションの一覧。</p>
+
+<p>一部分だけの解説はいくらでも見つかるのだが、全部まとまってるものがどうも見当たらなかったので作った。<br>
+以下は特に断らない限りLinuxについて。<br>
+それ以外のOSでは異なる場合がある。</p>
+
+<p>以下、<code>ls -l</code>したときに出てくる項目について↓の表記で解説する。<br>
+<code><br>
+  drwxrwsrwt.<br>
+  ABCDEFGHIJK<br>
+</code></p>
+
+<h1>
+<span id="a" class="fragment"></span><a href="#a"><i class="fa fa-link"></i></a>A</h1>
+
+<h2>
+<span id="d" class="fragment"></span><a href="#d"><i class="fa fa-link"></i></a>d</h2>
+
+<p>ディレクトリである。<br>
+自分自身<code>.</code>および親ディレクトリ<code>..</code>も<code>d</code>になる。</p>
+
+<h2>
+<span id="l" class="fragment"></span><a href="#l"><i class="fa fa-link"></i></a>l</h2>
+
+<p>シンボリックリンクである。<br>
+ハードリンクは<code>l</code>にならない。<br>
+というかハードリンクは実ファイルと区別がつかない。</p>
+
+<h2>
+<span id="b" class="fragment"></span><a href="#b"><i class="fa fa-link"></i></a>b</h2>
+
+<p>ブロックデバイスである。<br>
+ブロックデバイスは、HDDやメモリなど<a href="http://itpro.nikkeibp.co.jp/article/Keyword/20081023/317625/" rel="nofollow noopener" target="_blank">ブロック単位でデータの読み書きを行う機器</a>のこと。</p>
+
+<h2>
+<span id="c" class="fragment"></span><a href="#c"><i class="fa fa-link"></i></a>c</h2>
+
+<p>キャラクタデバイスである。<br>
+キャラクタデバイスは、コンソールやキーボードなどの<a href="http://itpro.nikkeibp.co.jp/article/Keyword/20081128/320380/" rel="nofollow noopener" target="_blank">バイト単位でデータの読み書きを行う機器</a>のこと。<br>
+標準入出力のほか、<code>/dev/null</code>や<code>/dev/urandom</code>等のファイルだかなんなんだかよくわからない奴らもだいたいこれのようだ。</p>
+
+<h2>
+<span id="p" class="fragment"></span><a href="#p"><i class="fa fa-link"></i></a>p</h2>
+
+<p>FIFOである。<br>
+<a href="https://qiita.com/richmikan@github/items/bb660a58690ac01ec295" id="reference-6ce7a92ef3e93bc5b26f">FIFO</a>は主にプロセス間通信で使用する名前付きパイプで、<code>|</code>のすごいやつ。</p>
+
+<h2>
+<span id="s" class="fragment"></span><a href="#s"><i class="fa fa-link"></i></a>s</h2>
+
+<p>ソケットである。<br>
+<a href="https://www.ibm.com/support/knowledgecenter/ja/ssw_ibm_i_71/rzab6/howdosockets.htm" rel="nofollow noopener" target="_blank">ソケット</a>は主にプロセス間、ネットワーク間でデータをやりとりするためのファイルのようなもの。</p>
+
+<h2>
+<span id="-" class="fragment"></span><a href="#-"><i class="fa fa-link"></i></a>-</h2>
+
+<p>上記以外、いわゆる普通のファイル。</p>
+
+<h1>
+<span id="bcd--efg--hij" class="fragment"></span><a href="#bcd--efg--hij"><i class="fa fa-link"></i></a>BCD / EFG / HIJ</h1>
+
+<p>それぞれ自分、同じグループ、第三者が持ってる権限。<br>
+BEHは読み取り権限、CFIは書き込み権限、DGJは実行権限を表す。</p>
+
+<h1>
+<span id="beh" class="fragment"></span><a href="#beh"><i class="fa fa-link"></i></a>BEH</h1>
+
+<h2>
+<span id="r" class="fragment"></span><a href="#r"><i class="fa fa-link"></i></a>r</h2>
+
+<p>読み取り権限がある。</p>
+
+<p>ファイルに読み取り権限がある場合、ファイルの中身を読み込むことができる。<br>
+ファイルに読み取り権限があっても、そのディレクトリにも読み取り権限がなければ読み込みはできない。</p>
+
+<p>ディレクトリに読み取り権限がある場合、<code>ls</code>でファイルを一覧表示することができる。</p>
+
+<h2>
+<span id="--1" class="fragment"></span><a href="#--1"><i class="fa fa-link"></i></a>-</h2>
+
+<p>読み取り権限がない。</p>
+
+<p>ファイルに読み取り権限がない場合、ファイルの情報は取得できるが中身を読み込みことはできない。</p>
+
+<p>ディレクトリに読み取り権限がない場合、ファイル名一覧を取得することができない。<br>
+実行権限があれば<code>cd</code>で移動や名指しで情報取得することはできる。</p>
+
+<h1>
+<span id="cfi" class="fragment"></span><a href="#cfi"><i class="fa fa-link"></i></a>CFI</h1>
+
+<h2>
+<span id="w" class="fragment"></span><a href="#w"><i class="fa fa-link"></i></a>w</h2>
+
+<p>書き込み権限がある。</p>
+
+<p>ファイルに書き込み権限がある場合、ファイルの上書きや更新を行える。<br>
+書き込みできるが読み込みできないファイルも作成できる。</p>
+
+<p>ディレクトリに書き込み宣言がある場合、ファイルの追加や削除が行える。</p>
+
+<h2>
+<span id="--2" class="fragment"></span><a href="#--2"><i class="fa fa-link"></i></a>-</h2>
+
+<p>書き込み権限がない。</p>
+
+<p>ファイルに書き込み権限がない場合は、ファイルの上書きや更新ができなくなる。<br>
+ファイルに書き込み権限がなくても、ディレクトリに書き込み権限があればファイルの削除はできる。</p>
+
+<p>ディレクトリに書き込み権限がない場合、ファイルの追加や削除が行えない。<br>
+ファイルの書き込み権限があれば編集することは可能。</p>
+
+<h1>
+<span id="dgj" class="fragment"></span><a href="#dgj"><i class="fa fa-link"></i></a>DGJ</h1>
+
+<h2>
+<span id="x" class="fragment"></span><a href="#x"><i class="fa fa-link"></i></a>x</h2>
+
+<p>実行権限がある。</p>
+
+<p>ファイルに実行権限がある場合、そのファイルは実行することができる。<br>
+読み込み権限がなくても実行はできる。</p>
+
+<p>ディレクトリに実行権限がある場合、ディレクトリに<code>cd</code>や<code>ls -l</code>を行うことができる。</p>
+
+<h2>
+<span id="--3" class="fragment"></span><a href="#--3"><i class="fa fa-link"></i></a>-</h2>
+
+<p>実行権限がない。</p>
+
+<p>ファイルに実行権限がない場合は実行できない。</p>
+
+<p>ディレクトリに実行権限がない場合、ディレクトリ内のファイル名一覧だけは表示できるが、ファイル情報を得ることはできず<code>cd</code>で移動することもできない。</p>
+
+<h1>
+<span id="d-1" class="fragment"></span><a href="#d-1"><i class="fa fa-link"></i></a>D</h1>
+
+<h2>
+<span id="s-1" class="fragment"></span><a href="#s-1"><i class="fa fa-link"></i></a>s</h2>
+
+<p>SUID(Set Group ID)。</p>
+
+<p>ファイルにSUIDがある場合、実行ユーザがファイル所有者になる。<br>
+通常は実行したユーザがコマンドの実行ユーザになるが、SUIDがついている場合はそのファイルの所有者が実行ユーザになる。<br>
+例として、<code>/usr/bin/passwd</code>は所有者が<code>root</code>ユーザで実行権限が<code>s</code>であるため、誰が実行してもrootユーザの権限で実行される。<br>
+そのため<code>root</code>ユーザしか書き込み権限のない<code>/etc/shadow</code>に書き込める、ということになる。</p>
+
+<p>ディレクトリのSUIDは特に意味がないようだ。</p>
+
+<h2>
+<span id="s-2" class="fragment"></span><a href="#s-2"><i class="fa fa-link"></i></a>S</h2>
+
+<p>実行権限のないファイルにSUIDを付けると<code>s</code>ではなく<code>S</code>になる。<br>
+どういう効果があるかはよくわからない。</p>
+
+<h1>
+<span id="g" class="fragment"></span><a href="#g"><i class="fa fa-link"></i></a>G</h1>
+
+<h2>
+<span id="s-3" class="fragment"></span><a href="#s-3"><i class="fa fa-link"></i></a>s</h2>
+
+<p>SGID(Set Group ID)。</p>
+
+<p>ファイルにSGIDがある場合、実行ユーザがファイル所有グループになる。<br>
+例として、<code>/usr/bin/wall</code>はグループが<code>tty</code>ユーザで実行権限が<code>s</code>であるため、誰が実行してもttyユーザの権限で実行される。</p>
+
+<p>ディレクトリにSGIDがある場合、ディレクトリ内部で作成したファイルの所属グループがディレクトリのグループと同じになる。<br>
+所有者は作成したユーザになる。</p>
+
+<h2>
+<span id="s-4" class="fragment"></span><a href="#s-4"><i class="fa fa-link"></i></a>S</h2>
+
+<p>実行権限のないファイルにSGIDを付けると<code>s</code>ではなく<code>S</code>になる。<br>
+どういう効果があるかはよくわからない。</p>
+
+<h1>
+<span id="j" class="fragment"></span><a href="#j"><i class="fa fa-link"></i></a>J</h1>
+
+<h2>
+<span id="t" class="fragment"></span><a href="#t"><i class="fa fa-link"></i></a>t</h2>
+
+<p><a href="http://itpro.nikkeibp.co.jp/article/Keyword/20070518/271475/" rel="nofollow noopener" target="_blank">スティッキービット</a>。</p>
+
+<p>ディレクトリにスティッキービットがある場合、そのディレクトリ内のファイルは所有者本人しか削除・リネームできない。<br>
+中身の編集はできる。</p>
+
+<p>ファイルのスティッキービットは特に意味がないようだ。</p>
+
+<h2>
+<span id="t-1" class="fragment"></span><a href="#t-1"><i class="fa fa-link"></i></a>T</h2>
+
+<p>実行権限のないディレクトリにスティッキービットを付けると<code>t</code>ではなく<code>T</code>になる。<br>
+どういう効果があるかはよくわからない。</p>
+
+<h1>
+<span id="k" class="fragment"></span><a href="#k"><i class="fa fa-link"></i></a>K</h1>
+
+<h2>
+<span id="" class="fragment"></span><a href="#"><i class="fa fa-link"></i></a>.</h2>
+
+<p>セキュリティコンテキスト。</p>
+
+<p>SELinuxによってアクセス制限用のラベルが設定されている。<br>
+<code>ls -Z</code>で詳細を閲覧可能。</p>
+
+<h2>
+<span id="何もなし" class="fragment"></span><a href="#%E4%BD%95%E3%82%82%E3%81%AA%E3%81%97"><i class="fa fa-link"></i></a>(何もなし)</h2>
+
+<p>セキュリティコンテキストがない。</p>
+
+<h1>
+<span id="その他" class="fragment"></span><a href="#%E3%81%9D%E3%81%AE%E4%BB%96"><i class="fa fa-link"></i></a>その他</h1>
+
+<p><code>root</code>は例外で、書き込み権限のないファイルやスティッキービットのあるファイルを削除したりと、ほぼ何でもできる。</p>
+
+<p>シンボリックリンクのパーミッション表示は特に意味がない。<br>
+シンボリックリンクに対してchmodすると、シンボリックリンク自体は変わらず、リンク先ファイルの権限が変更される。</p>
+
+<h1>
+<span id="感想" class="fragment"></span><a href="#%E6%84%9F%E6%83%B3"><i class="fa fa-link"></i></a>感想</h1>
+
+<p>まさかJP1のマニュアル内に<a href="http://itdoc.hitachi.co.jp/manuals/3021/3021313330/JPAS0341.HTM" rel="nofollow noopener" target="_blank">ほぼ完全なリスト</a>があるとは思わなかった。<br>
+ほとんど書き上げた後に見つけてしまったでござるの巻き。</p>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<p><a href="https://linuxjm.osdn.jp/html/gnumaniak/man1/chmod.1.html" rel="nofollow noopener" target="_blank">Man page of CHMOD</a><br>
+<a href="https://access.redhat.com/documentation/ja-JP/Red_Hat_Enterprise_Linux/6/html/Security-Enhanced_Linux/sect-Security-Enhanced_Linux-Working_with_SELinux-SELinux_Contexts_Labeling_Files.html" rel="nofollow noopener" target="_blank">SELinux コンテキスト - ファイルのラベル付け</a><br>
+<a href="http://www.asahi-net.or.jp/%7Eaa4t-nngk/perm.html" rel="nofollow noopener" target="_blank">Stray Penguin -Linux Memo-</a><br>
+<a href="http://qiita.com/aosho235/items/16434a490f9a05ddb0dc" id="reference-cf64618e4aa0a3afc43d">chmod ：SUID、GUID、スティッキービットまとめ</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>rana_kualuさんの<br />7位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
+		<a target="_blank" href="https://qiita.com/rana_kualu/items/aa1cc16930b62c4c379d">メモ：Qiitaのエントリが全てSSLになってる</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-27 00:08:11</center>
+	</td>
+	<td style="width:200px;">
+		@rana_kualu<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/26088/profile-images/1473684492">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[ポエム]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>おそらく2017/09/25あたりから</p>
+
+<p>ただのメモなのでたぶん消される</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

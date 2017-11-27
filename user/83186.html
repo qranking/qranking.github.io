@@ -1,0 +1,461 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (chibinowa)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (chibinowa さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>chibinowaさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>399</kbd>
+		<a target="_blank" href="https://qiita.com/chibinowa/items/e7b2596d06b8005e8e6f">jQuery から Vue.js への移行</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-13 09:39:13</center>
+	</td>
+	<td style="width:200px;">
+		@chibinowa<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/83186/profile-images/1507209783">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[jQuery]</b> <b>[vue.js]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>最近耳にする Vue.js（ビュージェイエス） ってどんなもの？ jQuery とどう書き方違うの？とか、jQuery でやってたこういう事って Vue.js だとどうやるの？という jQuery から Vue.js へ移行しようかなぁ～と思っている人向けの小難しいことは省いた記事です。私もそちら側から来たものです。</p>
+
+<p><a href="https://jp.vuejs.org/" rel="nofollow noopener" target="_blank">Vue.js 日本公式ページ（日本語翻訳率が半端ないと評判）</a></p>
+
+<h1>
+<span id="jquery-と-vuejs-の違い" class="fragment"></span><a href="#jquery-%E3%81%A8-vuejs-%E3%81%AE%E9%81%95%E3%81%84"><i class="fa fa-link"></i></a>jQuery と Vue.js の違い</h1>
+
+<p>jQuery はセレクタ操作に特化したライブラリなので HTML の一部をちょっとだけ弄るには簡単で手軽に扱えます。複雑な処理をしたい場合その都度セレクタから要素を探して操作するので、反映が遅かったり同じデータを表示するはずの複数の要素がちゃんと同期していなかったり管理が大変になってきます。そこまで複雑な事はしていない、現状つらいと感じてなければ無理に変える必要はないと思います。</p>
+
+<p>Vue.js は高速で動く 仮想DOM というものを使った設計で作られており・・・（難しいので省略）簡単にいうと、JavaScript のデータと HTML の要素を紐付けて、データが変われば勝手に表示に反映してくれます。毎回データと表示を同期させる処理を自分で書かなくてもよくなり、メンテナンスする時もデザインとスクリプトを行ったり来たりする事が減ります。インタラクティブなページや、状態管理が活躍するページに向いています。</p>
+
+<h1>
+<span id="seo-的にどうなの" class="fragment"></span><a href="#seo-%E7%9A%84%E3%81%AB%E3%81%A9%E3%81%86%E3%81%AA%E3%81%AE"><i class="fa fa-link"></i></a>SEO 的にどうなの？</h1>
+
+<p>Vue.js で持っているデータはブラウザのソースコードを見ても表示されません。でも最近のクローラーは Vue.js などの JavaScript で出力された部分も拾ってくれるので気にする程ではないと思います。</p>
+
+<p>シェア用の OGP など考慮する場合は SSR （サーバーサイドレンダリング）というものもあり、最初のアクセスのみサーバー側で初期画面に必要な DOM が展開された状態の HTML を構築し、それ以降は 仮想DOM を通して処理するようになります。</p>
+
+<h1>
+<span id="書き方の違い" class="fragment"></span><a href="#%E6%9B%B8%E3%81%8D%E6%96%B9%E3%81%AE%E9%81%95%E3%81%84"><i class="fa fa-link"></i></a>書き方の違い</h1>
+
+<h2>
+<span id="文字を入れ替える" class="fragment"></span><a href="#%E6%96%87%E5%AD%97%E3%82%92%E5%85%A5%E3%82%8C%E6%9B%BF%E3%81%88%E3%82%8B"><i class="fa fa-link"></i></a>文字を入れ替える</h2>
+
+<p><img alt=":mushroom:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f344.png" title=":mushroom:" width="20"> <a href="https://jsfiddle.net/mio/wxndwLbL/" rel="nofollow noopener" target="_blank">デモページ</a></p>
+
+<p>まずは簡単に <code>World</code> を別の文字に変えるコードを作ってみます。</p>
+
+<h3>
+<span id="jquery-の場合" class="fragment"></span><a href="#jquery-%E3%81%AE%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>jQuery の場合</h3>
+
+<div class="code-frame" data-lang="html">
+<div class="code-lang"><span class="bold">HTML</span></div>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  Hello <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">"message"</span><span class="p">&gt;</span>World<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span> !
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">"update"</span><span class="p">&gt;</span>change<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="js">
+<div class="code-lang"><span class="bold">JavaScript</span></div>
+<div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="s1">'#update'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">'#message'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">'jQuery'</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+
+<p>jQuery で書くとだいたいこんな感じでしょう。変える部分はタグで囲む必要がありますね。</p>
+
+<h3>
+<span id="vuejs-の場合" class="fragment"></span><a href="#vuejs-%E3%81%AE%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>Vue.js の場合</h3>
+
+<div class="code-frame" data-lang="html">
+<div class="code-lang"><span class="bold">HTML</span></div>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"app"</span><span class="p">&gt;</span>
+  Hello {{ message }} !
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">"update"</span><span class="p">&gt;</span>change<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="js">
+<div class="code-lang"><span class="bold">JavaScript</span></div>
+<div class="highlight"><pre><span></span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="nx">el</span><span class="o">:</span> <span class="s1">'#app'</span><span class="p">,</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">message</span><span class="o">:</span> <span class="s1">'World'</span>
+  <span class="p">},</span>
+  <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">update</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s1">'Vue.js'</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+
+</pre></div>
+</div>
+
+<p>Vue.js で書くとこんな感じになります。まだ違いは無いというかむしろ jQuery の方が楽そう。</p>
+
+<p>文字列は最初からデータで持っておき、データの文字列を画面に表示させる場合は <code>{{ message }}</code> と書きます。</p>
+
+<p><code>@click="式やメソッド"</code> は jQuery の <code>$(element).on('click', ...)</code> と似たような振る舞いをします。メソッド名を書くことも出来るし使いまわさない短いものなら直接式を書いてもいい。</p>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s1">'Vue.js'</span>
+</pre></div></div>
+
+<p>データを変更すれば一緒に <code>{{ message }}</code> この部分が変更されます。</p>
+
+<h2>
+<span id="リスト要素の追加と削除" class="fragment"></span><a href="#%E3%83%AA%E3%82%B9%E3%83%88%E8%A6%81%E7%B4%A0%E3%81%AE%E8%BF%BD%E5%8A%A0%E3%81%A8%E5%89%8A%E9%99%A4"><i class="fa fa-link"></i></a>リスト要素の追加と削除</h2>
+
+<p><img alt=":mushroom:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f344.png" title=":mushroom:" width="20"> <a href="https://jsfiddle.net/mio/fjp4bh1v/" rel="nofollow noopener" target="_blank">デモページ</a></p>
+
+<p><code>add</code> ボタンを押すとリストに新しい要素を追加し、 <code>remove</code> ボタンを押すとその要素を削除します。ついでに現在のリスト要素の数も表示してみましょう。</p>
+
+<h3>
+<span id="jquery-の場合-1" class="fragment"></span><a href="#jquery-%E3%81%AE%E5%A0%B4%E5%90%88-1"><i class="fa fa-link"></i></a>jQuery の場合</h3>
+
+<p>Ajax で取得したという想定で jQuery も最初はデータから表示するようにしました。</p>
+
+<div class="code-frame" data-lang="html">
+<div class="code-lang"><span class="bold">HTML</span></div>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Length: <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">"length"</span><span class="p">&gt;</span>0<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">"list"</span><span class="p">&gt;&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">"add"</span><span class="p">&gt;</span>add<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="js">
+<div class="code-lang"><span class="bold">JavaScript</span></div>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">counter</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Apple'</span><span class="p">,</span> <span class="s1">'Banana'</span><span class="p">,</span> <span class="s1">'Strawberry'</span><span class="p">]</span>
+
+  <span class="nx">init</span><span class="p">()</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="s1">'#add'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">addItem</span><span class="p">(</span><span class="s1">'Orange'</span> <span class="o">+</span> <span class="p">(</span><span class="o">++</span><span class="nx">counter</span><span class="p">).</span><span class="nx">toString</span><span class="p">())</span>
+  <span class="p">})</span>
+  <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="s1">'.remove'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">remove</span><span class="p">()</span>
+    <span class="nx">updateLength</span><span class="p">()</span>
+  <span class="p">})</span>
+
+  <span class="kd">function</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">addItem</span><span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="nx">addItem</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#list'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;li&gt;'</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">' &lt;button class="remove"&gt;remove&lt;/button&gt;&lt;/li&gt;'</span><span class="p">)</span>
+    <span class="nx">updateLength</span><span class="p">()</span>
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="nx">updateLength</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#length'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">'#list li'</span><span class="p">).</span><span class="nx">length</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">})()</span>
+</pre></div>
+</div>
+
+<p>jQuery を使うにしてもクラス化したりもっと綺麗に書く人もいると思うけどこんな感じだと思います。</p>
+
+<p>まあ <code>&lt;span id="length"&gt;0&lt;/span&gt;</code> こいつがよくいる厄介なデータである。 これをリスト要素の数と同期させるには変更があったら毎回 <code>updateLength()</code> をしないといけない。凄く面倒くさい。</p>
+
+<p>テンプレートもロジックに入り込んでいるのでメンテナンスが大変なやつです。</p>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="s1">'#list'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;li&gt;'</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">' &lt;button class="remove"&gt;remove&lt;/button&gt;&lt;/li&gt;'</span><span class="p">)</span>
+</pre></div></div>
+
+<p>あと jQuery はセレクタがないと生きていけないタイプなので操作する場所が増えるに連れて ID やクラスなどの Attribute もどんどん増えていきます。</p>
+
+<h3>
+<span id="vuejs-の場合-1" class="fragment"></span><a href="#vuejs-%E3%81%AE%E5%A0%B4%E5%90%88-1"><i class="fa fa-link"></i></a>Vue.js の場合</h3>
+
+<div class="code-frame" data-lang="html">
+<div class="code-lang"><span class="bold">HTML</span></div>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"app"</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Length: {{ length }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">"(item, i) in list"</span> <span class="na">:key</span><span class="o">=</span><span class="s">"item"</span><span class="p">&gt;</span>{{ item }}
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">"list.splice(i, 1)"</span><span class="p">&gt;</span>remove<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">"addItem"</span><span class="p">&gt;</span>add<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="js">
+<div class="code-lang"><span class="bold">JavaScript</span></div>
+<div class="highlight"><pre><span></span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="nx">el</span><span class="o">:</span> <span class="s1">'#app'</span><span class="p">,</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">counter</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nx">list</span><span class="o">:</span> <span class="p">[</span><span class="s1">'Apple'</span><span class="p">,</span> <span class="s1">'Banana'</span><span class="p">,</span> <span class="s1">'Strawberry'</span><span class="p">]</span>
+  <span class="p">},</span>
+  <span class="nx">computed</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">length</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">length</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">addItem</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">'Orange'</span> <span class="o">+</span> <span class="p">(</span><span class="o">++</span><span class="k">this</span><span class="p">.</span><span class="nx">counter</span><span class="p">).</span><span class="nx">toString</span><span class="p">())</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+
+<p>だいぶ違いが見えてきました。</p>
+
+<p><code>addItem</code> は jQuery も Vue.js も新しい要素を追加する関数ですがやっている事が大分違います。要素への追加と削除もデータ側の配列を操作するだけでOK。</p>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">'Orange'</span> <span class="o">+</span> <span class="p">(</span><span class="o">++</span><span class="k">this</span><span class="p">.</span><span class="nx">counter</span><span class="p">).</span><span class="nx">toString</span><span class="p">())</span>
+</pre></div></div>
+
+<p>厄介な <code>length</code> はというと、<code>computed</code> という関数型のデータで配列の長さを返すものを1個作っておけばそれがリアルタイムで表示されます。</p>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="nx">computed</span><span class="o">:</span> <span class="p">{</span>
+  <span class="c1">// この部分がデータと同じ役割</span>
+  <span class="nx">length</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">length</span>
+  <span class="p">}</span>
+<span class="p">},</span>
+</pre></div></div>
+
+<p>勿論 <code>{{ list.length }}</code> と書いても大丈夫だけど、<code>computed</code> は<strong>キャッシュされる</strong>のでフィルターとかの複雑な処理に便利です。</p>
+
+<p>ステキですね。</p>
+
+<h2>
+<span id="表示非表示の切り替えとトランジションアニメーション" class="fragment"></span><a href="#%E8%A1%A8%E7%A4%BA%E9%9D%9E%E8%A1%A8%E7%A4%BA%E3%81%AE%E5%88%87%E3%82%8A%E6%9B%BF%E3%81%88%E3%81%A8%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>表示・非表示の切り替えとトランジション/アニメーション</h2>
+
+<p><img alt=":mushroom:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f344.png" title=":mushroom:" width="20"> <a href="https://jsfiddle.net/mio/hk2me9tj/" rel="nofollow noopener" target="_blank">デモページ</a></p>
+
+<p>よくあるタブ切り替えのコンテンツを作ってみましょう。</p>
+
+<p><code>button</code> を使えばクリックとエンターが受け取れるのだけどキーコードの確認も結構違うのであえて <code>tabindex</code> を使いました。 WAI-ARIA とかまでは考慮してません。</p>
+
+<h3>
+<span id="jquery-の場合-2" class="fragment"></span><a href="#jquery-%E3%81%AE%E5%A0%B4%E5%90%88-2"><i class="fa fa-link"></i></a>jQuery の場合</h3>
+
+<div class="code-frame" data-lang="html">
+<div class="code-lang"><span class="bold">HTML</span></div>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">"tab"</span> <span class="na">class</span><span class="o">=</span><span class="s">"tab"</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-id</span><span class="o">=</span><span class="s">"1"</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">"0"</span><span class="p">&gt;</span>menu1<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-id</span><span class="o">=</span><span class="s">"2"</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">"0"</span><span class="p">&gt;</span>menu2<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">data-id</span><span class="o">=</span><span class="s">"3"</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">"0"</span><span class="p">&gt;</span>menu3<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"content"</span> <span class="na">class</span><span class="o">=</span><span class="s">"content"</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">section</span> <span class="na">data-id</span><span class="o">=</span><span class="s">"1"</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>content1<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">section</span> <span class="na">data-id</span><span class="o">=</span><span class="s">"2"</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>content2<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">section</span> <span class="na">data-id</span><span class="o">=</span><span class="s">"3"</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>content3<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="js">
+<div class="code-lang"><span class="bold">JavaScript</span></div>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">current</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="nx">init</span><span class="p">()</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="s1">'#tab'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="s1">'li'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">changeTab</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'id'</span><span class="p">))</span>
+  <span class="p">})</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s2">"#tab"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'keypress'</span><span class="p">,</span> <span class="s1">'li'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">13</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">changeTab</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'id'</span><span class="p">))</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+
+  <span class="kd">function</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">changeTab</span><span class="p">(</span><span class="nx">current</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="nx">changeTab</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#content section:not([data-id="'</span> <span class="o">+</span> <span class="nx">id</span> <span class="o">+</span> <span class="s1">'"])'</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'active'</span><span class="p">)</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#content section[data-id="'</span> <span class="o">+</span> <span class="nx">id</span> <span class="o">+</span> <span class="s1">'"]'</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'active'</span><span class="p">)</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#tab li:not([data-id="'</span> <span class="o">+</span> <span class="nx">id</span> <span class="o">+</span> <span class="s1">'"])'</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'active'</span><span class="p">)</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#tab li[data-id="'</span> <span class="o">+</span> <span class="nx">id</span> <span class="o">+</span> <span class="s1">'"]'</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'active'</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">})()</span>
+</pre></div>
+</div>
+
+<p>アクティブな要素にクラスを付けたり消したりします。</p>
+
+<p><code>display:none</code> が付いてるので切り替えのフェードインにはトランジションの代用でアニメーションを使用しました。 <code>visibility</code> などを使ってもいいけど、このへんの実装も CSS 大好きじゃないとだれてきます。</p>
+
+<p>私もフェードアウト作る時点でだれてしまいました。</p>
+
+<h3>
+<span id="vuejs-の場合-2" class="fragment"></span><a href="#vuejs-%E3%81%AE%E5%A0%B4%E5%90%88-2"><i class="fa fa-link"></i></a>Vue.js の場合</h3>
+
+<div class="code-frame" data-lang="html">
+<div class="code-lang"><span class="bold">HTML</span></div>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"app"</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">"tab"</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">"item in list"</span> 
+        <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">"changeTab(item.id)"</span> 
+        <span class="err">@</span><span class="na">keyup</span><span class="err">.</span><span class="na">enter</span><span class="o">=</span><span class="s">"changeTab(item.id)"</span> 
+        <span class="na">:class</span><span class="o">=</span><span class="s">"{active:active(item.id)}"</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">"0"</span><span class="p">&gt;</span>{{ item.label }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"content-vue"</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">transition</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">section</span> <span class="na">v-for</span><span class="o">=</span><span class="s">"item in list"</span> <span class="na">:key</span><span class="o">=</span><span class="s">"item.id"</span> <span class="na">v-if</span><span class="o">=</span><span class="s">"active(item.id)"</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ item.content }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">transition</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="js">
+<div class="code-lang"><span class="bold">JavaScript</span></div>
+<div class="highlight"><pre><span></span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="nx">el</span><span class="o">:</span> <span class="s1">'#app'</span><span class="p">,</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">current</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">list</span><span class="o">:</span> <span class="p">[{</span>
+      <span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="nx">label</span><span class="o">:</span> <span class="s1">'menu1'</span><span class="p">,</span>
+      <span class="nx">content</span><span class="o">:</span> <span class="s1">'content1'</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="nx">id</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="nx">label</span><span class="o">:</span> <span class="s1">'menu2'</span><span class="p">,</span>
+      <span class="nx">content</span><span class="o">:</span> <span class="s1">'content2'</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="nx">id</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="nx">label</span><span class="o">:</span> <span class="s1">'menu3'</span><span class="p">,</span>
+      <span class="nx">content</span><span class="o">:</span> <span class="s1">'content3'</span>
+    <span class="p">}]</span>
+  <span class="p">},</span>
+  <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">active</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">current</span> <span class="o">==</span> <span class="nx">id</span>
+    <span class="p">},</span>
+    <span class="nx">changeTab</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">current</span> <span class="o">=</span> <span class="nx">id</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+
+<p>Vue.js はテンプレートにも <code>v-if</code> という条件分岐が書けるのでアクティブな ID のコンテンツだけを表示させます。</p>
+
+<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">section</span> <span class="na">v-for</span><span class="o">=</span><span class="s">"item in list"</span> <span class="na">:key</span><span class="o">=</span><span class="s">"item.id"</span> <span class="na">v-if</span><span class="o">=</span><span class="s">"active(item.id)"</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ item.content }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<p>そして切り替えトランジションは <code>&lt;transition&gt;</code> で囲むだけで Vue が時間を管理し切り替えが始まったな～というタイミングでクラスが付き、終わったな～というタイミングで <code>display:none</code> や要素が削除されるので、あとは提供されたクラスにスタイルをつければいい。 </p>
+
+<div class="code-frame" data-lang="css">
+<div class="code-lang"><span class="bold">CSS</span></div>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">v-enter-active</span><span class="o">,</span> <span class="p">.</span><span class="nc">v-leave-active</span> <span class="p">{</span>
+  <span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">.8</span><span class="kt">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">v-leave-active</span> <span class="p">{</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* 表示されるときは左から */</span>
+<span class="p">.</span><span class="nc">v-enter</span> <span class="p">{</span>
+  <span class="k">transform</span><span class="p">:</span> <span class="nb">translateX</span><span class="p">(</span><span class="mi">-20</span><span class="kt">px</span><span class="p">);</span>
+  <span class="k">opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* 消えるときは上へ */</span>
+<span class="p">.</span><span class="nc">v-leave-to</span> <span class="p">{</span>
+  <span class="k">transform</span><span class="p">:</span> <span class="nb">translateY</span><span class="p">(</span><span class="mi">-20</span><span class="kt">px</span><span class="p">);</span>
+  <span class="k">opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>複雑なトランジションが作れるし、もう <code>display:none</code> に悩まされる事はないですね。</p>
+
+<p>リスト要素の場合でも <code>transition-group</code> というタグに変えると同じように動きを付けることが出来ます。公式にいくつかサンプルがあるのだけど、オリジナルの動きも CSS 部分を変えるだけで簡単に作れるのでかなり面白いです。</p>
+
+<p><img alt=":mushroom:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f344.png" title=":mushroom:" width="20"> <a href="https://jp.vuejs.org/v2/guide/transitions.html#%E3%83%AA%E3%82%B9%E3%83%88%E7%A7%BB%E5%8B%95%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B7%E3%83%A7%E3%83%B3" rel="nofollow noopener" target="_blank">公式ガイド リスト移動トランジション</a></p>
+
+<p>ちなみに <code>@click="..."</code> とか <code>v-for</code> とかごちゃごちゃ書かれてますがテンプレートはコンパイルされるので出力される DOM には入りません。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>作るページによって使い分けるのもいいと思います。個人的にはトランジションが楽なので何か動きが入れば割りと気軽に Vue を使ってます。</p>
+
+<p>Vue.js と似たようなデータバインディング系のライブラリは他にもいろいろあるので、自分にあったライブラリを使うといいです。個人的には Vue.js は入門のハードルも低いし、追々大きなシステムにも対応出来るし、一番大事なとこで使ってて凄く楽しいのでオススメです。</p>
+
+<p>Vue.js は 公式マニュアルの日本語翻訳率とスピードが早いので、まずは公式マニュアルを読むのが一番正確だし間違いないです。それにプラスして色んな方が書いた Tips も沢山あるので探してみてください。私も書いているのでぜひ見てくださいね～(•ө•)ﾉ</p>
+
+<p><img alt=":mushroom:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f344.png" title=":mushroom:" width="20"> <a href="https://jp.vuejs.org/v2/guide/" rel="nofollow noopener" target="_blank">Vue.js 日本公式ガイド</a><br>
+<img alt=":mushroom:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f344.png" title=":mushroom:" width="20"> <a href="http://chibinowa.net/note/#!378" rel="nofollow noopener" target="_blank">私のブログ #Vue.js</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

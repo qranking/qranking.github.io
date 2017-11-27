@@ -1,0 +1,810 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (mikimhk)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (mikimhk さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>mikimhkさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>464</kbd>
+		<a target="_blank" href="https://qiita.com/mikimhk/items/7cfbd6c94d0f3d7aa51f">【フロントエンドエンジニアだからこそ】ブラウザレンダリングを理解するため簡単にまとめてみた</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-22 14:41:44</center>
+	</td>
+	<td style="width:200px;">
+		@mikimhk<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/42808/profile-images/1506061508">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[HTML]</b> <b>[CSS]</b> <b>[JavaScript]</b> <b>[フロントエンド]</b> <b>[速度改善]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>初投稿です。よろしくお願いします(/･ω･)/</p>
+
+<p>新卒入社してフロントエンドエンジニアとして働き始めて早半年。<br>
+最近は、自分の書いたコードが世の中にリリースされて嬉しさを噛み締めながら楽しく社会人生活を送っています。</p>
+
+<h1>
+<span id="こんな本を読み始めました" class="fragment"></span><a href="#%E3%81%93%E3%82%93%E3%81%AA%E6%9C%AC%E3%82%92%E8%AA%AD%E3%81%BF%E5%A7%8B%E3%82%81%E3%81%BE%E3%81%97%E3%81%9F"><i class="fa fa-link"></i></a>こんな本を読み始めました</h1>
+
+<p><a href="https://www.amazon.co.jp/dp/4774189677/ref=cm_sw_r_tw_dp_x_.H2WzbZVB428T" rel="nofollow noopener" target="_blank">Webフロントエンド ハイパフォーマンス チューニング　-久保田 光則 (著)</a></p>
+
+<p>webパフォーマンスについて...要はサイトの <strong>速度改善</strong> について学べる本です。</p>
+
+<p>冒頭に「ウェブパフォーマンスとは何か」が書かれてます。</p>
+
+<blockquote>
+<p>ウェブパフォーマンスを改善することは、ユーザが目的の達成の為に費やす時間やリソースを節約させることであり、その節約した分ユーザを豊かにしているわけです。</p>
+
+<p>ウェブページ遷移時の初期ロード時のパフォーマンスだけでなく<br>
+ウェブページ内でのインタラクション(ユーザが起こした操作に対しての応答)の描画のパフォーマンスが重要になってきます。</p>
+</blockquote>
+
+<p>読み込み遅くてスクロールできないーとか、クリックしたのに反応遅いーとか<br>
+イラつきますよね。そうすると離れますよね。あるある。</p>
+
+<p>でも折角作ったサイトが勿体無い。</p>
+
+<p>じゃあ<strong>フロントエンドエンジニアとして何が出来るのか?!</strong><br>
+って話がたくさん書いてあります。</p>
+
+<h1>
+<span id="レンダリングの仕組みを知ろう" class="fragment"></span><a href="#%E3%83%AC%E3%83%B3%E3%83%80%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF%E3%82%92%E7%9F%A5%E3%82%8D%E3%81%86"><i class="fa fa-link"></i></a>レンダリングの仕組みを知ろう</h1>
+
+<p>どういった技があるのかなーと読み進めると<br>
+最初にレンダリングの話がありました。</p>
+
+<p>何故か。</p>
+
+<blockquote>
+<p>テクニックがなぜ有効かを正しく理解しなければ、実際の目の前のウェブページに正しく適用することは出来ないからです。</p>
+
+<p>開発者はその(パフォーマンス測定の)結果が意味するところは何なのかを理解し、その上でボトルネックを特定する必要があります。これらを読み解くには、ブラウザが何をしているのかを知らなくてはいけません。<br>
+そのためにも、ウェブ開発者はレンダリングの流れをおおまかにでも押さえておく必要があります。</p>
+</blockquote>
+
+<p>なるほど。<br>
+私は作るのが好きでコーディングしてきただけの人間なので、全然レンダリングの流れ知りません。<br>
+なので、本を読みつつ、実際に検証っぽいのをしてみました。</p>
+
+<h2>
+<span id="レンダリングの流れ" class="fragment"></span><a href="#%E3%83%AC%E3%83%B3%E3%83%80%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E6%B5%81%E3%82%8C"><i class="fa fa-link"></i></a>レンダリングの流れ</h2>
+
+<p>ブラウザのレンダリングには4つの工程があります。<br>
+最終的に描画されるまでをフレーム(Frame)と呼びます。<br>
+<a href="https://camo.qiitausercontent.com/8f48ec24aa2b06d382cc5373dc00a37e1cda71be/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34323830382f64303833616437342d346338352d386238652d646663622d3162663062626139343931662e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/8f48ec24aa2b06d382cc5373dc00a37e1cda71be/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34323830382f64303833616437342d346338352d386238652d646663622d3162663062626139343931662e6a706567" alt="20170921.jpg" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/42808/d083ad74-4c85-8b8e-dfcb-1bf0bba9491f.jpeg"></a></p>
+
+<ul>
+<li>Loading
+
+<ul>
+<li>Download</li>
+<li>Parse</li>
+</ul>
+</li>
+<li>Scripting</li>
+<li>Rendering
+
+<ul>
+<li>CalculateStyle</li>
+<li>Layout</li>
+</ul>
+</li>
+<li>Painting
+
+<ul>
+<li>Paint</li>
+<li>Rasterize</li>
+<li>CompositeLayers</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="1-loading" class="fragment"></span><a href="#1-loading"><i class="fa fa-link"></i></a>1. Loading</h2>
+
+<p>ここでは2つの処理が行われています。</p>
+
+<h3>
+<span id="download" class="fragment"></span><a href="#download"><i class="fa fa-link"></i></a><strong>Download</strong>
+</h3>
+
+<p>ウェブページ(HTML)自身を含むリソース</p>
+
+<ul>
+<li>HTMLファイル</li>
+<li>CSSファイル</li>
+<li>JavaScriptファイル</li>
+<li>jpeg、png、gif、svg などの画像ファイル</li>
+</ul>
+
+<p>をサーバからダウンロードする。</p>
+
+<h3>
+<span id="parse" class="fragment"></span><a href="#parse"><i class="fa fa-link"></i></a><strong>Parse</strong>
+</h3>
+
+<p>ダウンロードしたリソースを<strong>パース(構文分析)</strong>してレンダリングエンジンの内部表現に変換する。</p>
+
+<p>HTMLファイル → DOMツリー<br>
+CSSファイル → CSSOMツリー</p>
+
+<h2>
+<span id="2-scripting" class="fragment"></span><a href="#2-scripting"><i class="fa fa-link"></i></a>2. Scripting</h2>
+
+<p>次に　JavaScriptのコードをJavaScriptエンジンに引き渡して実行させます。</p>
+
+<p><strong>【 流れ 】</strong><br>
+<strong>JavaScriptのコード</strong> → <code>字句解析</code> → <strong>トークン列</strong> <br>
+　→ <code>構文解析</code> → <strong>抽象構文木</strong> → <code>コンパイル</code> → <strong>実行可能コード</strong> → <code>実行</code></p>
+
+<p>コードのトークン列をパースして抽象構文木を作成し、コンパイルすると、初めて実行可能に！<br>
+JSの実行は、最初にJSファイルを読み込んだ時以外では、DOMイベントが発火しイベントリスナが起動する時にも起こる。</p>
+
+<h2>
+<span id="3-rendering" class="fragment"></span><a href="#3-rendering"><i class="fa fa-link"></i></a>3. Rendering</h2>
+
+<p>ここでも2つの処理が行われています。</p>
+
+<h3>
+<span id="calculatestyle" class="fragment"></span><a href="#calculatestyle"><i class="fa fa-link"></i></a><strong>CalculateStyle</strong>
+</h3>
+
+<p>ドキュメントのDOMツリー内の全てのDOM要素に対して、どのようなCSSプロパティが当たるのかを計算する。<br>
+CSSルールのCSSセレクタがマッチするかを総当りで試行する。(総当りとか...がむしゃらな感じ 何それ可愛い)<br>
+そのあと個別のDOM要素に対して、どのようなCSSプロパティが適用されるかを判断する。</p>
+
+<h3>
+<span id="layout" class="fragment"></span><a href="#layout"><i class="fa fa-link"></i></a><strong>Layout</strong>
+</h3>
+
+<p>CSSプロパティを算出した後、レンダリングエンジンはDOMツリー内全てのノードの視覚的なレイアウト情報の計算、<strong>レイアウト</strong>を行う。</p>
+
+<p>レイアウト情報とは</p>
+
+<ul>
+<li>要素の大きさ</li>
+<li>要素のmargin</li>
+<li>要素のpadding</li>
+<li>要素の位置</li>
+<li>要素のz軸の位置</li>
+</ul>
+
+<p>のこと。</p>
+
+<h2>
+<span id="4-painting" class="fragment"></span><a href="#4-painting"><i class="fa fa-link"></i></a>4. Painting</h2>
+
+<p>レイアウト情報の算出が終わると、最後のレンダリング結果の<strong>描画</strong>に移ります。</p>
+
+<h3>
+<span id="paint" class="fragment"></span><a href="#paint"><i class="fa fa-link"></i></a><strong>Paint</strong>
+</h3>
+
+<p>DisplayListと呼ばれる内部の低レベルな2Dグラフィックエンジン向けの命令の列を生成する。<br>
+この辺でブラウザの実装毎にグラフィックエンジンの異なりが出てくる。</p>
+
+<h3>
+<span id="rasterize" class="fragment"></span><a href="#rasterize"><i class="fa fa-link"></i></a><strong>Rasterize</strong>
+</h3>
+
+<p>生成された命令を用いて実際にピクセル(ビットマップ)へと描画する。<br>
+レイヤーごとに一枚一枚描画されていく。<br>
+レイヤーが生成されるのは要素に対して <code>position</code> や <code>transform</code> , <code>opacity</code>などのプロパティが適用されている時。</p>
+
+<h3>
+<span id="compositelayers" class="fragment"></span><a href="#compositelayers"><i class="fa fa-link"></i></a><strong>CompositeLayers</strong>
+</h3>
+
+<p>最後にピクセルにしたレイヤーを合成して最終的なレンダリング結果を生成。<br>
+レイヤーは基本的にCPUによって合成されるが、transformCSSプロパティに3D変形関数をつけたり、いくつかの条件を満たすとGPUによって合成される。</p>
+
+<p>レンダリング完成 (๑•̀ㅂ•́)و✧</p>
+
+<h2>
+<span id="実際に見てみた" class="fragment"></span><a href="#%E5%AE%9F%E9%9A%9B%E3%81%AB%E8%A6%8B%E3%81%A6%E3%81%BF%E3%81%9F"><i class="fa fa-link"></i></a>実際に見てみた</h2>
+
+<p>Chromeのディベロッパーツールを使うとレンダリングの流れが表示される。<br>
+Performanceタブで ⌘Eを押して検証開始。<br>
+今回は1ページを表示させるのにどう動いたか知りたかったので、shift+⌘E。<br>
+<a href="https://camo.qiitausercontent.com/807e8ede4b3cc25f5dd38d097e9c5d83e5f723b6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34323830382f33646137313164612d323735372d353035342d363965322d3531663535653334376637612e706e67" target="_blank" rel="nofollow noopener"><img width="719" alt=" 2017-09-21 15.55.52.png" src="https://camo.qiitausercontent.com/807e8ede4b3cc25f5dd38d097e9c5d83e5f723b6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34323830382f33646137313164612d323735372d353035342d363965322d3531663535653334376637612e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/42808/3da711da-2757-5054-69e2-51f55e347f7a.png"></a><br>
+(赤枠で囲ったのが上で説明してたところの処理)</p>
+
+<p>ファイルの読み込み順も見れる<br>
+<a href="https://camo.qiitausercontent.com/5bb608c941c4bcb5a66723e80e1739b8ddf63bc9/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34323830382f61383864323164322d326631312d383562332d346339392d6338663936633230353731312e706e67" target="_blank" rel="nofollow noopener"><img width="1387" alt=" 2017-09-21 16.10.50.png" src="https://camo.qiitausercontent.com/5bb608c941c4bcb5a66723e80e1739b8ddf63bc9/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34323830382f61383864323164322d326631312d383562332d346339392d6338663936633230353731312e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/42808/a88d21d2-2f11-85b3-4c99-c8f96c205711.png"></a><br>
+<strong>HTML→CSS→JS→画像</strong>の順に読み込まれてるのがよく分かる！</p>
+
+<h2>
+<span id="調べてみて" class="fragment"></span><a href="#%E8%AA%BF%E3%81%B9%E3%81%A6%E3%81%BF%E3%81%A6"><i class="fa fa-link"></i></a>調べてみて</h2>
+
+<p>本にはもっと細かく書いてあるんですけど、まだまだプロコトルの話とかよく分かんなくて...</p>
+
+<p>でも流れや構造が分かってよかった！<br>
+これから「私達が書いてるコードがこの流れにどう影響が出るのか」を理解していきたいです。<br>
+勉強することいっぱいだー(｡ŏ﹏ŏ)</p>
+
+<p>あと、こういう長い記事書く時のコツとかも覚えたい。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>mikimhkさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>47</kbd>
+		<a target="_blank" href="https://qiita.com/mikimhk/items/abb525c304cf49f30350">-今話題の記事を読んで気になった- 「WebP画像形式」とは??</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-14 18:56:27</center>
+	</td>
+	<td style="width:200px;">
+		@mikimhk<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/42808/profile-images/1506061508">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[HTML]</b> <b>[画像形式]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="https://note.mu/konpyu/n/n9fd5b81f6305" rel="nofollow noopener" target="_blank">リニューアルした日経電子版が高速すぎてヤバイ件</a><br>
+皆さんお読みになりましたか？<br>
+弊社内では<strong>Fastlyすごーい！！！</strong>って話が大きく感じましたが<br>
+フロントに関係しそうな最後の方に出てくるWebPについてちょっとまとめてみました。</p>
+
+<h2>
+<span id="webpについて" class="fragment"></span><a href="#webp%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>WebPについて</h2>
+
+<h3>
+<span id="webp画像形式とは" class="fragment"></span><a href="#webp%E7%94%BB%E5%83%8F%E5%BD%A2%E5%BC%8F%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>【WebP画像形式とは】</h3>
+
+<p><a href="https://camo.qiitausercontent.com/051450a9a42306cf15af6b314b242b467c699c91/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34323830382f66383232626534332d316438312d623335632d383831332d3337323361666230313434352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/051450a9a42306cf15af6b314b242b467c699c91/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34323830382f66383232626534332d316438312d623335632d383831332d3337323361666230313434352e706e67" alt="WebP_Logo.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/42808/f822be43-1d81-b35c-8813-3723afb01445.png"></a></p>
+
+<p>米Googleが開発している静止画フォーマット。<br>
+<strong>ウェッピー</strong>って読むらしいですよ。可愛いですよね。<br>
+ファイルの拡張子は <code>.webp</code><br>
+採用することでWebサイトの表示速度短縮やトラフィック量の節約が期待できます。</p>
+
+<h4>
+<span id="pnggifjpeg画像形式と比べてのメリット" class="fragment"></span><a href="#pnggifjpeg%E7%94%BB%E5%83%8F%E5%BD%A2%E5%BC%8F%E3%81%A8%E6%AF%94%E3%81%B9%E3%81%A6%E3%81%AE%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88"><i class="fa fa-link"></i></a>PNG/GIF/JPEG画像形式と比べてのメリット</h4>
+
+<ul>
+<li>JPEGと比較してファイルサイズが25-34％小さくなる（非可逆圧縮モード）</li>
+<li>PNGと比較してファイルサイズが28％小さくなる（可逆圧縮モード）</li>
+<li>JPEGとは異なり、非可逆圧縮でもアルファチャンネルを扱える</li>
+<li>エンコードは PNG よりも時間がかかるけど、デコードは PNG よりも高速</li>
+</ul>
+
+<h4>
+<span id="対応ブラウザ" class="fragment"></span><a href="#%E5%AF%BE%E5%BF%9C%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6"><i class="fa fa-link"></i></a>対応ブラウザ</h4>
+
+<ul>
+<li>Google Chrome</li>
+<li>Safari</li>
+<li>Opera</li>
+</ul>
+
+<h3>
+<span id="htmlに埋め込むには" class="fragment"></span><a href="#html%E3%81%AB%E5%9F%8B%E3%82%81%E8%BE%BC%E3%82%80%E3%81%AB%E3%81%AF"><i class="fa fa-link"></i></a>【HTMLに埋め込むには】</h3>
+
+<p>img要素にWebPファイルを指定することもできるけど、そうするとChromeでしか画像を表示できません。</p>
+
+<h4>
+<span id="対応ブラウザーにはwebp画像を表示させ未対応ブラウザーにはフォールバック用画像を表示させたい" class="fragment"></span><a href="#%E5%AF%BE%E5%BF%9C%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%83%BC%E3%81%AB%E3%81%AFwebp%E7%94%BB%E5%83%8F%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%95%E3%81%9B%E6%9C%AA%E5%AF%BE%E5%BF%9C%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%83%BC%E3%81%AB%E3%81%AF%E3%83%95%E3%82%A9%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF%E7%94%A8%E7%94%BB%E5%83%8F%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%95%E3%81%9B%E3%81%9F%E3%81%84"><i class="fa fa-link"></i></a>対応ブラウザーにはWebP画像を表示させ、未対応ブラウザーにはフォールバック用画像を表示させたい!!!</h4>
+
+<p>そんなときは、<code>picture</code> 要素を使います。(初めて知った)</p>
+
+<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">picture</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">source</span> <span class="na">type</span><span class="o">=</span><span class="s">"image/webp"</span> <span class="na">srcset</span><span class="o">=</span><span class="s">"sample.webp"</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"sample.png"</span> <span class="na">width</span><span class="o">=</span><span class="s">"400"</span> <span class="na">height</span><span class="o">=</span><span class="s">"400"</span> <span class="na">alt</span><span class="o">=</span><span class="s">"サンプル画像"</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">picture</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<p><code>picture</code>要素のなかに<code>img</code>要素を含めます。<br>
+alt 属性や width 属性・height 属性は<code>img</code> 要素にのみ記述します。</p>
+
+<p>そうするとWebP画像対応ブラウザーでは<code>source</code>要素に指定した画像が優先され<br>
+<code>img</code>要素内の src 属性が srcset 属性の内容に差し替わるようになります。</p>
+
+<p><code>picture</code>要素自体のブラウザ対応はIE以外は基本的にOKみたいです。<br>
+(2017/11/14 現在)<br>
+<a href="https://camo.qiitausercontent.com/1788cdc228969c727adf50decc4a0c6ad1b1e01e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34323830382f66363634323261362d643265352d343631302d373664642d6637643537653266613330622e706e67" target="_blank" rel="nofollow noopener"><img width="1265" alt=" 2017-11-14 18.25.46.png" src="https://camo.qiitausercontent.com/1788cdc228969c727adf50decc4a0c6ad1b1e01e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34323830382f66363634323261362d643265352d343631302d373664642d6637643537653266613330622e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/42808/f66422a6-d2e5-4610-76dd-f7d57e2fa30b.png"></a></p>
+
+<p>今後EdgeでもWebP画像が対応してきたらもっと利用が広がっていくのかなって思いました。</p>
+
+<h2>
+<span id="webpファイルを作るには" class="fragment"></span><a href="#webp%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E4%BD%9C%E3%82%8B%E3%81%AB%E3%81%AF"><i class="fa fa-link"></i></a>WebPファイルを作るには</h2>
+
+<h3>
+<span id="gulpやgruntのプラグインを使う" class="fragment"></span><a href="#gulp%E3%82%84grunt%E3%81%AE%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%82%92%E4%BD%BF%E3%81%86"><i class="fa fa-link"></i></a>【GulpやGruntのプラグインを使う】</h3>
+
+<ul>
+<li><a href="https://github.com/somerandomdude/grunt-webp" rel="nofollow noopener" target="_blank">grunt-webp</a></li>
+<li><a href="https://github.com/sindresorhus/gulp-webp" rel="nofollow noopener" target="_blank">gulp-webp</a></li>
+</ul>
+
+<h3>
+<span id="フォトショのプラグインもあるよ" class="fragment"></span><a href="#%E3%83%95%E3%82%A9%E3%83%88%E3%82%B7%E3%83%A7%E3%81%AE%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%82%82%E3%81%82%E3%82%8B%E3%82%88"><i class="fa fa-link"></i></a>【フォトショのプラグインもあるよ】</h3>
+
+<ul>
+<li><a href="http://telegraphics.com.au/sw/product/WebPFormat#webpformat" rel="nofollow noopener" target="_blank">WebP Format</a></li>
+</ul>
+
+<h3>
+<span id="guiで変換出来るツール" class="fragment"></span><a href="#gui%E3%81%A7%E5%A4%89%E6%8F%9B%E5%87%BA%E6%9D%A5%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>【GUIで変換出来るツール】</h3>
+
+<p>株式会社ICSさんではGUIの変換ツールを作っていたそうです！！</p>
+
+<blockquote>
+<p>「せめて手軽にWebPを作れるツールが欲しい」と思い、デスクトップアプリケーション「WebP画像を作る君」(英語名は「WebP Converter」)を開発し公開しました。</p>
+</blockquote>
+
+<p><a href="https://ics.media/entry/11711" rel="nofollow noopener" target="_blank">WebP画像を作成できるアプリ「WebP画像を作る君」を公開</a><br>
+(本記事はこちらのサイトを参考文献とされていただき書き上げました。)</p>
+
+<p>いつかこういうの作れるようなエンジニアになりたいです...</p>
+
+<h2>
+<span id="参考文献" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><i class="fa fa-link"></i></a>参考文献</h2>
+
+<ul>
+<li><a href="https://www.afasterweb.com/2016/09/30/webp-the-other-image-format/" rel="nofollow noopener" target="_blank">WebP, the Other Image Format</a></li>
+<li><a href="https://ics.media/entry/11711" rel="nofollow noopener" target="_blank">WebP画像を作成できるアプリ「WebP画像を作る君」を公開</a></li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>mikimhkさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>27</kbd>
+		<a target="_blank" href="https://qiita.com/mikimhk/items/a601600eb69febc4f514">【フロントエンドエンジニアだからこそ】プロトコルも理解して最適なコーディングしよう</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-12 13:07:45</center>
+	</td>
+	<td style="width:200px;">
+		@mikimhk<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/42808/profile-images/1506061508">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[CSS]</b> <b>[HTTP]</b> <b>[プロトコル]</b> <b>[速度改善]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="https://qiita.com/mikimhk/items/7cfbd6c94d0f3d7aa51f" id="reference-499b2be3a201b85693d7">前回</a>レンダリングについて学んだことをまとめましたが、<br>
+今回はプロトコル(HTTP)について学んだことを超簡単にまとめてから<br>
+プロトコルに関連するパフォーマンス改善法を紹介しようと思います。</p>
+
+<h2>
+<span id="ネットワークプロトコルについて" class="fragment"></span><a href="#%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%97%E3%83%AD%E3%83%88%E3%82%B3%E3%83%AB%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>ネットワークプロトコルについて</h2>
+
+<h3>
+<span id="プロトコル" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%83%88%E3%82%B3%E3%83%AB"><i class="fa fa-link"></i></a><strong>プロトコル</strong>
+</h3>
+
+<p>コンピューター同士が通信をする際の手順や規約などの約束事...要は会話のための言語。<br>
+<strong>双方が理解できる同じプロトコル(言語)</strong>を使わないと通信(会話)は成立しないです。<br>
+バイリンガルでない限り日本語も同じじゃないと理解出来なくて伝わらないですよね。</p>
+
+<p>プロトコルには沢山種類があって、物理的な部分からアプリケーション的な部分まで、物理層・インターネット層・トランスポート層・アプリケーション層と大きく分けて4段階あり...<br>
+みたいな説明が長々と続くわけですが、今回は要らないので省略。</p>
+
+<h3>
+<span id="http" class="fragment"></span><a href="#http"><i class="fa fa-link"></i></a><strong>HTTP</strong>
+</h3>
+
+<p>ブラウザと Webサーバの間で HTML などの Webページのコンテンツを送受信するためのプロトコル。(アプリケーション層)</p>
+
+<p>そういえばたまに「HTTPプロトコル」なんて聞きますけど<br>
+<strong>HyperText Transfer Protocol</strong>の略なんで "プロトコル" 要らないです笑</p>
+
+<h3>
+<span id="通信" class="fragment"></span><a href="#%E9%80%9A%E4%BF%A1"><i class="fa fa-link"></i></a>【通信】</h3>
+
+<p>HTTPの通信は非常にシンプル!!<br>
+<code>クライアント(ユーザ側)はサーバに対してHTTPリクエストを送信</code><br>
+ <font color="DeepPink">↓　↑　この間には <strong>TCPコネクション</strong>という <strong>道</strong> みたいなものが出来ている</font><br>
+<code>サーバはクライアントに対してHTTPレスポンスを返す</code></p>
+
+<h4>
+<span id="バージョン" class="fragment"></span><a href="#%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>【バージョン】</h4>
+
+<p>HTTP にはバージョンが幾つかあり、現在支配的に利用されているのが <font color="DarkOrange">HTTP/1.1</font> になります。<br>
+ですが最近は2015年に Google が SPDY のサポートを終了し、 <font color="DarkOrange">HTTP/2</font> のサポートを開始すると発表してから、webパフォーマンスが向上しやすい HTTP/2 を取り入れるサイトが増えてきました。<br>
+参考：<a href="http://www.itmedia.co.jp/news/articles/1502/10/news060.html" rel="nofollow noopener" target="_blank">Google、「SPDY」終了と「HTTP/2」サポートを発表 - ITmedia NEWS</a></p>
+
+<p>ということで今回は一番利用率の高い HTTP/1.1 と最新の HTTP/2 のパフォーマンスについて説明していきます。</p>
+
+<h2>
+<span id="http11とhttp2の違い" class="fragment"></span><a href="#http11%E3%81%A8http2%E3%81%AE%E9%81%95%E3%81%84"><i class="fa fa-link"></i></a>HTTP/1.1とHTTP/2の違い</h2>
+
+<p>こちらも簡単に必要な部分しか書きませんので、詳細が気になる方は調べてみてください。</p>
+
+<h3>
+<span id="http11" class="fragment"></span><a href="#http11"><i class="fa fa-link"></i></a><strong>HTTP/1.1</strong>
+</h3>
+
+<ul>
+<li>1つのTCPコネクション内に1対のリクエストとレスポンスしか処理できない</li>
+<li>同時に複数のリクエストを送ることは可能だが、その場合必ずリクエストされた順にレスポンスが返る</li>
+<li>しかも殆どのモダンブラウザで TCPコネクションを同時に接続出来る数は <font color="DarkOrange"><strong>６つ</strong></font>
+</li>
+<li>なので画像が100枚あったとしても一度に6枚分のリクエストしか送れない
+
+<ul>
+<li>1枚分のレスポンスの受信が終わったら随時次のリクエストを送っていくため、常に6つ接続されていく</li>
+</ul>
+</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/66a441ffabc69cf68b5a41115f53b880d5534d0d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34323830382f34353664366331662d373831302d376665332d616136362d6338346261353665326665662e706e67" target="_blank" rel="nofollow noopener"><img width="551" alt=" 2017-10-11 18.40.33.png" src="https://camo.qiitausercontent.com/66a441ffabc69cf68b5a41115f53b880d5534d0d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34323830382f34353664366331662d373831302d376665332d616136362d6338346261353665326665662e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/42808/456d6c1f-7810-7fe3-aa66-c84ba56e2fef.png"></a></p>
+
+<h3>
+<span id="http2" class="fragment"></span><a href="#http2"><i class="fa fa-link"></i></a><strong>HTTP/2</strong>
+</h3>
+
+<ul>
+<li>1つのTCPコネクション接続上に<strong>ストリーム</strong>と呼ばれる仮想的な通信路を作ることによって、複数のリクエスト/レスポンスを<font color="DarkOrange"><strong>同時並行</strong></font>に処理できて、レスポンスを返すための処理に時間がかかるようなケースでも、その間に別のリクエスト/レスポンスを処理することが可能</li>
+<li>なので画像が100枚あったとしたら一度に100枚分のリクエストが送れて、レスポンスも他の処理を待たずに返ってくる</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/66a8b7b8187fdef8f80775c5de5ebf2e6a8b244f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34323830382f61393839623437622d663936342d363436622d353334332d3436333537376530323031372e706e67" target="_blank" rel="nofollow noopener"><img width="550" alt=" 2017-10-11 17.01.55.png" src="https://camo.qiitausercontent.com/66a8b7b8187fdef8f80775c5de5ebf2e6a8b244f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34323830382f61393839623437622d663936342d363436622d353334332d3436333537376530323031372e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/42808/a989b47b-f964-646b-5343-463577e02017.png"></a></p>
+
+<h4>
+<span id="http2-を利用する場合の留意点" class="fragment"></span><a href="#http2-%E3%82%92%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%AE%E7%95%99%E6%84%8F%E7%82%B9"><i class="fa fa-link"></i></a>【HTTP/2 を利用する場合の留意点】</h4>
+
+<p>現状 TLSプロトコルレイヤーなしでの HTTP/2 の利用を許可しているブラウザはない為、事実上TLSを利用する必要があります。<br>
+<strong>TLS（Transport Layer Security）プロトコル</strong>とは、一般的にSSL（Secure Sockets Layer）と呼ばれていて、</p>
+
+<ul>
+<li>クライアントとサーバの認証機能</li>
+<li>通信データの暗号化</li>
+<li>通信データの改ざん検出</li>
+</ul>
+
+<p>などの機能を提供し、セキュアな通信を可能にします。<br>
+URL のプロトコル部分が <code>https://</code> だった場合、TLSが利用されています。</p>
+
+<h3>
+<span id="今見ているサイトはどのバージョン" class="fragment"></span><a href="#%E4%BB%8A%E8%A6%8B%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AF%E3%81%A9%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a><strong>今見ているサイトはどのバージョン??</strong>
+</h3>
+
+<p>WEBサイトがHTTP/2に対応しているかどうかは、ブラウザの以下のプラグインを利用すると簡単に確認出来ます。</p>
+
+<p>Chrome　<a href="https://chrome.google.com/webstore/detail/spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin" rel="nofollow noopener" target="_blank">HTTP/2 and SPDY indicator - Chrome ウェブストア</a><br>
+Firefox　<a href="https://addons.mozilla.org/ja/firefox/addon/http2-indicator/" rel="nofollow noopener" target="_blank">HTTP/2 Indicator 3.0</a></p>
+
+<p>プラグインを導入しサイトにアクセスするとアドレスバーの右側に稲妻マークが表示され色でバージョンが見分けられます。</p>
+
+<table>
+<thead>
+<tr>
+<th>色</th>
+<th>バージョン</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>青</td>
+<td>HTTP/2</td>
+</tr>
+<tr>
+<td>緑</td>
+<td>SPDY</td>
+</tr>
+<tr>
+<td>赤</td>
+<td>QUIC</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<span id="体感しよう" class="fragment"></span><a href="#%E4%BD%93%E6%84%9F%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a><strong>体感しよう</strong>
+</h3>
+
+<p><a href="http://www.httpvshttps.com/" rel="nofollow noopener" target="_blank">HTTP vs HTTPS Test</a><br>
+このサイトでは、360個の画像ファイルを TSLなしの HTTP/1.1で読み込んだときと、<br>
+HTTP/2 で読み込んだ時のパフォーマンスの違いを試すことが出来ます。</p>
+
+<p>HTTP/1.1 では読み込みが同時接続の制限によってブロックされ、全ての画像ファイルを読み込むのに時間がかかっているのが分かります。<br>
+一方、HTTP/2 では同時接続の制限がないため、多数の画像ファイルを高速で読み込むことが出来ます。</p>
+
+<h2>
+<span id="何でもかんでも変えればいいって話じゃない" class="fragment"></span><a href="#%E4%BD%95%E3%81%A7%E3%82%82%E3%81%8B%E3%82%93%E3%81%A7%E3%82%82%E5%A4%89%E3%81%88%E3%82%8C%E3%81%B0%E3%81%84%E3%81%84%E3%81%A3%E3%81%A6%E8%A9%B1%E3%81%98%E3%82%83%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>何でもかんでも変えればいいって話じゃない</h2>
+
+<p>HTTP/2 は HTTP/1.1 に比べ利点が多く見えるので<br>
+「全部 HTTP/2 化しちゃえばいいじゃん！！」ヽ(｀▽´)/<br>
+と思われるかもしれません。<br>
+ですが、全てのサイトで<strong>ただ導入すればサイトスピードが上がるのかと言われるとそうではない</strong>です。<br>
+効力が期待できないサイトというのもあります。<br>
+例えば</p>
+
+<ul>
+<li>既に HTTP/1.1 に適した処理を施しているサイト
+
+<ul>
+<li>HTTP/2 では無意味なテクニックを使っている場合、そのままのコードでは変化を感じられない</li>
+</ul>
+</li>
+<li>リクエスト数やリソースが元々少ないサイト</li>
+<li>パケットロスが多いサイト
+
+<ul>
+<li>多重化によって同時リクエストが可能となったが、TCPレベルでのブロッキングは解消されたわけではないので、パケットロスが多い環境では1本にした TCPコネクションが逆に影響されてしまう</li>
+</ul>
+</li>
+</ul>
+
+<p>などです。<br>
+これらのことから、<strong>HTTPS で多くのコンテンツを配信する ECサイトや同時アクセスが集中するサイト</strong>などは特に HTTP/2の恩恵を受けることが出来ます。</p>
+
+<h2>
+<span id="http11-に合ったパフォーマンス改善法" class="fragment"></span><a href="#http11-%E3%81%AB%E5%90%88%E3%81%A3%E3%81%9F%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E6%94%B9%E5%96%84%E6%B3%95"><i class="fa fa-link"></i></a>HTTP/1.1 に合ったパフォーマンス改善法</h2>
+
+<p>HTTP/1.1では、<font color="DarkOrange"><strong>リクエストできる数を増やす</strong></font>または<font color="DarkOrange"><strong>リクエストする数を減らす</strong></font>事が高速化に繋がるテクニックになります。</p>
+
+<h3>
+<span id="リクエストを減らす方法" class="fragment"></span><a href="#%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%92%E6%B8%9B%E3%82%89%E3%81%99%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a><strong>リクエストを減らす方法</strong>
+</h3>
+
+<ul>
+<li>
+<font color="DeepPink">CSSスプライト</font>
+
+<ul>
+<li>サイト内で使用するたくさんの画像（パーツ）をなるべく一枚画像にまとめて、サーバへのリクエスト回数を少なくする方法</li>
+<li>CSS で調整する
+
+<ul>
+<li>img要素ではなく、背景画像として配置して幅を指定し、ボタンがひとつずつ表示されるように <code>background-position</code> でズラして調整する。</li>
+</ul>
+</li>
+<li>更新が面倒（サイズが変わった時とか増えた時とか）</li>
+<li>やりすぎると CSSが <code>background-position</code> で溢れ返って見づらくなる...??</li>
+</ul>
+</li>
+<li>
+<font color="DeepPink">画像のインライン化</font>
+
+<ul>
+<li>画像などのバイナリファイルを<strong>Base64</strong>というテキストデータに変換してデータを HTMLの imgタグなどに埋め込む方法<br>
+こんな感じになる→ <code>&lt;img src="data:image/png;base64,HFIKcsVBORwiHFIKcsVBORw"&gt;</code>
+</li>
+<li>データが数MB だと srcが途轍もなく長くなるため、htmlファイル自体のダウンロードに時間が掛かり不利になってしまう可能性がある</li>
+<li>IE9以下はごめんなさい</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="リクエストできる数を増やす方法" class="fragment"></span><a href="#%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%81%A7%E3%81%8D%E3%82%8B%E6%95%B0%E3%82%92%E5%A2%97%E3%82%84%E3%81%99%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a><strong>リクエストできる数を増やす方法</strong>
+</h3>
+
+<ul>
+<li>
+<font color="DeepPink">ドメインシャーディング</font>
+
+<ul>
+<li>複数のドメインに分散させることによってドメイン数×6リクエスト分同時接続数を増やすことができる</li>
+<li>ドメイン数が増えれば増えるほど、それぞれのドメインに対して名前解決しなければならないので、その時間が掛かりすぎると逆効果</li>
+<li>もちろんコストと手間がかかる</li>
+</ul>
+</li>
+</ul>
+
+<p>どれも効果が出やすい技術ですが、やりすぎると逆効果になるので<strong>ご利用は計画的に</strong><br>
+他にもリクエスト関連で出来ることを見つけたら随時更新しようと思います。</p>
+
+<h2>
+<span id="最後に" class="fragment"></span><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB"><i class="fa fa-link"></i></a>最後に</h2>
+
+<p><strong>HTTP/2</strong> では上記の技術は必要なくなります。<br>
+物によっては逆に遅くもなります。(ドメインシャーディングとか)<br>
+今回プロトコルを知って、何故効果がないのかがわかりました。</p>
+
+<p>こういった技術は石ころのようにたくさんネットで公開されてますが、<strong>今動かしているサイトにこの技術は合っているのか</strong>を見分けて効果的で最適なコーディングをすることによって、パフォーマンス改善を目指していきたいなと思っています。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>mikimhkさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/mikimhk/items/a4a7d5830d71d09ec528">Front-End-Checklist (個人的な)補足メモ</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-24 12:10:39</center>
+	</td>
+	<td style="width:200px;">
+		@mikimhk<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/42808/profile-images/1506061508">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[SEO]</b> <b>[フロントエンド]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="https://github.com/thedaviddias/Front-End-Checklist" rel="nofollow noopener" target="_blank">Front-End-Checklist</a> の<a href="https://qiita.com/miya0001/items/8fff46c201bf9eaeba4a#%E7%9B%AE%E6%AC%A1" id="reference-ff618543246b1f640bfe">日本語訳</a>を読んで、補足っていうか自分の知らなかったものとか、あれ?これなんだっけ??ってのを まとメモ</p>
+
+<h2>
+<span id="head" class="fragment"></span><a href="#head"><i class="fa fa-link"></i></a>Head</h2>
+
+<h3>
+<span id="x-ua-compatible" class="fragment"></span><a href="#x-ua-compatible"><i class="fa fa-link"></i></a>・X-UA-Compatible</h3>
+
+<p>制御パラメータを利用して古いブラウザの機能をエミュレートさせることができる。<br>
+content=”IE=edge”はIEの最新バージョンの標準モードで表示するという設定。</p>
+
+<h3>
+<span id="description" class="fragment"></span><a href="#description"><i class="fa fa-link"></i></a>・Description</h3>
+
+<p>ページの内容をあらわす概要を記述する。<br>
+検索結果のスニペットで使われる事がある。</p>
+
+<h3>
+<span id="canonical" class="fragment"></span><a href="#canonical"><i class="fa fa-link"></i></a>・Canonical</h3>
+
+<p>複数の重複 ページが存在している場合に、 検索エンジンに優先させるべき ページを伝えることでそれ以外のページは重複 ページであることを伝える事ができる。</p>
+
+<h4>
+<span id="なぜ-urlの正規化が必要か" class="fragment"></span><a href="#%E3%81%AA%E3%81%9C-url%E3%81%AE%E6%AD%A3%E8%A6%8F%E5%8C%96%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%8B"><i class="fa fa-link"></i></a>なぜ URLの正規化が必要か</h4>
+
+<ol>
+<li>どれを インデックスに登録するか判断できない</li>
+<li>リンクポピュラリティが分散する</li>
+</ol>
+
+<p>などがある</p>
+
+<h3>
+<span id="noopener" class="fragment"></span><a href="#noopener"><i class="fa fa-link"></i></a>・Noopener</h3>
+
+<p>target="_blank" で外部リンクを使用する際、rel="noopener" 属性をつけて Tabnabbing 脆弱性を防ぐ。</p>
+
+<h4>
+<span id="tabnabbing-脆弱性" class="fragment"></span><a href="#tabnabbing-%E8%84%86%E5%BC%B1%E6%80%A7"><i class="fa fa-link"></i></a>Tabnabbing 脆弱性</h4>
+
+<p>スクリプトにより非アクティブのタブ上のページを偽のページに書き換え、ユーザがそのタグに移動したとき、偽のページを利用してパスワードなど情報を盗み出す。</p>
+
+<h2>
+<span id="javascript" class="fragment"></span><a href="#javascript"><i class="fa fa-link"></i></a>JavaScript</h2>
+
+<h3>
+<span id="modernizr" class="fragment"></span><a href="#modernizr"><i class="fa fa-link"></i></a>・Modernizr</h3>
+
+<p><a href="http://modernizr.com/" rel="nofollow noopener" target="_blank">modernizr.js</a>というJavaScriptのライブラリ。<br>
+閲覧者のブラウザがどのような機能をサポートしているかをチェックして、HTMLタグにサポート状況を判別できるクラスを付与し、その結果を記録したmodernizrグローバルオブジェクトを生成してくれる。</p>
+
+<p>閲覧者の使用しているブラウザごとに判別してクラスを付与して、追加されたクラスを使うことで、ブラウザの対応状況に応じたCSSを記載することができるようになる。<br>
+たとえばcanvasが利用可能な場合は「canvas」とクラス名を付与する。canvasが利用できない場合は、頭にno-がついた機能名、「no-canvas」 というクラス名を付与する。</p>
+
+<h3>
+<span id="eslint" class="fragment"></span><a href="#eslint"><i class="fa fa-link"></i></a>・ESLint</h3>
+
+<p>JavaScript のための静的検証ツール。<br>
+コードを実行する前に明らかなバグを見つけたり、括弧やスペースの使い方などのスタイルを統一したりするのに役立つ。</p>
+
+<h4>
+<span id="特徴" class="fragment"></span><a href="#%E7%89%B9%E5%BE%B4"><i class="fa fa-link"></i></a>特徴</h4>
+
+<ul>
+<li>すべての検証ルールを自由に on/off できる</li>
+<li>自分のプロジェクトに合わせたカスタムルールを簡単に作れる</li>
+<li>豊富なビルトイン ルール (4.0.0 時点で 247 個) に加えて、たくさんのプラグインが公開されている</li>
+<li>ECMAScript 2015 (ES6), 2016, 2017 を標準サポートしている</li>
+<li>JSX 記法 をサポートしている</li>
+<li>Babel と連携することで、仕様策定中の新しい構文や Flow 型注釈にも対応できる</li>
+</ul>
+
+<p>参考：<a href="https://qiita.com/mysticatea/items/f523dab04a25f617c87d" id="reference-9b9d7b26ad0bf1c03d95">ESLint 最初の一歩</a></p>
+
+<h2>
+<span id="セキュリティ" class="fragment"></span><a href="#%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3"><i class="fa fa-link"></i></a>セキュリティ</h2>
+
+<h3>
+<span id="content-type-options" class="fragment"></span><a href="#content-type-options"><i class="fa fa-link"></i></a>・Content Type Options</h3>
+
+<p><code>X-Content-Type-Options: nosniff</code><br>
+ファイルの内容からファイルの種類を決定できないようにするヘッダフィールド。<br>
+Content-typeを’text/plain’と指定した場合には指定通り<br>
+テキストとしてと表示されるようになる。<br>
+これによってクロスサイトスクリプティング(XSS)が防止できる。</p>
+
+<h3>
+<span id="x-frame-options-xfo" class="fragment"></span><a href="#x-frame-options-xfo"><i class="fa fa-link"></i></a>・X-Frame-Options (XFO)</h3>
+
+<p>iFrameを使って他のサイトから自分のサイトが読み込まれないようにするヘッダフィールド。<br>
+クリックジャッキングを防ぐ。</p>
+
+<h4>
+<span id="クリックジャンキングとは" class="fragment"></span><a href="#%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E3%82%B8%E3%83%A3%E3%83%B3%E3%82%AD%E3%83%B3%E3%82%B0%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>クリックジャンキングとは</h4>
+
+<p>悪意のあるサイト上の特定箇所をクリックさせ、他のサイトの設定情報を変更させること。<br>
+他のサイトは、iframeを使って読み込まれた上で、視覚的に見えなくしてある。</p>
+
+<p>参考：<a href="https://qiita.com/mint__/items/a4039d3cc659959d9231" id="reference-54de0e710611ab8ea97a">HTTPレスポンスヘッダによるセキュリティ対策<br>
+</a></p>
+
+<h2>
+<span id="用語以外" class="fragment"></span><a href="#%E7%94%A8%E8%AA%9E%E4%BB%A5%E5%A4%96"><i class="fa fa-link"></i></a>用語以外</h2>
+
+<blockquote>
+<p>Cookie size: もし Cookie を使用しているなら、4096 バイトを超えていないこと、20以上の Cookie を使用していないこと。</p>
+</blockquote>
+
+<p>これは知らんかった...Cookie関連(キャッシュとか諸々)まだ知らんことが多い...(｡ŏ﹏ŏ)</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

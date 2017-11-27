@@ -1,0 +1,3283 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (toe)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (toe さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>toeさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>175</kbd>
+		<a target="_blank" href="https://qiita.com/toe/items/c5aa9446e73aa4bc1de0">OSSのライセンスを理解する（「使用」と「利用」の違い、知っていますか？）</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-19 18:15:13</center>
+	</td>
+	<td style="width:200px;">
+		@toe<br><img width="80" height="80" src="https://secure.gravatar.com/avatar/b421ef1d479124a64323e42e3c266366">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[GPL]</b> <b>[MIT-License]</b> <b>[著作権]</b> <b>[OSS]</b> <b>[オープンソース]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>最近、私的にDockerで遊んでいるのですが、Dockerを使っていると様々なライセンスを有したオープンソースソフトウェア（OSS）と遭遇します。自分が知らない間に著作権に抵触してしまうことが怖かったので、OSSのライセンスについて以下の流れでまとめてみました。</p>
+
+<ol>
+<li>「ライセンス関連用語」を理解する</li>
+<li>「オープンソースの定義」を理解する</li>
+<li>「コピーレフト」を理解する</li>
+<li>「主要ライセンス」を理解する</li>
+</ol>
+
+<p><a></a></p>
+
+<h2>
+<span id="1ライセンス関連用語を理解する" class="fragment"></span><a href="#1%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9%E9%96%A2%E9%80%A3%E7%94%A8%E8%AA%9E%E3%82%92%E7%90%86%E8%A7%A3%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>1.「ライセンス関連用語」を理解する</h2>
+
+<p>OSSを理解するにあたって、まずは主要なライセンス関連用語の定義を理解することが重要です。私の場合は、<strong>「使用」と「利用」の違い</strong>や<strong>「オープンソースソフトウェア」と「フリーウェア」の違い</strong>について、恥ずかしながら明確に理解できていませんでした。。。</p>
+
+<h4>
+<span id="オープンソースソフトウェアopen-source-software-oss" class="fragment"></span><a href="#%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2open-source-software-oss"><i class="fa fa-link"></i></a>【オープンソース・ソフトウェア（Open Source Software, OSS）】</h4>
+
+<ul>
+<li>ソースコードが無償で公開されているソフトウェアのこと。</li>
+</ul>
+
+<p><a></a></p>
+
+<h4>
+<span id="派生ソフトウェアderived-works" class="fragment"></span><a href="#%E6%B4%BE%E7%94%9F%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2derived-works"><i class="fa fa-link"></i></a>【派生ソフトウェア（derived works）】</h4>
+
+<ul>
+<li> あるソフトウェアを<strong>引用または改変</strong>して作成されたソフトウェアのこと。</li>
+<li>著作権法における「二次的著作物」を示す。</li>
+</ul>
+
+<p><a></a></p>
+
+<h4>
+<span id="頒布distribution" class="fragment"></span><a href="#%E9%A0%92%E5%B8%83distribution"><i class="fa fa-link"></i></a>【頒布（distribution）】</h4>
+
+<ul>
+<li>ソフトウェアを第三者へ提供すること。</li>
+<li>「配布」と同義。</li>
+</ul>
+
+<p><a></a></p>
+
+<h4>
+<span id="再頒布redistribution" class="fragment"></span><a href="#%E5%86%8D%E9%A0%92%E5%B8%83redistribution"><i class="fa fa-link"></i></a>【再頒布（redistribution)】</h4>
+
+<ul>
+<li>誰かが頒布したソフトウェアを入手し、別の場所で頒布すること。</li>
+<li>派生ソフトウェアを第三者へ提供すること。</li>
+</ul>
+
+<h4>
+<span id="使用use" class="fragment"></span><a href="#%E4%BD%BF%E7%94%A8use"><i class="fa fa-link"></i></a>【使用（use）】</h4>
+
+<blockquote>
+<p>「使用」とは、著作物を見る，聞く等のような単なる著作物等の享受を指す。<br><br>
+（「平成10年2月文化庁著作権審議会マルチメディア小委員会ワーキング・グループ中間まとめ」より）</p>
+</blockquote>
+
+<ul>
+<li>ソフトウェアを実行したり、ソースコードを閲読・コンパイルすること。</li>
+<li>OSSの場合、<strong>ソフトウェアの使用は自由である。</strong>
+</li>
+</ul>
+
+<p><a></a></p>
+
+<h4>
+<span id="利用exploit" class="fragment"></span><a href="#%E5%88%A9%E7%94%A8exploit"><i class="fa fa-link"></i></a>【利用（exploit）】</h4>
+
+<blockquote>
+<p>「利用」とは、複製や公衆送信等著作権等の支分権に基づく行為を指す。<br><br>
+（「平成10年2月文化庁著作権審議会マルチメディア小委員会ワーキング・グループ中間まとめ」より）</p>
+</blockquote>
+
+<ul>
+<li>対象のソフトウェアを複写・改変・再頒布すること。</li>
+<li>新たに作成したソフトウェアの一部として、対象のソフトウェアを同梱すること。</li>
+<li>OSSの場合、<strong>ソフトウェアの利用はオープンソース・ライセンスによって制限されている</strong>。</li>
+</ul>
+
+<h4>
+<span id="プロプライエタリソフトウェアproprietary-software" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%83%97%E3%83%A9%E3%82%A4%E3%82%A8%E3%82%BF%E3%83%AA%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2proprietary-software"><i class="fa fa-link"></i></a>【プロプライエタリ・ソフトウェア（proprietary software）】</h4>
+
+<ul>
+<li>実行ファイル（バイナリ）として頒布され、ソースコードは公開されないソフトウェアのこと。</li>
+<li>商用ソフトウェアやフリーウェア、シェアウェアなどがプロプライエタリ・ソフトウェアに該当する。</li>
+<li>プロプライエタリ・ソフトウェアの利用は基本的に禁止されている。</li>
+<li><strong>使用許諾書や独自のライセンスで規定された範囲で使用しなければならない。</strong></li>
+</ul>
+
+<h4>
+<span id="フリーウェアfreeware" class="fragment"></span><a href="#%E3%83%95%E3%83%AA%E3%83%BC%E3%82%A6%E3%82%A7%E3%82%A2freeware"><i class="fa fa-link"></i></a>【フリーウェア（freeware）】</h4>
+
+<ul>
+<li>プロプライエタリ・ソフトウェアのうち、無償で提供されるソフトウェアのこと。</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>種別</th>
+<th>使用</th>
+<th>利用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>プロプライエタリ・ソフトウェア</td>
+<td>使用許諾書や独自のライセンス<br>によって制限</td>
+<td>禁止</td>
+</tr>
+<tr>
+<td>オープンソース・ソフトウェア</td>
+<td>自由</td>
+<td>オープンソース・ライセンス<br>によって制限</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h6>
+<span id="参考文献" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><i class="fa fa-link"></i></a>参考文献</h6>
+
+<ul>
+<li><a href="http://www.weblio.jp/content/%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2" rel="nofollow noopener" target="_blank">オープンソースソフトウェアとは - Weblio辞書</a></li>
+<li><a href="http://www.weblio.jp/content/%E3%83%97%E3%83%AD%E3%83%97%E3%83%A9%E3%82%A4%E3%82%A8%E3%82%BF%E3%83%AA%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2" rel="nofollow noopener" target="_blank">プロプライエタリソフトウェアとは - Weblio辞書</a></li>
+<li><a href="http://www.weblio.jp/content/%E6%B4%BE%E7%94%9F%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0" rel="nofollow noopener" target="_blank">派生プログラムとは - Weblio辞書</a></li>
+<li><a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AA%E3%83%BC%E3%82%A6%E3%82%A7%E3%82%A2" rel="nofollow noopener" target="_blank">フリーウェア - Wikipedia</a></li>
+<li><a href="https://www.catch.jp/openoffice/lisence/softbank_cmag200408.html" rel="nofollow noopener" target="_blank">ソフトの配布とライセンス - 可知豊</a></li>
+<li><a href="http://jpn.nec.com/oss/osslc/doc/OSC20090124SendaiBassui.pdf" rel="nofollow noopener" target="_blank">OSSをライセンス的に正しく使う／プロプラだけの製品とするための11のチェックポイント - NEC</a></li>
+<li><a href="https://thinkit.co.jp/story/2014/02/24/4843" rel="nofollow noopener" target="_blank">GitHubを利用する際に注意したいOSSライセンスのポイントとは - Think IT</a></li>
+<li><a href="https://www.unisys.co.jp/solution/tec/oss/what.html" rel="nofollow noopener" target="_blank">オープンソースとは - 日本ユニシス</a></li>
+<li><a href="http://www.cric.or.jp/db/report/h10_2/h10_2_main.html" rel="nofollow noopener" target="_blank">著作権審議会マルチメディア小委員会ワーキング・グループ中間まとめ - 公益社団法人著作権情報センター CRIC</a></li>
+<li><a href="http://www.atmarkit.co.jp/ait/articles/0812/08/news122.html" rel="nofollow noopener" target="_blank">企業技術者のためのOSSライセンス入門（1）：訴訟が増えている!? OSSライセンス違反 - ＠IT</a></li>
+</ul>
+
+<p><a></a></p>
+
+<h2>
+<span id="2オープンソースの定義を理解する" class="fragment"></span><a href="#2%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%AE%E5%AE%9A%E7%BE%A9%E3%82%92%E7%90%86%E8%A7%A3%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>2.「オープンソースの定義」を理解する</h2>
+
+<p>OSSを規定する上で重要となる「オープンソースの定義」を知っておくと、主要ライセンスを理解する上で大変役立ちます。「オープンソースの定義」とは、Open Source Initiative（OSI）という団体によって策定された十の原則です。オープンソース・ライセンスは基本的にこの定義に従っています。</p>
+
+<p>以下に「オープンソースの定義」の原文（日本語版）を掲載します。ただし原文はやや難解（少なくとも私にとっては）であるため、原文を咀嚼した「<strong>OSSの利用者</strong>」にとっての権利と義務を併せて記載します。</p>
+
+<p><a></a></p>
+
+<h3>
+<span id="オープンソースの定義the-open-source-definitionosd" class="fragment"></span><a href="#%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%AE%E5%AE%9A%E7%BE%A9the-open-source-definitionosd"><i class="fa fa-link"></i></a>オープンソースの定義（The Open Source Definition、OSD）</h3>
+
+<h4>
+<span id="1-再頒布はんぷの自由" class="fragment"></span><a href="#1-%E5%86%8D%E9%A0%92%E5%B8%83%E3%81%AF%E3%82%93%E3%81%B7%E3%81%AE%E8%87%AA%E7%94%B1"><i class="fa fa-link"></i></a>1. 再頒布（はんぷ）の自由</h4>
+
+<blockquote>
+<p>「オープンソース」であるライセンス(以下「ライセンス」と略)は、出自の様々なプログラムを集めたソフトウェア頒布物(ディストリビューション)の一部として、ソフトウェアを販売あるいは無料で頒布することを制限してはなりません。ライセンスは、このような販売に関して印税その他の報酬を要求してはなりません。</p>
+</blockquote>
+
+<ul>
+<li>OSSの利用者は派生ソフトウェアを第三者へ無料で提供することも、<strong>有料で販売することもできる</strong>。</li>
+<li>派生ソフトウェアを頒布する場合、OSSの利用者はOSSの作成者に対して報酬や印税を支払わなくてよい。</li>
+</ul>
+
+<h4>
+<span id="2-ソースコード" class="fragment"></span><a href="#2-%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>2. ソースコード</h4>
+
+<blockquote>
+<p>「オープンソース」であるプログラムはソースコードを含んでいなければならず、コンパイル済形式と同様にソースコードでの頒布も許可されていなければなりません。何らかの事情でソースコードと共に頒布しない場合には、ソースコードを複製に要するコストとして妥当な額程度の費用で入手できる方法を用意し、それをはっきりと公表しなければなりません。方法として好ましいのはインターネットを通じての無料ダウンロードです。ソースコードは、プログラマがプログラムを変更しやすい形態でなければなりません。意図的にソースコードを分かりにくくすることは許されませんし、プリプロセッサや変換プログラムの出力のような中間形式は認められません。</p>
+</blockquote>
+
+<ul>
+<li>利用するOSSがコンパイル済みのバイナリファイルであった場合、OSSの利用者はOSSの作成者に対してソースコードを要求することができる。</li>
+</ul>
+
+<h4>
+<span id="3-派生ソフトウェア" class="fragment"></span><a href="#3-%E6%B4%BE%E7%94%9F%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2"><i class="fa fa-link"></i></a>3. 派生ソフトウェア</h4>
+
+<blockquote>
+<p>ライセンスは、ソフトウェアの変更と派生ソフトウェアの作成、並びに派生ソフトウェアを元のソフトウェアと同じライセンスの下で頒布することを許可しなければなりません。</p>
+</blockquote>
+
+<ul>
+<li>OSSの利用者は派生ソフトウェアを作成して頒布することができる。</li>
+<li>ただし利用するOSSのライセンスによっては、<strong>利用したOSSと同じライセンスを派生ソフトウェアに適用して頒布しなければならない場合がある</strong>。</li>
+</ul>
+
+<h4>
+<span id="4-作者のソースコードの完全性integrity" class="fragment"></span><a href="#4-%E4%BD%9C%E8%80%85%E3%81%AE%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E5%AE%8C%E5%85%A8%E6%80%A7integrity"><i class="fa fa-link"></i></a>4. 作者のソースコードの完全性(integrity)</h4>
+
+<blockquote>
+<p>バイナリ構築の際にプログラムを変更するため、ソースコードと一緒に「パッチファイル」を頒布することを認める場合に限り、ライセンスによって変更されたソースコードの頒布を制限することができます。ライセンスは、変更されたソースコードから構築されたソフトウェアの頒布を明確に許可していなければなりませんが、派生ソフトウェアに元のソフトウェアとは異なる名前やバージョン番号をつけるよう義務付けるのは構いません。</p>
+</blockquote>
+
+<ul>
+<li>ライセンスによっては、元のOSSのソースコードを改変した状態で再頒布することが禁止されている場合がある。ただしそのような場合は元のOSSのソースコードと併せて「パッチファイル」を頒布することができる。</li>
+<li>元のOSSのソースコードを改変した状態で再頒布することが許可されている場合でも、ライセンスによっては、派生ソフトウェアの再頒布時に<strong>元のOSSとは違う名前、違うバージョンをつける</strong>ことが必要な場合がある。</li>
+</ul>
+
+<h4>
+<span id="5-個人やグループに対する差別の禁止" class="fragment"></span><a href="#5-%E5%80%8B%E4%BA%BA%E3%82%84%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E5%B7%AE%E5%88%A5%E3%81%AE%E7%A6%81%E6%AD%A2"><i class="fa fa-link"></i></a>5. 個人やグループに対する差別の禁止</h4>
+
+<blockquote>
+<p>ライセンスは特定の個人やグループを差別してはなりません。</p>
+</blockquote>
+
+<ul>
+<li>OSSは誰でも利用することができる。</li>
+</ul>
+
+<h4>
+<span id="6-利用する分野fields-of-endeavorに対する差別の禁止" class="fragment"></span><a href="#6-%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%E5%88%86%E9%87%8Efields-of-endeavor%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E5%B7%AE%E5%88%A5%E3%81%AE%E7%A6%81%E6%AD%A2"><i class="fa fa-link"></i></a>6. 利用する分野(fields of endeavor)に対する差別の禁止</h4>
+
+<blockquote>
+<p>ライセンスはある特定の分野でプログラムを使うことを制限してはなりません。例えば、プログラムの企業での使用や、遺伝子研究の分野での使用を制限してはなりません。</p>
+
+<p>理由:この条項の主な意図は、ライセンスによってオープンソースが商業的に使われることを妨げるような策略を禁止することです。私たちは、営利的なユーザも私たちのコミュニティに加入してくれることを望んでおり、彼らがそこから排除されているような気分になっては欲しくないのです。</p>
+</blockquote>
+
+<ul>
+<li>OSSはどの分野で使用してもよく、<strong>商用で使用してもよい</strong>。 </li>
+</ul>
+
+<h4>
+<span id="7-ライセンスの分配distribution" class="fragment"></span><a href="#7-%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9%E3%81%AE%E5%88%86%E9%85%8Ddistribution"><i class="fa fa-link"></i></a>7. ライセンスの分配(distribution)</h4>
+
+<blockquote>
+<p>プログラムに付随する権利はそのプログラムが再頒布された者全てに等しく認められなければならず、彼らが何らかの追加的ライセンスに同意することを必要としてはなりません。</p>
+</blockquote>
+
+<ul>
+<li>OSSを一切改変せずに再頒布する場合は、そのOSS自体のライセンスを変更したり、ライセンスを追加することはできない。</li>
+</ul>
+
+<h4>
+<span id="8-特定製品でのみ有効なライセンスの禁止" class="fragment"></span><a href="#8-%E7%89%B9%E5%AE%9A%E8%A3%BD%E5%93%81%E3%81%A7%E3%81%AE%E3%81%BF%E6%9C%89%E5%8A%B9%E3%81%AA%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9%E3%81%AE%E7%A6%81%E6%AD%A2"><i class="fa fa-link"></i></a>8. 特定製品でのみ有効なライセンスの禁止</h4>
+
+<blockquote>
+<p>プログラムに付与された権利は、それがある特定のソフトウェア頒布物の一部であるということに依存するものであってはなりません。プログラムをその頒布物から取り出したとしても、そのプログラム自身のライセンスの範囲内で使用あるいは頒布される限り、プログラムが再頒布される全ての人々が、元のソフトウェア頒布物において与えられていた権利と同等の権利を有することを保証しなければなりません。</p>
+</blockquote>
+
+<ul>
+<li>OSSが派生ソフトウェアの一部として配布された場合でも、OSSだけを取り出して利用することができる。</li>
+</ul>
+
+<h4>
+<span id="9-他のソフトウェアを制限するライセンスの禁止" class="fragment"></span><a href="#9-%E4%BB%96%E3%81%AE%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%82%92%E5%88%B6%E9%99%90%E3%81%99%E3%82%8B%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9%E3%81%AE%E7%A6%81%E6%AD%A2"><i class="fa fa-link"></i></a>9. 他のソフトウェアを制限するライセンスの禁止</h4>
+
+<blockquote>
+<p>ライセンスはそのソフトウェアと共に頒布される他のソフトウェアに制限を設けてはなりません。例えば、ライセンスは同じ媒体で頒布される他のプログラムが全てオープンソースソフトウェアであることを要求してはなりません。</p>
+</blockquote>
+
+<ul>
+<li>派生ソフトウェアとしてOSSを同梱する場合は、どのようなソフトウェアでも一緒に頒布することができる。</li>
+</ul>
+
+<h4>
+<span id="10-ライセンスは技術中立的でなければならない" class="fragment"></span><a href="#10-%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9%E3%81%AF%E6%8A%80%E8%A1%93%E4%B8%AD%E7%AB%8B%E7%9A%84%E3%81%A7%E3%81%AA%E3%81%91%E3%82%8C%E3%81%B0%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>10. ライセンスは技術中立的でなければならない</h4>
+
+<blockquote>
+<p>ライセンス中に、特定の技術やインターフェースの様式に強く依存するような規定があってはなりません。</p>
+</blockquote>
+
+<ul>
+<li>OSSを利用するときはどのような環境でもライセンスの内容を確認し、同意することができる。</li>
+</ul>
+
+<hr>
+
+<h6>
+<span id="参考文献-1" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE-1"><i class="fa fa-link"></i></a>参考文献</h6>
+
+<ul>
+<li><a href="https://opensource.org/osd.html" rel="nofollow noopener" target="_blank">The Open Source Definition (Annotated) - Open Source Initiative</a></li>
+<li>
+<a href="http://www.opensource.jp/osd/osd-japanese.html" rel="nofollow noopener" target="_blank">オープンソースの定義(日本語) - The Open Source Initiative</a><br>
+</li>
+<li><a href="https://ja.wikipedia.org/w/index.php?title=%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%AE%E5%AE%9A%E7%BE%A9&amp;oldid=57231143" rel="nofollow noopener" target="_blank">オープンソースの定義 - Wikipedia</a></li>
+<li>
+<a href="https://www.ibm.com/developerworks/jp/opensource/library/itm-oss2/" rel="nofollow noopener" target="_blank">オープンソースで行こう！: 第2回 オープンソースライセンス事情を俯瞰する - IBM</a><br>
+</li>
+<li>
+<a href="http://atsukada.blogspot.jp/2010/04/oss-osithe-open-source-definition-10-10.html?m=1" rel="nofollow noopener" target="_blank">オープンソースの定義を読む - b6note</a><br>
+</li>
+</ul>
+
+<p><a></a></p>
+
+<h2>
+<span id="3コピーレフトを理解する" class="fragment"></span><a href="#3%E3%82%B3%E3%83%94%E3%83%BC%E3%83%AC%E3%83%95%E3%83%88%E3%82%92%E7%90%86%E8%A7%A3%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>3.「コピーレフト」を理解する</h2>
+
+<p>OSSには大きく「コピーレフト型」、「準コピーレフト型」、「⾮コピーレフト型」という3つの種類があり、それぞれの種類に応じて留意すべき点が異なります。以下に「コピーレフト」の概要とその注意点について記載します。</p>
+
+<p><a></a></p>
+
+<h3>
+<span id="コピーレフトとは" class="fragment"></span><a href="#%E3%82%B3%E3%83%94%E3%83%BC%E3%83%AC%E3%83%95%E3%83%88%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>「コピーレフト」とは</h3>
+
+<ul>
+<li>利⽤者にOSSを複写・改変・再頒布する⾃由を与える⼀⽅で、派⽣ソフトウェアを頒布する際は、<strong>全く同じ条件で</strong>派⽣ソフトウェアを頒布することを義務付けること。</li>
+<li>以下の基準によって、大きく3つに分類することができる。<br>
+① ソフトウェア利⽤者に対して、利⽤者がソースコードを改変した際に、改変部分のソースの開⽰を義務づけるかどうか<br>
+② ソフトウェア利⽤者がソースコードを他のソフトウェアのソースコードと組み合わせた際に、他のソースコードの開⽰を義務づけるかどうか </li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">類型</th>
+<th style="text-align: center">①改変部分のソースコードの開⽰</th>
+<th style="text-align: center">②他のソフトウェアのソースコード開⽰</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">コピーレフト型</td>
+<td style="text-align: center">要</td>
+<td style="text-align: center">要</td>
+</tr>
+<tr>
+<td style="text-align: left">準コピーレフト型</td>
+<td style="text-align: center">要</td>
+<td style="text-align: center">不要</td>
+</tr>
+<tr>
+<td style="text-align: left">⾮コピーレフト型</td>
+<td style="text-align: center">不要</td>
+<td style="text-align: center">不要</td>
+</tr>
+</tbody>
+</table>
+
+<p><a></a></p>
+
+<h3>
+<span id="コピーレフト型及び準コピーレフト型ソフトウェアを扱う際の注意点" class="fragment"></span><a href="#%E3%82%B3%E3%83%94%E3%83%BC%E3%83%AC%E3%83%95%E3%83%88%E5%9E%8B%E5%8F%8A%E3%81%B3%E6%BA%96%E3%82%B3%E3%83%94%E3%83%BC%E3%83%AC%E3%83%95%E3%83%88%E5%9E%8B%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%82%92%E6%89%B1%E3%81%86%E9%9A%9B%E3%81%AE%E6%B3%A8%E6%84%8F%E7%82%B9"><i class="fa fa-link"></i></a>「コピーレフト型」及び「準コピーレフト型」ソフトウェアを扱う際の注意点</h3>
+
+<ul>
+<li>コピーレフト型及び準コピーレフト型ソフトウェアは<strong>第三者に再頒布しない限りソースコード開⽰の義務はない</strong>。そのため、以下のケースではソースコードを開⽰する必要はない。
+
+<ul>
+<li>OSSを改造して自分一人で使用している</li>
+<li>企業においてOSSを改造し、自社内でのみ使用している</li>
+</ul>
+</li>
+<li>改造したソフトウェアの実行ファイル（バイナリ）を第三者に頒布・販売したケースにおいても、ソースコードを要求できるのは<strong>直接配布・販売を受けた者</strong>に限られている。</li>
+<li>ソースコードを開⽰する義務があるのは<strong>ソフトウェア自体の配布先に対してのみ</strong>である。例えばWebサービスの場合、ソフトウェアはサーバーに頒布されるため、Webサービスの利用者へソースコードを開⽰する必要はない。</li>
+</ul>
+
+<hr>
+
+<h6>
+<span id="参考文献-2" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE-2"><i class="fa fa-link"></i></a>参考文献</h6>
+
+<ul>
+<li><a href="https://www.ipa.go.jp/files/000028335.pdf" rel="nofollow noopener" target="_blank">OSSライセンスの⽐較および利⽤動向ならびに係争に関する調査 - 独立行政法人情報処理推進機構</a></li>
+<li><a href="https://thinkit.co.jp/story/2014/02/03/4804" rel="nofollow noopener" target="_blank">コピーレフト型と非コピーレフト型OSSライセンスの違いとは？ - Think IT</a></li>
+<li><a href="https://cloudear.jp/blog/?p=896" rel="nofollow noopener" target="_blank">コピーレフトライセンスについて考察 - 株式会社クラウディア</a></li>
+</ul>
+
+<p><a></a></p>
+
+<h2>
+<span id="4主要ライセンスを理解する" class="fragment"></span><a href="#4%E4%B8%BB%E8%A6%81%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9%E3%82%92%E7%90%86%E8%A7%A3%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>4.「主要ライセンス」を理解する</h2>
+
+<p>GPL、BSD、MIT、Apacheなどの主要ライセンスを適用したソフトウェアを利用する機会は多いと思います。これらのライセンスが適用されたOSSを利用し、派生ソフトウェアとして頒布する際の注意事項をライセンス別にまとめました。</p>
+
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th style="text-align: center">利用元のライセンス表示</th>
+<th style="text-align: center">類型</th>
+<th style="text-align: center">作成者名の無断使用</th>
+<th style="text-align: center">特許条項</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GNU GPL v2</td>
+<td style="text-align: center">必要</td>
+<td style="text-align: center"><strong>コピーレフト</strong></td>
+<td style="text-align: center">-</td>
+<td style="text-align: center">なし</td>
+</tr>
+<tr>
+<td>GNU GPL v3</td>
+<td style="text-align: center">必要</td>
+<td style="text-align: center"><strong>コピーレフト</strong></td>
+<td style="text-align: center">-</td>
+<td style="text-align: center"><strong>あり</strong></td>
+</tr>
+<tr>
+<td>MIT License</td>
+<td style="text-align: center">必要</td>
+<td style="text-align: center">非コピーレフト</td>
+<td style="text-align: center">-</td>
+<td style="text-align: center">なし</td>
+</tr>
+<tr>
+<td>2-Clause BSD License</td>
+<td style="text-align: center">必要</td>
+<td style="text-align: center">非コピーレフト</td>
+<td style="text-align: center">-</td>
+<td style="text-align: center">なし</td>
+</tr>
+<tr>
+<td>3-Clause BSD License</td>
+<td style="text-align: center">必要</td>
+<td style="text-align: center">非コピーレフト</td>
+<td style="text-align: center"><strong>禁止</strong></td>
+<td style="text-align: center">なし</td>
+</tr>
+<tr>
+<td>Apache License Version 2.0</td>
+<td style="text-align: center">必要</td>
+<td style="text-align: center">非コピーレフト</td>
+<td style="text-align: center">-</td>
+<td style="text-align: center"><strong>あり</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p><a></a></p>
+
+<h3>
+<span id="各ライセンスの特徴" class="fragment"></span><a href="#%E5%90%84%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9%E3%81%AE%E7%89%B9%E5%BE%B4"><i class="fa fa-link"></i></a>各ライセンスの特徴</h3>
+
+<h4>
+<span id="共通の特徴" class="fragment"></span><a href="#%E5%85%B1%E9%80%9A%E3%81%AE%E7%89%B9%E5%BE%B4"><i class="fa fa-link"></i></a>共通の特徴</h4>
+
+<ul>
+<li>派生ソフトウェアを頒布する際は、<strong>利用元OSSのライセンス表示（「著作権表示」、「ライセンス文」、「免責条項」）を掲載しなければならない。</strong>
+
+<ul>
+<li>
+<strong><em>派生ソフトウェアをソースコード形式で頒布する場合：</em></strong><br>
+利用元OSSのソースコード中に「著作権表示」、「ライセンス文」、「免責条項」が含まれているため、これらを故意に除去しなければ特に何もする必要はない。</li>
+<li>
+<strong><em>バイナリ形式で再頒布する場合：</em></strong><br>
+頒布するバイナリファイルと併せて利用元OSSの「著作権表示」、「ライセンス文」、「免責条項」を掲載したライセンスファイル（「COPYINGファイル」や「LICENSEファイル」）を頒布先に提供する必要がある。</li>
+</ul>
+</li>
+</ul>
+
+<p><a></a></p>
+
+<h4>
+<span id="gnu-gpl-v2gnu-general-public-license-v2" class="fragment"></span><a href="#gnu-gpl-v2gnu-general-public-license-v2"><i class="fa fa-link"></i></a>GNU GPL v2（GNU General Public License v2）</h4>
+
+<p>本ライセンスを適用しているOSS：MySQL, Redmine, Git, CentOS</p>
+
+<ul>
+<li>コピーレフト型ライセンスであるため、本ライセンスのOSSを利用する場合は<strong>頒布する派生ソフトウェアもGPLライセンスを適用しなければならない。</strong>
+</li>
+<li>派生ソフトウェアのバイナリを第三者に提供する場合は<strong>頒布先にソースコードを開示しなければならない。</strong>
+</li>
+<li>以下の記載例のように、<strong>派生ソフトウェア自体のライセンス文を掲載しなければならない</strong>。</li>
+</ul>
+
+<h6>
+<span id="ライセンスの記載例" class="fragment"></span><a href="#%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9%E3%81%AE%E8%A8%98%E8%BC%89%E4%BE%8B"><i class="fa fa-link"></i></a>ライセンスの記載例</h6>
+
+<ul>
+<li>派生ソフトウェアの各ソースファイルの冒頭にライセンス文を記載する。</li>
+<li>各ソースファイルにライセンス文を記載することが困難な場合は、ライセンス全文のファイルを別途作成し、各ソースファイルには冒頭の2行（「派生ソフトウェアのプログラム名」と「Copyright」行）とライセンス全文のファイルがある場所のパスを記載する。</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>派生ソフトウェアのプログラム名と簡単な説明
+Copyright (C) 西暦年  派生ソフトウェアの作者名
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+</pre></div></div>
+
+<h4>
+<span id="gnu-gpl-v3gnu-general-public-license-v3" class="fragment"></span><a href="#gnu-gpl-v3gnu-general-public-license-v3"><i class="fa fa-link"></i></a>GNU GPL v3（GNU General Public License v3）</h4>
+
+<ul>
+<li>「GNU GPL v2」に<strong>特許条項</strong>を追加したライセンスである。</li>
+<li>対象ソフトウェアを利用する場合に限り、対象ソフトウェアに含まれる特許を自由に利用できる。</li>
+</ul>
+
+<p><a></a></p>
+
+<h4>
+<span id="mit-license" class="fragment"></span><a href="#mit-license"><i class="fa fa-link"></i></a>MIT License</h4>
+
+<p>本ライセンスを適用しているOSS：jQuery, Bootstrap</p>
+
+<ul>
+<li>利用元OSSのライセンス表示さえ掲載していれば、ソフトウェアを自由に頒布することができる。</li>
+</ul>
+
+<h4>
+<span id="2-clause-bsd-license二条項bsdライセンス" class="fragment"></span><a href="#2-clause-bsd-license%E4%BA%8C%E6%9D%A1%E9%A0%85bsd%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9"><i class="fa fa-link"></i></a>2-Clause BSD License（二条項BSDライセンス）</h4>
+
+<ul>
+<li>
+<strong>「MIT License」と同等のライセンス</strong>であり、これらのライセンスの規定にほぼ違いはない。</li>
+</ul>
+
+<p><a></a></p>
+
+<h4>
+<span id="3-clause-bsd-license三条項bsdライセンス修正bsdライセンス" class="fragment"></span><a href="#3-clause-bsd-license%E4%B8%89%E6%9D%A1%E9%A0%85bsd%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9%E4%BF%AE%E6%AD%A3bsd%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9"><i class="fa fa-link"></i></a>3-Clause BSD License（三条項BSDライセンス、修正BSDライセンス）</h4>
+
+<ul>
+<li>「2-Clause BSD License」に<strong>作成者名の無断使用を禁止する条項</strong>を追加したライセンスである。</li>
+</ul>
+
+<p><a></a></p>
+
+<h4>
+<span id="apache-license-version-20" class="fragment"></span><a href="#apache-license-version-20"><i class="fa fa-link"></i></a>Apache License Version 2.0</h4>
+
+<p>本ライセンスを適用しているOSS：Apache, Docker</p>
+
+<ul>
+<li>「MIT License」とほぼ同等の規定に<strong>特許条項</strong>を追加したライセンスである。</li>
+<li>対象ソフトウェアを利用する場合に限り、対象ソフトウェアに含まれる特許を自由に利用できる。</li>
+</ul>
+
+<hr>
+
+<h6>
+<span id="参考文献-3" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE-3"><i class="fa fa-link"></i></a>参考文献</h6>
+
+<ul>
+<li><a href="http://wisdommingle.com/mit-license/" rel="nofollow noopener" target="_blank">MITライセンスってなに？どうやって使うの？商用でも無料で使えるの？ - WisdomMingle.com</a></li>
+<li><a href="https://oss.sios.com/guest-blog/gestblog-oss-license-vol2" rel="nofollow noopener" target="_blank">可知豊の『 わかっておきたい、オープンソースライセンス』: 第2回 色々なオープンソースライセンスをわかっておきたい — サイオステクノロジー</a></li>
+<li><a href="http://www.opensource.jp/gpl/gpl.ja.html#SEC3" rel="nofollow noopener" target="_blank">GNU 一般公衆利用許諾契約書 - GNU プロジェクト - フリーソフトウェア財団</a></li>
+<li><a href="http://matometaru.com/licence/#GPLMIT" rel="nofollow noopener" target="_blank">WordPressのテーマに使われるライセンス(GPL、MIT)についてまとめ - まとめたる</a></li>
+<li><a href="http://www.catch.jp/oss-license/2013/09/27/mit_license/" rel="nofollow noopener" target="_blank">自作ソースコードに、MITライセンスを適用する３つのやり方 - オープンソース・ライセンスの談話室</a></li>
+<li><a href="http://www.atmarkit.co.jp/ait/articles/0906/26/news129.html" rel="nofollow noopener" target="_blank">企業技術者のためのOSSライセンス入門（3）：アカデミック系OSSライセンスに関する一考察 - ＠IT</a></li>
+<li><a href="http://www.yoheim.net/blog.php?q=20120914" rel="nofollow noopener" target="_blank">MIT、BSD、GPLライセンスの内容と意味を学んでみた - YoheiM .NET</a></li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>toeさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
+		<a target="_blank" href="https://qiita.com/toe/items/32a4cb2b74662e03db65">非ウォーターフォール型開発（プロトタイプ型、スパイラル型、アジャイル型）をざっくり理解する</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-21 21:26:21</center>
+	</td>
+	<td style="width:200px;">
+		@toe<br><img width="80" height="80" src="https://secure.gravatar.com/avatar/b421ef1d479124a64323e42e3c266366">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[アジャイル]</b> <b>[開発プロセス]</b> <b>[プロジェクトマネジメント]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>プロトタイプ型開発、スパイラル型開発、アジャイル型開発などの主要な非ウォーターフォール型開発の概要についてざっくりまとめてみました。</p>
+
+<h2>
+<span id="プロトタイプ型開発" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%97%E5%9E%8B%E9%96%8B%E7%99%BA"><i class="fa fa-link"></i></a>プロトタイプ型開発</h2>
+
+<p>「プロトタイプ型開発」は簡単な試作品（プロトタイプ）を開発し、ユーザーによるプロトタイプの評価が行われてから本格的な設計を開始する開発モデルです。「プロトタイプの開発」と「ユーザーによるプロトタイプの評価」は、ウォーターフォールモデルにおける <strong>「要件定義」工程と「基本設計」工程の間に組み込まれます</strong> 。</p>
+
+<p>プロトタイプ型開発はユーザーの要件と開発者側の認識のずれや技術的な課題を早期に解決できるため、 <strong>開発工程終盤での大きな手戻りを防ぐ</strong> ことができます。</p>
+
+<p>プロトタイプ型開発はその特徴によって以下の二つに大別することができます。</p>
+
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>特徴</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ラピッド・プロトタイピング</td>
+<td>開発したプロトタイプを <strong>破棄</strong> する</td>
+<td>時間と費用を最小に抑えること</td>
+</tr>
+<tr>
+<td>進化的プロトタイピング</td>
+<td>開発したプロトタイプを <strong>流用</strong> する</td>
+<td>継続的に改良していくこと</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<span id="ラピッドプロトタイピング使い捨て型プロトタイピング" class="fragment"></span><a href="#%E3%83%A9%E3%83%94%E3%83%83%E3%83%89%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E4%BD%BF%E3%81%84%E6%8D%A8%E3%81%A6%E5%9E%8B%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>ラピッド・プロトタイピング（使い捨て型プロトタイピング）</h3>
+
+<p>「ラピッドプロトタイピング」は「 <strong>時間と費用を最小に抑えること</strong> 」を最大の目標とし、要求仕様が確定した段階で <strong>開発したプロトタイプは破棄する</strong> プロトタイプ型開発の一種です。開発したプロトタイプはシステム開発には流用しません。最近注目されているUIプロトタイピング・ツールとして、「Adobe XD」や「Prott」などがあります。</p>
+
+<p><strong>Adobe XD</strong></p>
+
+<p><a href="https://camo.qiitausercontent.com/42b17a469516c7afb6bd87c7d06df7f6994b6544/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f64626238356464372d346536662d323634622d376139352d3135383361346265636531662e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/42b17a469516c7afb6bd87c7d06df7f6994b6544/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f64626238356464372d346536662d323634622d376139352d3135383361346265636531662e676966" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/155486/dbb85dd7-4e6f-264b-7a95-1583a4bece1f.gif"></a></p>
+
+<hr>
+
+<ul>
+<li><a href="https://blogs.adobe.com/creativestation/web-may-update-of-adobe-experience-design-cc" rel="nofollow noopener" target="_blank">Adobe XD Preview 3 リリース！アートボードのスクロールやテキストの部分スタイリングなど | Adobe Creative Station</a></li>
+<li><a href="https://webdesign-trends.net/entry/2771" rel="nofollow noopener" target="_blank">2017年最新！おすすめのプロトタイピングツール5選 | web design trends</a></li>
+</ul>
+
+<h3>
+<span id="進化的プロトタイピングブレッドボードプロトタイピング" class="fragment"></span><a href="#%E9%80%B2%E5%8C%96%E7%9A%84%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%83%96%E3%83%AC%E3%83%83%E3%83%89%E3%83%9C%E3%83%BC%E3%83%89%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>進化的プロトタイピング（ブレッドボード・プロトタイピング）</h3>
+
+<p>進化的プロトタイピングは <strong>開発したプロトタイプを流用</strong> し、改良を重ねながらシステムを完成させるプロトタイプ型開発です。要求仕様を完全に把握する必要はなく、仕様が明確となっている部分から開発に着手します。</p>
+
+<hr>
+
+<ul>
+<li><a href="https://www.weblio.jp/content/%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%97%E3%83%A2%E3%83%87%E3%83%AB" rel="nofollow noopener" target="_blank">プロトタイプモデルとは - IT用語辞典 Weblio辞書</a></li>
+<li><a href="http://akademeia.info/index.php?%A5%BD%A5%D5%A5%C8%A5%A6%A5%A7%A5%A2%A5%D7%A5%ED%A5%BB%A5%B9%A5%E2%A5%C7%A5%EB#wf4f03ca" rel="nofollow noopener" target="_blank">ソフトウェアプロセスモデル - Security Akademeia</a></li>
+<li><a href="https://ja.wikipedia.org/wiki/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0" rel="nofollow noopener" target="_blank">ソフトウェアプロトタイピング - Wikipedia</a></li>
+</ul>
+
+<h2>
+<span id="スパイラル型開発" class="fragment"></span><a href="#%E3%82%B9%E3%83%91%E3%82%A4%E3%83%A9%E3%83%AB%E5%9E%8B%E9%96%8B%E7%99%BA"><i class="fa fa-link"></i></a>スパイラル型開発</h2>
+
+<p>スパイラル型開発は、ウォーターフォール型開発における要求定義、設計、コーディング、テストの各工程を繰り返す開発モデルです。</p>
+
+<h3>
+<span id="インクリメンタルモデル漸進型" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%AF%E3%83%AA%E3%83%A1%E3%83%B3%E3%82%BF%E3%83%AB%E3%83%A2%E3%83%87%E3%83%AB%E6%BC%B8%E9%80%B2%E5%9E%8B"><i class="fa fa-link"></i></a>インクリメンタル・モデル（漸進型）</h3>
+
+<p>インクリメンタル・モデルは <strong>システムを独立性の高いモジュール（機能）に分割</strong> し、モジュール毎に設計、コーディング、テストを行い、追加していきながらシステムを完成させる開発モデルです。</p>
+
+<h3>
+<span id="イテレーティブモデル反復型" class="fragment"></span><a href="#%E3%82%A4%E3%83%86%E3%83%AC%E3%83%BC%E3%83%86%E3%82%A3%E3%83%96%E3%83%A2%E3%83%87%E3%83%AB%E5%8F%8D%E5%BE%A9%E5%9E%8B"><i class="fa fa-link"></i></a>イテレーティブ・モデル（反復型）</h3>
+
+<p>システムを機能の優先度や重要度によって分割し、システム全体の開発を繰り返して徐々に完成度を上げていく開発モデルです。</p>
+
+<p>インクリメンタル・モデルとイテレーティブ・モデルの違いは「<a href="https://gojko.net/2007/12/04/waterfall-trap/" rel="nofollow noopener" target="_blank">Incremental is not iterative</a>」に掲載されている以下の図がとても分かりやすいです。</p>
+
+<p><a href="https://camo.qiitausercontent.com/ad7097c7f1ad46f18fc973bae57170cf3657efb1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f39626231323030652d376138362d303632642d303761342d3066336363663761356533622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ad7097c7f1ad46f18fc973bae57170cf3657efb1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f39626231323030652d376138362d303632642d303761342d3066336363663761356533622e706e67" alt="1030b3583d02d27eda5e0add968196b0.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/155486/9bb1200e-7a86-062d-07a4-0f3ccf7a5e3b.png"></a></p>
+
+<hr>
+
+<ul>
+<li><a href="https://thinkit.co.jp/article/914/1?page=0%2C1" rel="nofollow noopener" target="_blank">非ウォーターフォール・モデル | Think IT（シンクイット）</a></li>
+<li><a href="http://www.itmedia.co.jp/im/articles/0201/22/news002.html" rel="nofollow noopener" target="_blank">いまなぜ開発プロセスを注目するのか：前編 従来の開発プロセスと現場が抱える課題 - ITmedia エンタープライズ</a></li>
+<li><a href="http://www.atmarkit.co.jp/ait/articles/0903/11/news114.html" rel="nofollow noopener" target="_blank">ソフトウェア開発の匠（4）：アジャイル開発と反復開発の落とし穴 (1/3) - ＠IT</a></li>
+<li><a href="https://qiita.com/nakaken0629/items/986e4d0186b127048520" id="reference-43f33aec40ec00a40381">開発プロセスについて - Qiita</a></li>
+<li><a href="http://tasuwo.github.io/blog/2015/05/07/model/" rel="nofollow noopener" target="_blank">開発モデルの話 - tasuwo blog</a></li>
+<li><a href="http://www.csaj.jp/column/10/100315_maegawa.html" rel="nofollow noopener" target="_blank">CSAJ/コラム「ITリフレッシュメント」反復型開発プロセス</a></li>
+<li><a href="http://www.ryuzee.com/contents/blog/2985" rel="nofollow noopener" target="_blank">イテレーティヴとインクリメンタルの違い | Ryuzee.com</a></li>
+<li><a href="http://kawaguti.hateblo.jp/entry/20111030/1319926043" rel="nofollow noopener" target="_blank">モナリザを使った インクリメンタル(漸進的) と イテレーティブ(反復的) の説明 - kawaguti's diary</a></li>
+<li><a href="https://gojko.net/2007/12/04/waterfall-trap/" rel="nofollow noopener" target="_blank">The waterfall trap for "agile" projects</a></li>
+<li><a href="http://www.atmarkit.co.jp/ait/articles/1412/05/news044.html" rel="nofollow noopener" target="_blank">アジャイル時代のプロジェクトマネジメント入門（2）：現代のプロマネが知っておきたいアジャイル開発の基礎知識まとめ (1/2) - ＠IT</a></li>
+</ul>
+
+<h2>
+<span id="アジャイル型開発" class="fragment"></span><a href="#%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB%E5%9E%8B%E9%96%8B%E7%99%BA"><i class="fa fa-link"></i></a>アジャイル型開発</h2>
+
+<p>「アジャイル」と一言で言ってもその種類は多種多様です。本稿では主要なアジャイル型開発である、「スクラム」、「XP」、「リーン」、「Kanban」について簡単に説明します。</p>
+
+<hr>
+
+<ul>
+<li><a href="https://codezine.jp/article/detail/848" rel="nofollow noopener" target="_blank">7つのアジャイル開発手法の実践ガイド（第1回） (1/3)：CodeZine（コードジン）</a></li>
+<li><a href="http://itpro.nikkeibp.co.jp/free/NC/TOKU1/20021015/2/?ST=spleaf" rel="nofollow noopener" target="_blank">NC特集1 - Part3 手法：超高速開発を実現「アジャイル」の全貌：ITpro</a></li>
+</ul>
+
+<h3>
+<span id="スクラム" class="fragment"></span><a href="#%E3%82%B9%E3%82%AF%E3%83%A9%E3%83%A0"><i class="fa fa-link"></i></a>スクラム</h3>
+
+<p>スクラムはアジャイル開発における <strong>プロジェクトマネジメントのフレームワーク</strong> です。スクラムでは「プロダクトバックログ」、「スプリントバックログ」と呼ばれる一覧表によってユーザーの要件をタスクに分解し、一週間から四週間に渡る「スプリント」と呼ばれる期間で開発を進めていきます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/b27c81bf563ce73d8babac417b54977ef36f2e78/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f38303734333264652d616531622d323237632d653635352d6463346565653063363466622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b27c81bf563ce73d8babac417b54977ef36f2e78/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f38303734333264652d616531622d323237632d653635352d6463346565653063363466622e706e67" alt="35a59298f77db0eaafff6b09dc9da89b.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/155486/807432de-ae1b-227c-e655-dc4eee0c64fb.png"></a></p>
+
+<hr>
+
+<ul>
+<li><a href="http://www.nec-solutioninnovators.co.jp/column/01_agile.html" rel="nofollow noopener" target="_blank">アジャイル開発 ～顧客を巻き込みチーム一丸となってプロジェクトを推進する～ （前編）: コラム | NECソリューションイノベータ</a></li>
+</ul>
+
+<h3>
+<span id="エクストリームプログラミングxp" class="fragment"></span><a href="#%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0xp"><i class="fa fa-link"></i></a>エクストリーム・プログラミング（XP）</h3>
+
+<p><a href="https://camo.qiitausercontent.com/ca57f3b8d78c80a3fa55b446f19d3e76f26c81cf/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f33333864373361372d363966382d383831322d343163612d3933373066323862373261352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ca57f3b8d78c80a3fa55b446f19d3e76f26c81cf/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f33333864373361372d363966382d383831322d343163612d3933373066323862373261352e706e67" alt="a9f94214b545b7bd50306080a4ab5920.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/155486/338d73a7-69f8-8812-41ca-9370f28b72a5.png"></a></p>
+
+<p>XPは テスト駆動型開発、YAGNI（"You ain't gonna need it."）、リファクタリング、ペアプログラミングなどのプラクティスが定義されている <strong>プログラマ中心</strong> の開発モデルです。ドキュメントの整備よりもソースコードを重んじると共に、個々の開発者の責任を重視しています。</p>
+
+<hr>
+
+<ul>
+<li>
+<a href="https://codezine.jp/article/detail/5462" rel="nofollow noopener" target="_blank">グラス片手にアジャイル開発 第2回 － アジャイルの主な実践手法とその取捨選択 (1/3)：CodeZine（コードジン）</a><br>
+</li>
+<li><a href="https://ja.m.wikipedia.org/wiki/%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%BB%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" rel="nofollow noopener" target="_blank">エクストリーム・プログラミング - Wikipedia</a></li>
+</ul>
+
+<h3>
+<span id="リーンソフトウェア開発" class="fragment"></span><a href="#%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E9%96%8B%E7%99%BA"><i class="fa fa-link"></i></a>リーンソフトウェア開発</h3>
+
+<p>リーンソフトウェア開発はプロジェクトマネジメント面に焦点を当て、プロセスから <strong>無駄を取り除く</strong> ことを目的とした開発モデルです。リーンソフトウェア開発の重要な考え方の一つに「 <strong>MVP（Minimum Viable Product）</strong> 」があります。MVPとは「仮説を検証するための最低限の機能を持った製品」を意味し、まずは機能を限りなく絞り込んで開発にかかる時間や費用を最小化し、真にニーズがあるかどうかを検証しよう、という考え方です。リーンソフトウェア開発ではMVPの考え方を含めた <strong>7つの原則</strong> とそれを実現するための <strong>22のツール</strong> が定義されています。</p>
+
+<hr>
+
+<ul>
+<li><a href="http://tracpath.com/works/development/lean_software_development/" rel="nofollow noopener" target="_blank">トヨタに学ぶ！リーンソフトウェア開発の7つの原則 | tracpath:Works</a></li>
+<li><a href="http://www.itmedia.co.jp/im/spv/0803/10/news113.html" rel="nofollow noopener" target="_blank">情報マネジメント用語辞典：リーンソフトウェア開発（りーんそふとうぇあかいはつ） - ＠IT 情報マネジメント</a></li>
+<li><a href="https://qiita.com/shiruco/items/0148927fe6f4b8e3dd80" id="reference-b29c5d9756bf66b6cdee">リーン開発をはじめよう - Qiita</a></li>
+<li><a href="http://www.atmarkit.co.jp/ait/articles/1311/15/news015.html" rel="nofollow noopener" target="_blank">「リーン」と「アジャイル」の関係とは？：書籍でたどる「リーン」の本質 (1/4) - ＠IT</a></li>
+<li><a href="http://www.atmarkit.co.jp/ait/spv/1207/06/news133.html" rel="nofollow noopener" target="_blank">プログラマのためのリーン・スタートアップ入門（2）：リーン・スタートアップが示す「5つの原則」 - ＠IT</a></li>
+</ul>
+
+<h3>
+<span id="kanban" class="fragment"></span><a href="#kanban"><i class="fa fa-link"></i></a>Kanban</h3>
+
+<p>「Kanban」は、各ステージにおけるタスクの量を制限し、必要なタスクだけ前ステージから取ってくる、 <strong>トヨタの「かんばん」方式を適用した開発モデル</strong> です。開発モデルとしてのかんばんを「 <strong>Kanban</strong> 」、 各ステージにおけるタスクの状態を付箋紙などのカードで可視化したツールを「 <strong>kanban</strong> 」と表します。</p>
+
+<p><a href="https://camo.qiitausercontent.com/06f39cae67576505c4e5b7947907de539f82d9e5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f31623737393230302d636639632d326535312d373936322d3864326364366166643662322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/06f39cae67576505c4e5b7947907de539f82d9e5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f31623737393230302d636639632d326535312d373936322d3864326364366166643662322e706e67" alt="04f2dfd70386b500f045beb18064fa47.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/155486/1b779200-cf9c-2e51-7962-8d2cd6afd6b2.png"></a></p>
+
+<p><a href="http://blog.crisp.se/2009/06/26/henrikkniberg/1246053060000" rel="nofollow noopener" target="_blank">Crisp's Blog » One day in Kanban land</a></p>
+
+<p>Kanbanでは「 <strong>WIP制限</strong> 」と「 <strong>プル</strong> 」という二つの重要な概念があります。</p>
+
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WIP（Work in Progress、仕掛り作業）制限</td>
+<td>「TODO」、「開発」、「デプロイ」などの各ステージに対するタスクの限界量を設定し、 <strong>各ステージにはWIPの数以上のカードを貼ることができない</strong> というルール</td>
+</tr>
+<tr>
+<td>プル</td>
+<td>各ステージの担当者がWIP制限に収まる範囲内で前ステージからタスクを取ってくること</td>
+</tr>
+</tbody>
+</table>
+
+<p>これらの概念がどのように開発プロセスとして組み込まれているかを理解するには、上記画像の引用元である「<a href="http://blog.crisp.se/2009/06/26/henrikkniberg/1246053060000" rel="nofollow noopener" target="_blank">Crisp's Blog » One day in Kanban land</a>」、またはその日本語訳である「<a href="http://lean-trenches.com/one-day-in-kanban-land/" rel="nofollow noopener" target="_blank">5分で理解するリーンな「かんばん」 | 『リーン開発の現場』越境せよ！</a>」が大変役立ちますので是非参照してみてください。</p>
+
+<p>Kanbanでは後工程にタスクが滞留すると、WIP制限によって前工程では <strong>例えメンバーが全てのタスクを完了していても新たなタスクを開始することはできません</strong> 。手が空いているメンバーは自分の作業を進める代わりに、滞留しているタスクを支援します。このようにして各ステージの <strong>ボトルネックが「見える化」</strong> されることで、メンバー個人の過負荷を防ぎ、お互いに協力し合うチームを形成することができます。</p>
+
+<hr>
+
+<ul>
+<li><a href="https://ja.wikipedia.org/wiki/%E3%81%8B%E3%82%93%E3%81%B0%E3%82%93_%28%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E9%96%8B%E7%99%BA%29" rel="nofollow noopener" target="_blank">かんばん (ソフトウェア開発) - Wikipedia</a></li>
+<li><a href="http://lean-trenches.com/one-day-in-kanban-land/" rel="nofollow noopener" target="_blank">5分で理解するリーンな「かんばん」 | 『リーン開発の現場』越境せよ！</a></li>
+<li><a href="http://blog.crisp.se/2009/06/26/henrikkniberg/1246053060000" rel="nofollow noopener" target="_blank">Crisp's Blog » One day in Kanban land</a></li>
+<li><a href="http://lean-trenches.com/toyota-kanban-software-kanban/" rel="nofollow noopener" target="_blank">トヨタのかんばんとソフトウェア開発のかんばんの違い | 『リーン開発の現場』越境せよ！</a></li>
+</ul>
+
+<hr>
+
+<p><a href="http://creativecommons.org/licenses/by/4.0/" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/e812d85e0d7dbd784b774a658f5dff633ee507dc/68747470733a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792f342e302f38387833312e706e67" alt="クリエイティブ・コモンズ・ライセンス" data-canonical-src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br><br>
+この 作品 は <a href="http://creativecommons.org/licenses/by/4.0/" rel="nofollow noopener" target="_blank">クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>toeさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
+		<a target="_blank" href="https://qiita.com/toe/items/6eceddc534d87fc797cc">ペアワイズ法でテストケースを85%削減する（ムダなテストしていませんか？）</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-05 20:33:27</center>
+	</td>
+	<td style="width:200px;">
+		@toe<br><img width="80" height="80" src="https://secure.gravatar.com/avatar/b421ef1d479124a64323e42e3c266366">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[テスト]</b> <b>[効率化]</b> <b>[テストケース]</b> <b>[PICT]</b> <b>[生産性向上]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>「 <strong>単体テストの品質を向上させることはできないか？</strong> 」、「 <strong>品質を保ちながら、リグレッションテストの項目数を削減することはできないか？</strong> 」（というよりは、「 <strong>なんか同じようなテストを何回も行っていないか？</strong>」）」と感じている開発者は多いのではないでしょうか。</p>
+
+<p>「ペアワイズ法」と呼ばれるテストケース抽出手法を使えば、テストケースを大幅に削減できるかもしれません。 <strong>本稿で想定したリグレッションテストでは約85%もテストケースを削減することができました。</strong></p>
+
+<p>本稿では、 <strong>ペアワイズ法によってテストケースを抽出してくれるツール「PICT」</strong> を使って、どのくらいテストケースを削減できるのかを紹介します。</p>
+
+<p><strong>確認した動作環境</strong></p>
+
+<ul>
+<li>OS: macOS Sierra 10.12.5</li>
+</ul>
+
+<h2>
+<span id="ホワイトボックステストにおけるカバレッジについて" class="fragment"></span><a href="#%E3%83%9B%E3%83%AF%E3%82%A4%E3%83%88%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9%E3%83%86%E3%82%B9%E3%83%88%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%82%AB%E3%83%90%E3%83%AC%E3%83%83%E3%82%B8%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>ホワイトボックステストにおけるカバレッジについて</h2>
+
+<p>ペアワイズ法を学ぶにあたって、まずはテストカバレッジの種類について復習しましょう。ここでは以下のサンプルコードを用いて、それぞれのカバレッジについて説明します。</p>
+
+<p>サンプルコード</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>if(条件A1 || 条件A2){ // 判定文A
+  命令文X;
+}
+
+if(条件B1 || 条件B2){ // 判定文B
+  命令文Y;
+}
+</pre></div></div>
+
+<h3>
+<span id="命令網羅-statement-coverage-c0" class="fragment"></span><a href="#%E5%91%BD%E4%BB%A4%E7%B6%B2%E7%BE%85-statement-coverage-c0"><i class="fa fa-link"></i></a>命令網羅 (statement coverage) (C0)</h3>
+
+<p><strong>それぞれの命令文が少なくとも1回は実行される</strong> ようにテストを設計します。上記のサンプルコードの場合、テストケース数は1通りとなります。</p>
+
+<table>
+<thead>
+<tr>
+<th>命令文X</th>
+<th>命令文Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>o</td>
+<td>o</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<span id="分岐網羅-branch-coverage-c1" class="fragment"></span><a href="#%E5%88%86%E5%B2%90%E7%B6%B2%E7%BE%85-branch-coverage-c1"><i class="fa fa-link"></i></a>分岐網羅 (branch coverage) (C1)</h3>
+
+<p><strong>それぞれの判定文における真偽が少なくとも1回は実行される</strong> ようにテストを設計します。上記のサンプルコードの場合、テストケース数は2通りとなります。</p>
+
+<table>
+<thead>
+<tr>
+<th>判定文A</th>
+<th>判定文B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T</td>
+<td>T</td>
+</tr>
+<tr>
+<td>F</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<span id="条件網羅-condition-coverage-c2" class="fragment"></span><a href="#%E6%9D%A1%E4%BB%B6%E7%B6%B2%E7%BE%85-condition-coverage-c2"><i class="fa fa-link"></i></a>条件網羅 (condition coverage) (C2)</h3>
+
+<p><strong>それぞれの条件における真偽が少なくとも1回は実行される</strong> ようにテストを設計します。上記のサンプルコードの場合、テストケース数は2通りとなります。</p>
+
+<table>
+<thead>
+<tr>
+<th>条件A1</th>
+<th>条件A2</th>
+<th>条件B1</th>
+<th>条件B2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+</tr>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<span id="複合条件網羅-multiple-condition-coverage-mcc" class="fragment"></span><a href="#%E8%A4%87%E5%90%88%E6%9D%A1%E4%BB%B6%E7%B6%B2%E7%BE%85-multiple-condition-coverage-mcc"><i class="fa fa-link"></i></a>複合条件網羅 (multiple condition coverage) (MCC)</h3>
+
+<p><strong>それぞれの条件における真偽の組み合わせがすべて実行される</strong> ようにテストを設計します。上記のサンプルコードの場合、テストケース数は2^4 = 16通りとなります。</p>
+
+<table>
+<thead>
+<tr>
+<th>条件A1</th>
+<th>条件A2</th>
+<th>条件B1</th>
+<th>条件B2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+</tr>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>T</td>
+</tr>
+<tr>
+<td>T</td>
+<td>F</td>
+<td>F</td>
+<td>T</td>
+</tr>
+<tr>
+<td>T</td>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+</tr>
+<tr>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+</tr>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>T</td>
+<td>F</td>
+</tr>
+<tr>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+</tr>
+<tr>
+<td>F</td>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+</tr>
+<tr>
+<td>T</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>T</td>
+<td>T</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>T</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+</tr>
+<tr>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+<td>F</td>
+</tr>
+<tr>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<ul>
+<li><a href="https://ja.wikipedia.org/wiki/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%83%86%E3%82%B9%E3%83%88" rel="nofollow noopener" target="_blank">ソフトウェアテスト - Wikipedia</a></li>
+<li><a href="http://gihyo.jp/dev/serial/01/tech_station/0003?page=2" rel="nofollow noopener" target="_blank">第3回　ホワイトボックステスト：ソフトウェアテスト基本テクニック｜gihyo.jp … 技術評論社</a></li>
+<li><a href="http://www.itmedia.co.jp/im/articles/1111/07/news142.html" rel="nofollow noopener" target="_blank">情報システム用語事典：カバレッジ基準（かばれっじきじゅん） - ITmedia エンタープライズ</a></li>
+<li><a href="http://akademeia.info/index.php?%A5%B3%A1%BC%A5%C9%A5%AB%A5%D0%A5%EC%A5%C3%A5%B8#w2a39fe9" rel="nofollow noopener" target="_blank">コードカバレッジ - Security Akademeia</a></li>
+</ul>
+
+<h2>
+<span id="ペアワイズ法オールペア法とは" class="fragment"></span><a href="#%E3%83%9A%E3%82%A2%E3%83%AF%E3%82%A4%E3%82%BA%E6%B3%95%E3%82%AA%E3%83%BC%E3%83%AB%E3%83%9A%E3%82%A2%E6%B3%95%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>ペアワイズ法（オールペア法）とは</h2>
+
+<p>ペアワイズ法（オールペア法）は、 <strong>ソフトウェアのバグの多くが1つまたは2つの因子の組み合わせによって発生している</strong> という事実に基づいてテストケースを作成する方法です。</p>
+
+<p>実験計画法では、テストケースの組み合わせを表現する際に以下のような用語を使用します。</p>
+
+<ul>
+<li>
+<strong>因子</strong>: テスト対象の項目（判定または条件）</li>
+<li>
+<strong>水準</strong>: 因子の取り得る値</li>
+<li>
+<strong>強さ</strong>: 因子の組み合わせ数</li>
+</ul>
+
+<p>例えば、1因子（条件）当たり2個（真偽）の水準があるとき、因子が10個あれば、すべての水準の組み合わせは2^10 ＝ 1024個になります。</p>
+
+<p>ペアワイズ法は、すべての因子の組み合わせでなく、 <strong>2組の因子（強さ2）</strong> における水準の組み合わせをすべて網羅することによってテストケースを制限したものです。</p>
+
+<h3>
+<span id="直交表との違い" class="fragment"></span><a href="#%E7%9B%B4%E4%BA%A4%E8%A1%A8%E3%81%A8%E3%81%AE%E9%81%95%E3%81%84"><i class="fa fa-link"></i></a>直交表との違い</h3>
+
+<p>直交表は <strong>因子をベクトルとしたとき、どの2組においてもその積が直交する</strong> という制限を課してテストケースを抽出したものです。直交表はどの因子の水準も <strong>同一個数</strong> になっているという性質を持ちます。</p>
+
+<hr>
+
+<ul>
+<li><a href="http://www.atmarkit.co.jp/ait/articles/1503/16/news149.html" rel="nofollow noopener" target="_blank">現場で使うためのオールペア法、直交表の基本（2）：組み合わせテストを科学的に効率化する――手法とツール、品質保証のための道具 (1/3) - ＠IT</a></li>
+<li><a href="http://fry.no.coocan.jp/WordPress/?p=4820" rel="nofollow noopener" target="_blank">組み合わせテストの２つの方法（直交表、ペアワイズ） | CloudPress</a></li>
+<li><a href="http://jasst.jp/symposium/jasst14tokyo/pdf/C4-1-1.pdf" rel="nofollow noopener" target="_blank">直交表とオールペア法の並行運用 によるソフトウェアテスト</a></li>
+</ul>
+
+<h2>
+<span id="テストケース生成ツールpictをインストールする" class="fragment"></span><a href="#%E3%83%86%E3%82%B9%E3%83%88%E3%82%B1%E3%83%BC%E3%82%B9%E7%94%9F%E6%88%90%E3%83%84%E3%83%BC%E3%83%ABpict%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>テストケース生成ツール「PICT」をインストールする</h2>
+
+<h3>
+<span id="pictpairwise-independent-combinatorial-testing-toolとは" class="fragment"></span><a href="#pictpairwise-independent-combinatorial-testing-tool%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>「PICT（Pairwise Independent Combinatorial Testing tool）」とは</h3>
+
+<p>「PICT」は、Microsoftが公開している、ペアワイズ法によってテストケースを生成するためのオープンソース・ソフトウェア（MIT License）です。</p>
+
+<h3>
+<span id="pictをインストールする" class="fragment"></span><a href="#pict%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>PICTをインストールする</h3>
+
+<p>以下のコマンドを入力することで簡単にインストールすることができます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git clone https://github.com/Microsoft/pict.git
+$ cd pict/
+$ make
+$ sudo install -m 0755 pict /usr/local/bin/pict
+</pre></div></div>
+
+<p>PICTの使い方については、<a href="https://github.com/Microsoft/pict/blob/master/doc/pict.md" rel="nofollow noopener" target="_blank">pict/pict.md at master · Microsoft/pict · GitHub</a>または<a href="http://qiita.com/greymd/items/ad18aa44d4159067a627" id="reference-2243d9581a5efbc36e0c">テストの数を減らそう！プリキュアで学ぶPICT - Qiita</a>が大変参考になるため、本稿では割愛します。</p>
+
+<h2>
+<span id="効率的な複合条件のテストケースを求める" class="fragment"></span><a href="#%E5%8A%B9%E7%8E%87%E7%9A%84%E3%81%AA%E8%A4%87%E5%90%88%E6%9D%A1%E4%BB%B6%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88%E3%82%B1%E3%83%BC%E3%82%B9%E3%82%92%E6%B1%82%E3%82%81%E3%82%8B"><i class="fa fa-link"></i></a>効率的な複合条件のテストケースを求める</h2>
+
+<p>例えば、あるプログラムにおいて水準2の因子が20個ある場合、複合条件テストをすべて実施するためには、2^20 = 1,048,576、 <strong>約10万通りもテストしなければならず、とても現実的ではありません。</strong></p>
+
+<p>ではPICTを使用してペアワイズ法で抽出した場合はどうなるでしょうか。以下のようなテキストファイルを用意します。</p>
+
+<p>getMCC.txt</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>条件01: T, F
+条件02: T, F
+条件03: T, F
+条件04: T, F
+条件05: T, F
+条件06: T, F
+条件07: T, F
+条件08: T, F
+条件09: T, F
+条件10: T, F
+条件11: T, F
+条件12: T, F
+条件13: T, F
+条件14: T, F
+条件15: T, F
+条件16: T, F
+条件17: T, F
+条件18: T, F
+条件19: T, F
+条件20: T, F
+</pre></div></div>
+
+<p>ファイルの準備ができたら、以下のコマンドを入力します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ pict getMCC.txt /s /o:2
+Combinations:   760
+Generated tests:11
+</pre></div></div>
+
+<ul>
+<li>
+<code>/s</code> : 組み合わせ数を表示する</li>
+<li>
+<code>/o:n</code>: 強さ<code>n</code>で組み合わせを求める</li>
+</ul>
+
+<p>ここで、<code>Generated tests</code>の値が実際に必要なテストケース数を示します。なんと、 <strong>たった11通りのテストケースだけ実施すればよい</strong> ということが分かります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ pict getMCC.txt /o:2
+条件01    条件02    条件03    条件04    条件05    条件06    条件07    条件08    条件09    条件10    条件11    条件12    条件13    条件14    条件15    条件16    条件17    条件18    条件19    条件20
+F   T   F   T   T   F   T   F   T   F   T   T   T   F   T   F   T   T   F   T
+T   F   T   F   F   T   F   T   F   T   F   F   F   T   F   T   F   F   F   F
+F   T   F   F   T   T   T   T   F   F   T   F   T   T   T   T   F   T   T   F
+F   F   T   T   F   F   F   F   T   T   F   F   F   F   F   F   T   F   T   T
+T   F   F   T   F   F   T   T   T   T   F   T   T   T   T   T   T   F   T   F
+T   T   T   F   T   T   F   F   F   F   F   T   F   T   F   F   F   T   T   T
+T   T   F   F   T   F   F   T   F   T   T   T   T   F   F   F   F   F   F   F
+T   F   T   T   F   T   T   F   F   T   T   T   F   F   T   T   T   T   F   F
+F   T   T   F   F   T   F   T   T   F   T   T   T   T   T   T   F   F   F   T
+T   F   F   T   T   T   T   F   F   F   T   F   F   F   F   T   F   T   T   T
+F   T   T   F   F   T   F   F   F   T   F   F   T   T   T   T   T   F   T   T
+</pre></div></div>
+
+<p>これだけのテストパターンでソフトウェアの品質を向上させることができるのであれば、テスト項目として追加すべきでしょう。</p>
+
+<h2>
+<span id="リグレッションテストのテスト項目を削減する" class="fragment"></span><a href="#%E3%83%AA%E3%82%B0%E3%83%AC%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88%E9%A0%85%E7%9B%AE%E3%82%92%E5%89%8A%E6%B8%9B%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>リグレッションテストのテスト項目を削減する</h2>
+
+<p>PICTを使えば <strong>リグレッションテストのテスト項目を大幅に削減することができます。</strong></p>
+
+<p>ここで、本稿おける要件は以下の通りとします。</p>
+
+<ul>
+<li>OS: Windows 7, Windows 8.1, Windows 10, Mac OS 10.12, iOS 10, iOS 11, Android 7, Android 8</li>
+<li>ブラウザ: Chrome 62, IE 10, IE 11, Firefox, Edge 40, Safari 10, iOS Safari, Android Chrome</li>
+<li>会員: レギュラー, ゴールド, プラチナ, ダイヤモンド</li>
+<li>カード: なし, VISA, Mastercard, JCB, American Express</li>
+</ul>
+
+<p>ここで、 <strong>一つの条件における全画面遷移確認にかかる時間を30分</strong> とします。すべての水準の組み合わせをテストするには、テストケースはいくつ必要でしょうか。</p>
+
+<p>テストに求められる要件を以下のようなテキストファイルとして作成し、PICTで解析してみましょう。</p>
+
+<p>getRegressionTestCase.txt</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>OS: Windows 7, Windows 8.1, Windows 10, Mac OS 10.12, iOS 10, iOS 11, Android 7, Android 8
+ブラウザ: Chrome 62, IE 10, IE 11, Firefox, Edge 40, Safari 10, iOS Safari, Android Chrome
+会員: レギュラー, ゴールド, プラチナ, ダイヤモンド
+カード: なし, VISA, Mastercard, JCB, American Express
+
+IF [OS] = "Windows 7"
+  OR [OS] = "Windows 8.1"
+  THEN NOT (
+    [ブラウザ] like "Edge*"
+  );
+IF [OS] = "Windows 10"
+    THEN (
+        [ブラウザ] like "Edge*"
+        OR [ブラウザ] = "IE 11"
+    );
+IF [OS] like "Windows*"
+  THEN NOT (
+    [ブラウザ] like "Safari*"
+    OR [ブラウザ] like "iOS*"
+    OR [ブラウザ] like "Android*"
+  );
+IF [OS] like "Mac OS*"
+  THEN NOT (
+    [ブラウザ] like "IE*"
+    OR [ブラウザ] like "Edge*"
+    OR [ブラウザ] like "iOS*"
+    OR [ブラウザ] like "Android*"
+  );
+IF [OS] like "iOS*"
+  THEN [ブラウザ] like "iOS*";
+IF [OS] like "Android*"
+  THEN [ブラウザ] like "Android*";
+</pre></div></div>
+
+<h3>
+<span id="因子を全網羅強さ4する場合" class="fragment"></span><a href="#%E5%9B%A0%E5%AD%90%E3%82%92%E5%85%A8%E7%B6%B2%E7%BE%85%E5%BC%B7%E3%81%954%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>因子を全網羅（強さ4）する場合</h3>
+
+<p>以下のコマンドを入力して確認してみましょう。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ pict getRegressionTestCase.txt /s /o:4
+Combinations:   340
+Generated tests:340
+Generation time:0:00:00
+</pre></div></div>
+
+<p>テストケース数は340となり、すべてのテストを終えるには0.5[時間] × 340[ケース] / 8[時間/人日] = <strong>21.25人日</strong> もの工数がかかってしまいます。</p>
+
+<h3>
+<span id="ペアワイズ法で抽出する場合" class="fragment"></span><a href="#%E3%83%9A%E3%82%A2%E3%83%AF%E3%82%A4%E3%82%BA%E6%B3%95%E3%81%A7%E6%8A%BD%E5%87%BA%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>ペアワイズ法で抽出する場合</h3>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ pict getRegressionTestCase.txt /s /o:2
+Combinations:   181
+Generated tests:50
+Generation time:0:00:00
+</pre></div></div>
+
+<p>テストケース数は50となり、すべてのテストを終えるには0.5[時間] × 50[ケース] / 8[時間/人日] = <strong>3.125人日</strong> の工数で済みます。これは因子を全網羅した場合に比べて、 <strong>工数を約85%削減</strong> できることを示しています。</p>
+
+<p>以下のコマンドを入力すると、テストケースが出力されます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ pict getRegressionTestCase.txt
+OS  ブラウザ    会員  カード
+Mac OS 10.12    Chrome 62   レギュラー VISA
+Mac OS 10.12    Safari 10   ゴールド    なし
+Android 7   Android Chrome  ダイヤモンド  American Express
+Windows 10  Edge 40 プラチナ    JCB
+iOS 10  iOS Safari  レギュラー Mastercard
+iOS 11  iOS Safari  ダイヤモンド  JCB
+Mac OS 10.12    Safari 10   プラチナ    Mastercard
+Windows 8.1 IE 10   レギュラー なし
+iOS 11  iOS Safari  ゴールド    Mastercard
+Windows 8.1 Chrome 62   ゴールド    JCB
+Windows 10  Edge 40 ダイヤモンド  なし
+Windows 7   Firefox プラチナ    なし
+Windows 8.1 IE 11   プラチナ    American Express
+Mac OS 10.12    Safari 10   レギュラー American Express
+Windows 10  IE 11   ゴールド    なし
+Android 7   Android Chrome  ダイヤモンド  Mastercard
+Windows 10  Edge 40 レギュラー Mastercard
+Windows 7   Firefox ゴールド    American Express
+Mac OS 10.12    Safari 10   ダイヤモンド  JCB
+Android 8   Android Chrome  プラチナ    VISA
+Windows 7   IE 10   ダイヤモンド  JCB
+Windows 7   IE 11   レギュラー Mastercard
+Android 8   Android Chrome  レギュラー JCB
+Mac OS 10.12    Safari 10   ダイヤモンド  VISA
+Android 8   Android Chrome  ゴールド    なし
+Android 8   Android Chrome  ダイヤモンド  Mastercard
+iOS 11  iOS Safari  プラチナ    なし
+Windows 10  Edge 40 ゴールド    American Express
+iOS 11  iOS Safari  レギュラー American Express
+Windows 8.1 IE 11   ダイヤモンド  JCB
+Windows 8.1 Firefox ダイヤモンド  Mastercard
+Android 7   Android Chrome  ゴールド    VISA
+Windows 8.1 IE 10   プラチナ    Mastercard
+Windows 7   Firefox レギュラー VISA
+iOS 10  iOS Safari  ダイヤモンド  JCB
+iOS 10  iOS Safari  プラチナ    VISA
+Windows 8.1 IE 10   ゴールド    VISA
+Android 8   Android Chrome  プラチナ    American Express
+Windows 7   Chrome 62   プラチナ    なし
+Windows 10  Edge 40 ダイヤモンド  VISA
+iOS 10  iOS Safari  ゴールド    なし
+Windows 8.1 Chrome 62   ダイヤモンド  American Express
+iOS 10  iOS Safari  レギュラー American Express
+Windows 7   Chrome 62   レギュラー Mastercard
+Mac OS 10.12    Firefox プラチナ    JCB
+Android 7   Android Chrome  プラチナ    なし
+Android 7   Android Chrome  レギュラー JCB
+Windows 10  IE 11   ダイヤモンド  VISA
+iOS 11  iOS Safari  プラチナ    VISA
+Windows 8.1 IE 10   ダイヤモンド  American Express
+</pre></div></div>
+
+<p>テキスト形式だと分かりづらいので、出力結果を表形式でまとめてみました。</p>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>ブラウザ</th>
+<th>会員</th>
+<th>カード</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mac OS 10.12</td>
+<td>Chrome 62</td>
+<td>レギュラー</td>
+<td>VISA</td>
+</tr>
+<tr>
+<td>Mac OS 10.12</td>
+<td>Safari 10</td>
+<td>ゴールド</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>Android 7</td>
+<td>Android Chrome</td>
+<td>ダイヤモンド</td>
+<td>American Express</td>
+</tr>
+<tr>
+<td>Windows 10</td>
+<td>Edge 40</td>
+<td>プラチナ</td>
+<td>JCB</td>
+</tr>
+<tr>
+<td>iOS 10</td>
+<td>iOS Safari</td>
+<td>レギュラー</td>
+<td>Mastercard</td>
+</tr>
+<tr>
+<td>iOS 11</td>
+<td>iOS Safari</td>
+<td>ダイヤモンド</td>
+<td>JCB</td>
+</tr>
+<tr>
+<td>Mac OS 10.12</td>
+<td>Safari 10</td>
+<td>プラチナ</td>
+<td>Mastercard</td>
+</tr>
+<tr>
+<td>Windows 8.1</td>
+<td>IE 10</td>
+<td>レギュラー</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>iOS 11</td>
+<td>iOS Safari</td>
+<td>ゴールド</td>
+<td>Mastercard</td>
+</tr>
+<tr>
+<td>Windows 8.1</td>
+<td>Chrome 62</td>
+<td>ゴールド</td>
+<td>JCB</td>
+</tr>
+<tr>
+<td>Windows 10</td>
+<td>Edge 40</td>
+<td>ダイヤモンド</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>Windows 7</td>
+<td>Firefox</td>
+<td>プラチナ</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>Windows 8.1</td>
+<td>IE 11</td>
+<td>プラチナ</td>
+<td>American Express</td>
+</tr>
+<tr>
+<td>Mac OS 10.12</td>
+<td>Safari 10</td>
+<td>レギュラー</td>
+<td>American Express</td>
+</tr>
+<tr>
+<td>Windows 10</td>
+<td>IE 11</td>
+<td>ゴールド</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>Android 7</td>
+<td>Android Chrome</td>
+<td>ダイヤモンド</td>
+<td>Mastercard</td>
+</tr>
+<tr>
+<td>Windows 10</td>
+<td>Edge 40</td>
+<td>レギュラー</td>
+<td>Mastercard</td>
+</tr>
+<tr>
+<td>Windows 7</td>
+<td>Firefox</td>
+<td>ゴールド</td>
+<td>American Express</td>
+</tr>
+<tr>
+<td>Mac OS 10.12</td>
+<td>Safari 10</td>
+<td>ダイヤモンド</td>
+<td>JCB</td>
+</tr>
+<tr>
+<td>Android 8</td>
+<td>Android Chrome</td>
+<td>プラチナ</td>
+<td>VISA</td>
+</tr>
+<tr>
+<td>Windows 7</td>
+<td>IE 10</td>
+<td>ダイヤモンド</td>
+<td>JCB</td>
+</tr>
+<tr>
+<td>Windows 7</td>
+<td>IE 11</td>
+<td>レギュラー</td>
+<td>Mastercard</td>
+</tr>
+<tr>
+<td>Android 8</td>
+<td>Android Chrome</td>
+<td>レギュラー</td>
+<td>JCB</td>
+</tr>
+<tr>
+<td>Mac OS 10.12</td>
+<td>Safari 10</td>
+<td>ダイヤモンド</td>
+<td>VISA</td>
+</tr>
+<tr>
+<td>Android 8</td>
+<td>Android Chrome</td>
+<td>ゴールド</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>Android 8</td>
+<td>Android Chrome</td>
+<td>ダイヤモンド</td>
+<td>Mastercard</td>
+</tr>
+<tr>
+<td>iOS 11</td>
+<td>iOS Safari</td>
+<td>プラチナ</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>Windows 10</td>
+<td>Edge 40</td>
+<td>ゴールド</td>
+<td>American Express</td>
+</tr>
+<tr>
+<td>iOS 11</td>
+<td>iOS Safari</td>
+<td>レギュラー</td>
+<td>American Express</td>
+</tr>
+<tr>
+<td>Windows 8.1</td>
+<td>IE 11</td>
+<td>ダイヤモンド</td>
+<td>JCB</td>
+</tr>
+<tr>
+<td>Windows 8.1</td>
+<td>Firefox</td>
+<td>ダイヤモンド</td>
+<td>Mastercard</td>
+</tr>
+<tr>
+<td>Android 7</td>
+<td>Android Chrome</td>
+<td>ゴールド</td>
+<td>VISA</td>
+</tr>
+<tr>
+<td>Windows 8.1</td>
+<td>IE 10</td>
+<td>プラチナ</td>
+<td>Mastercard</td>
+</tr>
+<tr>
+<td>Windows 7</td>
+<td>Firefox</td>
+<td>レギュラー</td>
+<td>VISA</td>
+</tr>
+<tr>
+<td>iOS 10</td>
+<td>iOS Safari</td>
+<td>ダイヤモンド</td>
+<td>JCB</td>
+</tr>
+<tr>
+<td>iOS 10</td>
+<td>iOS Safari</td>
+<td>プラチナ</td>
+<td>VISA</td>
+</tr>
+<tr>
+<td>Windows 8.1</td>
+<td>IE 10</td>
+<td>ゴールド</td>
+<td>VISA</td>
+</tr>
+<tr>
+<td>Android 8</td>
+<td>Android Chrome</td>
+<td>プラチナ</td>
+<td>American Express</td>
+</tr>
+<tr>
+<td>Windows 7</td>
+<td>Chrome 62</td>
+<td>プラチナ</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>Windows 10</td>
+<td>Edge 40</td>
+<td>ダイヤモンド</td>
+<td>VISA</td>
+</tr>
+<tr>
+<td>iOS 10</td>
+<td>iOS Safari</td>
+<td>ゴールド</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>Windows 8.1</td>
+<td>Chrome 62</td>
+<td>ダイヤモンド</td>
+<td>American Express</td>
+</tr>
+<tr>
+<td>iOS 10</td>
+<td>iOS Safari</td>
+<td>レギュラー</td>
+<td>American Express</td>
+</tr>
+<tr>
+<td>Windows 7</td>
+<td>Chrome 62</td>
+<td>レギュラー</td>
+<td>Mastercard</td>
+</tr>
+<tr>
+<td>Mac OS 10.12</td>
+<td>Firefox</td>
+<td>プラチナ</td>
+<td>JCB</td>
+</tr>
+<tr>
+<td>Android 7</td>
+<td>Android Chrome</td>
+<td>プラチナ</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>Android 7</td>
+<td>Android Chrome</td>
+<td>レギュラー</td>
+<td>JCB</td>
+</tr>
+<tr>
+<td>Windows 10</td>
+<td>IE 11</td>
+<td>ダイヤモンド</td>
+<td>VISA</td>
+</tr>
+<tr>
+<td>iOS 11</td>
+<td>iOS Safari</td>
+<td>プラチナ</td>
+<td>VISA</td>
+</tr>
+<tr>
+<td>Windows 8.1</td>
+<td>IE 10</td>
+<td>ダイヤモンド</td>
+<td>American Express</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h2>
+
+<p><strong>ペアワイズ法がこんなにも効果的な手法である</strong> とは思っていませんでした。テスト手法についてもう少し学習して、いつかペアワイズ法を現場で取り入れてみたいと思います。</p>
+
+<hr>
+
+<p><a rel="nofollow noopener" href="http://creativecommons.org/licenses/by/4.0/" target="_blank"><img alt="クリエイティブ・コモンズ・ライセンス" src="https://camo.qiitausercontent.com/e812d85e0d7dbd784b774a658f5dff633ee507dc/68747470733a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792f342e302f38387833312e706e67" data-canonical-src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br>この 作品 は <a rel="nofollow noopener" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>toeさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/toe/items/1f5490f41d5c2c59f098">コード行数計測ツール「cloc」を使ってgitリポジトリのコード行数を解析する</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-16 21:49:08</center>
+	</td>
+	<td style="width:200px;">
+		@toe<br><img width="80" height="80" src="https://secure.gravatar.com/avatar/b421ef1d479124a64323e42e3c266366">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> <b>[プロジェクト管理]</b> <b>[cloc]</b> <b>[プロジェクトマネジメント]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><code>git diff</code>コマンドでも各ファイルの追加行数と削除行数を取得することはできますが、 <strong>より詳細に論理LOCを計測する</strong> ためにはコード行数計測ツール「cloc」がオススメです。</p>
+
+<p><code>git diff</code>コマンドについて知りたい方はこちらの記事もご覧ください。<br><br>
+<a href="https://qiita.com/toe/items/8a056b87c9e481e07e57" id="reference-2710cc8d700c60bfeb76">git diffの--ignoreオプションにおけるスペース、タブ、改行の扱いを理解する - Qiita</a></p>
+
+<p><strong>確認した動作環境</strong><br>
+OS: macOS Sierra 10.12.5</p>
+
+<h1>
+<span id="cloccount-lines-of-codeとは" class="fragment"></span><a href="#cloccount-lines-of-code%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>「cloc（Count Lines of Code）」とは</h1>
+
+<p>「cloc」は様々な言語のコード行数を <strong>「空行数」、「コメント行数」、「論理LOC」</strong> に分類して計測してくれるオープンソースのツールです。コミット間の差分比較では <strong>「修正行」、「追加行」、「削除行」</strong> に分類して計測することができます。</p>
+
+<p><strong>ライセンス</strong> : GNU General Public License, v2</p>
+
+<hr>
+
+<p><a href="https://github.com/AlDanial/cloc" rel="nofollow noopener" target="_blank">GitHub - AlDanial/cloc: cloc counts blank lines, comment lines, and physical lines of source code in many programming languages.</a><br><br>
+<a href="http://cloc.sourceforge.net/#Languages" rel="nofollow noopener" target="_blank">CLOC -- Count Lines of Code</a></p>
+
+<h1>
+<span id="clocをインストールする" class="fragment"></span><a href="#cloc%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>clocをインストールする</h1>
+
+<p>以下のコマンドを入力します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ brew install cloc
+</pre></div></div>
+
+<p>たったこれだけのコマンドでインストールは完了です。それでは早速clocを使ってみましょう。</p>
+
+<h1>
+<span id="リポジトリ全体のコード行数を計測する" class="fragment"></span><a href="#%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E5%85%A8%E4%BD%93%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E8%A1%8C%E6%95%B0%E3%82%92%E8%A8%88%E6%B8%AC%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>リポジトリ全体のコード行数を計測する</h1>
+
+<p>本稿では参考として<a href="https://github.com/skeeto/sample-java-project" rel="nofollow noopener" target="_blank">skeeto/sample-java-project: Example Ant-based Java project</a>のリポジトリをクローンします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git clone https://github.com/skeeto/sample-java-project.git
+</pre></div></div>
+
+<p>以下のコマンドを入力すると <strong>言語別</strong> にコード行数が出力されます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ cloc path/to/directory
+</pre></div></div>
+
+<p>本稿の例では以下のように出力されます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ cloc sample-java-project
+      12 text files.
+      12 unique files.                              
+       4 files ignored.
+
+github.com/AlDanial/cloc v 1.74  T=0.09 s (99.8 files/s, 7683.5 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Ant                              1             22              9            197
+XML                              4             52             79            159
+Java                             3             16             34             73
+Markdown                         1             10              0             42
+-------------------------------------------------------------------------------
+SUM:                             9            100            122            471
+-------------------------------------------------------------------------------
+</pre></div></div>
+
+<h2>
+<span id="各項目の定義について" class="fragment"></span><a href="#%E5%90%84%E9%A0%85%E7%9B%AE%E3%81%AE%E5%AE%9A%E7%BE%A9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>各項目の定義について</h2>
+
+<p>各項目の定義は以下の通りです。</p>
+
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>files</td>
+<td>ファイル数</td>
+</tr>
+<tr>
+<td>blank</td>
+<td>空行数</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>コメント行数（ファイルの拡張子から言語を判断し、 <strong>言語別に定義されたフィルター</strong> に従って行数を算出する）</td>
+</tr>
+<tr>
+<td>code</td>
+<td>論理LOC（物理LOCから空行数とコメント行数を除いた行数）</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>物理LOC = blank + comment + code</strong> の関係が成り立ちます。</p>
+
+<hr>
+
+<p><a href="http://cloc.sourceforge.net/#How_it_works" rel="nofollow noopener" target="_blank">How it Works | CLOC -- Count Lines of Code</a></p>
+
+<h2>
+<span id="デフォルトで定義されていない拡張子について" class="fragment"></span><a href="#%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E3%81%A7%E5%AE%9A%E7%BE%A9%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E6%8B%A1%E5%BC%B5%E5%AD%90%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>デフォルトで定義されていない拡張子について</h2>
+
+<p>clocでは <strong>「.properties」などのデフォルトで定義されていない拡張子のファイルはカウントされずに無視されてしまいます。</strong></p>
+
+<p><a href="http://cloc.sourceforge.net/#Languages" rel="nofollow noopener" target="_blank">Recognized Languages | CLOC -- Count Lines of Code</a>からデフォルトで定義されている拡張子を確認することができます。もしデフォルトで定義されていない拡張子について計測したい場合は、定義ファイルを作成する必要があります。</p>
+
+<h1>
+<span id="コミットの差分コード行数を言語別に計測する" class="fragment"></span><a href="#%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%81%AE%E5%B7%AE%E5%88%86%E3%82%B3%E3%83%BC%E3%83%89%E8%A1%8C%E6%95%B0%E3%82%92%E8%A8%80%E8%AA%9E%E5%88%A5%E3%81%AB%E8%A8%88%E6%B8%AC%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>コミットの差分コード行数を言語別に計測する</h1>
+
+<p>以下は <strong>コミットの差分</strong> を比較し、 <strong>言語別</strong> に差分のあるコード行数を出力するコマンドです。</p>
+
+<p><code>&lt;set1&gt;</code>と<code>&lt;set2&gt;</code>には変更前後のコミットのハッシュを入力します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ cloc --diff &lt;set1&gt; &lt;set2&gt;
+</pre></div></div>
+
+<p>本稿の例では最初のコミットと最新のコミットを比較することとします。</p>
+
+<p>以下のコマンドを入力してリポジトリの最初のコミット・ハッシュを取得します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git rev-list --max-parents=0 HEAD
+059a26260610ee2878e4929ec3adcc880b43c313
+</pre></div></div>
+
+<p>以下のコマンドを入力して差分を比較します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ cloc --diff 059a26260610ee2878e4929ec3adcc880b43c313 HEAD
+       3 text files.
+      12 text files.
+       3 files ignored.                             
+
+github.com/AlDanial/cloc v 1.74  T=0.22 s (4.6 files/s, 4.6 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Ant
+ same                            0              0              0             24
+ modified                        1              0              1             25
+ added                           0             14              8            148
+ removed                         0              0              0              1
+Markdown
+ same                            0              0              0              0
+ modified                        0              0              0              0
+ added                           1             10              0             42
+ removed                         0              0              0              0
+Java
+ same                            0              0              0              9
+ modified                        2              0              0             14
+ added                           1              9             34             50
+ removed                         0              0              0              0
+XML
+ same                            0              0              0              0
+ modified                        0              0              0              0
+ added                           4             52             79            159
+ removed                         0              0              0              0
+-------------------------------------------------------------------------------
+SUM:
+ same                            0              0              0             33
+ modified                        3              0              1             39
+ added                           6             85            121            399
+ removed                         0              0              0              1
+-------------------------------------------------------------------------------
+</pre></div></div>
+
+<p>それぞれの項目は以下の意味を示します。</p>
+
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>same</td>
+<td>変更のなかった行数</td>
+</tr>
+<tr>
+<td>modified</td>
+<td>修正された行数</td>
+</tr>
+<tr>
+<td>added</td>
+<td>追加された行数</td>
+</tr>
+<tr>
+<td>removed</td>
+<td>削除された行数</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="コミットの差分コード行数をファイル毎に計測しcsv形式で出力する" class="fragment"></span><a href="#%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%81%AE%E5%B7%AE%E5%88%86%E3%82%B3%E3%83%BC%E3%83%89%E8%A1%8C%E6%95%B0%E3%82%92%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%AF%8E%E3%81%AB%E8%A8%88%E6%B8%AC%E3%81%97csv%E5%BD%A2%E5%BC%8F%E3%81%A7%E5%87%BA%E5%8A%9B%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>コミットの差分コード行数をファイル毎に計測し、CSV形式で出力する</h1>
+
+<p>clocでは上述の出力結果を <strong>CSV形式</strong> で出力することもできます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ cloc --diff --by-file --csv 059a262  HEAD
+       3 text files.
+      12 text files.
+       3 files ignored.                             
+
+File, == blank, != blank, + blank, - blank, == comment, != comment, + comment, - comment, == code, != code, + code, - code, "github.com/AlDanial/cloc v 1.74 T=0.214647054672241 s"
+src/sample/java/project/SampleJavaProject.java, 0, 0, 8, 0, 0, 0, 16, 0, 4, 5, 42, 0,
+build.xml, 0, 0, 14, 0, 0, 1, 8, 0, 24, 25, 148, 1,
+test/sample/java/project/SampleJavaProjectTest.java, 0, 0, 1, 0, 0, 0, 15, 0, 5, 9, 7, 0,
+checkstyle.xml, 0, 0, 44, 0, 0, 0, 68, 0, 0, 0, 77, 0,
+pmd.xml, 0, 0, 1, 0, 0, 0, 7, 0, 0, 0, 23, 0,
+pom.xml, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 31, 0,
+src/sample/java/project/package-info.java, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1, 0,
+ivy.xml, 0, 0, 3, 0, 0, 0, 4, 0, 0, 0, 28, 0,
+README.md, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 42, 0,
+</pre></div></div>
+
+<p>上記の出力結果を以下の表にまとめました。</p>
+
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>== blank</th>
+<th>!= blank</th>
+<th>+ blank</th>
+<th>- blank</th>
+<th>== comment</th>
+<th>!= comment</th>
+<th>+ comment</th>
+<th>- comment</th>
+<th>== code</th>
+<th>!= code</th>
+<th>+ code</th>
+<th>- code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ivy.xml</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>28</td>
+<td>0</td>
+</tr>
+<tr>
+<td>pmd.xml</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>23</td>
+<td>0</td>
+</tr>
+<tr>
+<td>checkstyle.xml</td>
+<td>0</td>
+<td>0</td>
+<td>44</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>68</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>77</td>
+<td>0</td>
+</tr>
+<tr>
+<td>src/sample/java/project/SampleJavaProject.java</td>
+<td>0</td>
+<td>0</td>
+<td>8</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>16</td>
+<td>0</td>
+<td>4</td>
+<td>5</td>
+<td>42</td>
+<td>0</td>
+</tr>
+<tr>
+<td>src/sample/java/project/package-info.java</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>pom.xml</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>31</td>
+<td>0</td>
+</tr>
+<tr>
+<td>test/sample/java/project/SampleJavaProjectTest.java</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>15</td>
+<td>0</td>
+<td>5</td>
+<td>9</td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<td>build.xml</td>
+<td>0</td>
+<td>0</td>
+<td>14</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>8</td>
+<td>0</td>
+<td>24</td>
+<td>25</td>
+<td>148</td>
+<td>1</td>
+</tr>
+<tr>
+<td>README.md</td>
+<td>0</td>
+<td>0</td>
+<td>10</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>42</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p>それぞれの記号は以下の意味を示します。</p>
+
+<table>
+<thead>
+<tr>
+<th>記号</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>==</td>
+<td>変更のなかった行数</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>修正された行数</td>
+</tr>
+<tr>
+<td>+</td>
+<td>追加された行数</td>
+</tr>
+<tr>
+<td>-</td>
+<td>削除された行数</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="さいごに" class="fragment"></span><a href="#%E3%81%95%E3%81%84%E3%81%94%E3%81%AB"><i class="fa fa-link"></i></a>さいごに</h2>
+
+<p>clocは大変便利なツールですが、 <strong>デフォルトで定義されていない拡張子のファイルはカウントされずに無視されてしまう点</strong> が少し残念に思います。</p>
+
+<p>他にもっと便利なツールをご存知の方がいれば是非教えてください！</p>
+
+<hr>
+
+<p><a href="http://creativecommons.org/licenses/by/4.0/" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/e812d85e0d7dbd784b774a658f5dff633ee507dc/68747470733a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792f342e302f38387833312e706e67" alt="クリエイティブ・コモンズ・ライセンス" data-canonical-src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br><br>
+この 作品 は <a href="http://creativecommons.org/licenses/by/4.0/" rel="nofollow noopener" target="_blank">クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>toeさんの<br />5位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
+		<a target="_blank" href="https://qiita.com/toe/items/4efaa4e0f95a16f50ef7">Excelから脱却し、RでApacheのアクセスログをスマートに解析する</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-05 10:29:02</center>
+	</td>
+	<td style="width:200px;">
+		@toe<br><img width="80" height="80" src="https://secure.gravatar.com/avatar/b421ef1d479124a64323e42e3c266366">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[R]</b> <b>[Apache]</b> <b>[効率化]</b> <b>[RStudio]</b> <b>[生産性向上]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>何万行にも及ぶApacheのアクセスログを <strong>Excelに読み込んでグラフを作っている</strong> 現場って意外と多いのではないでしょうか。R言語（以下、「R」）を使って、もっとスマートな方法で解析してみましょう。</p>
+
+<p>本稿では、 <strong>1分間ごとのChromeブラウザからのアクセスをヒストグラムとして描画し、最大アクセス数とその時刻を求める</strong> ことを目標とし、Rを使用する上で必要な入門知識と構築手順、Apacheのアクセスログを解析するための処理について紹介します。</p>
+
+<p><strong>確認した動作環境</strong></p>
+
+<ul>
+<li>OS: macOS Sierra 10.12.5</li>
+<li>プロセッサ: 1.2 GHz Intel Core m3</li>
+<li>メモリ: 8 GB 1867 MHz LPDDR3</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/d448d21e19ad3f5ce96be942575ec876a7080eb8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f39393934616139332d663435612d343461352d663366332d6538383835326336356665312e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d448d21e19ad3f5ce96be942575ec876a7080eb8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f39393934616139332d663435612d343461352d663366332d6538383835326336356665312e676966" alt="000057_01.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/155486/9994aa93-f45a-44a5-f3f3-e88852c65fe1.gif"></a></p>
+
+<h2>
+<span id="なぜrは統計解析に強いのか" class="fragment"></span><a href="#%E3%81%AA%E3%81%9Cr%E3%81%AF%E7%B5%B1%E8%A8%88%E8%A7%A3%E6%9E%90%E3%81%AB%E5%BC%B7%E3%81%84%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>なぜRは統計解析に強いのか</h2>
+
+<p>そもそも他のプログラミング言語と比較して、<strong>なぜRが統計解析に強い</strong> と言われているのでしょうか。主な理由は以下の通りです。</p>
+
+<ul>
+<li>
+<strong>統計解析に特化した</strong> プログラミング言語である</li>
+<li>配列（Rでは「ベクトル」と表現する）処理を前提としているため、 <strong>基本的にfor文が不要</strong> である</li>
+<li><strong>統計分析のためのライブラリが充実している</strong></li>
+</ul>
+
+<h3>
+<span id="rとpythonとの違いについて" class="fragment"></span><a href="#r%E3%81%A8python%E3%81%A8%E3%81%AE%E9%81%95%E3%81%84%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>RとPythonとの違いについて</h3>
+
+<p>Rと同じく統計解析に強いと言われているのが、 機械学習で注目を集めている汎用言語 <strong>Python</strong> です。以下は各言語について、それらが得意とする分野をまとめたものです。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">R</th>
+<th style="text-align: center">Python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">統計解析に特化したインタラクティブな処理</td>
+<td style="text-align: center">統計解析以外の機能と連携した多様な処理</td>
+</tr>
+<tr>
+<td style="text-align: center">都度異なるアルゴリズムによるルーティン化しにくい解析</td>
+<td style="text-align: center">毎度同じアルゴリズムによるルーティン化しやすい解析</td>
+</tr>
+<tr>
+<td style="text-align: center">ローカル環境での処理</td>
+<td style="text-align: center">サーバー環境での処理</td>
+</tr>
+</tbody>
+</table>
+
+<p>今回は対象とするApacheのアクセスログを <strong>様々な角度から解析したい</strong> ため、R言語を採用しました。</p>
+
+<hr>
+
+<ul>
+<li><a href="https://ja.m.wikipedia.org/wiki/R%E8%A8%80%E8%AA%9E" rel="nofollow noopener" target="_blank">R言語 - Wikipedia</a></li>
+<li><a href="https://codeiq.jp/magazine/2016/02/30941/" rel="nofollow noopener" target="_blank">Python、それともR？機械学習実装の一歩を踏み出すためのスタートガイド｜CodeIQ MAGAZINE</a></li>
+</ul>
+
+<h2>
+<span id="rの実行環境を構築する" class="fragment"></span><a href="#r%E3%81%AE%E5%AE%9F%E8%A1%8C%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Rの実行環境を構築する</h2>
+
+<h3>
+<span id="rをインストールする" class="fragment"></span><a href="#r%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Rをインストールする</h3>
+
+<p>それではRをインストールしましょう。Rの公式ウェブサイトである<a href="https://cran.r-project.org/bin/macosx/" rel="nofollow noopener" target="_blank">R for Mac OS X</a>から<code>R-x.x.x.pkg</code>（x.x.xはバージョン番号。本稿執筆時点の最新版は3.4.2）をダウンロードし、インストールします。</p>
+
+<p>インストールが完了したら、ターミナルを起動して以下のコマンドを入力します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ r
+
+R version 3.4.2 (2017-09-28) -- "Short Summer"
+Copyright (C) 2017 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+</pre></div></div>
+
+<p>上記のような出力が表示され、インタラクティブモードが開始されます。</p>
+
+<p>続いてサンプルデータとしてデフォルトで定義されている月間旅客機乗客数データ<code>AirPassengers</code>のグラフを描画するため、以下のコマンドを入力します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&gt; plot(AirPassengers)
+</pre></div></div>
+
+<p>コマンドを実行するとXQuartzが起動し、以下のような図が描画されます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/439725a5fde6ff7390e0d4523048019ca5d9622f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f37356538396332322d336530652d623730302d633731612d6139326238636535613635332e706e67" target="_blank" rel="nofollow noopener"><img width="1392" alt="000057_02.png" src="https://camo.qiitausercontent.com/439725a5fde6ff7390e0d4523048019ca5d9622f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f37356538396332322d336530652d623730302d633731612d6139326238636535613635332e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/155486/75e89c22-3e0e-b700-c71a-a92b8ce5a653.png"></a></p>
+
+<p>インタラクティブモードを終了するには、以下のコマンドを入力します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&gt; q()
+Save workspace image? [y/n/c]: n
+</pre></div></div>
+
+<hr>
+
+<ul>
+<li><a href="https://qiita.com/tatzyr/items/584b6f9e185423dd3d40" id="reference-8b021f437a85f18ea64c">OS XにRをインストールするときに知っておきたいこと - Qiita</a></li>
+<li><a href="https://qiita.com/azzeten/items/1031c788ed093d3b3946" id="reference-30f3d4735f30d2f274f7">MacにRとR Studioをインストール - Qiita</a></li>
+</ul>
+
+<h3>
+<span id="統合開発環境rstudioをインストールする" class="fragment"></span><a href="#%E7%B5%B1%E5%90%88%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83rstudio%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>統合開発環境「RStudio」をインストールする</h3>
+
+<p>「RStudio」は以下のような機能を有するオープンソースの統合開発環境（IDE）であり、Rによる解析をサポートしてくれるツールです。</p>
+
+<ul>
+<li>コード補完</li>
+<li>バージョン管理</li>
+<li>デバッグ</li>
+<li>変数ビューア</li>
+<li>グラフ描画</li>
+</ul>
+
+<p>RStudioの公式配布先である<a href="https://www.rstudio.com/products/rstudio/download/" rel="nofollow noopener" target="_blank">Download RStudio – RStudio</a> へアクセスし、「RStudio Desktop Open Source License」を選択します。</p>
+
+<p>表示されたインストーラーから、<code>RStudio x.x.x - Mac OS X 10.6+ (64-bit)</code>（x.x.xはバージョン番号。本稿執筆時点の最新版は1.1.383）をクリックし、ダウンロードします。</p>
+
+<p>ダウンロードしたdmgファイルを起動することでインストールが開始されます。</p>
+
+<hr>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/RStudio" rel="nofollow noopener" target="_blank">RStudio - Wikipedia</a></li>
+<li><a href="http://gihyo.jp/admin/serial/01/r-markdown/0008" rel="nofollow noopener" target="_blank">第8回（最終回）　RStudioでお手軽レポートづくり：R Markdownで楽々レポートづくり｜gihyo.jp … 技術評論社</a></li>
+</ul>
+
+<h3>
+<span id="グラフィック作成パッケージggplot2をインストールする" class="fragment"></span><a href="#%E3%82%B0%E3%83%A9%E3%83%95%E3%82%A3%E3%83%83%E3%82%AF%E4%BD%9C%E6%88%90%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8ggplot2%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>グラフィック作成パッケージ「ggplot2」をインストールする</h3>
+
+<p>Rのインタラクティブモードから以下のコマンドを入力し、 ヒストグラムをプロットするために必要な <strong>グラフィック作成パッケージ「ggplot2」</strong> をインストールします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&gt; install.packages("ggplot2")
+</pre></div></div>
+
+<p>コマンドを実行すると、以下のようなメッセージが表示されます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span> --- このセッションで使うために、CRAN のミラーサイトを選んでください ---
+Secure CRAN mirrors
+
+ 1: 0-Cloud [https]                   2: Algeria [https]                
+ 3: Australia (Canberra) [https]      4: Australia (Melbourne 1) [https]
+...
+...
+35: Italy (Padua) [https]            36: Japan (Tokyo) [https]          
+...
+...
+</pre></div></div>
+
+<p><strong>CRAN (Comprehensive R Archive Network)</strong> とは、R本体や各種パッケージをダウンロードするためのミラーサイトです。本稿では日本国内のミラーサイトからダウンロードするため、<code>36</code>を入力します。入力が完了すると、インストールが開始されます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Selection: 36
+</pre></div></div>
+
+<hr>
+
+<ul>
+<li><a href="http://ggplot2.org/" rel="nofollow noopener" target="_blank">ggplot2</a></li>
+<li><a href="http://www.okadajp.org/RWiki/?CRAN%E5%9B%BD%E5%86%85%E3%83%9F%E3%83%A9%E3%83%BC%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9" rel="nofollow noopener" target="_blank">CRAN国内ミラーの使い方 - RjpWiki</a></li>
+</ul>
+
+<h2>
+<span id="apacheのダミーログを生成する" class="fragment"></span><a href="#apache%E3%81%AE%E3%83%80%E3%83%9F%E3%83%BC%E3%83%AD%E3%82%B0%E3%82%92%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Apacheのダミーログを生成する</h2>
+
+<p>Rの環境構築が完了したら、次は解析対象とするデータを用意します。実際にApacheから出力されているログを使用してもよいですが、本稿ではダミーログを生成し、それを解析対象とします。</p>
+
+<h3>
+<span id="apache-loggenをインストールする" class="fragment"></span><a href="#apache-loggen%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>「apache-loggen」をインストールする</h3>
+
+<p>以下のコマンドを入力し、Ruby用のパッケージ管理システム「RubyGems」からApacheのダミーログを生成してくれるツール「apache-loggen」をインストールします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ sudo gem install apache-loggen -N
+</pre></div></div>
+
+<p>ここで、<code>-N</code>はドキュメントのダウンロードを不要とするオプションです。</p>
+
+<p>以下のように表示されればOKです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Successfully installed apache-loggen-0.0.4
+1 gem installed
+</pre></div></div>
+
+<h3>
+<span id="ダミーログを生成する" class="fragment"></span><a href="#%E3%83%80%E3%83%9F%E3%83%BC%E3%83%AD%E3%82%B0%E3%82%92%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>ダミーログを生成する</h3>
+
+<p>それでは、apache-loggenを使用してダミーログを生成しましょう。<code>apache-loggen -h</code>コマンドを入力すれば、apache-loggenのヘルプを参照することができます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ apache-loggen -h
+Usage: apache-loggen [options]
+        --limit=COUNT                最大何件出力するか。デフォルトは0で無制限。
+        --rate=RATE                  毎秒何レコード生成するか。デフォルトは0で流量制限無し。
+        --rotate=SECOND              ローテーションする間隔。デフォルトは0。
+        --progress                   レートの表示をする。
+        --json                       json形式の出力
+</pre></div></div>
+
+<p>任意のディレクトリ（本稿では<code>~/dev/r/</code>）へ移動し、以下のコマンドを入力します。<br>
+ここでは「毎秒10レコード、30分間」のログを生成するため、<code>--limit=18000</code>（60 [秒] × 30 [分] × 10 [レコード/秒] =18000 [レコード]）を設定しています。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>apache-loggen --limit=18000 --rate=10 --progress test.log
+</pre></div></div>
+
+<p>apache-loggenで出力されるログのタイムスタンプは「端末のシステム時間」であり、 <strong>30分間のログが必要であれば生成完了まで30分かかる</strong> ため、ここは少し辛抱しましょう。</p>
+
+<hr>
+
+<ul>
+<li><a href="https://github.com/tamtam180/apache_log_gen" rel="nofollow noopener" target="_blank">GitHub - tamtam180/apache_log_gen: generate dummy apache log.</a></li>
+<li><a href="https://qiita.com/sumyapp/items/5ec58bf3567e557c24d7" id="reference-6c91392419db9489a666">Rubygemsのススメ | Rubyに慣れていない初心者さんへ - Qiita</a></li>
+<li><a href="http://inokara.hateblo.jp/entry/2015/06/21/225143" rel="nofollow noopener" target="_blank">apache-loggen を使って Apache アクセスログのダミーログを生成する - ようへいの日々精進XP</a></li>
+<li><a href="https://cloudpack.media/16487" rel="nofollow noopener" target="_blank">"apache-loggen"でダミーのアクセスログを作成する | cloudpack.media</a></li>
+</ul>
+
+<h2>
+<span id="rの処理について" class="fragment"></span><a href="#r%E3%81%AE%E5%87%A6%E7%90%86%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>Rの処理について</h2>
+
+<p>解析を始めるにあたり、Rにおける基本的な処理と <strong>データの種類</strong> を理解する必要があります。</p>
+
+<h3>
+<span id="rにおける変数への代入と参照" class="fragment"></span><a href="#r%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%A4%89%E6%95%B0%E3%81%B8%E3%81%AE%E4%BB%A3%E5%85%A5%E3%81%A8%E5%8F%82%E7%85%A7"><i class="fa fa-link"></i></a>Rにおける変数への代入と参照</h3>
+
+<p>Rでは代入演算子<code>&lt;-</code>を用いて変数へ代入します。以下は変数<code>x</code>に数値<code>1</code>を代入する例です。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>x &lt;- 1
+</pre></div></div>
+
+<p>変数名を入力することで、変数の中身を参照することができます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>x
+[1] 1
+</pre></div></div>
+
+<hr>
+
+<ul>
+<li><a href="http://cse.naro.affrc.go.jp/takezawa/r-tips/r/05.html" rel="nofollow noopener" target="_blank">05. オブジェクトと代入（付値） | R-Source</a></li>
+</ul>
+
+<h3>
+<span id="rで扱うデータの種類" class="fragment"></span><a href="#r%E3%81%A7%E6%89%B1%E3%81%86%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E7%A8%AE%E9%A1%9E"><i class="fa fa-link"></i></a>Rで扱うデータの種類</h3>
+
+<h4>
+<span id="ベクトル" class="fragment"></span><a href="#%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB"><i class="fa fa-link"></i></a>ベクトル</h4>
+
+<p>同じ型の要素を <strong>1つの行または列</strong> にまとめたオブジェクトです。</p>
+
+<h5>
+<span id="ベクトルの生成" class="fragment"></span><a href="#%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%81%AE%E7%94%9F%E6%88%90"><i class="fa fa-link"></i></a>ベクトルの生成</h5>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&gt; c(1.0, 2.0, 3.0, 4.0, 5.0)
+[1] 1 2 3 4 5
+</pre></div></div>
+
+<hr>
+
+<ul>
+<li><a href="https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/c" rel="nofollow noopener" target="_blank">c function | R Documentation</a></li>
+<li><a href="http://cse.naro.affrc.go.jp/takezawa/r-tips/r/12.html" rel="nofollow noopener" target="_blank">12. ベクトルの作成  | R-Source</a></li>
+</ul>
+
+<h4>
+<span id="行列" class="fragment"></span><a href="#%E8%A1%8C%E5%88%97"><i class="fa fa-link"></i></a>行列</h4>
+
+<p>行と列を持つ2次元配列のオブジェクトです。</p>
+
+<h5>
+<span id="行ベクトルを結合する" class="fragment"></span><a href="#%E8%A1%8C%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%82%92%E7%B5%90%E5%90%88%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>行ベクトルを結合する</h5>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&gt; rbind(c(1,2,3), c(4,5,6))
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    6
+</pre></div></div>
+
+<h5>
+<span id="列ベクトルを結合する" class="fragment"></span><a href="#%E5%88%97%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%82%92%E7%B5%90%E5%90%88%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>列ベクトルを結合する</h5>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&gt; cbind(c(1,2,3),c(4,5,6))
+     [,1] [,2]
+[1,]    1    4
+[2,]    2    5
+[3,]    3    6
+</pre></div></div>
+
+<h5>
+<span id="要素へアクセスする" class="fragment"></span><a href="#%E8%A6%81%E7%B4%A0%E3%81%B8%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>要素へアクセスする</h5>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&gt; x &lt;- cbind(c(1,2,3),c(4,5,6))
+&gt; x
+     [,1] [,2]
+[1,]    1    4
+[2,]    2    5
+[3,]    3    6
+&gt; x[1,]
+[1] 1 4
+&gt; x[,1]
+[1] 1 2 3
+&gt; x[1,1]
+[1] 1
+</pre></div></div>
+
+<ul>
+<li>
+<code>x[m,]</code>: m行目の行ベクトルを抽出します。</li>
+<li>
+<code>x[,n]</code>: n列目の列ベクトルを抽出します。</li>
+<li>
+<code>x[m,n]</code>: m行n列目の要素を抽出します。</li>
+</ul>
+
+<hr>
+
+<ul>
+<li><a href="http://cse.naro.affrc.go.jp/takezawa/r-tips/r/19.html" rel="nofollow noopener" target="_blank">19. 行列の作成 | R-Source</a></li>
+<li><a href="https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/cbind" rel="nofollow noopener" target="_blank">cbind function | R Documentation</a></li>
+</ul>
+
+<h4>
+<span id="リスト" class="fragment"></span><a href="#%E3%83%AA%E3%82%B9%E3%83%88"><i class="fa fa-link"></i></a>リスト</h4>
+
+<p>要素数が異なる複数のベクトルをまとめたオブジェクトです。</p>
+
+<h5>
+<span id="リストを生成する" class="fragment"></span><a href="#%E3%83%AA%E3%82%B9%E3%83%88%E3%82%92%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>リストを生成する</h5>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&gt; x&lt;-list(c("a", "b"), c(1, 2, 3))
+&gt; x[1]
+[[1]]
+[1] "a" "b"
+
+&gt; x[[1]]
+[1] "a" "b"
+</pre></div></div>
+
+<ul>
+<li>
+<code>x[1]</code>: 第1成分の <strong>リスト</strong> を抽出します。</li>
+<li>
+<code>x[[1]]</code>: 第1成分の <strong>要素</strong> （上記の例ではベクトル）を抽出します。</li>
+</ul>
+
+<hr>
+
+<ul>
+<li><a href="http://cse.naro.affrc.go.jp/takezawa/r-tips/r/23.html" rel="nofollow noopener" target="_blank">23. リスト | R-Source</a></li>
+<li><a href="https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/list" rel="nofollow noopener" target="_blank">list function | R Documentation</a></li>
+</ul>
+
+<h4>
+<span id="データフレーム" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0"><i class="fa fa-link"></i></a>データフレーム</h4>
+
+<p><code>data.frame</code>クラスを持つリストであり、異なる型のベクトルをまとめたオブジェクトです。 <strong>各行、各列はラベルを必ず持っており</strong> 、ラベルを指定した操作が可能です。</p>
+
+<h5>
+<span id="データフレームを生成する" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%82%92%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>データフレームを生成する</h5>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&gt; sex    &lt;- c("F","F","M","M","M")
+&gt; height &lt;- c(158,162,177,173,166)
+&gt; weight &lt;- c(51,55,72,57,64)
+&gt; x &lt;- data.frame(SEX=sex, HEIGHT=height, WEIGHT=weight)
+&gt; x
+  SEX HEIGHT WEIGHT
+1   F    158     51
+2   F    162     55
+3   M    177     72
+4   M    173     57
+5   M    166     64
+&gt; x$HEIGHT
+[1] 158 162 177 173 166
+</pre></div></div>
+
+<ul>
+<li>
+<code>x$label</code>: <code>label</code>で指定した列のベクトルを抽出します。</li>
+</ul>
+
+<hr>
+
+<ul>
+<li><a href="http://cse.naro.affrc.go.jp/takezawa/r-tips/r/39.html" rel="nofollow noopener" target="_blank">39. データフレーム事始 | R-Source</a></li>
+<li><a href="https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/data.frame" rel="nofollow noopener" target="_blank">data.frame function | R Documentation</a></li>
+</ul>
+
+<h2>
+<span id="apacheのアクセスログを解析する" class="fragment"></span><a href="#apache%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%83%AD%E3%82%B0%E3%82%92%E8%A7%A3%E6%9E%90%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Apacheのアクセスログを解析する</h2>
+
+<p>ようやく全ての準備が整ったので、RでApacheのアクセスログを解析してみましょう。RStudioを起動し、Consoleペインからコマンドを入力していきます。以下ではそれぞれのコマンドについて順を追って説明します。</p>
+
+<h3>
+<span id="ロケールを変更する" class="fragment"></span><a href="#%E3%83%AD%E3%82%B1%E3%83%BC%E3%83%AB%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>ロケールを変更する</h3>
+
+<p>Rで使用するロケールを<code>en_US.UTF-8</code>に変更します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Sys.setlocale("LC_ALL", "en_US.UTF-8")
+</pre></div></div>
+
+<p>本環境のロケールはデフォルトで日本語形式<code>ja_JP.UTF-8</code>となっていました。一方、 <strong>Apacheのログで出力されるタイムスタンプは英語形式（例：<code>03/Nov/2017:12:34:05</code>）である</strong> ため、ロケールを英語形式<code>en_US.UTF-8</code>に変更する必要があります。</p>
+
+<hr>
+
+<ul>
+<li><a href="https://blog.riywo.com/2011/03/06/175722/" rel="nofollow noopener" target="_blank">RStudio使ってApacheのアクセスログをグラフにしてみよう - As a Futurist...</a></li>
+</ul>
+
+<h3>
+<span id="apacheのアクセスログを読み込む" class="fragment"></span><a href="#apache%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%83%AD%E3%82%B0%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%80"><i class="fa fa-link"></i></a>Apacheのアクセスログを読み込む</h3>
+
+<h4>
+<span id="ファイルを読み込む" class="fragment"></span><a href="#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%80"><i class="fa fa-link"></i></a>ファイルを読み込む</h4>
+
+<p>以下のコマンドを入力し、Apacheのアクセスログを読み込みます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>d &lt;- read.table("~/dev/r/test.log", quote="\"", fill = TRUE)
+</pre></div></div>
+
+<ul>
+<li>
+<code>read.table(file)</code>: <code>file</code>で指定された表形式のテキストファイルを読み込み、データフレームとして返却します。
+
+<ul>
+<li>
+<code>quote</code>: 文字列の引用符を設定します。Apacheのアクセスログは<code>"GET /category/books HTTP/1.1"</code>のように引用符として<code>"</code>が使われているため、<code>\"</code>を指定します。</li>
+<li>
+<code>fill</code>: <code>TRUE</code>を設定すると、欠損のある（1行に含まれる列数が各行で異なる）要素に<code>NA</code>（欠損値）を代入して読み込み処理を継続します。オプションを指定しなかった場合は処理を中止してエラーを出力します。</li>
+</ul>
+</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/b579e92e48639a16f2501c714dfa2bcda28c298a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f30306565626331612d633833382d356664352d616139312d3764623636383336666165622e706e67" target="_blank" rel="nofollow noopener"><img width="1392" alt="000057_03.png" src="https://camo.qiitausercontent.com/b579e92e48639a16f2501c714dfa2bcda28c298a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f30306565626331612d633833382d356664352d616139312d3764623636383336666165622e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/155486/00eebc1a-c838-5fd5-aa91-7db66836faeb.png"></a></p>
+
+<h4>
+<span id="文字列を年月日時分秒オブジェクトに変換する" class="fragment"></span><a href="#%E6%96%87%E5%AD%97%E5%88%97%E3%82%92%E5%B9%B4%E6%9C%88%E6%97%A5%E6%99%82%E5%88%86%E7%A7%92%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AB%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>文字列を「年月日時分秒」オブジェクトに変換する</h4>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>d$V4 &lt;- strptime(d$V4, "[%d/%b/%Y:%H:%M:%S")
+</pre></div></div>
+
+<ul>
+<li>
+<code>strptime(x, format)</code>: 「年月日時分秒」を表す形式<code>format</code>で表現された文字列ベクトル<code>x</code>を、「年月日時分秒」を表す<code>POSIXlt</code>オブジェクトのベクトルに変換します。データフレーム<code>d</code>の文字列ベクトル<code>d$V4</code>は<code>[03/Nov/2017:12:34:05</code>のような形式であるため、<code>format</code>に<code>[%d/%b/%Y:%H:%M:%S</code>を指定します。</li>
+</ul>
+
+<hr>
+
+<ul>
+<li><a href="https://www.rdocumentation.org/packages/utils/versions/3.4.1/topics/read.table" rel="nofollow noopener" target="_blank">read.table function | R Documentation</a></li>
+<li><a href="http://webbeginner.hatenablog.com/entry/2014/01/09/125732" rel="nofollow noopener" target="_blank">read.table()によるテキストファイルの読み込み - jnobuyukiのブログ</a></li>
+<li><a href="https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/strptime" rel="nofollow noopener" target="_blank">strptime function | R Documentation</a></li>
+<li><a href="http://www.okadajp.org/RWiki/?%E6%97%A5%E4%BB%98%E3%80%81%E6%99%82%E9%96%93%E9%96%A2%E6%95%B0Tips%E5%A4%A7%E5%85%A8" rel="nofollow noopener" target="_blank">日付、時間関数Tips大全 - RjpWiki</a></li>
+</ul>
+
+<h3>
+<span id="特定のユーザーエージェントからのアクセスを抽出する" class="fragment"></span><a href="#%E7%89%B9%E5%AE%9A%E3%81%AE%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%8B%E3%82%89%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%82%92%E6%8A%BD%E5%87%BA%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>特定のユーザーエージェントからのアクセスを抽出する</h3>
+
+<p>本稿ではChromeブラウザからのアクセスのみを解析対象とするため、データフレーム<code>d</code>から、ユーザーエージェントに<code>Chrome</code>が含まれる行のみを抽出します。また <strong>Edgeのエージェントにも<code>Chrome</code>が含まれている</strong> ため、<code>Edge</code>が含まれない行も検索条件に加えます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>dChrome &lt;- subset(d, grepl("Chrome", d$V10))
+dChrome &lt;- subset(dChrome, !grepl("Edge", dChrome$V10))
+</pre></div></div>
+
+<ul>
+<li><p><code>grepl(pattern, x)</code>: 正規表現による検索条件<code>pattern</code>と一致した文字列ベクトル<code>x</code>の論理型ベクトルを返却します。ユーザーエージェントはデータフレーム<code>d</code>の<code>V10</code>列に格納されているため、<code>V10</code>ベクトルから<code>Chrome</code>が含まれるものを検索条件としています。</p></li>
+<li><p><code>!</code>: 論理型ベクトルの否定（TRUEとFALSEを逆にしたもの）を返却します。</p></li>
+<li><p><code>subset(x, subset)</code>: データフレーム<code>x</code>から<code>subset</code>で指定された条件に一致した要素のみを抽出したものを返却します。</p></li>
+</ul>
+
+<hr>
+
+<ul>
+<li><a href="https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/grep" rel="nofollow noopener" target="_blank">grep function | R Documentation</a></li>
+<li><a href="https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/subset" rel="nofollow noopener" target="_blank">subset function | R Documentation</a></li>
+<li><a href="https://qiita.com/tallman/items/c12f2558f55c2d68f4e4" id="reference-ec7d257fed6cada8050e">【R】Rのsubsetで文字列の検索を掛ける方法 - Qiita</a></li>
+<li><a href="https://qiita.com/sakuraya/items/33f93e19438d0694a91d" id="reference-52abb822e1fb9fbedf1e">使用してるブラウザを判定したい - Qiita</a></li>
+<li><a href="https://stackoverflow.com/questions/28086034/grep-in-r-finding-items-that-do-not-match" rel="nofollow noopener" target="_blank">! grep in R - finding items that do not match - Stack Overflow</a></li>
+</ul>
+
+<h3>
+<span id="ヒストグラムを描画する" class="fragment"></span><a href="#%E3%83%92%E3%82%B9%E3%83%88%E3%82%B0%E3%83%A9%E3%83%A0%E3%82%92%E6%8F%8F%E7%94%BB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>ヒストグラムを描画する</h3>
+
+<h4>
+<span id="ヒストグラムを生成する" class="fragment"></span><a href="#%E3%83%92%E3%82%B9%E3%83%88%E3%82%B0%E3%83%A9%E3%83%A0%E3%82%92%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>ヒストグラムを生成する</h4>
+
+<p>以下のコマンドを入力し、ヒストグラムを生成します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>library("ggplot2")
+histChrome &lt;- qplot(V4, data = dChrome, geom = "histogram", binwidth = 60)
+</pre></div></div>
+
+<ul>
+<li>
+<code>library(package)</code>: <code>package</code>で指定されたパッケージを読み込みます。</li>
+<li>
+<code>qplot(x)</code>: <code>x</code>で指定された列のグラフィックオブジェクトを生成します。
+
+<ul>
+<li>
+<code>data</code>: データフレームを指定します。</li>
+<li>
+<code>geom</code>: グラフィックオブジェクトの種類を指定します。</li>
+<li>
+<code>binwidth</code>: 描画するヒストグラムのbin幅を <strong>秒単位</strong> で指定します。</li>
+</ul>
+</li>
+</ul>
+
+<hr>
+
+<ul>
+<li><a href="https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/library" rel="nofollow noopener" target="_blank">library function | R Documentation</a></li>
+<li><a href="https://www.rdocumentation.org/packages/ggplot2/versions/2.2.1/topics/qplot" rel="nofollow noopener" target="_blank">qplot function | R Documentation</a></li>
+</ul>
+
+<h4>
+<span id="特定の時間内のヒストグラムを抽出する" class="fragment"></span><a href="#%E7%89%B9%E5%AE%9A%E3%81%AE%E6%99%82%E9%96%93%E5%86%85%E3%81%AE%E3%83%92%E3%82%B9%E3%83%88%E3%82%B0%E3%83%A9%E3%83%A0%E3%82%92%E6%8A%BD%E5%87%BA%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>特定の時間内のヒストグラムを抽出する</h4>
+
+<p>以下のコマンドを入力し、特定の時間内のヒストグラムを生成します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>histChrome = histChrome + xlim(c(as.POSIXct("2017-11-03 12:40:00", format="%Y-%m-%d %H:%M:%S"),
+                                 as.POSIXct("2017-11-03 13:00:00", format="%Y-%m-%d %H:%M:%S")))
+</pre></div></div>
+
+<ul>
+<li>
+<code>xlim()</code>: グラフィックオブジェクトから、ベクトルで指定したx軸の範囲を抽出します。</li>
+<li>
+<code>as.POSIXct(x)</code>: <code>x</code>で指定した文字列を<code>POSIXct</code>型の数値に変換します。
+
+<ul>
+<li>
+<code>format</code>: <code>x</code>で指定した文字列のフォーマットを指定します。</li>
+</ul>
+</li>
+</ul>
+
+<hr>
+
+<ul>
+<li><a href="https://www.rdocumentation.org/packages/ggplot2/versions/2.2.1/topics/lims" rel="nofollow noopener" target="_blank">lims function | R Documentation</a></li>
+<li><a href="https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/as.POSIX*" rel="nofollow noopener" target="_blank">as.POSIX* function | R Documentation</a></li>
+</ul>
+
+<h4>
+<span id="ヒストグラムを描画する-1" class="fragment"></span><a href="#%E3%83%92%E3%82%B9%E3%83%88%E3%82%B0%E3%83%A9%E3%83%A0%E3%82%92%E6%8F%8F%E7%94%BB%E3%81%99%E3%82%8B-1"><i class="fa fa-link"></i></a>ヒストグラムを描画する</h4>
+
+<p>以下のコマンドを入力し、ヒストグラムを描画します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>print(histChrome)
+</pre></div></div>
+
+<ul>
+<li>
+<code>print(x)</code>: <code>x</code>で指定したオブジェクトを出力します。</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/7ac111016fe28282636ac0fd12988910116f086f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f32333337313033382d653665632d313765302d613932322d6564303365623434633931662e706e67" target="_blank" rel="nofollow noopener"><img width="1392" alt="000057_04.png" src="https://camo.qiitausercontent.com/7ac111016fe28282636ac0fd12988910116f086f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135353438362f32333337313033382d653665632d313765302d613932322d6564303365623434633931662e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/155486/23371038-e6ec-17e0-a922-ed03eb44c91f.png"></a></p>
+
+<hr>
+
+<ul>
+<li><a href="https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/print" rel="nofollow noopener" target="_blank">print function | R Documentation</a></li>
+<li><a href="https://stackoverflow.com/questions/2409317/how-to-adjust-time-scale-axis-for-ggplot-histogram" rel="nofollow noopener" target="_blank">r - How to adjust time scale axis for ggplot histogram - Stack Overflow</a></li>
+<li><a href="http://mickey24.hatenablog.com/entry/20110223/ggplot2_qplot" rel="nofollow noopener" target="_blank">ggplot2のqplot関数のまとめ - ぬいぐるみライフ？</a></li>
+</ul>
+
+<h3>
+<span id="ヒストグラムから最大アクセス数とその時刻を求める" class="fragment"></span><a href="#%E3%83%92%E3%82%B9%E3%83%88%E3%82%B0%E3%83%A9%E3%83%A0%E3%81%8B%E3%82%89%E6%9C%80%E5%A4%A7%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E6%95%B0%E3%81%A8%E3%81%9D%E3%81%AE%E6%99%82%E5%88%BB%E3%82%92%E6%B1%82%E3%82%81%E3%82%8B"><i class="fa fa-link"></i></a>ヒストグラムから最大アクセス数とその時刻を求める</h3>
+
+<p>以下のコマンドを入力し、ヒストグラムの最大値を出力します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>cChrome &lt;- ggplot_build(histChrome)[[1]][[1]]
+cChrome$x &lt;- as.POSIXct(cChrome$x,origin="1970-01-01")
+cChrome$x[[which.max(cChrome$y)]]
+max(cChrome$y)
+</pre></div></div>
+
+<ul>
+<li>
+<code>ggplot_build(plot)</code>: <code>plot</code>で指定したグラフィックオブジェクトのデータが格納されたリストを返却します。x軸とy軸のデータが格納されたデータフレームへは<code>[[1]][[1]]</code>でアクセスできます。</li>
+<li>
+<code>as.POSIXct(x)</code>: 数値<code>x</code>を<code>POSIXct</code>型のDate-Timeオブジェクトに変換します。
+
+<ul>
+<li>
+<code>origin</code>: 基準とする時刻を指定します。</li>
+</ul>
+</li>
+<li>
+<code>which.max(x)</code>: ベクトル<code>x</code>の最大値の行番号を返却します。</li>
+<li>
+<code>max(x)</code>: 列ベクトル<code>x</code>の最大値を返却します。</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>&gt; cChrome$x[[which.max(cChrome$y)]]
+[1] "2017-11-03 12:54:00 JST"
+&gt; max(cChrome$y)
+[1] 165
+</pre></div></div>
+
+<p>上記のような結果がコンソールに出力されます。本稿で使用したデータでは、2017年11月3日12時40分〜13時00分の間におけるChromeブラウザからのアクセスは以下であることが分かりました。</p>
+
+<ul>
+<li><strong>1分間あたりの最大アクセス数: 165 [アクセス/分]</strong></li>
+<li><strong>最大アクセスのあった時刻: 2017年11月3日 12時54分</strong></li>
+</ul>
+
+<hr>
+
+<ul>
+<li><a href="https://www.rdocumentation.org/packages/ggplot2/versions/2.2.1/topics/ggplot_build" rel="nofollow noopener" target="_blank">ggplot_build function | R Documentation</a></li>
+<li><a href="https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/which.min" rel="nofollow noopener" target="_blank">which.min function | R Documentation</a></li>
+<li><a href="https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/as.POSIX*" rel="nofollow noopener" target="_blank">as.POSIX* function | R Documentation</a></li>
+<li><a href="https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/Extremes" rel="nofollow noopener" target="_blank">Extremes function | R Documentation</a></li>
+<li><a href="http://asuky.b.osdn.me/2011/12/15/r%E3%81%AEposixct%E7%9A%84%E3%81%AA%E6%95%B0%E5%80%A4%E3%81%8B%E3%82%89date-time-object%E3%82%92%E4%BD%9C%E3%82%8B/" rel="nofollow noopener" target="_blank">RのPOSIXct的な数値からdate-time objectを作る | あすき備忘録</a></li>
+<li><a href="https://stackoverflow.com/questions/14584093/ggplot2-find-number-of-counts-in-histogram-maximum" rel="nofollow noopener" target="_blank">r - ggplot2 find number of counts in histogram maximum - Stack Overflow</a></li>
+</ul>
+
+<h2>
+<span id="r-scriptで処理を実行する" class="fragment"></span><a href="#r-script%E3%81%A7%E5%87%A6%E7%90%86%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>R Scriptで処理を実行する</h2>
+
+<p>これまではRStudioのコンソールからコマンドを入力して処理を実行してきましたが、Rでは「R Script」と呼ばれるスクリプトを使用することも可能です。以下の<code>viewHistChrome.R</code>は、これまでの処理を一つのスクリプトにまとめたものです。（本稿では、Apacheのログファイルと同じパス <code>~/dev/r/</code>に保存しています。）</p>
+
+<p>~/dev/r/viewHistChrome.R</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Sys.setlocale("LC_ALL", "en_US.UTF-8")
+d &lt;- read.table("~/dev/r/test.log", quote="\"", fill = TRUE)
+d$V4 &lt;- strptime(d$V4, "[%d/%b/%Y:%H:%M:%S")
+dChrome &lt;- subset(d, grepl("Chrome", d$V10))
+dChrome &lt;- subset(dChrome, !grepl("Edge", dChrome$V10))
+library("ggplot2")
+histChrome &lt;- qplot(V4, data = dChrome, geom = "histogram", binwidth = 60)
+histChrome = histChrome + xlim(c(as.POSIXct("2017-11-03 12:40:00", format="%Y-%m-%d %H:%M:%S"),
+                                 as.POSIXct("2017-11-03 13:00:00", format="%Y-%m-%d %H:%M:%S")))
+print(histChrome)
+cChrome &lt;- ggplot_build(histChrome)[[1]][[1]]
+cChrome$x &lt;- as.POSIXct(cChrome$x,origin="1970-01-01")
+cChrome$x[[which.max(cChrome$y)]]
+max(cChrome$y)
+</pre></div></div>
+
+<h3>
+<span id="rstudioからr-scriptを実行する" class="fragment"></span><a href="#rstudio%E3%81%8B%E3%82%89r-script%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>RStudioからR Scriptを実行する</h3>
+
+<ol>
+<li>
+<code>File &gt; Open File</code>から<code>~/dev/r/viewHistChrome.R</code>を選択します。</li>
+<li>
+<code>Source</code>ペインから<code>Source &gt; Source with Echo</code>を選択すると、スクリプトを実行することができます。</li>
+</ol>
+
+<hr>
+
+<ul>
+<li><a href="https://mumu.jpn.ph/forest/computer/2015/10/15/1933/" rel="nofollow noopener" target="_blank">RStudioでスクリプトをソース実行した時と、１行ずつ実行した場合に、出力が異なる場合の対処法 | Dr.Clover's Computer Clinic</a></li>
+</ul>
+
+<h3>
+<span id="rのコンソールモードからr-scriptを実行する" class="fragment"></span><a href="#r%E3%81%AE%E3%82%B3%E3%83%B3%E3%82%BD%E3%83%BC%E3%83%AB%E3%83%A2%E3%83%BC%E3%83%89%E3%81%8B%E3%82%89r-script%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>RのコンソールモードからR Scriptを実行する</h3>
+
+<p>ターミナルからRのコンソールモードを開始し、以下のコマンドを入力することでスクリプトを実行することができます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ r
+&gt; source("~/dev/r/viewHistChrome.R")
+</pre></div></div>
+
+<hr>
+
+<ul>
+<li><a href="http://takenaka-akio.org/doc/r_auto/chapter_14.html" rel="nofollow noopener" target="_blank">14. R の入出力画面を経由せずに実行：他のプログラムからの呼び出し | Rプログラム (TAKENAKA's Web Page)</a></li>
+<li><a href="http://app.f.m-cocolog.jp/t/typecast/1990464/1998288/92521417" rel="nofollow noopener" target="_blank">コマンドラインではグラフが描画されるのにスクリプトファイルでは描画されない: Golden State</a></li>
+</ul>
+
+<h3>
+<span id="ターミナルからr-scriptを実行する" class="fragment"></span><a href="#%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E3%81%8B%E3%82%89r-script%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>ターミナルからR Scriptを実行する</h3>
+
+<p>以下のコマンドを入力することでターミナルからスクリプトを直接実行することができます。ただし <strong>XQuarzが起動しないため、グラフィックを描画することはできません。</strong><br>
+<code><br>
+$ rscript viewHistChrome.R<br>
+</code></p>
+
+<h2>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h2>
+
+<p>Rを使うのは今回が始めてでしたが、 <strong>必要な環境を簡単に構築することができ、また言語の学習コストがとても低い</strong> ことを実感しました。プログラマーでなくても比較的簡単に使えるようになるのではないでしょうか。本稿で紹介した解析はかなり単純なものでしたが、それでも <strong>たった14行で処理を記述できる</strong>のは驚きです。何万行にも及ぶデータをExcelで解析することははっきり言って <strong>時代遅れ</strong> です。皆さんもRを使ってスマートに解析しましょう！</p>
+
+<hr>
+
+<p><a rel="nofollow noopener" href="http://creativecommons.org/licenses/by/4.0/" target="_blank"><img alt="クリエイティブ・コモンズ・ライセンス" src="https://camo.qiitausercontent.com/e812d85e0d7dbd784b774a658f5dff633ee507dc/68747470733a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792f342e302f38387833312e706e67" data-canonical-src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br>この 作品 は <a rel="nofollow noopener" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>toeさんの<br />6位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/toe/items/8a056b87c9e481e07e57">git diffの--ignoreオプションにおけるスペース、タブ、改行の扱いを理解する</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-15 00:31:19</center>
+	</td>
+	<td style="width:200px;">
+		@toe<br><img width="80" height="80" src="https://secure.gravatar.com/avatar/b421ef1d479124a64323e42e3c266366">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Git]</b> <b>[diff]</b> <b>[プロジェクト管理]</b> <b>[プロジェクトマネジメント]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><code>git diff</code>コマンドの<code>--ignore</code>オプションを指定した場合に <strong>どのような行を無視する（変更前後の差分として扱わない）のか</strong> をまとめました。</p>
+
+<p>以下の表は各オプションによって無視する行の違いについてまとめたものです。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">オプション</th>
+<th style="text-align: center">行末スペース</th>
+<th style="text-align: center">連続スペース</th>
+<th style="text-align: center">スペース</th>
+<th style="text-align: center">連続空行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">オプションなし</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+</tr>
+<tr>
+<td style="text-align: left">--ignore-space-at-eol</td>
+<td style="text-align: center">無視</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+</tr>
+<tr>
+<td style="text-align: left">-b, --ignore-space-change</td>
+<td style="text-align: center">無視</td>
+<td style="text-align: center">無視</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+</tr>
+<tr>
+<td style="text-align: left">-w, --ignore-all-space</td>
+<td style="text-align: center">無視</td>
+<td style="text-align: center">無視</td>
+<td style="text-align: center">無視</td>
+<td style="text-align: center"></td>
+</tr>
+<tr>
+<td style="text-align: left">–ignore-blank-lines</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">無視</td>
+</tr>
+<tr>
+<td style="text-align: left">--ignore-all-space --ignore-blank-lines</td>
+<td style="text-align: center">無視</td>
+<td style="text-align: center">無視</td>
+<td style="text-align: center">無視</td>
+<td style="text-align: center">無視</td>
+</tr>
+</tbody>
+</table>
+
+<p><code>git diff</code>コマンドを使用する場合、どのようなオプションを指定するかによって <strong>追加行数と削除行数に大きな差が生じます</strong> 。</p>
+
+<p>もし<code>git diff</code>コマンドを使用して論理LOCを算出しているのであれば、各オプションの違いについてしっかりと理解し、 <strong>論理LOCの明確な定義を定める</strong> ことによって生産性評価や品質評価、工数見積の精度を高めることができます。</p>
+
+<p>本稿では、<code>sample.txt</code>という名前のテキストファイルにおける</p>
+
+<ul>
+<li>
+<strong>HEAD^</strong> : 変更前のコミット</li>
+<li>
+<strong>HEAD</strong> : 変更後のコミット</li>
+</ul>
+
+<p>を例にして、各オプションの違いについて詳しく説明していきます。</p>
+
+<p>以下は、変更前後におけるテキストファイルの中身です。ここで<code>$</code>は改行（LF）、<code>^I</code>はインデントを示しています。</p>
+
+<p><strong>HEAD^</strong> : 変更前のコミット</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ cat -et sample.txt
+Add a space in the end of line.$
+Delete a space in the end of line. $
+Add a tab in the end of line.$
+Delete a tab in the end of line.^I$
+Add a sequence of spaces.$
+Delete     a sequence of spaces.$
+Add^Ia sequence tabs.$
+Delete^I^I^I^I^Ia sequence tabs.$
+Add some spaces.$
+D e l e t e some spaces.$
+Add some tabs.$
+D^Ie^Il^Ie^It^Ie some tabs.$
+Add a line feed between this line$
+$
+$
+and this line.$
+Delete a line feed between this line$
+$
+$
+and this line.$
+</pre></div></div>
+
+<p><strong>HEAD</strong> : 変更後のコミット</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ cat -et sample.txt
+Add a space in the end of line. $
+Delete a space in the end of line.$
+Add a tab in the end of line.^I$
+Delete a tab in the end of line.$
+Add     a sequence of spaces.$
+Delete a sequence of spaces.$
+Add^I^I^I^I^Ia sequence tabs.$
+Delete^Ia sequence tabs.$
+A d d some spaces.$
+Delete some spaces.$
+A^Id^Id some tabs.$
+Delete some tabs.$
+Add a line feed between this line$
+$
+$
+$
+and this line.$
+Delete a line feed between this line$
+$
+and this line.$
+</pre></div></div>
+
+<h2>
+<span id="オプションなし-あらゆる変更を差分として扱う" class="fragment"></span><a href="#%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AA%E3%81%97-%E3%81%82%E3%82%89%E3%82%86%E3%82%8B%E5%A4%89%E6%9B%B4%E3%82%92%E5%B7%AE%E5%88%86%E3%81%A8%E3%81%97%E3%81%A6%E6%89%B1%E3%81%86"><i class="fa fa-link"></i></a>オプションなし: あらゆる変更を差分として扱う</h2>
+
+<p>オプションを指定しなかった場合は、あらゆる変更を差分として扱います。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git diff HEAD^ HEAD
+diff --git a/sample.txt b/sample.txt
+index 491a2f5..71eaa57 100644
+--- a/sample.txt
++++ b/sample.txt
+@@ -1,20 +1,20 @@
+-Add a space in the end of line.
+-Delete a space in the end of line.
+-Add a tab in the end of line.
+-Delete a tab in the end of line.       
+-Add a sequence of spaces.
+-Delete     a sequence of spaces.
+-Add    a sequence tabs.
+-Delete                                 a sequence tabs.
+-Add some spaces.
+-D e l e t e some spaces.
+-Add some tabs.
+-D      e       l       e       t       e some tabs.
++Add a space in the end of line.
++Delete a space in the end of line.
++Add a tab in the end of line.  
++Delete a tab in the end of line.
++Add     a sequence of spaces.
++Delete a sequence of spaces.
++Add                                    a sequence tabs.
++Delete a sequence tabs.
++A d d some spaces.
++Delete some spaces.
++A      d       d some tabs.
++Delete some tabs.
+ Add a line feed between this line
+
+
++
+ and this line.
+ Delete a line feed between this line
+
+-
+ and this line.
+</pre></div></div>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git diff --numstat HEAD^ HEAD
+13      13      sample.txt
+</pre></div></div>
+
+<h2>
+<span id="--ignore-space-at-eol-行末スペースの変更を無視する" class="fragment"></span><a href="#--ignore-space-at-eol-%E8%A1%8C%E6%9C%AB%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E5%A4%89%E6%9B%B4%E3%82%92%E7%84%A1%E8%A6%96%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>--ignore-space-at-eol: 行末スペースの変更を無視する</h2>
+
+<blockquote>
+<p>Ignore changes in whitespace at EOL.</p>
+</blockquote>
+
+<p><code>--ignore-space-at-eol</code>オプションを指定した場合は、以下の変更を無視します。</p>
+
+<ul>
+<li>行末スペースの追加</li>
+<li>行末スペースの削除</li>
+<li>行末タブの追加</li>
+<li>行末タブの削除</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git diff --ignore-space-at-eol HEAD^ HEAD
+diff --git a/sample.txt b/sample.txt
+index 491a2f5..71eaa57 100644
+--- a/sample.txt
++++ b/sample.txt
+@@ -2,19 +2,19 @@ Add a space in the end of line.
+ Delete a space in the end of line.
+ Add a tab in the end of line.  
+ Delete a tab in the end of line.
+-Add a sequence of spaces.
+-Delete     a sequence of spaces.
+-Add    a sequence tabs.
+-Delete                                 a sequence tabs.
+-Add some spaces.
+-D e l e t e some spaces.
+-Add some tabs.
+-D      e       l       e       t       e some tabs.
++Add     a sequence of spaces.
++Delete a sequence of spaces.
++Add                                    a sequence tabs.
++Delete a sequence tabs.
++A d d some spaces.
++Delete some spaces.
++A      d       d some tabs.
++Delete some tabs.
+ Add a line feed between this line
+
+
++
+ and this line.
+ Delete a line feed between this line
+
+-
+ and this line.
+</pre></div></div>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git diff --ignore-space-at-eol --numstat HEAD^ HEAD
+9 9 sample.txt
+</pre></div></div>
+
+<h2>
+<span id="-b---ignore-space-change-行末スペースと連続スペースの変更を無視する" class="fragment"></span><a href="#-b---ignore-space-change-%E8%A1%8C%E6%9C%AB%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%A8%E9%80%A3%E7%B6%9A%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E5%A4%89%E6%9B%B4%E3%82%92%E7%84%A1%E8%A6%96%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>-b, --ignore-space-change: 行末スペースと連続スペースの変更を無視する</h2>
+
+<blockquote>
+<p>Ignore changes in amount of whitespace. This ignores whitespace at line end, and considers all other sequences of one or more whitespace characters to be equivalent.</p>
+</blockquote>
+
+<p><code>-b</code>または<code>--ignore-space-change</code>オプションを指定した場合は、以下の変更を無視します。</p>
+
+<ul>
+<li>行末スペースの追加</li>
+<li>行末スペースの削除</li>
+<li>行末タブの追加</li>
+<li>行末タブの削除</li>
+<li>
+<strong>1文字以上</strong> の連続したスペースに対するスペースの追加</li>
+<li>
+<strong>1文字以上</strong> の連続したスペースに対するスペースの削除</li>
+<li>
+<strong>1文字以上</strong> の連続したタブに対するタブの追加</li>
+<li>
+<strong>1文字以上</strong> の連続したタブに対するタブの削除</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git diff --ignore-space-change HEAD^ HEAD
+diff --git a/sample.txt b/sample.txt
+index 491a2f5..71eaa57 100644
+--- a/sample.txt
++++ b/sample.txt
+@@ -6,15 +6,15 @@ Add a sequence of spaces.
+ Delete a sequence of spaces.
+ Add                                    a sequence tabs.
+ Delete a sequence tabs.
+-Add some spaces.
+-D e l e t e some spaces.
+-Add some tabs.
+-D      e       l       e       t       e some tabs.
++A d d some spaces.
++Delete some spaces.
++A      d       d some tabs.
++Delete some tabs.
+ Add a line feed between this line
+
+
++
+ and this line.
+ Delete a line feed between this line
+
+-
+ and this line.
+</pre></div></div>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git diff --ignore-space-change --numstat HEAD^ HEAD
+5 5 sample.txt
+</pre></div></div>
+
+<h2>
+<span id="-w---ignore-all-space-スペースの変更を無視する" class="fragment"></span><a href="#-w---ignore-all-space-%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E5%A4%89%E6%9B%B4%E3%82%92%E7%84%A1%E8%A6%96%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>-w, --ignore-all-space: スペースの変更を無視する</h2>
+
+<blockquote>
+<p>Ignore whitespace when comparing lines. This ignores differences even if one line has whitespace where the other line has none.</p>
+</blockquote>
+
+<p><code>-w</code>または<code>--ignore-all-space</code>オプションを指定した場合は、以下の変更を無視します。</p>
+
+<ul>
+<li>スペースの追加</li>
+<li>スペースの削除</li>
+<li>タブの追加</li>
+<li>タブの削除</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git diff --ignore-all-space HEAD^ HEAD
+diff --git a/sample.txt b/sample.txt
+index 491a2f5..71eaa57 100644
+--- a/sample.txt
++++ b/sample.txt
+@@ -13,8 +13,8 @@ D     e       l       e       t       e some tabs.
+ Add a line feed between this line
+
+
++
+ and this line.
+ Delete a line feed between this line
+
+-
+ and this line.
+</pre></div></div>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git diff --ignore-all-space --numstat HEAD^ HEAD
+1 1 sample.txt
+</pre></div></div>
+
+<h2>
+<span id="--ignore-blank-lines-連続した空行の変更を無視する" class="fragment"></span><a href="#--ignore-blank-lines-%E9%80%A3%E7%B6%9A%E3%81%97%E3%81%9F%E7%A9%BA%E8%A1%8C%E3%81%AE%E5%A4%89%E6%9B%B4%E3%82%92%E7%84%A1%E8%A6%96%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>--ignore-blank-lines: 連続した空行の変更を無視する</h2>
+
+<blockquote>
+<p>Ignore changes whose lines are all blank.</p>
+</blockquote>
+
+<p><code>--ignore-blank-lines</code>オプションを指定した場合は、以下の変更を無視します。</p>
+
+<ul>
+<li>
+<strong>2文字以上</strong> の連続した空行に対する空行の追加</li>
+<li>
+<strong>2文字以上</strong> の連続した空行に対する空行の削除</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git diff --ignore-blank-lines HEAD^ HEAD
+diff --git a/sample.txt b/sample.txt
+index 491a2f5..71eaa57 100644
+--- a/sample.txt
++++ b/sample.txt
+@@ -1,15 +1,15 @@
+-Add a space in the end of line.
+-Delete a space in the end of line.
+-Add a tab in the end of line.
+-Delete a tab in the end of line.       
+-Add a sequence of spaces.
+-Delete     a sequence of spaces.
+-Add    a sequence tabs.
+-Delete                                 a sequence tabs.
+-Add some spaces.
+-D e l e t e some spaces.
+-Add some tabs.
+-D      e       l       e       t       e some tabs.
++Add a space in the end of line.
++Delete a space in the end of line.
++Add a tab in the end of line.  
++Delete a tab in the end of line.
++Add     a sequence of spaces.
++Delete a sequence of spaces.
++Add                                    a sequence tabs.
++Delete a sequence tabs.
++A d d some spaces.
++Delete some spaces.
++A      d       d some tabs.
++Delete some tabs.
+ Add a line feed between this line
+</pre></div></div>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ git diff --ignore-blank-lines --numstat HEAD^ HEAD
+12 12 sample.txt
+</pre></div></div>
+
+<h2>
+<span id="--ignore-all-space---ignore-blank-lines" class="fragment"></span><a href="#--ignore-all-space---ignore-blank-lines"><i class="fa fa-link"></i></a>--ignore-all-space --ignore-blank-lines</h2>
+
+<p><code>--ignore-all-space</code>と<code>--ignore-blank-lines</code>オプションを指定した場合は、以下の変更を無視します。</p>
+
+<ul>
+<li>スペースの追加</li>
+<li>スペースの削除</li>
+<li>タブの追加</li>
+<li>タブの削除</li>
+<li>
+<strong>2文字以上</strong> の連続した空行に対する空行の追加</li>
+<li>
+<strong>2文字以上</strong> の連続した空行に対する空行の削除</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ git diff --ignore-all-space --ignore-blank-lines HEAD^ HEAD
+</pre></div></div>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>
+$ git diff --ignore-all-space --ignore-blank-lines --numstat HEAD^ HEAD
+0 0 sample.txt
+</pre></div></div>
+
+<hr>
+
+<p><a href="https://git-scm.com/docs/git-diff" rel="nofollow noopener" target="_blank">Git - git-diff Documentation</a></p>
+
+<p><a href="http://creativecommons.org/licenses/by/4.0/" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/e812d85e0d7dbd784b774a658f5dff633ee507dc/68747470733a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792f342e302f38387833312e706e67" alt="クリエイティブ・コモンズ・ライセンス" data-canonical-src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br><br>
+この 作品 は <a href="http://creativecommons.org/licenses/by/4.0/" rel="nofollow noopener" target="_blank">クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

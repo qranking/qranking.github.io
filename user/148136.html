@@ -1,0 +1,174 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (KIKUYA-Takumi)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (KIKUYA-Takumi さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>KIKUYA-Takumiさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>315</kbd>
+		<a target="_blank" href="https://qiita.com/KIKUYA-Takumi/items/531edd4e62c3e14a6d08">データサイエンティストを目指して半年で学んだことまとめ</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-28 06:19:26</center>
+	</td>
+	<td style="width:200px;">
+		@KIKUYA-Takumi<br><img width="80" height="80" src="https://avatars.githubusercontent.com/u/19384637?v=3">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[R]</b> <b>[機械学習]</b> <b>[ポエム]</b> <b>[データ分析]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>本記事では、データサイエンティストを目指して勉強した半年間で学んだこと、気付いたことをまとめます。これからデータサイエンティストを目指して勉強する人の参考になればと思います。</p>
+
+<h1>
+<span id="最初の一手" class="fragment"></span><a href="#%E6%9C%80%E5%88%9D%E3%81%AE%E4%B8%80%E6%89%8B"><i class="fa fa-link"></i></a>最初の一手</h1>
+
+<p>個人的にではありますが、最初はアプローチの理解から始めると思いますが、<strong>数式</strong>と<strong>プログラミング</strong>の両方を勉強する方が良いと思います。<strong><font color="blue">数式→プログラミング or プログラミング→数式</font></strong>の順序はどちらでも良いと思いますが、<strong><font color="red">プログラミング（フレームワーク）のみ</font></strong>はやめた方が良いと思います。出力結果の解釈で苦労することになるので、理論、数式はしっかり理解した方が良いです。</p>
+
+<p>プログラミング、フレームワークの力で、機械学習ができるのは事実ですが、作ったモデルや予測結果の説明ができなければ価値がありません。</p>
+
+<p>そして、モデルは作るだけでなく、評価・改善していく必要があります。その際に、グリッドサーチのようにモデルのパラメータを最適化すべきなのか、学習データを見直さないといけないのか判断しなければなりません。パラメータの最適化であれば、プログラミングで対処できますが、データの見直しは数理統計の知見が必要になります。理論もしっかり勉強しましょう。</p>
+
+<h1>
+<span id="アプローチドリブンではなくデータドリブン" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AD%E3%83%BC%E3%83%81%E3%83%89%E3%83%AA%E3%83%96%E3%83%B3%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%8F%E3%83%87%E3%83%BC%E3%82%BF%E3%83%89%E3%83%AA%E3%83%96%E3%83%B3"><i class="fa fa-link"></i></a>アプローチドリブンではなく、データドリブン</h1>
+
+<p><a href="https://camo.qiitausercontent.com/4d1421b516f7f0ccf5692ceed49a70d8d706a227/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f65303138623938312d613863352d613438332d613865382d3633613332333937623330312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/4d1421b516f7f0ccf5692ceed49a70d8d706a227/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f65303138623938312d613863352d613438332d613865382d3633613332333937623330312e706e67" alt="データ.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/148136/e018b981-a8c5-a483-a8e8-63a32397b301.png"></a></p>
+
+<p>モデルの精度を上げるために、アプローチだけで解決しようという考えではすぐに限界がきます。これまで、サポートベクターマシーン、決定木、ニューラルネットワーク（CNN、RNN含む）を勉強して思ったのが、<strong><font color="red">アプローチ第一ではない</font></strong>ということです。</p>
+
+<p>モデルの精度を上げるために、<strong>「とりあえず、Deep Learningで！」</strong>や<strong>「分類問題を解くならSVM！」</strong>等、アプローチだけに気をとられていると、すぐに精度があがらなくなります。勿論、納得できる良い精度は出ません。</p>
+
+<p>この理由は、機械学習は<strong>データ</strong>からパターンを見出しているからです。精度を上げるためにはモデルではなく、データに対してより多くの時間をかける必要があります。実際、データクレンジング、データ加工等、いわゆる前処理に全体の<strong>約8割</strong>を費やすと言われています。このことからもアプローチではなくデータであることがわかります。</p>
+
+<p>アプローチよりデータドリブンと書きましたが、最近は<strong><font color="blue">「課題解釈」</font></strong>も重要ではないかと感じています。データ分析して明らかにしたいこと、予測したいことを正確に解釈した上で、データの処理、モデル作成・評価の流れになるので、最初に解決したい課題の解釈を誤ると分析全体がおかしな方向へ進んでしまうからです。</p>
+
+<h1>
+<span id="次への一手" class="fragment"></span><a href="#%E6%AC%A1%E3%81%B8%E3%81%AE%E4%B8%80%E6%89%8B"><i class="fa fa-link"></i></a>次への一手</h1>
+
+<p>一連の流れを経験できたら、次は<strong>複数のアプローチを習得</strong>したいのか、<strong>一つのアプローチを追究</strong>したいのかを決めれば良いと思います。</p>
+
+<p>活躍できる幅を広げたいなら、複数のアプローチを習得して、課題や状況に応じて使い分けられるように勉強すれば良いと思います。業界、分野を問わずデータ分析したい人はこちらかなと思います。</p>
+
+<p>一方、自社、自部門の分析担当等、特定の業界、分野限定でデータ分析をする人は一つアプローチを追究する方が良いのかなと思います。現状、万能なアルゴリズムはまだ存在しないので、課題に対して成果が報告されているアプローチに絞って勉強する方が効率的だと思います。</p>
+
+<h1>
+<span id="使用した参考書" class="fragment"></span><a href="#%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E5%8F%82%E8%80%83%E6%9B%B8"><i class="fa fa-link"></i></a>使用した参考書</h1>
+
+<h2>
+<span id="データサイエンス" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9"><i class="fa fa-link"></i></a>データサイエンス</h2>
+
+<p><strong>ゼロからはじめるデータサイエンス</strong><br>
+<a href="https://camo.qiitausercontent.com/8782d8a1ff628a7905ed27125685ab45082474ed/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f35343763336236652d616365662d373730642d666439632d3239316536333038623263372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/8782d8a1ff628a7905ed27125685ab45082474ed/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f35343763336236652d616365662d373730642d666439632d3239316536333038623263372e706e67" alt="ゼロからはじめるデータサイエンス.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/148136/547c3b6e-acef-770d-fd9c-291e6308b2c7.png"></a><br>
+データサイエンスの入門書。コードを書きながらアプローチを理解できる１冊。多くのアプローチがあるので、勉強したいアプローチのはじめの一歩としてこの本で勉強するとアプローチの感覚がつかめるでしょう。</p>
+
+<p><strong>Pythonによるデータ分析入門</strong><br>
+<a href="https://camo.qiitausercontent.com/86972317c85e247a710db3466fee6c3ba0e1b9ed/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f62313332656136312d393032622d646230622d326232612d3065663165316633623036372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/86972317c85e247a710db3466fee6c3ba0e1b9ed/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f62313332656136312d393032622d646230622d326232612d3065663165316633623036372e706e67" alt="Pythonによるデータ分析入門.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/148136/b132ea61-902b-db0b-2b2a-0ef1e1f3b067.png"></a></p>
+
+<p>NumpyやPandas、Matplotlib等、機械学習でモデルを作る前にやるべきことが学べる１冊。データの処理を勉強したいときに手元にあるとうれしい。</p>
+
+<p><strong>Pythonではじめるデータラングリング</strong><br>
+<a href="https://camo.qiitausercontent.com/0bd62ade5a3d6b96721eaea84a9bdd97bd5ef95e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f31383763366337382d373963362d623165302d333464632d3261303663626365303435622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/0bd62ade5a3d6b96721eaea84a9bdd97bd5ef95e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f31383763366337382d373963362d623165302d333464632d3261303663626365303435622e706e67" alt="Pythonではじめるデータラングリング.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/148136/187c6c78-79c6-b1e0-34dc-2a06cbce045b.png"></a><br>
+もはや辞書。ExcelやPDF等、データを抽出するときに頼りになると思われる。実はあまり読んでいない。</p>
+
+<h2>
+<span id="機械学習" class="fragment"></span><a href="#%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92"><i class="fa fa-link"></i></a>機械学習</h2>
+
+<p><strong>Pythonではじめる機械学習</strong><br>
+<a href="https://camo.qiitausercontent.com/64f0a8018287ec72b7a1f2c9380e84ee6992a8ab/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f66653539303131392d373464662d393735352d313963362d3630356334396137653533362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/64f0a8018287ec72b7a1f2c9380e84ee6992a8ab/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f66653539303131392d373464662d393735352d313963362d3630356334396137653533362e706e67" alt="Pythonではじめる機械学習.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/148136/fe590119-74df-9755-19c6-605c49a7e536.png"></a><br>
+Pythonで機械学習の勉強をはじめるならおすすめしたい１冊。画像にはありませんが、帯に<strong>ニューラルネットを学ぶその前に</strong>と書いてあるのが印象的です。アプローチだけでなく、チューニング方法も学べます。</p>
+
+<p><strong>Python機械学習プログラミング</strong><br>
+<a href="https://camo.qiitausercontent.com/f7994e4e52a1822582d3d706b0a45c92c4b3246e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f32316435323365662d633036372d626464652d636462332d3365356336303864393232342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f7994e4e52a1822582d3d706b0a45c92c4b3246e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f32316435323365662d633036372d626464652d636462332d3365356336303864393232342e706e67" alt="Python機械学習プログラミング.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/148136/21d523ef-c067-bdde-cdb3-3e5c608d9224.png"></a><br>
+こちらもPythonで機械学習を勉強をするなら良いかもしれません。ただ、数式が苦手な人には抵抗があるかもしれません。</p>
+
+<h2>
+<span id="深層学習deep-learning" class="fragment"></span><a href="#%E6%B7%B1%E5%B1%A4%E5%AD%A6%E7%BF%92deep-learning"><i class="fa fa-link"></i></a>深層学習・Deep Learning</h2>
+
+<p><strong>ゼロから作るDeep Learning</strong><br>
+<a href="https://camo.qiitausercontent.com/a4f91e8f60d1f45da77a4f154f1711266eb4d5d0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f61663166613135652d376563362d633732622d643632352d3534663562613632363161352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a4f91e8f60d1f45da77a4f154f1711266eb4d5d0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f61663166613135652d376563362d633732622d643632352d3534663562613632363161352e706e67" alt="ゼロから作るDeepLearrning.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/148136/af1fa15e-7ec6-c72b-d625-54f5ba6261a5.png"></a><br>
+Deep Learning、Neural Networkの計算方法から実装まで学べる本。この本を理解できないようであれば、数学の復習をおすすめします。</p>
+
+<p><strong>深層学習</strong><br>
+<a href="https://camo.qiitausercontent.com/e90339d3547d3e01ad33b766f9efb772b93fb817/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f35643865333031642d306162342d643763652d366466312d3534316162313037383638342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e90339d3547d3e01ad33b766f9efb772b93fb817/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f35643865333031642d306162342d643763652d366466312d3534316162313037383638342e706e67" alt="深層学習.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/148136/5d8e301d-0ab4-d7ce-6df1-541ab1078684.png"></a><br>
+こちらは理論の本。この本を理解、説明できるならば<strong>深層学習知ってます！</strong>と言っても良いのではないでしょうか。</p>
+
+<h2>
+<span id="スクレイピングクローリング" class="fragment"></span><a href="#%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>スクレイピング、クローリング</h2>
+
+<p><strong>Pythonによるスクレイピング＆機械学習</strong><br>
+<a href="https://camo.qiitausercontent.com/2dab7c00c2cfe3a7f9f3205421cf0e196255d2ae/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f31373361323136352d366538302d303466312d313363332d6133333835343238646235342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/2dab7c00c2cfe3a7f9f3205421cf0e196255d2ae/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f31373361323136352d366538302d303466312d313363332d6133333835343238646235342e706e67" alt="Pythonスクレイピング＆機械学習.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/148136/173a2165-6e80-04f1-13c3-a3385428db54.png"></a><br>
+スクレイピング＆機械学習とあるが、自然言語処理やチャットボット、深層学習等、幅広く触れている１冊。とりあえず技術を経験したい人には良いのではないでしょうか。</p>
+
+<p><strong>Pythonクローリング＆スクレイピング</strong><br>
+<a href="https://camo.qiitausercontent.com/b4f6796a9d841515b4a03f983cd9eb3eaa4abd93/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f33663235353863622d626634622d646335652d383035302d3935363837386264623538312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b4f6796a9d841515b4a03f983cd9eb3eaa4abd93/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f33663235353863622d626634622d646335652d383035302d3935363837386264623538312e706e67" alt="Pythonクローリング＆スクレイピング.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/148136/3f2558cb-bf4b-dc5e-8050-956878bdb581.png"></a><br>
+Webスクレイピング、クローリングを学びたい人にはこちらの方が良いかもしれません。</p>
+
+<h2>
+<span id="その他" class="fragment"></span><a href="#%E3%81%9D%E3%81%AE%E4%BB%96"><i class="fa fa-link"></i></a>その他</h2>
+
+<p><strong>RStudioではじめるRプログラミング</strong><br>
+<a href="https://camo.qiitausercontent.com/d49e131f0cfc79403f1a3749fbc649c2aeaec265/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f32396138636566652d643232322d343565322d616136392d6565313563363863343336392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d49e131f0cfc79403f1a3749fbc649c2aeaec265/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f32396138636566652d643232322d343565322d616136392d6565313563363863343336392e706e67" alt="RStudioではじめるRプログラミング入門.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/148136/29a8cefe-d222-45e2-aa69-ee15c68c4369.png"></a><br>
+RStudioを使う機会があったので、勉強しました。Rで関数を作る方法等学べます。</p>
+
+<p><strong>これからの強化学習</strong><br>
+<a href="https://camo.qiitausercontent.com/136719d2c6d7bb15cbd7bffc2ac4ba0b6a380dc7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f35363961343132322d393938612d393664322d363437342d6134623639313566643731632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/136719d2c6d7bb15cbd7bffc2ac4ba0b6a380dc7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3134383133362f35363961343132322d393938612d393664322d363437342d6134623639313566643731632e706e67" alt="これからの強化学習.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/148136/569a4122-998a-96d2-6474-a4b6915fd71c.png"></a><br>
+学生時代に強化学習をやっていたので購入。<br>
+これから読む。</p>
+
+<h1>
+<span id="さいごに" class="fragment"></span><a href="#%E3%81%95%E3%81%84%E3%81%94%E3%81%AB"><i class="fa fa-link"></i></a>さいごに</h1>
+
+<p>半年間、データサイエンティストを目指して勉強して思うことは、<strong>決して簡単な分野ではないが、非常におもしろい分野</strong>であるということです。如何に良い仮説を立てられるか、検証結果が仮説を裏付けられているか、次はどこに注目するか、答えのない世界で果てしない試行錯誤は辛いときもありますが、良い結果を出すためにやりがいがあります。</p>
+
+<p>ただ、技術力だけでなくコミュニケーション力も同じくらい重要なのも事実です。「AIが、機械学習が勝手に課題解決してくれる」と思っている人や「とりあえず機械学習で何かやって」という人に<strong>何を分析するのか</strong>を聞き出したり、<strong>分析結果から読み取れること</strong>を説明したり、<strong>次に何をすべきか</strong>を伝える必要があるからです。</p>
+
+<p>「AIで何かやって」という人程、「AIが○○という結果を出しました」という説明に納得しないので、如何に相手を納得させることができるかがポイントになります。コミュニケーション力は<strong>相手に伝えるため</strong>だけでなく<strong>自分の身を守るため</strong>にも必要ではないかと思っています。</p>
+
+<p>以上、半年間のまとめでした。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

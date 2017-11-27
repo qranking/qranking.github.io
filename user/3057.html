@@ -1,0 +1,322 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (kacchan6@github)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (kacchan6@github さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kacchan6@githubさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>954</kbd>
+		<a target="_blank" href="https://qiita.com/kacchan6@github/items/d8576ab6b3c16cf670ca">ウェブアプリをソースごとパクる業者に対する対策</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-11 11:06:01</center>
+	</td>
+	<td style="width:200px;">
+		@kacchan6@github<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/3057/profile-images/1473682524">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>こんにちは。みなさんもウェブアプリをリリースしたあとに同業者にソースごとパクられたことってありますよね。難読化しても難読化されたまま同業者のサーバで動くので困ったものです。そこで、私がとった解析しずらい対策をまとめてみたいと思います。</p>
+
+<h1>
+<span id="前提" class="fragment"></span><a href="#%E5%89%8D%E6%8F%90"><i class="fa fa-link"></i></a>前提</h1>
+
+<p>多機能な画面をJavaScriptでゴリゴリ作ったのにもかかわらず、HTMLやCSS、JavaScriptファイル一式を自社サーバにまるごとコピーして、ライセンス表記だけ書き換えて使うような業者を罠にはめるということを想定しています。</p>
+
+<p>当然通信をリバースエンジニアリングする人もいるので、自社サーバでは防げないという前提です。</p>
+
+<h1>
+<span id="htmlにはauthorメタタグ" class="fragment"></span><a href="#html%E3%81%AB%E3%81%AFauthor%E3%83%A1%E3%82%BF%E3%82%BF%E3%82%B0"><i class="fa fa-link"></i></a>HTMLにはauthorメタタグ</h1>
+
+<p>よくあるMETAタグで権利者を明記します。これは権利の主張もそうですが、JavaScript自体に権利者が認定した権利者でなければ無限ループを起こすという処理のためにも使用します。逆に、権利者が我々にあるという状態でパクってもらう分にはよしと割り切ります。</p>
+
+<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">"author"</span> <span class="na">content</span><span class="o">=</span><span class="s">"OreOre"</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<h1>
+<span id="ランダムで無限ループを起こす" class="fragment"></span><a href="#%E3%83%A9%E3%83%B3%E3%83%80%E3%83%A0%E3%81%A7%E7%84%A1%E9%99%90%E3%83%AB%E3%83%BC%E3%83%97%E3%82%92%E8%B5%B7%E3%81%93%E3%81%99"><i class="fa fa-link"></i></a>ランダムで無限ループを起こす</h1>
+
+<p>毎回決まったタイミングで発生したらプログラマはデバッグして対策しやすいです。なので、数％の確率で、数秒〜数百秒後にランダムで発生させるようにすると「あれ？うまく動いているじゃん」「あれ？動かなくなった」となります。プログラマが一番イヤな再現性がバラバラで低いというのを実現します。</p>
+
+<h1>
+<span id="無限ループするコードを非同期で読み込む" class="fragment"></span><a href="#%E7%84%A1%E9%99%90%E3%83%AB%E3%83%BC%E3%83%97%E3%81%99%E3%82%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E9%9D%9E%E5%90%8C%E6%9C%9F%E3%81%A7%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%80"><i class="fa fa-link"></i></a>無限ループするコードを非同期で読み込む</h1>
+
+<p>以下の例は<code>console.log(1)</code>を実行していますが<code>while(1);</code>にすると返ってこなくなります。</p>
+
+<div class="code-frame" data-lang="JavaScript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"script"</span><span class="p">);</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">"data:text/javascript;base64,Y29uc29sZS5sb2coMSk="</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
+</pre></div></div>
+
+<p>開発ツールでもブレークポイントを設定しにくいのがポイントです。</p>
+
+<h1>
+<span id="独自の難読化を行う" class="fragment"></span><a href="#%E7%8B%AC%E8%87%AA%E3%81%AE%E9%9B%A3%E8%AA%AD%E5%8C%96%E3%82%92%E8%A1%8C%E3%81%86"><i class="fa fa-link"></i></a>独自の難読化を行う</h1>
+
+<p>無限ループを発生させるコードに独自の難読化を仕掛けます。要は何をやっているんか分かりにくくするためです。<code>eval(src)</code>と書いてしまうと「あ、ここで実行しているな」と一目瞭然だったりします。</p>
+
+<div class="code-frame" data-lang="JavaScript"><div class="highlight"><pre><span></span><span class="nx">s</span> <span class="o">=</span> <span class="p">...</span><span class="nx">長い処理でスクリプト生成</span><span class="p">(</span><span class="nx">この処理自体も適度に難読化</span><span class="p">)</span>
+<span class="nx">a</span><span class="o">=</span><span class="p">[</span><span class="nx">a</span><span class="o">=</span><span class="mi">338403347140888</span><span class="p">..</span><span class="nx">toString</span><span class="p">(</span><span class="mi">31</span><span class="p">)][</span><span class="nx">a</span><span class="o">=</span><span class="nx">a</span><span class="o">+</span><span class="nx">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]][</span><span class="nx">a</span><span class="p">](</span><span class="nx">s</span><span class="p">)();</span>
+</pre></div></div>
+
+<p>わかりやすく書くと、こうなります。</p>
+
+<div class="code-frame" data-lang="JavaScript"><div class="highlight"><pre><span></span><span class="c1">//aに"constructo"を代入</span>
+<span class="c1">//constructoという文字を31進数から10進数に変換すると338403347140888になる</span>
+<span class="c1">//最後のrは精度不足で作れないので諦める</span>
+<span class="nx">a</span><span class="o">=</span><span class="mi">338403347140888</span><span class="p">..</span><span class="nx">toString</span><span class="p">(</span><span class="mi">31</span><span class="p">);</span>
+<span class="c1">//aに"constructo" + "r"を代入</span>
+<span class="c1">//諦めた最後のrを6文字目から取り出して結合</span>
+<span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">a</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="c1">//Functionを取り出して(String.prototype.constructor.constructor)、文字列を実行</span>
+<span class="c1">//Function(s)と同じ</span>
+<span class="nx">a</span><span class="p">[</span><span class="s2">"constructor"</span><span class="p">][</span><span class="s2">"constructor"</span><span class="p">](</span><span class="nx">s</span><span class="p">);</span>
+</pre></div></div>
+
+<p>ちなみにツールでの難読化はやめましょう。デコーダが大抵あります。</p>
+
+<h1>
+<span id="無限ループのトリガーを工夫する" class="fragment"></span><a href="#%E7%84%A1%E9%99%90%E3%83%AB%E3%83%BC%E3%83%97%E3%81%AE%E3%83%88%E3%83%AA%E3%82%AC%E3%83%BC%E3%82%92%E5%B7%A5%E5%A4%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>無限ループのトリガーを工夫する</h1>
+
+<p>上記例では無限ループするスクリプトを動的にDataURLでロードしていますが、<code>z=1</code>というコードにしつつ、全く別の所でwindow.zの値を監視して1になったら無限ループするというのもかなり追いにくくなるしょう。</p>
+
+<h1>
+<span id="ソース上に分散させる" class="fragment"></span><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E4%B8%8A%E3%81%AB%E5%88%86%E6%95%A3%E3%81%95%E3%81%9B%E3%82%8B"><i class="fa fa-link"></i></a>ソース上に分散させる</h1>
+
+<p>1箇所に無限ループを発生させるコードをまとめてしまうと追いやすくなります。Webpackなどでビルドする際に、無限ループ発生に関わるコードの関数をバラバラな位置に登場するようにするとより追いにくくなります。</p>
+
+<p>例えばscriptタグの生成と、srcの設定と、documentへ追加、それぞれを別々のモジュールにしつつ全然関係ない処理で最初に参照されるようにします。</p>
+
+<p>特にWebpackとuglifyでビルドすると、何気ない処理が実は無限ループに関わっている、ということがより一層分かりにくくなります。</p>
+
+<h1>
+<span id="その他工夫など" class="fragment"></span><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E5%B7%A5%E5%A4%AB%E3%81%AA%E3%81%A9"><i class="fa fa-link"></i></a>その他工夫など</h1>
+
+<ul>
+<li>システム上重要そうに見えるフラグと無限ループのフラグを共有する</li>
+<li>metaタグのauthorではなく、location.hrefなどで判定する</li>
+<li>無限ループではなくビットコインの発掘コードを発動させる</li>
+<li>メインではなくWebWorkerで無限ループさせる</li>
+<li>WebAssemblyで無限ループさせる</li>
+</ul>
+
+<h1>
+<span id="追記" class="fragment"></span><a href="#%E8%BF%BD%E8%A8%98"><i class="fa fa-link"></i></a>追記</h1>
+
+<p>はてブで面白いアイデアを頂いたので追記しますが、土日限定でトラブルを起こすようにするのもいいですね。サービスによっては土日はよく売り上げがあがるにも関わらず、エンジニアは休みを取っているということが多々あります。問い合わせが土日にきて、月曜日にエンジニアが調査したら再現しない。という感じになります。</p>
+
+<p>更に追記</p>
+
+<p>authorを取得して比較するだけであれば、以下のようなコードでいけますが、はっきり言ってバレバレです。</p>
+
+<div class="code-frame" data-lang="JavaScript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">author</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"meta[name=author]"</span><span class="p">).</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s2">"content"</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">author</span> <span class="o">==</span> <span class="s2">"OreOre Inc."</span><span class="p">){</span>
+<span class="c1">//ここで発動準備</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>短く簡易的な独自なアルゴリズムでハッシュ化したauthorと固定の数字を比較したほうがバレにくいでしょう。</p>
+
+<div class="code-frame" data-lang="JavaScript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">test</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span> <span class="nx">h</span><span class="p">){</span>
+    <span class="nx">c</span> <span class="o">+=</span> <span class="s2">" "</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="nx">c</span><span class="p">.</span><span class="nx">length</span> <span class="o">%</span> <span class="mi">4</span><span class="p">)</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">v</span> <span class="o">=</span> <span class="mh">0x12345678</span><span class="p">,</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">){</span>
+        <span class="c1">//入力された文字でソルト0x12345678のxorを8bitごとに求める</span>
+        <span class="nx">v</span> <span class="o">^=</span> <span class="p">(</span><span class="nx">a</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">24</span><span class="p">;</span>
+        <span class="nx">v</span> <span class="o">^=</span> <span class="p">(</span><span class="nx">a</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">;</span>
+        <span class="nx">v</span> <span class="o">^=</span> <span class="p">(</span><span class="nx">a</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">;</span>
+        <span class="nx">v</span> <span class="o">^=</span> <span class="p">(</span><span class="nx">a</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">);</span>
+
+        <span class="c1">//xorshift32と同じ計算でランダムな数字にする</span>
+        <span class="nx">v</span> <span class="o">^=</span> <span class="nx">v</span> <span class="o">&lt;&lt;</span> <span class="mi">13</span><span class="p">;</span>   
+        <span class="nx">v</span> <span class="o">^=</span> <span class="nx">v</span> <span class="o">&gt;&gt;</span> <span class="mi">17</span><span class="p">;</span>   
+        <span class="nx">v</span> <span class="o">^=</span> <span class="nx">v</span> <span class="o">&lt;&lt;</span> <span class="mi">15</span><span class="p">;</span>   
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">v</span> <span class="o">==</span> <span class="nx">h</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">test</span><span class="p">(</span><span class="nx">author</span><span class="cm">/*"Ore Ore Inc."*/</span><span class="p">,</span> <span class="o">-</span><span class="mi">658575506</span><span class="p">);</span>
+</pre></div></div>
+
+<p>このtest関数をuglifyすると以下のようになります。</p>
+
+<div class="code-frame" data-lang="JavaScript"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">test</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="nx">e</span><span class="p">){</span><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">r</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nx">n</span><span class="o">=</span><span class="p">(</span><span class="nx">t</span><span class="o">+=</span><span class="s2">" "</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="nx">t</span><span class="p">.</span><span class="nx">length</span><span class="o">%</span><span class="mi">4</span><span class="p">)).</span><span class="nx">length</span><span class="p">,</span><span class="nx">a</span><span class="o">=</span><span class="mi">305419896</span><span class="p">,</span><span class="nx">h</span><span class="o">=</span><span class="nx">t</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span><span class="nx">r</span><span class="o">&lt;</span><span class="nx">n</span><span class="p">;</span><span class="nx">r</span><span class="o">+=</span><span class="mi">4</span><span class="p">)</span><span class="nx">a</span><span class="o">^=</span><span class="p">(</span><span class="mi">255</span><span class="o">&amp;</span><span class="nx">h</span><span class="p">(</span><span class="nx">r</span><span class="p">))</span><span class="o">&lt;&lt;</span><span class="mi">24</span><span class="p">,</span><span class="nx">a</span><span class="o">^=</span><span class="p">(</span><span class="mi">255</span><span class="o">&amp;</span><span class="nx">h</span><span class="p">(</span><span class="nx">r</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">,</span><span class="nx">a</span><span class="o">^=</span><span class="p">(</span><span class="mi">255</span><span class="o">&amp;</span><span class="nx">h</span><span class="p">(</span><span class="nx">r</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">,</span><span class="nx">a</span><span class="o">^=</span><span class="mi">255</span><span class="o">&amp;</span><span class="nx">h</span><span class="p">(</span><span class="nx">r</span><span class="o">+</span><span class="mi">3</span><span class="p">),</span><span class="nx">a</span><span class="o">^=</span><span class="nx">a</span><span class="o">&lt;&lt;</span><span class="mi">13</span><span class="p">,</span><span class="nx">a</span><span class="o">^=</span><span class="nx">a</span><span class="o">&gt;&gt;</span><span class="mi">17</span><span class="p">,</span><span class="nx">a</span><span class="o">^=</span><span class="nx">a</span><span class="o">&lt;&lt;</span><span class="mi">15</span><span class="p">;</span><span class="k">return</span> <span class="nx">a</span><span class="o">==</span><span class="nx">e</span><span class="p">}</span><span class="nx">test</span><span class="p">(</span><span class="nx">author</span><span class="p">,</span><span class="o">-</span><span class="mi">658575506</span><span class="p">);</span>
+</pre></div></div>
+
+<p>このコードだと、authorの値が<code>"Ore Ore Inc."</code>であるか比較しているようには見えにくくなります。このコードに似たものをすでに実戦投入しています。このコードをfalseを取り出すためだけに一部業務ロジックで利用すると、確実に消せないコードになります。</p>
+
+<h1>
+<span id="開発環境で発生させないようにする追記" class="fragment"></span><a href="#%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%81%A7%E7%99%BA%E7%94%9F%E3%81%95%E3%81%9B%E3%81%AA%E3%81%84%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B%E8%BF%BD%E8%A8%98"><i class="fa fa-link"></i></a>開発環境で発生させないようにする(追記)</h1>
+
+<p>URLがlocalhostだったりIPアドレスだったりポート番号が80以外の場合には無視するというのも有効です。この場合「開発環境では問題ない」を実現しやすくなります。</p>
+
+<h1>
+<span id="曜日判定の隠蔽追記" class="fragment"></span><a href="#%E6%9B%9C%E6%97%A5%E5%88%A4%E5%AE%9A%E3%81%AE%E9%9A%A0%E8%94%BD%E8%BF%BD%E8%A8%98"><i class="fa fa-link"></i></a>曜日判定の隠蔽(追記)</h1>
+
+<p>普通に<code>new Date().getDay()</code>を実行して判定するとバレバレであるため、</p>
+
+<div class="code-frame" data-lang="JavaScript"><div class="highlight"><pre><span></span><span class="c1">//土日判定(JST)</span>
+<span class="k">if</span><span class="p">((</span><span class="nb">Date</span><span class="p">[</span><span class="mi">30704</span><span class="p">..</span><span class="nx">toString</span><span class="p">(</span><span class="mi">36</span><span class="p">)]()</span> <span class="o">/</span> <span class="mi">864</span><span class="nx">e5</span> <span class="o">-</span> <span class="mf">1.625</span><span class="p">)</span> <span class="o">%</span> <span class="mi">7</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">){</span>
+    <span class="c1">//バグってたので修正</span>
+    <span class="c1">//土日(JST)の場合のみ、左辺が0か1になる。</span>
+    <span class="c1">//月曜日は2にになるのでこれで判定が可能。</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>こんな感じのコードすると一見何をやっているかわからない感じになります。</p>
+
+<h1>
+<span id="evalの保護追記" class="fragment"></span><a href="#eval%E3%81%AE%E4%BF%9D%E8%AD%B7%E8%BF%BD%E8%A8%98"><i class="fa fa-link"></i></a>evalの保護(追記)</h1>
+
+<p><code>window.eval = console.log</code>を実行されると、<code>eval</code>部分でソースが出力されてしまいます。evalの書き換え前に実行できるのであれば、</p>
+
+<div class="code-frame" data-lang="JavaScript"><div class="highlight"><pre><span></span><span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s2">"eval"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">configurable</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">writable</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">value</span> <span class="o">:</span> <span class="nb">eval</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div></div>
+
+<p>これで保護しましょう。また、もしevalが書き換えられた場合は、</p>
+
+<div class="code-frame" data-lang="JavaScript"><div class="highlight"><pre><span></span><span class="c1">//evalが関数かつnativeなeval関数であることを確認して実行</span>
+<span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nb">eval</span> <span class="o">==</span> <span class="s2">"function"</span> <span class="o">&amp;&amp;</span> <span class="nb">eval</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"function eval() { [native code] }"</span><span class="p">){</span>
+    <span class="nb">eval</span><span class="p">(</span><span class="nx">ソース</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>のようなコードで難読化されたコードが露見できないようにできます。<br>
+このコード自体も独自の難読化はしておきましょう。</p>
+
+<h1>
+<span id="普通のdom操作に見える処理を利用してフックしてトリガー追記" class="fragment"></span><a href="#%E6%99%AE%E9%80%9A%E3%81%AEdom%E6%93%8D%E4%BD%9C%E3%81%AB%E8%A6%8B%E3%81%88%E3%82%8B%E5%87%A6%E7%90%86%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%A6%E3%83%95%E3%83%83%E3%82%AF%E3%81%97%E3%81%A6%E3%83%88%E3%83%AA%E3%82%AC%E3%83%BC%E8%BF%BD%E8%A8%98"><i class="fa fa-link"></i></a>普通のDOM操作に見える処理を利用してフックしてトリガー(追記)</h1>
+
+<p>どう見ても普通のDOM操作に見える以下の処理ですが、innerHTMLの処理を書き換えることで、例えば"bad"を代入するとそれをトリガーに何かをすることができます。</p>
+
+<p>書き換え処理は予め別の場所で仕込んでおいて、innerHTMLへの代入は全然違うところで行うと隠蔽がしやすくなります。</p>
+
+<div class="code-frame" data-lang="JavaScript"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">xxx</span> <span class="o">?</span> <span class="s2">"ok"</span> <span class="o">:</span> <span class="s2">"bad"</span><span class="p">;</span>
+</pre></div></div>
+
+<p>以下はinnerHTMLのフック処理</p>
+
+<div class="code-frame" data-lang="JavaScript"><div class="highlight"><pre><span></span><span class="c1">//ElementのinnerHTMLアクセッサを取得</span>
+<span class="kd">var</span> <span class="nx">innerHTML</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">Element</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">"innerHTML"</span><span class="p">)</span>
+
+<span class="c1">//セッターを取得</span>
+<span class="kd">var</span> <span class="nx">originSet</span> <span class="o">=</span> <span class="nx">innerHTML</span><span class="p">.</span><span class="nx">set</span><span class="p">;</span>
+
+<span class="c1">//セッターを書き換え</span>
+<span class="nx">innerHTML</span><span class="p">.</span><span class="nx">set</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">string</span><span class="p">){</span>
+    <span class="c1">//特定の値の場合をフックして何かする</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">string</span> <span class="o">==</span> <span class="s2">"bad"</span><span class="p">){</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">//オリジナル処理を実行</span>
+    <span class="k">return</span> <span class="nx">originSet</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">string</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">//セッターを設定</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Element</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">"innerHTML"</span><span class="p">,</span> <span class="nx">innerHTML</span><span class="p">);</span>
+</pre></div></div>
+
+<h1>
+<span id="開発ツールのトラッキング追記" class="fragment"></span><a href="#%E9%96%8B%E7%99%BA%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AE%E3%83%88%E3%83%A9%E3%83%83%E3%82%AD%E3%83%B3%E3%82%B0%E8%BF%BD%E8%A8%98"><i class="fa fa-link"></i></a>開発ツールのトラッキング(追記)</h1>
+
+<p>開発ツールが開いていることを検出するスクリプトがあります。開発ツールが開かれたら、トラップを発動させないようにすると、さらに対応しにくくなります。</p>
+
+<p><a href="https://github.com/sindresorhus/devtools-detect" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/sindresorhus/devtools-detect</a></p>
+
+<h1>
+<span id="デバッガでアタッチしたのをゆるく検知する追記" class="fragment"></span><a href="#%E3%83%87%E3%83%90%E3%83%83%E3%82%AC%E3%81%A7%E3%82%A2%E3%82%BF%E3%83%83%E3%83%81%E3%81%97%E3%81%9F%E3%81%AE%E3%82%92%E3%82%86%E3%82%8B%E3%81%8F%E6%A4%9C%E7%9F%A5%E3%81%99%E3%82%8B%E8%BF%BD%E8%A8%98"><i class="fa fa-link"></i></a>デバッガでアタッチしたのをゆるく検知する(追記)</h1>
+
+<p>問題の動作を確認しようとしてデバッガでアタッチをすると、その間イベントループが停止します。その挙動を利用して、イベントループの時間が一定以上かかった場合はデバッガによるアタッチがあったと判断します。</p>
+
+<p>純粋にたまたまPCが重たいときにはトラップが発動しなくなりますが、トラップが発動するわけではないので、この場合は問題ないと考えます。</p>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">last</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+    <span class="c1">//どう考えても1イベントループで5秒もかかる処理がないのであれば</span>
+    <span class="c1">//とりあえず5秒をしきい値に</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">now</span> <span class="o">-</span> <span class="nx">last</span> <span class="o">&gt;</span> <span class="mi">5000</span><span class="p">){</span>
+        <span class="c1">//デバッガなどが原因で5秒以上停止があったとする</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"トラップの発動をキャンセルする"</span><span class="p">)</span>
+        <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">last</span> <span class="o">=</span> <span class="nx">now</span><span class="p">;</span>
+<span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+</pre></div></div>
+
+<h1>
+<span id="アンチウィルスソフトの検出を誘う追記" class="fragment"></span><a href="#%E3%82%A2%E3%83%B3%E3%83%81%E3%82%A6%E3%82%A3%E3%83%AB%E3%82%B9%E3%82%BD%E3%83%95%E3%83%88%E3%81%AE%E6%A4%9C%E5%87%BA%E3%82%92%E8%AA%98%E3%81%86%E8%BF%BD%E8%A8%98"><i class="fa fa-link"></i></a>アンチウィルスソフトの検出を誘う(追記)</h1>
+
+<p>無限ループやビットコインのマイニングの他に、アンチウィルスソフトを反応させることで、ウィルスが仕込まれたサイトだとユーザに誤解させてサイトから離脱させる手段です。</p>
+
+<p>検出テストとしてEICARテストファイルと呼ばれるものがあります。この決められた内容のファイルについて、アンチウィルスソフトは必ず検出できなければならないとあります。</p>
+
+<p><a href="https://ja.wikipedia.org/wiki/EICAR%E3%83%86%E3%82%B9%E3%83%88%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB" class="autolink" rel="nofollow noopener" target="_blank">https://ja.wikipedia.org/wiki/EICAR%E3%83%86%E3%82%B9%E3%83%88%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB</a></p>
+
+<p>このファイルと同等な内容を返すURLは以下のとおりです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>data:application/octet-stream;base64,WDVPIVAlQEFQWzRcUFpYNTQoUF4pN0NDKTd9JEVJQ0FSLVNUQU5EQVJELUFOVElWSVJVUy1URVNULUZJTEUhJEgrSCo=
+</pre></div></div>
+
+<p>以下のようなコードでダウンロードさせることもできます。</p>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="c1">//クロスブラウザ対応コードではないので調整してください</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"a"</span><span class="p">);</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">download</span> <span class="o">=</span> <span class="s2">"eicar.com"</span><span class="p">;</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="s2">"data:....."</span><span class="p">;</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+</pre></div></div>
+
+<p>環境によってはアンチウィルスソフトが「ウィルスを検出しました！」と表示されます。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

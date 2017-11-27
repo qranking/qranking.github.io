@@ -1,0 +1,318 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (mr_word_wide)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (mr_word_wide さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>mr_word_wideさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>441</kbd>
+		<a target="_blank" href="https://qiita.com/mr_word_wide/items/a4ae7d61d15504a566ce">「GoogleAnalytics見てアクセス解析して」って言われた時にまずしていること</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-17 12:41:07</center>
+	</td>
+	<td style="width:200px;">
+		@mr_word_wide<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/207239/profile-images/1510902873">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[GoogleAnalytics]</b> <b>[データ分析]</b> <b>[アクセス解析]</b> <b>[ウェブ制作]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h2>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h2>
+
+<p>僕はウェブサイト制作会社でサイトの運用・アクセス解析担当をしている者です。<br>
+ウェブサイトの制作・リニューアルを受注した際にプロジェクトに参加し、クライアントの現状サイトのアクセス解析とレポート作成、リニューアル提案が主な仕事です。</p>
+
+<p>クライアントと直接相対するディレクターから「GoogleAnalyticsの権限もらったからアクセス解析して」とオーダーを受け、アクセス解析を行うことになります。</p>
+
+<p>そもそも、初めて見るサイトを構造から理解し、リニューアルに資する提案ができるようなインサイトを得るまで分析するのは本当に骨が折れます。</p>
+
+<p>さらに（全くの主観ですが）、多くのクライアントはGoogleAnalyticsを「タグ貼っただけ」状態で放置しています。<br>
+そのため、計測したデータが整理されていない・そもそも正しく計測できていないということはよく起こります。<br>
+そして、そのような計測エラーがノイズの要因となるわけですが、そのノイズに気付くのはレポート作成時・・・となると、解析当初のステップに戻ることになります。目も当てられません。</p>
+
+<p>そんなノイズをかいくぐりながら効率よくレポート作成に入っていくために、まずしていること・チェックしているポイントを紹介します。</p>
+
+<p>「GoogleAnalyticsの設定ってなんでこんないっぱいあるの？どういう意味があるの？」といった疑問をお持ちの方に参考にしていただけると嬉しいです。</p>
+
+<h2>
+<span id="1まずちゃんと設定していないんだろうな前提のアラ探し" class="fragment"></span><a href="#1%E3%81%BE%E3%81%9A%E3%81%A1%E3%82%83%E3%82%93%E3%81%A8%E8%A8%AD%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%82%93%E3%81%A0%E3%82%8D%E3%81%86%E3%81%AA%E5%89%8D%E6%8F%90%E3%81%AE%E3%82%A2%E3%83%A9%E6%8E%A2%E3%81%97"><i class="fa fa-link"></i></a>1.まず「ちゃんと設定していないんだろうな」前提のアラ探し</h2>
+
+<h3>
+<span id="そもそもプロパティとビューの設定を見る" class="fragment"></span><a href="#%E3%81%9D%E3%82%82%E3%81%9D%E3%82%82%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%81%A8%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%82%92%E8%A6%8B%E3%82%8B"><i class="fa fa-link"></i></a>そもそもプロパティとビューの設定を見る</h3>
+
+<p>基本は&lt;すべてのウェブサイトのデータ&gt;のビューだけを見ます。<br>
+（※基本的にディレクトリごとにビューを分けるメリットは全くありません。チャネル・PV/SS等々、いろいろな指標が信頼できなくなっていきます。即座にやめたほうがいいと思います。）<br>
+実務上、レポート対象のドメインのプロパティがない、などは即アラートを出す必要があります。<br>
+また、サブドメインがあるサイトなのにプロパティが一つしかない場合は、後述しますが要注意です。</p>
+
+<h3>
+<span id="フィルタ" class="fragment"></span><a href="#%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF"><i class="fa fa-link"></i></a>フィルタ</h3>
+
+<p>アクセス解析に使うビューを決めたら、次はIPやテスト環境からのトラフィックを除外するフィルタが入っているかを確認します。フィルタが何も設定されていないなら、自社やパートナーなどの関係者のトラフィックが間違いなく入っているということになります。<br>
+経験上、「半分以上が関係者のトラフィックでした」「サイト制作会社のデバッグでPV/SSが高まってました（どんなデバッグ？）」というケースがあったので、まずチェックするようにしています。</p>
+
+<h3>
+<span id="季節変動があるかどうか" class="fragment"></span><a href="#%E5%AD%A3%E7%AF%80%E5%A4%89%E5%8B%95%E3%81%8C%E3%81%82%E3%82%8B%E3%81%8B%E3%81%A9%E3%81%86%E3%81%8B"><i class="fa fa-link"></i></a>季節変動があるかどうか</h3>
+
+<p>ここからGoogleAnalyticsのレポートに入ります。<br>
+ユーザー &gt; 概要　のレポートから、12ヶ月分のマンスリーのセッション数を見ます。<br>
+リリース直後のサイトで12ヶ月分データがないときは、できるだけ長い期間をとってデータを見ましょう。<br>
+全体のセッション数からサイトの規模感を掴むとともに、セッション数が著しく増減する時期がないかを見ます。</p>
+
+<h3>
+<span id="言語" class="fragment"></span><a href="#%E8%A8%80%E8%AA%9E"><i class="fa fa-link"></i></a>言語</h3>
+
+<p>そのまま ユーザー &gt; 概要 のレポートで。下の方にスクロールすれば言語とセッション数が並んだ表があるはずです。<br>
+このとき見るのは「どの国からのトラフィックが多いか」などではなく「どの程度スパムが入っているか」です。<br>
+言語のフィールドに顔文字が入っていたり、定番のcとかがどの程度入っているかを確認します。<br>
+そのようなスパムのトラフィックが10%とかある場合は、データ抽出時に気をつけるようにします。</p>
+
+<h3>
+<span id="ネットワークドメイン" class="fragment"></span><a href="#%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3"><i class="fa fa-link"></i></a>ネットワークドメイン</h3>
+
+<p>行動 &gt; サイトコンテンツ &gt; すべてのページ（例なのでレポート画面はどこでもいいです）で、プライマリディメンションにネットワークドメインを入れてみます。このステップもスパムがどの程度あるかをチェックする目的です。<br>
+基本はocn、sp-mode、aunetが多いのをサラッと確認するくらいでいいと思いますが、トラフィック比率の上位にスパム系のネットワークドメインがあった場合はチェックしておきます。</p>
+
+<h3>
+<span id="ホスト名" class="fragment"></span><a href="#%E3%83%9B%E3%82%B9%E3%83%88%E5%90%8D"><i class="fa fa-link"></i></a>ホスト名</h3>
+
+<p>これも　行動 &gt; サイトコンテンツ &gt; すべてのページ（例なのでレポート画面はどこでもいいです）で、プライマリディメンションにホスト名を入れます。<br>
+機械的にGoogleAnalyticsのスクリプトをいろんなサイトにコピペしていると、なんの設定もせずクロスドメイントラッキングをしてしまっているケースがあります（これホントによくあります）。<br>
+複数ドメインを運営しているサイトであれば、このステップは必須です。<br>
+また、テスト環境のドメインが分かれていれば、ここでテストトラフィックが混じっているのも気付くことができます。</p>
+
+<h3>
+<span id="クロスドメイントラッキングしているサイトリファラ除外がしてあるか" class="fragment"></span><a href="#%E3%82%AF%E3%83%AD%E3%82%B9%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%88%E3%83%A9%E3%83%83%E3%82%AD%E3%83%B3%E3%82%B0%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B5%E3%82%A4%E3%83%88%E3%83%AA%E3%83%95%E3%82%A1%E3%83%A9%E9%99%A4%E5%A4%96%E3%81%8C%E3%81%97%E3%81%A6%E3%81%82%E3%82%8B%E3%81%8B"><i class="fa fa-link"></i></a>（クロスドメイントラッキングしているサイト）リファラ除外がしてあるか</h3>
+
+<p>プロパティ設定からリファラ除外設定を見ておきましょう。</p>
+
+<h3>
+<span id="1のまとめ" class="fragment"></span><a href="#1%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>【1.のまとめ】</h3>
+
+<p>ここまでのステップで、バグやおかしなデータを洗い出しました。<br>
+そのようなデータが入っていると発覚した時点でGoogleAnalyticsのレポートは現実を反映していないことになってしまい、ミスリードの地雷原化しているのですが、依頼されたからにはもうなんとかする他ありません。<br>
+ここまでで、とりあえず地雷が埋まっているんだということだけ把握しておきましょう。</p>
+
+<h2>
+<span id="2依頼主がウェブでやりたいことを推測する" class="fragment"></span><a href="#2%E4%BE%9D%E9%A0%BC%E4%B8%BB%E3%81%8C%E3%82%A6%E3%82%A7%E3%83%96%E3%81%A7%E3%82%84%E3%82%8A%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8%E3%82%92%E6%8E%A8%E6%B8%AC%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>2.依頼主がウェブでやりたいことを推測する</h2>
+
+<h3>
+<span id="adwords--searchconsoleリンク設定" class="fragment"></span><a href="#adwords--searchconsole%E3%83%AA%E3%83%B3%E3%82%AF%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>Adwords / SearchConsoleリンク設定</h3>
+
+<p>集客 &gt; Adwords &gt; キャンペーン と 集客 &gt; SearchConsole &gt; 検索クエリ のレポートを見ます。<br>
+Adwordsは広告費の価格感や入札キーワード、広告グループの切り方などでウェブサイトへの力の入れ具合やウェブサイトのターゲットが誰なのか、現状ターゲットに対してコミュニケーションできているのかいないのか、等々、クライアントの要望を実現してあげるためのヒントになります。</p>
+
+<p>SearchConsoleは優先度が非常に高いですね。GoogleAnalyticsだけでは検索キーワードが把握できません。<br>
+SearchConsoleがそもそも設定されていない場合は、GoogleAnalyticsにリンクさせなくてもよいので、すぐに設定を提案しましょう。</p>
+
+<h3>
+<span id="コンテンツグループ" class="fragment"></span><a href="#%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97"><i class="fa fa-link"></i></a>コンテンツグループ</h3>
+
+<p>設定しててくれると助かるな〜程度です。<br>
+設定されていた場合は、どのようなルールで設定されているのか見ておきます。<br>
+レポートに落としていく段階で、例えばサイトのディレクトリ構成がくちゃくちゃだと、集計に骨が折れます。「行動フロー」のレポートを見るなら、コンテンツグループは必須です。プライマリディメンションに「ランディングページのコンテンツグループ」を入れられるとレポートが作りやすいという点もあります（その程度です）。</p>
+
+<p>そして裏テーマとしては、クライアントが自社のコンテンツをどう捉えているのかを知ることができます。<br>
+例えばサイト内にコラムがあったとして、それは「コラム」と一括りのグループにしているのか、記事のカテゴリごとにグループ分けしてあるのかで、コラムに対する力の入れ方が推定できるように思います。</p>
+
+<h3>
+<span id="チャネル" class="fragment"></span><a href="#%E3%83%81%E3%83%A3%E3%83%8D%E3%83%AB"><i class="fa fa-link"></i></a>チャネル</h3>
+
+<p>定番ですね。集客 &gt; すべてのトラフィック　&gt; チャネル　のレポートを確認します。<br>
+アラ探し観点では、チャネルの振り分けミスがないかを見ておきます。criteoやYDNがリファラに入っているケース、めちゃくちゃ多いです。<br>
+GoogleAnalyticsをほったらかしにしている会社に多いのが、Directが異様に多いケース。アプリやソーシャル集客のパラメータ漏れが考えられますので、このタイミングでなんとなく要因を推定しておきます。だいたい日単位でセッション数のグラフを見ると、要因が推定できるケースが多いですね。<br>
+また、直帰率99%かつ新規率99%みたいなトラフィックがあれば、まずそれはスパムだと思います。言語とかネットワークドメインとかをつけてチェックしてみましょう。<br>
+やりたいこと推測の観点では、（Adwords含めて）集客チャネルの把握です。カスタムチャネル設定がしてあれば当然チェック、リファラは数の多少によらず見るようにしておきたいです。</p>
+
+<h3>
+<span id="イベント" class="fragment"></span><a href="#%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>イベント</h3>
+
+<p>クライアントがサイト内のどの行動を計測したかったのか、を把握しておきます。<br>
+クリックやスクロールを計測してるくらいなら後の分析フェイズでじっくり見ますが、なにか変わったイベントを送信しているならアクション・ラベルを見ておきましょう。</p>
+
+<h3>
+<span id="カスタムディメンション" class="fragment"></span><a href="#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%87%E3%82%A3%E3%83%A1%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>カスタムディメンション</h3>
+
+<p>イベントと同じで、どんなユーザー情報を送信しているのか知っておきましょう（実務上は、ほぼ「どこどこJP入ってるか確認」な気もしますね）。</p>
+
+<h3>
+<span id="コンバージョン" class="fragment"></span><a href="#%E3%82%B3%E3%83%B3%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>コンバージョン</h3>
+
+<p>これも上と同じです。サイト内のどの行動を重要視しているのかを知っておきます。わかりやすくサンクスページ1つだけにコンバージョンを入れているなら、CVRを把握しておきましょう。</p>
+
+<h3>
+<span id="デバイス" class="fragment"></span><a href="#%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9"><i class="fa fa-link"></i></a>デバイス</h3>
+
+<p>セッション数の比率は知っておきましょう。<br>
+サイトの性格にもよりますが、なんとなくSP:PC:タブレット=65:30:5　くらいかな〜とあたりをつけて見始めるものですが、あたりから大ズレしている場合は要因の推定をしておきます。</p>
+
+<h3>
+<span id="2のまとめ" class="fragment"></span><a href="#2%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>【2.のまとめ】</h3>
+
+<p>ここまでで、ウェブほったらかしなのか、それともちゃんと力を入れているのか、クライアントの温度感を推測します。<br>
+ほったらかしなのであればウェブ屋として動機づけをする提案が必要です。手を入れているのであればその取り組みに対して評価・助言してあげる必要があります。<br>
+若干実務的な部分も入りましたが、ここまではサラッと30分くらいで済ませて、データ抽出と提案作りに全力で入っていきましょう。</p>
+
+<h2>
+<span id="おまけのちのちのレポートを楽にするためにカスタムレポート" class="fragment"></span><a href="#%E3%81%8A%E3%81%BE%E3%81%91%E3%81%AE%E3%81%A1%E3%81%AE%E3%81%A1%E3%81%AE%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88%E3%82%92%E6%A5%BD%E3%81%AB%E3%81%99%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AB%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88"><i class="fa fa-link"></i></a>（おまけ）のちのちのレポートを楽にするためにカスタムレポート</h2>
+
+<p>ホスト名からドリルダウンするカスタムレポートを作る場合が多いです。<br>
+ホスト名 &gt; デバイス &gt; 第一階層 &gt; ランディングページ って感じでしょうか。<br>
+指標はページビュー、閲覧開始数、あとは必要なものをつど追加します。</p>
+
+<h2>
+<span id="最後に" class="fragment"></span><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB"><i class="fa fa-link"></i></a>最後に</h2>
+
+<h3>
+<span id="これくらいはちゃんとやっときましょうよが本心" class="fragment"></span><a href="#%E3%81%93%E3%82%8C%E3%81%8F%E3%82%89%E3%81%84%E3%81%AF%E3%81%A1%E3%82%83%E3%82%93%E3%81%A8%E3%82%84%E3%81%A3%E3%81%A8%E3%81%8D%E3%81%BE%E3%81%97%E3%82%87%E3%81%86%E3%82%88%E3%81%8C%E6%9C%AC%E5%BF%83"><i class="fa fa-link"></i></a>「これくらいはちゃんとやっときましょうよ」が本心</h3>
+
+<p>この記事を読んでいただいた方は、上記の内容について「あるある」と言える方が多いんじゃないでしょうか。<br>
+自社のウェブサイトを正しく把握することがGoogleAnalyticsを導入する目的だと思います。<br>
+その上で、「GoogleAnalytics置いただけ」で発生する計測誤差は認識しておきましょう。<br>
+また、サイトの目的を定義し、追いかけて行く上で、GoogleAnalyticsの個別設定（コンテンツグループ・イベント・カスタムディメンション/指標）は不可欠だと思います。これらも仕組みを把握し、きちんと設定しておくのが望ましいでしょう。</p>
+
+<p>お手伝いできることがあれば、ぜひお声がけ下さい（営業）。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>mr_word_wideさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/mr_word_wide/items/7d77f147483c5ca8d923">色分けされた散布図をGoogleスプレッドシートでサラッと描きたい</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-20 18:58:30</center>
+	</td>
+	<td style="width:200px;">
+		@mr_word_wide<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/207239/profile-images/1510902873">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[GoogleSpreadSheet]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h2>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h2>
+
+<h3>
+<span id="この記事について" class="fragment"></span><a href="#%E3%81%93%E3%81%AE%E8%A8%98%E4%BA%8B%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>この記事について</h3>
+
+<p>スプレッドシートのHowTo記事です。<br>
+「何かをカテゴリわけして、色分けした散布図でカラフルに表示したい」ときに使うグラフの作り方を説明します。<br>
+ググってもやり方が出てこなかったため、ここにメモがてら記載しておきます。</p>
+
+<h3>
+<span id="完成図" class="fragment"></span><a href="#%E5%AE%8C%E6%88%90%E5%9B%B3"><i class="fa fa-link"></i></a>完成図</h3>
+
+<p><a href="https://camo.qiitausercontent.com/cf690054fa18e20557cb5bbf9141e8fd61673730/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230373233392f33373366326139362d623538372d656365362d396163302d3961383863363536353565652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/cf690054fa18e20557cb5bbf9141e8fd61673730/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230373233392f33373366326139362d623538372d656365362d396163302d3961383863363536353565652e706e67" alt="_4.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/207239/373f2a96-b587-ece6-9ac0-9a88c65655ee.png"></a></p>
+
+<p>今回は検索ワードをカテゴリわけして、横に表示順位、縦にCTRを置いた散布図を作ってみます。</p>
+
+<h2>
+<span id="作業" class="fragment"></span><a href="#%E4%BD%9C%E6%A5%AD"><i class="fa fa-link"></i></a>作業</h2>
+
+<h3>
+<span id="ローデータをエクスポート" class="fragment"></span><a href="#%E3%83%AD%E3%83%BC%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88"><i class="fa fa-link"></i></a>①ローデータをエクスポート</h3>
+
+<p>今回はSearch Analytics For Sheetsを使ってSearchConsoleのデータをエクスポートしましょう。<br>
+ここでは後から使うつもりでGroupBy句にQuery（検索ワード）とPage（ランディングページ）を入れています。<br>
+エクスポートされた結果はこんな感じになるでしょうか。<br>
+<a href="https://camo.qiitausercontent.com/a6f33b98dde0d73f37af47c1e54fb3eabc9ebe4c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230373233392f31353735613661642d303338632d636461372d363030392d3831626562646262653334312e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a6f33b98dde0d73f37af47c1e54fb3eabc9ebe4c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230373233392f31353735613661642d303338632d636461372d363030392d3831626562646262653334312e6a706567" alt="_7.jpg" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/207239/1575a6ad-038c-cda7-6009-81bebdbbe341.jpeg"></a></p>
+
+<h3>
+<span id="ここはまとめ方に応じます飛ばしていただいて結構です" class="fragment"></span><a href="#%E3%81%93%E3%81%93%E3%81%AF%E3%81%BE%E3%81%A8%E3%82%81%E6%96%B9%E3%81%AB%E5%BF%9C%E3%81%98%E3%81%BE%E3%81%99%E9%A3%9B%E3%81%B0%E3%81%97%E3%81%A6%E3%81%84%E3%81%9F%E3%81%A0%E3%81%84%E3%81%A6%E7%B5%90%E6%A7%8B%E3%81%A7%E3%81%99"><i class="fa fa-link"></i></a>（ここはまとめ方に応じます、飛ばしていただいて結構です）</h3>
+
+<p>検索ワードをグルーピングするため、ワードを目視でチェックして分類しました。今回はCT数上位100ワードに分類を振ったとします。<br>
+あまりにも数が多い場合はランディングページの第一階層を分類として利用するとかでもよいと思います。<br>
+<a href="https://camo.qiitausercontent.com/ccec1a8f1d4fcdcf72294e905064916031303dd5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230373233392f31343666626530352d313466322d616666662d633231372d6663663431663834363631612e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ccec1a8f1d4fcdcf72294e905064916031303dd5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230373233392f31343666626530352d313466322d616666662d633231372d6663663431663834363631612e6a706567" alt="_8.jpg" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/207239/146fbe05-14f2-afff-c217-fcf41f84661a.jpeg"></a></p>
+
+<h3>
+<span id="ピボットテーブルでデータを整列" class="fragment"></span><a href="#%E3%83%94%E3%83%9C%E3%83%83%E3%83%88%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E6%95%B4%E5%88%97"><i class="fa fa-link"></i></a>②ピボットテーブルでデータを整列</h3>
+
+<p>ピボットテーブルを開き、行ラベルに「Position（検索順位）」、列ラベルに「ワード分類」、値に「CTR」を入れてみます。<br>
+行・列ともに「合計を表示」のチェックを外すようにしてください。<br>
+※追記：今回値にCTRをAVERAGEで入れてしまいましたが、加重平均しないと厳密な結果ではないですね。素直にSUMできるものを例に使うべきでした。<br>
+<a href="https://camo.qiitausercontent.com/7af0df7970b730b5c949026b0af57ffe8b4e1cc6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230373233392f38336561363462632d393835392d356338622d333530622d3663646332653161386531352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7af0df7970b730b5c949026b0af57ffe8b4e1cc6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230373233392f38336561363462632d393835392d356338622d333530622d3663646332653161386531352e706e67" alt="_5.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/207239/83ea64bc-9859-5c8b-350b-6cdc2e1a8e15.png"></a></p>
+
+<p>データが、こんな感じに整列されたでしょうか（ぼかしの奥には%に丸めていない少数が並んでいます。）<br>
+<a href="https://camo.qiitausercontent.com/4089dfc3c660cdf7369128f4c6e34100f3e42544/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230373233392f39363864653237372d303438612d316530372d313837342d3261393439343366323536372e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/4089dfc3c660cdf7369128f4c6e34100f3e42544/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230373233392f39363864653237372d303438612d316530372d313837342d3261393439343366323536372e6a706567" alt="_10.jpg" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/207239/968de277-048a-1e07-1874-2a94943f2567.jpeg"></a></p>
+
+<h3>
+<span id="あとはグラフを挿入するだけ" class="fragment"></span><a href="#%E3%81%82%E3%81%A8%E3%81%AF%E3%82%B0%E3%83%A9%E3%83%95%E3%82%92%E6%8C%BF%E5%85%A5%E3%81%99%E3%82%8B%E3%81%A0%E3%81%91"><i class="fa fa-link"></i></a>③あとはグラフを挿入するだけ</h3>
+
+<p>②で整列されたデータ全てを選択して、挿入&gt;グラフをクリックして下さい。<br>
+始め棒グラフが出るかと思いますが、グラフエディタのデータ&gt;グラフの種類で「散布図」を選択します。<br>
+すると、こんなカラフルな散布図が出来上がります。<br>
+<a href="https://camo.qiitausercontent.com/12adc0524668b8f5ef0c064633e8e6d017c31d33/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230373233392f30333361363236642d613438382d313966352d646661352d6236376234316164353639632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/12adc0524668b8f5ef0c064633e8e6d017c31d33/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230373233392f30333361363236642d613438382d313966352d646661352d6236376234316164353639632e706e67" alt="_4.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/207239/033a626d-a488-19f5-dfa5-b67b41ad569c.png"></a></p>
+
+<p>今回はダミーデータのためまったく傾向は出ていません。<br>
+実務において、こんなグラフと一緒に「ブランドワードはCTRが高いですがビッグワードは検索上位でもCTRが低いです！Organic流入を増やすために、ビッグワードのLPになっているページのTDKを見直しましょう！」とかビシっと言えると、それっぽい感じがします。</p>
+
+<h2>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h2>
+
+<h3>
+<span id="やっぱりスプレッドシートはすごかった" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%B1%E3%82%8A%E3%82%B9%E3%83%97%E3%83%AC%E3%83%83%E3%83%89%E3%82%B7%E3%83%BC%E3%83%88%E3%81%AF%E3%81%99%E3%81%94%E3%81%8B%E3%81%A3%E3%81%9F"><i class="fa fa-link"></i></a>やっぱりスプレッドシートはすごかった</h3>
+
+<p>ちょっとややこしいグラフはエクセルでしか作れないのかと思っていましたが、スプレッドシートでも作れるようです。<br>
+データ抽出や集計、操作に関してはスプレッドシートの方が長けていると思いますので、今後も細かいデータはできるだけスプレッドシートで扱い、サラッとグラフにまとめていこうと思います。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

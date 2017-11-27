@@ -1,0 +1,195 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (shogomuranushi)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (shogomuranushi さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>shogomuranushiさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>295</kbd>
+		<a target="_blank" href="https://qiita.com/shogomuranushi/items/6ab5bc29923b3f82c9ed">HTTPSの静的コンテンツをホストするならs3よりNetlifyが俺の求めていたものだった</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-26 19:34:06</center>
+	</td>
+	<td style="width:200px;">
+		@shogomuranushi<br />(ABEJA, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/75573/profile-images/1473700199">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[GitHub]</b> <b>[AWS]</b> <b>[S3]</b> <b>[Netlify]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="事の発端" class="fragment"></span><a href="#%E4%BA%8B%E3%81%AE%E7%99%BA%E7%AB%AF"><i class="fa fa-link"></i></a>事の発端</h1>
+
+<p>社内から静的コンテンツをホストしてHTTPS使える環境が欲しいんだよねー。と要望を受けた。<br>
+私はAWSが得意なので考えた。</p>
+
+<p>「静的コンテンツならs3か」<br>
+「s3でHTTPSならs3の前段にCloudFrontでSSL証明書入れるか（ちょっと面倒だな）」<br>
+「CloudFrontにSSL入れるなら無料のACMだな」<br>
+「ACM使うならメール認証だしSES要るな（面倒くせぇ）」<br>
+「SESでメール受信するならs3・・・・・・・・・・」</p>
+
+<h3>
+<span id="ガシャーンちゃぶ台の音" class="fragment"></span><a href="#%E3%82%AC%E3%82%B7%E3%83%A3%E3%83%BC%E3%83%B3%E3%81%A1%E3%82%83%E3%81%B6%E5%8F%B0%E3%81%AE%E9%9F%B3"><i class="fa fa-link"></i></a>ガシャーン！（ちゃぶ台の音）</h3>
+
+<h3>
+<span id="俺がしたいのはこれじゃない感" class="fragment"></span><a href="#%E4%BF%BA%E3%81%8C%E3%81%97%E3%81%9F%E3%81%84%E3%81%AE%E3%81%AF%E3%81%93%E3%82%8C%E3%81%98%E3%82%83%E3%81%AA%E3%81%84%E6%84%9F"><i class="fa fa-link"></i></a>「俺がしたいのはこれじゃない感」</h3>
+
+<h1>
+<span id="ということで" class="fragment"></span><a href="#%E3%81%A8%E3%81%84%E3%81%86%E3%81%93%E3%81%A8%E3%81%A7"><i class="fa fa-link"></i></a>ということで</h1>
+
+<p>何か上の環境を一発で作れるツールあるかなぁ。と調べているとNetlifyというサービスが引っかかった。</p>
+
+<h1>
+<span id="netlifyってなに" class="fragment"></span><a href="#netlify%E3%81%A3%E3%81%A6%E3%81%AA%E3%81%AB"><i class="fa fa-link"></i></a>Netlifyってなに？</h1>
+
+<p>どうも静的コンテンツをホストしてくれて、SSLが使えるとな。Githubと連携して？<br>
+ふむふむ。使ってみよう。</p>
+
+<p>ということでGithubにリポジトリを作って5分位でデプロイ出来る環境が出来ました。<br>
+SSLとDNSも5分位で設定完了。</p>
+
+<h3>
+<span id="俺が求めていたものはこれだった" class="fragment"></span><a href="#%E4%BF%BA%E3%81%8C%E6%B1%82%E3%82%81%E3%81%A6%E3%81%84%E3%81%9F%E3%82%82%E3%81%AE%E3%81%AF%E3%81%93%E3%82%8C%E3%81%A0%E3%81%A3%E3%81%9F"><i class="fa fa-link"></i></a>「俺が求めていたものはこれだった」</h3>
+
+<h1>
+<span id="netlifyの紹介検索したら色々出てくるけど" class="fragment"></span><a href="#netlify%E3%81%AE%E7%B4%B9%E4%BB%8B%E6%A4%9C%E7%B4%A2%E3%81%97%E3%81%9F%E3%82%89%E8%89%B2%E3%80%85%E5%87%BA%E3%81%A6%E3%81%8F%E3%82%8B%E3%81%91%E3%81%A9"><i class="fa fa-link"></i></a>Netlifyの紹介(検索したら色々出てくるけど)</h1>
+
+<h2>
+<span id="url" class="fragment"></span><a href="#url"><i class="fa fa-link"></i></a>URL</h2>
+
+<p><a href="https://www.netlify.com/" class="autolink" rel="nofollow noopener" target="_blank">https://www.netlify.com/</a></p>
+
+<h2>
+<span id="ほどんどのことが無料" class="fragment"></span><a href="#%E3%81%BB%E3%81%A9%E3%82%93%E3%81%A9%E3%81%AE%E3%81%93%E3%81%A8%E3%81%8C%E7%84%A1%E6%96%99"><i class="fa fa-link"></i></a>ほどんどのことが無料</h2>
+
+<ul>
+<li>商用利用可</li>
+<li>カスタムドメインのHTTP</li>
+<li>CIによるデプロイ</li>
+<li>フォーム処理</li>
+<li>A/Bテスト</li>
+<li>コミュニティサポート</li>
+<li>etc...</li>
+</ul>
+
+<h2>
+<span id="有料版で出来ること" class="fragment"></span><a href="#%E6%9C%89%E6%96%99%E7%89%88%E3%81%A7%E5%87%BA%E6%9D%A5%E3%82%8B%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>有料版で出来ること</h2>
+
+<ul>
+<li>チームや複数レベルの管理機能</li>
+<li>メールとチャットのサポート</li>
+<li>SOC2準拠</li>
+<li>などその他色々</li>
+</ul>
+
+<h2>
+<span id="デプロイ" class="fragment"></span><a href="#%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4"><i class="fa fa-link"></i></a>デプロイ</h2>
+
+<ul>
+<li>Git系リポジトリと簡単に連動しpushするだけでデプロイ可能</li>
+</ul>
+
+<h2>
+<span id="dns" class="fragment"></span><a href="#dns"><i class="fa fa-link"></i></a>DNS</h2>
+
+<ul>
+<li>任意のDNSでも、NetlifyのDNSでも可</li>
+</ul>
+
+<h2>
+<span id="ssl証明書" class="fragment"></span><a href="#ssl%E8%A8%BC%E6%98%8E%E6%9B%B8"><i class="fa fa-link"></i></a>SSL証明書</h2>
+
+<ul>
+<li>無料(Let's Encrypt)</li>
+<li>カスタムドメインも1ボタンで発行</li>
+</ul>
+
+<h2>
+<span id="パフォーマンス" class="fragment"></span><a href="#%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9"><i class="fa fa-link"></i></a>パフォーマンス</h2>
+
+<ul>
+<li>自動でCDN付き</li>
+<li>スケーラブルらしい（静的コンテンツだけだもんね）</li>
+</ul>
+
+<h2>
+<span id="abテストbeta" class="fragment"></span><a href="#ab%E3%83%86%E3%82%B9%E3%83%88beta"><i class="fa fa-link"></i></a>ABテスト(BETA)</h2>
+
+<ul>
+<li>ワンクリックでGitのブランチ毎にABテストが出来る</li>
+</ul>
+
+<h2>
+<span id="フォーム" class="fragment"></span><a href="#%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0"><i class="fa fa-link"></i></a>フォーム</h2>
+
+<ul>
+<li>フォームはHTMLで作れる</li>
+<li>データベース不要</li>
+<li>メール、Slack、Webhookへ通知可能</li>
+</ul>
+
+<h2>
+<span id="セキュリティ" class="fragment"></span><a href="#%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3"><i class="fa fa-link"></i></a>セキュリティ</h2>
+
+<ul>
+<li>有料版ではSOC2取ってるくらいだから強そう</li>
+<li>基本静的コンテンツだけだからよっぽどじゃないと問題にならない？</li>
+</ul>
+
+<h2>
+<span id="ちょっとした機能" class="fragment"></span><a href="#%E3%81%A1%E3%82%87%E3%81%A3%E3%81%A8%E3%81%97%E3%81%9F%E6%A9%9F%E8%83%BD"><i class="fa fa-link"></i></a>ちょっとした機能</h2>
+
+<ul>
+<li>デプロイ履歴とログが残る</li>
+</ul>
+
+<h3>
+<span id="結論めっちゃ簡単だったので使ってみてください" class="fragment"></span><a href="#%E7%B5%90%E8%AB%96%E3%82%81%E3%81%A3%E3%81%A1%E3%82%83%E7%B0%A1%E5%8D%98%E3%81%A0%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%A7%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84"><i class="fa fa-link"></i></a>結論：めっちゃ簡単だったので使ってみてください</h3>
+
+<p><a href="https://www.netlify.com/" class="autolink" rel="nofollow noopener" target="_blank">https://www.netlify.com/</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

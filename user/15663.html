@@ -1,0 +1,215 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (syarihu)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (syarihu さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>syarihuさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>107</kbd>
+		<a target="_blank" href="https://qiita.com/syarihu/items/53ea1a65f481f8121109">Actions on Googleでapi.aiを使ってGoogle Homeに何か言わせてみる</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-07 22:28:11</center>
+	</td>
+	<td style="width:200px;">
+		@syarihu<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15663/profile-images/1480854946">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[api.ai]</b> <b>[GoogleHome]</b> <b>[actionsongoogle]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>2017年11月22日追記: <br>
+この記事を公開したちょっとあとくらいに<a href="https://blog.dialogflow.com/post/apiai-new-name-dialogflow-new-features/" rel="nofollow noopener" target="_blank">api.aiはDialogflowに変わっています</a>が、名前以外は大きく変わった点は無いはずなので、適宜読み替えてください <img alt=":bow:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f647.png" title=":bow:" width="20"> </p>
+
+<hr>
+
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>2017年10月6日、ついに日本でGoogle Homeが発売されました。<br>
+というわけで、早速買ってapi.aiのGoogle Assistant Integrationを使ってGoogle Homeに色々と言わせてみたので、簡単にやり方を紹介します。</p>
+
+<h1>
+<span id="actions-on-google" class="fragment"></span><a href="#actions-on-google"><i class="fa fa-link"></i></a>Actions on Google</h1>
+
+<p>まずはじめに、次のURLからActions on Googleにアクセスしてプロジェクトを作成します。<br>
+<a href="https://console.actions.google.com/?pli=1" class="autolink" rel="nofollow noopener" target="_blank">https://console.actions.google.com/?pli=1</a></p>
+
+<p><a href="https://camo.qiitausercontent.com/833d8a637e20dfaee00da652d7b1b8ceec25651f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f64383766303733342d653638662d343363642d633064362d3936356439346565616539332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/833d8a637e20dfaee00da652d7b1b8ceec25651f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f64383766303733342d653638662d343363642d633064362d3936356439346565616539332e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/d87f0734-e68f-43cd-c0d6-965d94eeae93.png"></a></p>
+
+<h2>
+<span id="プロジェクトを作成" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90"><i class="fa fa-link"></i></a>プロジェクトを作成</h2>
+
+<p><code>Add/import project</code>をクリックしてプロジェクトをインポートまたは新規作成します。<br>
+もしGoogle API Consoleで既に別のプロジェクトがある場合は、それを選択することも可能ですが、無い場合は入力した名前で新たにプロジェクトが作成されます。<br>
+入力が終わったら<code>CREATE PROJECT</code>を押しましょう。<br>
+<a href="https://camo.qiitausercontent.com/a59043f523e47eaa1722908b5193df45f8e174f2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f37316435623234632d643939632d346561372d613735332d6637623163353764326234632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a59043f523e47eaa1722908b5193df45f8e174f2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f37316435623234632d643939632d346561372d613735332d6637623163353764326234632e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/71d5b24c-d99c-4ea7-a753-f7b1c57d2b4c.png"></a></p>
+
+<p>作成が完了すれば、次のような画面が表示されます。<br>
+<a href="https://camo.qiitausercontent.com/0fbd9d6c1abca6911c73c5e5b0571c6db12e8b8d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f30663636636237392d653330612d393264312d383332632d6165626663643339613662382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/0fbd9d6c1abca6911c73c5e5b0571c6db12e8b8d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f30663636636237392d653330612d393264312d383332632d6165626663643339613662382e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/0f66cb79-e30a-92d1-832c-aebfcd39a6b8.png"></a></p>
+
+<p>もし正常に作成されなかった場合、次のようなメッセージが表示されます。<br>
+<a href="https://camo.qiitausercontent.com/c7567a7a03b933f6e85f54b6475f0fdd4ca92cd4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f65393135373566362d626461652d343635352d663335632d3933356631626534303066382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/c7567a7a03b933f6e85f54b6475f0fdd4ca92cd4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f65393135373566362d626461652d343635352d663335632d3933356631626534303066382e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/e91575f6-bdae-4655-f35c-935f1be400f8.png"></a></p>
+
+<p>この場合、作成が完了したっぽメールも届きますが成功していないので、もう一回<code>CREATE PROJECT</code>を押してみてください。<br>
+<a href="https://camo.qiitausercontent.com/537a6accdcbd4ffcb830f7b1cc1b66df0c732d87/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f34393165373632302d396439372d386237382d333034342d6261363633343338616538352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/537a6accdcbd4ffcb830f7b1cc1b66df0c732d87/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f34393165373632302d396439372d386237382d333034342d6261363633343338616538352e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/491e7620-9d97-8b78-3044-ba663438ae85.png"></a></p>
+
+<p>すると、今度は成功するはずです。</p>
+
+<h1>
+<span id="apiaiを使えるようにする" class="fragment"></span><a href="#apiai%E3%82%92%E4%BD%BF%E3%81%88%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>api.aiを使えるようにする</h1>
+
+<p>Actions on Googleの画面から、<code>API.AI</code>の右下にある<code>BUILD</code>をクリックします。<br>
+<a href="https://camo.qiitausercontent.com/28a8f0999d361b67eb7aef5073ce51d0b76bea56/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f36303939396431632d356363622d393032332d333664392d3966646530616531363332612e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/28a8f0999d361b67eb7aef5073ce51d0b76bea56/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f36303939396431632d356363622d393032332d333664392d3966646530616531363332612e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/60999d1c-5ccb-9023-36d9-9fde0ae1632a.png"></a></p>
+
+<p>すると、次のような画面が表示されるので、<code>CREATE ACTIONS ON API.AI</code>をクリックします。<br>
+<a href="https://camo.qiitausercontent.com/fc4a076b996acebaf8fb40be68d5777f42bf2e18/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f34333366386566622d663437362d303230362d646435612d3935353133613133316634332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/fc4a076b996acebaf8fb40be68d5777f42bf2e18/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f34333366386566622d663437362d303230362d646435612d3935353133613133316634332e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/433f8efb-f476-0206-dd5a-95513a131f43.png"></a></p>
+
+<p>ウィンドウが出てきたら、Google Homeでログインしているアカウントを選択します。<br>
+<a href="https://camo.qiitausercontent.com/f1f309c310409f5dbed4f4149db01fd20fabebbf/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f65383633333566632d393839632d316638382d316234662d3834623230363531306130622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f1f309c310409f5dbed4f4149db01fd20fabebbf/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f65383633333566632d393839632d316638382d316234662d3834623230363531306130622e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/e86335fc-989c-1f88-1b4f-84b206510a0b.png"></a></p>
+
+<p>アクセスを許可します。<br>
+<a href="https://camo.qiitausercontent.com/705ddec1bb9b78675d1c30881152caed11220b83/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f36366638366161382d643265372d393935392d393230342d3735656261653237353963612e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/705ddec1bb9b78675d1c30881152caed11220b83/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f36366638366161382d643265372d393935392d393230342d3735656261653237353963612e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/66f86aa8-d2e7-9959-9204-75ebae2759ca.png"></a></p>
+
+<p>また別の権限を求められるので右下の「AUTHORIZE」をクリックします。<br>
+<a href="https://camo.qiitausercontent.com/112dc9e7796506784a869783ebcfca4c8f02aaa3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f66336362316538332d373633392d616465612d316534352d3533373530613835376231662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/112dc9e7796506784a869783ebcfca4c8f02aaa3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f66336362316538332d373633392d616465612d316534352d3533373530613835376231662e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/f3cb1e83-7639-adea-1e45-53750a857b1f.png"></a></p>
+
+<p>これもGoogle Homeでログインしているのと同じアカウントを選択します。<br>
+<a href="https://camo.qiitausercontent.com/f1f309c310409f5dbed4f4149db01fd20fabebbf/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f65383633333566632d393839632d316638382d316234662d3834623230363531306130622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f1f309c310409f5dbed4f4149db01fd20fabebbf/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f65383633333566632d393839632d316638382d316234662d3834623230363531306130622e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/e86335fc-989c-1f88-1b4f-84b206510a0b.png"></a></p>
+
+<p>アクセスを許可します。<br>
+<a href="https://camo.qiitausercontent.com/fd143fe0212ff31644a38a1538f9afe9e2c224df/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f30326230323965342d373664332d353531622d666233382d3662626633343635636539382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/fd143fe0212ff31644a38a1538f9afe9e2c224df/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f30326230323965342d373664332d353531622d666233382d3662626633343635636539382e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/02b029e4-76d3-551b-fb38-6bbf3465ce98.png"></a></p>
+
+<p>次のような画面が出てくるので、説明や言語設定を変えて右上の「SAVE」をクリックします。<br>
+<a href="https://camo.qiitausercontent.com/fb7e4a1563d4be9e70ec2f3d5cff1ecba6d6bfe9/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f36386631356265332d353533332d373966622d656334642d6165323766396633313863352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/fb7e4a1563d4be9e70ec2f3d5cff1ecba6d6bfe9/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f36386631356265332d353533332d373966622d656334642d6165323766396633313863352e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/68f15be3-5533-79fb-ec4d-ae27f9f318c5.png"></a></p>
+
+<p>これでapi.aiを使う準備ができました。<br>
+<a href="https://camo.qiitausercontent.com/41ac3d7335d83a5ea9686513b154e7558dc4127a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f36633634643062612d356237342d383261612d333437372d3863373234616462643732352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/41ac3d7335d83a5ea9686513b154e7558dc4127a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f36633634643062612d356237342d383261612d333437372d3863373234616462643732352e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/6c64d0ba-5b74-82aa-3477-8c724adbd725.png"></a></p>
+
+<h2>
+<span id="apiaiにintentを追加する" class="fragment"></span><a href="#apiai%E3%81%ABintent%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>api.aiにIntentを追加する</h2>
+
+<p>api.aiの画面の<code>Intents</code>の少し左にある「＋」ボタンを押すと、次のようにIntentを追加する画面が出てきます。<br>
+<code>User says</code>の部分に何を言ったら反応するかを入力し、<code>Text response</code>の部分に返す言葉を入力します。<br>
+<a href="https://camo.qiitausercontent.com/c061bb803615d7a9aa1a07a357a3a330f8efc843/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f63333332303161632d363932652d363931642d373934372d3966373933363034343538652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/c061bb803615d7a9aa1a07a357a3a330f8efc843/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f63333332303161632d363932652d363931642d373934372d3966373933363034343538652e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/c33201ac-692e-691d-7947-9f793604458e.png"></a></p>
+
+<p><code>Text response</code>に複数入力すれば、その中からランダムに1つを選んで言葉を返してくれます。<br>
+入力が終わったら、右上の<code>SAVE</code>ボタンを押しましょう。</p>
+
+<h2>
+<span id="google-assistantのintegrationを設定する" class="fragment"></span><a href="#google-assistant%E3%81%AEintegration%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Google AssistantのIntegrationを設定する</h2>
+
+<p>左のメニューから<code>Integrations</code>をクリックし、出てきた画面の<code>Google Assistant</code>をオンにして<code>SETTINGS</code>を押します。<br>
+<a href="https://camo.qiitausercontent.com/28a9cd653bad9ed863e57cb5015579a638a62c6b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f38333636393362332d383736302d656336332d633030392d3832666362386231613832662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/28a9cd653bad9ed863e57cb5015579a638a62c6b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f38333636393362332d383736302d656336332d633030392d3832666362386231613832662e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/836693b3-8760-ec63-c009-82fcb8b1a82f.png"></a></p>
+
+<p>設定ダイアログが出てくるので、右下の<code>AUTHORIZE</code>を押します。<br>
+<a href="https://camo.qiitausercontent.com/97d4cb934249ce190e9b6a00cfd5bf8eccca5f95/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f34396334343633342d346333642d313632352d366436342d3638396336663533336339652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/97d4cb934249ce190e9b6a00cfd5bf8eccca5f95/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f34396334343633342d346333642d313632352d366436342d3638396336663533336339652e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/49c44634-4c3d-1625-6d64-689c6f533c9e.png"></a></p>
+
+<p>アカウントを選択します。<br>
+<a href="https://camo.qiitausercontent.com/868e0cb491dfe21501fd537f485570429797bcd6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f35623036383838382d646136382d393163362d353137662d3866653061316530383937642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/868e0cb491dfe21501fd537f485570429797bcd6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f35623036383838382d646136382d393163362d353137662d3866653061316530383937642e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/5b068888-da68-91c6-517f-8fe0a1e0897d.png"></a></p>
+
+<p>許可します。<br>
+<a href="https://camo.qiitausercontent.com/1f438d680d5780f4cc75d0afb958587fc1afe278/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f39376433393435392d626562632d323134322d633063662d3061643134323263646565312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1f438d680d5780f4cc75d0afb958587fc1afe278/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f39376433393435392d626562632d323134322d633063662d3061643134323263646565312e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/97d39459-bebc-2142-c0cf-0ad1422cdee1.png"></a></p>
+
+<p>右下が<code>UPDATE DRAFT</code>に変わりました。<br>
+この画面から、Google AssistantにIntentを設定します。<br>
+<a href="https://camo.qiitausercontent.com/a575c829113d77f040beae16bd6ad2c7db06b82c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f38353237633839382d623332632d623338632d643837352d3865316363313661373233342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a575c829113d77f040beae16bd6ad2c7db06b82c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f38353237633839382d623332632d623338632d643837352d3865316363313661373233342e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/8527c898-b32c-b38c-d875-8e1cc16a7234.png"></a></p>
+
+<p><code>Welcome Intent</code>は<code>Google Assistant Integration</code>を起動したときに最初に動作するIntentです。<br>
+デフォルトであれば、「こんにちは」と言います。<br>
+先ほど作成したIntentを追加する場合は、<code>Additional triggering intents</code>の下にある<code>Select intent</code>から作成したIntentを選んで追加します。<br>
+<a href="https://camo.qiitausercontent.com/f051dbcc168dfd7638a0bec5a50fdb809d080946/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f61366563353639612d313066382d643265662d626538312d3964303661396436313435642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f051dbcc168dfd7638a0bec5a50fdb809d080946/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f61366563353639612d313066382d643265662d626538312d3964303661396436313435642e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/a6ec569a-10f8-d2ef-be81-9d06a9d6145d.png"></a></p>
+
+<p>設定が終わったら<code>UPDATE DRAFT</code>を押して設定を更新します。<br>
+更新が完了すると、次のような画面になるので、<code>VISIT CONSOLE</code>を押してコンソール画面に遷移します。<br>
+<a href="https://camo.qiitausercontent.com/22aafb592357d4f169ac39bf6860fbd389f02225/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f32633137343261332d363765652d396434382d626539362d3263333764393163646562612e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/22aafb592357d4f169ac39bf6860fbd389f02225/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f32633137343261332d363765652d396434382d626539362d3263333764393163646562612e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/2c1742a3-67ee-9d48-be96-2c37d91cdeba.png"></a></p>
+
+<h1>
+<span id="integrationをテストする" class="fragment"></span><a href="#integration%E3%82%92%E3%83%86%E3%82%B9%E3%83%88%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Integrationをテストする</h1>
+
+<h2>
+<span id="simulatorの場合" class="fragment"></span><a href="#simulator%E3%81%AE%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>Simulatorの場合</h2>
+
+<p>Actions on Googleのコンソール画面の左側にある<code>Simulator</code>を押します。<br>
+これがGoogle Assistantのシミュレーターです。<br>
+<a href="https://camo.qiitausercontent.com/d0ae7730fe8876da7eb05641eea38450740f97d6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f30323665356631612d633137652d363235612d373264332d3632613961393762316537652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d0ae7730fe8876da7eb05641eea38450740f97d6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f30323665356631612d633137652d363235612d373264332d3632613961393762316537652e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/026e5f1a-c17e-625a-72d3-62a9a97b1e7e.png"></a></p>
+
+<p>先ほど作成したIntegrationを使うには、自分が作成したアプリに繋がなければいけません。<br>
+デフォルトでは、「テスト用アプリにつないで」と言うと、起動できます。<br>
+まずは「テスト用アプリにつないで」とチャットしてみましょう。<br>
+<a href="https://camo.qiitausercontent.com/43974b19f4da5277f0fa62d7a915ab4cf9b87952/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f32623832383135662d373061302d313462352d666364642d6531346639383532353866382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/43974b19f4da5277f0fa62d7a915ab4cf9b87952/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f32623832383135662d373061302d313462352d666364642d6531346639383532353866382e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/2b82815f-70a0-14b5-fcdd-e14f985258f8.png"></a></p>
+
+<p>Welcome intentが動作したのがわかります。<br>
+では、先ほど自分が作成したintentを動作させてみましょう。<br>
+<a href="https://camo.qiitausercontent.com/0b9e7a30d52c55e7a2864c434c1f9af34538fb1b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f61396532356161632d653039332d363139312d363164622d3565313863353839316461652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/0b9e7a30d52c55e7a2864c434c1f9af34538fb1b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f61396532356161632d653039332d363139312d363164622d3565313863353839316461652e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/a9e25aac-e093-6191-61db-5e18c5891dae.png"></a></p>
+
+<p>意図したとおりの結果が返ってきましたね。成功です！</p>
+
+<h1>
+<span id="google-homeの実機の場合" class="fragment"></span><a href="#google-home%E3%81%AE%E5%AE%9F%E6%A9%9F%E3%81%AE%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>Google Homeの実機の場合</h1>
+
+<p>Google Homeの実機で、Integrationを作成したGoogleアカウントと同じアカウントでログインされていれば、Simulatorと同じようにテスト用アプリを起動できます。<br>
+デモ動画にしてみましたので、よろしければご覧ください（画像をクリックするとYouTubeに飛びます）。<br>
+<a href="https://www.youtube.com/watch?v=7T8GCzwgPI0" rel="nofollow noopener" target="_blank"><br>
+<img src="https://camo.qiitausercontent.com/a625cdc316214fccbe4bdddee2f4fcc5367b1f2c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f64626665666331662d333938392d633665362d363631302d6461393137636234306136612e6a706567" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/dbfefc1f-3989-c6e6-6610-da917cb40a6a.jpeg"><br>
+</a></p>
+
+<p>実機でも、意図したとおりの結果が返ってきました！</p>
+
+<h1>
+<span id="公開したい場合" class="fragment"></span><a href="#%E5%85%AC%E9%96%8B%E3%81%97%E3%81%9F%E3%81%84%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>公開したい場合</h1>
+
+<p>もし作成したActionを公開したい場合、<code>Actions on Google</code>の左側にある<code>Overview</code>を押し、アプリの情報を入力して右下の<code>SUBMIT DRAFT FOR REVIEW</code>を押せばGoogleの審査の後、問題なければ公開できると思われます。<br>
+<a href="https://camo.qiitausercontent.com/77ef21dddb95497e4af87e17d95b7b4a25e937ec/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f36316235383636382d363532632d383439322d636137362d3464636362396230616264322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/77ef21dddb95497e4af87e17d95b7b4a25e937ec/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353636332f36316235383636382d363532632d383439322d636137362d3464636362396230616264322e706e67" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15663/61b58668-652c-8492-ca76-4dccb9b0abd2.png"></a></p>
+
+<p>詳しくはこちらをどうぞ。<br>
+<a href="https://developers.google.com/actions/console/publishing" class="autolink" rel="nofollow noopener" target="_blank">https://developers.google.com/actions/console/publishing</a></p>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>今回は、api.aiを利用したGoogle Assistant Integrationの簡単な作り方を紹介しました。<br>
+他にもさまざまなことをさせることができるので、ぜひ色々試してみてください！</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

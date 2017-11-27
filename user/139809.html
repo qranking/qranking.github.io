@@ -1,0 +1,990 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (yu4u)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (yu4u さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>yu4uさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>170</kbd>
+		<a target="_blank" href="https://qiita.com/yu4u/items/a9fc529c85534eca11e5">府大生が趣味ではなくニューラルネットワークの認識精度世界一を奪還してしまった論文を読んだ</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-23 12:57:24</center>
+	</td>
+	<td style="width:200px;">
+		@yu4u<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/139809/profile-images/1473721008">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[DeepLearning]</b> <b>[深層学習]</b> <b>[CNN]</b> <b>[論文読み]</b> <b>[ConvolutionalNeuralNetworks]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>本記事の前に下記の記事をどうぞ。<br>
+<a href="https://qiita.com/yu4u/items/4a35b47d5cab8463a4cb" id="reference-6c618cad2883183726e0">府大生が趣味で世界一の認識精度を持つニューラルネットワークを開発してしまった論文を読んだ</a></p>
+
+<p>（2017/10/24追記）ご本人よりShakeDropの論文では、2つを比較した上でCutoutではなく、Random Erasingを利用しているとコメントを頂きましたので修正しました。</p>
+
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>府大生がニューラルネットワークの「認識精度世界一」を奪還してしまったようです。</p>
+
+<blockquote class="twitter-tweet">
+<p>一般物体認識分野「認識精度 世界一」を奪還！ 府大生が開発したニューラルネットワーク <a href="https://t.co/9HSt7iGl55" rel="nofollow noopener" target="_blank">https://t.co/9HSt7iGl55</a></p>— ニーシェス (@lachesis1120) <a href="https://twitter.com/lachesis1120/status/920931296867639297?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年10月19日</a>
+</blockquote>
+
+<p>前回は趣味だったのが、今回は晴れて本業になったようです。<br>
+具体的な内容は、10月に開催された<a href="http://www.ieice.org/iss/prmu/jpn/" rel="nofollow noopener" target="_blank">電子情報通信学会のパターン認識・メディア理解 (PRMU) 研究会</a>の技術報告<sup id="fnref1"><a href="#fn1" rel="footnote" title='山田良博, 岩村雅一, 黄瀬浩一, "PyramidNetに対する新たな確率的正則化手法ShakeDropの提案," 信学技報, 2017.'>1</a></sup>にありますので、解説していきたいと思います。<br>
+こういう面白い発表がありますので、是非PRMU研究会に一度参加してみましょう！<a href="http://www.ieice.org/ken/program/index.php?tgs_regid=dcb3f5da17b46802a7ac54d2b097a59876c6cb3ce4786e95505fbc3a90fe24d9&amp;tgid=IEICE-PRMU&amp;lang=" rel="nofollow noopener" target="_blank">12月は東京開催</a>で、<a href="https://kantocv.connpass.com/" rel="nofollow noopener" target="_blank">コンピュータビジョン勉強会＠関東</a>と合同開催となっております。</p>
+
+<p>【サマリ】本稿で解説するShakeDropは、強力な特徴レベルのdata augmentationを行うモデルであるShake-Shakeを改良することで非常に深いモデルであるPyramidNetをベースネットワークとして利用することを可能とし、更に強力な画像レベルのdata augmentationを行う<del>Cutout</del>Random Erasingを利用しつつ、1800エポックという長時間学習させることで、既存手法に対しかなりの精度向上を実現しています。</p>
+
+<h1>
+<span id="residual-networks" class="fragment"></span><a href="#residual-networks"><i class="fa fa-link"></i></a>Residual Networks</h1>
+
+<p>Residual Networks (ResNet) <sup id="fnref2"><a href="#fn2" rel="footnote" title='K. He, X. Zhang, S. Ren, and J. Sun, "Deep Residual Learning for Image Recognition," in Proc. of CVPR, 2016.'>2</a></sup>は、大規模画像認識のコンペティションであるILSVRC'15で優勝した、現状のデファクトスタンダードといえる畳み込みニューラルネットワークのアーキテクチャです。<br>
+ResNet以前まではネットワークを深くすることで表現能力を向上させ、認識精度を改善することが行われてきましたが、あまりにも深いネットワークは、batch normalization等を利用しても最適化が困難でした。<br>
+ResNetでは、通常のネットワークのように、何かしらの処理ブロックによる変換$F(x)$を単純に次の層に渡していくのではなく、その処理ブロックへの入力$x$をショートカットし、$F(x)+x$を次の処理ブロックに渡すことが行われます。この処理単位はresidual unit (or building block) と呼ばれます。<br>
+<a href="https://camo.qiitausercontent.com/2b20db35623485e9c348dafff47edb799a7dd66c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f33393864386662362d303261302d346561392d383738352d6139633735623935323965662e706e67" target="_blank" rel="nofollow noopener"><img width="500" alt="Residual Unit" src="https://camo.qiitausercontent.com/2b20db35623485e9c348dafff47edb799a7dd66c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f33393864386662362d303261302d346561392d383738352d6139633735623935323965662e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/398d8fb6-02a0-4ea9-8785-a9c75b9529ef.png"></a><br>
+左は抽象的なresidual unitの構成です。右は具体的によく使われるresidual unitの例で、カーネルサイズ3x3、チャネル数64の畳み込み層が2つ配置されています。本来はこの中にbatch normalizationとReLUが配置されますが、その並べ方は様々なため省略しています。<br>
+このショートカットを通して、backpropagation時に勾配が直接下層に伝わっていくことになり、非常に深いネットワークでも学習を行うことができるようになりました。<br>
+ResNetは、このresidual unitを大量に重ねることにより構成されます。</p>
+
+<h1>
+<span id="stochastic-depth" class="fragment"></span><a href="#stochastic-depth"><i class="fa fa-link"></i></a>Stochastic Depth</h1>
+
+<p>Stochastic Depth<sup id="fnref3"><a href="#fn3" rel="footnote" title='G. Huang, Y. Sun, Z. Liu, D. Sedra, and K. Weinberger, "Deep Networks with Stochastic Depth," in Proc. of ECCV, 2016.'>3</a></sup>は、ResNetにおいて、訓練時にresidual unitをランダムにdropするという手法です（ショートカットは残します）。$l$番目のresidual unitがdropされずに生き残る確率（生存確率）$p_l$はネットワークの出力に近いほど低くなる（dropされやすくなる）ように線形に減少させます。<br>
+これにより、訓練時の「期待値で見たときの深さ」が浅くなり、ResNetは非常にdeepであるゆえに学習に時間がかかるという問題を改善し、また、residual unitが確率的にdropされることにより正則化の効果が期待できます。<br>
+具体的には、$l$番目のresidual unitを下記のような構成にします。ここで$b_l$はベルヌーイ変数で、確率$p_l$で1を、確率$1 - p_l$で0を取ります。<br>
+<a href="https://camo.qiitausercontent.com/68011afd94ac6475076f4418c465f01d706a46b8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f31393036353862362d383765312d396539362d653465642d6639336462326133346261302e706e67" target="_blank" rel="nofollow noopener"><img width="200" alt="Stochastic" src="https://camo.qiitausercontent.com/68011afd94ac6475076f4418c465f01d706a46b8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f31393036353862362d383765312d396539362d653465642d6639336462326133346261302e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/190658b6-87e1-9e96-e4ed-f93db2a34ba0.png"></a><br>
+テスト時には、それぞれのresidual unitについて生存確率の期待値$p_l$を出力にかけることでキャリブレーションを行います。</p>
+
+<h1>
+<span id="shake-shake" class="fragment"></span><a href="#shake-shake"><i class="fa fa-link"></i></a>Shake-Shake</h1>
+
+<p>Shake-Shake<sup id="fnref4"><a href="#fn4" rel="footnote" title='X. Gastaldi, "Shake-shake Regularization," in arXiv:1705.07485v2, 2017.'>4</a></sup> <sup id="fnref5"><a href="#fn5" rel="footnote" title='X. Gastaldi, "Shake-Shake Regularization of 3-branch Residual Networks, in Proc. of ICLR 2017 Workshop, 2017.'>5</a></sup>はResNetをベースとし、テンソルに対するdata augmentationを行うことで、正則化を実現する手法です。通常data augmentationは画像に対して行われますが、中間層の出力テンソル（特徴ベクトル）に対してもdata augmentationを行うことが有効であろうというのが基本的なアイディアになります。</p>
+
+<p>下記にShake-Shakeで利用される$l$番目のresidual unitの構成を示します。<br>
+<a href="https://camo.qiitausercontent.com/c9810622bce34e9ccadbaf38d5d7870c53fc1a82/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f62383866653431652d653263612d386164362d646236652d6564393636373537366163622e706e67" target="_blank" rel="nofollow noopener"><img width="640" src="https://camo.qiitausercontent.com/c9810622bce34e9ccadbaf38d5d7870c53fc1a82/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f62383866653431652d653263612d386164362d646236652d6564393636373537366163622e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/b88fe41e-e2ca-8ad6-db6e-ed9667576acb.png"></a><br>
+上記のようにShake-Shakeでは、residual unit内の畳み込みを2つに分岐させ、それらを一様乱数$\alpha_l \in [0, 1]$によって混ぜ合わせるということを行います。直感的には、画像ドメインに対するdata augmentationにおいてランダムクロッピングを行うことで、その画像内に含まれている物体の割合が変動してもロバストな認識ができるように学習ができるように、特徴レベルにおいても各特徴の割合が変動してもロバストな認識ができるようにしていると解釈することができます。<br>
+興味深いのは、backward時には、forward時の乱数$\alpha$とは異なる一様乱数$\beta_l \in [0, 1]$を利用するということです。テスト時には、乱数の期待値である0.5を固定で利用してforwardを行います。<br>
+論文中では、上記の$\alpha_l$と$\beta_l$を、0.5固定にしたり、それぞれ同じ値を利用したりする組み合わせを網羅的に検証しており、どちらも独立してランダムに （shake） する形が良いと結論付けています。<br>
+BackwardでのShakeは、residual unit毎に、learning rateをランダムにスケーリングしているような効果があり、SGDにおいて最適解に辿り着く確率を上げているのではないでしょうか（※個人の感想です）。</p>
+
+<p>$\alpha_l$と$\beta_l$は、バッチ単位で同一にするか、画像単位で独立に決定するかの2通りが考えられますが、こちらは画像単位で独立に決定するほうが良いと実験的に示されています。<br>
+これらの外乱効果は、ニューラルネットからすると迷惑限りないことですが、結果として強い正則化の効果をもたらし、既存手法に対しかなりの高精度化を実現できています。</p>
+
+<p>なお、Shake-Shakeの学習で特徴的な点として、学習率の減衰をcosine関数で制御<sup id="fnref6"><a href="#fn6" rel="footnote" title='I. Loshchilov and Frank Hutter, "SGDR: Stochastic Gradient Descent with Warm Restarts," in Proc. of ICLR, 2017.'>6</a></sup>し、通常300エポックかけて学習を行うところを、1800エポックかけてじっくりと学習することが挙げられます。これはShake-Shakeの効果により、擬似的に学習データが非常に大量にあるような状態となっているため、長時間の学習が有効であるためと考えられます。</p>
+
+<h1>
+<span id="cutout--random-erasing" class="fragment"></span><a href="#cutout--random-erasing"><i class="fa fa-link"></i></a>Cutout / Random Erasing</h1>
+
+<p>Cutout<sup id="fnref7"><a href="#fn7" rel="footnote" title='T. DeVries and G. W. Taylor, "Improved Regularization of Convolutional Neural Networks with Cutout," in arXiv:1708.04552, 2017.'>7</a></sup>は2017年8月15日に、Random Erasing<sup id="fnref8"><a href="#fn8" rel="footnote" title='Z. Zhong, L. Zheng, G. Kang, S. Li, and Y. Yang, "Random Erasing Data Augmentation," arXiv:1708.04896, 2017.'>8</a></sup>は2017年8月16日と、ほぼ同時期にarXivに論文が公開されたほぼ同一の手法（！）で、モデルの正則化を目的とした新しいdata augmentationを提案しています。</p>
+
+<p>同じく正則化を目的としたDropoutは全結合層には効果がありますが、CNNに対しては元々パラメータが少ないため効果が限定的でした。より重要な観点として、CNNの入力である画像は隣接画素に相関があるので、ランダムにdropしたとしてもその周りのピクセルで補間できてしまうため、正則化の効果が限定的でした。<br>
+これに対し、Cutout/Random Erasingでは入力画像をランダムなマスクで欠落させることで、より強い正則化の効果を作り出すことを狙いとしています。<br>
+<a href="https://camo.qiitausercontent.com/08290f49c4157099dd5e13d33a99869cb8ad8236/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f38623063663732662d303639382d666638392d656631312d6538396331363931376431342e706e67" target="_blank" rel="nofollow noopener"><img width="640" src="https://camo.qiitausercontent.com/08290f49c4157099dd5e13d33a99869cb8ad8236/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f38623063663732662d303639382d666638392d656631312d6538396331363931376431342e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/8b0cf72f-0698-ff89-ef11-e89c16917d14.png"></a><br>
+上図の左がCutout、右がRandom Erasingにおけるdata augmentation結果例です（画像はそれぞれの論文から引用）。</p>
+
+<h2>
+<span id="cutout" class="fragment"></span><a href="#cutout"><i class="fa fa-link"></i></a>Cutout</h2>
+
+<p>Cutoutでは、マスクの形よりもサイズが重要であるとの主張から、マスクの形状は単純なサイズ固定の正方形を利用し、そのマスクを画像のランダムな位置にかけて、その値を（データセットの？）平均値にしてしまいます。<br>
+より詳細には、マスクの中心位置を画像中のランダムな位置に設定し、その周りをマスクします。これにより、マスクの一部が画像からはみ出すケースが発生し、このようなあまりマスクをしすぎないケースが存在することも重要だと主張しています。<br>
+より明示的には、一定の確率でマスクを掛けないケースを許容することも考えられると記載されています（後述のRandom Erasingではそうなっています）。<br>
+<a href="https://camo.qiitausercontent.com/da96e88317625de44e29afa9ff37f0ee3917443a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f37653166393838622d643864612d623438392d386464392d6533363864386636393765302e706e67" target="_blank" rel="nofollow noopener"><img width="640" src="https://camo.qiitausercontent.com/da96e88317625de44e29afa9ff37f0ee3917443a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f37653166393838622d643864612d623438392d386464392d6533363864386636393765302e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/7e1f988b-d8da-b489-8dd9-e368d8f697e0.png"></a><br>
+Cutoutの効果は上図（縦軸精度、横軸マスクのサイズ）のようにマスクのサイズに依存し、データセットとタスクによって最適なサイズが違うことが予想されます。</p>
+
+<h2>
+<span id="random-erasing" class="fragment"></span><a href="#random-erasing"><i class="fa fa-link"></i></a>Random Erasing</h2>
+
+<p>Random Erasingでは、まず各画像に対しマスクを行うか行わないかをランダムに決定します。<br>
+マスクを行う場合には、まず画像中の何%をマスクするかを予め決められた範囲内からランダムに決定します。次に、同じく予め決められた範囲内でマスクのアスペクト比を決定します。最後にマスクの場所をランダムに決定し、マスク内の画素を0から255のランダムな値に変更します。<br>
+上記をベースとし、物体検出のように認識対象のBounding Boxが与えられるケースでは、それぞれの物体に対し、個別にRandom Erasingを行うことも提案しています。</p>
+
+<p>具体的なパラメータとしては、実験的に、マスクをする確率を0.5、マスクの割合を2%〜40%、アスペクト比を0.3〜1/0.3とすることが推奨されています。<br>
+また、マスクでどのように画素を変更するかについて、ランダム、平均（Cutoutと同じ）、0、255の4種類のアプローチを比較しており、ランダムが一番良かったと報告されています（平均もほぼ同じ）。<br>
+Cutoutでは画像分類タスクのみでしか評価されていませんでしたが、Random Erasingの論文では、画像分類に加えて物体検出と人物照合タスクについても有効性が確認されています。</p>
+
+<h1>
+<span id="shakedrop" class="fragment"></span><a href="#shakedrop"><i class="fa fa-link"></i></a>ShakeDrop</h1>
+
+<p>やっと本題の手法です。他の論文との整合性のため、notationを変えてあります。</p>
+
+<p>ShakeDrop<sup id="fnref1"><a href="#fn1" rel="footnote" title='山田良博, 岩村雅一, 黄瀬浩一, "PyramidNetに対する新たな確率的正則化手法ShakeDropの提案," 信学技報, 2017.'>1</a></sup>は、一言で言えば、Stochastic Depthにおいて、層をdropさせる代わりに、forward/backward時にShake-Shakeのような外乱を加える（shakeすると表現します）手法です。<br>
+ベースネットワークとして、ResNetではなく、より精度が高いPyramidNet<sup id="fnref9"><a href="#fn9" rel="footnote" title='D. Han, J. Kim, and J. Kim, "Deep Pyramidal Residual Networks," arXiv:1610.02915, 2016.'>9</a></sup>を利用しています（が、本手法の本質ではないはずです）。</p>
+
+<p>下記にShakeDropで利用される$l$番目のresidual unitの構成を示します。<br>
+<a href="https://camo.qiitausercontent.com/30fb0da7b94f7df6a1d8b720fca5f86151e45c10/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f35323062323631632d393465342d333163622d356138322d3332383361313233333134312e706e67" target="_blank" rel="nofollow noopener"><img width="640" src="https://camo.qiitausercontent.com/30fb0da7b94f7df6a1d8b720fca5f86151e45c10/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f35323062323631632d393465342d333163622d356138322d3332383361313233333134312e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/520b261c-94e4-31cb-5a82-3283a1233141.png"></a><br>
+上図において、$b_l$は、確率$p_l$で1を、$1 - p_l$で0を取るベルヌーイ変数です。Stochastic Depthと同様に$p_l$はネットワークの出力層に近いほど小さな値を取るように設計され、$p_l = 1 - \frac{l}{2L}$と定義されます（$L$はresidual unit数）。</p>
+
+<p>$\alpha_l$と$\beta_l$はShake-Shakeと同様に、forward/backward時に出力をスケーリングする乱数です。テスト時には、forward時のスケーリング$b_l + (1 - b_l)\alpha_l$の期待値をかけてあげます。<br>
+上図において、$p_l = 1$（全くdropされない）とすれば通常のresidual unitと同様になり、$p_l = 0$（常にdropする）とすれば、Shake-Shakeと同様に全ての入力に対しshakeするようなreisual unitになります。<br>
+逆に、$\alpha_l = 0$と$\beta_l = 0$とすれば、Stochastic Depthと同一になります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/1a7eca9703c3f526cfd1f199aba364a4bf147764/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f37316631346161322d306239352d656262372d383763662d6161346665323265393135312e706e67" target="_blank" rel="nofollow noopener"><img width="400" src="https://camo.qiitausercontent.com/1a7eca9703c3f526cfd1f199aba364a4bf147764/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f37316631346161322d306239352d656262372d383763662d6161346665323265393135312e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/71f14aa2-0b95-ebb7-87cf-aa4fe22e9151.png"></a><br>
+$\alpha_l$と$\beta_l$が取りうる範囲は、幾つかの候補から最も精度が良くなった$\alpha_l \in [-1, 1]$と$\beta_l \in [0, 1]$が採用されています。<br>
+解釈が難しいのが、$\alpha_l$と$\beta_l$の正負が異なるケースが存在することです。そのようなケースでは、実際にupdateすべき勾配と逆の方向にパラメータがアップデートされることになります（正負が同じであれば、スケールが違うだけで方向は同じなのでそこまで変ではない）。<br>
+1つの解釈としては、逆の勾配でアップデートされるということは、前のステップのパラメータに戻るような効果があり、パラメータをannelingするような影響があるのかもしれません。<br>
+なお、$p_l &gt; 0.5$であれば（本論文の設定では満たされる）、期待値上は正しい方向にパラメータは進んでいくはずです（そもそもSGDでmomentumを利用する場合には、実際には正しい方向にアップデートされそうですが）。</p>
+
+<p>なお、予備実験において、$p_l = 0$とする（常にshakeする）場合では、全く学習できなかったことが報告されており、全てshakeすることは外乱としては強すぎることが伺えます。Shake-Shakeのケースでは、2つに分岐した畳み込みが似たような特徴を学習することで、この影響を軽減しているのではないかと思います。</p>
+
+<p>$\alpha_l$と$\beta_l$をどの単位で変化させるかですが、Shake-Shakeの論文ではバッチ単位と画像単位のみしか検証されていませんでしたが、本論文ではチャネル単位と画素単位でも検証が行われています。<br>
+<a href="https://camo.qiitausercontent.com/ac476bb61707522044c2af1137688b16ecad9979/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f65383561356165322d346363302d343730342d326161622d6564306638643562336161622e706e67" target="_blank" rel="nofollow noopener"><img width="480" src="https://camo.qiitausercontent.com/ac476bb61707522044c2af1137688b16ecad9979/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f65383561356165322d346363302d343730342d326161622d6564306638643562336161622e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/e85a5ae2-4cc0-4704-2aab-ed0f8d5b3aab.png"></a><br>
+上記のように、チャネル単位での精度が良いことが示されています。</p>
+
+<p>ShakeDropは、Shake-Shakeと比較すると、2つに分岐させていた畳み込みが1つになっており、パラメータを半分にできている一方、ベースネットワークとしてPyramidNetを利用することで、同等のパラメータで総数を大幅に増加させており、その辺りが高精度化に効いていると思われます。<br>
+また、ShakeDropでは、Shake-Shakeと同様に1800エポックの学習を行っていますが、cosine関数で学習率で制御するのではなく、エポックが全体の1/2および3/4となるタイミングで学習率を1/10とするスケジューリングを行っています。</p>
+
+<p>下記が、既存のstate-of-the-artの手法との比較結果です。<br>
+<a href="https://camo.qiitausercontent.com/af51ff51ad761c5e4215399450dae496a2883620/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f37663438663639642d666235362d636264312d666461322d6230373538313838336539622e706e67" target="_blank" rel="nofollow noopener"><img width="640" src="https://camo.qiitausercontent.com/af51ff51ad761c5e4215399450dae496a2883620/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f37663438663639642d666235362d636264312d666461322d6230373538313838336539622e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/7f48f69d-fb56-cbd1-fda2-b07581883e9b.png"></a><br>
+6倍学習と書かれている箇所は、1800エポックで学習したか、矩形前処理はCutoutを行っているかです。<br>
+ShakeDropは、PyramidNetをベースネットワークすることで、非常に深いネットワークを利用しつつ、その総数でも利用できるようなShake-Shakeの代替アーキテクチャを利用し、更に<del>Cutout</del>Random Erasingを組み合わせて長時間学習させることで、既存手法に対しかなりの精度向上を実現できていることがわかります。</p>
+
+<p>以上が、ShakeDropの全体像になります。<br>
+結果としてのモデルアーキテクチャとしては比較的シンプルであるにも関わらず、非常に高精度な認識を実現しているということで、一度試してみてはいかがでしょうか。</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>山田良博, 岩村雅一, 黄瀬浩一, "PyramidNetに対する新たな確率的正則化手法ShakeDropの提案," 信学技報, 2017. <a href="#fnref1">↩</a></p>
+</li>
+
+<li id="fn2">
+<p>K. He, X. Zhang, S. Ren, and J. Sun, "Deep Residual Learning for Image Recognition," in Proc. of CVPR, 2016. <a href="#fnref2">↩</a></p>
+</li>
+
+<li id="fn3">
+<p>G. Huang, Y. Sun, Z. Liu, D. Sedra, and K. Weinberger, "Deep Networks with Stochastic Depth," in Proc. of ECCV, 2016. <a href="#fnref3">↩</a></p>
+</li>
+
+<li id="fn4">
+<p>X. Gastaldi, "Shake-shake Regularization," in arXiv:1705.07485v2, 2017. <a href="#fnref4">↩</a></p>
+</li>
+
+<li id="fn5">
+<p>X. Gastaldi, "Shake-Shake Regularization of 3-branch Residual Networks, in Proc. of ICLR 2017 Workshop, 2017. <a href="#fnref5">↩</a></p>
+</li>
+
+<li id="fn6">
+<p>I. Loshchilov and Frank Hutter, "SGDR: Stochastic Gradient Descent with Warm Restarts," in Proc. of ICLR, 2017. <a href="#fnref6">↩</a></p>
+</li>
+
+<li id="fn7">
+<p>T. DeVries and G. W. Taylor, "Improved Regularization of Convolutional Neural Networks with Cutout," in arXiv:1708.04552, 2017. <a href="#fnref7">↩</a></p>
+</li>
+
+<li id="fn8">
+<p>Z. Zhong, L. Zheng, G. Kang, S. Li, and Y. Yang, "Random Erasing Data Augmentation," arXiv:1708.04896, 2017. <a href="#fnref8">↩</a></p>
+</li>
+
+<li id="fn9">
+<p>D. Han, J. Kim, and J. Kim, "Deep Pyramidal Residual Networks," arXiv:1610.02915, 2016. <a href="#fnref9">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>yu4uさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>58</kbd>
+		<a target="_blank" href="https://qiita.com/yu4u/items/5cbe9db166a5d72f9eb8">最新の物体検出手法Mask R-CNNのRoI AlignとFast(er) R-CNNのRoI Poolingの違いを正しく理解する</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-01 18:44:41</center>
+	</td>
+	<td style="width:200px;">
+		@yu4u<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/139809/profile-images/1473721008">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[DeepLearning]</b> <b>[R-CNN]</b> <b>[faster-r-cnn]</b> <b>[fast-r-cnn]</b> <b>[mask-r-cnn]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>CNNベースの高速な物体検出の先駆けであるFast R-CNN<sup id="fnref1"><a href="#fn1" rel="footnote" title='R. Girshick, "Fast R-CNN," in Proc. of ICCV, 2015.'>1</a></sup>やFaster R-CNN<sup id="fnref2"><a href="#fn2" rel="footnote" title='S. Ren, K. He, R. Girshick, J. Sun, "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks," in Proc. of NIPS, 2015.'>2</a></sup>、最新のMask R-CNN<sup id="fnref3"><a href="#fn3" rel="footnote" title='Mask R-CNN, "K. He, G. Gkioxari, P. Dollar, and R. Girshick, in Proc. of ICCV, 2017.'>3</a></sup>では、まず物体の候補領域をregion proposalとして検出し、そのregion proposalが実際に認識対象の物体であるか、認識対象であればどのクラスかであるかを推定します。<br>
+Fast R-CNN系の手法のベースとなったR-CNN<sup id="fnref4"><a href="#fn4" rel="footnote" title='R. Girshick, J. Donahue, T. Darrell, and J. Malik, "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation," in Proc. of CVPR, 2014.'>4</a></sup>では、region proposalの領域を入力画像から切り出し、固定サイズの画像にリサイズしてからクラス分類用のCNNにかけるという処理を行っていたため、大量のregion proposalを0からCNNにかける必要があり、非常に低速でした。</p>
+
+<p><a href="https://camo.qiitausercontent.com/cef327e9aebc806911f5205c857bbefedf7eef2f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f30636466333961642d636133312d353337372d383763332d3038396266373864656138312e706e67" target="_blank" rel="nofollow noopener"><img width="480" src="https://camo.qiitausercontent.com/cef327e9aebc806911f5205c857bbefedf7eef2f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f30636466333961642d636133312d353337372d383763332d3038396266373864656138312e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/0cdf39ad-ca31-5377-87c3-089bf78dea81.png"></a><br>
+<sup id="fnref1"><a href="#fn1" rel="footnote" title='R. Girshick, "Fast R-CNN," in Proc. of ICCV, 2015.'>1</a></sup>より引用。</p>
+
+<p>これに対し、Fast(er) R-CNNでは、ある程度畳み込み処理を行ったfeature mapから、region proposalにあたる部分領域をうまく「固定サイズのfeature map」として抽出するRoI Poolingを行うことで、前段の畳込み処理を共通化し、高速化を実現しています。</p>
+
+<p>しかしながら、RoI Poolingの対象となっているfeature mapは入力画像と比較して解像度が低いため、RoI Poolingされた領域が実際に対応している画像領域が、元々のregion proposalの画像領域とずれてしまうという問題がありました。<br>
+最新のMask R-CNN<sup id="fnref3"><a href="#fn3" rel="footnote" title='Mask R-CNN, "K. He, G. Gkioxari, P. Dollar, and R. Girshick, in Proc. of ICCV, 2017.'>3</a></sup>では、この問題を解決するRoI Alignが提案されています。</p>
+
+<p>何気にRoI AlignやRoI Poolingについて、あまり詳細な説明を見たことがない（英語でも雑なのが多い）ので、本稿ではこれらの処理について細かく説明したいと思います。</p>
+
+<h1>
+<span id="roi-pooling" class="fragment"></span><a href="#roi-pooling"><i class="fa fa-link"></i></a>RoI Pooling</h1>
+
+<p>RoI Poolingでは、ある程度畳み込み処理を行ったfeature mapから、region proposalにあたる部分領域をうまく「固定サイズのfeature map」として抽出します。<br>
+ここでは説明のため、入力画像サイズを320x480とし、これを解像度が1/32になるCNNにかけることで、10x15のfeature mapが得られたとし、RoI Poolの結果として3x3のfeature mapを抽出したいとします（通常RoI Poolingの出力としては7x7のfeature mapが利用されますが、説明のため3x3としています）。</p>
+
+<p><a href="https://camo.qiitausercontent.com/8cf05cf36d952981add1dbf70b0cafa01731adfe/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f63383161356163372d663135392d303835382d653162642d6537326664343262646363392e706e67" target="_blank" rel="nofollow noopener"><img width="640" src="https://camo.qiitausercontent.com/8cf05cf36d952981add1dbf70b0cafa01731adfe/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f63383161356163372d663135392d303835382d653162642d6537326664343262646363392e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/c81a5ac7-f159-0858-e1bd-e72fd42bdcc9.png"></a></p>
+
+<p>上記の図のように、元画像のregion proposalの領域を、feature map上に投影してみると、当然feature mapとサブピクセルレベルのずれが発生します。<br>
+RoI Poolingでは、このずれを丸め込みながらPoolingを行います。</p>
+
+<p><a href="https://camo.qiitausercontent.com/ab088881a617422c99b40610f357cad4ac0037b7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f39616366363937312d363263332d383265312d656136312d3562613062623736393862312e706e67" target="_blank" rel="nofollow noopener"><img width="360" src="https://camo.qiitausercontent.com/ab088881a617422c99b40610f357cad4ac0037b7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f39616366363937312d363263332d383265312d656136312d3562613062623736393862312e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/9acf6971-62c3-82e1-ea61-5ba0bb7698b1.png"></a></p>
+
+<p>具体的にはまず、region proposalの座標を整数値に丸め、上記の赤い外接矩形を得ます。この時点で、最大0.5ピクセルのずれが発生します。これは、元画像ではCNNのstrideの半分に相当し、今回の例では32/2=16ピクセルのずれに相当します。</p>
+
+<p>その後、その外接矩形をfeature mapのサイズと同じビン数（ここでは3x3）に等分割します。そして、feature mapのRoI内のピクセルを、それぞれ3x3つのビンのいずれかに割り当て、割り当てられたビンの中でmaxやaverageを取ることで、RoI Poolingの出力を得ます。</p>
+
+<p>上図では、市松模様でfeature mapの各ピクセルの割り当てを表現しています。丸め方やピクセルの割り当て方は色々な方法が考えられます（切り捨ててしまうとか）が、上記の図のような形が誤差を小さくできるのではないでしょうか。<br>
+（こちらの<a href="https://www.youtube.com/watch?v=XGi-Mz3do2s" rel="nofollow noopener" target="_blank">動画</a>では、RoIの取得時や、3x3の分割時に切り捨てを行う説明になっているので、かなり誤差があるように見えてしまいますが、オリジナルの論文でも"round"という表記をしています）</p>
+
+<p>何れにせよ、RoIの取得と、ピクセルの割り当て時に丸め誤差が発生し、これがセグメンテーションなどの位置ずれがあまり許されないアプリケーションでは問題になります。</p>
+
+<h1>
+<span id="roi-align" class="fragment"></span><a href="#roi-align"><i class="fa fa-link"></i></a>RoI Align</h1>
+
+<p>上記のRoI Poolingの問題を解決するのがRoI Alignです。こちらのほうがstraight forwardでアルゴリズムとして分かりやすいです。<br>
+RoI Alignでは、まずregion proposalの領域をそのまま3x3に等分割します。</p>
+
+<p><a href="https://camo.qiitausercontent.com/ad51aede3139b16e684fec813def4034b5763519/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f64306366326635362d363866382d353836632d313436392d3233373666656338323964392e706e67" target="_blank" rel="nofollow noopener"><img width="600" src="https://camo.qiitausercontent.com/ad51aede3139b16e684fec813def4034b5763519/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f64306366326635362d363866382d353836632d313436392d3233373666656338323964392e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/d0cf2f56-68f8-586c-1469-2376fec829d9.png"></a></p>
+
+<p>そして、サブピクセル座標を持つ上記のグリッド点の値を、feature mapの近傍4ピクセルから<a href="https://en.wikipedia.org/wiki/Bilinear_interpolation" rel="nofollow noopener" target="_blank">bilinear interpolation</a>を用いて算出します。最後に、各ビンに対応する4つのグリッド点の値をmaxまたはaverageでpoolingすることで、RoI Alignの出力を得ます。</p>
+
+<p><del>なお、上記のグリッド点をどうとるかは論文中には明記されておらず、下記の記述からの推測になります。ここは実装を確認して情報をアップデートしたいと思います。</del><br>
+著者らの資料にグリッドの取り方があったので修正しました！</p>
+
+<blockquote>
+<p>compute the exact values of the input features at four regularly sampled locations in each RoI bin</p>
+</blockquote>
+
+<blockquote class="twitter-tweet">
+<p>Ross Girshickさんの資料を見る限り、Mask R-CNNのRoIAlignは、14x14のbinの中央から値を取って、mask branchにはそのまま、検出にはpooling噛まして食わせれば良いだろうし、猫が可愛い <a href="https://t.co/FWFhpuxqZv" rel="nofollow noopener" target="_blank">https://t.co/FWFhpuxqZv</a> <a href="https://t.co/4hiyJQEgCi" rel="nofollow noopener" target="_blank">pic.twitter.com/4hiyJQEgCi</a></p>— Yosuke Shinya (@shinya7y) <a href="https://twitter.com/shinya7y/status/915201426959171584?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年10月3日</a>
+</blockquote>
+
+<p>ちなみに、より単純には、各ビンの中心座標の値をbilinear interpolationし、その値をそのまま利用することも同じように有効だと本文には記載があります。RoIがfeature mapに対して小さい場合には、こちらのほうが良い気すらします。</p>
+
+<p>しかし、この辺りの処理は、feature mapを画像だと見立てると、サブピクセルレベルの画像のリサイズの問題であり、画像処理屋さんからするともっと良いソリューションがあるかもしれません（back propできる処理である必要がありますが）。</p>
+
+<p>ちなみにTensorFlow実装ではRoI Poolingの代わりにresizeが使われているらしいですが、リサイズのアルゴリズムによっては、RoI PoolingよりもRoI Align的な結果が得られ、精度的にも良いとかあるかもしれません。</p>
+
+<blockquote class="twitter-tweet">
+<p>tensorflow実装はroi poolingの代わりにresize使うんご〜，だってThis is much more efficient and has little impact on resultsンゴ. って書いてあった．<br><br>まじかよ．</p>— k3nt0 (@K3nt0W) <a href="https://twitter.com/K3nt0W/status/901349276927668224?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年8月26日</a>
+</blockquote>
+
+<h1>
+<span id="実装例" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85%E4%BE%8B"><i class="fa fa-link"></i></a>実装例</h1>
+
+<h2>
+<span id="pytorch実装" class="fragment"></span><a href="#pytorch%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>PyTorch実装</h2>
+
+<p><a href="https://github.com/felixgwu/mask_rcnn_pytorch" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/felixgwu/mask_rcnn_pytorch</a><br>
+<a href="https://github.com/felixgwu/mask_rcnn_pytorch/blob/dbe7304f87afd2edd51a29630c485f098bb64db0/models/modules/roi_align/src/cuda/roi_align_kernel.cu" rel="nofollow noopener" target="_blank">roi_align_kernel.cu</a> の実装を見る限り、「各ビンの中心座標の値をbilinear interpolationし、その値をそのまま利用する」を利用している。</p>
+
+<h2>
+<span id="tensorflow実装" class="fragment"></span><a href="#tensorflow%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>TensorFlow実装</h2>
+
+<p><a href="https://github.com/CharlesShang/FastMaskRCNN" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/CharlesShang/FastMaskRCNN</a><br>
+<a href="https://github.com/CharlesShang/FastMaskRCNN/issues/116" rel="nofollow noopener" target="_blank">こちらのIssue</a> にある通り、<code>tf.image.crop_and_resize</code> を利用してリサイズを行っている。<code>tf.image.crop_and_resize</code> は補間方法としてbilinear interpolationを採用しているので、上記の手法と同じ結果になりそう。</p>
+
+<h2>
+<span id="caffe実装" class="fragment"></span><a href="#caffe%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>Caffe実装</h2>
+
+<p><a href="https://github.com/jasjeetIM/Mask-RCNN" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/jasjeetIM/Mask-RCNN</a><br>
+<a href="https://github.com/jasjeetIM/Mask-RCNN/blob/60290fb79a18d345040bc5de7cbcb7cd52d80be8/external/caffe/src/caffe/layers/roi_align_layer.cpp" rel="nofollow noopener" target="_blank">roi_align_layer.cpp</a> を見る限り、各ビンの中心座標を中心とした１ピクセル四方のグリッド上の４点をサンプルしている。本稿の例よりもこちらの実装のほうが適切かもしれない。</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>R. Girshick, "Fast R-CNN," in Proc. of ICCV, 2015. <a href="#fnref1">↩</a></p>
+</li>
+
+<li id="fn2">
+<p>S. Ren, K. He, R. Girshick, J. Sun, "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks," in Proc. of NIPS, 2015. <a href="#fnref2">↩</a></p>
+</li>
+
+<li id="fn3">
+<p>Mask R-CNN, "K. He, G. Gkioxari, P. Dollar, and R. Girshick, in Proc. of ICCV, 2017. <a href="#fnref3">↩</a></p>
+</li>
+
+<li id="fn4">
+<p>R. Girshick, J. Donahue, T. Darrell, and J. Malik, "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation," in Proc. of CVPR, 2014. <a href="#fnref4">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>yu4uさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>34</kbd>
+		<a target="_blank" href="https://qiita.com/yu4u/items/606e6e5225ad9b603269">研究における評価実験で重要な7つのこと</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-22 09:32:50</center>
+	</td>
+	<td style="width:200px;">
+		@yu4u<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/139809/profile-images/1473721008">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[論文]</b> <b>[研究]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>自身の研究を論文としてまとめる際には、自分の提案手法の有効性を、理論的な説明だけではなく実験的にも示す必要があります。トップカンファレンスにおいては評価実験は網羅的で隙がないことが前提となり、中堅カンファレンスでは評価実験をしっかりしていれば大体通るという印象があります。</p>
+
+<p>本ポエムでは、卒業研究の季節に向けて、評価実験において個人的に重要だと思っていることを書いていきたいと思います。</p>
+
+<p>突っ込み、改善提案、最後のTIPSの拡充等、大歓迎です。</p>
+
+<h2>
+<span id="前提" class="fragment"></span><a href="#%E5%89%8D%E6%8F%90"><i class="fa fa-link"></i></a>前提</h2>
+
+<p>コンピュータサイエンス分野を想定としています。また、筆者の専門はコンピュータビジョンであるため、ピュアな機械学習に関する研究等では当てはまらない内容もあると思います。<br>
+また、ある程度確立された問題設定下での研究を想定しています。研究自体が全く新しい問題設定を行っているケースでは、ベースラインとなる手法自体も自分で考えないといけないなど、評価実験の設計自体が非常に重要となります。</p>
+
+<h1>
+<span id="自身の研究に批判的な疑問を持つ" class="fragment"></span><a href="#%E8%87%AA%E8%BA%AB%E3%81%AE%E7%A0%94%E7%A9%B6%E3%81%AB%E6%89%B9%E5%88%A4%E7%9A%84%E3%81%AA%E7%96%91%E5%95%8F%E3%82%92%E6%8C%81%E3%81%A4"><i class="fa fa-link"></i></a>自身の研究に批判的な疑問を持つ</h1>
+
+<p>評価実験は本来、自身の研究に対して、こういうケースではどうなるんだろう？と疑問に思う内容（仮説）を自分自身が腹落ちするまで検証していけば、十分な内容が得られるはずです。<br>
+その結果、理想的には、「その研究を一番知っているはずの人間（＝自分）」ですら突っ込みどころがなくなります。であれば、今その研究を聞いた人間（査読者、プレゼンの聴衆）が考える突っ込みどころなど、ほとんどがカバーされることになるでしょう。<br>
+そしてその過程で得られた考察を、より多くの読者が疑問に思うであろうことを優先して取捨選択することで、必要十分な評価実験の章ができあがるというわけです。</p>
+
+<p>さて、自分自身の研究に対し、適切な（批判的な）疑問を持つことは、ある程度の訓練が必要かもしれません。これはすなわち、他の人の研究に対して適切な疑問を持てるかということと同値であり、普段からこの手法はこういうケースではどうなるのだろう？と思いながら論文を読んだり、研究発表に対し積極的に質問をする（考える）ことで鍛えられるので、常にそういう意識を持つようにしましょう。</p>
+
+<p>手っ取り早く自身の研究に対して批判的な疑問が欲しければ、研究室や職場で、自身の研究を発表すれば良いでしょう。そこでの質問は、そのまま論文の評価実験で回答すべき内容の候補となります。</p>
+
+<h1>
+<span id="適切なベースラインを選定する" class="fragment"></span><a href="#%E9%81%A9%E5%88%87%E3%81%AA%E3%83%99%E3%83%BC%E3%82%B9%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%92%E9%81%B8%E5%AE%9A%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>適切なベースラインを選定する</h1>
+
+<p>評価実験を行う上でまず重要なことは、適切なベースラインの選定です。なるべくシンプルな（だがナイーブすぎない）デファクトと言える手法をベースラインとして選定し、そのベースラインに対し提案手法を導入し、どのような効果があるかを検証していくことが重要となります。<br>
+ごちゃごちゃした既存手法に対して提案手法を導入して効果があったとしても、特定の既存手法を前提とした手法なのか、汎用性な手法なのかの判断が難しくなるため、なるべくシンプルなベースラインを選定すべきです。<br>
+逆にベースラインがあまりにもナイーブな手法では、何をやっても効果があるように見えるため、このベースラインの選定のさじ加減はセンスが問われるかもしれません。</p>
+
+<h1>
+<span id="提案手法を構成要素に分解する" class="fragment"></span><a href="#%E6%8F%90%E6%A1%88%E6%89%8B%E6%B3%95%E3%82%92%E6%A7%8B%E6%88%90%E8%A6%81%E7%B4%A0%E3%81%AB%E5%88%86%E8%A7%A3%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>提案手法を構成要素に分解する</h1>
+
+<p>さて、ベースラインが決まれば、それに提案手法を導入して、どの程度効果があるかを検証することになります。<br>
+しかし、その前に一度、提案手法と言っているものが、独立した構成要素に分解できないか見直してみましょう。多くのケースで複数の構成要素に分解できるのではないでしょうか。</p>
+
+<p>提案手法を独立した構成要素に分解することは、いくつかの観点で非常に重要です。<br>
+まず、独立した構成要素に分解できれば、それぞれの構成要素はより汎用的で、適用範囲の広い手法であると言うことができます。<br>
+そして、そのような分解をしていくうちに、余分な前提がなくなり、提案手法が本質的に何をしているかが明確になるはずです。例えば、同じようなアプローチの既存手法はないと思っていたとしても、構成要素に分解して、その構成要素レベルで同じような機能性を持った既存手法がないかと考えてみると、本質的には同じようなことをしている手法があるかもしれません。<br>
+あるいは、既存手法についても上記のような分解を行うことで新たな発見があることもあるのではないでしょうか。</p>
+
+<h1>
+<span id="提案手法の構成要素を独立に評価する" class="fragment"></span><a href="#%E6%8F%90%E6%A1%88%E6%89%8B%E6%B3%95%E3%81%AE%E6%A7%8B%E6%88%90%E8%A6%81%E7%B4%A0%E3%82%92%E7%8B%AC%E7%AB%8B%E3%81%AB%E8%A9%95%E4%BE%A1%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>提案手法の構成要素を独立に評価する</h1>
+
+<p>さて、提案手法がいくつかの独立した構成要素に分解できたとしましょう。あるいは、最初から複数の提案を行っている研究もあると思います。<br>
+このようなケースでは、各構成要素が全て有効であるということを示す必要があります。</p>
+
+<p>以下では提案手法が独立したA, B, Cという構成要素から構成されると仮定します。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: center">精度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">既存手法</td>
+<td style="text-align: center">80%</td>
+</tr>
+<tr>
+<td style="text-align: left">提案手法（A+B+C）</td>
+<td style="text-align: center">90%</td>
+</tr>
+</tbody>
+</table>
+
+<p>さて、上記の表のような評価結果があったとして、納得できるでしょうか？<br>
+A, B, Cの構成要素がそれぞれどの程度重要なのか、そもそも全部必要なのかという疑問が発生すると思います。<br>
+このケースでは（A+B+C）と書いてあるため、上記のような疑問が発生すると思いますが、自分の提案手法が、本質的には複数の構成要素に分解できるにもかかわらず自分では1つの構成要素だと思っていると、結果的に上記のような評価をしてしまうことがありうるため、前述の複数の構成要素に分解するということが重要になるのです。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: center">精度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">既存手法</td>
+<td style="text-align: center">80%</td>
+</tr>
+<tr>
+<td style="text-align: left">提案手法（A）</td>
+<td style="text-align: center">84%</td>
+</tr>
+<tr>
+<td style="text-align: left">提案手法（A+B）</td>
+<td style="text-align: center">87%</td>
+</tr>
+<tr>
+<td style="text-align: left">提案手法（A+B+C）</td>
+<td style="text-align: center">90%</td>
+</tr>
+</tbody>
+</table>
+
+<p>上記ではどうでしょうか？何となく良さそうですが、実は提案手法（C）だけで90%の精度がでるのではないか？と突っ込むこともできます。<br>
+あるいは、そこまでではなくとも、提案手法（C）が89%だとしたらどうでしょうか？その場合、利用者観点からすると、わざわざA, Bといった実装をしなくともある程度の精度がでるのであれば、Cだけを利用するということが魅力的な選択肢になりえます。<br>
+これは、A, B, Cが、実は独立ではなく本質的には同じような効果をもたらすようなもので、Cがその上位互換であった場合に起こりえます。特にCが既存手法である場合には注意が必要です。</p>
+
+<p>上記を考慮すると、A, B, Cそれぞれを利用する/しないの８通りの組み合わせを評価することが理想的ということになりますが、構成要素が多くなると評価も大変になり、結果もごちゃごちゃしてしまう可能性があります。<br>
+そのようなケースでは、下記のように各構成要素を1つだけ抜いた手法を比較するablation studyを行うことで、提案手法からどの構成要素を抜いたとしても大きく精度が低下することを示し、結果的にどの構成要素も重要であると主張することができます。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: center">精度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">既存手法</td>
+<td style="text-align: center">80%</td>
+</tr>
+<tr>
+<td style="text-align: left">提案手法（Aなし）</td>
+<td style="text-align: center">86%</td>
+</tr>
+<tr>
+<td style="text-align: left">提案手法（Bなし）</td>
+<td style="text-align: center">87%</td>
+</tr>
+<tr>
+<td style="text-align: left">提案手法（Cなし）</td>
+<td style="text-align: center">87%</td>
+</tr>
+<tr>
+<td style="text-align: left">提案手法</td>
+<td style="text-align: center">90%</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="同じ機能性を持った既存手法と比較する" class="fragment"></span><a href="#%E5%90%8C%E3%81%98%E6%A9%9F%E8%83%BD%E6%80%A7%E3%82%92%E6%8C%81%E3%81%A3%E3%81%9F%E6%97%A2%E5%AD%98%E6%89%8B%E6%B3%95%E3%81%A8%E6%AF%94%E8%BC%83%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>同じ機能性を持った既存手法と比較する</h1>
+
+<p>これまで、提案手法を複数の構成要素に分解し、独立して評価することを行いました。<br>
+その過程で、各構成要素単位では、同じ機能性を持った既存手法がピックアップされたかもしれません。<br>
+既存手法との比較を行う場合にも、提案手法の構成要素を独立に評価したように、既存手法と同じ機能性を持った構成要素単位で比較を行いましょう。</p>
+
+<p>例えば、提案手法はA, B, Cという構成要素からなり、既存手法はX, Yという構成要素からなるケースを考えます。ここで、AとXは同じ機能性を持ち、CとYは同じ機能性を持つとします。<br>
+この場合には、提案手法（A+B+C）と既存手法（X+Y）の比較だけではなく、例えば下記のような比較を行うと説得力が増すでしょう。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: center">精度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">ベースライン</td>
+<td style="text-align: center">80%</td>
+</tr>
+<tr>
+<td style="text-align: left">ベースライン＋A</td>
+<td style="text-align: center">85%</td>
+</tr>
+<tr>
+<td style="text-align: left">ベースライン＋X</td>
+<td style="text-align: center">83%</td>
+</tr>
+<tr>
+<td style="text-align: left">ベースライン＋C</td>
+<td style="text-align: center">86%</td>
+</tr>
+<tr>
+<td style="text-align: left">ベースライン＋Y</td>
+<td style="text-align: center">84%</td>
+</tr>
+<tr>
+<td style="text-align: left">提案手法（A+B+C）</td>
+<td style="text-align: center">95%</td>
+</tr>
+<tr>
+<td style="text-align: left">既存手法（X+Y）</td>
+<td style="text-align: center">87%</td>
+</tr>
+</tbody>
+</table>
+
+<p>すわなち、AとX、CとYは交換できる機能要素であるが、どちらも提案手法のほうが性能が良いということを示すことができます。<br>
+さらに、既存手法（X+B+Y）との比較まで行っていれば、公平性も担保されるので、上記の提案手法の有効性に関しては文句のつけようがなくなります。</p>
+
+<h1>
+<span id="提案手法のハイパーパラメータを評価する" class="fragment"></span><a href="#%E6%8F%90%E6%A1%88%E6%89%8B%E6%B3%95%E3%81%AE%E3%83%8F%E3%82%A4%E3%83%91%E3%83%BC%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%82%92%E8%A9%95%E4%BE%A1%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>提案手法のハイパーパラメータを評価する</h1>
+
+<p>提案手法に複数のハイパーパラメータ（以降単にパラメータ）が含まれているケースがあります。<br>
+機械学習の分野では、交差検証でパラメータを決定する前提であったり、パラメータに関してはかなりシビアに評価されている一方、コンピュータビジョン分野では、このようなパラメータが、本文中に単に「実験ではα=0.5, β=0.1, γ=0.9とした」とだけ記載されているケースも多いです。</p>
+
+<p>提案手法のロバスト性という観点では、これらのパラメータ設定が性能に対してセンシティブでないことを示すべきであり、少なくとも、それらのパラメータを変更した際に、どのように精度が変化するか、それは何故かといった考察をすべきです。<br>
+もしくは、交差検証でなくとも、何かしらのヒューリスティックによって自動的にパラメータを設定するような手法自体を検討し、複数のドメインで妥当な精度を実現できることを示すことができると良いでしょう。</p>
+
+<p>そもそも論としては、調整が必要なパラメータは少ないほうがよく、大量のパラメータを含む手法は単に過学習しているだけなのではと思われるので、なるべくシンプルな手法を目指しましょう。</p>
+
+<h1>
+<span id="既存state-of-the-art手法と比較する" class="fragment"></span><a href="#%E6%97%A2%E5%AD%98state-of-the-art%E6%89%8B%E6%B3%95%E3%81%A8%E6%AF%94%E8%BC%83%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>既存（State-of-the-Art）手法と比較する</h1>
+
+<p>上記までの評価がしっかり行われており、最後に著名な既存手法との比較が行われていれば、構成としては万全でしょう。<br>
+データセットや評価フレームワークが確立されている問題設定であれば、既存手法の論文中の数字をそのまま持ってきて比較とする形で良いでしょう。<br>
+深層学習分野では、上記の前提が満たされていたり、実装が公開されていることが多いので、（精度さえ出せれば）この評価は簡単なので、どの論文も同じような結果が乗っているケースが多いですね。</p>
+
+<p>精度が既存手法まで出ない場合はどのような対応が考えられるでしょうか？個人的には、精度の数字を追うことにそこまで意味はないと思っているのですが、論文を書く上では避けられない問題です。<br>
+1つには次のようなアプローチが考えられます。<br>
+これまで提案手法や既存手法を独立した構成要素に分解したり、同じ機能性を持った構成要素を比較することを行ってきました。そのうち、既存手法の構成要素で、提案手法に同じ機能性を持った構成要素がないものを探してみましょう。<br>
+その構成要素を提案手法に取り入れることで、精度が改善する可能性があるはずです。<br>
+トップカンファレンスの論文でも（だからこそ？）、最後の比較実験において、提案手法に精度をブーストする構成要素を追加しているケースも多いです。<br>
+あるいは、同じ機能性を持った構成要素を入れ替えてみることも考えられます。それで精度が上がった場合には、残念ながらその構成要素については有効性がないということになりますが、全体的な精度が向上するのであれば、残った構成要素を提案手法として、全体の構成を見直せば良いと思います。</p>
+
+<h1>
+<span id="その他のtips" class="fragment"></span><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AEtips"><i class="fa fa-link"></i></a>その他のTIPS</h1>
+
+<p>その他、思いついたら追加していこうと思います。</p>
+
+<h2>
+<span id="高速化手法の評価" class="fragment"></span><a href="#%E9%AB%98%E9%80%9F%E5%8C%96%E6%89%8B%E6%B3%95%E3%81%AE%E8%A9%95%E4%BE%A1"><i class="fa fa-link"></i></a>高速化手法の評価</h2>
+
+<h3>
+<span id="高速化なしと比較する" class="fragment"></span><a href="#%E9%AB%98%E9%80%9F%E5%8C%96%E3%81%AA%E3%81%97%E3%81%A8%E6%AF%94%E8%BC%83%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>高速化なしと比較する</h3>
+
+<p>提案手法に、高速化に関する提案が入っていることも多いと思います。<br>
+高速化は近似によって精度の低下を伴うケースが多いと思いますが、必ず高速化を行っていない手法をベースラインとして評価しましょう。<br>
+その高速化を行っていない手法が精度的には上限となり、その精度の上限に対して、高速化版でどの程度精度が近づけているかを評価することが重要です。<br>
+精度上限に近ければ、速度を維持しながら精度を改善するような検討はもはや不要であり、逆に高速化の効果は著しいが、精度もかなり下がるようであれば、まだ何か改善の余地があるのではないか、等を考える指標になります。</p>
+
+<h3>
+<span id="本当にその高速化って重要" class="fragment"></span><a href="#%E6%9C%AC%E5%BD%93%E3%81%AB%E3%81%9D%E3%81%AE%E9%AB%98%E9%80%9F%E5%8C%96%E3%81%A3%E3%81%A6%E9%87%8D%E8%A6%81"><i class="fa fa-link"></i></a>本当にその高速化って重要？</h3>
+
+<p>例えば画像検索においては、ざっくりと特徴抽出→検索といった処理フローになることが多いです。さて、この検索部分の高速化に取り組み、100倍の高速化を実現できたとします。スゴイです。<br>
+しかし、実は、もともと特徴抽出に1秒かかっていて、検索には0.1秒しかかかっていなかったとするとどうでしょう？ありがたみが薄れてしまいますね。<br>
+実応用上は、ボトルネックとなっている処理から高速化していくのが常ですが、得てして手法から入ると上記のような結果になることもありうるため、その高速化が本当に一番重要なのかを考えてみることも重要です。</p>
+
+<p>もちろん、真に汎用的な手法であれば上記の限りではありませんが、タイトルやイントロで、画像検索のための〜のような前提をうたっているとそのような突っ込みが入ることもあるかもしれません。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>yu4uさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>29</kbd>
+		<a target="_blank" href="https://qiita.com/yu4u/items/70aa007346ec73b7ff05">新たなdata augmentation手法mixupを試してみた</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-03 05:06:01</center>
+	</td>
+	<td style="width:200px;">
+		@yu4u<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/139809/profile-images/1473721008">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[DeepLearning]</b> <b>[深層学習]</b> <b>[Keras]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>最近arXivに論文が公開されたdata augmentation手法であるmixupが非常にシンプルな手法だったので試してみました。</p>
+
+<h2>
+<span id="mixup" class="fragment"></span><a href="#mixup"><i class="fa fa-link"></i></a>mixup</h2>
+
+<p>mixup<sup id="fnref1"><a href="#fn1" rel="footnote" title='H. Zhang, M. Cisse, Y. N. Dauphin, and D. Lopez-Paz, "mixup: Beyond Empirical Risk Minimization," in arXiv:1710.09412, 2017.'>1</a></sup>は、2つの訓練サンプルのペアを混合して新たな訓練サンプルを作成するdata augmentation手法の1つです。<br>
+具体的には、データとラベルのペア$(X_1, y_1)$, $(X_2, y_2)$から、下記の式により新たな訓練サンプル$(X, y)$を作成します。ここでラベル$y_1, y_2$はone-hot表現のベクトルになっているものとします。$X_1, X_2$は任意のベクトルやテンソルです。</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>X = \lambda X_1 + (1 - \lambda) X_2 \\
+y = \lambda y_1 + (1 - \lambda) y_2
+</pre></div></div>
+
+<p>ここで$\lambda \in [0, 1]$は、ベータ分布$Be(\alpha, \alpha)$からのサンプリングにより取得し、$\alpha$はハイパーパラメータとなります。特徴的なのは、データ$X_1, X_2$だけではなく、ラベル$y_1, y_2$も混合してしまう点です。</p>
+
+<p>この定式化の解釈の参考記事：<br>
+<a href="http://www.inference.vc/mixup-data-dependent-data-augmentation/" class="autolink" rel="nofollow noopener" target="_blank">http://www.inference.vc/mixup-data-dependent-data-augmentation/</a></p>
+
+<h2>
+<span id="実装" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>実装</h2>
+
+<p>ジェネレータとして実装します。<br>
+<a href="https://github.com/yu4u/mixup-generator" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/yu4u/mixup-generator</a></p>
+
+<div class="code-frame" data-lang="py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<span class="k">class</span> <span class="nc">MixupGenerator</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">datagen</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_train</span> <span class="o">=</span> <span class="n">y_train</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shuffle</span> <span class="o">=</span> <span class="n">shuffle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sample_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datagen</span> <span class="o">=</span> <span class="n">datagen</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">indexes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_exploration_order</span><span class="p">()</span>
+            <span class="n">itr_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">indexes</span><span class="p">)</span> <span class="o">//</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">itr_num</span><span class="p">):</span>
+                <span class="n">batch_ids</span> <span class="o">=</span> <span class="n">indexes</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">*</span> <span class="mi">2</span><span class="p">:(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span>
+                <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__data_generation</span><span class="p">(</span><span class="n">batch_ids</span><span class="p">)</span>
+
+                <span class="k">yield</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+
+    <span class="k">def</span> <span class="nf">__get_exploration_order</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_num</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shuffle</span><span class="p">:</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">indexes</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">indexes</span>
+
+    <span class="k">def</span> <span class="nf">__data_generation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_ids</span><span class="p">):</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">class_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">X1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="p">[</span><span class="n">batch_ids</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">]]</span>
+        <span class="n">X2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="p">[</span><span class="n">batch_ids</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">:]]</span>
+        <span class="n">y1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_train</span><span class="p">[</span><span class="n">batch_ids</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">]]</span>
+        <span class="n">y2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_train</span><span class="p">[</span><span class="n">batch_ids</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">:]]</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+        <span class="n">X_l</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">y_l</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">X</span> <span class="o">=</span> <span class="n">X1</span> <span class="o">*</span> <span class="n">X_l</span> <span class="o">+</span> <span class="n">X2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">X_l</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">y1</span> <span class="o">*</span> <span class="n">y_l</span> <span class="o">+</span> <span class="n">y2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_l</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">datagen</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">):</span>
+                <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">datagen</span><span class="o">.</span><span class="n">random_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+</pre></div></div>
+
+<p><code>training_generator = MixoutGenerator(x_train, y_train)()</code>で、訓練データとラベルの集合を引数としてジェネレータを取得し、<code>x, y = next(training_generator)</code>で学習用のバッチが取得できます。</p>
+
+<p>CIFAR-10データセットを利用してmixupした例です。<br>
+<a href="https://camo.qiitausercontent.com/884dde36911a0f99c767953865466b2c2372e492/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f66313965356535332d643161302d626566392d633638392d6662383962353834376233342e706e67" target="_blank" rel="nofollow noopener"><img width="600" src="https://camo.qiitausercontent.com/884dde36911a0f99c767953865466b2c2372e492/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f66313965356535332d643161302d626566392d633638392d6662383962353834376233342e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/f19e5e53-d1a0-bef9-c689-fb89b5847b34.png"></a></p>
+
+<p>ぼんやり2枚の画像がアルファ合成されたような画像が出力されます。</p>
+
+<h3>
+<span id="ジェネレータを利用した訓練" class="fragment"></span><a href="#%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%9F%E8%A8%93%E7%B7%B4"><i class="fa fa-link"></i></a>ジェネレータを利用した訓練</h3>
+
+<p>例えばKerasであれば、ジェネレータをそのまま学習する関数に渡してあげれば学習することができます。</p>
+
+<div class="code-frame" data-lang="py"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span><span class="n">generator</span><span class="o">=</span><span class="n">training_generator</span><span class="p">,</span>
+                    <span class="n">steps_per_epoch</span><span class="o">=</span><span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="n">batch_size</span><span class="p">,</span>
+                    <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">),</span>
+                    <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                    <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">)</span>
+</pre></div></div>
+
+<p>Kerasには、画像をランダムにスケーリングしたり、シフトしたりしてくれる便利な<code>ImageDataGenerator</code>があり、これと組み合わせることもできます。</p>
+
+<div class="code-frame" data-lang="py"><div class="highlight"><pre><span></span><span class="n">datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span>
+    <span class="n">width_shift_range</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">height_shift_range</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">horizontal_flip</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">training_generator</span> <span class="o">=</span> <span class="n">MixupGenerator</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">datagen</span><span class="o">=</span><span class="n">datagen</span><span class="p">)()</span>
+</pre></div></div>
+
+<p>このケースでは、まずmixupされたデータが作成され、その後<code>ImageDataGenerator</code>によりランダムな変換が加えられます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/ed5e469f27c0f16567610843b896c2dcf52ad543/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f32643539643538382d396161342d363638652d323462382d6362386630626135343032332e706e67" target="_blank" rel="nofollow noopener"><img width="600" src="https://camo.qiitausercontent.com/ed5e469f27c0f16567610843b896c2dcf52ad543/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f32643539643538382d396161342d363638652d323462382d6362386630626135343032332e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/2d59d588-9aa4-668e-24b8-cb8f0ba54023.png"></a></p>
+
+<h2>
+<span id="実験結果" class="fragment"></span><a href="#%E5%AE%9F%E9%A8%93%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>実験結果</h2>
+
+<p>Kerasのサンプルの<a href="https://github.com/fchollet/keras/tree/master/examples" rel="nofollow noopener" target="_blank">cifar10_resnet.py</a>を少しいじって実験してみました。</p>
+
+<p>mixupを使わないケース：</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Test loss: 0.862150103855
+Test accuracy: 0.8978
+</pre></div></div>
+
+<p>mixupを使うケース（$\alpha = 0.2$）：</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Test loss: 0.510702615929
+Test accuracy: 0.9117
+</pre></div></div>
+
+<p>1回のみの試行ですが、効果はありそうです。個人的には、<a href="https://qiita.com/yu4u/items/a9fc529c85534eca11e5" id="reference-1cecbab88da433312de4">こちらの記事</a>で紹介しているRandom Erasingのほうが画像ドメインでは効果がありそうな印象ですが、組み合わせてみるのも面白いかもしれません。学習させられてるネットワークからすると、ランダムに2枚の画像が合成されたり、ランダムに画像の一部が欠落させられたりして、たまったものではないですが…</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>H. Zhang, M. Cisse, Y. N. Dauphin, and D. Lopez-Paz, "mixup: Beyond Empirical Risk Minimization," in arXiv:1710.09412, 2017. <a href="#fnref1">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>yu4uさんの<br />5位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
+		<a target="_blank" href="https://qiita.com/yu4u/items/90c039ec2f1d4f2d2414">「破滅的忘却」を回避する Overcoming Catastrophic Forgetting by Incremental Moment Matching, NIPS&apos;17. 読んだ</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-10 12:07:25</center>
+	</td>
+	<td style="width:200px;">
+		@yu4u<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/139809/profile-images/1473721008">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[DeepLearning]</b> <b>[論文読み]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>ニューラルネットワークにおいて、新たなタスクの学習を逐次的に行うと、以前学習したタスクに対する性能が急激に低下にcatastrophic forgetting（破滅的忘却）が発生してしまうことが課題となっており、それを解決するための手法を提案している。<br>
+Overcoming Catastrophic Forgetting by Incremental Moment Matching, NIPS'17.<br>
+<a href="https://arxiv.org/abs/1703.08475" class="autolink" rel="nofollow noopener" target="_blank">https://arxiv.org/abs/1703.08475</a></p>
+
+<p>以前にDeepMindのアプローチを読んで、これ系には興味があるので読んだ。背景や既存手法（EWC）の詳細は下記の記事に書いた。<br>
+<a href="http://qiita.com/yu4u/items/8b1e4f1c04460b89cac2" id="reference-42946cc8dd6fa9c20c34">ニューラルネットワークが持つ欠陥「破滅的忘却」を回避するアルゴリズムをDeepMindが開発した論文を読んだ</a></p>
+
+<h1>
+<span id="アプローチ" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AD%E3%83%BC%E3%83%81"><i class="fa fa-link"></i></a>アプローチ</h1>
+
+<p>目的は、タスク1に関する学習データ$\mathcal{D}_1 = \{ X_1, y_1 \}$およびタスク2に関する学習データ$\mathcal{D}_2 = \{ X_2, y_2 \}$が与えられた際に、両方のタスクに対し有効なニューラルネットワークのパラメータ$\theta$の事後確率$p_{1:2} = p(\theta | \mathcal{D}_1, \mathcal{D}_2)$を求めることである。</p>
+
+<p>これに対し、まずタスク1のパラメータの事後確率$p_1 = p(\theta | \mathcal{D}_1)$およびタスク2のパラメータの事後確率$p_2 = p(\theta | \mathcal{D}_2)$を求め、その後それらを統合して$p_{1:2} = p(\theta | \mathcal{D}_1, \mathcal{D}_2)$を求めることを提案する。</p>
+
+<p>そのままでは解けないので、上記の事後確率を全てガウス分布で近似する（ラプラス近似）：</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>p_{1:2} = p(\theta | \mathcal{D}_1, \mathcal{D}_2) \approx q_{1:2} = q(\theta|\mu_{1:2}, \Sigma_{1:2}), \\
+p_1 = p(\theta | \mathcal{D}_1) \approx q_{1} = q(\theta|\mu_{1}, \Sigma_{1}), \\
+p_2 = p(\theta | \mathcal{D}_2) \approx q_{2} = q(\theta|\mu_{2}, \Sigma_{2}).
+</pre></div></div>
+
+<p>これにより、上記の問題は、タスク1およびタスク2のニューラルネットワークのパラメータを学習し、その事後確率をガウス分布で近似した$q_1$および$q_2$を求め、最後にそれらを統合することで、両方のタスクに対し有効なニューラルネットワークパラメータ（の事後確率をガウス分布で近似した$q_{1:2}$）を求めるというステップで解くことができる。</p>
+
+<p>すなわち、$q_{1:2}$が求まれば、両方のタスクに対し有効なニューラルネットワークのパラメータ$\theta_{1:2}$は$q_{1:2}$の平均値$\mu_{1:2}$として求めることができる。</p>
+
+<h2>
+<span id="2つの事後確率のパラメータ推定" class="fragment"></span><a href="#2%E3%81%A4%E3%81%AE%E4%BA%8B%E5%BE%8C%E7%A2%BA%E7%8E%87%E3%81%AE%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E6%8E%A8%E5%AE%9A"><i class="fa fa-link"></i></a>2つの事後確率のパラメータ推定</h2>
+
+<p>まず、$q_1$および$q_2$のパラメータ$\mu_1, \Sigma_1$および$\mu_2, \Sigma_2$を求める必要がある。<br>
+タスク1およびタスク2をそれぞれ学習し、求められたニューラルネットワークのパラメータを$\theta_1^{*}$および$\theta_2^{*}$とすると、$\mu_1 = \theta_1, \mu_2 = \theta_2$となる（タスク1を学習した後のタスク2の学習に関しては、複数の方法での学習を提案しており、後述する）。</p>
+
+<p>分散共分散行列行列$\Sigma_1, \Sigma_2$については、文献<sup id="fnref1"><a href="#fn1" rel="footnote" title='J. Kirkpatrick et al., "Overcoming Catastrophic Forgetting in Neural Networks," in PNAS, vol. 114, no. 13, pp. 3521-3526, 2017.'>1</a></sup>と同様に、パラメータ$\theta$に関するフィッシャー情報行列$F$の逆行列として求めると、$\Sigma_1 = F_1^{-1}, \Sigma_2 = F_2^{-1}$となる。</p>
+
+<h2>
+<span id="2つの事後確率の統合方法" class="fragment"></span><a href="#2%E3%81%A4%E3%81%AE%E4%BA%8B%E5%BE%8C%E7%A2%BA%E7%8E%87%E3%81%AE%E7%B5%B1%E5%90%88%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>2つの事後確率の統合方法</h2>
+
+<p>上記のように求めた$q_1$および$q_2$を統合して$p_{1:2}$を求める。<br>
+本論文では、mean-based incremental moment matching (mean-IMM) とmode-based incremental moment matching (mode-IMM) が提案されている。</p>
+
+<h3>
+<span id="mean-imm" class="fragment"></span><a href="#mean-imm"><i class="fa fa-link"></i></a>mean-IMM</h3>
+
+<p>mean-IMMでは、$q_1$と$q_2$を混合比$\alpha$で混合した分布を1つのガウス分布$q_{1:2}$で近似する。このとき、$q_{1:2}$のパラメータは$q_{1:2}$と$(1-\alpha)q_1 + \alpha q_2$のKLダイバージェンスを最小化することで求められる：</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>\mu_{1:2}^*, \Sigma_{1:2}^* = \arg\min_{\mu_{1:2}, \Sigma_{1:2}} \mathrm{KL}(q_{1:2} || (1-\alpha)q_1 + \alpha q_2).
+</pre></div></div>
+
+<p>$\mu_{1:2}^*$はclosed-formで求めることができ、</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>\mu_{1:2}^* = (1-\alpha)\mu_1 + \alpha \mu_2
+</pre></div></div>
+
+<p>となる（$\Sigma_{1:2}^*$もclosed-formで求めることができるが省略）。</p>
+
+<h3>
+<span id="mode-imm" class="fragment"></span><a href="#mode-imm"><i class="fa fa-link"></i></a>mode-IMM</h3>
+
+<p>通常、前述のmean-IMMで求めた$q_{1:2}$のmode（最頻値, $\theta = \mu_{1:2}^*$）と、$(1-\alpha)q_1 + \alpha q_2$のmodeは異なる。mode-IMMでは、$(1-\alpha)q_1 + \alpha q_2$と$q_{1:2}$のmodeが同一となるように$\mu_{1:2}^{*}$を求める。<br>
+簡単のためmode-IMMでは$\alpha = 1/2$とすると、$\mu_{1:2}^*$は下記のように求めることができる（$\Sigma_{1:2}^{*}$は略）：</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>\mu_{1:2}^* = (\Sigma_1^{-1} + \Sigma_2^{-1})^{-1}(\Sigma_1^{-1} \mu + \Sigma_2^{-1} \mu_2).
+</pre></div></div>
+
+<p>ここで、$\Sigma_{1:2}^{*}$が対角であるという仮定を入れると、$\mu_{1:2}^*$は各次元$d$毎に求めることができる：</p>
+
+<div class="code-frame" data-lang="math"><div class="highlight"><pre><span></span>\mu_{{1:2}^*, d} = \frac{\mu_{1,d} / \sigma_{1,d}^{2} +  \mu_{2,v} / \sigma_{2,v}^{2} }{1 / \sigma_{1,v}^{2} + 1 / \sigma_{2,d}^{2}}.
+</pre></div></div>
+
+<h2>
+<span id="immのための転移学習" class="fragment"></span><a href="#imm%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E8%BB%A2%E7%A7%BB%E5%AD%A6%E7%BF%92"><i class="fa fa-link"></i></a>IMMのための転移学習</h2>
+
+<p>本論文では、タスク1およびタスク２で学習されたニューラルネットワーク（のパラメータ）を平均することを提案しているが、それらが独立に初期化されている場合には、それらのパラメータの間にはロスが大きくなるhigh cost barrierが存在する<sup id="fnref2"><a href="#fn2" rel="footnote" title='I. J. Goodfellow, O. Vinyals, and A. M. Saxe, "Qualitatively Characterizing Neural Network Optimization Problems," ICLR, 2017.'>2</a></sup>ことが問題となる。<br>
+つまり、平均したニューラルネットワークがそのロスが大きくなる領域になってしまうと、性能が悪くなってしまうためである。<br>
+この問題を回避するために、幾つかの転移学習のテクニックが活用できることを示す。</p>
+
+<h3>
+<span id="weight-transfer" class="fragment"></span><a href="#weight-transfer"><i class="fa fa-link"></i></a>Weight-transfer</h3>
+
+<p>最も重要なアイディアは、weight-transferである。これは単純に、タスク2の学習を行う際に、パラメータの初期値をタスク1を学習したパラメータで初期化するだけである。<br>
+文献<sup id="fnref2"><a href="#fn2" rel="footnote" title='I. J. Goodfellow, O. Vinyals, and A. M. Saxe, "Qualitatively Characterizing Neural Network Optimization Problems," ICLR, 2017.'>2</a></sup>では、様々なニューラルネットワークにおいて、ある初期値から学習を開始した際に、その解となる（収束した）パラメータと初期値の間にはほとんどhigh cost barrierが存在しないことを経験的に示した。<br>
+このことから、weight-transferを行うと、2つのタスクを学習させたパラメータの間にhigh cost barrierが存在しないようにすることができる。</p>
+
+<h3>
+<span id="l2-transfer" class="fragment"></span><a href="#l2-transfer"><i class="fa fa-link"></i></a>L2-transfer</h3>
+
+<p>L2-transferは、タスク2の学習時に、$\lambda ||\mu_1 - \mu_2||_2^2$をロスとして追加する。<br>
+Continuous learningの文脈では良くL2-transferが（恐らくベースラインとして）利用される。<br>
+既存手法では$\lambda$を大きくすることでなるべく$\mu_1$と$\mu_2$が遠くならないようにしているが、本論文では、$\mu_1$と$\mu_2$の間のロス関数がスムーズになることを目的としており、小さな$\lambda$でL2-transferを行うことが特徴である。</p>
+
+<h3>
+<span id="drop-transfer" class="fragment"></span><a href="#drop-transfer"><i class="fa fa-link"></i></a>Drop-transfer</h3>
+
+<p>Drop-transferは本論文で新しく提案する転移学習の方法である。<br>
+これは、dropout ratio $p$に対し、タスク2の学習中の重み$\mu_{2i}$を、確率$p$で$\mu_{1i}$に、確率$1-p$で$\frac{1}{1-p} \mu_{2i} - \frac{p}{1-p} \mu_{1i}$とするものである。<br>
+このとき、パラメータの期待値は$\mu_{2i}$となる。<br>
+この設定だと、現在のパラメータ$\mu_{2i}$は直接利用されず、$\mu_{1i}$と外挿された$\frac{1}{1-p} \mu_{2i} - \frac{p}{1-p} \mu_{1i}$になる。$\mu_{1i}$から学習した差分をdropoutしていると考えれば良いのだろうか？</p>
+
+<h1>
+<span id="実験結果" class="fragment"></span><a href="#%E5%AE%9F%E9%A8%93%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>実験結果</h1>
+
+<p>興味深いMNISTでの実験結果のみ取り上げる。<br>
+ここでは、MNISTをベースに、<strong>Disjoint MNIST</strong>と<strong>Shuffled MNIST</strong>という2種類の設定で実験を行っている。</p>
+
+<p><strong>Disjoint MNIST</strong>では、タスク1では0から4までの数字の分類を、タスク2では5から9までの数字の分類を行う。<br>
+ポイントは、既存の論文の設定では独立した5クラス分類を2回解くという設定だが、本論文では、10クラス分類を解く前提で、データが2回に分けて与えられているという設定である。</p>
+
+<p><strong>Shuffled MNIST</strong>は文献<sup id="fnref1"><a href="#fn1" rel="footnote" title='J. Kirkpatrick et al., "Overcoming Catastrophic Forgetting in Neural Networks," in PNAS, vol. 114, no. 13, pp. 3521-3526, 2017.'>1</a></sup>でも採用されている設定で、各タスクで、MNISTのピクセルがタスクごとに決まった順序でシャッフルされ、それぞれ10クラス分類を解くというものである。</p>
+
+<p><a href="https://camo.qiitausercontent.com/4aa4fc9bcc17a5adc635f6271e737f1dfbd76c12/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f34303231666466372d336230652d666164362d376665342d3036653361366635313631352e706e67" target="_blank" rel="nofollow noopener"><img width="640" src="https://camo.qiitausercontent.com/4aa4fc9bcc17a5adc635f6271e737f1dfbd76c12/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133393830392f34303231666466372d336230652d666164362d376665342d3036653361366635313631352e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/139809/4021fdf7-3b0e-fad6-7fe4-06e3a6f51615.png"></a></p>
+
+<p>上記が実験結果となっている。ポイントは、EWC<sup id="fnref1"><a href="#fn1" rel="footnote" title='J. Kirkpatrick et al., "Overcoming Catastrophic Forgetting in Neural Networks," in PNAS, vol. 114, no. 13, pp. 3521-3526, 2017.'>1</a></sup>が<strong>Disjoint MNIST</strong>でダメダメな点である。ここまで悪くなるのはかなり不思議だが、あまり何故かという考察はない。<br>
+結果を見る限り、L2-transferでMean/Mode-IMMをしておけば良さそうな雰囲気で、わざわざDrop-transferとかは使わなくてもいいかも。<br>
+本論文の貢献は、<strong>Disjoint MNIST</strong>という問題設定を見つけたところが一番かもしれない。</p>
+
+<p>あと、タスク1がImageNetで、タスク2がCaltech-UCSD Birds-200-2011でAlexNetをベースとした実験も行っており、既存手法より僅かに高精度な結果を達成している（雑）</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>J. Kirkpatrick et al., "Overcoming Catastrophic Forgetting in Neural Networks," in PNAS, vol. 114, no. 13, pp. 3521-3526, 2017. <a href="#fnref1">↩</a></p>
+</li>
+
+<li id="fn2">
+<p>I. J. Goodfellow, O. Vinyals, and A. M. Saxe, "Qualitatively Characterizing Neural Network Optimization Problems," ICLR, 2017. <a href="#fnref2">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

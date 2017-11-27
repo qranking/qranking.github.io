@@ -1,0 +1,1406 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (Yatima)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (Yatima さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>Yatimaさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>90</kbd>
+		<a target="_blank" href="https://qiita.com/Yatima/items/8a54acc8fda3e5fce741">結局Firebaseのdbでは何に気をつけるべきか？少しマニアックな内容も含め，わかりやすく説明する(realtime database)</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-03 23:08:40</center>
+	</td>
+	<td style="width:200px;">
+		@Yatima<br />(株式会社みんコレ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/17440/profile-images/1473682159">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Android]</b> <b>[iOS]</b> <b>[AngularJS]</b> <b>[vue.js]</b> <b>[Firebase]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Firebaseのrealtime databaseはいわゆるNoSQLであり，馴染みが薄い人が多いとともに，一般に流布している情報はふわっとしていてわかりづらい．<br>
+山に篭って修行していたらある程度知見が溜まってきたため，下山して共有する．</p>
+
+<p><strong>追記：</strong><br>
+新しいdbが発表されたので雑感書きました．<br>
+<a href="https://qiita.com/Yatima/items/54ea22d0cea1acc6cbcb" id="reference-f782d6f543f725e78cf3">Firebase RTDB + GCP datastore = Firestoreについて第一印象</a></p>
+
+<h1>
+<span id="tldr" class="fragment"></span><a href="#tldr"><i class="fa fa-link"></i></a>tl;dr</h1>
+
+<p><strong>割り切れ！</strong><br>
+<strong>ユーザの見えるままに作れ！</strong><br>
+それ以外の細末は下記参照</p>
+
+<h1>
+<span id="大原則その1割り切り" class="fragment"></span><a href="#%E5%A4%A7%E5%8E%9F%E5%89%87%E3%81%9D%E3%81%AE1%E5%89%B2%E3%82%8A%E5%88%87%E3%82%8A"><i class="fa fa-link"></i></a>大原則その1：割り切り</h1>
+
+<p>これは特にRDB勢に気をつけていただきたい．<br>
+我々は少し気を抜くと，<strong>つい正規化したがり屋さん</strong>になってしまう．<br>
+（その意味では，むしろ開発経験が少ない人のほうが習得しやすいかもしれない）</p>
+
+<p>Firebaseにおいて<strong>正規化はほぼ無駄</strong>と思ってもらっていい．<br>
+（理由は後述）<br>
+頑として非正規化を貫くべきだ（割り切り）．</p>
+
+<p>では，どう非正規化しろと言うのか．<br>
+巷では良く「ネストを浅くしろ」だの「非正規化しろ」だの言われるが，<strong>どのくらいどうすりゃいいんだよ！</strong></p>
+
+<h1>
+<span id="大原則その2ユーザの見えるままに設計する" class="fragment"></span><a href="#%E5%A4%A7%E5%8E%9F%E5%89%87%E3%81%9D%E3%81%AE2%E3%83%A6%E3%83%BC%E3%82%B6%E3%81%AE%E8%A6%8B%E3%81%88%E3%82%8B%E3%81%BE%E3%81%BE%E3%81%AB%E8%A8%AD%E8%A8%88%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>大原則その2：ユーザの見えるままに設計する</h1>
+
+<p>これである．<br>
+だいたいまずこれで解決できる．</p>
+
+<p>つまりまず<strong>ビューありき</strong>なのだ（割り切り）．<br>
+<strong>dbを先に設計してはならない．</strong><br>
+（ビューを変更するときどうするか，は後述）</p>
+
+<p>なぜそうしたほうがいいのか？</p>
+
+<h2>
+<span id="コードはシンプルなほうがいい" class="fragment"></span><a href="#%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB%E3%81%AA%E3%81%BB%E3%81%86%E3%81%8C%E3%81%84%E3%81%84"><i class="fa fa-link"></i></a>コードはシンプルなほうがいい</h2>
+
+<p>当然と言えば当然である．<br>
+スパゲッティ遊びしたい人は少数だろう．</p>
+
+<p>実は<strong>ビューありきでdb設計することによって，コードをシンプルにできる</strong>のだ．</p>
+
+<p>勘のいいかたはおわかりだろうが，dbからread後の処理が最低限で済む．<br>
+ある意味<a href="https://ja.wikipedia.org/wiki/%E6%99%82%E9%96%93%E3%81%A8%E7%A9%BA%E9%96%93%E3%81%AE%E3%83%88%E3%83%AC%E3%83%BC%E3%83%89%E3%82%AA%E3%83%95" rel="nofollow noopener" target="_blank">時間と空間のトレードオフ</a>に近いものと思って良いだろう．</p>
+
+<p>（知らない人には申し訳ないが）js界隈で話題になりがちなVuexやFlux, Reduxのような状態管理もほぼ不要となる（割り切り．詳細後述）．</p>
+
+<p>あるいはもっと深い理由として，こんなものがある．</p>
+
+<h2>
+<span id="システム全体としての効率化" class="fragment"></span><a href="#%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E5%85%A8%E4%BD%93%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AE%E5%8A%B9%E7%8E%87%E5%8C%96"><i class="fa fa-link"></i></a>システム全体としての効率化</h2>
+
+<p>実ユーザにおいては，圧倒的に書き込み数＜＜読み込み数である．<br>
+従って，効率化する（システム全体のパフォーマンスを上げる）ためには，なるべく<strong>読み込みをスピーディにするのが理に適っている</strong>．</p>
+
+<p>極端にも見える「ユーザの見えるままに」アプローチが確立された背景として，このようなことが挙げられるわけだ．<br>
+これらを踏まえると，むしろ従来の考え方を持ち込むのは害悪にしかならないことがわかる（割り切り）．</p>
+
+<p>「ユーザの見えるままに」を踏まえたところで，もう少し細かい原則を見ていこう．</p>
+
+<h1>
+<span id="原則" class="fragment"></span><a href="#%E5%8E%9F%E5%89%87"><i class="fa fa-link"></i></a>原則</h1>
+
+<h2>
+<span id="原則その1dbはツリー状" class="fragment"></span><a href="#%E5%8E%9F%E5%89%87%E3%81%9D%E3%81%AE1db%E3%81%AF%E3%83%84%E3%83%AA%E3%83%BC%E7%8A%B6"><i class="fa fa-link"></i></a>原則その1：dbはツリー状</h2>
+
+<p>json形式である．<br>
+というのは自明だが，key内にスラッシュが含まれていた場合は，その階層まで潜ると解釈される．</p>
+
+<div class="code-frame" data-lang="json">
+<div class="code-lang"><span class="bold">slashed.json</span></div>
+<div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">"users/XXXXX/name"</span><span class="p">:</span> <span class="s2">"yatima"</span><span class="p">}</span>
+</pre></div>
+</div>
+
+<p>とwriteすると</p>
+
+<div class="code-frame" data-lang="json">
+<div class="code-lang"><span class="bold">nested.json</span></div>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">"users"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"XXXXX"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"yatima"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>として反映される．</p>
+
+<h2>
+<span id="原則その2ノード以下まるごとread" class="fragment"></span><a href="#%E5%8E%9F%E5%89%87%E3%81%9D%E3%81%AE2%E3%83%8E%E3%83%BC%E3%83%89%E4%BB%A5%E4%B8%8B%E3%81%BE%E3%82%8B%E3%81%94%E3%81%A8read"><i class="fa fa-link"></i></a>原則その2：ノード以下まるごとread</h2>
+
+<p>課金やパフォーマンスとの関与が大きい話ではある（基本的に<a href="https://firebase.google.com/pricing/" rel="nofollow noopener" target="_blank">read時のダウンロードサイズに対して従量課金</a>）．</p>
+
+<p>readでは，<code>.ref()</code>で指定したノードそれ以下の全てのデータを取得する．</p>
+
+<div class="code-frame" data-lang="js">
+<div class="code-lang"><span class="bold">fetch-good.js</span></div>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">database</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">hogeRef</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">ref</span><span class="p">(</span><span class="s1">'hoge'</span><span class="p">)</span>
+<span class="nx">hogeRef</span><span class="p">.</span><span class="nx">on</span><span class="p">(...</span><span class="nx">省略</span><span class="p">...)</span>
+</pre></div>
+</div>
+
+<p>とすると，<code>/hoge/</code>以下のみを取得する．</p>
+
+<div class="code-frame" data-lang="js">
+<div class="code-lang"><span class="bold">fetch-yabai.js</span></div>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">database</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">dbRef</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">ref</span><span class="p">()</span>
+<span class="nx">dbRef</span><span class="p">.</span><span class="nx">child</span><span class="p">(</span><span class="s1">'hoge'</span><span class="p">).</span><span class="nx">on</span><span class="p">(...</span><span class="nx">省略</span><span class="p">...)</span>
+</pre></div>
+</div>
+
+<p>とすると全部ごそっと取得することになり，悲しみが生まれる．</p>
+
+<p>ただしクエリを含めた場合は，それに該当する分のみ取得される．</p>
+
+<h2>
+<span id="原則その3連番は使わない" class="fragment"></span><a href="#%E5%8E%9F%E5%89%87%E3%81%9D%E3%81%AE3%E9%80%A3%E7%95%AA%E3%81%AF%E4%BD%BF%E3%82%8F%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>原則その3：連番は使わない</h2>
+
+<p>例えばカウンタなどで，ほぼ同時にwriteが行われたとすると，残念なことになる．<br>
+（一人目が書き込み終わる前に二人目が読み込んでしまうと，二人ともカウンタを1増やしたつもりが最終的に1しか増えない）<br>
+<code>.push()</code>を使うと，<strong>一意なIDをkeyとして書き込み</strong>できる．</p>
+
+<div class="code-frame" data-lang="js">
+<div class="code-lang"><span class="bold">push.js</span></div>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">database</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">hogeRef</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">ref</span><span class="p">(</span><span class="s1">'hoge'</span><span class="p">)</span>
+<span class="nx">hogeRef</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">'fuga'</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<p>と書き込むと</p>
+
+<div class="code-frame" data-lang="json">
+<div class="code-lang"><span class="bold">db.json</span></div>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">"hoge"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"&lt;XXX-unique-id-XXX&gt;"</span><span class="p">:</span> <span class="s2">"fuga"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>となる．</p>
+
+<p>逆に言えば，<code>.push()</code>を使わない場合は<strong>変に上書きされても問題ない前提で</strong>開発すべきである．</p>
+
+<h2>
+<span id="原則その31配列を使わない" class="fragment"></span><a href="#%E5%8E%9F%E5%89%87%E3%81%9D%E3%81%AE31%E9%85%8D%E5%88%97%E3%82%92%E4%BD%BF%E3%82%8F%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>原則その3.1：配列を使わない</h2>
+
+<p>その3と似た理由で，配列（Array）は推奨されない．<br>
+連想配列（Object）に自動で変換されるが，その際に<strong>keyが連番で割り当てられてしまう</strong>からである．</p>
+
+<h2>
+<span id="原則その4一貫性のある同時書き込み" class="fragment"></span><a href="#%E5%8E%9F%E5%89%87%E3%81%9D%E3%81%AE4%E4%B8%80%E8%B2%AB%E6%80%A7%E3%81%AE%E3%81%82%E3%82%8B%E5%90%8C%E6%99%82%E6%9B%B8%E3%81%8D%E8%BE%BC%E3%81%BF"><i class="fa fa-link"></i></a>原則その4：一貫性のある同時書き込み</h2>
+
+<p>単に<strong>同時書き込みするだけで一貫性が保たれる</strong>仕様である．</p>
+
+<div class="code-frame" data-lang="js">
+<div class="code-lang"><span class="bold">multi-path-write.js</span></div>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">database</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">dbRef</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">ref</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">newPost</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">hoge</span><span class="o">:</span> <span class="s2">"fuga"</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">updates</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="nx">updates</span><span class="p">[</span><span class="s1">'foo'</span><span class="p">]</span> <span class="o">=</span> <span class="nx">newPost</span>
+<span class="nx">updates</span><span class="p">[</span><span class="s1">'bar'</span><span class="p">]</span> <span class="o">=</span> <span class="nx">newPost</span>
+<span class="nx">dbRef</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">updates</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<p>とすると</p>
+
+<div class="code-frame" data-lang="json">
+<div class="code-lang"><span class="bold">db.json</span></div>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">"foo"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"hoge"</span><span class="p">:</span> <span class="s2">"fuga"</span>
+  <span class="p">},</span>
+  <span class="nt">"bar"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"hoge"</span><span class="p">:</span> <span class="s2">"fuga"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>となる．<br>
+サーバ側でvalidateすることも可能だが，不要だとは思われる．一応示しておく；</p>
+
+<div class="code-frame" data-lang="json">
+<div class="code-lang"><span class="bold">consistency.rules.json</span></div>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">"test"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">".write"</span><span class="p">:</span> <span class="s2">"true"</span><span class="p">,</span>
+    <span class="nt">"foo"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">".validate"</span><span class="p">:</span> <span class="s2">"true"</span>
+    <span class="p">},</span>
+    <span class="nt">"bar"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">".validate"</span><span class="p">:</span> <span class="s2">"newData.val() == newData.parent().child('foo').val()"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>間違っても<strong><code>.transaction()</code>など使ってはならない</strong>．<br>
+（一ノードに対してしか使えない＝rootに近いノードを指定するハメになる，そして<a href="https://firebase.google.com/docs/reference/js/firebase.database.Reference#transaction" rel="nofollow noopener" target="_blank">トランザクションはreadが発生</a>する ⇒ 諭吉ジャブジャブ，性能にも影響）</p>
+
+<p>と，比較的重要な原則についても紹介してきたが，いずれにせよあくまで大原則に沿った話である．<br>
+大原則が通用しない場合はどうすべきだろうか．</p>
+
+<h1>
+<span id="大原則が通用しない時" class="fragment"></span><a href="#%E5%A4%A7%E5%8E%9F%E5%89%87%E3%81%8C%E9%80%9A%E7%94%A8%E3%81%97%E3%81%AA%E3%81%84%E6%99%82"><i class="fa fa-link"></i></a>大原則が通用しない時</h1>
+
+<h2>
+<span id="ビューが強く動的に生成される" class="fragment"></span><a href="#%E3%83%93%E3%83%A5%E3%83%BC%E3%81%8C%E5%BC%B7%E3%81%8F%E5%8B%95%E7%9A%84%E3%81%AB%E7%94%9F%E6%88%90%E3%81%95%E3%82%8C%E3%82%8B"><i class="fa fa-link"></i></a>ビューが強く動的に生成される</h2>
+
+<p>ここでの動的とは，静的ファイルが準備されていないという程度の意味ではない．<br>
+検索のような，ユーザの入力を元にビューを変化させたい，そういったニュアンスである．</p>
+
+<h3>
+<span id="検索" class="fragment"></span><a href="#%E6%A4%9C%E7%B4%A2"><i class="fa fa-link"></i></a>検索</h3>
+
+<p>検索には，<a href="https://www.algolia.com/" rel="nofollow noopener" target="_blank">Algolia</a>という外部サービスを利用する（割り切り）．<br>
+Firebase公式より<a href="https://github.com/firebase/functions-samples/tree/master/fulltext-search" rel="nofollow noopener" target="_blank">連携サンプル</a>も提示されている．<br>
+ただしどうやらこのサービスはORやワイルドカードなどは使えないように見える．</p>
+
+<p>他にも<a href="https://github.com/firebase/flashlight" rel="nofollow noopener" target="_blank">Flashlight</a>というElasticSearchとの連携があったりなかったりする．<br>
+ワイルドカードは使えるとのことだが，公開されているサンプルはうまく動かない．</p>
+
+<h3>
+<span id="フィルタ" class="fragment"></span><a href="#%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF"><i class="fa fa-link"></i></a>フィルタ</h3>
+
+<p>フィルタに関しては内部で解決可能と思われる．<br>
+基本的にはフィルタのパターン数に応じ対策も変わる．<br>
+ざっくり言って，</p>
+
+<p>フィルタのパターン数が多いならば，インデックスを貼る．<br>
+必要があればクライアント側で集合演算も行う．<br>
+（ANDのみならインデックス貼りまくるだけで可能だが，ORがあると厳しい）<br>
+JavaScriptなら<a href="https://lodash.com/docs/4.17.4" rel="nofollow noopener" target="_blank">lodash</a>など使うと良い．</p>
+
+<p>フィルタのパターン数がそこまで多くないならば，クエリを駆使する．<br>
+クエリについては，公式で良い解説動画がある（日本語字幕付き）．<br>
+<a href="https://youtu.be/sKFLI5FOOHs?t=9m2s" rel="nofollow noopener" target="_blank">Common SQL Queries converted for the Firebase Database - The Firebase Database For SQL Developers #4</a><br>
+hackyな手法にも見えるが，性能に大きな影響を与えないためのFirebaseの流儀である．</p>
+
+<p>詳細は後述しよう．</p>
+
+<h2>
+<span id="そもそもビューがない" class="fragment"></span><a href="#%E3%81%9D%E3%82%82%E3%81%9D%E3%82%82%E3%83%93%E3%83%A5%E3%83%BC%E3%81%8C%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>そもそもビューがない</h2>
+
+<p>もし<a href="https://firebase.google.com/products/functions/" rel="nofollow noopener" target="_blank">Functions</a>や他サーバなどから機械的にreadする必要がある場合は，「readする時使いやすいように」で良いと思われる．<br>
+なるべく事前に準備しておくという意味で，「ユーザの見えるままに」とは共通する．</p>
+
+<p>機械によるreadもなく，保存自体が主な目的の場合は（ログなど？），まぁ好きにしたらいい．</p>
+
+<h1>
+<span id="レシピ加筆中" class="fragment"></span><a href="#%E3%83%AC%E3%82%B7%E3%83%94%E5%8A%A0%E7%AD%86%E4%B8%AD"><i class="fa fa-link"></i></a>レシピ（加筆中）</h1>
+
+<h2>
+<span id="カウンタ" class="fragment"></span><a href="#%E3%82%AB%E3%82%A6%E3%83%B3%E3%82%BF"><i class="fa fa-link"></i></a>カウンタ</h2>
+
+<p>IDを数える．</p>
+
+<h2>
+<span id="ページネーション" class="fragment"></span><a href="#%E3%83%9A%E3%83%BC%E3%82%B8%E3%83%8D%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>ページネーション</h2>
+
+<p>クエリで良い．</p>
+
+<h2>
+<span id="フィルタ-1" class="fragment"></span><a href="#%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF-1"><i class="fa fa-link"></i></a>フィルタ</h2>
+
+<h2>
+<span id="検索-1" class="fragment"></span><a href="#%E6%A4%9C%E7%B4%A2-1"><i class="fa fa-link"></i></a>検索</h2>
+
+<h1>
+<span id="よく言われるアレ気付き次第追記" class="fragment"></span><a href="#%E3%82%88%E3%81%8F%E8%A8%80%E3%82%8F%E3%82%8C%E3%82%8B%E3%82%A2%E3%83%AC%E6%B0%97%E4%BB%98%E3%81%8D%E6%AC%A1%E7%AC%AC%E8%BF%BD%E8%A8%98"><i class="fa fa-link"></i></a>よく言われるアレ（気付き次第追記）</h1>
+
+<h2>
+<span id="ビューとdbを密結合させたらビューを変更する時に不便" class="fragment"></span><a href="#%E3%83%93%E3%83%A5%E3%83%BC%E3%81%A8db%E3%82%92%E5%AF%86%E7%B5%90%E5%90%88%E3%81%95%E3%81%9B%E3%81%9F%E3%82%89%E3%83%93%E3%83%A5%E3%83%BC%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B%E6%99%82%E3%81%AB%E4%B8%8D%E4%BE%BF"><i class="fa fa-link"></i></a>「ビューとdbを密結合させたらビューを変更する時に不便」</h2>
+
+<p>多くは見た目の変更で，扱うデータ自体が変更されることは少ないだろう．<br>
+変更されたところで，構造を修正する<strong>バッチを回せば済む</strong>話だ（割り切り）．</p>
+
+<h2>
+<span id="非正規化が理想なのはわかるけどでも現実的には正規化したほうがいいよね" class="fragment"></span><a href="#%E9%9D%9E%E6%AD%A3%E8%A6%8F%E5%8C%96%E3%81%8C%E7%90%86%E6%83%B3%E3%81%AA%E3%81%AE%E3%81%AF%E3%82%8F%E3%81%8B%E3%82%8B%E3%81%91%E3%81%A9%E3%81%A7%E3%82%82%E7%8F%BE%E5%AE%9F%E7%9A%84%E3%81%AB%E3%81%AF%E6%AD%A3%E8%A6%8F%E5%8C%96%E3%81%97%E3%81%9F%E3%81%BB%E3%81%86%E3%81%8C%E3%81%84%E3%81%84%E3%82%88%E3%81%AD"><i class="fa fa-link"></i></a>「非正規化が理想なのはわかるけど，でも現実的には正規化したほうがいいよね」</h2>
+
+<p>これもなるべくなら避けるべきだ（割り切り）．<br>
+というより，上述した特殊な場合以外は現実的に問題ないはずである．</p>
+
+<p>再度になるが，これまで培ってきた感覚で「正規化したほうがよさそう」は避けたほうが良い．<br>
+コードが複雑になり，パフォーマンスにも影響が出かねない．</p>
+
+<h2>
+<span id="平坦化しろ" class="fragment"></span><a href="#%E5%B9%B3%E5%9D%A6%E5%8C%96%E3%81%97%E3%82%8D"><i class="fa fa-link"></i></a>「平坦化しろ」</h2>
+
+<p>自分が検証した限りでは，単にdbのネストが深いからといって，パフォーマンスが落ちることはなさそうである．<br>
+そのため，「平坦化する」ということ自体をメインの目標に掲げるのは本質的でない．</p>
+
+<p>目指すはあくまで「ユーザの見えるままに」とすべきである．</p>
+
+<p>「ネストの度に検索がかかるのでは」と思ったかたは鋭い．<br>
+RDBをわかっていらっしゃる．</p>
+
+<p>realtime databaseでは，jsonのkeyに対してはインデックスが貼られるのだ．<br>
+valueに対しても，インデックスを指定して貼ることが可能（性能に影響するとアラート出るので，それからで遅くない）．</p>
+
+<p>やはりあくまで中心は「ユーザの見えるままに」である．</p>
+
+<h2>
+<span id="クエリが貧弱" class="fragment"></span><a href="#%E3%82%AF%E3%82%A8%E3%83%AA%E3%81%8C%E8%B2%A7%E5%BC%B1"><i class="fa fa-link"></i></a>「クエリが貧弱」</h2>
+
+<p>おわかりのかたもいると思うが，そもそも基本的にクエリは最低限でよいのだ．<br>
+dbをreadした時点で，ビューに即した形になっているのだから．</p>
+
+<h2>
+<span id="値段高い" class="fragment"></span><a href="#%E5%80%A4%E6%AE%B5%E9%AB%98%E3%81%84"><i class="fa fa-link"></i></a>「値段高い」</h2>
+
+<p><a href="https://qiita.com/Yatima/items/8a54acc8fda3e5fce741#%E3%81%A7%E3%82%82%E3%81%8A%E9%AB%98%E3%81%84%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%E3%81%86%E3%82%84%E3%81%A3%E3%81%B1%E3%82%8Amysql%E3%81%AE%E3%81%BB%E3%81%86%E3%81%8C">のちほど</a>．</p>
+
+<h2>
+<span id="phpと組み合わせたい" class="fragment"></span><a href="#php%E3%81%A8%E7%B5%84%E3%81%BF%E5%90%88%E3%82%8F%E3%81%9B%E3%81%9F%E3%81%84"><i class="fa fa-link"></i></a>「PHPと組み合わせたい」</h2>
+
+<p>なるべく避けるべき（割り切り）．</p>
+
+<p>既存の技術を使わないのはもったいない，あるいは不安と思うかもしれない．<br>
+しかしFirebaseはシンプルなシステム構成にしてこそ真価が発揮される．<br>
+<strong>連携間の相性に悩まされることがなくなる</strong>わけだ．<br>
+あるいは<strong>データ変換やAPIなど余計なことに煩わされなくなる</strong>．<br>
+当記事に記すような考え方が身についてしまえば，<strong>学習コストも低い</strong>．</p>
+
+<p>ぜひ0から始める気持ちで臨んでほしい（割り切り）．<br>
+もちろん，RubyやPythonだろうが同様である．</p>
+
+<h1>
+<span id="よく言われないアレ" class="fragment"></span><a href="#%E3%82%88%E3%81%8F%E8%A8%80%E3%82%8F%E3%82%8C%E3%81%AA%E3%81%84%E3%82%A2%E3%83%AC"><i class="fa fa-link"></i></a>よく言われないアレ</h1>
+
+<h2>
+<span id="tips集" class="fragment"></span><a href="#tips%E9%9B%86"><i class="fa fa-link"></i></a>tips集</h2>
+
+<h3>
+<span id="削除時にはnullをwriteする" class="fragment"></span><a href="#%E5%89%8A%E9%99%A4%E6%99%82%E3%81%AB%E3%81%AFnull%E3%82%92write%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>削除時にはnullをwriteする</h3>
+
+<p><code>.set()</code>や<code>.update()</code>，<code>.push()</code>でundefinedは送れない．<br>
+<code>.remove()</code>もあるが，<strong>複数箇所の削除はできない</strong>のでいまいち．</p>
+
+<h3>
+<span id="一度のみのreadにはonce" class="fragment"></span><a href="#%E4%B8%80%E5%BA%A6%E3%81%AE%E3%81%BF%E3%81%AEread%E3%81%AB%E3%81%AFonce"><i class="fa fa-link"></i></a>一度のみのreadには<code>.once()</code>
+</h3>
+
+<p>上記の通りである．</p>
+
+<h3>
+<span id="クエリを使うならchild_added" class="fragment"></span><a href="#%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E4%BD%BF%E3%81%86%E3%81%AA%E3%82%89child_added"><i class="fa fa-link"></i></a>クエリを使うなら<code>child_added</code>
+</h3>
+
+<p>read時には<code>value</code>を使う（例えば<code>.on('value', ...)</code>のように）と手軽のように思えるが，実際は<code>child_added</code>のほうが良い．<br>
+後者ならば，<a href="https://howtofirebase.com/firebase-data-modeling-939585ade7f4" rel="nofollow noopener" target="_blank"><strong>順番の整った状態で取得できる</strong></a>ためである．<br>
+前者だとクライアント側で並び替えする必要がある．</p>
+
+<p><code>child_changed</code>などもいちいち書かなければならない？<br>
+例えば<a href="https://github.com/vuejs/vuefire" rel="nofollow noopener" target="_blank">Vuefire</a>のような，フレームワークと紐付けしてくれる便利なライブラリがある．</p>
+
+<h2>
+<span id="正規化は無駄" class="fragment"></span><a href="#%E6%AD%A3%E8%A6%8F%E5%8C%96%E3%81%AF%E7%84%A1%E9%A7%84"><i class="fa fa-link"></i></a>正規化は無駄</h2>
+
+<p>先に謝っておく．無駄は言い過ぎた．<br>
+しかし総じてメリットが上回ることは多くないと思われる．</p>
+
+<p>慣れ以外でのメリットは，高々，容量を節約できるくらいと思われる．<br>
+正規化したところでクエリが貧弱なため，まともに使うには苦労する．<br>
+この後に示す，グローバル的な状態管理も欲しくなってくる．<br>
+コードが複雑化するのは代償として大きい．</p>
+
+<h2>
+<span id="状態管理は不要" class="fragment"></span><a href="#%E7%8A%B6%E6%85%8B%E7%AE%A1%E7%90%86%E3%81%AF%E4%B8%8D%E8%A6%81"><i class="fa fa-link"></i></a>状態管理は不要</h2>
+
+<p>ビューに即したデータ構造を持たせるのだから，基本的にはVuexやFlux, Reduxのような状態管理（いろいろな場面でデータを共有する仕組み）は不要．<br>
+せいぜいユーザ情報程度だろう．</p>
+
+<p>firebase自体もローカルでデータ保持することを考えると，無駄が多い．</p>
+
+<h2>
+<span id="ベストなjsフレームワーク" class="fragment"></span><a href="#%E3%83%99%E3%82%B9%E3%83%88%E3%81%AAjs%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF"><i class="fa fa-link"></i></a>ベストなjsフレームワーク</h2>
+
+<p>dbの話なのにjsのフレームワークまで踏み込むのもアレだが，ビューとも密接な関係にあるため触れておく．</p>
+
+<p>公式ではAngularが話題に挙がりやすいが，上記の状態管理機能などももりもり含んでおり，<strong>重厚長大過ぎる</strong>（割り切り）．</p>
+
+<p><strong>Vue.jsが総合的に判断してベスト</strong>だろう．<br>
+詳細は省くが，メリットは以下の通り．<br>
+・とっつきやすさ<br>
+・単一ファイルコンポーネント<code>*.vue</code>（html, css, jsを一ファイルにまとめられる）<br>
+・日本語ドキュメントが充実<br>
+・それなりの知名度，将来性<br>
+・必要に駆られた際の拡張性<br>
+元Googlerが中心人物のため，Google教徒の我々にとっても安心である．</p>
+
+<p>一時期LAMPスタックという表現に則ってFIREスタックという表現が提唱されたが，自分は更に推し進めて<strong>FiVeスタック</strong>を提唱したい．</p>
+
+<h1>
+<span id="fiveスタック" class="fragment"></span><a href="#five%E3%82%B9%E3%82%BF%E3%83%83%E3%82%AF"><i class="fa fa-link"></i></a>FiVeスタック</h1>
+
+<p><strong>Firebase + Vue.js</strong>である．</p>
+
+<p>元ネタのFIREスタックはFirebase + Interface + Reactorであるが，</p>
+
+<p>Interfaceとは，ユーザとのインターフェースである．<br>
+jsのフレームワークや，ネイティブアプリを含むこともある．<br>
+上述の通りVue.jsを推す．</p>
+
+<p>Reactorとは，サーバサイドの処理である．<br>
+現在は<a href="https://firebase.google.com/products/functions/" rel="nofollow noopener" target="_blank">Firebase内にも用意されている</a>ため，略語としてFirebaseに包含できてしまう．</p>
+
+<p>つまるところ，<strong>FiVeスタック</strong>である．</p>
+
+<h2>
+<span id="ちなみにvue-material" class="fragment"></span><a href="#%E3%81%A1%E3%81%AA%E3%81%BF%E3%81%ABvue-material"><i class="fa fa-link"></i></a>ちなみに：vue-material</h2>
+
+<p>Vue.jsでmaterial designを使う場合，<a href="http://vuematerial.io/" rel="nofollow noopener" target="_blank">vue-material</a>が便利である．<br>
+<strong>神楽坂やちまはvue-materialで唯一のロゴ掲載スポンサーです（ステマ）</strong>．</p>
+
+<p>…と，だいぶ話も逸れてしまった．<br>
+閑話休題．<br>
+これまでの内容を踏まえつつ，どのようなサービスに使いやすいか使いにくいかを解説したい．</p>
+
+<h1>
+<span id="サービスの向き不向き" class="fragment"></span><a href="#%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E5%90%91%E3%81%8D%E4%B8%8D%E5%90%91%E3%81%8D"><i class="fa fa-link"></i></a>サービスの向き不向き</h1>
+
+<p>もちろん，Firebaseも万能ではない．</p>
+
+<p>全体的に「細かい所は別に気にしなくてよくない？」という思想に基づいている（割り切り）．<br>
+厳密性をウリにするような，<strong>企業や研究向けサービスの一部には向かない</strong>だろう．<br>
+クエリが貧弱なので高度な分析なども苦手で，そういった意味でも使いにくい．</p>
+
+<p>あるいは初出ではあるが，レイテンシもめちゃくちゃ低いというわけではない．<br>
+（WebSocketなので<a href="http://blog.arungupta.me/rest-vs-websocket-comparison-benchmarks/" rel="nofollow noopener" target="_blank">RESTと比べて速い</a>のは確か）<br>
+格闘ゲームやFirst Person Shootingのような，<strong>わずかな遅延が致命的となるゲームも向かない</strong>．</p>
+
+<p>しかし，これらに含まれない大半のサービスでは，Firebaseの特徴がいずれかの部分でメリットとなるはずだ．<br>
+（但し多くの人にとっては多少の学習コストが要るだろうが）<br>
+本質的に，MySQLを置き換えるだけの可能性は十分に秘めている．<br>
+（だからFiVeスタックを提唱したのだ）</p>
+
+<p>そして兎にも角にも，まず気をつけるべきは<br>
+<strong>「割り切り」</strong><br>
+<strong>「ユーザの見えるままに」</strong><br>
+である．</p>
+
+<p>「dbはツリー状」<br>
+「ノード以下まるごとread」<br>
+「連番や配列は使わない」<br>
+「一貫性のある同時書き込み」<br>
+を意識しつつ，まずは<br>
+<strong>「割り切り」</strong><br>
+<strong>「ユーザの見えるままに」</strong><br>
+である．</p>
+
+<p>しかし大事な話を忘れていた．<br>
+価格を含めた上で，そもそもFirebaseは採用に値するのだろうか？</p>
+
+<h1>
+<span id="でもお高いんでしょうやっぱりmysqlのほうが" class="fragment"></span><a href="#%E3%81%A7%E3%82%82%E3%81%8A%E9%AB%98%E3%81%84%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%E3%81%86%E3%82%84%E3%81%A3%E3%81%B1%E3%82%8Amysql%E3%81%AE%E3%81%BB%E3%81%86%E3%81%8C"><i class="fa fa-link"></i></a>「でもお高いんでしょう？」「やっぱりMySQLのほうが…」</h1>
+
+<p>ここらの話はGDG DevFest Tokyo 2017で登壇して話すので，ぜひいらして欲しい．<br>
+<a href="https://tokyo.gdgjapan.org/schedule/day1?sessionId=126" rel="nofollow noopener" target="_blank">大半のウェブサービス/アプリは，Firebaseなら簡単で安いですよ</a>（<strong>11:30- @会議室1</strong>）<br>
+→<a href="https://gdg-tokyo.connpass.com/event/66236/" rel="nofollow noopener" target="_blank">チケット登録</a>←</p>
+
+<p>当記事はあくまでrealtime databaseのベストプラクティスとして踏み込んだ記事であるため，このイベントではより広い視点で解説するつもりである．</p>
+
+<p>他にご質問，ご意見などあればぜひお気軽に．<br>
+<strong>厳しいマサカリもお待ちしております．</strong></p>
+
+<h1>
+<span id="todo" class="fragment"></span><a href="#todo"><i class="fa fa-link"></i></a>todo</h1>
+
+<p>レシピ埋めたい<br>
+そのうちruleについても加筆したい</p>
+
+<h1>
+<span id="ついでにコミュニティも紹介" class="fragment"></span><a href="#%E3%81%A4%E3%81%84%E3%81%A7%E3%81%AB%E3%82%B3%E3%83%9F%E3%83%A5%E3%83%8B%E3%83%86%E3%82%A3%E3%82%82%E7%B4%B9%E4%BB%8B"><i class="fa fa-link"></i></a>ついでにコミュニティも紹介</h1>
+
+<p>今誕生しそうな，Firebaseの日本ユーザグループ<br>
+<a href="https://firebase-community.connpass.com/" class="autolink" rel="nofollow noopener" target="_blank">https://firebase-community.connpass.com/</a></p>
+
+<p>前からGCPのユーザグループにもたむろっていた（FirebaseはGoogleなので）<br>
+<a href="http://gcpug.jp/" class="autolink" rel="nofollow noopener" target="_blank">http://gcpug.jp/</a></p>
+
+<h1>
+<span id="参考記事" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>参考記事</h1>
+
+<p><a href="https://medium.freecodecamp.org/firebase-5-way-too-common-misconceptions-93b843ee1b93" rel="nofollow noopener" target="_blank">Firebase: 5 way-too-common misconceptions</a><br>
+　（記事最後のフォームより，<strong>ベストプラクティスのチェックリスト</strong>がPDFで入手できる）<br>
+<a href="https://www.youtube.com/watch?v=WacqhiI-g_o&amp;list=PLl-K7zZEsYLlP-k-RKFa7RyNPa9_wCH2s" rel="nofollow noopener" target="_blank">The Firebase Database For SQL Developers</a>（公式youtube．<strong>非常におすすめ</strong>，日本語字幕あり）<br>
+<a href="https://howtofirebase.com/firebase-data-modeling-939585ade7f4" rel="nofollow noopener" target="_blank">Firebase Data Modeling</a><br>
+<a href="https://medium.com/@CodeAndBiscuits/best-practices-for-firebase-realtime-database-development-14e8fd133d44" rel="nofollow noopener" target="_blank">Best Practices for Firebase Realtime Database Development</a><br>
+<a href="https://medium.com/@leetheguy/firebase-pros-and-cons-ce37c766190a" rel="nofollow noopener" target="_blank">Firebase Pros and Cons</a></p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>└(・∀・)┘ﾔﾘｨ!</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<p>　</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>Yatimaさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>71</kbd>
+		<a target="_blank" href="https://qiita.com/Yatima/items/54ea22d0cea1acc6cbcb">Firebase RTDB + GCP datastore = Firestoreについて第一印象</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-04 23:03:51</center>
+	</td>
+	<td style="width:200px;">
+		@Yatima<br />(株式会社みんコレ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/17440/profile-images/1473682159">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[nosql]</b> <b>[Database]</b> <b>[GoogleCloudPlatform]</b> <b>[Firebase]</b> <b>[CloudFirestore]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>ほぼ一日経っても誰もまだQiitaに投稿してないんで，ひとまずざっくり記しときます．<br>
+　</p>
+
+<h1>
+<span id="tldr" class="fragment"></span><a href="#tldr"><i class="fa fa-link"></i></a>tl;dr</h1>
+
+<p><strong>まじやばい</strong><br>
+<strong>ぐうぐるの超技術が超手軽に</strong> <strong>←まじやばい</strong></p>
+
+<h1>
+<span id="元々のそれぞれの印象" class="fragment"></span><a href="#%E5%85%83%E3%80%85%E3%81%AE%E3%81%9D%E3%82%8C%E3%81%9E%E3%82%8C%E3%81%AE%E5%8D%B0%E8%B1%A1"><i class="fa fa-link"></i></a>元々のそれぞれの印象</h1>
+
+<p>Firebase realtime database　→　超手軽<br>
+GCP datastore　→　安い，まじで障害ない</p>
+
+<p>まぁそれがくっついたわけで<br>
+やばいですぞーこれ．</p>
+
+<h1>
+<span id="もうちょい詳しく比較" class="fragment"></span><a href="#%E3%82%82%E3%81%86%E3%81%A1%E3%82%87%E3%81%84%E8%A9%B3%E3%81%97%E3%81%8F%E6%AF%94%E8%BC%83"><i class="fa fa-link"></i></a>もうちょい詳しく比較</h1>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center"></th>
+<th style="text-align: center">realtime database</th>
+<th style="text-align: center">datastore</th>
+<th style="text-align: center">Firestore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">価格</td>
+<td style="text-align: center">（dbとしては）高め</td>
+<td style="text-align: center"><strong>安め</strong></td>
+<td style="text-align: center"><strong>安め</strong></td>
+</tr>
+<tr>
+<td style="text-align: center"><strong>手軽さ</strong></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+</tr>
+<tr>
+<td style="text-align: center">システム</td>
+<td style="text-align: center"><strong>クライアントと直接</strong></td>
+<td style="text-align: center">サーバと</td>
+<td style="text-align: center"><strong>クライアントと直接</strong></td>
+</tr>
+<tr>
+<td style="text-align: center">リアルタイム反映</td>
+<td style="text-align: center"><strong>付属</strong></td>
+<td style="text-align: center">なし</td>
+<td style="text-align: center"><strong>付属</strong></td>
+</tr>
+<tr>
+<td style="text-align: center">オフライン対応</td>
+<td style="text-align: center"><strong>あり</strong></td>
+<td style="text-align: center">なし</td>
+<td style="text-align: center"><strong>あり</strong></td>
+</tr>
+<tr>
+<td style="text-align: center">Firebase内連携</td>
+<td style="text-align: center"><strong>可</strong></td>
+<td style="text-align: center">不可</td>
+<td style="text-align: center"><strong>可</strong></td>
+</tr>
+<tr>
+<td style="text-align: center"><strong>機能性</strong></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+</tr>
+<tr>
+<td style="text-align: center">クエリ</td>
+<td style="text-align: center">弱め</td>
+<td style="text-align: center"><strong>それなり</strong></td>
+<td style="text-align: center"><strong>それなり</strong></td>
+</tr>
+<tr>
+<td style="text-align: center">レイテンシ</td>
+<td style="text-align: center"><strong>低い</strong></td>
+<td style="text-align: center">ちょっとある</td>
+<td style="text-align: center">ちょっとある</td>
+</tr>
+<tr>
+<td style="text-align: center"><strong>インフラ</strong></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+</tr>
+<tr>
+<td style="text-align: center">障害</td>
+<td style="text-align: center">ちょいちょい</td>
+<td style="text-align: center"><strong>ない（ほぼ文字通り．ほんとに）</strong></td>
+<td style="text-align: center"><strong>ない（はず）</strong></td>
+</tr>
+<tr>
+<td style="text-align: center">スケーラビリティ</td>
+<td style="text-align: center">高</td>
+<td style="text-align: center"><strong>青天井</strong></td>
+<td style="text-align: center"><strong>青天井</strong></td>
+</tr>
+<tr>
+<td style="text-align: center">Apache Beam Pipeline IO</td>
+<td style="text-align: center">無</td>
+<td style="text-align: center">有</td>
+<td style="text-align: center">有 (Datastoreに入れると反映)</td>
+</tr>
+<tr>
+<td style="text-align: center">リージョン</td>
+<td style="text-align: center">シングル</td>
+<td style="text-align: center"><strong>マルチ</strong></td>
+<td style="text-align: center"><strong>マルチ</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p>　<br>
+ほぼほぼ良いとこ取りやんけ…</p>
+
+<h1>
+<span id="というわけで" class="fragment"></span><a href="#%E3%81%A8%E3%81%84%E3%81%86%E3%82%8F%E3%81%91%E3%81%A7"><i class="fa fa-link"></i></a>というわけで</h1>
+
+<p><strong>まじやばい</strong><br>
+<strong>ぐうぐるの超技術が超手軽に</strong> <strong>←まじやばい</strong></p>
+
+<h1>
+<span id="真のサーバレス" class="fragment"></span><a href="#%E7%9C%9F%E3%81%AE%E3%82%B5%E3%83%BC%E3%83%90%E3%83%AC%E3%82%B9"><i class="fa fa-link"></i></a>真のサーバレス</h1>
+
+<p><a href="/1amageek" class="user-mention js-hovercard" title="1amageek" data-hovercard-target-type="user" data-hovercard-target-name="1amageek">@1amageek</a> さんが言ってて良いなぁと思ったんですが<br>
+Firebase realtime databaseは<strong>本当の意味でのサーバレス</strong>なんですね<br>
+ <a href="https://qiita.com/1amageek/items/afc1c0ceb15ffc2372fd" id="reference-f90ec32fa672e7f08090">Firebaseでアプリを開発するならClient Side Joinを前提にすること</a></p>
+
+<p>lambdaとか<strong>FaaSは結局サーバサイド</strong>に過ぎないわけで<br>
+そこんとこFirebaseは本当にサーバレス<br>
+今回の<strong>Firestoreはそれを更に普及させる</strong>もんだと思います</p>
+
+<h1>
+<span id="余談" class="fragment"></span><a href="#%E4%BD%99%E8%AB%87"><i class="fa fa-link"></i></a>余談</h1>
+
+<p>今更だけど，上の表書きながら，やっぱぐうぐるの超技術はあたまおかしいとおもいましたまる</p>
+
+<p>直接今回の話ではないけど，ぐうぐるの超技術気になるかたは↓ここらへんご参考にー<br>
+<a href="https://qiita.com/kazunori279/items/3ce0ba40e83c8cc6e580" id="reference-f3834b51189bb9fbf3b3">YAPC Asia 2015「Google Cloud Platformの謎テクノロジーを掘り下げる」のまとめ</a><br>
+<a href="https://qiita.com/kazunori279/items/41520689337a644a87b4" id="reference-d84214a01abef44be451">GCEのライブマイグレーションのすごさをまとめてみた #gcpja</a><br>
+<a href="https://qiita.com/kazunori279/items/8d2417c8510021c697e7" id="reference-5224a07dd7118a76cb9d">GoogleのHTTPロードバランサーの破壊力があり過ぎる #gcpja</a><br>
+<a href="https://qiita.com/kazunori279/items/10ac0066ac9b0b5aaaf3" id="reference-14aa8ae04c16831ae7a3">Googleの虎の子「BigQuery」をFluentdユーザーが使わない理由がなくなった理由 #gcpja</a></p>
+
+<p>それから<br>
+タイミング的に<br>
+<a href="http://jp.techcrunch.com/2017/10/03/20171002larry-ellison-pokes-aws-while-unveiling-intelligent-database-service-at-oracle-openworld-keynote/" rel="nofollow noopener" target="_blank">オラクルのdbの発表</a>に急いで対抗したのかなｗ</p>
+
+<h1>
+<span id="なんか違ってたらマサカリplz" class="fragment"></span><a href="#%E3%81%AA%E3%82%93%E3%81%8B%E9%81%95%E3%81%A3%E3%81%A6%E3%81%9F%E3%82%89%E3%83%9E%E3%82%B5%E3%82%AB%E3%83%AAplz"><i class="fa fa-link"></i></a>なんか違ってたらマサカリplz</h1>
+
+<p>時間ないのでざっくりです．<br>
+余裕が出来たら，付け足すか別記事かで書くかも．</p>
+
+<p>GDG DevFest Tokyo 2017でも登壇して話すので，よろしければぜひ．<br>
+<a href="https://tokyo.gdgjapan.org/schedule/day1?sessionId=126" rel="nofollow noopener" target="_blank">大半のウェブサービス/アプリは，Firebaseなら簡単で安いですよ</a>（<strong>11:30- @会議室1</strong>）<br>
+→<a href="https://gdg-tokyo.connpass.com/event/66236/" rel="nofollow noopener" target="_blank">チケット登録</a>←</p>
+
+<h1>
+<span id="参考記事日本語" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E8%A8%98%E4%BA%8B%E6%97%A5%E6%9C%AC%E8%AA%9E"><i class="fa fa-link"></i></a>参考記事（日本語）</h1>
+
+<p>公式ドキュメントもすでに和訳されてて力はいってんなぁ（まぁ半月くらい古いけど）<br>
+<a href="https://firebase.google.com/docs/firestore/?hl=ja" rel="nofollow noopener" target="_blank">日本語公式ドキュメント</a><br>
+<a href="https://firebase.google.com/docs/firestore/rtdb-vs-firestore?hl=ja" rel="nofollow noopener" target="_blank">データベースを選択: Cloud Firestore または Realtime Database</a><br>
+<a href="http://jp.techcrunch.com/2017/10/04/20171003google-launches-cloud-firestore-a-new-document-database-for-app-developers/" rel="nofollow noopener" target="_blank">Googleがアプリデベロッパーのための新しいデータベースCloud Firestoreを立ち上げ</a>（Tech Crunch）</p>
+
+<h1>
+<span id="参考記事英語" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E8%A8%98%E4%BA%8B%E8%8B%B1%E8%AA%9E"><i class="fa fa-link"></i></a>参考記事（英語）</h1>
+
+<p><a href="https://firebase.google.com/docs/firestore/?hl=en" rel="nofollow noopener" target="_blank">英語公式ドキュメント</a><br>
+<a href="https://firebase.googleblog.com/2017/10/introducing-cloud-firestore.html" rel="nofollow noopener" target="_blank">Introducing Cloud Firestore: Our New Document Database for Apps</a><br>
+<a href="https://firebase.googleblog.com/2017/10/cloud-firestore-for-rtdb-developers.html" rel="nofollow noopener" target="_blank">Cloud Firestore for Realtime Database Developers</a></p>
+
+<h3>
+<span id="youtube" class="fragment"></span><a href="#youtube"><i class="fa fa-link"></i></a>YouTube</h3>
+
+<p>さすがにYouTubeは日本語字幕まだですね<br>
+<a href="https://www.youtube.com/watch?v=QcsAb2RR52c" rel="nofollow noopener" target="_blank">Introducing Cloud Firestore</a><br>
+<a href="https://www.youtube.com/watch?v=QcsAb2RR52c" rel="nofollow noopener" target="_blank">Getting Started With Cloud Firestore on the Web</a><br>
+<a href="https://www.youtube.com/watch?v=kDZYIhNkQoM" rel="nofollow noopener" target="_blank">Getting Started With Cloud Firestore on Android</a><br>
+<a href="https://www.youtube.com/watch?v=rvxYRm6n_NM" rel="nofollow noopener" target="_blank">Getting Started With Cloud Firestore on iOS</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>Yatimaさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>26</kbd>
+		<a target="_blank" href="https://qiita.com/Yatima/items/1b2af3094874c4a6bb77">Firebase Dev Summit 2017 で発表された新機能ざっくり，これまでとの違いも</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-08 21:51:52</center>
+	</td>
+	<td style="width:200px;">
+		@Yatima<br />(株式会社みんコレ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/17440/profile-images/1473682159">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Android]</b> <b>[iOS]</b> <b>[mBaas]</b> <b>[GoogleCloudPlatform]</b> <b>[Firebase]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="tldr" class="fragment"></span><a href="#tldr"><i class="fa fa-link"></i></a>tl;dr</h1>
+
+<p><a href="https://firebase.google.com/products/crashlytics/" rel="nofollow noopener" target="_blank">Crashlytics</a>(エラー分析)<br>
+<a href="https://firebase.google.com/products/predictions/" rel="nofollow noopener" target="_blank">Predictions</a>(ユーザの行動予測)<br>
+<a href="https://firebase.google.com/docs/remote-config/abtest-config" rel="nofollow noopener" target="_blank">A/Bテスト</a><br>
+ウェブUI再設計<br>
+<a href="https://firebase.google.com/products/cloud-messaging/" rel="nofollow noopener" target="_blank">FCM</a> <a href="https://firebase.google.com/docs/cloud-messaging/send-message?hl=en" rel="nofollow noopener" target="_blank">新API</a></p>
+
+<h1>
+<span id="crashlytics" class="fragment"></span><a href="#crashlytics"><i class="fa fa-link"></i></a><a href="https://firebase.google.com/products/crashlytics/" rel="nofollow noopener" target="_blank">Crashlytics</a>
+</h1>
+
+<p><a href="https://camo.qiitausercontent.com/eb513c50c3014245c77634f5d911c45551b7215a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f64313038336134332d663364662d353837372d626465632d6438353436366365396336372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/eb513c50c3014245c77634f5d911c45551b7215a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f64313038336134332d663364662d353837372d626465632d6438353436366365396336372e706e67" alt="Crashlytics.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/17440/d1083a43-f3df-5877-bdec-d85466ce9c67.png"></a><br>
+<em>動画じゃなくて画像です</em></p>
+
+<p>元twitterの一部門Fabricによる，エラー分析サービス．<br>
+部門買収し，今回統合が発表となった．</p>
+
+<p>クラッシュを<strong>問題ごとまとめてくれたり，通知してくれたり</strong>（メール通知と，Cloud Functionsを使えばSlack等も可）．<br>
+脱獄済み端末によるクラッシュにはバッジを付けてくれたり（rooted Androidは不明）．</p>
+
+<p>ユーザからの再現出来ない報告があっても，予めキー・バリューを設定しておけば，<strong>クラッシュ時どうなっていたか一目瞭然</strong>となる．<br>
+クラッシュのみならずエラーも収集することが可能．</p>
+
+<p>OSネイティブなエラーをそのまま収集．<br>
+ご多分に漏れず，<strong>導入が非常に容易</strong>．<br>
+Android/iOS用でweb版なし．</p>
+
+<p>詳細は<a href="https://firebase.googleblog.com/2017/11/announcing-firebase-crashlytics-beta.html" rel="nofollow noopener" target="_blank">Announcing Firebase Crashlytics Beta</a></p>
+
+<h3>
+<span id="crash-reportingとの違い" class="fragment"></span><a href="#crash-reporting%E3%81%A8%E3%81%AE%E9%81%95%E3%81%84"><i class="fa fa-link"></i></a><a href="https://firebase.google.com/products/crash/" rel="nofollow noopener" target="_blank">Crash Reporting</a>との違い</h3>
+
+<p>「解決済み」に出来る<br>
+検索が使える，らしい<br>
+<a href="https://firebase.google.com/docs/functions/crashlytics-events" rel="nofollow noopener" target="_blank">Cloud Functionsをトリガ</a>できる<br>
+デバッグシンボルやProGuardなどのログ可読化にデフォルト対応<br>
+Crash Reportingにはあった「AnalyticsやRemote Configとの統合」はまだない？</p>
+
+<p>比較詳細は<a href="https://medium.com/google-developer-experts/firebase-crash-reporting-vs-crashlytics-a6c287c4b792" rel="nofollow noopener" target="_blank">Firebase Crash Reporting VS Crashlytics</a>（少し古い）</p>
+
+<h1>
+<span id="predictions" class="fragment"></span><a href="#predictions"><i class="fa fa-link"></i></a><a href="https://firebase.google.com/products/predictions/" rel="nofollow noopener" target="_blank">Predictions</a>
+</h1>
+
+<p><a href="https://camo.qiitausercontent.com/4a270e30a4eab1f47d0c3926ccf99f8fef665be5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f35353537653333352d336333652d333137652d356263652d3562663434626239616338332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/4a270e30a4eab1f47d0c3926ccf99f8fef665be5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f35353537653333352d336333652d333137652d356263652d3562663434626239616338332e706e67" alt="Predictions.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/17440/5557e335-3c3e-317e-5bce-5bf44bb9ac83.png"></a><br>
+<em>動画じゃないってば</em></p>
+
+<p>今流行のMLを活用した予測サービス．<br>
+内部の挙動は謎．</p>
+
+<p>ユーザを以下のグループに分類してくれる．<br>
+・今後一週間で離脱しそうなグループ<br>
+・今後一週間で離脱しなさそうなグループ<br>
+・今後一週間で課金してくれそうなグループ<br>
+・今後一週間で課金しなさそうなグループ<br>
+その他，自分で<strong>自由に設定も可能</strong>．<br>
+知りたい<strong>パラメータを選ぶだけ</strong>である（期間は一週間で固定）．</p>
+
+<p>それぞれのグループに対し，<strong>Remote ConfigやNotificationなどでアプローチ</strong>（通知で使用を促すなど）できる．</p>
+
+<p>グループ分けの許容値は調整できる．<br>
+調整できちゃうんかい，と一般のかたならつっこみたくなるかもしれないが，偽陽性云々統計学的に仕方ない．</p>
+
+<p>こちらも<strong>異様に導入容易</strong>．<br>
+Android/iOS用でweb版なし．</p>
+
+<p>詳細は<a href="https://firebase.googleblog.com/2017/11/announcing-firebase-predictions-beta.html" rel="nofollow noopener" target="_blank">Announcing Firebase Predictions Beta</a></p>
+
+<h1>
+<span id="abテスト" class="fragment"></span><a href="#ab%E3%83%86%E3%82%B9%E3%83%88"><i class="fa fa-link"></i></a><a href="https://firebase.google.com/docs/remote-config/abtest-config" rel="nofollow noopener" target="_blank">A/Bテスト</a>
+</h1>
+
+<p>文字通りA/Bテスト．<br>
+元々あるFirebase Remote Configの一機能として作られた．</p>
+
+<p>テストを定義，ユーザ割り振り実施，目標を監視，といったことが簡単にできる．</p>
+
+<p>Android/iOS用でweb版なし．</p>
+
+<p>詳細は<a href="https://firebase.googleblog.com/2017/11/announcing-better-ab-testing-with.html" rel="nofollow noopener" target="_blank">Announcing Better A/B Testing with Firebase</a></p>
+
+<h3>
+<span id="従来のremote-configとの違い" class="fragment"></span><a href="#%E5%BE%93%E6%9D%A5%E3%81%AEremote-config%E3%81%A8%E3%81%AE%E9%81%95%E3%81%84"><i class="fa fa-link"></i></a>従来の<a href="https://firebase.google.com/products/remote-config/" rel="nofollow noopener" target="_blank">Remote Config</a>との違い</h3>
+
+<p>より特化．<br>
+計測指標の設定，詳細なテストの定義，複数の値の組合せ対応など．</p>
+
+<h1>
+<span id="ウェブui再設計" class="fragment"></span><a href="#%E3%82%A6%E3%82%A7%E3%83%96ui%E5%86%8D%E8%A8%AD%E8%A8%88"><i class="fa fa-link"></i></a>ウェブUI再設計</h1>
+
+<p><a href="https://camo.qiitausercontent.com/d721f9b7706297052568770cdecf0ab8df0fb25e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f64373734363263342d396663642d333136312d353034662d3366343266393235666230352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d721f9b7706297052568770cdecf0ab8df0fb25e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f64373734363263342d396663642d333136312d353034662d3366343266393235666230352e706e67" alt="image2.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/17440/d77462c4-9fcd-3161-504f-3f42f925fb05.png"></a><br>
+<em>びふぉー</em><br>
+<a href="https://camo.qiitausercontent.com/82bde4e29b09504871321335da294f4c29f841ed/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f35356230393039312d643331372d383464322d316365662d6131386138373231333862662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/82bde4e29b09504871321335da294f4c29f841ed/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f35356230393039312d643331372d383464322d316365662d6131386138373231333862662e706e67" alt="image1.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/17440/55b09091-d317-84d2-1cef-a18a872138bf.png"></a><br>
+<em>あふたー</em></p>
+
+<p>Analyticsでよく閲覧されるデータがトップに表示（DAU, MAU, クラッシュしないユーザの割合，総クラッシュ数）<br>
+サイドバーがよりわかりやすく分類<br>
+初心者に優しい，<strong>何気に重要な変化</strong>と思われる</p>
+
+<h1>
+<span id="fcm-新api" class="fragment"></span><a href="#fcm-%E6%96%B0api"><i class="fa fa-link"></i></a><a href="https://firebase.google.com/products/cloud-messaging/" rel="nofollow noopener" target="_blank">FCM</a> <a href="https://firebase.google.com/docs/cloud-messaging/send-message?hl=en" rel="nofollow noopener" target="_blank">新API</a>
+</h1>
+
+<p>プラットフォーム間で共通化．<br>
+たぶんそれだけ</p>
+
+<h1>
+<span id="第一印象" class="fragment"></span><a href="#%E7%AC%AC%E4%B8%80%E5%8D%B0%E8%B1%A1"><i class="fa fa-link"></i></a>第一印象</h1>
+
+<p>複数発表あったものの焼き直し的な部分も多く，なんだかなぁという気持ち(まぁ本来ならFirestoreもこのタイミングの予定だったんだろう)<br>
+とは言え<strong>手軽さ極まっているのはさすが</strong>．<br>
+基本はFirebaseで必要に応じ他社サービスを，がより捗りそうである．</p>
+
+<h2>
+<span id="web系全然発表なくない" class="fragment"></span><a href="#web%E7%B3%BB%E5%85%A8%E7%84%B6%E7%99%BA%E8%A1%A8%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>web系全然発表なくない？</h2>
+
+<p><del>webがないがしろにされるのはいつものこと</del><br>
+（そもそもwebでは不要だったり既出サービスがあったりというだけ<sup id="fnref1"><a href="#fn1" rel="footnote" title="むしろこれまでよりwebへの対応が良くなっている部分もある．例えばFirestoreでは，realtime databaseよりwebのオフライン機能が強化されている（ただしデフォルトではセキュリティの都合上無効）．あるいは，電話番号認証などはweb版からまず実装されている．">1</a></sup>）<br>
+今回の新機能も，既出のGoogleサービスで代替可能．<br>
+　</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">新機能</th>
+<th style="text-align: center">代替</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">Crashlytics</td>
+<td style="text-align: center"><a href="https://cloud.google.com/error-reporting/?hl=ja" rel="nofollow noopener" target="_blank">Stackdriver Error Reporting</a></td>
+</tr>
+<tr>
+<td style="text-align: center">A/Bテスト</td>
+<td style="text-align: center"><a href="https://www.google.com/analytics/optimize/" rel="nofollow noopener" target="_blank">Google Optimize</a></td>
+</tr>
+<tr>
+<td style="text-align: center">Predictions</td>
+<td style="text-align: center"><a href="https://www.google.com/analytics/attribution/" rel="nofollow noopener" target="_blank">Google Attribution</a></td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="参考記事" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>参考記事</h1>
+
+<p><a href="https://firebase.googleblog.com/2017/10/whats-new-at-firebase-dev-summit-2017.html" rel="nofollow noopener" target="_blank">What’s new at Firebase Dev Summit 2017</a><br>
+<a href="https://firebase.googleblog.com/2017/11/announcing-firebase-predictions-beta.html" rel="nofollow noopener" target="_blank">Announcing Firebase Predictions Beta</a><br>
+<a href="https://firebase.googleblog.com/2017/11/announcing-better-ab-testing-with.html" rel="nofollow noopener" target="_blank">Announcing Better A/B Testing with Firebase</a><br>
+<a href="https://firebase.googleblog.com/2017/11/announcing-firebase-crashlytics-beta.html" rel="nofollow noopener" target="_blank">Announcing Firebase Crashlytics Beta</a></p>
+
+<h1>
+<span id="ついでにこちらもどうぞ自分が以前書いたfirebase関連記事" class="fragment"></span><a href="#%E3%81%A4%E3%81%84%E3%81%A7%E3%81%AB%E3%81%93%E3%81%A1%E3%82%89%E3%82%82%E3%81%A9%E3%81%86%E3%81%9E%E8%87%AA%E5%88%86%E3%81%8C%E4%BB%A5%E5%89%8D%E6%9B%B8%E3%81%84%E3%81%9Ffirebase%E9%96%A2%E9%80%A3%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>ついでにこちらもどうぞ（自分が以前書いたFirebase関連記事）</h1>
+
+<p><a href="https://qiita.com/Yatima/items/8a54acc8fda3e5fce741" id="reference-b7662ca93f6964a549c0">結局Firebaseのdbでは何に気をつけるべきか？少しマニアックな内容も含め，わかりやすく説明する(realtime database)</a><br>
+<a href="https://qiita.com/Yatima/items/54ea22d0cea1acc6cbcb" id="reference-fca6ada04dc6ae9f15d5">Firebase RTDB + GCP datastore = Firestoreについて第一印象</a></p>
+
+<h1>
+<span id="ついでにコミュニティも紹介" class="fragment"></span><a href="#%E3%81%A4%E3%81%84%E3%81%A7%E3%81%AB%E3%82%B3%E3%83%9F%E3%83%A5%E3%83%8B%E3%83%86%E3%82%A3%E3%82%82%E7%B4%B9%E4%BB%8B"><i class="fa fa-link"></i></a>ついでにコミュニティも紹介</h1>
+
+<p>今誕生しそうな，Firebaseの日本ユーザグループ<br>
+<a href="https://firebase-community.connpass.com/" class="autolink" rel="nofollow noopener" target="_blank">https://firebase-community.connpass.com/</a></p>
+
+<p>前からGCPのユーザグループにもたむろっていた（FirebaseはGoogleなので）<br>
+<a href="http://gcpug.jp/" class="autolink" rel="nofollow noopener" target="_blank">http://gcpug.jp/</a></p>
+
+<p>　</p>
+
+<p>　</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>むしろこれまでよりwebへの対応が良くなっている部分もある．例えばFirestoreでは，realtime databaseよりwebの<a href="https://firebase.google.com/docs/firestore/manage-data/enable-offline" rel="nofollow noopener" target="_blank">オフライン機能が強化</a>されている（ただしデフォルトではセキュリティの都合上無効）．あるいは，電話番号認証などはweb版からまず実装されている． <a href="#fnref1">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>Yatimaさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>21</kbd>
+		<a target="_blank" href="https://qiita.com/Yatima/items/2abb633191080ee1447c">Firestoreに負荷試験(Loadroid)してみた+補足</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-22 23:08:41</center>
+	</td>
+	<td style="width:200px;">
+		@Yatima<br />(株式会社みんコレ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/17440/profile-images/1473682159">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[GoogleCloudPlatform]</b> <b>[Firebase]</b> <b>[Rocro]</b> <b>[CloudFirestore]</b> <b>[Loadroid]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>こちらの記事は，<a href="https://connpass.com/event/69238/" rel="nofollow noopener" target="_blank">Firebase.yebisu #1</a>のLTに補足解説を加えたものになります．<br>
+<a href="https://speakerdeck.com/yatima/firebase-dot-yebisu-number-1" rel="nofollow noopener" target="_blank">発表スライド</a><br>
+当日お話できなかった，実施する際の注意などもありますので，ごさしゅーください．</p>
+
+<h1>
+<span id="tldr" class="fragment"></span><a href="#tldr"><i class="fa fa-link"></i></a>tl;dr</h1>
+
+<p>高頻度のドキュメント作成（自動ID）で500/secに引っかからないことを確認できた<br>
+急激にアクセスが増えると503が出る場合がある（1秒で0→7万仮想ユーザなど）<br>
+Loadroidはいいぞ</p>
+
+<h1>
+<span id="背景" class="fragment"></span><a href="#%E8%83%8C%E6%99%AF"><i class="fa fa-link"></i></a>背景</h1>
+
+<h2>
+<span id="動機" class="fragment"></span><a href="#%E5%8B%95%E6%A9%9F"><i class="fa fa-link"></i></a>動機</h2>
+
+<p>Firebaseの新しいデータベース，Firestoreは安価，安定，既存より柔軟で非常に魅力的です（詳細は<a href="https://qiita.com/Yatima/items/54ea22d0cea1acc6cbcb" id="reference-ac9cd588dfa54af31d68">過去記事</a>参照）．</p>
+
+<p>しかし，ドキュメント内の制限事項に気になる表記がありました．<br>
+ある条件<sup id="fnref1"><a href="#fn1" rel="footnote" title="正確には，「単一コレクションへのドキュメント書き込みにおいて，インデックスされたフィールドの値が連続的（インクリメントなど）であるとき」です．">1</a></sup>では，書き込み頻度に上限があるという内容です．<br>
+<a href="https://firebase.google.com/docs/firestore/quotas" class="autolink" rel="nofollow noopener" target="_blank">https://firebase.google.com/docs/firestore/quotas</a></p>
+
+<blockquote>
+<p>Maximum write rate to a collection in which documents contain sequential values in an indexed field : 500 per second</p>
+</blockquote>
+
+<p>とりあえず普通の書き込みでは問題ないことを確認するため，負荷試験をした，という経緯になります．<br>
+　</p>
+
+<h1>
+<span id="手法" class="fragment"></span><a href="#%E6%89%8B%E6%B3%95"><i class="fa fa-link"></i></a>手法</h1>
+
+<h2>
+<span id="負荷試験saas-loadroid" class="fragment"></span><a href="#%E8%B2%A0%E8%8D%B7%E8%A9%A6%E9%A8%93saas-loadroid"><i class="fa fa-link"></i></a>負荷試験SaaS, Loadroid</h2>
+
+<p>やちまは優秀なハッカーなので怠惰を惜しみません．<br>
+簡単に負荷試験ができるサービス，<a href="https://rocro.com/loadroid" rel="nofollow noopener" target="_blank">Loadroid</a>を利用します．<br>
+<a href="https://camo.qiitausercontent.com/7cdba815fa272a305d3497983036f75ff119b45e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f31336561363565652d393265352d303362302d373539612d3438653662656131313333302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7cdba815fa272a305d3497983036f75ff119b45e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f31336561363565652d393265352d303362302d373539612d3438653662656131313333302e706e67" alt="Screenshot 2017-11-21 at 17.18.33.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/17440/13ea65ee-92e5-03b0-759a-48e6bea11330.png"></a></p>
+
+<p>ROCROというSONYグループで生まれたベンチャーのサービスになります．<br>
+裏側ではGCPが利用されているようです（<a href="https://developers-jp.googleblog.com/2017/10/gcp-use-case-rocro.html" rel="nofollow noopener" target="_blank">Googleの記事</a>，<a href="https://speakerdeck.com/yoshiyukimineo/rocroniokerugcphuo-yong-shi-li" rel="nofollow noopener" target="_blank">活用事例スライド</a>）．<br>
+現在クローズドアルファです．</p>
+
+<p>ちなみに，特段宣伝費などはもらっていません．<br>
+<del><strong>むしろください</strong></del></p>
+
+<h2>
+<span id="費用確認" class="fragment"></span><a href="#%E8%B2%BB%E7%94%A8%E7%A2%BA%E8%AA%8D"><i class="fa fa-link"></i></a>費用確認</h2>
+
+<h3>
+<span id="firestoreの書き込み" class="fragment"></span><a href="#firestore%E3%81%AE%E6%9B%B8%E3%81%8D%E8%BE%BC%E3%81%BF"><i class="fa fa-link"></i></a>Firestoreの書き込み</h3>
+
+<p><a href="https://firebase.google.com/pricing/" class="autolink" rel="nofollow noopener" target="_blank">https://firebase.google.com/pricing/</a><br>
+10M回書き込みしても18ドルです（非常に安いですね）．<br>
+ネットワーク料金はアップロードのため無料になります．<br>
+保存費用は10GBでも2ドル弱なので誤差範囲です．</p>
+
+<h3>
+<span id="loadroid使用料" class="fragment"></span><a href="#loadroid%E4%BD%BF%E7%94%A8%E6%96%99"><i class="fa fa-link"></i></a>Loadroid使用料</h3>
+
+<p>公式サイトで非公開なので，一応非公開とさせていただきます．<br>
+お問い合わせください．</p>
+
+<h2>
+<span id="loadroidの実際" class="fragment"></span><a href="#loadroid%E3%81%AE%E5%AE%9F%E9%9A%9B"><i class="fa fa-link"></i></a>Loadroidの実際</h2>
+
+<h3>
+<span id="準備" class="fragment"></span><a href="#%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>準備</h3>
+
+<h4>
+<span id="連携" class="fragment"></span><a href="#%E9%80%A3%E6%90%BA"><i class="fa fa-link"></i></a>連携</h4>
+
+<p>GitHub/Bitbucketと連携します．<br>
+<a href="https://camo.qiitausercontent.com/e49e746acfc868846e34c0453c670497cddde5fb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f39386365623736342d653561382d386265372d313839302d3336306538643162663465302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e49e746acfc868846e34c0453c670497cddde5fb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f39386365623736342d653561382d386265372d313839302d3336306538643162663465302e706e67" alt="Screenshot 2017-11-21 at 17.50.47.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/17440/98ceb764-e5a8-8be7-1890-360e8d1bf4e0.png"></a></p>
+
+<h4>
+<span id="ホスト所持確認" class="fragment"></span><a href="#%E3%83%9B%E3%82%B9%E3%83%88%E6%89%80%E6%8C%81%E7%A2%BA%E8%AA%8D"><i class="fa fa-link"></i></a>ホスト所持確認</h4>
+
+<p>jsonをアップロードし，Loadroidに確認してもらいます．<br>
+<a href="https://camo.qiitausercontent.com/1076e319621152380f3eb7b296c8cdc29e12f921/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f61393761353261342d653739312d373932622d653036312d3235616134616363316262332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1076e319621152380f3eb7b296c8cdc29e12f921/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f61393761353261342d653739312d373932622d653036312d3235616134616363316262332e706e67" alt="Screenshot 2017-11-21 at 16.48.45 - Edited.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/17440/a97a52a4-e791-792b-e061-25aa4acc1bb3.png"></a><br>
+ここで注意したいのは，Firestoreから（望む形での）<strong>jsonが返せない</strong>，ということです．<br>
+そのため，Firebase Hostingからリダイレクトするという形にします．<br>
+ただし普通のリダイレクトではPOSTがGETとなってしまいますので，<strong>307でのリダイレクト</strong>とします．</p>
+
+<h4>
+<span id="各種設定" class="fragment"></span><a href="#%E5%90%84%E7%A8%AE%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>各種設定</h4>
+
+<p>どんな条件で実行するかを<code>rocro.yml</code>に書き，連携したリポジトリにpushします．<br>
+詳細は，本サービスアクセス権限付与時にサンプルやドキュメントをいただけますので，ご参照ください．<br>
+容易と思われます（詳細は後日書く，かもしれません）．<br>
+<a href="https://camo.qiitausercontent.com/a6618108011d64b7628da63980f4fb1aa962019d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f35373434333538382d303038612d333635322d656230332d3236363330383561653963662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a6618108011d64b7628da63980f4fb1aa962019d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f35373434333538382d303038612d333635322d656230332d3236363330383561653963662e706e67" alt="Screenshot 2017-11-21 at 16.40.34 - Edited.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/17440/57443588-008a-3652-eb03-2663085ae9cf.png"></a><br>
+<em>タスクバーがChromeOSであることをちゃっかりアピールしている</em></p>
+
+<h3>
+<span id="実行" class="fragment"></span><a href="#%E5%AE%9F%E8%A1%8C"><i class="fa fa-link"></i></a>実行</h3>
+
+<p>ウェブUIより，ポチっとします．じゃじゃーん（英語で言うとTa-da!）．</p>
+
+<p>連携したリポジトリから<code>rocro.yml</code>を読み取り，よしなに実行してくれます．<br>
+仮想ユーザ数の設定次第で時間がかかる場合もあります．</p>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<p>想像通りですが，500/secの壁を超えることは可能でした．<br>
+<a href="https://camo.qiitausercontent.com/fc8fcd315e394da18627e88e56f1a50f68730b5b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f33373432323036352d613364372d303865652d306639662d6437316238303137363438382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/fc8fcd315e394da18627e88e56f1a50f68730b5b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f33373432323036352d613364372d303865652d306639662d6437316238303137363438382e706e67" alt="Screenshot 2017-11-21 at 16.41.58 - Edited.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/17440/37422065-a3d7-08ee-0f9f-d71b80176488.png"></a></p>
+
+<p>しかし序盤に大量の503が発生する事態となっていました．<br>
+<a href="https://camo.qiitausercontent.com/3b173b193df3682b299226c9097abb3c0d27942d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f66613233666339642d366236312d356264622d646534302d3763363562356339386639362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/3b173b193df3682b299226c9097abb3c0d27942d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f66613233666339642d366236312d356264622d646534302d3763363562356339386639362e706e67" alt="Screenshot 2017-11-21 at 16.43.26.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/17440/fa23fc9d-6b61-5bdb-de40-7c65b5c98f96.png"></a></p>
+
+<p>Firestoreが急激なアクセス増加にびっくりしてしまい<sup id="fnref2"><a href="#fn2" rel="footnote" title="Firestoreの裏側ではGoogleによるDatastoreが動いています．こちらについての知見もあると，Firestoreの挙動も理解が深まります．">2</a></sup>，対応できなかったようです（1秒で0→7万仮想ユーザ<sup id="fnref3"><a href="#fn3" rel="footnote" title="Loadroidにおける現在の上限です．">3</a></sup>としていました）．<br>
+10秒ほどかけて7万仮想ユーザに増加させることで，503はなくなりました．<br>
+<a href="https://camo.qiitausercontent.com/c65f8ea5035071e04f41f2331f7b7725b05fd6c5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f38383132316633302d333139382d663930632d343764612d3538613661393237353264622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/c65f8ea5035071e04f41f2331f7b7725b05fd6c5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31373434302f38383132316633302d333139382d663930632d343764612d3538613661393237353264622e706e67" alt="Screenshot 2017-11-21 at 18.16.28.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/17440/88121f30-3198-f90c-47da-58a6a92752db.png"></a></p>
+
+<p>めでたしめでたし．</p>
+
+<p>やちまの財布もこんな感じにオートスケールしてくれたらいいのに．</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>高頻度のドキュメント作成（自動ID）で500/secに引っかからないことを確認できた<br>
+急激にアクセスが増えると503が出る場合がある（1秒で0→7万仮想ユーザなど）<br>
+Loadroidはいいぞ<br>
+ということでした．</p>
+
+<p>やちまの次回作にご期待ください．<br>
+<del>もうネタないけど</del></p>
+
+<h1>
+<span id="ついでにこちらもどうぞ自分が以前書いたfirebase関連記事" class="fragment"></span><a href="#%E3%81%A4%E3%81%84%E3%81%A7%E3%81%AB%E3%81%93%E3%81%A1%E3%82%89%E3%82%82%E3%81%A9%E3%81%86%E3%81%9E%E8%87%AA%E5%88%86%E3%81%8C%E4%BB%A5%E5%89%8D%E6%9B%B8%E3%81%84%E3%81%9Ffirebase%E9%96%A2%E9%80%A3%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>ついでにこちらもどうぞ（自分が以前書いたFirebase関連記事）</h1>
+
+<p><a href="https://qiita.com/Yatima/items/1b2af3094874c4a6bb77" id="reference-89762f4934bb7fcdd235">Firebase Dev Summit 2017 で発表された新機能ざっくり，これまでとの違いも</a><br>
+<a href="https://qiita.com/Yatima/items/8a54acc8fda3e5fce741" id="reference-47104845b76df13b6be8">結局Firebaseのdbでは何に気をつけるべきか？少しマニアックな内容も含め，わかりやすく説明する(realtime database)</a><br>
+<a href="https://qiita.com/Yatima/items/54ea22d0cea1acc6cbcb">Firebase RTDB + GCP datastore = Firestoreについて第一印象</a></p>
+
+<h1>
+<span id="ついでにコミュニティも紹介" class="fragment"></span><a href="#%E3%81%A4%E3%81%84%E3%81%A7%E3%81%AB%E3%82%B3%E3%83%9F%E3%83%A5%E3%83%8B%E3%83%86%E3%82%A3%E3%82%82%E7%B4%B9%E4%BB%8B"><i class="fa fa-link"></i></a>ついでにコミュニティも紹介</h1>
+
+<p>誕生したての，Firebaseの日本ユーザグループ<br>
+<a href="https://firebase.asia/" class="autolink" rel="nofollow noopener" target="_blank">https://firebase.asia/</a></p>
+
+<p>前からGCPのユーザグループにもたむろっていた（FirebaseはGoogleなので）<br>
+<a href="http://gcpug.jp/" class="autolink" rel="nofollow noopener" target="_blank">http://gcpug.jp/</a><br>
+　</p>
+
+<p>　</p>
+
+<p>　</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>正確には，「単一コレクションへのドキュメント書き込みにおいて，インデックスされたフィールドの値が連続的（インクリメントなど）であるとき」です． <a href="#fnref1">↩</a></p>
+</li>
+
+<li id="fn2">
+<p>Firestoreの裏側ではGoogleによる<a href="https://cloud.google.com/datastore/?hl=ja" rel="nofollow noopener" target="_blank">Datastore</a>が動いています．こちらについての知見もあると，Firestoreの挙動も理解が深まります． <a href="#fnref2">↩</a></p>
+</li>
+
+<li id="fn3">
+<p>Loadroidにおける現在の上限です． <a href="#fnref3">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>Yatimaさんの<br />5位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
+		<a target="_blank" href="https://qiita.com/Yatima/items/0cfddd7e44be2613ad8c">Googleのガチセキュリティ「高度な保護機能プログラム」を試してみる，あと仕組みとか</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-23 23:27:04</center>
+	</td>
+	<td style="width:200px;">
+		@Yatima<br />(株式会社みんコレ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/17440/profile-images/1473682159">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[google]</b> <b>[セキュリティ]</b> <b>[認証]</b> <b>[二段階認証]</b> <b>[FIDO]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Googleアカウントのセキュリティ，耐不正アクセス性を高められるオプション「<a href="https://landing.google.com/advancedprotection/" rel="nofollow noopener" target="_blank">高度な保護機能プログラム</a>」が提供され始めたので，試してみる．</p>
+
+<p>すなわち，この記事は以下の内容ではない；<br>
+・自社サーバのセキュリティを高める<br>
+・PCのセキュリティを高める<br>
+・Google内部のセキュリティを詳解する<br>
+・気になる人のGoogleアカウントをクラッキングする</p>
+
+<p>それから，スクリーンショットを貼るつもりが紛失したので，貴方がたの優秀な心の目で見て欲しい．</p>
+
+<h1>
+<span id="tldr" class="fragment"></span><a href="#tldr"><i class="fa fa-link"></i></a>tl;dr</h1>
+
+<p>まだ早い（Bluetooth周りがいまいち）</p>
+
+<h1>
+<span id="設定" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>設定</h1>
+
+<p>全く難しくない．<br>
+<a href="https://landing.google.com/advancedprotection/" rel="nofollow noopener" target="_blank">高度な保護機能プログラム</a><br>
+上記リンク先より設定開始．</p>
+
+<p>まずは物理的な認証用のキーが必要となる．<br>
+下図の通りリンクで誘導してくれているが，リンク先が米アマゾンである．<br>
+日アマゾンで探し直したほうが良い（配送に時間がかかる，あるいはそもそも配送非対応）．</p>
+
+<p>（スクリーンショットがここに貼られるはずだった）</p>
+
+<p>手元に2つとも揃ったら，次画面へ進む．<br>
+指示に従いキーを登録．<br>
+<strong>Bluetoothキーも登録はUSB経由</strong>で行う．</p>
+
+<p>（スクリーンショットがここに貼られるはずだった）</p>
+
+<p>2キーとも登録が済むと，次画面で警告がでる．<br>
+内容は以下の通り（これは別途コピペしておいたので紛失を免れた）．</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>高度な保護機能による変更内容
+
+・ログインには物理セキュリティ キーとパスワードが必要です
+　セキュリティ キーが必要なのは、新しいパソコン、ブラウザ、端末で初めてログインするときだけです
+
+・メールを読むには、Gmail か Inbox by Gmail が必要になります
+　Gmail と Inbox by Gmail にはどちらもモバイルアプリが用意されています。Chrome でウェブ バージョンも利用できます
+
+・Apple のメールアプリ、連絡先アプリ、カレンダー アプリから Google データにアクセスできなくなります
+　iOS アプリから Gmail、コンタクト、カレンダーにはアクセスできなくなります。メール アプリを使用してメールを確認することができなくなります。
+
+・サードパーティ アプリは Gmail、Google ドライブ、コンタクトにアクセスできなくなります
+　フィッシングからデータを保護するため、サードパーティのアプリによる Google ドライブ、Gmail、コンタクトへのアクセスはすべて拒否されます
+
+・アカウント復元では、本人確認の特別な手順を行います
+　セキュリティ キーを紛失して、アカウントにアクセスできなくなった場合には、アカウントの復元に数日かかります
+
+・2 段階認証プロセスに対応していないアプリではアカウントを使用できなくなります
+　一部のアプリでは、2 段階認証プロセスの代わりにアプリ パスワードが使用されます。これらのアプリは引き続き使用できますが、Google アカウントでは使用できません
+</pre></div></div>
+
+<p>誤解を招くような表現だが，iOSから全く使えなくなるという意味ではないはずだ．<br>
+Google製のiOSアプリからは問題ないはずである（推定なのは後述）．<br>
+iOSデフォルトのアプリを連携させるユーザが多いため，こういった表記になったのだろう．</p>
+
+<p>上記の警告に同意した上で次画面に行けば，晴れて有効化となる．</p>
+
+<p>（スクリーンショットがここに貼られるはずだった）</p>
+
+<h1>
+<span id="実際どうだったか" class="fragment"></span><a href="#%E5%AE%9F%E9%9A%9B%E3%81%A9%E3%81%86%E3%81%A0%E3%81%A3%E3%81%9F%E3%81%8B"><i class="fa fa-link"></i></a>実際どうだったか</h1>
+
+<p>Chromebook内のAndroidサイドでの認証に失敗．<br>
+iOSでの認証に失敗．</p>
+
+<p>いずれもBluetooth接続時に認識されずタイムアウト．<br>
+他の認証手段（SMSで認証コード送信など）は，そもそもこの「<a href="https://landing.google.com/advancedprotection/" rel="nofollow noopener" target="_blank">高度な保護機能プログラム</a>」によって選択できなくなっている．<br>
+検証機種はChromebook Pixel(2015), iPad Proである．</p>
+
+<h1>
+<span id="仕組み" class="fragment"></span><a href="#%E4%BB%95%E7%B5%84%E3%81%BF"><i class="fa fa-link"></i></a>仕組み</h1>
+
+<p>折角なので，中心となる物理キー周りの仕組みについても俯瞰的に触れておく．</p>
+
+<p>FIDO(Fast IDentity Online)という仕様が採用されている<sup id="fnref1"><a href="#fn1" rel="footnote" title="更に細かく言うと，「UAF(Universal Authentication Framework)」「U2F(Universal 2nd Factor)」という仕様がある．Googleアカウントで現在使われているのは後者．前者はまるまるパスワードを置き換え，後者は二段階認証の代替に留まる．">1</a></sup>．</p>
+
+<h2>
+<span id="なぜよりセキュアなのか" class="fragment"></span><a href="#%E3%81%AA%E3%81%9C%E3%82%88%E3%82%8A%E3%82%BB%E3%82%AD%E3%83%A5%E3%82%A2%E3%81%AA%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>なぜよりセキュアなのか</h2>
+
+<p>ざっくり言えば，パスワード（に相当するもの）を<strong>サーバ-クライアント間で受け渡さない</strong>からである<sup id="fnref2"><a href="#fn2" rel="footnote" title="公開鍵暗号方式を利用し，都度サーバから送られるチャレンジを元に生成するトークンを受け渡すのである．">2</a></sup>．<br>
+　<br>
+パスワード相当を受け渡ししないため，生体認証にも適している．<br>
+（生体認証は変更不可能のため，殊更に漏洩に注意する必要があった）</p>
+
+<h2>
+<span id="問題点" class="fragment"></span><a href="#%E5%95%8F%E9%A1%8C%E7%82%B9"><i class="fa fa-link"></i></a>問題点</h2>
+
+<p>クライアント側でパスワード相当を保存するため，クライアント自体のセキュリティは必要．<br>
+（しかし保存しない場合でも必要なのは確か）</p>
+
+<h2>
+<span id="ちなみに" class="fragment"></span><a href="#%E3%81%A1%E3%81%AA%E3%81%BF%E3%81%AB"><i class="fa fa-link"></i></a>ちなみに</h2>
+
+<p>上記の仕組みを理解すれば明らかだが，生体認証や物理キーであること自体にはあまり意味がない．<br>
+実際のところ，FIDOとしてはPIN入力も想定されている．<br>
+Googleが物理キーを採用したのは，利便性などによるものだろう．</p>
+
+<h1>
+<span id="雑感" class="fragment"></span><a href="#%E9%9B%91%E6%84%9F"><i class="fa fa-link"></i></a>雑感</h1>
+
+<h2>
+<span id="文字が入力される" class="fragment"></span><a href="#%E6%96%87%E5%AD%97%E3%81%8C%E5%85%A5%E5%8A%9B%E3%81%95%E3%82%8C%E3%82%8B"><i class="fa fa-link"></i></a>文字が入力される</h2>
+
+<p>認証でも何でもない場面でキーのボタンを押すと，一見ランダムな文字が入力される．<br>
+おそらくキーに保存されている，パスワードに相当するものだろうと思われる<sup id="fnref3"><a href="#fn3" rel="footnote" title="仮にトークンなのであれば，チャレンジなしに何を元に生成しているのか，ということになる．また，あの物理キーにトークンを出力できるほどの処理ができる，とは少し考えにくい．">3</a></sup>．<br>
+こういった<strong>不注意による漏洩リスク</strong>はあるかもしれない．</p>
+
+<h2>
+<span id="もはやパスワード要らないのでは" class="fragment"></span><a href="#%E3%82%82%E3%81%AF%E3%82%84%E3%83%91%E3%82%B9%E3%83%AF%E3%83%BC%E3%83%89%E8%A6%81%E3%82%89%E3%81%AA%E3%81%84%E3%81%AE%E3%81%A7%E3%81%AF"><i class="fa fa-link"></i></a>もはやパスワード要らないのでは</h2>
+
+<p>実はFIDOのうち二段階認証としてのキーなのである．<br>
+パスワードを丸々置き換えるためのキーは，現在のところ発売されていないようである．</p>
+
+<h2>
+<span id="セキュリティ高めるなら毎回でいいんじゃないの手軽だし" class="fragment"></span><a href="#%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E9%AB%98%E3%82%81%E3%82%8B%E3%81%AA%E3%82%89%E6%AF%8E%E5%9B%9E%E3%81%A7%E3%81%84%E3%81%84%E3%82%93%E3%81%98%E3%82%83%E3%81%AA%E3%81%84%E3%81%AE%E6%89%8B%E8%BB%BD%E3%81%A0%E3%81%97"><i class="fa fa-link"></i></a>セキュリティ高めるなら毎回でいいんじゃないの，手軽だし</h2>
+
+<p>上記に同じ．</p>
+
+<h1>
+<span id="おしまい" class="fragment"></span><a href="#%E3%81%8A%E3%81%97%E3%81%BE%E3%81%84"><i class="fa fa-link"></i></a>おしまい</h1>
+
+<p>何か間違いなどあったらマサカってください．</p>
+
+<h1>
+<span id="参考文献" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><i class="fa fa-link"></i></a>参考文献</h1>
+
+<p><a href="https://k-tai.watch.impress.co.jp/docs/column/keyword/759872.html" rel="nofollow noopener" target="_blank">FIDO とは</a><br>
+<a href="https://fidoalliance.org/fido%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF/?lang=ja" rel="nofollow noopener" target="_blank">FIDOの仕組み</a>（公式サイト）</p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>更に細かく言うと，「UAF(Universal Authentication Framework)」「U2F(Universal 2nd Factor)」という仕様がある．Googleアカウントで現在使われているのは後者．前者はまるまるパスワードを置き換え，後者は二段階認証の代替に留まる． <a href="#fnref1">↩</a></p>
+</li>
+
+<li id="fn2">
+<p>公開鍵暗号方式を利用し，都度サーバから送られるチャレンジを元に生成するトークンを受け渡すのである． <a href="#fnref2">↩</a></p>
+</li>
+
+<li id="fn3">
+<p>仮にトークンなのであれば，チャレンジなしに何を元に生成しているのか，ということになる．また，あの物理キーにトークンを出力できるほどの処理ができる，とは少し考えにくい． <a href="#fnref3">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

@@ -1,0 +1,672 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (ryosukemaehira)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (ryosukemaehira さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>ryosukemaehiraさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>424</kbd>
+		<a target="_blank" href="https://qiita.com/ryosukemaehira/items/3af1196b9947dec79ed5">もし、HTMLのテキスト周りでデザイナーからこんなお願いをされたら...</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-20 11:25:08</center>
+	</td>
+	<td style="width:200px;">
+		@ryosukemaehira<br />(PARK, Inc.  / RUC, Inc. / TECH::CAMP 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/107419/profile-images/1473710245">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[HTML5]</b> <b>[CSS3]</b> <b>[フロントエンド]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>HTMLのテキストはPhotoshopのように融通が効かないから、デザイナーからの細かいお願いはだいたい断っている...なんてことありませんか？<br>
+モダンブラウザは色んなプロパティが対応してきているので、できることも増えています。<br>
+今回は、知っているといざというとき便利なテキスト周りのCSSを集めてみました。</p>
+
+<h1>
+<span id="日本語文字詰めできないかなほらこのカタカナとかキモい" class="fragment"></span><a href="#%E6%97%A5%E6%9C%AC%E8%AA%9E%E6%96%87%E5%AD%97%E8%A9%B0%E3%82%81%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA%E3%81%BB%E3%82%89%E3%81%93%E3%81%AE%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A%E3%81%A8%E3%81%8B%E3%82%AD%E3%83%A2%E3%81%84"><i class="fa fa-link"></i></a>「日本語、文字詰めできないかな？ほら、このカタカナとかキモい。。」</h1>
+
+<p><strong>「Webで文字詰めだと？無理なんだよあきらめな！」</strong>なんていう時代はもうとうに過ぎ去っています。OpenTypeのフォントであれば、<strong>日本語でもちゃんと文字詰めできる</strong>んです。</p>
+
+<div class="code-frame" data-lang="CSS"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">class</span> <span class="p">{</span>
+  <span class="kp">-moz-</span><span class="k">font-feature-settings</span><span class="p">:</span> <span class="s2">"palt"</span><span class="p">;</span>
+  <span class="kp">-webkit-</span><span class="k">font-feature-settings</span><span class="p">:</span> <span class="s2">"palt"</span><span class="p">;</span>
+  <span class="k">font-feature-settings</span><span class="p">:</span> <span class="s2">"palt"</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>↓こんなかんじで文字詰めできます。<br>
+<a href="https://gyazo.com/6f81f97d40593e15e9a762e05d871952" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/50336d97ad0f42a265f97bf2957e49128b498e4f/68747470733a2f2f6779617a6f2e636f6d2f36663831663937643430353933653135653961373632653035643837313935322f726177" alt="Screenshot from Gyazo" data-canonical-src="https://gyazo.com/6f81f97d40593e15e9a762e05d871952/raw"></a></p>
+
+<p>ただし、letter-spacingを設定していない場合、わりとぎゅっと詰まってしまうので、必要に応じてletter-spacingを設定しましょう。</p>
+
+<h2>
+<span id="font-feature-settings-normalデフォルトの場合" class="fragment"></span><a href="#font-feature-settings-normal%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E3%81%AE%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a><strong>font-feature-settings: normal;(デフォルト)の場合</strong>
+</h2>
+
+<p><a href="https://camo.qiitausercontent.com/17c558c1b8d80bf200b78917f61e151a1cddb4e6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3130373431392f35626536393838622d656130312d633137632d333962362d3962336539653665323964662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/17c558c1b8d80bf200b78917f61e151a1cddb4e6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3130373431392f35626536393838622d656130312d633137632d333962362d3962336539653665323964662e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/107419/5be6988b-ea01-c17c-39b6-9b3e9e6e29df.png"></a><br>
+全ての文字が等幅の枠の中に収まっていますね。</p>
+
+<h2>
+<span id="font-feature-settings-palt-の場合" class="fragment"></span><a href="#font-feature-settings-palt-%E3%81%AE%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a><strong>font-feature-settings: "palt"; の場合</strong>
+</h2>
+
+<p><a href="https://camo.qiitausercontent.com/d818880231538d8442fb28afbb498b3525200f9a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3130373431392f30386465396337652d396534622d633364382d613434392d3937643535623664313731632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d818880231538d8442fb28afbb498b3525200f9a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3130373431392f30386465396337652d396534622d633364382d613434392d3937643535623664313731632e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/107419/08de9c7e-9e4b-c3d8-a449-97d55b6d171c.png"></a><br>
+文字によって、広くなったり狭くなったりしています。</p>
+
+<h3>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h3>
+
+<p>これがすごく良記事なので、参考までにどうぞ<br>
+<a href="https://ics.media/entry/14087" rel="nofollow noopener" target="_blank">文字詰めできるCSSのfont-feature-settingsが凄い！ 日本語フォントこそ指定したい自動カーニング</a></p>
+
+<p>ざくっとまとめると、Webにおける和文フォントは基本的に正方形の中に文字が収まるようになっているけど、<strong>プロポーショナルメトリクス（文字固有の横幅）に応じて字間を詰めることができる</strong>んだよ。ということです。</p>
+
+<h1>
+<span id="あ欧文フォントがリガチャしちゃってるんだけど外してくれないかな" class="fragment"></span><a href="#%E3%81%82%E6%AC%A7%E6%96%87%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%81%8C%E3%83%AA%E3%82%AC%E3%83%81%E3%83%A3%E3%81%97%E3%81%A1%E3%82%83%E3%81%A3%E3%81%A6%E3%82%8B%E3%82%93%E3%81%A0%E3%81%91%E3%81%A9%E5%A4%96%E3%81%97%E3%81%A6%E3%81%8F%E3%82%8C%E3%81%AA%E3%81%84%E3%81%8B%E3%81%AA"><i class="fa fa-link"></i></a>「あ、欧文フォントがリガチャしちゃってるんだけど、外してくれないかな？」</h1>
+
+<p>そもそもリガチャって何だよ！なんて言わないでください。</p>
+
+<div class="code-frame" data-lang="CSS"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">class</span> <span class="p">{</span>
+  <span class="k">font-variant-ligatures</span><span class="p">:</span> <span class="n">no-common-ligatures</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>fとiなど、<strong>特定の文字と文字がくっついて１文字扱いになっている</strong>状態が「リガチャ（合字）」です。<br>
+デフォルトでリガチャしますが、好みだったり、letter-spacingとの兼ね合いで、外した方がいい場合があります。</p>
+
+<p><a href="https://gyazo.com/57f4a489b4e12726ca2bd1483d9fc77b" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/425f784112f261b224b42a3d5bde15785083edbf/68747470733a2f2f6779617a6f2e636f6d2f35376634613438396234653132373236636132626431343833643966633737622f726177" alt="Screenshot from Gyazo" data-canonical-src="https://gyazo.com/57f4a489b4e12726ca2bd1483d9fc77b/raw"></a></p>
+
+<p>※等幅フォントなど、そもそもリガチャという概念が存在しないフォントもあるので、その場合は何もきにする必要はありません。</p>
+
+<h1>
+<span id="ここのpタグのところいい感じに左右両端を揃えたいんだけど" class="fragment"></span><a href="#%E3%81%93%E3%81%93%E3%81%AEp%E3%82%BF%E3%82%B0%E3%81%AE%E3%81%A8%E3%81%93%E3%82%8D%E3%81%84%E3%81%84%E6%84%9F%E3%81%98%E3%81%AB%E5%B7%A6%E5%8F%B3%E4%B8%A1%E7%AB%AF%E3%82%92%E6%8F%83%E3%81%88%E3%81%9F%E3%81%84%E3%82%93%E3%81%A0%E3%81%91%E3%81%A9"><i class="fa fa-link"></i></a>「ここのpタグ？のところ？いい感じに左右両端を揃えたいんだけど...」</h1>
+
+<p>CSSがいい感じにやってくれます。</p>
+
+<div class="code-frame" data-lang="CSS"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">class</span> <span class="p">{</span>
+  <span class="k">text-align</span><span class="p">:</span> <span class="kc">justify</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>こんな感じになります。<br>
+<a href="https://gyazo.com/faa2a22b48f6fdde3c4cdef55178a5c8" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/83f04afb4c96c8396730806ac1f763c2bbfd1b7f/68747470733a2f2f6779617a6f2e636f6d2f66616132613232623438663666646465336334636465663535313738613563382f726177" alt="Screenshot from Gyazo" data-canonical-src="https://gyazo.com/faa2a22b48f6fdde3c4cdef55178a5c8/raw"></a></p>
+
+<h1>
+<span id="なんかモックよりフォント太くないboldとか潰れちゃt" class="fragment"></span><a href="#%E3%81%AA%E3%82%93%E3%81%8B%E3%83%A2%E3%83%83%E3%82%AF%E3%82%88%E3%82%8A%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E5%A4%AA%E3%81%8F%E3%81%AA%E3%81%84bold%E3%81%A8%E3%81%8B%E6%BD%B0%E3%82%8C%E3%81%A1%E3%82%83t"><i class="fa fa-link"></i></a>「なんかモックよりフォント太くない？Boldとか潰れちゃt..」</h1>
+
+<p>ブランザのフォントのレンダリングの方法の違いによる差です。<br>
+2017年秋の最適解はこちらの模様。</p>
+
+<div class="code-frame" data-lang="SCSS"><div class="highlight"><pre><span></span><span class="nt">body</span> <span class="p">{</span>
+  <span class="nt">-webkit-font-smoothing</span><span class="nd">:</span> <span class="nt">subpixel-antialiased</span><span class="o">;</span>
+  <span class="nt">-moz-osx-font-smoothing</span><span class="nd">:</span> <span class="nt">unset</span><span class="o">;</span>
+  <span class="o">@</span><span class="nt">media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span><span class="o">(</span><span class="nt">-webkit-min-device-pixel-ratio</span><span class="nd">:</span> <span class="nt">2</span><span class="o">),(</span><span class="nt">min-resolution</span><span class="nd">:</span> <span class="nt">2dppx</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nt">-webkit-font-smoothing</span><span class="nd">:</span> <span class="nt">antialiased</span><span class="o">;</span>
+    <span class="nt">-moz-osx-font-smoothing</span><span class="nd">:</span> <span class="nt">grayscale</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>出典：<a href="http://creator.dwango.co.jp/14128.html" rel="nofollow noopener" target="_blank">「Webブラウザにおける文字のアンチエイリアスの現状の最適解」</a></p>
+
+<p>もともとフォントはベクターで構成されていて、それをピクセルの世界で表現する（ラスタライズする）際に、ジャギるのを防ぐためにアンチエイリアスをかけているのですが、その手法を制御しようとするものです。</p>
+
+<p>上記のコードは低解像度ディスプレイ上ではやや太めに、高解像度ディスプレイ（retinaなど）では細くスッキリと見せるためのものです。</p>
+
+<p>しかし、使っているフォントや色によってはみづらい場合もあるので、そのあたりは随時デザイナーと相談しながら調整しましょう。</p>
+
+<h1>
+<span id="この人の名前ルビ振ってほしい" class="fragment"></span><a href="#%E3%81%93%E3%81%AE%E4%BA%BA%E3%81%AE%E5%90%8D%E5%89%8D%E3%83%AB%E3%83%93%E6%8C%AF%E3%81%A3%E3%81%A6%E3%81%BB%E3%81%97%E3%81%84"><i class="fa fa-link"></i></a>「この人の名前、ルビ振ってほしい！」</h1>
+
+<p>いざという時に便利なrubyタグ。（ルビってrubyだったんだ...）</p>
+
+<div class="code-frame" data-lang="HTML"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ruby</span><span class="p">&gt;</span>
+  漢 <span class="p">&lt;</span><span class="nt">rt</span><span class="p">&gt;</span>Kan<span class="p">&lt;/</span><span class="nt">rt</span><span class="p">&gt;</span>
+  字 <span class="p">&lt;</span><span class="nt">rt</span><span class="p">&gt;</span>ji<span class="p">&lt;/</span><span class="nt">rt</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ruby</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<h1>
+<span id="その他" class="fragment"></span><a href="#%E3%81%9D%E3%81%AE%E4%BB%96"><i class="fa fa-link"></i></a>その他</h1>
+
+<p>Open Typeフォントのすごく細かい設定は、<a href="https://helpx.adobe.com/jp/typekit/using/open-type-syntax.html" rel="nofollow noopener" target="_blank">Typekitのサイト</a>などにかなり細かく紹介されているので、いざという時に備えて一度はざっと目を通して、何ができるのかを知っておきましょう！</p>
+
+<p>=============</p>
+
+<h1>
+<span id="追記" class="fragment"></span><a href="#%E8%BF%BD%E8%A8%98"><i class="fa fa-link"></i></a>追記</h1>
+
+<p>はてなブックマークの方で、たくさんコメントをいただき、その中に、font-feature-settings に関して、<br>
+- Webの文化に従った方がいい<br>
+- デザインとコーディングを分業しているときはやめた方がいい<br>
+- ブラウザ対応やアップデートの後追いが大変<br>
+といったご意見をたくさんいただきました。ありがとうございます。</p>
+
+<p>たしかに筆者自身、自分（たち）でデザインからマークアップまで面倒を見るサイトのときにはこれをやりますが、クライアントワークや、他のデザイナーがデザインしたサイトのマークアップの場合はここまではやらない（方がいい）ことが多いです。<br>
+こういうのをやっているサイトをあまり見ない（増えてはいる）のは、上記のような理由があるのでしょう。</p>
+
+<p>ブラウザ対応の件など、適宜加筆修正していきますので、よろしくおねがいします。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>ryosukemaehiraさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>46</kbd>
+		<a target="_blank" href="https://qiita.com/ryosukemaehira/items/542a20e0ab308c1fd8cb">汎用性の高いCSSフレームワークを作ろう。#1 .container、レスポンシブ系CSS編</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-17 01:21:12</center>
+	</td>
+	<td style="width:200px;">
+		@ryosukemaehira<br />(PARK, Inc.  / RUC, Inc. / TECH::CAMP 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/107419/profile-images/1473710245">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[HTML5]</b> <b>[CSS3]</b> <b>[scss]</b> <b>[マークアップ]</b> <b>[フロントエンド]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><div class="code-frame" data-lang="md"><div class="highlight"><pre><span></span><span class="gh">#</span> やりたいこと
+<span class="k">-</span> 汎用性の高い .container　クラスを作る
+<span class="k">-</span> メディアクエリをいい感じに管理する
+</pre></div></div>
+
+<p>Webサイトのコーディングを頻繁にやってると、毎回最初に同じようなCSSを書いている自分に気づきますね。<br>
+そろそろ自分用のライブラリでも作って、サイト制作のスタートダッシュを速くしたいという気持ちになってきました。</p>
+
+<p>そんなわけで、 <strong>一度最強のCSSを書いてこれから未来永劫一生使い回していこうプロジェクト</strong>の、今回は映えある第一弾となります。</p>
+
+<p>今日は、レイアウト系CSSの代表格、container とレスポンシブ周りのCSSを作っていこうと思います。</p>
+
+<h1>
+<span id="何はともあれ-container" class="fragment"></span><a href="#%E4%BD%95%E3%81%AF%E3%81%A8%E3%82%82%E3%81%82%E3%82%8C-container"><i class="fa fa-link"></i></a>何はともあれ .container</h1>
+
+<p>まあよく見かけるのはこんな感じのcontainerではないでしょうか？ bootstrap や bulma なんかもこんな感じですね。</p>
+
+<div class="code-frame" data-lang="css"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+ <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span> <span class="kc">auto</span><span class="p">;</span>
+ <span class="k">width</span><span class="p">:</span> <span class="mi">1200</span><span class="kt">px</span><span class="p">;</span>
+ <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">15</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h1>
+<span id="値を変数化していく" class="fragment"></span><a href="#%E5%80%A4%E3%82%92%E5%A4%89%E6%95%B0%E5%8C%96%E3%81%97%E3%81%A6%E3%81%84%E3%81%8F"><i class="fa fa-link"></i></a>値を変数化していく。</h1>
+
+<p>これをいろんなプロジェクトで再利用可能なように、値を変数化していきます。</p>
+
+<div class="code-frame" data-lang="scss"><div class="highlight"><pre><span></span><span class="nv">$container-padding</span><span class="o">:</span> <span class="mi">15</span><span class="kt">px</span><span class="p">;</span>
+
+<span class="nv">$contents-width-xl</span><span class="o">:</span> <span class="mi">1480</span><span class="kt">px</span><span class="p">;</span>
+
+<span class="nc">.container</span> <span class="p">{</span>
+ <span class="nt">margin</span><span class="nd">:</span> <span class="nt">0</span> <span class="nt">auto</span><span class="o">;</span>
+ <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-xl</span><span class="o">;</span>
+ <span class="nt">padding</span><span class="nd">:</span> <span class="nt">0</span> <span class="err">$</span><span class="nt">container-padding</span><span class="o">;</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h1>
+<span id="containerの横幅をレスポンシブに" class="fragment"></span><a href="#container%E3%81%AE%E6%A8%AA%E5%B9%85%E3%82%92%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B7%E3%83%96%E3%81%AB"><i class="fa fa-link"></i></a>.containerの横幅をレスポンシブに</h1>
+
+<p><em>出でよ、メディアクエリィィィィィィィ</em></p>
+
+<div class="code-frame" data-lang="css"><div class="highlight"><pre><span></span><span class="o">$</span><span class="nt">container-padding</span><span class="o">:</span> <span class="nt">15px</span><span class="o">;</span>
+
+<span class="o">$</span><span class="nt">contents-width-xs</span><span class="o">:</span> <span class="nt">400px</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">contents-width-sm</span><span class="o">:</span> <span class="nt">768px</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">contents-width-md</span><span class="o">:</span> <span class="nt">920px</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">contents-width-lg</span><span class="o">:</span> <span class="nt">1272px</span><span class="o">;</span>
+<span class="o">$</span><span class="nt">contents-width-xl</span><span class="o">:</span> <span class="nt">1480px</span><span class="o">;</span>
+
+
+<span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+  <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span> <span class="kc">auto</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">1200</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span> <span class="err">$</span><span class="kc">container</span><span class="o">-</span><span class="k">padding</span><span class="p">;</span>
+
+  <span class="err">@media</span> <span class="err">screen</span> <span class="err">and</span> <span class="err">(</span><span class="k">max-width</span><span class="p">:</span> <span class="nb">calc</span><span class="p">(</span><span class="mi">399</span><span class="kt">px</span><span class="p">))</span> <span class="err">{</span>
+    <span class="k">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span> 
+  <span class="p">@</span><span class="k">media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="o">$</span><span class="nt">contents-width-xs</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="o">:</span> <span class="o">$</span><span class="nt">contents-width-xs</span><span class="o">;</span> <span class="p">}</span>
+  <span class="p">@</span><span class="k">media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="o">$</span><span class="nt">contents-width-sm</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="o">:</span> <span class="o">$</span><span class="nt">contents-width-sm</span><span class="o">;</span> <span class="p">}</span>
+  <span class="p">@</span><span class="k">media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="o">$</span><span class="nt">contents-width-md</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="o">:</span> <span class="o">$</span><span class="nt">contents-width-md</span><span class="o">;</span> <span class="p">}</span>
+  <span class="p">@</span><span class="k">media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="o">$</span><span class="nt">contents-width-lg</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="o">:</span> <span class="o">$</span><span class="nt">contents-width-lg</span><span class="o">;</span> <span class="p">}</span>
+  <span class="p">@</span><span class="k">media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="o">$</span><span class="nt">contents-width-xl</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="o">:</span> <span class="o">$</span><span class="nt">contents-width-xl</span><span class="o">;</span> <span class="p">}</span>
+<span class="err">}</span>
+  <span class="nt">padding</span><span class="o">:</span> <span class="nt">0</span> <span class="o">$</span><span class="nt">container-padding</span><span class="o">;</span>
+
+  <span class="nt">box-sizing</span><span class="o">:</span> <span class="nt">border-box</span><span class="o">;</span> 
+        <span class="c">/* box-sizing は　resetの段階で全要素に当てています。 </span>
+<span class="c">     最近 Bootstrap4 の reboot.css がこの宣言を全要素に対して適用させましたね。つけておいて問題は無いでしょう。 */</span>
+
+<span class="err">}</span>
+</pre></div></div>
+
+<p>screen の幅が768px より大きくなったら、.container を 768px にして、、という要領ですね。<br>
+今回box-sizing: border-box； としたのは、デフォルトの box-sizing: content-box; だと、media-queryに入れる値とwidthに入れる値が左右のpaddingの分だけズレたりしてコードが見にくくなりそうなためです。</p>
+
+<p>出でよ！とか言いましたが、<strong><code>@media screen and (max-width: 1000px) { }</code> とか正直クソ長いし毎回書いてられないですよね。</strong> <br>
+media-query 略して mq としてmixin化してしまいましょう。<br>
+<a href="https://www.tam-tam.co.jp/tipsnote/html_css/post10708.html" rel="nofollow noopener" target="_blank">参考: Sassの変数とmixinで変更に強いメディアクエリをつくる</a></p>
+
+<h1>
+<span id="mixin-を使って崩壊しないメディアクエリにしよう" class="fragment"></span><a href="#mixin-%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E5%B4%A9%E5%A3%8A%E3%81%97%E3%81%AA%E3%81%84%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E3%82%AF%E3%82%A8%E3%83%AA%E3%81%AB%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>mixin を使って崩壊しないメディアクエリにしよう。</h1>
+
+<p>いい感じになってきた気がしますが、開発が進むうちに、ある日メディアクエリが人によってズレてることに気づくわけですね...<br>
+<strong>min-width の時はブレイクポイントが 768px だから、max-width: の時は 767px だよね♪ みたいなことは最初に書いた本人ですら１時間後には忘れてしまう</strong>のです。スクリーン幅としてありがちな1200px付近などでこのような微妙なズレによるデザインの崩れが起きると末恐ろしいですね。想像もしたくありません。</p>
+
+<p><strong>mixinを使って、だれでもわかりやすくメディアクエリを呼び出せるようにしておきましょう。</strong></p>
+
+<p>最終的にCSSの宣言部分はこうなります、</p>
+
+<div class="code-frame" data-lang="SCSS"><div class="highlight"><pre><span></span><span class="nc">.container</span> <span class="p">{</span>
+
+  <span class="err">略</span>
+
+  <span class="o">@</span><span class="nt">include</span> <span class="nt">mq-down</span><span class="o">(</span><span class="nt">xs</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="nt">100</span><span class="err">%</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-xs</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-sm</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-md</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-lg</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-xl</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>かなりスッキリしましたね。<br>
+なにやら<strong>謎の mixin に対して謎の引数を渡して</strong>いますが。<br>
+これの正体は、map で定義するやつのあれです。</p>
+
+<p>このへんからすごくSCSSっぽくなってくるので、気合い入れていきましょう。<br>
+まず、SCSS のmapを使って、</p>
+
+<div class="code-frame" data-lang="SCSS"><div class="highlight"><pre><span></span><span class="nv">$map-breakpoint-up</span><span class="o">:</span> <span class="p">(</span>
+  <span class="s1">'</span><span class="s2">xs'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-xs</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">sm'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-sm</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">md'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-md</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">lg'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-lg</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">xl'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-xl</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="p">)</span> <span class="nv">!default</span><span class="p">;</span>
+
+<span class="nv">$map-breakpoint-down</span><span class="o">:</span> <span class="p">(</span>
+  <span class="s1">'</span><span class="s2">xs'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-xs</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">sm'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-sm</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">md'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-md</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">lg'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-lg</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">xl'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-xl</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+<span class="p">)</span> <span class="nv">!default</span><span class="p">;</span>
+</pre></div></div>
+
+<p>こうします。js のオブジェクトみたいですね。<br>
+<code>hoge-up</code> となっているものは、それより上の時、つまりスクリーン幅の下限の時です。（　min-width: hoge; ）<br>
+逆に <code>hoge-down</code> となっているものは、それより下の時、つまりスクリーン幅の上限の時です。（　max-width: hoge; ）</p>
+
+<p><strong>ここで演算をしておくことで、ブレイクポイントの1pxの足し算引き算をする必要は生涯ありません。</strong></p>
+
+<p>そしてマッピングしたブレイクポイントの値を、mixin から呼び出します。</p>
+
+<div class="code-frame" data-lang="SCSS"><div class="highlight"><pre><span></span><span class="k">@mixin</span><span class="nf"> mq-up</span><span class="p">(</span><span class="nv">$breakpoint</span><span class="o">:</span> <span class="n">md</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* デフォルトの場合はmdが入るようにしておきます */</span>
+  <span class="k">@media</span> <span class="si">#{</span><span class="nf">map-get</span><span class="p">(</span><span class="nv">$map-breakpoint-up</span><span class="o">,</span> <span class="nv">$breakpoint</span><span class="p">)</span><span class="si">}</span> <span class="p">{</span>
+    <span class="k">@content</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@mixin</span><span class="nf"> mq-down</span><span class="p">(</span><span class="nv">$breakpoint</span><span class="o">:</span> <span class="n">md</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">@media</span> <span class="si">#{</span><span class="nf">map-get</span><span class="p">(</span><span class="nv">$map-breakpoint-down</span><span class="o">,</span> <span class="nv">$breakpoint</span><span class="p">)</span><span class="si">}</span> <span class="p">{</span>
+    <span class="k">@content</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>個人的にここを理解するのがちょっと時間がかかりました。<br>
+<a href="/mixin" class="user-mention js-hovercard" title="mixin" data-hovercard-target-type="user" data-hovercard-target-name="mixin">@mixin</a> の引数として受け取っているもの（　最初に見た呼び出し部分の sm とか lg　とか ） を、そのまま map-get の第二引数として渡します。</p>
+
+<p>こうすることで、map-get() でマッピングした対応する値を呼び出せるのですが、式展開しているのがポイントですね。</p>
+
+<p>そんなこんなで出来上がったSCSSのコードがこちらになります。</p>
+
+<div class="code-frame" data-lang="SCSS"><div class="highlight"><pre><span></span><span class="cm">/* ブレイクポイントと連動している container の幅になる。 */</span>
+<span class="nv">$contents-width-xs</span><span class="o">:</span> <span class="mi">400</span><span class="kt">px</span><span class="p">;</span>
+<span class="nv">$contents-width-sm</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="p">;</span>
+<span class="nv">$contents-width-md</span><span class="o">:</span> <span class="mi">920</span><span class="kt">px</span><span class="p">;</span>
+<span class="nv">$contents-width-lg</span><span class="o">:</span> <span class="mi">1272</span><span class="kt">px</span><span class="p">;</span>
+<span class="nv">$contents-width-xl</span><span class="o">:</span> <span class="mi">1480</span><span class="kt">px</span><span class="p">;</span>
+
+<span class="nv">$container-padding</span><span class="o">:</span> <span class="mi">15</span><span class="kt">px</span><span class="p">;</span>
+
+<span class="nv">$map-breakpoint-up</span><span class="o">:</span> <span class="p">(</span>
+  <span class="s1">'</span><span class="s2">xs'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-xs</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">sm'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-sm</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">md'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-md</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">lg'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-lg</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">xl'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-xl</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="p">)</span> <span class="nv">!default</span><span class="p">;</span>
+
+<span class="nv">$map-breakpoint-down</span><span class="o">:</span> <span class="p">(</span>
+  <span class="s1">'</span><span class="s2">xs'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-xs</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">sm'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-sm</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">md'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-md</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">lg'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-lg</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">xl'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-xl</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+<span class="p">)</span> <span class="nv">!default</span><span class="p">;</span>
+
+<span class="k">@mixin</span><span class="nf"> mq-up</span><span class="p">(</span><span class="nv">$breakpoint</span><span class="o">:</span> <span class="n">md</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">@media</span> <span class="si">#{</span><span class="nf">map-get</span><span class="p">(</span><span class="nv">$map-breakpoint-up</span><span class="o">,</span> <span class="nv">$breakpoint</span><span class="p">)</span><span class="si">}</span> <span class="p">{</span>
+<span class="c1">// $breakpoint の中には xs sm md lg xl のどれかが入っているので、map の中で対応している文字列（screen 云々の長ーいやつら）を返してくれます。 </span>
+    <span class="k">@content</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@mixin</span><span class="nf"> mq-down</span><span class="p">(</span><span class="nv">$breakpoint</span><span class="o">:</span> <span class="n">md</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">@media</span> <span class="si">#{</span><span class="nf">map-get</span><span class="p">(</span><span class="nv">$map-breakpoint-down</span><span class="o">,</span> <span class="nv">$breakpoint</span><span class="p">)</span><span class="si">}</span> <span class="p">{</span>
+    <span class="k">@content</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nc">.container</span> <span class="p">{</span>
+  <span class="nt">margin</span><span class="nd">:</span> <span class="nt">0</span> <span class="nt">auto</span><span class="o">;</span>
+  <span class="nt">width</span><span class="nd">:</span> <span class="nt">1200px</span><span class="o">;</span>
+  <span class="nt">padding</span><span class="nd">:</span> <span class="nt">0</span> <span class="err">$</span><span class="nt">container-padding</span><span class="o">;</span>
+  <span class="nt">box-sizing</span><span class="nd">:</span> <span class="nt">border-box</span><span class="o">;</span> 
+
+  <span class="o">@</span><span class="nt">include</span> <span class="nt">mq-down</span><span class="o">(</span><span class="nt">xs</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="nt">100</span><span class="err">%</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-xs</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-sm</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-md</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-lg</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-xl</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>ふむ。<br>
+これで、 .container というクラスを当てればレスポンシブな中央寄せコンテンツができるようになりましたね。</p>
+
+<h1>
+<span id="補助的なクラスを作りcontainerをさらに柔軟に" class="fragment"></span><a href="#%E8%A3%9C%E5%8A%A9%E7%9A%84%E3%81%AA%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%92%E4%BD%9C%E3%82%8Acontainer%E3%82%92%E3%81%95%E3%82%89%E3%81%AB%E6%9F%94%E8%BB%9F%E3%81%AB"><i class="fa fa-link"></i></a>補助的なクラスを作り、.containerをさらに柔軟に。</h1>
+
+<div class="code-frame" data-lang="SCSS"><div class="highlight"><pre><span></span><span class="nc">.container</span> <span class="p">{</span>
+
+  <span class="o">(</span><span class="err">中略</span><span class="o">)</span>
+
+  <span class="k">&amp;</span><span class="nc">.is-lg-width</span> <span class="p">{</span>
+    <span class="nt">max-width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-lg</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">&amp;</span><span class="nc">.is-md-width</span> <span class="p">{</span>
+    <span class="nt">max-width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-md</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">&amp;</span><span class="nc">.is-sm-width</span> <span class="p">{</span>
+    <span class="nt">max-width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-sm</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">&amp;</span><span class="nc">.is-xs-width</span> <span class="p">{</span>
+    <span class="nt">max-width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-xs</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>.container と一緒に使うクラスを用意します。<br>
+「大きい画面で見た時もそこまで大きくなってほしく無いタイプのcontainer」に対して、max-width を設定しましょう。<br>
+LPなど、縦長のサイトにありがちなやつですね。</p>
+
+<p>そして、HTMLを以下のようにすると、、、</p>
+
+<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"container"</span><span class="p">&gt;</span>
+    普通のcontainer
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"container is-lg-width"</span><span class="p">&gt;</span>
+    これは最大が lg 幅
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"container is-md-width"</span><span class="p">&gt;</span>
+    これは最大が md 幅
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"container is-sm-width"</span><span class="p">&gt;</span>
+    これは最大が sm 幅
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"container is-xs-width"</span><span class="p">&gt;</span>
+    これは最大が xs 幅
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+</pre></div></div>
+
+<p>こうなります。<br>
+<a href="https://gyazo.com/1048d71e5e3d60c96f443cdd0201937b" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/42231a9a0069c83214cb1dc956f9e6c52a8467ed/68747470733a2f2f6779617a6f2e636f6d2f31303438643731653565336436306339366634343363646430323031393337622f726177" alt="Screenshot from Gyazo" data-canonical-src="https://gyazo.com/1048d71e5e3d60c96f443cdd0201937b/raw"></a></p>
+
+<h1>
+<span id="最終的なscss" class="fragment"></span><a href="#%E6%9C%80%E7%B5%82%E7%9A%84%E3%81%AAscss"><i class="fa fa-link"></i></a>最終的なSCSS</h1>
+
+<p>今回書いたものをまとめると、こうなります。<br>
+実数値が、.contaienrのデフォルトの横幅を除くと一番上の６個しかありませんね。<br>
+最初にここだけ設定すれば、あとは何も恐れずに　containerの中にコンテンツを書いていくだけです（きっと）。</p>
+
+<div class="code-frame" data-lang="SCSS"><div class="highlight"><pre><span></span>
+<span class="cm">/* ブレイクポイントと連動している container の幅になる。 */</span>
+<span class="nv">$contents-width-xs</span><span class="o">:</span> <span class="mi">400</span><span class="kt">px</span><span class="p">;</span>
+<span class="nv">$contents-width-sm</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="p">;</span>
+<span class="nv">$contents-width-md</span><span class="o">:</span> <span class="mi">920</span><span class="kt">px</span><span class="p">;</span>
+<span class="nv">$contents-width-lg</span><span class="o">:</span> <span class="mi">1272</span><span class="kt">px</span><span class="p">;</span>
+<span class="nv">$contents-width-xl</span><span class="o">:</span> <span class="mi">1480</span><span class="kt">px</span><span class="p">;</span>
+
+<span class="nv">$container-padding</span><span class="o">:</span> <span class="mi">15</span><span class="kt">px</span><span class="p">;</span>
+
+<span class="nv">$map-breakpoint-up</span><span class="o">:</span> <span class="p">(</span>
+  <span class="s1">'</span><span class="s2">xs'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-xs</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">sm'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-sm</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">md'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-md</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">lg'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-lg</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">xl'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (min-width: </span><span class="si">#{</span><span class="nv">$contents-width-xl</span><span class="si">}</span><span class="s2">)'</span><span class="o">,</span>
+  <span class="p">)</span> <span class="nv">!default</span><span class="p">;</span>
+
+<span class="nv">$map-breakpoint-down</span><span class="o">:</span> <span class="p">(</span>
+  <span class="s1">'</span><span class="s2">xs'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-xs</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">sm'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-sm</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">md'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-md</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">lg'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-lg</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">xl'</span><span class="o">:</span> <span class="s1">'</span><span class="s2">screen and (max-width: calc(</span><span class="si">#{</span><span class="nv">$contents-width-xl</span><span class="si">}</span><span class="s2"> - 1px))'</span><span class="o">,</span>
+<span class="p">)</span> <span class="nv">!default</span><span class="p">;</span>
+
+<span class="k">@mixin</span><span class="nf"> mq-up</span><span class="p">(</span><span class="nv">$breakpoint</span><span class="o">:</span> <span class="n">md</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">@media</span> <span class="si">#{</span><span class="nf">map-get</span><span class="p">(</span><span class="nv">$map-breakpoint-up</span><span class="o">,</span> <span class="nv">$breakpoint</span><span class="p">)</span><span class="si">}</span> <span class="p">{</span>
+    <span class="k">@content</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@mixin</span><span class="nf"> mq-down</span><span class="p">(</span><span class="nv">$breakpoint</span><span class="o">:</span> <span class="n">md</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">@media</span> <span class="si">#{</span><span class="nf">map-get</span><span class="p">(</span><span class="nv">$map-breakpoint-down</span><span class="o">,</span> <span class="nv">$breakpoint</span><span class="p">)</span><span class="si">}</span> <span class="p">{</span>
+    <span class="k">@content</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nc">.container</span> <span class="p">{</span>
+  <span class="nt">margin</span><span class="nd">:</span> <span class="nt">0</span> <span class="nt">auto</span><span class="o">;</span>
+  <span class="nt">width</span><span class="nd">:</span> <span class="nt">1200px</span><span class="o">;</span>
+  <span class="nt">padding</span><span class="nd">:</span> <span class="nt">0</span> <span class="err">$</span><span class="nt">container-padding</span><span class="o">;</span>
+  <span class="nt">box-sizing</span><span class="nd">:</span> <span class="nt">border-box</span><span class="o">;</span> 
+
+  <span class="o">@</span><span class="nt">include</span> <span class="nt">mq-down</span><span class="o">(</span><span class="nt">xs</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="nt">100</span><span class="err">%</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-xs</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-sm</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-md</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-lg</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> mq-up</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-xl</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">&amp;</span><span class="nc">.is-lg-width</span> <span class="p">{</span>
+    <span class="nt">max-width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-lg</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">&amp;</span><span class="nc">.is-md-width</span> <span class="p">{</span>
+    <span class="nt">max-width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-md</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">&amp;</span><span class="nc">.is-sm-width</span> <span class="p">{</span>
+    <span class="nt">max-width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-sm</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="k">&amp;</span><span class="nc">.is-xs-width</span> <span class="p">{</span>
+    <span class="nt">max-width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">contents-width-xs</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>いかがでしょうか？<br>
+たかだかcontainerごときでくそ長いですね。本当に長いです。</p>
+
+<p>がしかし！これを書いておくことで、コーディングするたびに.container を最初にちまちま書いたり、メディアクエリが崩壊することはもうありません。 <strong>最初に欲しい数だけブレイクポイントを設定するだけです。</strong></p>
+
+<p>実際コンパイルされて出てくるCSSはたったこれだけになりますが、一度書いてしまうとなかなか便利なので、ぜひ参考にしてみてください。</p>
+
+<div class="code-frame" data-lang="CSS"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+  <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span> <span class="kc">auto</span><span class="p">;</span>
+  <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">15</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">overflow</span><span class="p">:</span> <span class="kc">hidden</span><span class="p">;</span>
+<span class="p">}</span>
+  <span class="p">.</span><span class="nc">container</span><span class="p">.</span><span class="nc">is-lg-width</span> <span class="p">{</span>
+    <span class="k">max-width</span><span class="p">:</span> <span class="mi">1272</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">.</span><span class="nc">container</span><span class="p">.</span><span class="nc">is-md-width</span> <span class="p">{</span>
+    <span class="k">max-width</span><span class="p">:</span> <span class="mi">920</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">.</span><span class="nc">container</span><span class="p">.</span><span class="nc">is-sm-width</span> <span class="p">{</span>
+    <span class="k">max-width</span><span class="p">:</span> <span class="mi">768</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">.</span><span class="nc">container</span><span class="p">.</span><span class="nc">is-xs-width</span> <span class="p">{</span>
+    <span class="k">max-width</span><span class="p">:</span> <span class="mi">400</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">@</span><span class="k">media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">max-width</span><span class="o">:</span> <span class="nt">calc</span><span class="o">(</span><span class="nt">400px</span> <span class="nt">-</span> <span class="nt">1px</span><span class="o">))</span> <span class="p">{</span>
+    <span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+      <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="p">@</span><span class="k">media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">400px</span><span class="o">)</span> <span class="p">{</span>
+    <span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+      <span class="k">width</span><span class="p">:</span> <span class="mi">400</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="p">@</span><span class="k">media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">768px</span><span class="o">)</span> <span class="p">{</span>
+    <span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+      <span class="k">width</span><span class="p">:</span> <span class="mi">768</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="p">@</span><span class="k">media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">920px</span><span class="o">)</span> <span class="p">{</span>
+    <span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+      <span class="k">width</span><span class="p">:</span> <span class="mi">920</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="p">@</span><span class="k">media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">1272px</span><span class="o">)</span> <span class="p">{</span>
+    <span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+      <span class="k">width</span><span class="p">:</span> <span class="mi">1272</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="p">@</span><span class="k">media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">1480px</span><span class="o">)</span> <span class="p">{</span>
+    <span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+      <span class="k">width</span><span class="p">:</span> <span class="mi">1480</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+</pre></div></div>
+
+<h1>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h1>
+
+<p>最後まで読んでいただき、ありがとうございます。<br>
+これからちょっとずつ自分CSSライブラリを作っていくので、また進捗報告がてら書くことにします。</p>
+
+<p>まだまだひよっこなので、ソースコードに関するご意見ご感想、お待ちしております。</p>
+
+<p>次回はテキスト周りのCSS初期設定について。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

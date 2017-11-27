@@ -1,0 +1,2613 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (onokatio)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (onokatio さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>258</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/4930e4b23339edd05d47">コマンドを間違えるたびに美少女に罵られたい！ ※gifアニメ版と高解像度を追記</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-22 09:52:17</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Zsh]</b> <b>[Linux]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>コマンドを間違えるたびに美少女に罵られてみたい、と誰しも思ったことはありませんか？<br>
+そんな長年の夢を叶えましょう！！！</p>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<p><a href="https://camo.qiitausercontent.com/cde9f7f62bb2028a11358653932a6c296283d9f8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f31663464396239612d383166392d346636382d373862342d3061363436666261353365662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/cde9f7f62bb2028a11358653932a6c296283d9f8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f31663464396239612d383166392d346636382d373862342d3061363436666261353365662e706e67" alt="k.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/154157/1f4d9b9a-81f9-4f68-78b4-0a646fba53ef.png"></a></p>
+
+<p>罵ってくれました。</p>
+
+<h1>
+<span id="方法" class="fragment"></span><a href="#%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>方法</h1>
+
+<h2>
+<span id="jp2aを導入する" class="fragment"></span><a href="#jp2a%E3%82%92%E5%B0%8E%E5%85%A5%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>jp2aを導入する</h2>
+
+<p>任意のJPEG画像をアスキーアートにして表示してくれるパッケージです。<br>
+たぶん以下でインストールできます。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ sudo apt install jp2a <span class="c1"># for Debian,Ubuntu</span>
+$ brew install jp2a     <span class="c1"># for MacOSX,Linuxbrew</span>
+</pre></div></div>
+
+<h2>
+<span id="画像を用意する" class="fragment"></span><a href="#%E7%94%BB%E5%83%8F%E3%82%92%E7%94%A8%E6%84%8F%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>画像を用意する</h2>
+
+<p>可愛い女の子の画像を用意しましょう。また、グレースケールにしておくと表示が綺麗になります。</p>
+
+<h2>
+<span id="シェルにフックを登録する" class="fragment"></span><a href="#%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%AB%E3%83%95%E3%83%83%E3%82%AF%E3%82%92%E7%99%BB%E9%8C%B2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>シェルにフックを登録する</h2>
+
+<p>コマンドを間違えたときに呼ばれる関数があるので、それを使いましょう。<br>
+jp2aを使い画像を表示し、その後にメッセージを表示します。</p>
+
+<p>Bashの場合</p>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">bashrc</span></div>
+<div class="highlight"><pre><span></span><span class="k">function</span> command_not_found_handle<span class="o">(){</span>
+  <span class="k">if</span> <span class="o">[</span> -e /usr/bin/jp2a <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="k">if</span> <span class="o">[</span> -e ~/kirino.jpg <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+      jp2a ~/kirino.jpg -i
+    <span class="k">fi</span>
+  <span class="k">fi</span>
+  <span class="nb">echo</span> <span class="s2">"ハァ…？</span><span class="nv">$1</span><span class="s2">とか何言ってんの？\nコマンドもろくに覚えられないなんて、アンタどうしようもないクズね。"</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+
+<p>ZSHの場合</p>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">zshrc</span></div>
+<div class="highlight"><pre><span></span><span class="k">function</span> command_not_found_handler<span class="o">(){</span>
+  <span class="k">if</span> <span class="o">[</span> -e /usr/bin/jp2a <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="k">if</span> <span class="o">[</span> -e ~/kirino.jpg <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+      jp2a ~/kirino.jpg -i
+    <span class="k">fi</span>
+  <span class="k">fi</span>
+  <span class="nb">echo</span> <span class="s2">"ハァ…？</span><span class="nv">$1</span><span class="s2">とか何言ってんの？\nコマンドもろくに覚えられないなんて、アンタどうしようもないクズね。"</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+
+<hr>
+
+<p>fishの場合</p>
+
+<p><a href="/QUANON" class="user-mention js-hovercard" title="QUANON" data-hovercard-target-type="user" data-hovercard-target-name="QUANON">@QUANON</a> さんから、以下のようなコメントを頂きました！ありがとうございます！！</p>
+
+<blockquote>
+<p>僕は fish を使っているのですが、このシェルでも次の function を定義することで実現できました。</p>
+</blockquote>
+
+<div class="code-frame" data-lang="sh"><div class="highlight"><pre><span></span><span class="k">function</span> command_not_found_handler --on-event fish_command_not_found
+    <span class="k">if</span> <span class="nb">type</span> -q jp2a<span class="p">;</span> and <span class="nb">test</span> -e ~/kirino.jpg
+        jp2a ~/kirino.jpg -i
+    end
+
+    <span class="nb">echo</span> ハァ…?<span class="nv">$argv</span><span class="o">[</span><span class="m">1</span><span class="o">]</span>とか何言ってんの?
+    <span class="nb">echo</span> コマンドもろくに覚えられないなんて、アンタどうしようもないクズね。
+end
+</pre></div></div>
+
+<p>bashとzshで'handle'と'handler'の違いがあるので注意です。また画像のパスは適宜変更してください。<br>
+また、jp2a自体のオプションを弄ることで、表示するときの行や列を指定することができます。<br>
+デフォルトでは、白に近い部分を表示させますが、ぼくの場合白黒にしてほとんど白となってしまい、見づらかったので、あえて黒の部分を表示させるために<code>-i</code>を付けています。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ jp2a hoge.jpg --width<span class="o">=</span><span class="m">100</span> <span class="c1"># 横幅を100列固定で表示</span>
+$ jp2a hoge.jpg --height<span class="o">=</span><span class="m">100</span> <span class="c1"># 横幅を100列固定で表示</span>
+$ jp2a hoge.jpg -i <span class="c1"># 白黒反転で表示</span>
+</pre></div></div>
+
+<p>これで一通りの手順は完了です。</p>
+
+<p><a href="https://camo.qiitausercontent.com/cde9f7f62bb2028a11358653932a6c296283d9f8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f31663464396239612d383166392d346636382d373862342d3061363436666261353365662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/cde9f7f62bb2028a11358653932a6c296283d9f8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f31663464396239612d383166392d346636382d373862342d3061363436666261353365662e706e67" alt="k.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/154157/1f4d9b9a-81f9-4f68-78b4-0a646fba53ef.png"></a></p>
+
+<h1>
+<span id="もっと高解像度で罵られたいというかもう動画がいい" class="fragment"></span><a href="#%E3%82%82%E3%81%A3%E3%81%A8%E9%AB%98%E8%A7%A3%E5%83%8F%E5%BA%A6%E3%81%A7%E7%BD%B5%E3%82%89%E3%82%8C%E3%81%9F%E3%81%84%E3%81%A8%E3%81%84%E3%81%86%E3%81%8B%E3%82%82%E3%81%86%E5%8B%95%E7%94%BB%E3%81%8C%E3%81%84%E3%81%84"><i class="fa fa-link"></i></a>もっと高解像度で罵られたい。というかもう動画がいい。</h1>
+
+<p>上を呼んでそう思った方、とても良い考え方だと思います。同士です。<br>
+次は、アスキーアートだけではなく、本当の画像やgifアニメを表示させたいと思います。</p>
+
+<h3>
+<span id="iterm2appの場合" class="fragment"></span><a href="#iterm2app%E3%81%AE%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>iTerm2.appの場合</h3>
+
+<blockquote>
+<p>コメント欄にて、@kuzukuzu1gou さんがiTerm2でimgcatを使う方法を教えてくれました。</p>
+</blockquote>
+
+<p><a href="https://camo.qiitausercontent.com/6a2c90c8dbe2c8dd79267206fbfb5a0d84de3761/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34313430382f30393561643030332d396633612d386533312d356337632d6535343433666332633536632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/6a2c90c8dbe2c8dd79267206fbfb5a0d84de3761/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34313430382f30393561643030332d396633612d386533312d356337632d6535343433666332633536632e706e67" alt="k.png"></a></p>
+
+<p>jp2aの部分を、そのまま<code>imgcat</code>というコマンドに置き換えれば表示できます。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ imgcat hoge.jpg
+</pre></div></div>
+
+<h3>
+<span id="xterm-mltermの場合" class="fragment"></span><a href="#xterm-mlterm%E3%81%AE%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>xterm mltermの場合</h3>
+
+<p>img2sixelというパッケージを使えば、画像の表示や、gitアニメの再生ができます。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ img2sixel hoge.jpg
+$ img2sixel hoge.gif -l disable <span class="c1"># -l disableを付けないとアニメがループしてプロンプトが帰ってこない</span>
+</pre></div></div>
+
+<p>また、任意のyoutubeや動画ファイルをgitアニメにするには以下を参考にしてください。<br>
+<a href="https://qiita.com/onokatio/items/40b12a2c50b4f9cc3e75" id="reference-38bab9042620d1100a4b">Linuxで、コマンドだけでyoutubeから動画をダウンロードして任意の時間を切り出してgitアニ化する</a></p>
+
+<p><a href="https://camo.qiitausercontent.com/a0b0555c66bdb8a21c108ff6387c131b64c8a489/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f37666265333036312d633730322d383334372d636363352d6562613732663436393131392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a0b0555c66bdb8a21c108ff6387c131b64c8a489/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f37666265333036312d633730322d383334372d636363352d6562613732663436393131392e706e67" alt="k.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/154157/7fbe3061-c702-8347-ccc5-eba72f469119.png"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/6903eb05a22f423ce521b28fe532030bdf2d44f4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f65393562373038352d366562642d396132322d323134622d6436396162303563353636332e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/6903eb05a22f423ce521b28fe532030bdf2d44f4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f65393562373038352d366562642d396132322d323134622d6436396162303563353636332e676966" alt="demo.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/154157/e95b7085-6ebd-9a22-214b-d69ab05c5663.gif"></a></p>
+
+<p>ゾクゾクしちゃいますね。<br>
+これで楽しいシェルライフを送りましょう！</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>236</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/7db58947b05c17d1f44e">とりあえずド素人が読むべきブロックチェーン論文・書籍・サイト</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-09 21:56:49</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Bitcoin]</b> <b>[Blockchain]</b> <b>[ビットコイン]</b> <b>[ブロックチェーン]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>どうも。よくブロックチェーン興味あるけどよくわからん、という声を某所から聞くので、僭越ながら自分が勉強するために使っている参考文献を紹介します。<br>
+今後自分が新しく読むたびに追加していく予定です。</p>
+
+<h2>
+<span id="共通必須" class="fragment"></span><a href="#%E5%85%B1%E9%80%9A%E5%BF%85%E9%A0%88"><i class="fa fa-link"></i></a>共通,必須</h2>
+
+<h3>
+<span id="mastering-bitcoin-書籍" class="fragment"></span><a href="#mastering-bitcoin-%E6%9B%B8%E7%B1%8D"><i class="fa fa-link"></i></a>Mastering Bitcoin (書籍)</h3>
+
+<p><a href="https://www.bitcoinbook.info/translations-of-mastering-bitcoin/" class="autolink" rel="nofollow noopener" target="_blank">https://www.bitcoinbook.info/translations-of-mastering-bitcoin/</a></p>
+
+<p>名著中の名著ですね。主にビットコインのブロックチェーンに関する一通りの説明が乗っています。業界では読んでいることが常識と呼ばれるくらいに一般的な書籍となっています。<br>
+全部目を通しておいて損はないと思われます。<br>
+自分の場合は、本を買わずに、拝みながら無償翻訳版(上記URL)を読ませてもらっていますが、そろそろ手元に置いておきたいところです。</p>
+
+<h2>
+<span id="bitcoin-関連" class="fragment"></span><a href="#bitcoin-%E9%96%A2%E9%80%A3"><i class="fa fa-link"></i></a>Bitcoin 関連</h2>
+
+<h3>
+<span id="enbitcoinit" class="fragment"></span><a href="#enbitcoinit"><i class="fa fa-link"></i></a>en.bitcoin.it</h3>
+
+<p><a href="https://en.bitcoin.it/wiki/Main_Page" class="autolink" rel="nofollow noopener" target="_blank">https://en.bitcoin.it/wiki/Main_Page</a></p>
+
+<p>有名なBitcoinのWikiです。トランザクションの構造や、データベースの保存形式など、技術に関する細かい説明が掲載されています。Mastering Bitcoinで理論を学んだあと、実際に作業で使うのは主にこちらになっています。情報の新しさという面で、本よりも最新な点もGOODです。</p>
+
+<h3>
+<span id="bitcoin-improvement-proposals-bip" class="fragment"></span><a href="#bitcoin-improvement-proposals-bip"><i class="fa fa-link"></i></a>Bitcoin Improvement Proposals (BIP)</h3>
+
+<p><a href="https://en.bitcoin.it/wiki/Bitcoin_Improvement_Proposals" class="autolink" rel="nofollow noopener" target="_blank">https://en.bitcoin.it/wiki/Bitcoin_Improvement_Proposals</a></p>
+
+<p>BIPと呼ばれる、ビットコインの改善を文章化したものです。ビットコインのプロトコル追加案は基本的にこれに則っています。常にビットコインに取り込まれている最新の仕様が、一番根本のソースで確認できるので、本やWikiに比べると一番わかりやすく信頼できる情報源です。</p>
+
+<p>自分は、BIPの翻訳をしているので、よければ参考にしてください。</p>
+
+<p><a href="https://qiita.com/onokatio/items/60020144786edd42a656" id="reference-e5511058831f9443b5e5">BIP 0001 【ビットコイン番RFCである"Bitcoin Improvement Proposal"を読んでみよう】<br>
+</a><br>
+<a href="https://qiita.com/onokatio/items/4eafe6b26cf6820de945" id="reference-dc5349368e6175de024d">BIP 0012 (OP_EVAL) 【任意の値をScriptとして実行できる】<br>
+</a></p>
+
+<h2>
+<span id="lightning-network" class="fragment"></span><a href="#lightning-network"><i class="fa fa-link"></i></a>Lightning Network</h2>
+
+<p><a href="http://lightning.network/lightning-network-paper.pdf" class="autolink" rel="nofollow noopener" target="_blank">http://lightning.network/lightning-network-paper.pdf</a></p>
+
+<p>数あるライトニングネットワークの構想ですが、その1つであるlightningnetworkグループが出しているホワイトペーパーです。</p>
+
+<h2>
+<span id="ethereum-関連" class="fragment"></span><a href="#ethereum-%E9%96%A2%E9%80%A3"><i class="fa fa-link"></i></a>Ethereum 関連</h2>
+
+<h3>
+<span id="ethereum-wiki" class="fragment"></span><a href="#ethereum-wiki"><i class="fa fa-link"></i></a>Ethereum Wiki</h3>
+
+<p><a href="http://www.ethdocs.org/en/latest/" class="autolink" rel="nofollow noopener" target="_blank">http://www.ethdocs.org/en/latest/</a><br>
+<a href="https://github.com/ethereum/wiki/wiki" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/ethereum/wiki/wiki</a></p>
+
+<p>コアデブが公開しているwikiです。Ethereumのホワイトペーパー、イエローペーパー、その他細かい説明が全て乗っています。Ethereum自体の基本的な仕組み・原理を学ぶにはもってこいです。</p>
+
+<h3>
+<span id="solidity" class="fragment"></span><a href="#solidity"><i class="fa fa-link"></i></a>Solidity</h3>
+
+<p><a href="https://solidity.readthedocs.io/en/latest/" class="autolink" rel="nofollow noopener" target="_blank">https://solidity.readthedocs.io/en/latest/</a></p>
+
+<p>スマートコントラクトを開発するための言語、Solidityのドキュメントです。</p>
+
+<h3>
+<span id="ethereum-book" class="fragment"></span><a href="#ethereum-book"><i class="fa fa-link"></i></a>Ethereum Book</h3>
+
+<p><a href="https://book.ethereum-jp.net/" class="autolink" rel="nofollow noopener" target="_blank">https://book.ethereum-jp.net/</a></p>
+
+<p>Ethereumでスマートコントラクトを開発するためのドキュメントを、日本語に翻訳したものです。日本語なので内容もわかりやすいのですが、唯一情報が古い＆wikiに比べると少ないという問題があります。<br>
+自分の場合は、まずこれを呼んで、その上でwikiを読むことでスムーズに理解できました。</p>
+
+<h3>
+<span id="eip" class="fragment"></span><a href="#eip"><i class="fa fa-link"></i></a>EIP</h3>
+
+<p><a href="https://github.com/ethereum/EIPs" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/ethereum/EIPs</a></p>
+
+<p>Ethereum版BIPである、EIPのリポジトリです。ERC20 トークンなどの仕様が保管されています。</p>
+
+<h3>
+<span id="ethereum-smart-contract-best-practices" class="fragment"></span><a href="#ethereum-smart-contract-best-practices"><i class="fa fa-link"></i></a>Ethereum Smart Contract Best Practices</h3>
+
+<p><a href="https://consensys.github.io/smart-contract-best-practices/" class="autolink" rel="nofollow noopener" target="_blank">https://consensys.github.io/smart-contract-best-practices/</a></p>
+
+<p>スマートコントラクトを開発する際に、気をつけるべき点や脆弱性、問題点などがわかりやすくまとめられています。</p>
+
+<h3>
+<span id="web3js-docs" class="fragment"></span><a href="#web3js-docs"><i class="fa fa-link"></i></a>Web3.js docs</h3>
+
+<p><a href="https://web3js.readthedocs.io/en/1.0/" class="autolink" rel="nofollow noopener" target="_blank">https://web3js.readthedocs.io/en/1.0/</a></p>
+
+<p>Ethereumを使った非中央集権なサービスを開発するためのライブラリ、Web3.jsのreaddocsです。Getting StartedやAPIリファレンスが乗っています。</p>
+
+<h3>
+<span id="ens" class="fragment"></span><a href="#ens"><i class="fa fa-link"></i></a>ENS</h3>
+
+<p><a href="http://docs.ens.domains/en/latest/" class="autolink" rel="nofollow noopener" target="_blank">http://docs.ens.domains/en/latest/</a></p>
+
+<p>Ethereumの名前解決の仕組みであるENSの仕組みと使い方のドキュメントです。</p>
+
+<h3>
+<span id="swarm" class="fragment"></span><a href="#swarm"><i class="fa fa-link"></i></a>Swarm</h3>
+
+<p><a href="https://swarm-guide.readthedocs.io/en/latest/introduction.html" class="autolink" rel="nofollow noopener" target="_blank">https://swarm-guide.readthedocs.io/en/latest/introduction.html</a></p>
+
+<p>Ethereumで使える分散ファイルシステム(IPFSと似てる)のドキュメントです。</p>
+
+<h2>
+<span id="counterparty" class="fragment"></span><a href="#counterparty"><i class="fa fa-link"></i></a>Counterparty</h2>
+
+<h3>
+<span id="counterparty-document" class="fragment"></span><a href="#counterparty-document"><i class="fa fa-link"></i></a>Counterparty Document</h3>
+
+<p><a href="https://counterparty.io/docs/" class="autolink" rel="nofollow noopener" target="_blank">https://counterparty.io/docs/</a></p>
+
+<p>公式が出しているドキュメント群です。カウンターパーティー自体の動作原理はそこまで複雑ではないのですが、細かい部分や、EVMに似たスマートコントラクトなど、興味深い内容がたくさん乗っています、</p>
+
+<h2>
+<span id="hyperledger" class="fragment"></span><a href="#hyperledger"><i class="fa fa-link"></i></a>Hyperledger</h2>
+
+<h3>
+<span id="hyperledger-fabric-docs" class="fragment"></span><a href="#hyperledger-fabric-docs"><i class="fa fa-link"></i></a>Hyperledger Fabric docs</h3>
+
+<p><a href="https://hyperledger-fabric.readthedocs.io/en/release/" class="autolink" rel="nofollow noopener" target="_blank">https://hyperledger-fabric.readthedocs.io/en/release/</a></p>
+
+<p>readthedocsに上がっている、Hyperledger Fabricのドキュメントです。<br>
+Fabric自体の構成（ネットワーク、コンセンサスレイヤー）の説明も、ノードの構築も、コード例もほとんどが乗っています。</p>
+
+<h2>
+<span id="ripple" class="fragment"></span><a href="#ripple"><i class="fa fa-link"></i></a>Ripple</h2>
+
+<h3>
+<span id="ripple-developer-center" class="fragment"></span><a href="#ripple-developer-center"><i class="fa fa-link"></i></a>Ripple Developer Center</h3>
+
+<p><a href="https://ripple.com/build/" class="autolink" rel="nofollow noopener" target="_blank">https://ripple.com/build/</a></p>
+
+<p>RippleのAPIやレイヤー構造、仕組みが乗っている公式ドキュメントです。</p>
+
+<h2>
+<span id="勉強会など" class="fragment"></span><a href="#%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%81%AA%E3%81%A9"><i class="fa fa-link"></i></a>勉強会など</h2>
+
+<h3>
+<span id="ビットコインとか勉強会暗号通貨輪読会" class="fragment"></span><a href="#%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%A8%E3%81%8B%E5%8B%89%E5%BC%B7%E4%BC%9A%E6%9A%97%E5%8F%B7%E9%80%9A%E8%B2%A8%E8%BC%AA%E8%AA%AD%E4%BC%9A"><i class="fa fa-link"></i></a>ビットコインとか勉強会/暗号通貨輪読会</h3>
+
+<p><a href="https://cryptocurrency.connpass.com/" class="autolink" rel="nofollow noopener" target="_blank">https://cryptocurrency.connpass.com/</a></p>
+
+<p>ときおり参加させてもらっている勉強会です。ビットコインとか勉強会は初心者向け、暗号通貨輪読会は中級以上むけぐらいの難易度でした。とくに輪読会は、まだ海外のRedditや掲示板などでしか有名になっていない技術・ツールをわかりやすく解説してくれているのでありがたいです。<br>
+過去にはSegwit、P2SH、Hivemindなどの勉強会がありました。</p>
+
+<h2>
+<span id="メーリングリスト" class="fragment"></span><a href="#%E3%83%A1%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E3%83%AA%E3%82%B9%E3%83%88"><i class="fa fa-link"></i></a>メーリングリスト</h2>
+
+<p><a href="https://lists.linuxfoundation.org/mailman/listinfo/bitcoin-dev" class="autolink" rel="nofollow noopener" target="_blank">https://lists.linuxfoundation.org/mailman/listinfo/bitcoin-dev</a></p>
+
+<p>Linux Foundationでホストされている、Bitcoinの事実上の公式メーリングリストです。情報ソース根源なので、新しいプロトコルなどの提案などがリアルタイムにはいってきます。</p>
+
+<h2>
+<span id="暗号" class="fragment"></span><a href="#%E6%9A%97%E5%8F%B7"><i class="fa fa-link"></i></a>暗号</h2>
+
+<p>暗号分野です。具体的なサイトなどは上げませんが、ブロックチェーンを理解する上で、最低限ElGamal暗号やRSA暗号、楕円曲線暗号などの基本理解をしておくと、ぐっと文献の読みやすさが高くなります。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>20</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/40b12a2c50b4f9cc3e75">Linuxで、コマンドだけでyoutubeから動画をダウンロードして任意の時間を切り出してgitアニ化する</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-03 17:20:40</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Linux]</b> <b>[ffmpeg]</b> <b>[YouTube]</b> <b>[gif]</b> <b>[youtube-dl]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>メモ。違法ダウンロードを冗長するものではありません。</p>
+
+<h2>
+<span id="youtubeでダウンロードしたい動画を見つけてurlをコピる" class="fragment"></span><a href="#youtube%E3%81%A7%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89%E3%81%97%E3%81%9F%E3%81%84%E5%8B%95%E7%94%BB%E3%82%92%E8%A6%8B%E3%81%A4%E3%81%91%E3%81%A6url%E3%82%92%E3%82%B3%E3%83%94%E3%82%8B"><i class="fa fa-link"></i></a>Youtubeでダウンロードしたい動画を見つけて、URLをコピる。</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>https://www.youtube.com/watch?v=hogehoge
+</pre></div></div>
+
+<p>みたいなかんじ。</p>
+
+<h2>
+<span id="yotube-dlコマンドを使い動画をダウンロードする" class="fragment"></span><a href="#yotube-dl%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%82%92%E4%BD%BF%E3%81%84%E5%8B%95%E7%94%BB%E3%82%92%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>yotube-dlコマンドを使い、動画をダウンロードする。</h2>
+
+<p>以下のようにしてyoutube-dlをインストールする。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+$ sudo chmod a+rx /usr/local/bin/youtube-dl
+</pre></div></div>
+
+<p>MacOSならbrewでも入る</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ brew install youtube-dl
+</pre></div></div>
+
+<p>pipでもいい</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ sudo pip install --upgrade youtube_dl
+</pre></div></div>
+
+<p>ダウンロードできたら、まずは-Fオプションを付けて、ダウンロードできる動画の種類を確認する。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ youtube-dl -F https://www.youtube.com/watch?v<span class="o">=</span>hogehoge
+
+<span class="o">[</span>youtube<span class="o">]</span> hoge: Downloading webpage
+<span class="o">[</span>youtube<span class="o">]</span> hoge: Downloading video info webpage
+<span class="o">[</span>youtube<span class="o">]</span> hoge: Extracting video information
+<span class="o">[</span>youtube<span class="o">]</span> hoge: Downloading MPD manifest
+<span class="o">[</span>info<span class="o">]</span> Available formats <span class="k">for</span> hoge:
+format code  extension  resolution note
+<span class="m">139</span>          m4a        audio only DASH audio   49k , m4a_dash container, mp4a.40.5@ 48k <span class="o">(</span>22050Hz<span class="o">)</span>
+<span class="m">249</span>          webm       audio only DASH audio   61k , opus @ 50k, <span class="m">3</span>.00MiB
+<span class="m">250</span>          webm       audio only DASH audio   78k , opus @ 70k, <span class="m">3</span>.81MiB
+<span class="m">171</span>          webm       audio only DASH audio  124k , vorbis@128k, <span class="m">5</span>.91MiB
+<span class="m">140</span>          m4a        audio only DASH audio  128k , m4a_dash container, mp4a.40.2@128k <span class="o">(</span>44100Hz<span class="o">)</span>
+<span class="m">251</span>          webm       audio only DASH audio  150k , opus @160k, <span class="m">7</span>.11MiB
+<span class="m">160</span>          mp4        256x144    DASH video   72k , avc1.4d400c, 24fps, video only
+<span class="m">278</span>          webm       256x144    144p  110k , webm container, vp9, 24fps, video only, <span class="m">4</span>.38MiB
+<span class="m">133</span>          mp4        426x240    DASH video  136k , avc1.4d4015, 24fps, video only
+<span class="m">242</span>          webm       426x240    240p  216k , vp9, 24fps, video only, <span class="m">6</span>.56MiB
+<span class="m">134</span>          mp4        640x360    DASH video  314k , avc1.4d401e, 24fps, video only
+<span class="m">243</span>          webm       640x360    360p  404k , vp9, 24fps, video only, <span class="m">11</span>.71MiB
+<span class="m">135</span>          mp4        854x480    DASH video  565k , avc1.4d401e, 24fps, video only
+<span class="m">244</span>          webm       854x480    480p  690k , vp9, 24fps, video only, <span class="m">18</span>.09MiB
+<span class="m">136</span>          mp4        1280x720   DASH video  928k , avc1.4d401f, 24fps, video only
+<span class="m">247</span>          webm       1280x720   720p 1350k , vp9, 24fps, video only, <span class="m">35</span>.56MiB
+<span class="m">17</span>           3gp        176x144    small , mp4v.20.3, mp4a.40.2@ 24k
+<span class="m">36</span>           3gp        320x180    small , mp4v.20.3, mp4a.40.2
+<span class="m">43</span>           webm       640x360    medium , vp8.0, vorbis@128k
+<span class="m">18</span>           mp4        640x360    medium , avc1.42001E, mp4a.40.2@ 96k
+<span class="m">22</span>           mp4        1280x720   hd720 , avc1.64001F, mp4a.40.2@192k <span class="o">(</span>best<span class="o">)</span>
+
+</pre></div></div>
+
+<p>色々でてくるので、たとえば解像度が640x360で形式がmp4のファイルをダウンロードしたかったら18という数字を覚えておく。</p>
+
+<p>次に、さっきのIDを使って動画をダウンロードする。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ youtube-dl -f <span class="m">18</span> https://www.youtube.com/watch?v<span class="o">=</span>hogehoge
+</pre></div></div>
+
+<p>カレントディレクトリに、<code>動画の名前.mp4</code>というファイルができる。</p>
+
+<h2>
+<span id="ffmpegを使って任意の場所を切り出す" class="fragment"></span><a href="#ffmpeg%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E4%BB%BB%E6%84%8F%E3%81%AE%E5%A0%B4%E6%89%80%E3%82%92%E5%88%87%E3%82%8A%E5%87%BA%E3%81%99"><i class="fa fa-link"></i></a>ffmpegを使って、任意の場所を切り出す。</h2>
+
+<p>ffmpegがはいっていない場合は、<code>sudo apt-get install ffmpeg</code>とか<code>brew instal ffmpeg</code>で入れてください。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ ffmpeg -ss 切り出し開始時間 -i 入力ファイル名 -t 切り出す秒数 出力ファイル名
+</pre></div></div>
+
+<p>たとえば、以下のようになると思います。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ ffmpeg -ss <span class="m">143</span>.5 -i hoge.mp4 -t <span class="m">1</span>.3 hoge2.mp4
+</pre></div></div>
+
+<p>これで、hoge.mp4の143秒目から145秒だけが抜き出されてhoge2.mp4として保存されます。確認して、気に食わなかったら秒数を変えてまた試してみてください。</p>
+
+<h2>
+<span id="ffmpegを使ってmp4とgifアニメに変換する" class="fragment"></span><a href="#ffmpeg%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6mp4%E3%81%A8gif%E3%82%A2%E3%83%8B%E3%83%A1%E3%81%AB%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>ffmpegを使って、mp4とgifアニメに変換する</h2>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ ffmpeg -i hoge2.mp4 -an -r <span class="m">15</span> -pix_fmt rgb24 -f git hige.gif
+</pre></div></div>
+
+<p>これでgitアニメができました。</p>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<p><a href="https://qiita.com/kitar/items/d293e3962ade087fd850" class="autolink" id="reference-c5ec8bb4d036df78aff6">https://qiita.com/kitar/items/d293e3962ade087fd850</a><br>
+<a href="http://takuya-1st.hatenablog.jp/entry/2015/07/15/002701" class="autolink" rel="nofollow noopener" target="_blank">http://takuya-1st.hatenablog.jp/entry/2015/07/15/002701</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>14</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/c2d710e2cb7ec61c8dca">コマンドが失敗したときにシェルの顔文字があわててたら、可愛いしわかりやすいよね</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-03 16:28:53</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Linux]</b> <b>[shell]</b> <b>[kawaii]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>どうも、かちおです。突然ですが、シェルのプロンプトって普段味気ないですよね。カスタマイズしている人でも、色やgitブランチ表示していたりする程度だと思います。<br>
+そこで、今回は、直前のコマンドのリターンコードが0かそれ以外か(True or False)を判断し、失敗していたらプロンプトの顔文字が慌てるようにしようと思います。</p>
+
+<p>※この記事の方法はzshのみに対応しています。</p>
+
+<h2>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h2>
+
+<p><a href="https://camo.qiitausercontent.com/52475d642bd02b35bcd0e067162e234af075377b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f36623362333634392d363733392d313937312d343166632d3261663337333039316331632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/52475d642bd02b35bcd0e067162e234af075377b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f36623362333634392d363733392d313937312d343166632d3261663337333039316331632e706e67" alt="k.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/154157/6b3b3649-6739-1971-41fc-2af373091c1c.png"></a></p>
+
+<p>コマンドが正常に動いているときは</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>（」・ω・）」うー▶~ $ ❯
+</pre></div></div>
+
+<p>と表示されていますが、コマンドの返り値が0以外だと</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>＼（・ω・＼）SAN値！~ $ ❯
+</pre></div></div>
+
+<p>に変わります。また、右のプロンプトもそれぞれ<code>＼（・ω・＼）にゃー！</code>と<code>（／・ω・）／ピンチ！</code>に変化します。</p>
+
+<h1>
+<span id="方法" class="fragment"></span><a href="#%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>方法</h1>
+
+<p>zshのプロンプトの文字は、<code>$PROMPT</code>という環境変数で設定されています。既にpowerline等のテーマを導入シている場合は、既に登録されていると思うので、テーマを読み込んだあとに、テーマが設定した文字列を変更してみてください。上書きしてしまうと、せっかくのテーマが表示されなくなってしまいます。</p>
+
+<p>基本的には、<code>$PROMPT</code>に入れた文字がそのままシェルのプロンプトに表示され、その中で特殊文字だけが変換されます。</p>
+
+<p>特殊文字は<code>%</code>で始まり、文字色を変更、背景色を変更、コマンドの実行結果を取得、環境変数を取得などができますが、ここでは「直前のコマンドの返り値によって分岐する」という記法を使います。特殊文字については <a href="http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html" class="autolink" rel="nofollow noopener" target="_blank">http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html</a> に詳しく乗っているので参考にしてください。</p>
+
+<p>コードとしては、以下のようになっています。</p>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">zshrc</span></div>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">[</span> <span class="si">${</span><span class="nv">UID</span><span class="si">}</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nv">PROMPT</span><span class="o">=</span><span class="s2">"%K{green}%B%F{black}ROOT%b%k %F{cyan}%~ %f</span>$<span class="s2"> "</span>
+<span class="k">else</span>
+        <span class="nv">UUU</span><span class="o">=</span><span class="s2">"%B%F{white}（」・ω・）」うー▶%b"</span>
+        <span class="nv">NYA</span><span class="o">=</span><span class="s2">"%B%F{white}\（・ω・\）にゃー！%b"</span>
+        <span class="nv">SAN</span><span class="o">=</span><span class="s2">"%B%F{red}＼（・ω・＼）SAN値！%b"</span>
+        <span class="nv">PIN</span><span class="o">=</span><span class="s2">"%B%F{red}（／・ω・）／ピンチ！%b"</span>
+        <span class="nv">PROMPT</span><span class="o">=</span><span class="s2">"%K{green}%(?,</span><span class="si">${</span><span class="nv">UUU</span><span class="si">}</span><span class="s2">,</span><span class="si">${</span><span class="nv">SAN</span><span class="si">}</span><span class="s2">)%k%F{cyan}%~ %f</span>$<span class="s2"> ❯ "</span>
+        <span class="nv">RPROMPT</span><span class="o">=</span><span class="s2">"%K{green}%(?,</span><span class="si">${</span><span class="nv">NYA</span><span class="si">}</span><span class="s2">,</span><span class="si">${</span><span class="nv">PIN</span><span class="si">}</span><span class="s2">)%k</span><span class="si">${</span><span class="nv">vcs_info_msg_0_</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+
+<p>最初に<code>$UID</code>がゼロかどうか確認しているのは、ROOTだったらプロンプトを変えたいからです。rootユーザーなんてめったになりませんが、もしその場合はパット見分かるようにしています。</p>
+
+<p>まず、<code>$UUU</code>、<code>$NYA</code>、<code>$SAN</code>、<code>$PIN</code>には、それぞれ表示したい顔文字を代入しています。%Bで太字、%F{color}で文字色指定、%bで装飾リセットです。<br>
+こうやって分けている理由は、単純に見やすいからです。</p>
+
+<p>そして、最終的に<code>$PROMPT</code>に代入をしています。%(?,a,b)で、直前のコマンドの返り値が0ならa、そうじゃないならbを表示することができます。そしてそこに先程設定した<code>$UUU</code>や<code>$SAN</code>を指定しています。<code>$RPROMPT</code>もやっていることは変わりません。<br>
+また、%Kで背景色の変更、%~でカレントディレクトリのパスを表示させています。</p>
+
+<p>これで、コマンドが失敗するとプロンプトが慌てて可愛くなります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/cedf6622bba9af6cb0b6e4d6f70c373aee7e57dd/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f66663366626362662d623663332d323261652d646436652d6561336563356336313532362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/cedf6622bba9af6cb0b6e4d6f70c373aee7e57dd/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f66663366626362662d623663332d323261652d646436652d6561336563356336313532362e706e67" alt="k.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/154157/ff3fbcbf-b6c3-22ae-dd6e-ea3ec5c61526.png"></a></p>
+
+<hr>
+
+<p>grepやシェルスクが失敗しても、これならひと目でわかりますね。ぜひ有効活用してください。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />5位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>10</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/a5d5d6ce03ecb654cf52">中学生時代につかっていたチートシート(~/myhelp/*.txt)</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-07 13:28:32</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[PHP]</b> <b>[Linux]</b> <b>[MySQL]</b> <b>[docker]</b> <b>[チートシート]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>HDD掃除してたら見つけてﾌﾌｯと笑ってしまったので載せてみる</p>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">docker</span></div>
+<div class="highlight"><pre><span></span>info ホストの情報
+version バージョン情報
+pull <span class="o">[</span>イメージ名:タグ名<span class="o">]</span> イメージをhubからダウンロード
+images ローカルにダウンロード済みのイメージ
+run <span class="o">[</span>--name コンテナ名<span class="o">]</span> <span class="o">[</span>イメージ名:タグ名<span class="o">]</span> <span class="o">[</span>-it 入力を開く<span class="o">]</span> <span class="o">[</span>-d バッググラウンド<span class="o">]</span> <span class="o">[</span>-p ホストのポート:コンテナのポート <span class="o">]</span>
+ps <span class="o">[</span>-a 停止中も<span class="o">]</span> コンテナ一覧
+commit <span class="o">[</span>コンテナー名またはコンテナID<span class="o">]</span> <span class="o">[</span>ユーザー名<span class="o">(</span>任意<span class="o">)</span>/イメージ名<span class="o">]</span>
+stop <span class="o">[</span>コンテナ名またはコンテナID<span class="o">]</span>
+rm <span class="o">[</span>コンテナ名またはコンテナID<span class="o">]</span>　コンテナ削除
+rmi <span class="o">[</span>イメージ名またはイメージID<span class="o">]</span>　イメージ削除
+start <span class="o">[</span>イメージ名またはコンテナID<span class="o">]</span> 停止したコンテナを再実行
+build <span class="o">[</span>-t イメージ名:タグ名<span class="o">]</span> .
+        dockerfileからイメージ作成
+
+
+dockerfile
+        ｛命令｝        用途
+        FROM                            元となるDockerイメージの指定
+        MAINTAINER      作成者の情報
+        RUN                                     コマンドの実行
+        ADD                                     ファイル／ディレクトリの追加
+        CMD                                     コンテナーの実行コマンド <span class="m">1</span><span class="o">(</span>run上書き可能<span class="o">)</span>
+        ENTRYPOINT      コンテナーの実行コマンド <span class="m">2</span><span class="o">(</span>run上書き不可<span class="o">)</span>
+        WORKDIR                 作業ディレクトリの指定
+        ENV                                     環境変数の指定
+        USER                            実行ユーザーの指定
+        EXPOSE                  ポートのエクスポート
+        VOLUME                  ボリュームのマウント
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="sql">
+<div class="code-lang"><span class="bold">mysql</span></div>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">'ユーザー名'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">'パスワード'</span><span class="p">;</span> <span class="err">ユーザー作成</span>
+<span class="k">DROP</span> <span class="k">USER</span> <span class="s1">'ユーザー名'</span><span class="o">@</span><span class="s1">'localhost'</span><span class="p">;</span><span class="err">ユーザー削除</span>
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="n">db</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="k">user</span><span class="p">;</span> <span class="err">権限設定</span>
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">privileges</span> <span class="k">ON</span> <span class="n">db</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="n">user1</span><span class="o">@</span><span class="ss">"192.168.3.%"</span> <span class="n">identified</span> <span class="k">by</span> <span class="s1">'パスワード'</span> <span class="k">with</span> <span class="k">grant</span> <span class="k">option</span><span class="p">;</span> <span class="err">外部からでもアクセス許可</span>
+
+<span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">db</span><span class="p">;</span> <span class="err">データベース作成</span>
+<span class="k">SHOW</span> <span class="n">DATABASES</span><span class="p">;</span> <span class="err">データベース一覧</span>
+<span class="k">SHOW</span> <span class="n">TABLES</span> <span class="k">FROM</span> <span class="n">db</span> <span class="p">;</span> <span class="err">テーブル一覧</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">db</span><span class="p">.</span><span class="k">table</span><span class="p">(</span><span class="err">カラム名</span> <span class="err">型</span><span class="p">,</span><span class="err">カラム名</span> <span class="err">型</span><span class="p">);</span> <span class="err">テーブル作成</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">db</span><span class="p">.</span><span class="k">table</span> <span class="k">ADD</span> <span class="p">(</span><span class="err">カラム名</span> <span class="err">型</span><span class="p">,</span><span class="err">カラム名</span> <span class="err">型</span><span class="p">...);</span><span class="err">カラム追加</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">db</span><span class="p">.</span><span class="k">table</span> <span class="k">DROP</span> <span class="err">カラム名</span><span class="p">;</span><span class="err">カラム削除</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">db</span><span class="p">.</span><span class="k">table</span> <span class="k">MODIFY</span> <span class="err">カラム名</span> <span class="err">型</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">db</span><span class="p">.</span><span class="k">table</span><span class="p">;</span><span class="o">//</span><span class="err">テーブルさ駆除</span>
+<span class="k">SELECT</span> <span class="k">Host</span><span class="p">,</span> <span class="k">User</span><span class="p">,</span> <span class="n">Password</span> <span class="k">FROM</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span><span class="p">;</span> <span class="err">ユーザー一覧</span>
+<span class="o">|=</span><span class="err">カラムの型</span><span class="o">===============|</span>
+<span class="o">|</span>       <span class="err">型</span>          <span class="o">|</span><span class="err">内容</span>  <span class="o">|</span>
+<span class="o">|</span><span class="c1">--------------------------|</span>
+<span class="o">|</span>   <span class="nb">int</span>             <span class="o">|</span><span class="err">数字</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="nb">varchar</span><span class="p">(</span><span class="err">文字数</span><span class="p">)</span> <span class="o">|</span><span class="err">文字列</span><span class="o">|</span>
+<span class="o">|==========================|</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">db</span><span class="p">.</span><span class="k">table</span> <span class="p">(</span><span class="err">カラム名</span><span class="p">,</span><span class="err">カラム名</span><span class="p">...)</span>  <span class="k">VALUES</span> <span class="p">(</span><span class="err">データ</span><span class="p">,</span><span class="err">データ</span><span class="p">...);</span> <span class="err">データ挿入</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">db</span><span class="p">.</span><span class="k">table</span> <span class="k">WHERE</span> <span class="err">カラム名</span> <span class="k">LIKE</span> <span class="s1">'値'</span><span class="p">;</span> <span class="err">読み出し</span>
+<span class="k">UPDATE</span> <span class="n">db</span><span class="p">.</span><span class="k">table</span> <span class="k">SET</span> <span class="err">変更するカラム</span> <span class="o">=</span> <span class="err">値</span> <span class="k">WHERE</span>  <span class="err">指定カラム</span> <span class="o">=</span> <span class="err">値</span><span class="p">;</span>
+<span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">db</span><span class="p">.</span><span class="k">table</span> <span class="k">WHERE</span> <span class="n">k</span> <span class="o">=</span> <span class="n">d</span><span class="p">;</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="php">
+<div class="code-lang"><span class="bold">php-mysql</span></div>
+<div class="highlight"><pre><span></span><span class="nv">$link</span> <span class="o">=</span> <span class="nb">mysql_connect</span><span class="p">(</span><span class="s1">'mysqlサーバーアドレス'</span><span class="p">,</span> <span class="s1">'ユーザー'</span><span class="p">,</span> <span class="s1">'パスワード'</span><span class="p">);</span> <span class="nx">mysqlに接続</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$link</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">die</span><span class="p">(</span><span class="s1">'接続失敗です。'</span><span class="o">.</span><span class="nb">mysql_error</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="nv">$db_selected</span> <span class="o">=</span> <span class="nb">mysql_select_db</span><span class="p">(</span><span class="s1">'データベース名'</span><span class="p">,</span> <span class="nv">$link</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$db_selected</span><span class="p">){</span>
+    <span class="k">die</span><span class="p">(</span><span class="s1">'データベース選択失敗です。'</span><span class="o">.</span><span class="nx">mysql_</span>
+<span class="p">}</span>
+
+<span class="nv">$result</span> <span class="o">=</span> <span class="nb">mysql_query</span><span class="p">(</span><span class="s1">'SQL文セミコロンなし'</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">die</span><span class="p">(</span><span class="s1">'クエリーが失敗しました。'</span><span class="o">.</span><span class="nx">mysql_er</span>
+<span class="p">}</span>
+
+<span class="nb">mysql_close</span><span class="p">(</span><span class="nv">$link</span><span class="p">);</span> <span class="nx">mysql切断</span>
+
+<span class="nx">暗号化</span>
+<span class="k">function</span> <span class="nf">pass</span><span class="p">(</span><span class="nv">$arg</span><span class="p">){</span>
+  <span class="nv">$pass</span> <span class="o">=</span> <span class="nx">MD5</span><span class="p">(</span><span class="nv">$arg</span><span class="p">);</span><span class="c1">//まずMD5しときます</span>
+  <span class="nv">$pass2</span> <span class="o">=</span> <span class="nb">sha1</span><span class="p">(</span><span class="nv">$pass</span><span class="p">);</span>
+  <span class="nv">$pass3</span> <span class="o">=</span> <span class="s1">'21'</span><span class="o">.</span><span class="nv">$pass2</span><span class="o">.</span><span class="s1">'43'</span><span class="o">.</span><span class="nv">$pass</span><span class="p">;</span>
+  <span class="nv">$pass4</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span><span class="nv">$pass3</span><span class="p">);</span>
+  <span class="nv">$pass5</span> <span class="o">=</span> <span class="nx">MD5</span><span class="p">(</span><span class="nv">$pass4</span><span class="p">);</span>
+  <span class="nv">$pass6</span> <span class="o">=</span> <span class="nb">sha1</span><span class="p">(</span><span class="nv">$pass5</span><span class="p">);</span>
+  <span class="nv">$pass7</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span><span class="nv">$pass6</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">wget</span></div>
+<div class="highlight"><pre><span></span>    $ wget -O - --post-file<span class="o">=</span>login.txt --save-cookies<span class="o">=</span>cookie.txt --keep-session-cookies
+
+wget -O - --load-cookies<span class="o">=</span>cookie.txt
+
+
+wget -O - --save-cookies<span class="o">=</span>cookie.txt --keep-session-cookies
+wget -O - --load-cookies<span class="o">=</span>cookie.txt
+
+--post-data<span class="o">=</span><span class="s2">"a=1&amp;b=2"</span>
+</pre></div>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />6位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/f7100c35e995c8263c8f">サーバー建てずに無料で独自ドメインのメルアドを作って、Gmail(Inbox).comで送受信できるようにしてみた</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-14 03:53:00</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[mail]</b> <b>[gmail]</b> <b>[inbox]</b> <b>[mailgun]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>あれじゃん、独自ドメインのメールアドレスってエンジニアの夢じゃん。</p>
+
+<p>ということで、どうも、かちおです。今回は、表題の通り、サーバーを自分で建てずに無料のサービスだけをつかって、独自ドメインのメールアドレスを使えるようにしてみました。ちなみに独自ドメイン自体は用意してある必要があるので、そこを考えれば無料とは言わないかも…。</p>
+
+<h1>
+<span id="前提" class="fragment"></span><a href="#%E5%89%8D%E6%8F%90"><i class="fa fa-link"></i></a>前提</h1>
+
+<p>自分は独自ドメインの <a href="http://kati0.com" rel="nofollow noopener" target="_blank">kati0.com</a> をもともと持っていて、今回は<a href="mailto:kati0@kati0.com" class="autolink">kati0@kati0.com</a>というメールアドレスを作りたいと思います。<br>
+最終的に、SMTP認証をしてGmail.comからそのメールアドレスで受信したメールを確認します。</p>
+
+<h1>
+<span id="つかったサービス" class="fragment"></span><a href="#%E3%81%A4%E3%81%8B%E3%81%A3%E3%81%9F%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9"><i class="fa fa-link"></i></a>つかったサービス</h1>
+
+<ul>
+<li>Gmail</li>
+<li>Mailgun</li>
+<li>Cloudflare(DNSサーバーがわり)</li>
+</ul>
+
+<h1>
+<span id="受信編" class="fragment"></span><a href="#%E5%8F%97%E4%BF%A1%E7%B7%A8"><i class="fa fa-link"></i></a>受信編</h1>
+
+<p>Mailgunという、サーバーレスでメール配信できるSaaSサービスがあるので登録します。<br>
+登録→独自ドメインを設定→自分のDNSのメールの設定を追加、という流れになります。</p>
+
+<p><a href="https://www.mailgun.com/" class="autolink" rel="nofollow noopener" target="_blank">https://www.mailgun.com/</a></p>
+
+<p>いい感じにアカウントを登録してください。登録するメールアドレスは自分の個人のモノ（普段つかっているもの）で登録してください。ぼくの場合はgmailを使いました。</p>
+
+<p>アカウントを登録したら、以下からドメインの登録をしてください。</p>
+
+<p><a href="https://app.mailgun.com/app/domains/new" class="autolink" rel="nofollow noopener" target="_blank">https://app.mailgun.com/app/domains/new</a></p>
+
+<p>自分の場合はkati0.comを入力しました。</p>
+
+<p>ADD DOMAINを押すと、</p>
+
+<ul>
+<li>Add DNS Records For Sending</li>
+<li>Add DNS Records For Tracking</li>
+</ul>
+
+<p>の2つが出てくるので、指定されたとおりに自分のDNSに登録しましょう。<br>
+ぼくの場合にはメインのDNSにCloudflareをつかっていたので、そこの画面で登録しました。</p>
+
+<p><a href="https://camo.qiitausercontent.com/214a552082da8749d51dd2e621b3b5d5903e334a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f66356365396266352d343739382d383831622d386333622d3732303931616461313030312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/214a552082da8749d51dd2e621b3b5d5903e334a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f66356365396266352d343739382d383831622d386333622d3732303931616461313030312e706e67" alt="k.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/154157/f5ce9bf5-4798-881b-8c3b-72091ada1001.png"></a></p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">Type</th>
+<th style="text-align: center">Name(例)</th>
+<th style="text-align: center">Value(例)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">TXT</td>
+<td style="text-align: center">kati0.com</td>
+<td style="text-align: center">v=spf1 include:mailgun.org ~all</td>
+</tr>
+<tr>
+<td style="text-align: center">TXT</td>
+<td style="text-align: center">pic._domainkey.kati0.com</td>
+<td style="text-align: center">k=rsa; p=NAC4m&lt;省略&gt;</td>
+</tr>
+<tr>
+<td style="text-align: center">MX</td>
+<td style="text-align: center">kati0.com</td>
+<td style="text-align: center">mxa.mailgun.org (priority=10)</td>
+</tr>
+<tr>
+<td style="text-align: center">MX</td>
+<td style="text-align: center">kati0.com</td>
+<td style="text-align: center">mxb.mailgun.org (priority=10)</td>
+</tr>
+<tr>
+<td style="text-align: center">CNAME</td>
+<td style="text-align: center">mail.kati0.com</td>
+<td style="text-align: center">mailgun.org</td>
+</tr>
+</tbody>
+</table>
+
+<p>全部設定し終わったらContinue to Domain Overviewを押します。</p>
+
+<p>そうするとmailgunがDNSをチェックします。Check DNS Records Nowを押すと手動更新できます。<br>
+だいたい自分の場合は、Cloudflareで設定したDNS情報がmailgunに伝搬するまで5分ほどかかりました。コーヒーでも飲みましょう。</p>
+
+<p>mailgunのほうでDNSの確認をし終わると、レコードの行の左にチェックマークがつきます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/82758532d69395939292f27383fb40d9dc993253/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f34333436376262312d366231622d663765342d643636392d6461396639383136616530302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/82758532d69395939292f27383fb40d9dc993253/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f34333436376262312d366231622d663765342d643636392d6461396639383136616530302e706e67" alt="k.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/154157/43467bb1-6b1b-f7e4-d669-da9f9816ae00.png"></a></p>
+
+<p>全部の行にチェックマークが付けばDNSの設定は終わりです、Mailgunから独自ドメインでメール送信をする準備ができました。</p>
+
+<p>次に、メール転送の設定をします。以下のページを開くか、メニューからRouteを選んでください。</p>
+
+<p><a href="https://app.mailgun.com/app/routes" class="autolink" rel="nofollow noopener" target="_blank">https://app.mailgun.com/app/routes</a></p>
+
+<p>Create Routeを押して、以下のように設定してください。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">欄</th>
+<th style="text-align: center">値</th>
+<th style="text-align: center">例(自分の場合)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">Expression Type</td>
+<td style="text-align: center">Match Recipient</td>
+<td style="text-align: center"></td>
+</tr>
+<tr>
+<td style="text-align: center">Recipient</td>
+<td style="text-align: center">match_recipient("メールを受信したい独自ドメインのメールアドレス")</td>
+<td style="text-align: center">match_recipient("<a href="mailto:kati0@kati0.com" class="autolink">kati0@kati0.com</a>")</td>
+</tr>
+<tr>
+<td style="text-align: center">ActionsのForward</td>
+<td style="text-align: center">チェック</td>
+<td style="text-align: center"></td>
+</tr>
+<tr>
+<td style="text-align: center">ActionsのForwardの下の欄</td>
+<td style="text-align: center">forward("自分が普段つかっているGmailのアドレス")</td>
+<td style="text-align: center">forward("<a href="mailto:onokatio@gmail.com" class="autolink">onokatio@gmail.com</a>")</td>
+</tr>
+<tr>
+<td style="text-align: center">Description</td>
+<td style="text-align: center">自分のわかりやすい説明。</td>
+<td style="text-align: center">gmail forward</td>
+</tr>
+</tbody>
+</table>
+
+<p>これで、<a href="mailto:kait0@kati0.com" class="autolink">kait0@kati0.com</a>に送ったメールがGmailの画面に届くようになりました。<br>
+無料だけならば。これで独自ドメインでのメール受信が完了です。<br>
+また、クレジットカードさえ登録できれば次の章である送信もできるようになります。<br>
+ぼくはめんどくさいので独自ドメインで受け取ったメールをそのままgmailで返信していますが、興味がある方は以下もやってみてください。</p>
+
+<h1>
+<span id="送信編" class="fragment"></span><a href="#%E9%80%81%E4%BF%A1%E7%B7%A8"><i class="fa fa-link"></i></a>送信編</h1>
+
+<p>ここからは送信の設定です。アカウントにクレジットカード（デビッドカード）を登録してある必要があります。</p>
+
+<p>まず、メールアドレスを追加します。上のDomain infromationの欄にManage SMTP credentialsというリンクがあるので押してください。</p>
+
+<p><a href="https://camo.qiitausercontent.com/2612b84cc1bbde955385d8342eb15981a0b7b5be/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f31303363373362632d653462622d333833632d303631392d3830653433373936323835392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/2612b84cc1bbde955385d8342eb15981a0b7b5be/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f31303363373362632d653462622d333833632d303631392d3830653433373936323835392e706e67" alt="k.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/154157/103c73bc-e4bb-383c-0619-80e437962859.png"></a></p>
+
+<p>自分の場合は既に登録してありますが気にしないでください。<br>
+New SMTP Credentialというところを押して、以下のように設定してください、</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">名前</th>
+<th style="text-align: center">入力する値</th>
+<th style="text-align: center">例（自分の場合）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">login欄</td>
+<td style="text-align: center">自分の設定したいメールアドレスの@前</td>
+<td style="text-align: center">kati0</td>
+</tr>
+<tr>
+<td style="text-align: center">Password欄</td>
+<td style="text-align: center">自分の好きなパスワード</td>
+<td style="text-align: center">●●●●</td>
+</tr>
+<tr>
+<td style="text-align: center">Confirm Password欄</td>
+<td style="text-align: center">パスワードをもう一回</td>
+<td style="text-align: center">●●●●</td>
+</tr>
+</tbody>
+</table>
+
+<p>これで、ユーザー名@独自ドメイン という形式のメールアドレスを作ることができました。</p>
+
+<p>次に、Gmailからメールを送信するための設定をします。<br>
+Gmailを開き、右上の歯車マークから「設定」→「アカウントとインポート」に進みます。<br>
+「名前：」とある欄の「他のメールアドレスを追加」を押してください。</p>
+
+<p><a href="https://camo.qiitausercontent.com/2c338d3b60c7055276989ebe66c4b41fcb10eb62/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f33646664326138362d666634642d663066382d663934352d3437393238393237373937662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/2c338d3b60c7055276989ebe66c4b41fcb10eb62/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f33646664326138362d666634642d663066382d663934352d3437393238393237373937662e706e67" alt="k.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/154157/3dfd2a86-ff4d-f0f8-f945-47928927797f.png"></a></p>
+
+<p>※画像では既に登録してますが気にしないでください。</p>
+
+<p>そうすると、ポップアップウィンドウが開くので、以下のように入力してください。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">項目</th>
+<th style="text-align: center">値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">名前</td>
+<td style="text-align: center">適当な名前</td>
+</tr>
+<tr>
+<td style="text-align: center">メールアドレス</td>
+<td style="text-align: center">さきほど作ったメールアドレス(<a href="mailto:kati0@kati0.com" class="autolink">kati0@kati0.com</a>など)</td>
+</tr>
+<tr>
+<td style="text-align: center">エイリアスとして扱います</td>
+<td style="text-align: center">チェック</td>
+</tr>
+</tbody>
+</table>
+
+<p>そして、次のステップに進み、以下のように入力してください。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">項目</th>
+<th style="text-align: center">値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">SMTPサーバー</td>
+<td style="text-align: center">デフォルトの値(mxb.mailgun.org)</td>
+</tr>
+<tr>
+<td style="text-align: center">ユーザー名</td>
+<td style="text-align: center">さきほど作ったメールアドレス(<a href="mailto:kati0@kati0.com" class="autolink">kati0@kati0.com</a>など)</td>
+</tr>
+<tr>
+<td style="text-align: center">パスワード</td>
+<td style="text-align: center">さきほど設定したパスワード</td>
+</tr>
+<tr>
+<td style="text-align: center">ポート</td>
+<td style="text-align: center">587のままでOK</td>
+</tr>
+</tbody>
+</table>
+
+<p>以上が設定できたら、アカウント追加をクリックしてください。Googleから独自ドメインのメールアドレス宛に、本当にGmailから操作していいか確認メールが届きます。既に受信だけはできるようになっているので、Gmailを更新すればメールを確認できると思います。メールに書いてある確認番号をポップアップウィンドウに入力してください。以上でアカウントを登録できます。</p>
+
+<p>これで送信の設定は完了です。Gmailから送信するときに、送信フォームの上にメールアドレスを選択する場所ができ、そこで独自ドメインのメールアドレスを指定できます。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>独自ドメインっていいよね！！！（語彙力）</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />7位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/04f23b7300dec7e287cb">【エンジニア向け】ビットコインを学んでブロックチェーンを完全に理解する【第一回 歴史とネットワーク】</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-30 13:39:04</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Bitcoin]</b> <b>[P2P]</b> <b>[Blockchain]</b> <b>[ビットコイン]</b> <b>[ブロックチェーン]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>はじめまして。かちおと申します。<br>
+表題の通り、ビットコインの仕組みを学んで、最近話題のブロックチェーンを理解してみましょうっていう記事です。</p>
+
+<h1>
+<span id="ビットコインブロックチェーンについて" class="fragment"></span><a href="#%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>ビットコイン・ブロックチェーンについて</h1>
+
+<p>ビットコインは、P2Pネットワークで構成される、決済システムです。TorrentやTorのように、全てのノードが対等に接続され、「ビットコイン」と呼ばれるネットワーク上の通貨を送金できます。</p>
+
+<h1>
+<span id="ビットコインの歴史" class="fragment"></span><a href="#%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AE%E6%AD%B4%E5%8F%B2"><i class="fa fa-link"></i></a>ビットコインの歴史</h1>
+
+<p>2008年、「Satoshi Nakamoto」と名乗る人物が、匿名でインターネットにある論文をアップロードしました。そこには、今のビットコインの原始的な仕組みが乗っていました。<br>
+そして翌年の2009年、Satoshiは、その論文の理論を実際に実装したソフトをソースコードとともに、インターネットで公開します。<br>
+そしてそれ以降今まで、ナカモトサトシがインターネットに現れることは、一切ありませんでした。<br>
+つまり、ビットコインは匿名の人物によって発表されたものとなります。</p>
+
+<p>以下がそのPDFとなります。</p>
+
+<p><a href="https://bitcoin.org/bitcoin.pdf" class="autolink" rel="nofollow noopener" target="_blank">https://bitcoin.org/bitcoin.pdf</a></p>
+
+<p>論文の中では、ビットコインのことを「P2P 電子通貨システム」と読んでいるようです。</p>
+
+<h2>
+<span id="ビットコインの基本的な利用方法" class="fragment"></span><a href="#%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AE%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E5%88%A9%E7%94%A8%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>ビットコインの基本的な利用方法</h2>
+
+<p>まずユーザーは、自分でアドレス（ビットコインでの口座番号）というものを作ります。<br>
+アドレスを指定することで、自分の保有しているビットコインを他人（そのアドレス）に送金することができます。</p>
+
+<p>以上をすべて自動化してくれるGUIのソフトがあり、それを利用しビットコインを扱うのが一般的となっています。このソフトを、財布に見立てて「ウォレット」なんて呼んだりしています。</p>
+
+<p>なぜコレだけで通貨の仕組みが成り立つか、それを数回に分けて説明していきたいなと思います。</p>
+
+<h2>
+<span id="ビットコインとブロックチェーンについて" class="fragment"></span><a href="#%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%A8%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>ビットコインとブロックチェーンについて</h2>
+
+<p>もともとビットコイン自体が、P2Pの決済システムとして考えられました。そしてそのなかで、匿名でいかに不正のできないお金の送金をするかを実現しているのですが、その部分だけが「ブロックチェーン」という技術として注目が浴びせられ、現在では決済手段以外の利用方法が考えられています。これがブロックチェーンとビットコインの違いです。<br>
+つまり、ビットコインの使用を理解すること、コレすなわちブロックチェーンを理解することにつながります。</p>
+
+<h2>
+<span id="bitcoinbitcoinbtcの名前について" class="fragment"></span><a href="#bitcoinbitcoinbtc%E3%81%AE%E5%90%8D%E5%89%8D%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>Bitcoin,bitcoin,BTCの名前について</h2>
+
+<p>これには明確な定義はありませんが、ビットコインの仕組みそのもの、つまりプロトコルを指して「Bitcoin」、ビットコインのネットワーク上の通貨が「bitcoin」、そしてbitcoinの単位が「BTC」と呼ばれることが暗黙の了解となっています。</p>
+
+<p>この記事では読みやすさを考慮し、仕組みそのものを「ビットコイン」、通貨としても「ビットコイン」、単位として「BTC」を利用します。適宜読み替えてください。</p>
+
+<h2>
+<span id="ビットコインの開発者ユーザーマイナーについて" class="fragment"></span><a href="#%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AE%E9%96%8B%E7%99%BA%E8%80%85%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%83%9E%E3%82%A4%E3%83%8A%E3%83%BC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>ビットコインの開発者、ユーザー、マイナーについて</h2>
+
+<p>ビットコインは、そもそもP2Pで動作するものなので、本質はプロトコルにあります。プロトコルが法です。<br>
+あくまでビットコインのソフトは、そのプロトコルに沿ったカタチで作られなければ行かないと決まって降り、プロトコルに違反する通信は他のノードに弾かれます。</p>
+
+<p>いわゆる「ビットコインコア」という集団が居て、彼らが作るノードは世界的にも色々なところに使われます。彼らは最初にSatoshiが発表したノードのソースをベースに開発しているところであり、事実上のスタンダードとなっています。しかし、そのビットコインコアも、あくまで「プロトコルに完全にタイプするノードを作る」というのが目的です。</p>
+
+<p>またビットコインコアは、ビットコインのプロトコルをとりまとめる役割もあります。こう聞くと勘違いするかもしれないですが、あくまでプロトコルを提案・投票できるのはユーザーとなります。それを文章にまとめたり発表したりをしてくれているのがビットコインコアです。</p>
+
+<p>そしてビットコインの一番いいところは、プロトコルが法なところです。自分が気に食わないプロトコルが発表されて、ビットコインコアや他のソフトがそれプロトコルに移行しても、自分は移行せずに古いノードのソフトを使い続ければ良い話です。後方互換があるプロトコルなら、自分が古くてもノードに弾かれることはないでしょう。<br>
+そうやって、最終的には自分でどんなプロトコルを使うか（どんなプロトコルを搭載しているノードを使うか）選ぶ権利があります。これがビットコインの一番素晴らしいところだと思っています。</p>
+
+<p>そして色々な人の意見が食い違って、プロトコルが完全に分離してしまうのがいわゆるニュースになった「分裂」です。ビットコインではフォークという呼び方をします。</p>
+
+<p>マイナーは、いわゆるマイニング（採掘）を行う人です。ユーザーは、マイナーを含めたビットコインの利用者のことを指します。</p>
+
+<h1>
+<span id="ビットコインの仕組みについて" class="fragment"></span><a href="#%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>ビットコインの仕組みについて</h1>
+
+<h2>
+<span id="ネットワーク" class="fragment"></span><a href="#%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF"><i class="fa fa-link"></i></a>ネットワーク</h2>
+
+<p>前提として、P2Pネットワークの仕組みを見てみましょう。<br>
+各ノードはデフォルトで、TCPの8333ポートを利用し、ソケット通信を行います。<br>
+また、NAT等があった場合、UPNPで静的NATを設定し、外部と接続しようとします。そのため、学校や職場のネットワークなどだと、正常に動作しない場合があります。</p>
+
+<p>各ノードは、IPアドレスリストというものを持っています。IPアドレスリストは表になっていて、ipアドレスとUnix時間が一対一で保管されています。</p>
+
+<p>ビットコイン初期状態では5つのドメインが書かれています。そのドメインは開発者などが有志で構成しているドメインで、逆引きすると大量の色々なノードのAレコードが出てきます。<br>
+そのipアドレスは初期状態のIPアドレスリストに登録されます。</p>
+
+<p>起動時にノードは、IPアドレスリストの中のだいたい8つのノードに接続を試みます。<br>
+そして、各ノードは一定時間ごとに、IPアドレスリストと、自分のUNIX時間を交換します。<br>
+これにより、お互いが接続しているノードと相手のUNIX時間がわかります。<br>
+これで近隣のノードからもらったIPアドレスリストを自分のIPアドレスリストにどんどん追加していきます。また近隣のノードのIPとUnix時間も保存します。</p>
+
+<p>こうすることで、どんどんネットワーク中に「自分のIPアドレスと、交換した時点でのUNIX時間」が伝搬していきます。<br>
+こうして人からもらったIPアドレスリストの中で、今のUnix時間と一番近いものとどんどん接続するようにしていきます。そうすることで、必然的に自分とネットワークの伝搬が速いノードと接続することができます。</p>
+
+<p>また、ビットコインのノードは、Tor(The Onion Router)のネットワーク上でも動作します。</p>
+
+<p>これがビットコインのネットワークのノードの探索方法です。</p>
+
+<h2>
+<span id="ビットコインのアカウントについて" class="fragment"></span><a href="#%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AE%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>ビットコインのアカウントについて</h2>
+
+<p>ビットコインはいわゆる送金を行うのに、アドレスというもの（口座番号）が必要になります。<br>
+これは、ECDSAという、楕円曲線を使用する電子署名（DSA）を使って生成されています。RSA暗号などを知っている人はそれを思い浮かべてください。SSHとかで使う公開鍵暗号となんらかわりはありません。</p>
+
+<p>ユーザーは、まずECDSAで鍵ペアを生成し、公開鍵をripmod160というハッシュ関数に掛けたあと、SHA256というハッシュ関数にかけます。これをBase58Check encodingというもの(Base64みたいな)に掛けて、出てきた文字列がアドレスになります。</p>
+
+<p>ビットコインでは、この公開鍵のハッシュをエンコードした文字列、という奇妙なものと秘密鍵でセキュリティを保っています。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<ul>
+<li>ブロックチェーンはビットコインが元</li>
+<li>ビットコインはP2P</li>
+<li>IPアドレスの交換はリストを使っている</li>
+<li>ビットコインではECDSAという技術を使っている</li>
+</ul>
+
+<p>今はあまり、とくにECDSAについてはさっぱり意味がわからないかもしれませんが、次回の「トランザクション編」や「マイニング編」できっと理解できるようになると思います。</p>
+
+<p>次回: <a href="https://qiita.com/onokatio/items/432356feef4d6f1aa8dd" id="reference-3158dfa9a5c4b032c4b4">ビットコインを学んでブロックチェーンを理解する【第二回 トランザクション】</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />8位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/432356feef4d6f1aa8dd">【エンジニア向け】ビットコインを学んでブロックチェーンを完全に理解する【第二回 トランザクション】</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-01 00:14:54</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Bitcoin]</b> <b>[P2P]</b> <b>[Blockchain]</b> <b>[ビットコイン]</b> <b>[ブロックチェーン]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>前回はこちら<br>
+<a href="https://qiita.com/onokatio/items/04f23b7300dec7e287cb" id="reference-fa412ab8467f06c7fe06">ビットコインを学んでブロックチェーンを理解する【第一回 歴史とネットワーク】</a></p>
+
+<h1>
+<span id="トランザクションについて以下tx" class="fragment"></span><a href="#%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B6%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E4%BB%A5%E4%B8%8Btx"><i class="fa fa-link"></i></a>トランザクションについて（以下TX）</h1>
+
+<p>本題の、ビットコインが送金を行う方法についてです。<br>
+ビットコインは、TXというものをネットワークにブロードキャストすることで、自分のアカウントから誰かのアドレスに送金することができます。</p>
+
+<h2>
+<span id="txの構造" class="fragment"></span><a href="#tx%E3%81%AE%E6%A7%8B%E9%80%A0"><i class="fa fa-link"></i></a>TXの構造</h2>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">名前</th>
+<th style="text-align: center">説明</th>
+<th style="text-align: center">大きさ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">version no</td>
+<td style="text-align: center">バージョン番号。現在は1</td>
+<td style="text-align: center">4バイト</td>
+</tr>
+<tr>
+<td style="text-align: center">In-counter</td>
+<td style="text-align: center">正の整数。list of inputsの数を定義する。</td>
+<td style="text-align: center">1 から 9 バイト</td>
+</tr>
+<tr>
+<td style="text-align: center">list of inputs</td>
+<td style="text-align: center">TxInの配列</td>
+<td style="text-align: center">不定。</td>
+</tr>
+<tr>
+<td style="text-align: center">Out-counter</td>
+<td style="text-align: center">正の整数。list of putputsの数を定義する。</td>
+<td style="text-align: center">1 から 9 バイト</td>
+</tr>
+<tr>
+<td style="text-align: center">list of outputs</td>
+<td style="text-align: center">TxOutの配列。</td>
+<td style="text-align: center">不定。</td>
+</tr>
+<tr>
+<td style="text-align: center">signature</td>
+<td style="text-align: center">上全部を自分のアカウントの秘密鍵で署名したもの。電子署名。</td>
+<td style="text-align: center">-</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>※一部省略しています</strong></p>
+
+<p>TXは、大まかに2つのデータを持っています。トランザクションインプットと、トランザクションアウトプットです。上のようにTxInとTxOutと表現します。</p>
+
+<p>TxOutには、自分が送金したいアドレスと、額が書いてあります。これが配列になっています、つまり同時に複数の人に送金することができます。</p>
+
+<p>TxInは少し複雑です。ここではTX番号（ビットコインのTXにはすべて通し番号がついている）を使って、他人が自分宛てに送金したTXを指定します。<br>
+つまり、自分宛てのTXのTxOutの1つを指し示します。こうすることで、「自分にお金が送られたTXを参照することで、自分が受け取った以上は送金できない」仕組みを表現しています。<br>
+こうして、TXがTXを指し示し、巨大な網目のようになっているのがビットコインの送金システムです。</p>
+
+<p><a href="https://camo.qiitausercontent.com/c9e788bb6e230b492f1d4ad24aae0bce04be3abd/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f34333936303162652d643437662d616663632d333430362d3139373230373738616362322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/c9e788bb6e230b492f1d4ad24aae0bce04be3abd/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f34333936303162652d643437662d616663632d333430362d3139373230373738616362322e706e67" alt="tx.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/154157/439601be-d47f-afcc-3406-19720778acb2.png"></a></p>
+
+<p>このようにして、自分宛ての送金を複数参照し、その合計額分他の人に送金できる（相手がそれをTxInとして使うことができる）仕組みになっています。<br>
+とても複雑です。ぼくも理解するのに数週間かかりました。</p>
+
+<h2>
+<span id="例" class="fragment"></span><a href="#%E4%BE%8B"><i class="fa fa-link"></i></a>例</h2>
+
+<p>たとえば、ボブがアリスに3BTCを2回送金したことがあるとします。<br>
+そして今回、アリスはトムに2BTC、ジェーンに4BTC送金したいと思っています。</p>
+
+<p>このとき、ネットワークにはボブtoアリスの送金のTXが2つがあります。<br>
+ちなみにTX番号1と2は、誰かからのボブへの送金したときのTXです。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">Tx番号</th>
+<th style="text-align: center">TxInの数</th>
+<th style="text-align: center">TxIn[0]</th>
+<th style="text-align: center">TxOutの数</th>
+<th style="text-align: center">TxOut[0]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">3</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">Tx番号 = 1, TxOutの番号 = 1</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">アドレス = &lt;アリスのアドレス&gt;, 額 = 3BTC</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">Tx番号</th>
+<th style="text-align: center">TxInの数</th>
+<th style="text-align: center">TxInの[0]</th>
+<th style="text-align: center">TxOutの数</th>
+<th style="text-align: center">TxOut[0]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">4</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">Tx番号 = 2, TxOutの番号 = 1</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">アドレス = &lt;アリスのアドレス&gt;, 額 = 3BTC</td>
+</tr>
+</tbody>
+</table>
+
+<p>そして、アリスはトムに2BTCを送ります。まず、自分宛ての送金TXをネットワークから探します。合計で2BTCを超えるようにしなければいけません。今回は3BTCボブから送られてきたので、そのTxOutを使います。アリスは、ボブからの送金である、Tx番号3のTxOutを参照し、以下のようなTXを生成します。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">Tx番号</th>
+<th style="text-align: center">TxInの数</th>
+<th style="text-align: center">TxInの[0]</th>
+<th style="text-align: center">TxOutの数</th>
+<th style="text-align: center">TxOut[0]</th>
+<th style="text-align: center">TxOut[1]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">5</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">Tx番号 = 3, TxOutの番号 = 1</td>
+<td style="text-align: center">2</td>
+<td style="text-align: center">アドレス = &lt;アリスのアドレス&gt;, 額 = 1BTC</td>
+<td style="text-align: center">アドレス = &lt;トムのアドレス&gt;, 額 = 2BTC</td>
+</tr>
+</tbody>
+</table>
+
+<p>これで、自分はトムに送金できた、もっといえばトムがTxInとして参照して他人に送金できるようになりました。ここで注目してほしいのは、送金先がアリス自分自身とトムの二人になっているところです。<br>
+TxInは合計で3BTCなので、本来このTxは3BTCを複数の人に同時に送金できます。しかし今回は2BTCしか送らないので、残りは自分宛てに1BTC送っています。<br>
+こうすることで、今度はこのTxOutをTxInとして参照するTxをアリスは生成することができます。<br>
+これはビットコインではお釣りなんて表現をします。</p>
+
+<p>次にジェーンに4BTC送金してみましょう。<br>
+トムからの送金であるもう一つの3BTCのTxのTxoutが余っていて、さらに先程お釣りとして生成したTxOutがあるので。これらを合計して4BTCをTxの入力にし、出力を全部ジェーンにします。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">Tx番号</th>
+<th style="text-align: center">TxInの数</th>
+<th style="text-align: center">TxInの[0]</th>
+<th style="text-align: center">TxOutの数</th>
+<th style="text-align: center">TxOut[0]</th>
+<th style="text-align: center">TxOut[1]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">6</td>
+<td style="text-align: center">2</td>
+<td style="text-align: center">Tx番号 = 4, TxOutの番号 = 1</td>
+<td style="text-align: center">Tx番号 = 5, TxOutの番号 = 1</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">アドレス = &lt;ジェーンのアドレス&gt;, 額 = 4BTC</td>
+</tr>
+</tbody>
+</table>
+
+<p>こうなると思います。</p>
+
+<p>以上がビットコインの送金単位である「トランザクション」の仕組みと構成になっています。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<ul>
+<li>トランザクションには「入力」(TxIn)と「出力」（TxOut）があり、TxInでは自分宛の他のトランザクションのTxOutを指定する。これにより自分が送金された分しかお金を送金できない。</li>
+<li>トランザクションは入力と出力をそれぞれ複数持つことができ、それにより色々な額のTxOutをTxInとして入力に指定し、おつりとしての自分を含めた沢山の人にまとめて送金できる。</li>
+<li>トランザクションは番号で指定する。C言語のポインタ配列(*next)とかを想像しよう。</li>
+</ul>
+
+<p>今回のを読んで、察しの言い方は「じゃあ自分宛てのTxOutを重複して使った場合はどうなる」なんて思うかもしれません。次回はそれに深く関わる「マイニングとブロック」を説明しようと思います。<br>
+ありがとうございました!</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />9位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/60020144786edd42a656">BIP 0001 【ビットコイン番RFCである&quot;Bitcoin Improvement Proposal&quot;を読んでみよう】</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-03 00:09:20</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Bitcoin]</b> <b>[Blockchain]</b> <b>[ビットコイン]</b> <b>[ブロックチェーン]</b> <b>[bip]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>どうも。かちおです。<br>
+以前書いたように、ビットコインの本質はプロトコルなのですが、そのプロトコルを追加する上で、ビットコインはその仕様をすべて"Bitcoin Improvement Proposal"という方式で提案、投票、管理、告知、同意されています。ここには、たとえばネットワーク上のTCPソケット通信の先頭ヘッダの仕様から、ビットコインを送金するときのQRコードのフォーマットまで、そのすべてが規格として決められています。<br>
+そんなビットコインの本質であるBIPを1番から全部解説していこうじゃないか、というのがこの記事の趣旨です。<br>
+とりあえず、基本的なビットコインのプロトコル以外はすべてBIPとして提案され可決され、実際に使われるようになっています。<br>
+BIPは、すべてMediaWiki形式で、<a href="https://github.com/bitcoin/bips" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/bitcoin/bips</a> にまとめてあります。これを翻訳、意訳しながら書いていきます。</p>
+
+<p>今回読んで見るBIP1は、BIPそのものの説明やBIPの書き方などをさだめたものとなっています。<br>
+それでは、以下からBIP0001本文訳です。</p>
+
+<h1>
+<span id="bip-1" class="fragment"></span><a href="#bip-1"><i class="fa fa-link"></i></a>BIP 1</h1>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>  BIP番号: 1
+  タイトル: BIP Purpose and Guidelines (訳: BIPの説明とガイドライン)
+  著者: Amir Taaki &lt;genjix@riseup.net&gt;
+  コメントの状態: なし
+  コメントのアドレス: https://github.com/bitcoin/bips/wiki/Comments:BIP-0001
+  状態: Replaced
+  タイプ: Process
+  作成日時: 2011-08-19
+  更新回数: 2
+</pre></div></div>
+
+<h2>
+<span id="bipとはなにか" class="fragment"></span><a href="#bip%E3%81%A8%E3%81%AF%E3%81%AA%E3%81%AB%E3%81%8B"><i class="fa fa-link"></i></a>BIPとはなにか</h2>
+
+<p>BIPは、ビットコインの改良の提案をするものです。BIPは、ビットコインのコミュニティに情報を提供したり、ビットコインの新しい機能、仕様、環境、を説明する文書です。<br>
+BIPは、機能に対する簡潔な技術仕様と、根拠を示さないといけません。</p>
+
+<p>私達は、BIPが、新しい機能を提案したり、コミュニティが問題を解決するために提案をしたり、ビットコインが向かっていく先を決定したりなどのためのしくみになることを期待しています。<br>
+BIPの作者は、コミュニティの反対意見や論文などにも、責任を持って内容の同意を得なければいけません。</p>
+
+<p>BIPは差分管理されたテキストファイルです。BIPの変更の記録は、すべて将来のために残さなければいけません。</p>
+
+<h2>
+<span id="bipの種類" class="fragment"></span><a href="#bip%E3%81%AE%E7%A8%AE%E9%A1%9E"><i class="fa fa-link"></i></a>BIPの種類</h2>
+
+<p>BIPの種類を以下に述べます。</p>
+
+<ul>
+<li><p><strong>スタンダードトラックBIP</strong>と呼ばれる、ビットコインの実装、ネットワークプロトコルや、ブロック、トランザクション、その他Bitcoinを扱う上でのアプリケーションとしての変更などの全てを説明し、解説するBIP。</p></li>
+<li><p><strong>インフォメーショナルBIP</strong>と呼ばれる、ビットコインの設計の問題や、コミュニティの一般的な方向性、を説明するBIP。これは、必ずコミュニティの総意を得る必要はありません。そして、ユーザーもインフォメーションBIPやアドバイスを無視しても構いません。</p></li>
+<li><p><strong>プロセスBIP</strong>と呼ばれる、ビットコイン以外の部分を述べるBIP。プロセスBIPはスタンダードトラックBIPのように、コードの変更やビットコイン本体の変更を含めません。プロセスBIPは、主にコミュニティの同意を必ず必要とします。ユーザーは基本的にこれを無視してはいけません。ビットコインの手続きや説明、意見の決定方式、ビットコインの開発環境の変更などを決めます。メタBIPとも呼ばれます。</p></li>
+</ul>
+
+<h2>
+<span id="bipの提案の流れワークフロー" class="fragment"></span><a href="#bip%E3%81%AE%E6%8F%90%E6%A1%88%E3%81%AE%E6%B5%81%E3%82%8C%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%95%E3%83%AD%E3%83%BC"><i class="fa fa-link"></i></a>BIPの提案の流れ（ワークフロー）</h2>
+
+<p>BIPは、ビットコインに関するアイデアから始まります。BIPには、「チャンピオン」と呼ばれる、BIPを実際に文章にしたり、フォーラムで先頭に立って議論したり、コミュニティの同意を得たりする人物が必要になります。BIPの作者とも呼ばれます。チャンピオンはまず最初に、そのアイデアがBIPになるかどうかを確かめる必要があります。たとえば、 <a href="mailto:bitcoin-dev@lists.linuxfoundation.org" class="autolink">bitcoin-dev@lists.linuxfoundation.org</a> というメーリングリストがあるのでそこに投げてみるのが一番いい選択肢だと思います。</p>
+
+<p>BIPを書き始める前にアイデアを公開してもらうことで、他のアイデアとかぶるのを避けたり、またコミュニティの時間を節約することができます。<br>
+今まで、たくさんのアイデアが、さまざなま理由により、ビットコインに適用することを却下され、繰り越されてきました。<br>
+自分のアイデアを、まずコミュニティで聞くことで、そのアイデアが既に議論され却下されたことに気づかず、時間を無駄にするのを防ぐことができます。調べるだけじゃ出てこない議論があったかもしれません。<br>
+また、アイデアを公開することで、自分以外の人にアイデアを確認してもらえます。もし自分がそのアイデアが良いと思っても、他のユーザーもそう思うとは限らないからです。<br>
+小規模な機能追加やパッチなどは、BIPを必要としません。ビットコイン本体のワークフローに適切にパッチを提出してください。</p>
+
+<p>チャンピオンは、アイデアが受け入れられるかどうかをコミュニティに聞いたら、次にBIPの下書きをビットコイン開発者メーリングリストに投げるべきです。<br>
+これにより、文書の形式が正しいかどうかや内容の質はどうか、追記するべきかなど、下書きを改善するための意見を得ることができます。<br>
+議論によって、色々な提案が、BIPの下書きとともに bitcoin-dev メーリングリストに送られてきます。</p>
+
+<p>下書きは、あとで示すように、BIPの書式で書かれていなければいけません。そうでないと、そもそも書式が正しくなるまで送り返されてしまいます。</p>
+
+<p>BIP作者は、BIPの本番提出をする前に、コミュニティの意見を集める責任があります。しかし、議論が長く続いていると忘れられることがあります。なので、たとえば新しくメーリングリストを作ったり、他のBIP作者に個人的に意見を求めたり、Wikiやgitリポジトリを作るなど、作戦をねらないといけません。ここは特に慎重にするべきです。</p>
+
+<p>1つのBIPには、1つの提案のみが含まれていることを強く推奨します。そうしないとBIPの内容に集中できません。もし1つでないと思ったら、複数のBIPに分けてみるのもいいでしょう。</p>
+
+<p>BIP編集者は、BIPに状態や番号を割り当てます。あとに書いてあるBIP編集者に、BIPと関連するものをメールしてください。<br>
+また興味があれば、BIP編集者の責任と作業の流れを見てみると良いでしょう。<br>
+BIP編集者は、内容がぶれていたり幅が広すぎたりするBIPを拒否する権利を持っています。</p>
+
+<p>BIP作者は自分でBIP番号を付けてはいけません。しかし、BIPの説明に、自分の名前やニックネームをつけるべきです。</p>
+
+<p>BIP編集者がBIPを認めた場合、BIP番号が付けられ、スタンダードトラックBIPかインフォメーションBIPかプロセスBIPかを決められ、状態欄には「草案(Draft)」と付けられ、最後にgitリポジトリに追加されます。<br>
+BIP編集者は不当にBIPを拒否したりはしません。拒否する理由としては、内容が重複していたり、書式があっていなかったり、内容がぶれていたり、幅が広すぎたり、技術的に不可能だったり、適切な動機がなかったり、互換性がなかったり、ビットコインの哲学が保たれていなかったときなどがあります。<br>
+BIPが承認されるためには、最低限の条件があります。それはその提案がもたらす効果について、完結で完全な説明が書いてあることです。<br>
+また、なにかしらの改善をするものでないといけません。提案を実現するには、内容がしっかりとしていて複雑ではない必要があります。</p>
+
+<p>BIP作者は必要に応じてgitリポジトリの草案を更新します。BIP編集者にプルリクエストを出せば取り込まれます。</p>
+
+<p>スタンダードトラックBIPは、主に2つの章から成り立ちます。設計と参考実装です。BIPを勉強している人の支援になったりする場合を覗いて、参考実装をする前にBIPが承認されている必要があります。スタンダードトラックBIPは、最終的には実装にコード例やパッチ、URLなどを含んでいないといけません。</p>
+
+<p>一度BIPが承認されるために、参考実装は完成していなければいけません。参考実装が完成し、コミュニティに受け入れられたら、状態は「最終段階(Final)」となります。</p>
+
+<p>また、BIPは、「くりこし(Deferred)」状態になることもあります。BIP編集者は、BIPが長い間進捗がない場合などにこれを適用します。一度くりこしになったBIPは、BIP編集者が「草案(Draft)」状態に戻すことができます。</p>
+
+<p>また、BIPは「拒否(Rejected)」状態になることもあります。全てに置いてアイデアではなかったときです。このように拒否状態を記録として残しておくことも重要なことです。</p>
+
+<p>また、BIPが古くなってきたときは違うBIPに置き換えられることもあります。これはインフォメーションBIPなどでAPIが新しくなった場合などに想定されています。</p>
+
+<p>BIPの状態の変化図は以下のようになります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/2d3ec7e820c103cab58ca521de9e2f16c55c648e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f34633765633238322d616432662d316331342d306561332d3038336665393638353133342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/2d3ec7e820c103cab58ca521de9e2f16c55c648e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135343135372f34633765633238322d616432662d316331342d306561332d3038336665393638353133342e706e67" alt="process.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/154157/4c7ec282-ad2f-1c14-0ea3-083fe9685134.png"></a></p>
+
+<p>このBIPのように、決して完成しないという意味で、変更の余地があると判断されるBIPなど、いくつかのインフォメーションBIPとプロセスBIPは「有効(Active)」状態になります。</p>
+
+<h2>
+<span id="今まで承認されたbipに共通する特徴" class="fragment"></span><a href="#%E4%BB%8A%E3%81%BE%E3%81%A7%E6%89%BF%E8%AA%8D%E3%81%95%E3%82%8C%E3%81%9Fbip%E3%81%AB%E5%85%B1%E9%80%9A%E3%81%99%E3%82%8B%E7%89%B9%E5%BE%B4"><i class="fa fa-link"></i></a>今まで承認されたBIPに共通する特徴</h2>
+
+<p>それぞれのBIPが、以下のようなことに従っていました。</p>
+
+<ul>
+<li><p>前文 -- BIPに関する情報、簡単に理解できるタイトル(44文字まで)、名前、他の作者などを含むRFC 822の書式。</p></li>
+<li><p>要旨 -- 技術的な問題を解決、改善する200文字以内の説明。</p></li>
+<li><p>著作権表示/パブリックドメイン -- それぞれのBIPは、どのようなライセンスを持つか、またはパブリックドメインにするかどうかを明示的に示す必要があります。</p></li>
+<li><p>仕様 -- 新しい機能に関する、技術的な構造や意味を説明します。仕様は、競合しているものなども含め、現在の使われているすべてのビットコインソフトにおいて、きちんと実装できるくらい詳しく書いてある必要があります。(Satoshiクライアント、BitcoinJ、bitcoin-js、libbitcoinなど)</p></li>
+<li><p>動機 -- 動機には、なぜビットコインのプロトコルを変えたいかを示します。動機は、BIPが解決する、現在のプロトコルの不備や問題を、完結に示さなければいけません。動機が書いていないBIPは、あっさりと却下されます。</p></li>
+<li><p>根拠 -- 根拠は、設計や、なぜそのような設計になったかという根拠を示し、仕様を肉付けするところです。根拠は、設計を考える上で出てきた他の案や関連した案なども付け加えるべきです。また、議論する上で出た懸念や反対案、コミュニティの総意なども証拠とともに説明する必要があります。</p></li>
+<li><p>後方互換 -- 後方互換を持たないBIPは、必ずその旨や後方互換を保つ難しさを説明する必要があります。どのように後方互換が無いのか、またそれについてどのように対処すればいいかの提案などを、説明する必要もあります。後方互換を持たないのに十分な説明がなされていない場合でBIPが提出されると、あっさりと却下されます。</p></li>
+<li><p>参考実証 -- 参考実験・実証は、BIPが最終段階(Final)になるまでに完成していなければいけません。BIPが承認されるまでは必要ありません。実際に参考とするコードを書く前に、まず仕様と根拠の完成、コミュニティの合意を得ることなどを先にするほうが良いでしょう。最終的な参考実装は、実験的なコードやビットコインのプロトコルに関する説明などを含む必要があります。</p></li>
+</ul>
+
+<h2>
+<span id="bipのフォーマットとテンプレート" class="fragment"></span><a href="#bip%E3%81%AE%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%88%E3%81%A8%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88"><i class="fa fa-link"></i></a>BIPのフォーマットとテンプレート</h2>
+
+<p>BIPは、mediawiki構文かmarkdown構文で書く必要があります。</p>
+
+<h3>
+<span id="bipのヘッダーの構成" class="fragment"></span><a href="#bip%E3%81%AE%E3%83%98%E3%83%83%E3%83%80%E3%83%BC%E3%81%AE%E6%A7%8B%E6%88%90"><i class="fa fa-link"></i></a>BIPのヘッダーの構成</h3>
+
+<p>BIPは、RFC 822の通りのヘッダーから始まる必要があります。ヘッダーは以下のような構成にしてください。<code>*</code>がついている行に関しては説明があります。また、以下ヘッダーの行はすべて必須です。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>  BIP: &lt;BIP番号&gt;
+  Title: &lt;BIPタイトル&gt;
+  Author: &lt;作者の実名のリスト。メールアドレスはあってもなくてもいい。&gt;
+* Discussions-To: &lt;メールアドレス&gt;
+  Status: &lt;草案(Draft) | 有効(Active) | 承認(Accepted) | 繰越(Deferred) |
+    却下(Rejected) | 差し戻し(Withdrawn) | 最終段階(Final) | 停止(Superseded)&gt;
+  Type: &lt;スタンダードトラック(Standards Track) | インフォメーショナル(Informational) | プロセス(Process)&gt;
+  Created: &lt;ISO 8601 (yyyy-mm-dd)書式の作成年月日&gt;
+* Post-History: &lt;ビットコインメーリングリストに投稿された日付&gt;
+* Replaces: &lt;BIP番号&gt;
+* Superseded-By: &lt;BIP番号&gt;
+* Resolution: &lt;URL&gt;
+
+</pre></div></div>
+
+<p>Autherは、BIPの作者すべての実名を書きます。メールアドレスは書いても書かなくても良いです。例として、以下のようになります。</p>
+
+<div class="code-frame" data-lang="text">
+<div class="code-lang"><span class="bold">メールアドレスを含む場合</span></div>
+<div class="highlight"><pre><span></span>  Random J. User &lt;address@dom.ain&gt;
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="text">
+<div class="code-lang"><span class="bold">含まない場合</span></div>
+<div class="highlight"><pre><span></span>  Random J. User
+</pre></div>
+</div>
+
+<p>もしたくさんの作者がいる場合、RFC 2822に従って別に分ける必要があります。</p>
+
+<p>ResolutionヘッダーはスタンダードトラックBIPのみ必須です。これは、BIPが作られたことを宣言するWebページやメールの文章を指定する必要があります。</p>
+
+<p>BIPが非公開な議論をされている間(草案(Draft)状態の場合など)は、Discussions-Toヘッダーはメーリングリストか、議論されているWebページのURLを指定します。議論がまだ作者だけの場合や、ビットコインメーリングリストで議論されている場合はこのヘッダーは不要です。</p>
+
+<p>TypeヘッダーはBIPの種類を指定します。(スタンダードトラックBIP、インフォメーショナルBIP、プロセスBIP)</p>
+
+<p>Createdヘッダーは、BIPにBIP番号が付けられた日にちを記録します。まだメーリングリスト段階の場合はPost-Historyにメーリングリストへ投稿された日にちを記録します。両ヘッダーはともに年-月-日の書式で書く必要があります。例: 2001-08-14.</p>
+
+<p>Requiredヘッダーは、BIPが他のBIPに依存する場合に、依存する別のBIPの番号を示すために付けられます。</p>
+
+<p>Superseded-Byヘッダーは、古いBIPをあとから置き換えるときに追加されます。置き換えたいBIP番号を指定します。新しい方のBIPがこのヘッダーで古いBIPを示す必要があります。</p>
+
+<h2>
+<span id="補助ファイル" class="fragment"></span><a href="#%E8%A3%9C%E5%8A%A9%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB"><i class="fa fa-link"></i></a>補助ファイル</h2>
+
+<p>BIPは、画像・図など、別のファイルを含むことがあります。画像は、BIP用のサブディレクトリの中に入れる必要があります。補助ファイルは、<code>BIP-XXXX-Y.(拡張子)</code>の形式にします。XXXXがBIP番号、Yは補助ファイルの通し番号です。</p>
+
+<h2>
+<span id="bipオーナーの変更" class="fragment"></span><a href="#bip%E3%82%AA%E3%83%BC%E3%83%8A%E3%83%BC%E3%81%AE%E5%A4%89%E6%9B%B4"><i class="fa fa-link"></i></a>BIPオーナーの変更</h2>
+
+<p>たまに、BIPオーナーを新しいチャンピオンに変更することがあります。通常は、最初の方のオーナーを作者として残して起きますが、これは最初方のオーナー次第です。<br>
+オーナーを変更する良い理由としては、時間がない、管理する興味がなくなった、ネットに出てこなくなった(メールが音信不通とか)などが挙げられます。悪い理由としては、BIPの方向性に賛成できなくなったなどです。私達はみんなで合意できるように努力しますが、可能ではありません、そんなときは競合するBIPを出しても構いません。</p>
+
+<p>もし、BIPオーナーの変更に興味があるなら、BIP編集者とBIPの作者に聞きましょう。いつまでもBIP作者から返信が無い場合は、BIP編集者が一方的に決定を下します。（一方的に判断を下すのは、作者から返信がない場合のみで、BIP作者の意見があるときにそれを覆したりなどは決してしませんよ。)</p>
+
+<h2>
+<span id="bip編集者" class="fragment"></span><a href="#bip%E7%B7%A8%E9%9B%86%E8%80%85"><i class="fa fa-link"></i></a>BIP編集者</h2>
+
+<p>現在のBIP編集者はLuke Dashjrだけです。<a href="mailto:luke_bipeditor@dashjr.org" class="autolink">luke_bipeditor@dashjr.org</a>から連絡をとれます。</p>
+
+<h2>
+<span id="bip編集者の義務と作業工程" class="fragment"></span><a href="#bip%E7%B7%A8%E9%9B%86%E8%80%85%E3%81%AE%E7%BE%A9%E5%8B%99%E3%81%A8%E4%BD%9C%E6%A5%AD%E5%B7%A5%E7%A8%8B"><i class="fa fa-link"></i></a>BIP編集者の義務と作業工程</h2>
+
+<p>BIP編集者は、ビットコイン開発者メーリングリストに登録しています。BIPに関する全ての対応は<a href="mailto:luke_bipeditor@dashjr.org" class="autolink">luke_bipeditor@dashjr.org</a>に送ってください。</p>
+
+<p>新しいBIPは、BIP編集者が以下の対応をします。</p>
+
+<ul>
+<li>BIPを読み、完成しているかどうかを確認します。アイデアは技術的であり、そして却下される理由が無い必要があります。タイトルは内容を完結に表現している必要があります。</li>
+<li>BIPの文章を編集します。誤字、脱字、文法の間違い、意味の間違いなどです。</li>
+<li>BIPが完成していなかった場合（不備があった場合）、BIP編集者はBIP作者に対して修正すべき部分などと共に訂正を要求します。</li>
+<li>一度BIPが完成すると、BIPのプルリクエストがリポジトリの開かれ、さらにそこで修正や意見が求められます。</li>
+</ul>
+
+<p>BIP編集者が行うことは以下です。</p>
+
+<ul>
+<li>BIPにBIP番号を割り当てます。特殊な場合を除き、現在有効なBIPナンバーの次の数を割り当てます）</li>
+<li>BIPが完成し、十分に精査されたと思ったら、プルリクエストをマージします。</li>
+<li>README.mediawikiのBIPの一覧に新しく行を追加します。</li>
+<li>ビットコイン開発者メーリングリストで、BIP作者に対し、次にやるべきことを送信します。</li>
+</ul>
+
+<p>BIP編集者は管理能力があり、また編集能力が求められます。<br>
+BIP編集者は、BIPの更新のたびに、誤字脱字、文法、その他文の間違えを確認しなければいけません。</p>
+
+<h2>
+<span id="履歴" class="fragment"></span><a href="#%E5%B1%A5%E6%AD%B4"><i class="fa fa-link"></i></a>履歴</h2>
+
+<p>この文章はPythonのPEP-0001から派生しました。殆どの部分はコピーされています。PEP-0001はBarry Warsaw, Jeremy Hylton, and David Goodgerによって書かれましたが、彼らにBitcoin Improvement Proposalに関する責任は一切ありません。またBIPやビットコインに関する質問を彼らにすべきではありません。そのような場合は、すべてビットコイン開発者メーリングリストに送信してください。</p>
+
+<h2>
+<span id="変更履歴" class="fragment"></span><a href="#%E5%A4%89%E6%9B%B4%E5%B1%A5%E6%AD%B4"><i class="fa fa-link"></i></a>変更履歴</h2>
+
+<p>10 Oct 2015 - Added clarifications about submission process and BIP number assignment.</p>
+
+<p><code>訳: BIP番号の割り当てに関する部分の解釈を明確にした。</code></p>
+
+<p>01 Jan 2016 - Clarified early stages of BIP idea championing, collecting community feedback, etc.</p>
+
+<p><code>訳: BIPチャンピオンについてと、コミュニティへの意見の求め方などを明確にした。</code></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />10位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/9201b3b05ad49efb8fd4">【curl hoge | bash - 】curlで取ってきたシェルスクをbashで実行しようとして軽くハマった話</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-28 11:04:32</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Bash]</b> <b>[curl]</b> <b>[パイプ]</b> <b>[ファイルデスクリプタ]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>どうも。表題どおりハマったので書いて行きます。</p>
+
+<h1>
+<span id="やりたかったこと" class="fragment"></span><a href="#%E3%82%84%E3%82%8A%E3%81%9F%E3%81%8B%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やりたかったこと</h1>
+
+<p>よくhomebrewとかpipとかのインストールであるような、ブートストラップシェルスク、あれをやりたかった。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ curl hoge | bash
+</pre></div></div>
+
+<p>こんな感じを想定してた。</p>
+
+<h1>
+<span id="うごかなかったところ" class="fragment"></span><a href="#%E3%81%86%E3%81%94%E3%81%8B%E3%81%AA%E3%81%8B%E3%81%A3%E3%81%9F%E3%81%A8%E3%81%93%E3%82%8D"><i class="fa fa-link"></i></a>うごかなかったところ</h1>
+
+<p>シェルスクの中で<code>read</code>を使ったら入力プロンプトが表示されずにそこでプログラムがなんかエラー吐いて。</p>
+
+<h1>
+<span id="原因" class="fragment"></span><a href="#%E5%8E%9F%E5%9B%A0"><i class="fa fa-link"></i></a>原因</h1>
+
+<p>理由はよく考えてみれば簡単で、もともと<code>read</code>は「標準入力(キーボード)やパイプから、改行文字が車で文字列をとってくる」コマンド、つまり、bashにパイプで渡していたシェルスクの本体をreadが読み込んじゃったという話。</p>
+
+<p>なので、なんとかパイプを使わずに、でもファイルに保存とかせずにスクリプトを実行したい。</p>
+
+<h1>
+<span id="解決策" class="fragment"></span><a href="#%E8%A7%A3%E6%B1%BA%E7%AD%96"><i class="fa fa-link"></i></a>解決策</h1>
+
+<p>そういえばbashでファイルデスクリプタの入力作れるじゃん!ってことで、</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ curl hoge | bash
+</pre></div></div>
+
+<p>を</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ bash &lt;(curl hoge)
+</pre></div></div>
+
+<p>にした。この記号が何かっていうと、<code>&lt;()</code>の中のコマンドの実行結果(標準出力)を、仮想的な一時ファイル(Unixソケットバッファ)に保存して、そのファイルデスクリプタをそこの場所に置き換えてくれる。</p>
+
+<p>もっと簡単にいうと、<code>curl hoge</code>の結果が<code>/dev/fd/4</code>とかのバッファに保存されて、<code>&lt;()</code>って書いたところが<code>/dev/fd/4</code>に置き換わる。ファイルを保存しているのと対して変わっていないが、こちらの方がスマートにかけるしわざわざファイルも生成しないので楽。ということ。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>bashのマイナーな記号知っとくとやっぱり便利だなって(小並感)</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />11位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/d9297e567e9cc75586ed">NetowrkManagerで特定のWiFiに繋がったタイミングで自動でコマンドを実行させる</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-19 11:48:15</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Linux]</b> <b>[Network]</b> <b>[WiFi]</b> <b>[networkmanager]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>あるwifiに繋がったら自動でsshトンネルを掘ってほしかったので調べました。</p>
+
+<p><code>/etc/NetworkManager/dispatcher.d/</code>以下にシェルスクリプトを置いておくと、ネットワークの状態が変化したときに実行されるらしい。第一引数には変更があった対象のNIC名、第二引数は状態のメッセージが来るみたいです。第一引数だけつかって以下のようなものを書いて配置しました。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">==</span> wlan0 <span class="o">]</span> <span class="o">&amp;&amp;</span> iwconfig wlan0<span class="p">|</span>grep HogeHogeAccessPoint<span class="p">;</span> <span class="k">then</span>
+        <span class="k">if</span> ! ps ax<span class="p">|</span>grep <span class="s2">"[s]sh -fND 8080"</span><span class="p">;</span> <span class="k">then</span>
+                ssh -fND <span class="m">8080</span> user@myserver.com -i /home/onokatio/.ssh/id_rsa -o <span class="s2">"StrictHostKeyChecking no"</span>
+        <span class="k">fi</span>
+<span class="k">fi</span>
+</pre></div></div>
+
+<p>変更があったNICがwlan0であること、さらに現在繋がっているAPがHogeHogeAccessPointであることを確認した上で、既にssh -fnDが実行されていないか確認し、動いていなかったらsshを実行します。</p>
+
+<blockquote>
+<p>ちなみにgrepでsshが[s]shとなっているのは、自分自身(grep ssh)をps axの中から検出しないようにするためです。</p>
+</blockquote>
+
+<p>最後にsudo chmod +xで実行属性を付けて完了。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />12位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/4eafe6b26cf6820de945">BIP 0012 (OP_EVAL) 【任意の値をScriptとして実行できる】</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-15 22:25:56</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Bitcoin]</b> <b>[ビットコイン]</b> <b>[bip]</b> <b>[BIP0012]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>今回は、BitcoinのScriptの新しい命令であるOP_EVALについてのBIPです。<br>
+<a href="https://github.com/bitcoin/bips/blob/master/bip-0012.mediawiki" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/bitcoin/bips/blob/master/bip-0012.mediawiki</a></p>
+
+<h1>
+<span id="概要" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>概要</h1>
+
+<p>このBIPは、Bitcoinのscriptの新しいオペコード(OP_EVAL)と、受け取り側がトランザクションを変更できる新しいトランザクションの形式を説明します。</p>
+
+<h1>
+<span id="動機" class="fragment"></span><a href="#%E5%8B%95%E6%A9%9F"><i class="fa fa-link"></i></a>動機</h1>
+
+<p>安全なウォレットと安全なトランザクションだけで、古いマイナーとクライアントへの後方互換を保ったまま、複雑なトランザクションを実装することができる。</p>
+
+<h1>
+<span id="仕様" class="fragment"></span><a href="#%E4%BB%95%E6%A7%98"><i class="fa fa-link"></i></a>仕様</h1>
+
+<p>OP_EVALは、既にあるOP_NOP1の機能を以下のように再定義するものです。</p>
+
+<ul>
+<li>トランザクションの検証作業中に、スタックの一番上の値をpopし、それをScriptの形式に復号し、Scriptとして実行します。</li>
+<li>もしスタックの一番上のアイテムがなかったり、それがScriptの命令じゃなかった場合はトランザクションは無効となります。</li>
+<li>Scriptの命令に復号したときにOP_CODESEPARATORが含まれていれば、トランザクションは向こうになります。</li>
+<li>Scriptの命令に復号したときにOP_EVALが含まれていれば、それも実行されますが、OP_EVALは2つまでしか深く呼び出しできません。</li>
+<li>OP_EVALの中を実行し、トランザクションが無効化される結果になった場合、OP_EVALの呼び出し元でもトランザクションが無効化されます。</li>
+</ul>
+
+<p>新しいScriptPubKeyの形式は以下のようになります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>    DUP HASH160 {20-byte-hash-value} EQUALVERIFY OP_EVAL
+</pre></div></div>
+
+<p>ScriptSigは以下のようになります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>    ...signatures... {任意の値=変換されたScriptの命令}
+</pre></div></div>
+
+<p>OP_EVALを使用するScriptPubKeyはスタンダードトランザクションとして標準のものになります。</p>
+
+<h2>
+<span id="実装" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>実装</h2>
+
+<p>OP_EVALは、ビットコインの受け取り側がビットコインをどのように使うかを、ビットコインの送り主側が知ることができます。<br>
+送り主は、新しいアドレス形式などを含む複雑なトランザクションに対応するために、変換されたScriptを知っているだけで良くなります。</p>
+
+<p>もし復号化されたScriptが複雑だったり、マルチシグネチャを利用していた場合、結果的に多いトランザクションフィーを払うのが、送り主ではなく受け取り側になります。</p>
+
+<p>もし、OP_EVALがScriptに複雑さを追加することになり、そしてそれが問題になるようなことがあるかもしれません。また、セキュリティ的にそれが良くないこともあります。</p>
+
+<p>同じことが既にあるBitcoinのScriptにも言えます。ScriptPubKeyは、ネットワークを超えてBitcoinの仕組み・実装を細かく変更できます。OP_EVALはただデータの場所を移動するだけです。おバカな人がわざわざBitcoin-coreのコードを書き換えなくても、セキュリティを保ったまま機能の追加ができます。</p>
+
+<p>OP_EVALに対応しない古いクライアントに対して、ただのNOPとして1認証攻撃という攻撃をすることができます。しかし、これは難しいです。以下に方法を述べます。</p>
+
+<ol>
+<li>攻撃者は、古いクライアントでは有効に見えて、新しいクライアントでは無効なOP_EVALを含むトランザクションを作ります。</li>
+<li>また、攻撃者は、1のトランザクションを入力とする、ティム宛の送金トランザクションを作ります。</li>
+<li>攻撃者は、1と2のトランザクションを含むブロックを採掘します。もしティムが1認証でこれを受け入れれば、ネットワークがブロックを無効と認定するまでの間、攻撃に成功します。</li>
+</ol>
+
+<p>攻撃者は、不正なブロックを自力で掘らなければならないので、攻撃の難易度は高いです。また、高い価格の送金を1認証を完了させるような状況はBitcoinを使うビジネスとしては普通はないのも理由になります。</p>
+
+<h1>
+<span id="後方互換" class="fragment"></span><a href="#%E5%BE%8C%E6%96%B9%E4%BA%92%E6%8F%9B"><i class="fa fa-link"></i></a>後方互換</h1>
+
+<p>驚くことに。、OP_EVALはOP_NOP1を書き換えるものですが、古いクライアントでも有効とみなされます。古いクライアントは、変換されたScriptの命令が値としておかしくないかを確認するだけです。もしOP_EVALがただのNOPとして有効であれば、トランザクションが有効としてみなされます。</p>
+
+<p>古いクライアントはOP_EVALを無視します。また、一般的ではないトランザクションをブロックに取り込んでくれるマイナーか、新しいクライアントを使うマイナーも必要になります。</p>
+
+<p>OP_EVALがブロックチェーンを分岐させないために、以下の2つのケースを気をつける必要があります。</p>
+
+<ol>
+<li>OP_EVALを使い、新しいクライアントでは無効だが古いクライアントでは有効なトランザクション</li>
+<li>OP_EVALを使い、新しいクライアントでは有効だが古いクライアントでは無効なトランザクション</li>
+</ol>
+
+<p>ケース1の場合、新しいクライアントとマイナーは2012年2月1日まで古いOP_EVALをただのNOPとして認識するようにします。それまでは、OP_EVALが承認されるかどうか確認するため、マイナーがブロックに"OP_EVAL"という識別子がついているかどうか確認します。2012年1月15日の時点で、OP_EVALに対応するマイナーが50%以下の場合、そのトランザクションはOP_EVALに対応するマイナーが50%を超えてから有効になります。プロトコルの移行はそれまで拒否されます。</p>
+
+<p>ケース2の場合、新しいクライアントはそもそもOP_EVALがただのNOPだった場合とOP_EVALである場合の両方でトランザクションが有効であることを確認します。例を以下に示します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>    scriptSig:  {OP_11を変換した値}
+    scriptPubKey:  OP_EVAL OP_11 OP_EQUAL
+</pre></div></div>
+
+<h1>
+<span id="実際の実装" class="fragment"></span><a href="#%E5%AE%9F%E9%9A%9B%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>実際の実装</h1>
+
+<p><a href="https://github.com/gavinandresen/bitcoin-git/tree/op_eval" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/gavinandresen/bitcoin-git/tree/op_eval</a></p>
+
+<p>以下も参照してください。</p>
+
+<p><a href="https://bitcointalk.org/index.php?topic=46538" class="autolink" rel="nofollow noopener" target="_blank">https://bitcointalk.org/index.php?topic=46538</a></p>
+
+<p>"Bitcoin Address 01" BIP</p>
+
+<p>M-of-N Multisignature Transactions BIP 11</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />13位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/fcc9f8f94f8533bb030a">Dockerのデータ永続化関連について</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-13 20:52:13</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[docker]</b> <b>[volume]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>どうも、かちおです。Dockerのデータ永続化について色々とややこしかったのでまとめました。</p>
+
+<h1>
+<span id="データ永続化とは" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E6%B0%B8%E7%B6%9A%E5%8C%96%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>データ永続化とは</h1>
+
+<p>Dockerは、Dockerイメージと呼ばれるアプリケーションのバイナリがはいったデータを元にコンテナと呼ばれる小型の隔離マシンを立ち上げます。そしてそのコンテナのライフサイクルが簡単に作成・破棄できるように考えられているのですが、サーバーを立ち上げている途中で変化したデータは残しておきたいため、コンテナの特定のデータだけを「永続化」することができます。</p>
+
+<h1>
+<span id="方法" class="fragment"></span><a href="#%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>方法</h1>
+
+<ol>
+<li>ボリューム(ホストと同期)</li>
+<li>ボリューム(隔離した保存領域)</li>
+<li>他のコンテナをマウント</li>
+</ol>
+
+<h1>
+<span id="1ボリュームホストと同期" class="fragment"></span><a href="#1%E3%83%9C%E3%83%AA%E3%83%A5%E3%83%BC%E3%83%A0%E3%83%9B%E3%82%B9%E3%83%88%E3%81%A8%E5%90%8C%E6%9C%9F"><i class="fa fa-link"></i></a>1.ボリューム(ホストと同期)</h1>
+
+<p>これは、ホストマシンの特定のディレクトリと、コンテナの中の特定のディレクトリとリアルタイムで同期するものです。コンテナが破棄されてもホストのディレクトリの内容は残るので、また新しく立てたコンテナと同期することができます。また、ディレクトリではなく単一のファイルを指定することもできます。<br>
+また、セキュリティのためリードオンリー(コンテナ側からは変更不可)を指定することもできます。</p>
+
+<h2>
+<span id="使い方" class="fragment"></span><a href="#%E4%BD%BF%E3%81%84%E6%96%B9"><i class="fa fa-link"></i></a>使い方</h2>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ docker run -v /host/path:/container/path image-name
+<span class="c1"># ホストの/host/pathとコンテナ内の/container/pathを同期してimage-nameを起動</span>
+
+$ docker run -v /host/path:/container/path:ro image-name
+<span class="c1"># ホストの/host/pathとコンテナ内の/container/pathをリードオンリーで同期してimage-nameを起動。コンテナ側からはファイルの変更ができない。</span>
+</pre></div></div>
+
+<blockquote>
+<p>例:</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ docker run -v ./public:/usr/share/nginx/html:ro nginx
+</pre></div></div>
+
+<p>この場合、dockerコマンドを打ち込んだディレクトリ内のpublic/とコンテナ内の/usr/share/nginx/html/が動悸されます。ホスト側でファイルに変更を加えると同時にコンテナ内にも反映されます。コンテナ側の変更は無視されます。</p>
+</blockquote>
+
+<h1>
+<span id="2-ボリューム隔離した保存領域" class="fragment"></span><a href="#2-%E3%83%9C%E3%83%AA%E3%83%A5%E3%83%BC%E3%83%A0%E9%9A%94%E9%9B%A2%E3%81%97%E3%81%9F%E4%BF%9D%E5%AD%98%E9%A0%98%E5%9F%9F"><i class="fa fa-link"></i></a>2. ボリューム(隔離した保存領域)</h1>
+
+<p>さきほどのものは、あくまでホストの内容を同期orコピーしたい場合のものでした。そうではなく、ただコンテナの特定のディレクトリを残しておきたいときに使うのがこれです。<br>
+手順としては、保存領域のの作成→コンテナに領域を追加しつつ起動となります。</p>
+
+<h2>
+<span id="保存領域の作成" class="fragment"></span><a href="#%E4%BF%9D%E5%AD%98%E9%A0%98%E5%9F%9F%E3%81%AE%E4%BD%9C%E6%88%90"><i class="fa fa-link"></i></a>保存領域の作成</h2>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ docker volume create volume-name
+<span class="c1"># volume-nameという名前で保存領域を作成します。</span>
+</pre></div></div>
+
+<blockquote>
+<p>例</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ docker volume create database-data
+</pre></div></div>
+
+<p>この場合、database-dataという名前で隔離領域が作られます。</p>
+</blockquote>
+
+<h2>
+<span id="コンテナに保存領域を追加しつつ起動" class="fragment"></span><a href="#%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%AB%E4%BF%9D%E5%AD%98%E9%A0%98%E5%9F%9F%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%97%E3%81%A4%E3%81%A4%E8%B5%B7%E5%8B%95"><i class="fa fa-link"></i></a>コンテナに保存領域を追加しつつ起動</h2>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ docker run -v volume-data:/container/path image
+<span class="c1"># コンテナ内の/container/pathディレクトリがvolume-dataと同期される用になります。</span>
+
+$ docker run -v volume-data:/container/pat:roh image
+<span class="c1"># コンテナ内の/container/pathディレクトリがリードオンリーでvolume-dataに保管される用になります。</span>
+</pre></div></div>
+
+<blockquote>
+<p>例</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ docker run -v database-data:/var/lib/mysql mysql
+</pre></div></div>
+
+<p>この場合、mysqlのコンテナの中の/var//lib/mysqlがdatabase-dataという保存領域と同期されます。コンテナを破棄しても、ふたたび生成するときに同じ用に起動すればmysqlのデータが復活します。</p>
+</blockquote>
+
+<p>以上が隔離した保存領域です。はっきり言えば、1のホストと同期する場合の、同期するパス指定しなくていいイメージです。というか内部的にはそうなっています。ホストの任意のディレクトリと同期しなくていい場合は1よりもこちらのほうが簡単で便利というわけですね。</p>
+
+<p>追記: <strong>今更ですが、ボリュームを作成しなくても使えるみたいです。</strong></p>
+
+<h1>
+<span id="3他のコンテナをマウントデータボリュームコンテナ" class="fragment"></span><a href="#3%E4%BB%96%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%82%92%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%83%87%E3%83%BC%E3%82%BF%E3%83%9C%E3%83%AA%E3%83%A5%E3%83%BC%E3%83%A0%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A"><i class="fa fa-link"></i></a>3.他のコンテナをマウント(データボリュームコンテナ)</h1>
+
+<p>以上は、特定のコンテナの任意のパスを永続化するものでした。ですが、同じボリュームを共有するコンテナを起動するたびに毎回指定するのは面倒です。ということで、データボリュームコンテナというのを作ることができます。<br>
+1つ、適当なコンテナを起動し、そこのボリュームを他のコンテナからオプション1つで同じようにマウントできます。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ docker -v /path/to/directory:/path/to/directory --name data-volume image /bin/true
+<span class="c1"># これで、data-volumeという名前で、ホストとコンテナ内を動悸するコンテナを起動できます。</span>
+
+$ docker --volumes-from data-volume image
+<span class="c1"># これで、data-volumeがマウントしているボリュームを同じようにマウントします。つまり`v /path/to/directory:/path/to/directory`を指定したことになります。</span>
+</pre></div></div>
+
+<p>これが使えると、一個データボリュームコンテナを作ってそこに任意のボリュームをどんどんマウントしていけば、data-fromオプションをつけるだけで全く同じマウントをしたコンテナを作ることができます。</p>
+
+<h1>
+<span id="ちなみに--sshfというのが" class="fragment"></span><a href="#%E3%81%A1%E3%81%AA%E3%81%BF%E3%81%AB--sshf%E3%81%A8%E3%81%84%E3%81%86%E3%81%AE%E3%81%8C"><i class="fa fa-link"></i></a>ちなみに : sshfというのが</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ docker volume create --driver vieux/sshfs -o <span class="nv">sshcmd</span><span class="o">=</span>user@host.com:/path/to/directory -o <span class="nv">password</span><span class="o">=</span>password sshvolume
+</pre></div></div>
+
+<p>とかやると、ssh接続できる別のマシンの任意のディレクトリをつかってボリュームを作成できます。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />14位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/1e679ecd36b72b249527">LinuxでVPN Gate（闇の力）をもっと簡単に使おう</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-21 02:31:35</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[ShellScript]</b> <b>[Linux]</b> <b>[VPN]</b> <b>[ssl-vpn]</b> <b>[vpngate]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>以前の記事 <a href="https://qiita.com/onokatio/items/aa656c23e24d721eed31" id="reference-22fcea5d20ee6761b1f3">VPN Gate(VPN over https)とかいう闇の力でVPNを使おう on Linux</a> でVPN GateにLinuxから接続する方法を書きましたが、それさえもめんどくさいので自動化するためにsystemd serviceとシェルスクリプトを書きました。</p>
+
+<h1>
+<span id="事前にやること" class="fragment"></span><a href="#%E4%BA%8B%E5%89%8D%E3%81%AB%E3%82%84%E3%82%8B%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>事前にやること</h1>
+
+<p>事前に、<a href="https://qiita.com/onokatio/items/aa656c23e24d721eed31">VPN Gate(VPN over https)とかいう闇の力でVPNを使おう on Linux</a>の「ソースコードのダウンロード」と「ビルド」に従ってvpn clientのインストールを済ませておいてください。</p>
+
+<h1>
+<span id="ダウンロード" class="fragment"></span><a href="#%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>ダウンロード</h1>
+
+<p><a href="https://github.com/onokatio/vpngate-utils" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/onokatio/vpngate-utils</a></p>
+
+<p>git cloneなりzipダウンロードなりで任意の場所にダウンロードしてください。</p>
+
+<h1>
+<span id="使い方" class="fragment"></span><a href="#%E4%BD%BF%E3%81%84%E6%96%B9"><i class="fa fa-link"></i></a>使い方</h1>
+
+<p>README.mdにも書いていますが、以下の手順を追ってください。</p>
+
+<h3>
+<span id="systemd用のserviceファイルをコピーしてリロードしてください" class="fragment"></span><a href="#systemd%E7%94%A8%E3%81%AEservice%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E3%82%B3%E3%83%94%E3%83%BC%E3%81%97%E3%81%A6%E3%83%AA%E3%83%AD%E3%83%BC%E3%83%89%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84"><i class="fa fa-link"></i></a>systemd用のserviceファイルをコピーしてリロードしてください。</h3>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ sudo cp ./vpngate-client.service /etc/systemd/system/vpngate-client.service
+$ sudo systemctl daemon-reload
+</pre></div></div>
+
+<h3>
+<span id="vpn-gate-clientのサービスを起動してください" class="fragment"></span><a href="#vpn-gate-client%E3%81%AE%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%92%E8%B5%B7%E5%8B%95%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84"><i class="fa fa-link"></i></a>VPN Gate Clientのサービスを起動してください。</h3>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ sudo systemctl start vpngate-client.service
+$ sudo systemctl <span class="nb">enable</span> vpngate-client.service
+</pre></div></div>
+
+<h3>
+<span id="最後に設定用のシェルスクを実行しパスワードを入力してください" class="fragment"></span><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB%E8%A8%AD%E5%AE%9A%E7%94%A8%E3%81%AE%E3%82%B7%E3%82%A7%E3%83%AB%E3%82%B9%E3%82%AF%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%83%91%E3%82%B9%E3%83%AF%E3%83%BC%E3%83%89%E3%82%92%E5%85%A5%E5%8A%9B%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84"><i class="fa fa-link"></i></a>最後に、設定用のシェルスクを実行し、パスワードを入力してください。</h3>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ sudo ./setup-client.sh -s vpngate-server.com:443 -b VPN -u user1
+
+パスワード : ********
+確認入力　 : ********
+</pre></div></div>
+
+<p>このシェルスクの使い方は以下のようになっています。</p>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">help</span></div>
+<div class="highlight"><pre><span></span>Usage: setup-client.sh <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-s &lt;server:port&gt;<span class="o">]</span> <span class="o">[</span>-b &lt;HUB&gt;<span class="o">]</span> <span class="o">[</span>-u &lt;USERNAME&gt;<span class="o">]</span> <span class="o">[</span>-f<span class="o">]</span>
+
+  -h                このヘルプを表示
+  -s &lt;server:port&gt;  VPNサーバーのアドレスとポートを指定
+  -b &lt;hub&gt;          VPNのハブの名前を指定（大体の場合は<span class="s1">'VPN'</span>）
+  -u &lt;username&gt;     VPNのユーザー名
+  -f                既にVPNの設定があっても、それを削除して強制的に再登録する。
+</pre></div>
+</div>
+
+<p>これで完了です。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />15位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/0da9b09382e116084e9e">見ているページをワンクリックで魚拓するぞ</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-08 00:03:50</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[ブックマークレット]</b> <b>[魚拓]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="nx">javascript</span><span class="o">:</span><span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"https://wayback.archive.org/save/"</span><span class="o">+</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">)</span>
+</pre></div></div>
+
+<p>これをブックマークレット登録</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />16位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/86755bb3083e414f1a3a">CUIなサーバーだけでネットラジオを聞きたい！</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-30 15:05:34</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[radiko]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>どうも。かちおです。ちょっと作業をしているときに、無性にコマンドラインだけでラジオを聞きたくなりますよね？ということで自分なりにどうすれば再生できるか色々と試してみました。</p>
+
+<h2>
+<span id="方法1" class="fragment"></span><a href="#%E6%96%B9%E6%B3%951"><i class="fa fa-link"></i></a>方法1</h2>
+
+<p><a href="https://gist.github.com/matchy2/3956266" class="autolink" rel="nofollow noopener" target="_blank">https://gist.github.com/matchy2/3956266</a> で紹介されているスクリプトを使う方法です。<br>
+これだと録音しかできないのですが、有志の方が再生にも対応させるシェルスクリプトを書いてくれていました。</p>
+
+<p><a href="https://mtunn.wordpress.com/2017/02/08/raspberrypi3%E3%81%A7radiko/" class="autolink" rel="nofollow noopener" target="_blank">https://mtunn.wordpress.com/2017/02/08/raspberrypi3%E3%81%A7radiko/</a></p>
+
+<p>swftoolsというパッケージが必要です。<code>sudo apt install swftools</code>で導入できました。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ ./radiko.sh -p BAYFM78
+</pre></div></div>
+
+<p>で聞くことができた。この<code>BAYFM78</code>みたいなキー（文字列）は、radiko.jpの各ラジオ局のページのURLで確認できる。w3mとか使えばサーバーでもok。</p>
+
+<p>自分で各ラジオ局のキーをまとめてみたら以下のようになった。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">ラジオ局</th>
+<th style="text-align: center">キー</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">NHK第1</td>
+<td style="text-align: center"><code>JOAK</code></td>
+</tr>
+<tr>
+<td style="text-align: center">NHK第2</td>
+<td style="text-align: center"><code>JOAB</code></td>
+</tr>
+<tr>
+<td style="text-align: center">NHK FM</td>
+<td style="text-align: center"><code>JOAK-FM</code></td>
+</tr>
+<tr>
+<td style="text-align: center">FM横浜</td>
+<td style="text-align: center"><code>YFM</code></td>
+</tr>
+<tr>
+<td style="text-align: center">文化放送</td>
+<td style="text-align: center"><code>QRR</code></td>
+</tr>
+<tr>
+<td style="text-align: center">ラジオNIKKEI第1</td>
+<td style="text-align: center"><code>RN1</code></td>
+</tr>
+<tr>
+<td style="text-align: center">ラジオNIKKEI第2</td>
+<td style="text-align: center"><code>RN2</code></td>
+</tr>
+<tr>
+<td style="text-align: center">Jwave</td>
+<td style="text-align: center"><code>FMJ</code></td>
+</tr>
+<tr>
+<td style="text-align: center">bayfm78</td>
+<td style="text-align: center"><code>BAYFM78</code></td>
+</tr>
+<tr>
+<td style="text-align: center">TBSラジオ</td>
+<td style="text-align: center"><code>TBS</code></td>
+</tr>
+<tr>
+<td style="text-align: center">NACK5</td>
+<td style="text-align: center"><code>NACK5</code></td>
+</tr>
+<tr>
+<td style="text-align: center">TOKYOFM</td>
+<td style="text-align: center"><code>FMT</code></td>
+</tr>
+<tr>
+<td style="text-align: center">ニッポン放送</td>
+<td style="text-align: center"><code>LFR</code></td>
+</tr>
+<tr>
+<td style="text-align: center">ラジオ日本</td>
+<td style="text-align: center"><code>JORF</code></td>
+</tr>
+<tr>
+<td style="text-align: center">放送大学</td>
+<td style="text-align: center"><code>HOUSOU-DAIGAKU</code></td>
+</tr>
+<tr>
+<td style="text-align: center">InterFM</td>
+<td style="text-align: center"><code>INT</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>もしバッググラウンドで動かしたいなら以下のように。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ ./radiko.sh -o key &gt;/dev/null 2&gt;&amp;1 &amp;
+</pre></div></div>
+
+<p>ただmplayerの出力である標準出力と標準エラー出力を捨ててるだけ。</p>
+
+<h2>
+<span id="方法2" class="fragment"></span><a href="#%E6%96%B9%E6%B3%952"><i class="fa fa-link"></i></a>方法2</h2>
+
+<p>上のがめんどくさかったので、もっと簡単にできないかと思い、radiko.jpをchrome開発者ツールで見ているとm3u8なリクエストを発見。ということで以下のようにすればもっと簡単にradikoを聞くことができた。</p>
+
+<ol>
+<li> mplayerをサーバーにインストール</li>
+<li> radiko.jpをなんらかのブラウザで開き、開発者ツールのnetwork欄から拡張子が<code>.m3u8</code>なリクエストを見つけ、そのURLをコピー。</li>
+<li> mplayerの引数にURLを渡すだけ。</li>
+</ol>
+
+<p>たとえばbayfm78は以下のようになった。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ http://f-radiko.smartstream.ne.jp/BAYFM78/_definst_/simul-stream.stream/chunklist_w710715257.m3u8
+</pre></div></div>
+
+<p>で、これの問題は時間が立つとこのURLが変わってしまうこと。<br>
+なので素直に方法1を使うことにした。</p>
+
+<hr>
+
+<p>結局他の人が書いたブログを引用するだけになってしまったけど、まあとりあえずこれでサーバーでラジオが聞けるね！<br>
+やったね！</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>onokatioさんの<br />17位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/onokatio/items/1b99ae9475b6a9fc2f15">LEDドットマトリクスパネル HUB75規格について調べてみた</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-24 18:01:10</center>
+	</td>
+	<td style="width:200px;">
+		@onokatio<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/154157/profile-images/1503882654">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[電子工作]</b> <b>[led]</b> <b>[HUB75]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>どうも、予定が一杯でリア充のかちおです（違</p>
+
+<p>諸事情で秋葉原のピカリ館でHUB75型の32x32のLED Matrix Panelを購入し、いじろうと思ったのでメモ。調べても日本語情報全然出てこなかった。</p>
+
+<p>どうやら通常はライブラリを使うらしいが、公式にはArduinoしか対応しておらず、なんとか汎用IOで操作したいため、データシートとにらめっこした。</p>
+
+<p>公式のリファレンスとかデータシートとかサンプルコードを翻訳しながら書いていく。</p>
+
+<h2>
+<span id="画面構成" class="fragment"></span><a href="#%E7%94%BB%E9%9D%A2%E6%A7%8B%E6%88%90"><i class="fa fa-link"></i></a>画面構成</h2>
+
+<p>合計1024個のLED(とRGB)をすべて同時に光らせることは現実的ではないので、全16セクションに分けるとのこと。</p>
+
+<p>32のLED、横に32列ある。<br>
+全部で32列。<br>
+1セクションは一番上の1列目と真ん中の17列目、2セクションは2と18列目…らしい。</p>
+
+<blockquote>
+<p>余談ですが、32x16のパネルは1と9、2と10…って組み合わせらしい。まあそれが妥当。</p>
+</blockquote>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">セクション</th>
+<th style="text-align: center">列</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">1</td>
+<td style="text-align: center">1と17</td>
+</tr>
+<tr>
+<td style="text-align: center">2</td>
+<td style="text-align: center">2と18</td>
+</tr>
+<tr>
+<td style="text-align: center">3</td>
+<td style="text-align: center">3と19</td>
+</tr>
+<tr>
+<td style="text-align: center">︙</td>
+<td style="text-align: center">︙</td>
+</tr>
+<tr>
+<td style="text-align: center">16</td>
+<td style="text-align: center">16と32</td>
+</tr>
+</tbody>
+</table>
+
+<p>1セクションは 32LED x 2列 で64LED。さらにRGBがあるので3を掛けて192。<br>
+なのでセクションごとにこの192bitを送ってあげればいいらしい。</p>
+
+<p>人間の目からしたら残像だけど、実際には同時に1セクション(64LED)しか光らないらしい。<br>
+まあそうだよね。</p>
+
+<h2>
+<span id="セクション192個のledの光らせ方" class="fragment"></span><a href="#%E3%82%BB%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3192%E5%80%8B%E3%81%AEled%E3%81%AE%E5%85%89%E3%82%89%E3%81%9B%E6%96%B9"><i class="fa fa-link"></i></a>セクション(192個のLED)の光らせ方</h2>
+
+<p>まず接続端子にR1、G1、B1、R2、G2、B2、っていうピンがあると思う。もしかしたら1と2じゃなくて0と1の組み合わせかもしれない。ぼくの場合はそうだった。</p>
+
+<p>ブルース展開でいうと{R,G,B}{1,2}か{R,G,B}{0,1}ですね。<br>
+とりあえず1と2で行きます。</p>
+
+<p>これによって、同時に2つのLEDの状態を制御できます。RGB2つ分ですね。<br>
+で、セクションの上の列と下の列のLEDをそれぞれ同時に光らせることができます。</p>
+
+<p>なので、一回のデータ送信で、セクションの上の列と下の列の一番左のLEDを光らせられるとのこと。これを32回繰り返します。</p>
+
+<p>なので、たとえば1列目を白色に交互に点灯、17列目を赤青緑交互に光らせたい場合は以下のようになります。<br>
+ちなみに送信するごとにのクロックは、接続端子CLKから送るようです。これもSLCKとか色々呼び方があるようす。<br>
+あと、送信データは逆の値（負論理）、つまり光らせたかったらLOW、消したかったらHIGHらしいです。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">送信</th>
+<th style="text-align: center">1</th>
+<th style="text-align: center">2</th>
+<th style="text-align: center">3</th>
+<th style="text-align: center">4</th>
+<th style="text-align: center">5</th>
+<th style="text-align: center">6</th>
+<th style="text-align: center">7</th>
+<th style="text-align: center">…</th>
+<th style="text-align: center">32</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">R1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">…</td>
+<td style="text-align: center">1</td>
+</tr>
+<tr>
+<td style="text-align: center">G1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">…</td>
+<td style="text-align: center">1</td>
+</tr>
+<tr>
+<td style="text-align: center">B1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">…</td>
+<td style="text-align: center">1</td>
+</tr>
+<tr>
+<td style="text-align: center">上の色</td>
+<td style="text-align: center">白</td>
+<td style="text-align: center">消</td>
+<td style="text-align: center">白</td>
+<td style="text-align: center">消</td>
+<td style="text-align: center">白</td>
+<td style="text-align: center">消</td>
+<td style="text-align: center">白</td>
+<td style="text-align: center">…</td>
+<td style="text-align: center">消</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+</tr>
+<tr>
+<td style="text-align: center">R2</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">…</td>
+<td style="text-align: center">0</td>
+</tr>
+<tr>
+<td style="text-align: center">G2</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">…</td>
+<td style="text-align: center">1</td>
+</tr>
+<tr>
+<td style="text-align: center">B2</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">0</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">…</td>
+<td style="text-align: center">1</td>
+</tr>
+<tr>
+<td style="text-align: center">下の色</td>
+<td style="text-align: center">赤</td>
+<td style="text-align: center">緑</td>
+<td style="text-align: center">青</td>
+<td style="text-align: center">赤</td>
+<td style="text-align: center">緑</td>
+<td style="text-align: center">青</td>
+<td style="text-align: center">赤</td>
+<td style="text-align: center">…</td>
+<td style="text-align: center">青</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="セクションの選び方" class="fragment"></span><a href="#%E3%82%BB%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E9%81%B8%E3%81%B3%E6%96%B9"><i class="fa fa-link"></i></a>セクションの選び方</h1>
+
+<p>これで同時に離れた2列を表示できるようになりました。次はセクションを選ぶ必要があります。<br>
+接続端子にABC(D)があると思うのですが、これがセクションを選ぶ4ビットになります。<br>
+2進数で、0000から1111です。これで1セクションから16セクションまでを選択するとのこと。</p>
+
+<h1>
+<span id="最終的なピンの操作順序" class="fragment"></span><a href="#%E6%9C%80%E7%B5%82%E7%9A%84%E3%81%AA%E3%83%94%E3%83%B3%E3%81%AE%E6%93%8D%E4%BD%9C%E9%A0%86%E5%BA%8F"><i class="fa fa-link"></i></a>最終的なピンの操作順序</h1>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>
+<span class="m">1</span>. 全ピンをLOWにする。<span class="o">(</span>最初だけ<span class="o">)</span>
+
+
+<span class="m">2</span>. R1 G1 B1 R2 G2 B2をそれぞれ上に書いたようにLOWかHIGHにする。
+<span class="m">3</span>. CLKをHIGHにする。
+<span class="m">4</span>. CLKをLOWにする。これでLED2個分が書き込まれた。
+
+<span class="m">5</span>. これと同じように、2~4をあと31回繰り返す。これで1セクションのデータ分書き込み終わる。
+
+<span class="m">6</span>. ABCDの4bit使って送り込みたいセクションを決める。最初は0000とか。
+<span class="m">7</span>. OEをHIGHにする。画面表示有効のフラグらしい。
+<span class="m">8</span>. LAT<span class="o">(</span>STB<span class="o">)</span>をHIGHにする。これでLEDが光る。
+<span class="m">9</span>. LAT<span class="o">(</span>STB<span class="o">)</span>をLOWにする。
+<span class="m">10</span>. OEをLOWにする。
+
+<span class="m">11</span>. 以上、2~10をセクションを変えながら8回分繰り返す。これを高速で繰り返すことで画面を全部表示できる。ちなみに止めたらその瞬間消える（たぶん）
+
+</pre></div></div>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<p><a href="https://hima-tubusi.blogspot.jp/2017/05/hub75_30.html" class="autolink" rel="nofollow noopener" target="_blank">https://hima-tubusi.blogspot.jp/2017/05/hub75_30.html</a><br>
+<a href="https://gist.github.com/CLCL/4509360739cccfca8f64" class="autolink" rel="nofollow noopener" target="_blank">https://gist.github.com/CLCL/4509360739cccfca8f64</a><br>
+<a href="https://www.thingiverse.com/thing:1508087" class="autolink" rel="nofollow noopener" target="_blank">https://www.thingiverse.com/thing:1508087</a><br>
+<a href="https://cdn-learn.adafruit.com/downloads/pdf/32x16-32x32-rgb-led-matrix.pdf" class="autolink" rel="nofollow noopener" target="_blank">https://cdn-learn.adafruit.com/downloads/pdf/32x16-32x32-rgb-led-matrix.pdf</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

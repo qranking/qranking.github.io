@@ -1,0 +1,1002 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (1amageek)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (1amageek さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>1amageekさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>88</kbd>
+		<a target="_blank" href="https://qiita.com/1amageek/items/8179aebe871beb230194">Cloud Firestoreは進化したFirebase Realtime Database</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-05 03:23:17</center>
+	</td>
+	<td style="width:200px;">
+		@1amageek<br />(Cookpad Inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/80287/profile-images/1473701741">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Swift]</b> <b>[Firebase]</b> <b>[FirebaseRealtimeDatabase]</b> <b>[Firestore]</b> <b>[CloudFirestore]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="cloud-firestoreファーストインプレッション" class="fragment"></span><a href="#cloud-firestore%E3%83%95%E3%82%A1%E3%83%BC%E3%82%B9%E3%83%88%E3%82%A4%E3%83%B3%E3%83%97%E3%83%AC%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>Cloud Firestoreファーストインプレッション</h1>
+
+<p>リリース発表をついに来たか！って思いました。そしてFirestoreとFirebase Realtime Databaseがどう違うのかを読んで、大きく進化したなぁって思いました。そして実際に使ってみて、これはもはや別物って思いました。</p>
+
+<p>FirestoreとFirebase Realtime Databaseの違いについてはすでにこちらでまとめられていたのでこちらをご覧ください。<br>
+<a href="https://qiita.com/Yatima/items/54ea22d0cea1acc6cbcb" class="autolink" id="reference-4e237f3f89baf094d3a3">https://qiita.com/Yatima/items/54ea22d0cea1acc6cbcb</a></p>
+
+<h1>
+<span id="cloud-firestoreのすごいところ" class="fragment"></span><a href="#cloud-firestore%E3%81%AE%E3%81%99%E3%81%94%E3%81%84%E3%81%A8%E3%81%93%E3%82%8D"><i class="fa fa-link"></i></a>Cloud Firestoreのすごいところ</h1>
+
+<h2>
+<span id="firestoreにはboringsslが使われている" class="fragment"></span><a href="#firestore%E3%81%AB%E3%81%AFboringssl%E3%81%8C%E4%BD%BF%E3%82%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B"><i class="fa fa-link"></i></a>Firestoreには<a href="https://boringssl.googlesource.com/boringssl/" rel="nofollow noopener" target="_blank">BoringSSL</a>が使われている</h2>
+
+<p>BordingSSLはGoogleによるOpenSSLのfork。2014年にForkを発表して、すでにAndroidなどでは使われていたようですが、本格的にGoogleはBordingSSLを導入していくんですねぇ。素晴らしい。</p>
+
+<h2>
+<span id="grpcも使われている" class="fragment"></span><a href="#grpc%E3%82%82%E4%BD%BF%E3%82%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B"><i class="fa fa-link"></i></a><a href="https://github.com/grpc/grpc" rel="nofollow noopener" target="_blank">gRPC</a>も使われている</h2>
+
+<p>gRPC は、RPC (Remote Procedure Call) を実現するためにGoogleが開発したプロトコルの1つです。Protocol Buffers を使ってデータをシリアライズし、高速な通信を実現できる点が特長です。</p>
+
+<p><a href="https://qiita.com/oohira/items/63b5ccb2bf1a913659d6" class="autolink" id="reference-692657cdce7d28ddd0dc">https://qiita.com/oohira/items/63b5ccb2bf1a913659d6</a></p>
+
+<h2>
+<span id="保存できるデータ型が増えた" class="fragment"></span><a href="#%E4%BF%9D%E5%AD%98%E3%81%A7%E3%81%8D%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%81%8C%E5%A2%97%E3%81%88%E3%81%9F"><i class="fa fa-link"></i></a>保存できるデータ型が増えた。</h2>
+
+<p>Cloud Firestore では、ブール値、数値、文字列、地理的位置、バイナリ blob、タイムスタンプなど、さまざまな値のデータ型がサポートされています。</p>
+
+<p>地理的位置を保存できると言うことは！？おそらくここのソリューションも今後提供して来ることが予想されます。</p>
+
+<p><a href="https://firebase.google.com/docs/firestore/manage-data/data-types?authuser=0" class="autolink" rel="nofollow noopener" target="_blank">https://firebase.google.com/docs/firestore/manage-data/data-types?authuser=0</a></p>
+
+<h2>
+<span id="subcollectionは分離されている" class="fragment"></span><a href="#subcollection%E3%81%AF%E5%88%86%E9%9B%A2%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B"><i class="fa fa-link"></i></a>SubCollectionは分離されている</h2>
+
+<p>Firebase Realtime Databaseが単純なツリー構造だったのに対しFirestoreのデータ構造は<strong>Collection</strong>, <strong>Document</strong>, <strong>SubCollection</strong>があります。</p>
+
+<p><a href="https://firebase.google.com/docs/firestore/data-model?authuser=0#hierarchical-data" class="autolink" rel="nofollow noopener" target="_blank">https://firebase.google.com/docs/firestore/data-model?authuser=0#hierarchical-data</a></p>
+
+<p>Firebase Realtime Databaseでも同じような構造をツリー構造で構築することは可能です。しかし、SubCollectionには決定的な違いがあります。Firebase Realtime Databaseでは上位のツリー構造の上位のノードを削除するとそれに付随する下位のデータは全て削除されました。Firestoreでは違います。</p>
+
+<p>ドキュメントを削除しても、そのサブコレクションは削除されません。</p>
+
+<blockquote>
+<p>サブコレクションが関連付けられているドキュメントを削除しても、そのサブコレクションは削除されません。その後もサブコレクションには、リファレンスによるアクセスが可能です。たとえば、db.collection('coll').doc('doc') によって参照されるドキュメントは存在しなくなったにもかかわらず、db.collection('coll').doc('doc').collection('subcoll').doc('subdoc') によって参照されるドキュメントは存在する場合があります。ドキュメントを削除するときにサブコレクション内のドキュメントも削除する場合は、コレクションを削除するに示すように、手動で削除する必要があります。</p>
+</blockquote>
+
+<h3>
+<span id="つまり親ノードのデータ量が重くならない" class="fragment"></span><a href="#%E3%81%A4%E3%81%BE%E3%82%8A%E8%A6%AA%E3%83%8E%E3%83%BC%E3%83%89%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E9%87%8F%E3%81%8C%E9%87%8D%E3%81%8F%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>つまり親ノードのデータ量が重くならない</h3>
+
+<p>FirestoreのSubCollectionは<strong>値</strong>ではないく<strong>参照</strong>です、Firebase Realtime Databaseでは上位ノードでデータを取得すると下位のデータを全て取得していたためデータが非常に重くなっていました。<br>
+Firestoreではこれが解決されています。ちなみにFirebase Realtime Databaseでも同じことはできます。</p>
+
+<p>Firebase Model Frameworkの<a href="https://github.com/1amageek/Salada" rel="nofollow noopener" target="_blank">Salada</a>ではRelationクラスでこれを実現しています。<br>
+<a href="https://github.com/1amageek/Salada/blob/master/Salada/Relation.swift" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/1amageek/Salada/blob/master/Salada/Relation.swift</a></p>
+
+<h2>
+<span id="バッチ処理は強力な機能" class="fragment"></span><a href="#%E3%83%90%E3%83%83%E3%83%81%E5%87%A6%E7%90%86%E3%81%AF%E5%BC%B7%E5%8A%9B%E3%81%AA%E6%A9%9F%E8%83%BD"><i class="fa fa-link"></i></a>バッチ処理は強力な機能</h2>
+
+<p>Firebase Realtime Databaseにも<code>updateValues</code>と言って複数のデータを同時に更新するメソッドは準備されていました。Firestoreではそれがさらに使いやすくなっています。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// Get new write batch</span>
+<span class="kd">let</span> <span class="nv">batch</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">batch</span><span class="p">()</span>
+
+<span class="c1">// Set the value of 'NYC'</span>
+<span class="kd">let</span> <span class="nv">nycRef</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">collection</span><span class="p">(</span><span class="s">"cities"</span><span class="p">).</span><span class="n">document</span><span class="p">(</span><span class="s">"NYC"</span><span class="p">)</span>
+<span class="n">batch</span><span class="p">.</span><span class="n">setData</span><span class="p">([:],</span> <span class="n">forDocument</span><span class="p">:</span> <span class="n">nycRef</span><span class="p">)</span>
+
+<span class="c1">// Update the population of 'SF'</span>
+<span class="kd">let</span> <span class="nv">sfRef</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">collection</span><span class="p">(</span><span class="s">"cities"</span><span class="p">).</span><span class="n">document</span><span class="p">(</span><span class="s">"SF"</span><span class="p">)</span>
+<span class="n">batch</span><span class="p">.</span><span class="n">updateData</span><span class="p">([</span><span class="s">"population"</span><span class="p">:</span> <span class="mi">1000000</span> <span class="p">],</span> <span class="n">forDocument</span><span class="p">:</span> <span class="n">sfRef</span><span class="p">)</span>
+
+<span class="c1">// Delete the city 'LA'</span>
+<span class="kd">let</span> <span class="nv">laRef</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">collection</span><span class="p">(</span><span class="s">"cities"</span><span class="p">).</span><span class="n">document</span><span class="p">(</span><span class="s">"LA"</span><span class="p">)</span>
+<span class="n">batch</span><span class="p">.</span><span class="n">deleteDocument</span><span class="p">(</span><span class="n">laRef</span><span class="p">)</span>
+
+<span class="c1">// Commit the batch</span>
+<span class="n">batch</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span> <span class="p">{</span> <span class="n">err</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="kd">let</span> <span class="nv">err</span> <span class="p">=</span> <span class="n">err</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">"Error writing batch </span><span class="si">\(</span><span class="n">err</span><span class="si">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">"Batch write succeeded."</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h2>
+<span id="クエリはrealmのような使い心地" class="fragment"></span><a href="#%E3%82%AF%E3%82%A8%E3%83%AA%E3%81%AFrealm%E3%81%AE%E3%82%88%E3%81%86%E3%81%AA%E4%BD%BF%E3%81%84%E5%BF%83%E5%9C%B0"><i class="fa fa-link"></i></a>クエリはRealmのような使い心地</h2>
+
+<p>定義したクエリの参照を監視し続けることができます。<br>
+クエリの使い心地よりも注目すべきはこのプロパティ<code>hasPendingWrites</code>。<br>
+いつ使うかと言うとチャットです。</p>
+
+<p>例えばチャットでメッセージを送信した瞬間を想像してください。<br>
+Firebase Realtime Databaseではバックエンドのイベントをオブザーブしていたので、データがバックエンドに保存された後UIが更新されることになり若干の遅れを体感していたはずです。<br>
+しかし、Firestoreでは、バックエンドに保存される前であってもクライアントから書き込みがあったことを取得できるのでその遅れを感じなくてよくなります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">db</span><span class="p">.</span><span class="n">collection</span><span class="p">(</span><span class="s">"cities"</span><span class="p">).</span><span class="n">document</span><span class="p">(</span><span class="s">"SF"</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">addSnapshotListener</span> <span class="p">{</span> <span class="n">documentSnapshot</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">document</span> <span class="p">=</span> <span class="n">documentSnapshot</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">"Error fetching document: </span><span class="si">\(</span><span class="n">error</span><span class="p">!</span><span class="si">)</span><span class="s">"</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+        <span class="kd">let</span> <span class="nv">source</span> <span class="p">=</span> <span class="n">document</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="n">hasPendingWrites</span> <span class="p">?</span> <span class="s">"Local"</span> <span class="p">:</span> <span class="s">"Server"</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">"</span><span class="si">\(</span><span class="n">source</span><span class="si">)</span><span class="s"> data: </span><span class="si">\(</span><span class="n">document</span><span class="p">.</span><span class="n">data</span><span class="si">())</span><span class="s">"</span><span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="c1">// After 2 seconds, make an update so our listener will fire again.</span>
+<span class="kd">let</span> <span class="nv">deadlineTime</span> <span class="p">=</span> <span class="n">DispatchTime</span><span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="p">.</span><span class="n">seconds</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">asyncAfter</span><span class="p">(</span><span class="n">deadline</span><span class="p">:</span> <span class="n">deadlineTime</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kc">self</span><span class="p">.</span><span class="n">db</span><span class="p">.</span><span class="n">collection</span><span class="p">(</span><span class="s">"cities"</span><span class="p">).</span><span class="n">document</span><span class="p">(</span><span class="s">"SF"</span><span class="p">).</span><span class="n">updateData</span><span class="p">([</span>
+        <span class="s">"population"</span><span class="p">:</span> <span class="mi">1000000</span>
+        <span class="p">])</span>
+<span class="p">}</span>
+
+<span class="c1">// RESULT:</span>
+<span class="c1">// Server data: ["state": CA, "name": San Francisco, "population": 999999]</span>
+
+<span class="c1">// Local data: ["state": CA, "name": San Francisco, "population": 1000000]</span>
+<span class="c1">// Server data: ["state": CA, "name": San Francisco, "population": 1000000]</span>
+</pre></div></div>
+
+<p>完了だけを監視することもできるようです。</p>
+
+<blockquote>
+<p>書き込みが完了したことだけを知りたい場合、hasPendingWrites を使用する代わりに、完了コールバックをリッスンすることができます。</p>
+</blockquote>
+
+<h3>
+<span id="やっぱりfirebaseのqueryは" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%B1%E3%82%8Afirebase%E3%81%AEquery%E3%81%AF"><i class="fa fa-link"></i></a>やっぱりFirebaseのQueryは。。</h3>
+
+<p>Firebase Realtime Databaseよりは表現力は格段に上がっていますが、これだけのためにFirestoreを選択する理由にはならないと思います。</p>
+
+<p><a href="https://firebase.google.com/docs/firestore/query-data/order-limit-data?authuser=0" class="autolink" rel="nofollow noopener" target="_blank">https://firebase.google.com/docs/firestore/query-data/order-limit-data?authuser=0</a></p>
+
+<h2>
+<span id="realtimeに制限ができた" class="fragment"></span><a href="#realtime%E3%81%AB%E5%88%B6%E9%99%90%E3%81%8C%E3%81%A7%E3%81%8D%E3%81%9F"><i class="fa fa-link"></i></a>Realtimeに制限ができた</h2>
+
+<blockquote>
+<p>Cloud Firestore では、1 つのドキュメントを 1 秒間に約 2 回しか更新できません。<br>
+そんなに強烈な制限ではないですが、時間的な制限があるようです。</p>
+</blockquote>
+
+<h2>
+<span id="データ数の取得は今まで通り" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E6%95%B0%E3%81%AE%E5%8F%96%E5%BE%97%E3%81%AF%E4%BB%8A%E3%81%BE%E3%81%A7%E9%80%9A%E3%82%8A"><i class="fa fa-link"></i></a>データ数の取得は今まで通り</h2>
+
+<p>Collectionに入っているデータ数を取得したいときは次のようにする必要があります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span>        <span class="kd">let</span> <span class="nv">db</span> <span class="p">=</span> <span class="n">Firestore</span><span class="p">.</span><span class="n">firestore</span><span class="p">()</span>
+        <span class="kd">let</span> <span class="nv">citiesRef</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">collection</span><span class="p">(</span><span class="s">"cities"</span><span class="p">)</span>
+
+        <span class="n">citiesRef</span><span class="p">.</span><span class="n">getDocuments</span> <span class="p">{</span> <span class="p">(</span><span class="n">snapshot</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+            <span class="bp">print</span><span class="p">(</span><span class="n">snapshot</span><span class="p">?.</span><span class="bp">count</span><span class="p">)</span>  <span class="c1">// データ数の取得</span>
+        <span class="p">}</span>
+</pre></div></div>
+
+<p>例えばフォロワーカウントをとりたい場合を想像してください。カウントなので数値だけが取れればいいはずですが、Firebaseでは全てのデータを取得してからでないと取得できません。<br>
+また、カウントを効率的に取得するためにはデータを保存したタイミングで別に数値型のプロパティを用意しトランザクションをしながらインクリメントしていくしかありません。</p>
+
+<p>Firebase SDKにFeature Requestを送っているので、ここで<strong>いいね</strong>を押してもらえるとプライオリティが上がるかも。</p>
+
+<p><a href="https://github.com/firebase/firebase-ios-sdk/issues/257" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/firebase/firebase-ios-sdk/issues/257</a></p>
+
+<p>ちなみにSaladaではRelationにインクリメントする機能を持たせているため、<code>count</code>ってするだけで取得できるようにしています。</p>
+
+<p><a href="https://github.com/1amageek/Salada/blob/master/Salada/Relation.swift#L118" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/1amageek/Salada/blob/master/Salada/Relation.swift#L118</a></p>
+
+<h2>
+<span id="まだsaladaを使う理由はあります" class="fragment"></span><a href="#%E3%81%BE%E3%81%A0salada%E3%82%92%E4%BD%BF%E3%81%86%E7%90%86%E7%94%B1%E3%81%AF%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99"><i class="fa fa-link"></i></a>まだSaladaを使う理由はあります。</h2>
+
+<p><a href="https://camo.qiitausercontent.com/6417b9b87ff984dadbf4aff4b3fddd8aef117fb1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f66326634323234352d663832642d306339332d336163342d6339633839323138656136352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/6417b9b87ff984dadbf4aff4b3fddd8aef117fb1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f66326634323234352d663832642d306339332d336163342d6339633839323138656136352e706e67" alt="logo.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/80287/f2f42245-f82d-0c93-3ac4-c9c89218ea65.png"></a></p>
+
+<p>SaladaはSwiftで作られたFirebase Model Frameworkです。<br>
+<a href="https://github.com/1amageek/Salada" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/1amageek/Salada</a></p>
+
+<ul>
+<li>Firebase Realtime Databaseの方が早い</li>
+<li>モデルを全て面倒見てくれる</li>
+<li>Firebase Storageとの連携</li>
+<li>RelationはSubCollectionと同じ機能</li>
+<li>QueryはないがElasticSearchと連携する</li>
+</ul>
+
+<p>でもFirestoreいい感じだから、Saladaをアップデートします。</p>
+
+<p>SaladaをFirebase Realtime Databaseのために残して<br>
+Pringと言うCloud FirestoreのFrameworkを作りました。</p>
+
+<p>SaladaはSwiftで作られたFirestore Model Frameworkです。</p>
+
+<p><a href="https://camo.qiitausercontent.com/6d2b704a55ca4a97b72f694410fd1e28a86c0dba/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f64613638613536352d383964332d366137622d666637352d3238343763626432363231362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/6d2b704a55ca4a97b72f694410fd1e28a86c0dba/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f64613638613536352d383964332d366137622d666637352d3238343763626432363231362e706e67" alt="Pring.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/80287/da68a565-89d3-6a7b-ff75-2847cbd26216.png"></a></p>
+
+<p><a href="https://github.com/1amageek/Pring" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/1amageek/Pring</a></p>
+
+<p>まだまだ不安定なのでぜひ、バグの報告をいただければと思います。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>1amageekさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>19</kbd>
+		<a target="_blank" href="https://qiita.com/1amageek/items/d2ef7a49bccf5b4ea78e">Cloud FirestoreのSubCollectionとQueryっていつ使うの問題</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-07 16:31:33</center>
+	</td>
+	<td style="width:200px;">
+		@1amageek<br />(Cookpad Inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/80287/profile-images/1473701741">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Firebase]</b> <b>[Firestore]</b> <b>[CloudFirestore]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="subcollectionいつ使うの問題" class="fragment"></span><a href="#subcollection%E3%81%84%E3%81%A4%E4%BD%BF%E3%81%86%E3%81%AE%E5%95%8F%E9%A1%8C"><i class="fa fa-link"></i></a>SubCollectionいつ使うの問題</h1>
+
+<p>Cloud Firestoreがリリースされて数日経ちました。<a href="https://github.com/1amageek/Salada" rel="nofollow noopener" target="_blank">Salada</a>をFirestoreに対応させるため、仕様の深いところまで検証しているところです。そんな中でぶち当たった問題について記載します。</p>
+
+<h2>
+<span id="tldr" class="fragment"></span><a href="#tldr"><i class="fa fa-link"></i></a>TL;DR</h2>
+
+<ul>
+<li>Queryに依存するアプリを作ると拡張性を失う。</li>
+<li>QueryはElasticSearchに任せる。</li>
+<li>SubCollectionの使い所は限定的。</li>
+</ul>
+
+<h2>
+<span id="subcollectionとは" class="fragment"></span><a href="#subcollection%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>SubCollectionとは</h2>
+
+<p>Firestoreは<code>Collection</code>と<code>Document</code>と<code>Data</code>で構成されます。<br>
+Collectionは複数のDocumentを持つことができ、<br>
+DocumentはDataとCollectionを持つことができます。Documentが持つCollectionのことをSubCollectionと言います。</p>
+
+<p><a href="https://camo.qiitausercontent.com/b271dd67c989515a802aa320f960536905e058a9/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f32643533386463622d323861322d303031382d306235612d3563333431313861353837662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b271dd67c989515a802aa320f960536905e058a9/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f32643533386463622d323861322d303031382d306235612d3563333431313861353837662e706e67" alt="structure-data.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/80287/2d538dcb-28a2-0018-0b5a-5c34118a587f.png"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/a82e033f523b3bb01e14f65693f64cf3b2185b5d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f66353936393364332d376465332d393665662d346664322d3463346663656339633461322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a82e033f523b3bb01e14f65693f64cf3b2185b5d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f66353936393364332d376465332d393665662d346664322d3463346663656339633461322e706e67" alt="unnamed.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/80287/f59693d3-7de3-96ef-4fd2-4c4fcec9c4a2.png"></a></p>
+
+<h2>
+<span id="なぜsubcollectionが必要だったのか" class="fragment"></span><a href="#%E3%81%AA%E3%81%9Csubcollection%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%A0%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>なぜSubCollectionが必要だったのか</h2>
+
+<p>Firebase Realtime Databaseでは深いネストの上位ノードでデータを取得すると、そのノード以下全てを取得してしまう課題がありました。</p>
+
+<p>例えば<code>v1</code>でデータを取得すると<code>follower</code>も<code>user</code>も全部取得しちゃう。通信がえげつないことになる訳です。</p>
+
+<p><a href="https://camo.qiitausercontent.com/2eb4f3ee713bb4dc7a6be6c1296db2d9b13a476d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f64386464613434322d663533322d656535652d353137372d6263333830353264396364622e706e67" target="_blank" rel="nofollow noopener"><img width="425" alt="スクリーンショット 2017-10-07 10.57.38.png" src="https://camo.qiitausercontent.com/2eb4f3ee713bb4dc7a6be6c1296db2d9b13a476d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f64386464613434322d663533322d656535652d353137372d6263333830353264396364622e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/80287/d8dda442-f532-ee5e-5177-bc38052d9cdb.png"></a></p>
+
+<p>そこで登場したのがFirestoreの<code>SubCollection</code>の考え方。DocumentをDataとCollectionに分ける事でDataだけを取得するようになりました。めでたしめでたし。</p>
+
+<p>ところが、機能が拡張された事でFirebaseの考え方が少し変化しました。</p>
+
+<h2>
+<span id="whereがなくとも" class="fragment"></span><a href="#where%E3%81%8C%E3%81%AA%E3%81%8F%E3%81%A8%E3%82%82"><i class="fa fa-link"></i></a><strong>WHERE</strong>がなくとも</h2>
+
+<p>Firebase Realtime Databaseには柔軟なQueryがありませんでしたがFirestoreではwhereを利用できるようになりました。しかしWhereがなくとも多彩な機能を表現できます。<br>
+ここでフォロー機能について考えて見ましょう。<br>
+Firebaseでフォロー機能を実現するにはおおよそ3つの方法があります。勝手に名前をつけましたが、ちゃんとした名前があったら誰か教えてください。</p>
+
+<ul>
+<li>男は黙って冗長型</li>
+<li>ネスト参照型</li>
+<li>リレーションシップ参照型</li>
+</ul>
+
+<h3>
+<span id="男は黙って冗長型" class="fragment"></span><a href="#%E7%94%B7%E3%81%AF%E9%BB%99%E3%81%A3%E3%81%A6%E5%86%97%E9%95%B7%E5%9E%8B"><i class="fa fa-link"></i></a>男は黙って冗長型</h3>
+
+<p>これは、Firebase Castでも紹介されている。強力な方法です。<br>
+<code>user_0</code>が<code>user_1</code>をフォローしている状態を表すために<code>followers</code>に<code>user_1</code>ごと入れ込んじゃう。</p>
+
+<p><a href="https://camo.qiitausercontent.com/f13acebfdb6cf1ee9649bb3b46bf0c4937116532/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f31343337653261352d356139642d626334352d323337342d3936366630633965646666382e706e67" target="_blank" rel="nofollow noopener"><img width="318" alt="スクリーンショット 2017-10-07 11.51.03.png" src="https://camo.qiitausercontent.com/f13acebfdb6cf1ee9649bb3b46bf0c4937116532/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f31343337653261352d356139642d626334352d323337342d3936366630633965646666382e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/80287/1437e2a5-5a9d-bc45-2374-966f0c9edff8.png"></a></p>
+
+<table>
+<thead>
+<tr>
+<th>メリット</th>
+<th>デメリット</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>読出し高速</td>
+<td>データ量増加<br>複数のノードに同時に書き込む</td>
+</tr>
+</tbody>
+</table>
+
+<p><code>user_0</code>を取得したタイミングで<code>user_1</code>の情報も取得することになるのでもちろん読出しは高速になります。しかしこれも最初のうちでデータが増加するに連れて<code>user_0</code>は肥大化していきます。そして複数のノードに対して変更を加えないといけない未来が待っています。<br>
+例えば<code>user_0</code>,<code>user_1</code>,<code>user_2</code>,<code>user_3</code>が相互フォローしている状態だとしましょう。<code>user_0</code>がnameを更新しました。すると4つのノードに対して更新をする必要があります。<br>
+また、複数のノードを更新する際にトランザクションをしていたとしたらデータベースの性能をとんでもなく悪化させているはずです。<br>
+どうやらこの方法でフォロー機能を実現するのはやめた方が良さそうです。</p>
+
+<h3>
+<span id="ネスト参照型" class="fragment"></span><a href="#%E3%83%8D%E3%82%B9%E3%83%88%E5%8F%82%E7%85%A7%E5%9E%8B"><i class="fa fa-link"></i></a>ネスト参照型</h3>
+
+<p>冗長化の課題を解決したネスト参照型。これもFirebase Castで紹介されています。<br>
+<code>user_0</code>が<code>user_1</code>をフォローしている状態を表すために<code>followers</code>に<code>user_1</code>の参照だけを置く。</p>
+
+<p><a href="https://camo.qiitausercontent.com/42810df40443b509c569977e5b23a473accf82ee/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f66323631373035612d363430382d336535632d623466652d6630656136646263323839392e706e67" target="_blank" rel="nofollow noopener"><img width="328" alt="スクリーンショット 2017-10-07 12.05.54.png" src="https://camo.qiitausercontent.com/42810df40443b509c569977e5b23a473accf82ee/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f66323631373035612d363430382d336535632d623466652d6630656136646263323839392e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/80287/f261705a-6408-3e5c-b4fe-f0ea6dbc2899.png"></a></p>
+
+<table>
+<thead>
+<tr>
+<th>メリット</th>
+<th>デメリット</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>データがスッキリ</td>
+<td>読み込み遅い、上位ノードでデータ量の取得量が増加していく</td>
+</tr>
+</tbody>
+</table>
+
+<p>FirebaseではClient Side Joinが基本です。<code>user_0</code>から<code>user_1</code>を取得するためにはまずfollowersから<code>user_1</code>を取得して改めてそのkeyを持って<code>user_1</code>を取得するため、2度通信する必要があります。</p>
+
+<p>Client Side Joinについてはこちらから　<br>
+<a href="https://qiita.com/1amageek/items/afc1c0ceb15ffc2372fd" class="autolink" id="reference-6992ce164087d21b8e0c">https://qiita.com/1amageek/items/afc1c0ceb15ffc2372fd</a></p>
+
+<p>どうやら良さそうですが、やはり問題があります。followersが10000件を超えた場合を考えてください。上記で述べているようにFirebase Realtime Databaseの課題にぶち当たります。<code>user_0</code>以下のデータを取得しようとすると膨大な量のデータをサーバーから受け取ることになり、性能が悪化していきます。<br>
+実際、数千件程度では対して悪化はしませんので、そんなに大きくない規模のシステムならこれでも大丈夫です。</p>
+
+<h3>
+<span id="リレーションシップ参照型" class="fragment"></span><a href="#%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B7%E3%83%83%E3%83%97%E5%8F%82%E7%85%A7%E5%9E%8B"><i class="fa fa-link"></i></a>リレーションシップ参照型</h3>
+
+<p>データ量重くなる問題を解消したリレーションシップ参照型。<code>user</code>ノードに膨れ上がるデータを置いて置くのはやめて別のノードを準備するのがこの方法です。</p>
+
+<p><a href="https://camo.qiitausercontent.com/35ffd3ed5d9a12ca74fe23957dddb1cb291244b3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f66623033336433652d363836392d646338632d333837312d6238613563623936363262652e706e67" target="_blank" rel="nofollow noopener"><img width="250" alt="スクリーンショット 2017-10-07 12.26.44.png" src="https://camo.qiitausercontent.com/35ffd3ed5d9a12ca74fe23957dddb1cb291244b3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f66623033336433652d363836392d646338632d333837312d6238613563623936363262652e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/80287/fb033d3e-6869-dc8c-3871-b8a5cb9662be.png"></a></p>
+
+<table>
+<thead>
+<tr>
+<th>メリット</th>
+<th>デメリット</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>データがスッキリ</td>
+<td>読み込み遅い</td>
+</tr>
+</tbody>
+</table>
+
+<p>フォロワーが増えていたっとしても<code>user_0</code>のデータ量は増えません。どうやらこの方法が良さそうです。</p>
+
+<h2>
+<span id="アプリの機能について考える" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E6%A9%9F%E8%83%BD%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E8%80%83%E3%81%88%E3%82%8B"><i class="fa fa-link"></i></a>アプリの機能について考える</h2>
+
+<p>では次に、簡単な写真アプリについて考えて見ましょう。<br>
+このアプリの仕様はとってもシンプルでユーザーが写真をFirebaseにアップロードできるアプリです。そして写真を見ることができるのはアップロードしたユーザーだけです。</p>
+
+<p><code>User</code>と<code>Photo</code>というモデルでアプリを作って見ましょう。もちろん<strong>リレーションシップ参照型</strong>を使ったほうが良さそうです。</p>
+
+<p><a href="https://camo.qiitausercontent.com/c11e5306731a8f5d33df00d78159717e2f94ae3f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f64366632666565322d366162332d386530342d326463332d3631633436313634616630612e706e67" target="_blank" rel="nofollow noopener"><img width="255" alt="スクリーンショット 2017-10-07 12.38.25.png" src="https://camo.qiitausercontent.com/c11e5306731a8f5d33df00d78159717e2f94ae3f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f64366632666565322d366162332d386530342d326463332d3631633436313634616630612e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/80287/d6f2fee2-6ab3-8e04-2dc3-61c46164af0a.png"></a></p>
+
+<p>シンプルでいいアプリになりそうですがもう少し機能を追加したいので複数のユーザーで写真を共有できるグループ機能を追加しましょう。<br>
+<code>Group</code>というModelを追加して複数ユーザーで写真が見えるようにしましょう。</p>
+
+<p><a href="https://camo.qiitausercontent.com/80bfa8ac58e31106cfe21d8705667cad0825a05f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f34383231353466312d666336332d626364342d323563382d3234383839626538366636302e706e67" target="_blank" rel="nofollow noopener"><img width="345" alt="スクリーンショット 2017-10-07 12.50.01.png" src="https://camo.qiitausercontent.com/80bfa8ac58e31106cfe21d8705667cad0825a05f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f34383231353466312d666336332d626364342d323563382d3234383839626538366636302e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/80287/482154f1-fc63-bcd4-25c8-24889be86f60.png"></a></p>
+
+<p>良さそうですね。</p>
+
+<h2>
+<span id="firestoreならもっと簡単にできるよね" class="fragment"></span><a href="#firestore%E3%81%AA%E3%82%89%E3%82%82%E3%81%A3%E3%81%A8%E7%B0%A1%E5%8D%98%E3%81%AB%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%88%E3%81%AD"><i class="fa fa-link"></i></a>Firestoreならもっと簡単にできるよね？</h2>
+
+<p>Firestoreでこのアプリを作るならどうすればいいでしょうか。Firestoreでも3つの方法があります。</p>
+
+<ul>
+<li>Query型</li>
+<li>Collection値型</li>
+<li>Collection参照型</li>
+</ul>
+
+<h3>
+<span id="query型" class="fragment"></span><a href="#query%E5%9E%8B"><i class="fa fa-link"></i></a>Query型</h3>
+
+<p>FirestoreにはQueryがあります。Firebase Realtime Databaseでは<code>1:N</code>のリレーションシップを使ってあらゆるデータ構造を表現するしかなかったのに対し、<code>N:N</code>のデータ構造を持つことが可能になったことを意味しています。<br>
+例えば上記のフォロー機能に関して考えると以下のようにして表現できます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/5b1d5ec33f91719a6a2741dd0480aab09f86b5a2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f34366239313335392d333034662d383933322d633464342d6335653466366134646638382e706e67" target="_blank" rel="nofollow noopener"><img width="295" alt="スクリーンショット 2017-10-07 15.07.47.png" src="https://camo.qiitausercontent.com/5b1d5ec33f91719a6a2741dd0480aab09f86b5a2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f34366239313335392d333034662d383933322d633464342d6335653466366134646638382e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/80287/46b91359-304f-8932-c4d4-c5e4f6a4df88.png"></a></p>
+
+<p>また、アプリの話に戻すと<strong>リレーションシップ参照型</strong>にしなくともQueryを使って<code>onwer == user_0</code>を取得すれば<code>User</code>が保持している<code>Photo</code>を簡単に取得することができるようになりました。<br>
+しかし、グループ機能を追加しようと思うとこの方法には問題があることがわかります。なぜなら<code>Photo</code>は<code>owner</code>を保持していますが<code>group</code>を保持していません。<br>
+やはり<strong>WHERE</strong>に頼る開発よりもデータ構造を持たせた方が柔軟なアプリが構築できそうです。</p>
+
+<h3>
+<span id="collection値型" class="fragment"></span><a href="#collection%E5%80%A4%E5%9E%8B"><i class="fa fa-link"></i></a>Collection値型</h3>
+
+<p><code>User</code>が所持している写真なのであれば<code>User</code>のSubCollectionとして<code>Photo</code>を扱う方法です。<br>
+FirestoreになってDataとCollectionが分離させたため、<code>User</code>の下に<code>Photo</code>を入れてもデータ量が増加する問題もありません。グループ機能について考えて見ましょう。<code>Group</code>が<code>Photo</code>のデータを取得するためには<code>/user/user_0/photo/photo_0</code>のように<code>user_0</code>, <code>photo_0</code>の二つの情報が必要になりました。Collection値型では、Keyではなくパスで管理した方が良さそうです。</p>
+
+<h3>
+<span id="collection参照型" class="fragment"></span><a href="#collection%E5%8F%82%E7%85%A7%E5%9E%8B"><i class="fa fa-link"></i></a>Collection参照型</h3>
+
+<p>ネスト参照型のFirestoreバージョンがCollection参照型です。ネスト参照型の問題は取得するデータ量が増加することでしたが、Firestoreではその問題もありません。<br>
+グループ機能について考えて見ましょう。Collection値型に比べ、<code>Photo</code>のデータを参照として保持し、<code>/photo/photo_0</code>としてアクセスできることから考えることが減りそうです。</p>
+
+<h2>
+<span id="collection値型とcollection参照型は大差ない" class="fragment"></span><a href="#collection%E5%80%A4%E5%9E%8B%E3%81%A8collection%E5%8F%82%E7%85%A7%E5%9E%8B%E3%81%AF%E5%A4%A7%E5%B7%AE%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a><strong>Collection値型</strong>と<strong>Collection参照型</strong>は大差ない</h2>
+
+<p>Keyで参照を保持するかパスで保持するかの違いのように見えます。あえてパスを持たせるくらいならCollection参照型にしておきましょう。でも値型には何かメリットがありそうです。値型のQueryをかけることにあります。<br>
+ここでアプリの機能を追加しましょう。見たい写真の月を入力するとその月の写真が表示されるフィルター機能を追加することにします。</p>
+
+<h3>
+<span id="自分の写真にフィルター機能を追加する" class="fragment"></span><a href="#%E8%87%AA%E5%88%86%E3%81%AE%E5%86%99%E7%9C%9F%E3%81%AB%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF%E3%83%BC%E6%A9%9F%E8%83%BD%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>自分の写真にフィルター機能を追加する</h3>
+
+<p>Collection値型は<code>User</code>が<code>Photo</code>を保持しているのでQueryが適応できそうです。<br>
+Collection参照型も<code>Photo</code>は<code>owner</code>を保持しているのでQueryが適応できそうです。</p>
+
+<h3>
+<span id="グループの写真にフィルター機能を追加する" class="fragment"></span><a href="#%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%AE%E5%86%99%E7%9C%9F%E3%81%AB%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF%E3%83%BC%E6%A9%9F%E8%83%BD%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>グループの写真にフィルター機能を追加する</h3>
+
+<p>Collection値型の<code>Group</code>には<code>Photo</code>のパスを保持しているだけなので実現できません。<br>
+Collection参照型も<code>Photo</code>は<code>owner</code>を保持しているだけなので実現できません。</p>
+
+<p>つまりQueryを適応できるデータ構造を作るのならばデータ構造を冗長型に移行する必要があります。これは現実的でしょうか？<br>
+残念ながら現実的な解ではなさそうです。上記にも記載がある通り、複数のノードを同時に更新する必要がありスケーラブルではないからです。</p>
+
+<p><strong>Query</strong>を諦めましょう。え！？っと思った方もいるかも知れませんが大丈夫です。どうせ書くならもっと柔軟にQueryを書けた方がいいですよね？ <a href="https://www.elastic.co/jp/products/elasticsearch" rel="nofollow noopener" target="_blank">ElasticSearch</a>を使いましょう。<br>
+ただし、これは<code>Photo</code>が他のユーザーから参照される場合の話です。他から参照されないのであればCollection値型の方にすべきでしょう。</p>
+
+<p>アプリにするならば、<code>Collection参照型</code>か<code>リレーションシップ参照型</code>が良さそうです。<br>
+<code>Collection参照型</code>と<code>リレーションシップ参照型</code>は実は全く同じことをしています。</p>
+
+<p>ここで大きな問題に直面しました。<code>SubCollection</code>と<code>Query</code>いつ使うの問題です。困った。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>1amageekさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>12</kbd>
+		<a target="_blank" href="https://qiita.com/1amageek/items/8492c9707e1b49dbc160">Firebase Realtime Databaseはもう改善されて行かないかもしれない。</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-19 12:42:55</center>
+	</td>
+	<td style="width:200px;">
+		@1amageek<br />(Cookpad Inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/80287/profile-images/1473701741">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Firebase]</b> <b>[FirebaseRealtimeDatabase]</b> <b>[Firestore]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="googleさんのfirebase-ios-sdkにfeature-requestを送っておいた" class="fragment"></span><a href="#google%E3%81%95%E3%82%93%E3%81%AEfirebase-ios-sdk%E3%81%ABfeature-request%E3%82%92%E9%80%81%E3%81%A3%E3%81%A6%E3%81%8A%E3%81%84%E3%81%9F"><i class="fa fa-link"></i></a>GoogleさんのFirebase iOS SDKにFeature Requestを送っておいた</h1>
+
+<p><a href="https://github.com/firebase/firebase-ios-sdk/issues/257" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/firebase/firebase-ios-sdk/issues/257</a></p>
+
+<p>この機能のは、値のインクリメントをバックエンドでやって欲しいというもの。<br>
+データベースで数値をインクリメントする場合、トランザクションをして数値を変更する必要があります。Firebaseはせっかくの強力キューを持っているので<code>+1</code> <code>-1</code>を渡してあげればFirebase側でどうにかして欲しいと考えたわけです。</p>
+
+<blockquote>
+<p>We are planning to add this as a feature to Firestore, but are not intending to backport this feature to the RTDB.</p>
+</blockquote>
+
+<p><strong>🎉 Firestoreでは導入されるようです</strong></p>
+
+<p><strong>😥 FirebaseRealtimeDatabaseではサポートなし</strong></p>
+
+<p>二つのDBに対しての対応の差が意味するものはなんなんでしょうか。<br>
+FirebaseRealtimeDatabaseも素晴らしいDBなので拡張は期待したいところです。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>1amageekさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
+		<a target="_blank" href="https://qiita.com/1amageek/items/271b4797b5d4b0d4f9cd">Firebase Model Framework Saladaを使ってアプリを作る</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-25 14:18:09</center>
+	</td>
+	<td style="width:200px;">
+		@1amageek<br />(Cookpad Inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/80287/profile-images/1473701741">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[iOS]</b> <b>[Swift]</b> <b>[Firebase]</b> <b>[FirebaseRealtimeDatabase]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="firebase-model-framework-saladaを使ってアプリを作る" class="fragment"></span><a href="#firebase-model-framework-salada%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>Firebase Model Framework Saladaを使ってアプリを作る</h1>
+
+<p><a href="https://github.com/1amageek/Salada" rel="nofollow noopener" target="_blank">Salada</a>を利用頂いてありがとうございます。利用方法についてご質問を頂くことが増えましたので、もう少し使い方を説明しようと思い記事にしました。</p>
+
+<p>こちらにサンプルコードをおいておきます。<br>
+<a href="https://github.com/1amageek/SaladaSample" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/1amageek/SaladaSample</a></p>
+
+<h2>
+<span id="saladaにできること" class="fragment"></span><a href="#salada%E3%81%AB%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>Saladaにできること</h2>
+
+<p>Saladaには大きく4つの機能があります。</p>
+
+<ul>
+<li>Modelを作る</li>
+<li>Model単位でDataを取得する</li>
+<li>クエリを管理する</li>
+<li>リレーションシップを簡略化する</li>
+</ul>
+
+<p>それぞれの機能は以下のクラスで利用できます。</p>
+
+<h3>
+<span id="modelを作る" class="fragment"></span><a href="#model%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>Modelを作る</h3>
+
+<p>モデルを作るには<code>Object</code>クラスを継承します。Userモデルを作ってみましょう。<br>
+以下のように様々なデータ型のプロパティを持つことが可能です。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">User</span><span class="p">:</span> <span class="n">Object</span> <span class="p">{</span>
+
+    <span class="kr">override</span> <span class="kd">class</span> <span class="nc">var</span> <span class="n">_version</span><span class="p">:</span> <span class="nb">String</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"v1"</span>
+    <span class="p">}</span>
+
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span>
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">age</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="mi">0</span>
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">gender</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span>
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">groups</span><span class="p">:</span> <span class="n">Set</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">items</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">location</span><span class="p">:</span> <span class="bp">CLLocation</span><span class="p">?</span>
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">?</span>
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">birth</span><span class="p">:</span> <span class="n">Date</span><span class="p">?</span>
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">thumbnail</span><span class="p">:</span> <span class="n">File</span><span class="p">?</span>
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">cover</span><span class="p">:</span> <span class="n">File</span><span class="p">?</span>
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">type</span><span class="p">:</span> <span class="n">UserType</span> <span class="p">=</span> <span class="p">.</span><span class="bp">first</span>
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">testItems</span><span class="p">:</span> <span class="n">Set</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="kd">let</span> <span class="nv">followers</span><span class="p">:</span> <span class="n">Follower</span> <span class="p">=</span> <span class="p">[]</span>
+
+    <span class="kd">var</span> <span class="nv">tempName</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> 
+
+    <span class="kr">override</span> <span class="kd">var</span> <span class="nv">ignore</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">]</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s">"tempName"</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="kc">_</span> <span class="n">key</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="nb">Any</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="p">==</span> <span class="s">"location"</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="kd">let</span> <span class="nv">location</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">location</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="p">[</span><span class="s">"latitude"</span><span class="p">:</span> <span class="n">location</span><span class="p">.</span><span class="n">coordinate</span><span class="p">.</span><span class="n">latitude</span><span class="p">,</span> <span class="s">"longitude"</span><span class="p">:</span> <span class="n">location</span><span class="p">.</span><span class="n">coordinate</span><span class="p">.</span><span class="n">longitude</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="n">key</span> <span class="p">==</span> <span class="s">"type"</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">self</span><span class="p">.</span><span class="n">type</span><span class="p">.</span><span class="n">rawValue</span> <span class="k">as</span> <span class="nb">AnyObject</span><span class="p">?</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="kc">_</span> <span class="n">key</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="nb">Any</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="p">==</span> <span class="s">"location"</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="kd">let</span> <span class="nv">location</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span> <span class="nb">Double</span><span class="p">]</span> <span class="p">=</span> <span class="n">value</span> <span class="k">as</span><span class="p">?</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span> <span class="nb">Double</span><span class="p">]</span> <span class="p">{</span>
+                <span class="kc">self</span><span class="p">.</span><span class="n">location</span> <span class="p">=</span> <span class="bp">CLLocation</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span> <span class="n">location</span><span class="p">[</span><span class="s">"latitude"</span><span class="p">]</span><span class="o">!</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="n">location</span><span class="p">[</span><span class="s">"longitude"</span><span class="p">]</span><span class="o">!</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">self</span><span class="p">.</span><span class="n">location</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="n">key</span> <span class="p">==</span> <span class="s">"type"</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="kd">let</span> <span class="nv">type</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="n">value</span> <span class="k">as</span><span class="p">?</span> <span class="nb">Int</span> <span class="p">{</span>
+                <span class="kc">self</span><span class="p">.</span><span class="n">type</span> <span class="p">=</span> <span class="n">UserType</span><span class="p">(</span><span class="n">rawValue</span><span class="p">:</span> <span class="n">type</span><span class="p">)</span><span class="o">!</span>
+                <span class="k">return</span> <span class="kc">self</span><span class="p">.</span><span class="n">type</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><code>encode</code>と<code>decode</code>に注目してください。プロパティの中には</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">location</span><span class="p">:</span> <span class="bp">CLLocation</span><span class="p">?</span>
+</pre></div></div>
+
+<p><code>CLLocation</code>が含まれています。<code>CLLocation</code>はCoreLocationに含まれるクラスのため、Saladaではサポートしていません。　ここで利用するのが<code>encode</code>と<code>decode</code>です。<br>
+それぞれFirebaseサイドとクライアントサイドでどういった型として取り扱うのかを定義しています。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">type</span><span class="p">:</span> <span class="n">UserType</span> <span class="p">=</span> <span class="p">.</span><span class="bp">first</span>
+</pre></div></div>
+
+<p><code>UserType</code>は<code>enum</code>で定義した型ですが、これも<code>encode</code>と<code>decode</code>を利用することで定義可能です。</p>
+
+<h3>
+<span id="model単位でdataを取得する" class="fragment"></span><a href="#model%E5%8D%98%E4%BD%8D%E3%81%A7data%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Model単位でDataを取得する</h3>
+
+<p>Objectを継承したModelは、<code>Referenceable</code>に準拠しています。<br>
+Userは以下のように取得できます。</p>
+
+<p><strong>一度だけ値を取得する</strong></p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">User</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">eventType</span><span class="p">:</span> <span class="p">.</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">guard</span> <span class="kd">let</span> <span class="nv">user</span><span class="p">:</span> <span class="n">User</span> <span class="p">=</span> <span class="n">user</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div></div>
+
+<p><strong>監視し続ける</strong></p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">disposer</span> <span class="p">=</span> <span class="n">User</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">eventType</span><span class="p">:</span> <span class="p">.</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">guard</span> <span class="kd">let</span> <span class="nv">user</span><span class="p">:</span> <span class="n">User</span> <span class="p">=</span> <span class="n">user</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="c1">// 破棄する</span>
+<span class="n">disposer</span><span class="p">.</span><span class="n">dispose</span><span class="p">()</span>
+</pre></div></div>
+
+<p>監視を行う場合は、不要になれば必ず破棄してください。</p>
+
+<h3>
+<span id="クエリを管理する" class="fragment"></span><a href="#%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E7%AE%A1%E7%90%86%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>クエリを管理する</h3>
+
+<p>クエリはDataSourceクラスが管理します。<br>
+DataSourceクラスは、<a href="https://realm.io/jp/" rel="nofollow noopener" target="_blank">Realm</a>のような振る舞いをすることができます。もしくは、NSFetchResultControllerを想像してもらうほうが理解できるかもしれません。</p>
+
+<p>DataSourceを利用する機会のほとんどは、<code>TableView</code> <code>CollectionView</code>であることを想定しており、UIの簡単に操作できるように設計しています。Realmを利用している方にとっては馴染みが深い処理になるはずです。</p>
+
+<p>DataSourceは受けっとった<code>reference</code>のデータを<code>Options</code>で指定したクエリを下に取得してきます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">options</span><span class="p">:</span> <span class="n">Options</span> <span class="p">=</span> <span class="n">Options</span><span class="p">()</span>
+<span class="n">options</span><span class="p">.</span><span class="n">limit</span> <span class="p">=</span> <span class="mi">10</span>
+<span class="n">options</span><span class="p">.</span><span class="n">predicate</span> <span class="p">=</span> <span class="bp">NSPredicate</span><span class="p">(</span><span class="n">format</span><span class="p">:</span> <span class="s">"age == 21"</span><span class="p">)</span>
+<span class="n">options</span><span class="p">.</span><span class="n">sortDescirptors</span> <span class="p">=</span> <span class="p">[</span><span class="bp">NSSortDescriptor</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="s">"age"</span><span class="p">,</span> <span class="n">ascending</span><span class="p">:</span> <span class="kc">false</span><span class="p">)]</span>
+
+<span class="kd">let</span> <span class="nv">user</span><span class="p">:</span> <span class="n">User</span> <span class="p">=</span> <span class="n">User</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="s">"USER_ID"</span><span class="p">)</span><span class="o">!</span>
+
+<span class="kc">self</span><span class="p">.</span><span class="n">dataSource</span> <span class="p">=</span> <span class="n">DataSource</span><span class="p">(</span><span class="n">reference</span><span class="p">:</span> <span class="n">user</span><span class="p">.</span><span class="n">items</span><span class="p">.</span><span class="n">ref</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">options</span><span class="p">)</span> <span class="p">{</span> <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="p">(</span><span class="n">changes</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">guard</span> <span class="kd">let</span> <span class="nv">tableView</span><span class="p">:</span> <span class="bp">UITableView</span> <span class="p">=</span> <span class="kc">self</span><span class="p">?.</span><span class="n">tableView</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+
+    <span class="k">switch</span> <span class="n">changes</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="p">.</span><span class="n">initial</span><span class="p">:</span>
+        <span class="n">tableView</span><span class="p">.</span><span class="n">reloadData</span><span class="p">()</span>
+    <span class="k">case</span> <span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="kd">let</span> <span class="nv">deletions</span><span class="p">,</span> <span class="kd">let</span> <span class="nv">insertions</span><span class="p">,</span> <span class="kd">let</span> <span class="nv">modifications</span><span class="p">):</span>
+        <span class="n">tableView</span><span class="p">.</span><span class="n">beginUpdates</span><span class="p">()</span>
+        <span class="n">tableView</span><span class="p">.</span><span class="n">insertRows</span><span class="p">(</span><span class="n">at</span><span class="p">:</span> <span class="n">insertions</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="n">IndexPath</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="nv">$0</span><span class="p">,</span> <span class="n">section</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span> <span class="p">},</span> <span class="n">with</span><span class="p">:</span> <span class="p">.</span><span class="n">automatic</span><span class="p">)</span>
+        <span class="n">tableView</span><span class="p">.</span><span class="n">deleteRows</span><span class="p">(</span><span class="n">at</span><span class="p">:</span> <span class="n">deletions</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="n">IndexPath</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="nv">$0</span><span class="p">,</span> <span class="n">section</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span> <span class="p">},</span> <span class="n">with</span><span class="p">:</span> <span class="p">.</span><span class="n">automatic</span><span class="p">)</span>
+        <span class="n">tableView</span><span class="p">.</span><span class="n">reloadRows</span><span class="p">(</span><span class="n">at</span><span class="p">:</span> <span class="n">modifications</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="n">IndexPath</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="nv">$0</span><span class="p">,</span> <span class="n">section</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span> <span class="p">},</span> <span class="n">with</span><span class="p">:</span> <span class="p">.</span><span class="n">automatic</span><span class="p">)</span>
+        <span class="n">tableView</span><span class="p">.</span><span class="n">endUpdates</span><span class="p">()</span>
+    <span class="k">case</span> <span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="kd">let</span> <span class="nv">error</span><span class="p">):</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="リレーションシップを簡略化する" class="fragment"></span><a href="#%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B7%E3%83%83%E3%83%97%E3%82%92%E7%B0%A1%E7%95%A5%E5%8C%96%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>リレーションシップを簡略化する</h3>
+
+<p>リレーションシップを行うためにはRelationクラスを利用します。<br>
+Relationクラスを継承することで、簡単にリレーションシップを作ることが可能です。ユーザーのフォロー機能を参考にしてみましょう。<br>
+まず<code>Follower</code>クラスを定義します。定義をするだけで大丈夫です。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Follower</span><span class="p">:</span> <span class="n">Relation</span><span class="p">&lt;</span><span class="n">User</span><span class="p">&gt;</span> <span class="p">{</span><span class="err">　</span><span class="p">}</span>
+</pre></div></div>
+
+<p><code>Follower</code>クラスをUserモデルのプロパティーに定義しましょう。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">User</span><span class="p">:</span> <span class="n">Object</span> <span class="p">{</span>
+    <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span>
+    <span class="kd">let</span> <span class="nv">followers</span><span class="p">:</span> <span class="n">Follower</span> <span class="p">=</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>これでUser.followersが定義できました。使い方もとてもシンプルです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">a</span><span class="p">:</span> <span class="n">User</span> <span class="p">=</span> <span class="n">User</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nv">b</span><span class="p">:</span> <span class="n">User</span> <span class="p">=</span> <span class="n">User</span><span class="p">()</span>
+<span class="n">a</span><span class="p">.</span><span class="n">followers</span><span class="p">.</span><span class="bp">insert</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">a</span><span class="p">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div></div>
+
+<p>これで、<code>a</code>と<code>b</code>のリレーションシップが形成されます。<br>
+ユーザーモデルの定義に監視てはこちらをご参考ください。</p>
+
+<p><a href="https://qiita.com/1amageek/items/4fbba1b22e81b650d656" id="reference-f15f7ba26ca110e8e2ec">Firebase Model Framework Saladaを使ってUser Modelを作る</a></p>
+
+<p>その他ご質問があればぜひ、コメントください！<br>
+お待ちしております！</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>1amageekさんの<br />5位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
+		<a target="_blank" href="https://qiita.com/1amageek/items/4fbba1b22e81b650d656">Firebase Model Framework Saladaを使ってUser Modelを作る</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-09 22:49:15</center>
+	</td>
+	<td style="width:200px;">
+		@1amageek<br />(Cookpad Inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/80287/profile-images/1473701741">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Swift]</b> <b>[Firebase]</b> <b>[FirebaseRealtimeDatabase]</b> <b>[Salada]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="firebase-model-framework-saladaを使ってuser-modelを作る" class="fragment"></span><a href="#firebase-model-framework-salada%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6user-model%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>Firebase Model Framework Saladaを使ってUser Modelを作る</h1>
+
+<p>Firebaseについて実践的な内容を記事にしていないなと思い、普段私がアプリで採用してるUser Modelを紹介します。</p>
+
+<p><strong>この記事が紹介すること</strong></p>
+
+<ul>
+<li>Saladaのインストール</li>
+<li>FirebaseでUser Modelを作る</li>
+<li>Firebase AuthとUser Modelを連携する</li>
+</ul>
+
+<h2>
+<span id="saladaのインストール" class="fragment"></span><a href="#salada%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>Saladaのインストール</h2>
+
+<p>ついに<strong><a href="https://github.com/1amageek/Salada" rel="nofollow noopener" target="_blank">Salada</a></strong>がCococapodsに対応しました。<br>
+インストールには pod 1.4以上を使う必要があります。</p>
+
+<p>まずcocoapodsをアップデートしましょう。<br>
+<code><br>
+$ gem install cocoapods --pre<br>
+</code></p>
+
+<p>あとはいつも通りPodfileにこれを書くだけ<br>
+<code><br>
+pod 'Salada'<br>
+</code></p>
+
+<p>これでインストールは完了です！<br>
+それぞれのファイルがどんな役割を持っているかについて詳しく聞きたい方は<a href="https://twitter.com/1amageek" rel="nofollow noopener" target="_blank">Twiiter</a>なり、Qiitaに質問ください。喜んで回答します。</p>
+
+<h2>
+<span id="firebaseでuser-modelを作る" class="fragment"></span><a href="#firebase%E3%81%A7user-model%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>FirebaseでUser Modelを作る</h2>
+
+<p>早速User Modelを作って行きましょう。<code>User.swift</code>でもいいんですが、Realmで同じUser Modelを作った時に名前が衝突するのが嫌だったのでそれ以来私は<code>Firebase+User.swift</code>としています。Firebase Authにも<code>User</code>と定義されているクラスがあるので何かしら名前空間を与えてあげた方がいいと思います。</p>
+
+<p><a href="https://camo.qiitausercontent.com/c2452dae3095c2c9e7d764bcd6515142875a0ce2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f61303730663066612d363839662d666437612d663936392d6233363333643833653539392e706e67" target="_blank" rel="nofollow noopener"><img width="358" alt="スクリーンショット 2017-10-09 22.01.34.png" src="https://camo.qiitausercontent.com/c2452dae3095c2c9e7d764bcd6515142875a0ce2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f38303238372f61303730663066612d363839662d666437612d663936392d6233363333643833653539392e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/80287/a070f0fa-689f-fd7a-f969-b3633d83e599.png"></a></p>
+
+<p>今回はシンプルですがよく使いそうな構成を紹介します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">import</span> <span class="nc">Firebase</span>
+
+<span class="kd">extension</span> <span class="nc">Firebase</span> <span class="p">{</span>
+    <span class="kd">class</span> <span class="nc">User</span><span class="p">:</span> <span class="n">Object</span> <span class="p">{</span>
+
+        <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span>
+
+        <span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">thumbnailImage</span><span class="p">:</span> <span class="n">File</span><span class="p">?</span>
+
+        <span class="kd">let</span> <span class="nv">followers</span><span class="p">:</span> <span class="n">Follower</span> <span class="p">=</span> <span class="p">[]</span>
+
+        <span class="kd">let</span> <span class="nv">friends</span><span class="p">:</span> <span class="n">Friend</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>ユーザーの名前とサムネイルとフォロー機能を提供します。<br>
+<code>File</code>を利用すればFirebaseStorageとシームレスに連携できます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">extension</span> <span class="nc">Firebase</span><span class="p">.</span><span class="n">User</span> <span class="p">{</span>
+
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">current</span><span class="p">(</span><span class="kc">_</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">((</span><span class="n">Firebase</span><span class="p">.</span><span class="n">User</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">user</span><span class="p">:</span> <span class="n">User</span> <span class="p">=</span> <span class="n">Auth</span><span class="p">.</span><span class="n">auth</span><span class="p">().</span><span class="n">currentUser</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">completionHandler</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+        <span class="n">Firebase</span><span class="p">.</span><span class="n">User</span><span class="p">.</span><span class="n">observeSingle</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">uid</span><span class="p">,</span> <span class="n">eventType</span><span class="p">:</span> <span class="p">.</span><span class="n">value</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">guard</span> <span class="kd">let</span> <span class="nv">user</span><span class="p">:</span> <span class="n">Firebase</span><span class="p">.</span><span class="n">User</span> <span class="p">=</span> <span class="n">user</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="c1">// FirebaseのDBにUserが保存されていない場合はログアウトする</span>
+                <span class="kc">_</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">Auth</span><span class="p">.</span><span class="n">auth</span><span class="p">().</span><span class="n">signOut</span><span class="p">()</span>
+                <span class="n">completionHandler</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="p">}</span>
+            <span class="n">completionHandler</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ユーザーをフォローする</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">follow</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Firebase</span><span class="p">.</span><span class="n">User</span><span class="p">.</span><span class="n">current</span> <span class="p">{</span> <span class="p">(</span><span class="n">me</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">guard</span> <span class="kd">let</span> <span class="nv">me</span> <span class="p">=</span> <span class="n">me</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">followers</span><span class="p">.</span><span class="bp">insert</span><span class="p">(</span><span class="n">me</span><span class="p">)</span>
+            <span class="n">me</span><span class="p">.</span><span class="n">friends</span><span class="p">.</span><span class="bp">insert</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ユーザーをフォローをやめる</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">unfollow</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Firebase</span><span class="p">.</span><span class="n">User</span><span class="p">.</span><span class="n">current</span> <span class="p">{</span> <span class="p">(</span><span class="n">me</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">guard</span> <span class="kd">let</span> <span class="nv">me</span> <span class="p">=</span> <span class="n">me</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">followers</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">me</span><span class="p">)</span>
+            <span class="n">me</span><span class="p">.</span><span class="n">friends</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>Relationクラスを継承することで簡単に参照を作ることができます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">extension</span> <span class="nc">Firebase</span> <span class="p">{</span>
+    <span class="c1">// フォローしている</span>
+    <span class="kd">class</span> <span class="nc">Follower</span><span class="p">:</span> <span class="n">Relation</span><span class="p">&lt;</span><span class="n">Firebase</span><span class="p">.</span><span class="n">User</span><span class="p">&gt;</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="nc">Firebase</span> <span class="p">{</span>
+    <span class="c1">// フォローされている</span>
+    <span class="kd">class</span> <span class="nc">Friend</span><span class="p">:</span> <span class="n">Relation</span><span class="p">&lt;</span><span class="n">Firebase</span><span class="p">.</span><span class="n">User</span><span class="p">&gt;</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="userを保存する" class="fragment"></span><a href="#user%E3%82%92%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Userを保存する</h3>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">user</span><span class="p">:</span> <span class="n">Firebase</span><span class="p">.</span><span class="n">User</span> <span class="p">=</span> <span class="n">Firebase</span><span class="p">.</span><span class="n">User</span><span class="p">()</span>
+<span class="n">user</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">"hoge"</span>
+<span class="n">user</span><span class="p">.</span><span class="n">thumbnailImage</span> <span class="p">=</span> <span class="n">File</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">UIImageJPEGRepresentation</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">user</span><span class="p">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div></div>
+
+<h3>
+<span id="自分のユーザーにアクセスする" class="fragment"></span><a href="#%E8%87%AA%E5%88%86%E3%81%AE%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%81%AB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>自分のユーザーにアクセスする</h3>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">Firebase</span><span class="p">.</span><span class="n">User</span><span class="p">.</span><span class="n">current</span> <span class="p">{</span> <span class="n">user</span> <span class="k">in</span>
+    <span class="c1">// Do something</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="他のユーザーにアクセスする" class="fragment"></span><a href="#%E4%BB%96%E3%81%AE%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%81%AB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>他のユーザーにアクセスする</h3>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">Firebase</span><span class="p">.</span><span class="n">User</span><span class="p">.</span><span class="n">observeSingle</span><span class="p">(</span><span class="s">"id"</span><span class="p">,</span> <span class="n">eventType</span><span class="p">:</span> <span class="p">.</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="k">in</span>
+    <span class="c1">// Do something      </span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="プロパティを更新" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%82%92%E6%9B%B4%E6%96%B0"><i class="fa fa-link"></i></a>プロパティを更新</h3>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">Firebase</span><span class="p">.</span><span class="n">User</span><span class="p">.</span><span class="n">current</span> <span class="p">{</span> <span class="n">user</span> <span class="k">in</span>
+    <span class="n">user</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">"Update"</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>SaladaはUpdateのファンクションを用意していません。<br>
+プロパティを監視して値がセットされたタイミングでリアルタイムにFirebaseに保存されるようになっています。<br>
+なので新しい値をセットしてあげるだけです。なぜこのようになっているかと言うとFirebaseはオフラインでも使えるからです。<br>
+オフライン時のエラーのハンドリングが不要な訳です。そもそもFirebaseではタイムアウトと言う概念がありませんしエラーも返ってきません。オフラインの場合は、一時的にローカルに保存され、ネットワークに再接続された瞬間にFirebase本体と同期します。</p>
+
+<h2>
+<span id="firebase-authとuser-modelを連携する" class="fragment"></span><a href="#firebase-auth%E3%81%A8user-model%E3%82%92%E9%80%A3%E6%90%BA%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Firebase AuthとUser Modelを連携する</h2>
+
+<p>実はこれが結構厄介で、Firebase Authは認証が完了すると<code>AuthStateDidChange</code>と言うNotificationを飛ばしてくれるんですが、実際欲しいNotificationは認証が完了したあとユーザー作成されてからの方が嬉しい訳です。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">Auth</span><span class="p">.</span><span class="n">auth</span><span class="p">().</span><span class="n">signIn</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">credential</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">authUser</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">guard</span> <span class="kd">let</span> <span class="nv">authUser</span> <span class="p">=</span> <span class="n">authUser</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+
+    <span class="c1">// AuthStateDidChangeはこの時点で飛んじゃう。</span>
+    <span class="n">Firebase</span><span class="p">.</span><span class="n">User</span><span class="p">.</span><span class="n">observeSingle</span><span class="p">(</span><span class="n">authUser</span><span class="p">.</span><span class="n">uid</span><span class="p">,</span> <span class="n">eventType</span><span class="p">:</span> <span class="p">.</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="n">user</span> <span class="k">in</span>
+        <span class="k">if</span> <span class="kd">let</span> <span class="nv">user</span> <span class="p">=</span> <span class="n">user</span> <span class="p">{</span>
+            <span class="c1">// すでにユーザーがある場合はそのままログイン</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// ない場合はユーザーを作る</span>
+            <span class="kd">let</span> <span class="nv">newUser</span><span class="p">:</span> <span class="n">Firebase</span><span class="p">.</span><span class="n">User</span> <span class="p">=</span> <span class="n">Firebase</span><span class="p">.</span><span class="n">User</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="n">authUser</span><span class="p">.</span><span class="n">uid</span><span class="p">)</span><span class="o">!</span>
+            <span class="n">newUser</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">authUser</span><span class="p">.</span><span class="n">displayName</span>
+            <span class="n">newUser</span><span class="p">.</span><span class="n">save</span> <span class="p">{</span> <span class="p">(</span><span class="kc">_</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+                <span class="k">if</span> <span class="kd">let</span> <span class="nv">_</span> <span class="p">=</span> <span class="n">error</span> <span class="p">{</span>
+                    <span class="bp">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                    <span class="k">return</span>
+                <span class="p">}</span>
+                <span class="c1">// ここで自前のNotificationを飛ばしましょう。</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>では、素敵なFirebase　Lifeを送ってください。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

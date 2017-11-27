@@ -1,0 +1,265 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (yoshizaki_kkgk)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (yoshizaki_kkgk さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>yoshizaki_kkgkさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>613</kbd>
+		<a target="_blank" href="https://qiita.com/yoshizaki_kkgk/items/fa8b45918445bb3e6dc3">機械学習案件を納品するのは、そんなに簡単な話じゃないから気をつけて</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-21 12:22:15</center>
+	</td>
+	<td style="width:200px;">
+		@yoshizaki_kkgk<br />(株式会社キカガク 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/130181/profile-images/1506322419">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[Rails]</b> <b>[WebAPI]</b> <b>[機械学習]</b> <b>[docker]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>昨日のTwitterで書いたこちらが非常に反響を呼びました。</p>
+
+<blockquote class="twitter-tweet">
+<p>半年間かけたデータ解析の仕事が全くうまくいかなかった<br>今回の失敗は契約書に納品物を明記していなかったこと<br>機械学習の依頼は学習済みモデルのファイルを納品しただけでは、先方は検収できず、結果支払いを受けられない<br>この教訓をひとりでも多くの人に知ってもらいたい</p>— キカガク代表 吉崎亮介 (@yoshizaki_kkgk) <a href="https://twitter.com/yoshizaki_kkgk/status/932564375969284103?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年11月20日</a>
+</blockquote>
+
+
+
+<p>そうなんですよね。<br>
+全く先方が悪いわけでもなく、私自身が「機械学習のお仕事＝解析」だと思いこんでいたことが失敗の始まり。</p>
+
+<p>結局のところ、機械学習系のプロダクトを依頼されて、学習済みモデルを作成して即納品とはいかず、検証結果を示されないと検収できないよとなってしまうので、結局アプリケーション側まで組み込まないと納得感はないんですよね。<br>
+この検証とは、訓練データと検証データを分けた時の、検証データに対する結果ではありませんよ？</p>
+
+<p>実運用フェーズに載せた時にちゃんと動作するかといった検証なのです。</p>
+
+<h1>
+<span id="根本的な誤解" class="fragment"></span><a href="#%E6%A0%B9%E6%9C%AC%E7%9A%84%E3%81%AA%E8%AA%A4%E8%A7%A3"><i class="fa fa-link"></i></a>根本的な誤解</h1>
+
+<p>私自身、機械学習のプロダクトを開発して運用するまでの流れを以下のように考えていました。</p>
+
+<p><a href="https://camo.qiitausercontent.com/e12fb14cb087ccbf7d635faecd0d030735221779/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133303138312f34653838613734622d356363392d356332332d626533382d3465663934316235623763302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e12fb14cb087ccbf7d635faecd0d030735221779/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133303138312f34653838613734622d356363392d356332332d626533382d3465663934316235623763302e706e67" alt="before.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/130181/4e88a74b-5cc9-5c23-be38-4ef941b5b7c0.png"></a></p>
+
+<p>これまでの私は「機械学習と一口にいっても、その多くの仕事が<strong>データ整理</strong>や<strong>データの前処理</strong>に費やされており、機械学習だけを勉強しても実務に入ることができるエンジニアにはなれませんよ」とお伝えしていました。<br>
+もちろん、今でもその言葉に間違いはないと確信しています。</p>
+
+<p>しかし！</p>
+
+<p>それだけではないのです。<br>
+データ整理をするためにSQLがかけて、データの前処理をするためにPythonを書けて、データ解析をするために難解な数学とライブラリを駆使できても、結局だめなのです。</p>
+
+<p>ビジネス上の納品とは最終的なゴールに達さない限り、８０点で良いものではありません。<br>
+１００点以外納品はありえません。<br>
+９９点でもだめです。<br>
+お客様とすり合わせを行った仕様を１００％満たす製品を作って納品しないとだめなのです。</p>
+
+<p>そう考えると、「人工知能（AI）・機械学習を使って何かしたい！」思っているお客様と協業していくためには、どのようなシチュエーションに遭遇するかをイメージしながら、ゴールを考えながら作っていかないと行けません。</p>
+
+<h1>
+<span id="お客様との商談シミュレーション" class="fragment"></span><a href="#%E3%81%8A%E5%AE%A2%E6%A7%98%E3%81%A8%E3%81%AE%E5%95%86%E8%AB%87%E3%82%B7%E3%83%9F%E3%83%A5%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>お客様との商談シミュレーション</h1>
+
+<blockquote>
+<p>先方「AIを使って○○したいんだけど、<strong>この仕事</strong>お願いできない？」</p>
+</blockquote>
+
+<p>※この段階で気をつけないといけないことが、<strong>この仕事</strong>の範囲を明確にしてからスタートしないと、ビジネス上の１００点を取ることがかなり厳しくなるということです。</p>
+
+<blockquote>
+<p>私「わかりました。では、目安として精度が○○%くらいといった目標はございますか？」</p>
+
+<p>先方「○○％くらいは望ましいね〜。このぐらいいける？」</p>
+
+<p>私「正直なところ、データを解析してみないとわかりませんね。。。」</p>
+
+<p>先方「それはそうだと思うけど、<strong>肌感でどう</strong>？」</p>
+
+<p>私「そのぐらいの精度であればであれば、達成できるような気がしますね。見極めのためにも、<strong>PoC</strong>（この業界の人がよく使う言葉で仮説検証のこと、Proof of Concept）を回してみませんか。」</p>
+
+<p>先方「OK。いくらぐらいかかるの？」</p>
+</blockquote>
+
+<p>ここで、ストップです。<br>
+「<strong>肌感でどう？</strong>」と私もよく聞く質問ではあるのですが、データ解析は実装して検証してみるまで、正直なんとも言えません。<br>
+とは言え、その分野での解析に関する経験があれば、基準値が○○％とすぐに答えられるかもしれません。<br>
+しかし、一旦言ってしまうと相手の期待値がそこまで上がってしまい、その期待値をなかなか下げることができないため、経験上それも言わないほうが良い気がしています（とは言え、未知のものに投資できないので、言わざるを得ないのですが、、、）。</p>
+
+<p>そして、ここからが見積りの値段決めに入ります。</p>
+
+<p>よくありがちな失敗としては、日頃解析業務を趣味等で行っており、<strong>ライブラリの使い方を把握</strong>されている方であれば、解析のテンプレートができているため、機械学習の実装に関しては１〜３日ほどあれば、実装完了して検証まで行えると思います。</p>
+
+<p>しかし、お客様から受ける案件に関しては、<strong>データを解析するまでの道のりが非常に長い</strong>ことを忘れないようにしましょう。</p>
+
+<p>その道程すべてを加味して、工程を分解し、そうしてようやく見積りを出すことができるため、絶対にその場で、<br>
+「じゃあ３日間ぐらいでできるので○○万円でどうでしょう？」<br>
+とは言わないように気をつけましょう。</p>
+
+<h1>
+<span id="例え話-情報収集先がwebサイトの場合" class="fragment"></span><a href="#%E4%BE%8B%E3%81%88%E8%A9%B1-%E6%83%85%E5%A0%B1%E5%8F%8E%E9%9B%86%E5%85%88%E3%81%8Cweb%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>例え話. 情報収集先がWebサイトの場合</h1>
+
+<h2>
+<span id="依頼のはじまり" class="fragment"></span><a href="#%E4%BE%9D%E9%A0%BC%E3%81%AE%E3%81%AF%E3%81%98%E3%81%BE%E3%82%8A"><i class="fa fa-link"></i></a>依頼のはじまり</h2>
+
+<p>例えば、データの収集先（Webサイト）を指定されて、ここのデータを使って解析してほしいと言われた場合、<br>
+「あ、Webスクレイピングを最近勉強しているので、いけますよ！」<br>
+と答えてしまいますが、本当にそれで良いのでしょうか？</p>
+
+<p>このお仕事の工程を分解していきましょう。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">工程</th>
+<th style="text-align: left">時間</th>
+<th style="text-align: left">補足</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">Webスクレイピング</td>
+<td style="text-align: left">○○日</td>
+<td style="text-align: left">○○から○○の情報を取得</td>
+</tr>
+<tr>
+<td style="text-align: left">データ前処理1</td>
+<td style="text-align: left">○○日</td>
+<td style="text-align: left"></td>
+</tr>
+<tr>
+<td style="text-align: left">データ解析</td>
+<td style="text-align: left">○○日</td>
+<td style="text-align: left">まず大雑把に解析</td>
+</tr>
+<tr>
+<td style="text-align: left">データ前処理2+解析</td>
+<td style="text-align: left">○○日</td>
+<td style="text-align: left">重要な特徴量探しと外部要因の検討</td>
+</tr>
+</tbody>
+</table>
+
+<p>と少し慣れている人だとこんな感じで考えるのではないでしょうか。<br>
+ちゃんと前処理の日程も確保しつつ、解析をした後にさらに前処理の手戻りが発生することも考慮できているため、割と手堅い計画になっていると思います。</p>
+
+<blockquote>
+<p>私「では、このような日程で計画を立てたので、合計○○日で○○円でいかがでしょうか。」</p>
+
+<p>先方「（おっ、結構高いな。AIエンジニアが高いとは聞いていたけれど、これほどまでとは。でも仕方ない。）わかりました。この金額で進めましょう。」</p>
+</blockquote>
+
+<p>では、このまま解析を行ってうまくいったとしましょう。</p>
+
+<blockquote>
+<p>私「先日依頼されておりました解析の結果がでました。まだPoC段階ですので、カリカリのチューニングとまでは手が及んでいませんが、訓練データに対して○○％の結果、検証データに対して○○％くらいの精度が出ましたね。基準としていたラインまでは達成できそうですね。」</p>
+
+<p>先方「良いですね。この感じだと運用しながらさらにデータが集まっていくので、精度も上がっていき、かなり期待できますね。」</p>
+</blockquote>
+
+<p>となり、これで検収完了！支払いへGo!といけば良いのですが、そうはいきません。</p>
+
+<p>みなさんも依頼側の立場に立って考えてもらうと分かるのですが、<br>
+「これってアウトプットが報告書なので、信用はしているのですが、嘘か本当かがわかりません。」<br>
+と思いますよね？</p>
+
+<p>そりゃそうです。</p>
+
+<p>そうなるとどうなるかというと、<strong>ちゃんと動作するまで、数日〜数ヶ月程度運用してみて、その様子を見たい</strong>という話になります。</p>
+
+<p>何回も言いますが、そりゃそうです。</p>
+
+<h2>
+<span id="大変な未来が見えてきた" class="fragment"></span><a href="#%E5%A4%A7%E5%A4%89%E3%81%AA%E6%9C%AA%E6%9D%A5%E3%81%8C%E8%A6%8B%E3%81%88%E3%81%A6%E3%81%8D%E3%81%9F"><i class="fa fa-link"></i></a>大変な未来が見えてきた</h2>
+
+<p>そうなると実運用していくためには、<strong>毎日情報を自動的に収集</strong>して、<strong>予測値を計算</strong>して、<strong>その結果を報告</strong>出来るような仕組みを作らないといけません。<br>
+これってオフラインで解析していたときとは全く異なるスキルで、<strong>Webによるシステム自動化</strong>の知識が必須になってきます。<br>
+スキルセットとしては、以下のようなものがあります。</p>
+
+<ul>
+<li>サーバーでの環境構築（LinuxやDocker等）</li>
+<li>データベース（MySQL）</li>
+<li>Webアプリケーション（Ruby on Rails, HTML, CSS, JavaScriptなど）</li>
+<li>Web API（Python）</li>
+<li>Cron（定期実行）</li>
+<li>Webサーバー（NginxやApache）</li>
+</ul>
+
+<p>こんなにリッチに作る必要はなかったりしますが、とは言え、このぐらいのスキルセットがないと、最終的な自動的に運用しながら報告できる仕組みづくりを行うことはできません。</p>
+
+<p>たとえば、私が納品しているようなケースだと解析を終えた後に、仮の検証を行うための仕組みとして以下のような構成を作っています（各サーバーが1Dockerコンテナ）。</p>
+
+<p><a href="https://camo.qiitausercontent.com/f7f9c8825b0480fce54be916428b449a36d1be5a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133303138312f35376363633933612d366432362d313235652d323738392d3737366261383631396333612e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f7f9c8825b0480fce54be916428b449a36d1be5a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133303138312f35376363633933612d366432362d313235652d323738392d3737366261383631396333612e706e67" alt="システム構成.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/130181/57ccc93a-6d26-125e-2789-776ba8619c3a.png"></a></p>
+
+<p>こうなると、全く今までの予算では足りなく、確保していた時間に関しても全然足りないわけです。</p>
+
+<p>とは言え、依頼側からすると、実運用しながら検証してもらえないと納得して支払いができないため、やっぱりこのあたりは必要になってくるケースが多いかと思います。</p>
+
+<h1>
+<span id="総括" class="fragment"></span><a href="#%E7%B7%8F%E6%8B%AC"><i class="fa fa-link"></i></a>総括</h1>
+
+<p>機械学習案件を依頼された時は、納品物を明確にしておきましょう。<br>
+相手方の不安に寄り添いながら進めていく必要があるため、ちゃんと長い目でみて運用できるような仕組みを考えて、その分の予算を確保しておくようにしましょう。</p>
+
+<p>「検証とは、検証データに対する結果をみることではなく、仮運用をはじめた後に得られる結果を見ることである」</p>
+
+<p>そのため、お客様と考えていくべき納品フローはこのようになります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/64327e297e500a50bd6a528953f20312a7ee0a5f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133303138312f65633939333838312d376161302d346535302d373365382d6665353330646462636639332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/64327e297e500a50bd6a528953f20312a7ee0a5f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133303138312f65633939333838312d376161302d346535302d373365382d6665353330646462636639332e706e67" alt="after.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/130181/ec993881-7aa0-4e50-73e8-fe530ddbcf93.png"></a></p>
+
+<p>仮運用には、Webアプリケーション等のViewも必要になるケースがありますので、ご注意ください（簡単なのはSlackボット）。</p>
+
+<p>それでは、今回は私の猛省も兼ねた振り返りでした。</p>
+
+<p>ひとりでも多くの方が、幸せな機械学習案件に携われますように。</p>
+
+<h1>
+<span id="著者紹介" class="fragment"></span><a href="#%E8%91%97%E8%80%85%E7%B4%B9%E4%BB%8B"><i class="fa fa-link"></i></a>著者紹介</h1>
+
+<p>株式会社キカガク<br>
+代表取締役社長　吉崎 亮介（twitter: <a href="https://twitter.com/yoshizaki_kkgk" rel="nofollow noopener" target="_blank">@yoshizaki_kkgk</a>）</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

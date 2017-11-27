@@ -1,0 +1,2300 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (kkdmgs110)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (kkdmgs110 さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>151</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/954267e168233ee3028e">【Python】スクレイピング→データ収集→整形→分析までの流れを初心者向けにまとめておく ～Pythonに関するはてな記事を10年分スクレイピングし、Pythonトレンド分析を実際にやってみた～</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-11 15:15:34</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[スクレイピング]</b> <b>[pandas]</b> <b>[データ分析]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やりたいこと" class="fragment"></span><a href="#%E3%82%84%E3%82%8A%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やりたいこと</h1>
+
+<ul>
+<li>はてなブックマークで、Python記事を検索しトレンドを分析
+
+<ul>
+<li>はてなブックマークにSeleniumでログイン</li>
+<li>ブックマーク数をスクレイピング</li>
+<li>時系列比較を行う</li>
+<li>バズるタイトルを分析</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<span id="実装方法" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>実装方法</h1>
+
+<ul>
+<li>詳しくは下記記事を参考にしてください。Pandasを利用したデータ分析まで載せています。</li>
+</ul>
+
+<p>【Python】スクレイピング→データ収集→整形→分析までの流れを初心者向けにまとめておく ～Pythonに関するはてな記事を10年分スクレイピングし、Pythonトレンド分析を実際にやってみた～</p>
+
+<p><a href="https://review-of-my-life.blogspot.jp/2017/10/python-web-scraping-data-collection-analysis.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/10/python-web-scraping-data-collection-analysis.html</a></p>
+
+<h1>
+<span id="実装" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>実装</h1>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">trendAnalytics.py</span></div>
+<div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>  
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="o">*</span> 
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1">#Access to page</span>
+
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">PhantomJS</span><span class="p">()</span>  <span class="c1"># DO NOT FORGET to set path</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">"http://b.hatena.ne.jp/search/text?safe=on&amp;q=Python&amp;users=50"</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'trend.csv'</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#Insert title,date,bookmarks into CSV file</span>
+
+<span class="n">page</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#This number shows the number of current page later</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span> <span class="c1">#continue until getting the last page</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">browser</span><span class="o">.</span><span class="n">find_elements_by_css_selector</span><span class="p">(</span><span class="s2">".pager-next"</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">"######################page: {} ########################"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">page</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">"Starting to get posts..."</span><span class="p">)</span>
+        <span class="c1">#get all posts in a page</span>
+        <span class="n">posts</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_elements_by_css_selector</span><span class="p">(</span><span class="s2">".search-result"</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="n">posts</span><span class="p">:</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">"h3"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">date</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">".created"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">bookmarks</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">".users span"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">se</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">title</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">bookmarks</span><span class="p">],[</span><span class="s1">'title'</span><span class="p">,</span><span class="s1">'date'</span><span class="p">,</span><span class="s1">'bookmarks'</span><span class="p">])</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">se</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+        <span class="c1">#after getting all posts in a page, click pager next and then get next all posts again</span>
+
+        <span class="n">btn</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">"a.pager-next"</span><span class="p">)</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s2">"href"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">"next url:{}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">btn</span><span class="p">))</span>
+        <span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">btn</span><span class="p">)</span>
+        <span class="n">page</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="n">browser</span><span class="o">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">"Moving to next page......"</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c1">#if no pager exist, stop.</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">"no pager exist anymore"</span><span class="p">)</span>
+        <span class="k">break</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"trend1.csv"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">"DONE"</span><span class="p">)</span>
+
+</pre></div>
+</div>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<ul>
+<li>こんな感じでスクレイピングした結果が表示されます。</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/a7eb99eec298c9eadb8bbd461d05971570be4e5b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f31386137636336632d653433652d393162622d323331622d3862333063323832663266662e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a7eb99eec298c9eadb8bbd461d05971570be4e5b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f31386137636336632d653433652d393162622d323331622d3862333063323832663266662e676966" alt="trendAnalytics.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/18a7cc6c-e43e-91bb-231b-8b30c282f2ff.gif"></a></p>
+
+<ul>
+<li>Jupiter Notebookを利用して、こんな感じで分析しました.2017年度の結果</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/835efd0fba1318a0489edd31e57c52c26c255be5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f63393966393063322d316239612d386432632d313432662d3333633432323033626662322e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/835efd0fba1318a0489edd31e57c52c26c255be5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f63393966393063322d316239612d386432632d313432662d3333633432323033626662322e6a706567" alt="2017.JPG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/c99f90c2-1b9a-8d2c-142f-33c42203bfb2.jpeg"></a></p>
+
+<ul>
+<li>こちらが2006年度の結果。明らかに使われ方が違いますね</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/d6cd23c54312fc62ee91859bb173d347dd8ae820/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f62373164366236332d303238642d396234662d346531662d3739616439653935343938372e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d6cd23c54312fc62ee91859bb173d347dd8ae820/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f62373164366236332d303238642d396234662d346531662d3739616439653935343938372e6a706567" alt="Ruby.JPG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/b71d6b63-028d-9b4f-4e1f-79ad9e954987.jpeg"></a></p>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<p>【Python】スクレイピング→データ収集→整形→分析までの流れを初心者向けにまとめておく ～Pythonに関するはてな記事を10年分スクレイピングし、Pythonトレンド分析を実際にやってみた～</p>
+
+<p><a href="https://review-of-my-life.blogspot.jp/2017/10/python-web-scraping-data-collection-analysis.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/10/python-web-scraping-data-collection-analysis.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>13</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/08be5c62365b89ea678a">メルカリのデータをマイニングして、適正価格を算出してみた</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-15 09:05:04</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[pandas]</b> <b>[Tableau]</b> <b>[Jupyter]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やったこと" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やったこと</h1>
+
+<ul>
+<li>メルカリで売られているルンバの価格データをマイニングした</li>
+<li>どのくらいの値段なら、何割で売れるか算出してみた</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/201ed0477781cea354ac1169fe4798cad9cd73d7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f33303837373061642d366132612d636432622d316163382d3831626261653361636265622e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/201ed0477781cea354ac1169fe4798cad9cd73d7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f33303837373061642d366132612d636432622d316163382d3831626261653361636265622e6a706567" alt="ルンバ.jpg" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/308770ad-6a2a-cd2b-1ac8-81bbae3acbeb.jpeg"></a></p>
+
+<h1>
+<span id="手法" class="fragment"></span><a href="#%E6%89%8B%E6%B3%95"><i class="fa fa-link"></i></a>手法</h1>
+
+<ul>
+<li>Python</li>
+<li>Jupyter Notebook</li>
+<li>Tableau</li>
+</ul>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<ul>
+<li>購入金額別にヒストグラムを作成してみた</li>
+<li>値段が安いほど、購入割合が高いことが分かった（当たり前だけど</li>
+<li>この値段で売ると、何割で売れるかも出た（かなりだいたいの値だけど）</li>
+<li>適正価格のサジェストとかできそう</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/a0cd67c9295fd142e5b68641c2bb9ae2c783cc42/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f37313537323665632d643666612d613834642d393262372d3834303036333664663161332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a0cd67c9295fd142e5b68641c2bb9ae2c783cc42/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f37313537323665632d643666612d613834642d393262372d3834303036333664663161332e706e67" alt="ルンバの相場.PNG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/715726ec-d6fa-a84d-92b7-8400636df1a3.png"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/4f666705a1ee83aa8d2cb9bdfc21513acecef25f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f64393030313232332d303164392d386363622d636662322d3462363966653065386234352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/4f666705a1ee83aa8d2cb9bdfc21513acecef25f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f64393030313232332d303164392d386363622d636662322d3462363966653065386234352e706e67" alt="価格と購入率.PNG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/d9001223-01d9-8ccb-cfb2-4b69fe0e8b45.png"></a></p>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<p>具体的な手法は、こちらを確認してください。</p>
+
+<p>メルカリの出品データをマイニングして、適正価格を分析してみた</p>
+
+<p><a href="https://review-of-my-life.blogspot.jp/2017/11/mercari.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/11/mercari.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>13</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/13c728fcccb059f17755">【Python】DMM Web APIでエッチなデータを取得し、TwitterでえっちなBotを作った話</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-11 15:32:08</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[Selenium]</b> <b>[Heroku]</b> <b>[Twitter]</b> <b>[dmm]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やりたいこと" class="fragment"></span><a href="#%E3%82%84%E3%82%8A%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やりたいこと</h1>
+
+<ul>
+<li>DMM Web APIを利用して、大好きな鳳かなめちゃんのAVを毎日Twitterに投稿する</li>
+</ul>
+
+<h1>
+<span id="出来上がったもの" class="fragment"></span><a href="#%E5%87%BA%E6%9D%A5%E4%B8%8A%E3%81%8C%E3%81%A3%E3%81%9F%E3%82%82%E3%81%AE"><i class="fa fa-link"></i></a>出来上がったもの</h1>
+
+<ul>
+<li>凰かなめのサンプル動画まとめbot(エロ注意)</li>
+</ul>
+
+<p><a href="https://twitter.com/otorikanamebot" class="autolink" rel="nofollow noopener" target="_blank">https://twitter.com/otorikanamebot</a></p>
+
+<h1>
+<span id="手順" class="fragment"></span><a href="#%E6%89%8B%E9%A0%86"><i class="fa fa-link"></i></a>手順</h1>
+
+<ul>
+<li>自分のサイトの準備（ツイッターでも可）(事前準備)</li>
+<li>TwitterでAPI KEYの取得(事前準備)</li>
+<li>DMMアフィリエイトに登録(事前準備)</li>
+<li>DMM APIのためにAPP IDとAFFILIATE IDの取得(事前準備)</li>
+<li>検索キーワードの文字コードを取得(事前準備)</li>
+<li>コーディング</li>
+</ul>
+
+<p>詳しい手順はこちらの記事をご覧ください</p>
+
+<p>【Python】DMM Web APIでエッチなデータを取得し、Twitterで自動でえっちな投稿してみた<br>
+<a href="https://review-of-my-life.blogspot.jp/2017/09/python-dmm-web-api-twitter.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/09/python-dmm-web-api-twitter.html</a></p>
+
+<h1>
+<span id="ソースコード" class="fragment"></span><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>ソースコード</h1>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">dmm.py</span></div>
+<div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">from</span> <span class="nn">requests_oauthlib</span> <span class="kn">import</span> <span class="n">OAuth1Session</span> <span class="c1"># ライブラリ(1)</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span> 
+<span class="kn">from</span> <span class="nn">TwitterAPI</span> <span class="kn">import</span> <span class="n">TwitterAPI</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">tweepy</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<span class="c1"># 各種キーをセット</span>
+<span class="n">CONSUMER_KEY</span> <span class="o">=</span> <span class="s1">'[CONSUMER_KEY]'</span>
+<span class="n">CONSUMER_SECRET</span> <span class="o">=</span> <span class="s1">'[CONSUMER_SECRET]'</span>
+<span class="n">ACCESS_TOKEN</span> <span class="o">=</span> <span class="s1">'[ACCESS_TOKEN]'</span>
+<span class="n">ACCESS_SECRET</span> <span class="o">=</span> <span class="s1">'[ACCESS_SECRET]'</span>
+
+<span class="c1">#apiを取得</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">OAuthHandler</span><span class="p">(</span><span class="n">CONSUMER_KEY</span><span class="p">,</span> <span class="n">CONSUMER_SECRET</span><span class="p">)</span>
+<span class="n">auth</span><span class="o">.</span><span class="n">set_access_token</span><span class="p">(</span><span class="n">ACCESS_TOKEN</span><span class="p">,</span> <span class="n">ACCESS_SECRET</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">API</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span>
+
+<span class="c1"># ツイート投稿用のURL</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">"https://api.twitter.com/1.1/statuses/update_with_media.json"</span>
+
+<span class="c1"># DMMのAPP ID, AFFILIATE ID, 検索キーワードをセット</span>
+
+<span class="n">APPID</span> <span class="o">=</span> <span class="s2">"[APPID]"</span>
+<span class="n">AFFILIATEID</span> <span class="o">=</span> <span class="s2">"[AFFILIATEID]"</span>
+<span class="n">KEYWORD</span> <span class="o">=</span> <span class="s2">"your keyword here"</span>
+
+<span class="c1">#DMMのAPIを取得し、XMLをBeautifulsoupで取得</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">"https://api.dmm.com/affiliate/v3/ItemList?api_id="</span> <span class="o">+</span> <span class="n">APPID</span> <span class="o">+</span> <span class="s2">"&amp;affiliate_id="</span> <span class="o">+</span> <span class="n">AFFILIATEID</span> <span class="o">+</span> <span class="s2">"%20&amp;site=DMM.R18&amp;service=digital&amp;floor=videoa&amp;hits=2&amp;sort=date&amp;keyword="</span> <span class="o">+</span> <span class="n">KEYWORD</span> <span class="o">+</span> <span class="s2">"&amp;output=xml"</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span><span class="s2">"html5lib"</span><span class="p">)</span>
+
+<span class="c1">#取得したXMLを整理して表示する</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">"取得したデータを表示します"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">prettify</span><span class="p">())</span>
+
+<span class="c1">#タイトル・女優・画像URL・動画URLを追加</span>
+
+<span class="n">items</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">items</span> <span class="c1">#1つ1つのitemオブジェクトを取得</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">"取得したitems数:{}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">item</span><span class="p">)))</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">"--------------"</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">string</span> <span class="c1">#動画タイトル</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="p">(</span><span class="n">title</span><span class="p">[:</span><span class="mi">40</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"..動画はこちら→"</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">title</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">75</span> <span class="k">else</span> <span class="n">title</span> <span class="c1">#タイトルが40字過ぎたら省略</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">"title:{}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
+    <span class="n">photoURL</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">imageurl</span><span class="o">.</span><span class="n">large</span><span class="o">.</span><span class="n">string</span>  <span class="c1">#画像URL</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">"photoURL:{}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">photoURL</span><span class="p">))</span>
+
+    <span class="c1">#動画によってはサンプル動画がない。ない場合エラーになるので、tryで囲む</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">videoURL</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">samplemovieurl</span><span class="o">.</span><span class="n">size_476_306</span><span class="o">.</span><span class="n">string</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">"videoURL:{}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">videoURL</span><span class="p">))</span>
+
+        <span class="c1">#ツイート内容</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">title</span> <span class="o">+</span> <span class="s2">"|"</span> <span class="o">+</span> <span class="n">videoURL</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">"ツイート内容：{}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">content</span><span class="p">))</span>
+
+        <span class="c1">#DMMから取得した画像を一度ローカルに保存</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">photoURL</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="s2">"temp.jpg"</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">"status_code == 200"</span><span class="p">)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">image</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">request</span><span class="p">:</span>
+                    <span class="n">image</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">update_with_media</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="n">content</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">"ツイートに成功しました"</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">"画像をダウンロードできませんでした"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">"プログラムを終了しました"</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<p>詳しい手順はこちらの記事をご覧ください</p>
+
+<p>【Python】DMM Web APIでエッチなデータを取得し、Twitterで自動でえっちな投稿してみた<br>
+<a href="https://review-of-my-life.blogspot.jp/2017/09/python-dmm-web-api-twitter.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/09/python-dmm-web-api-twitter.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>13</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/3fca2da6073f490fbe0f">【Python】Webスクレイピングチュートリアル　-ログインが必要なサイトの場合-</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-11 14:58:54</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[Selenium]</b> <b>[スクレイピング]</b> <b>[ログインフォーム]</b> <b>[cloud9]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やりたいこと" class="fragment"></span><a href="#%E3%82%84%E3%82%8A%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やりたいこと</h1>
+
+<ul>
+<li>ログインが必要なサイトからスクレイピングする</li>
+</ul>
+
+<h1>
+<span id="実装" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>実装</h1>
+
+<ul>
+<li>はてなブックマークにログイン</li>
+<li>ログイン後のページのデータをスクレイピング</li>
+</ul>
+
+<h1>
+<span id="ソースコード" class="fragment"></span><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>ソースコード</h1>
+
+<ul>
+<li>詳細な手順については、下記の記事をご覧ください。</li>
+</ul>
+
+<p>【Python】Webスクレイピングチュートリアル　-ログインが必要なサイトの場合-<br>
+<a href="https://review-of-my-life.blogspot.jp/2017/10/python-selenium-siginin.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/10/python-selenium-siginin.html</a></p>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">login.py</span></div>
+<div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">PhantomJS</span><span class="p">()</span>
+
+<span class="n">loginUrl</span><span class="o">=</span> <span class="s2">"https://www.hatena.ne.jp/login"</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">loginUrl</span><span class="p">)</span>
+
+<span class="n">username</span> <span class="o">=</span> <span class="s2">"あなたのメールアドレス"</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s2">"あなたのパスワード"</span>
+
+<span class="n">userNameField</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="s2">"//*[@id='login-name']"</span><span class="p">)</span>
+<span class="n">userFameField</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+
+<span class="n">passwordField</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="s2">"//*[@id='container']/div/form/div/div[2]/div/input"</span><span class="p">)</span>
+<span class="n">passwordField</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+
+<span class="n">submitButton</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_class_name</span><span class="p">(</span><span class="s2">"submit-button"</span><span class="p">)</span>
+<span class="n">submitButton</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+
+<span class="n">profile</span> <span class="o">=</span> <span class="s2">"profile.hatena.ne.jp"</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">profile</span><span class="p">)</span>
+
+<span class="n">browser</span><span class="o">.</span><span class="n">title</span>
+</pre></div>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />5位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>12</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/5f68ebef4afe230f75de">【Python】TinderのAPIを使って、青山大学周辺で遠隔ナンパする</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-11 15:42:38</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[tinder]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やりたいこと" class="fragment"></span><a href="#%E3%82%84%E3%82%8A%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やりたいこと</h1>
+
+<ul>
+<li>歌舞伎町でナンパしたい</li>
+<li>でもそんな勇気ない。女性は無慈悲だ。</li>
+<li>しかも歌舞伎町の女性は好きではない。もっとお嬢様がよい。</li>
+<li>なので青山大学でナンパしたい！</li>
+<li>それならTinderで遠隔ナンパすればいいんじゃないか？</li>
+<li>PythonのTinder API Pynderを利用して遠隔ナンパする</li>
+</ul>
+
+<h1>
+<span id="方法" class="fragment"></span><a href="#%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>方法</h1>
+
+<ul>
+<li>Pynderをインストール</li>
+<li>青山大学の緯度と経度を指定</li>
+<li>自動スワイプ</li>
+</ul>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<ul>
+<li>青山大学周辺だと、人通りが多すぎて青山大出身の人以外出てきてキレそうだった</li>
+<li>東京外大とか、若者が学生ばかりで、周りに人があまりいない地域がおすすめ！（そこだと狙い撃ちできた）</li>
+</ul>
+
+<p>詳しくは下記記事参照</p>
+
+<p>PythonでTinder APIを使ってネトストとサイバーナンパ師やってみた<br>
+<a href="https://review-of-my-life.blogspot.jp/2017/06/pythontinder-api-cyber-hockup.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/06/pythontinder-api-cyber-hockup.html</a></p>
+
+<h1>
+<span id="ソースコード" class="fragment"></span><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>ソースコード</h1>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">tinder.py</span></div>
+<div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pynder</span>
+<span class="n">facebook_auth_token</span> <span class="o">=</span> <span class="s2">"[Facebook access token]"</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">pynder</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">facebook_auth_token</span><span class="p">)</span>
+
+<span class="c1">#緯度と経度を指定</span>
+<span class="n">LAT</span> <span class="o">=</span> <span class="mf">35.687537</span>
+<span class="n">LON</span> <span class="o">=</span> <span class="mf">139.529551</span>
+<span class="n">session</span><span class="o">.</span><span class="n">update_location</span><span class="p">(</span><span class="n">LAT</span><span class="p">,</span> <span class="n">LON</span><span class="p">)</span>
+<span class="n">session</span><span class="o">.</span><span class="n">profile</span>
+<span class="n">users</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">nearby_users</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+ <span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+ <span class="c1">#print(user.photos)</span>
+ <span class="c1">#print(user.bio)</span>
+ <span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">schools</span><span class="p">)</span>
+ <span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">distance_km</span><span class="p">)</span>
+ <span class="k">print</span><span class="p">(</span><span class="s2">"============"</span><span class="p">)</span>
+
+</pre></div>
+</div>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<p>PythonでTinder APIを使ってネトストとサイバーナンパ師やってみた<br>
+<a href="https://review-of-my-life.blogspot.jp/2017/06/pythontinder-api-cyber-hockup.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/06/pythontinder-api-cyber-hockup.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />6位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>7</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/e8d252bedba2531e6f89">趣味で稼げる「ブルーオーシャンスキル」をPythonでデータマイニングして特定してみた</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-23 17:36:53</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[numpy]</b> <b>[matplotlib]</b> <b>[pandas]</b> <b>[DataVisualization]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やってみたこと" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やってみたこと</h1>
+
+<ul>
+<li>スキル売買サービス「ココナラ」のデータをマイニングして、「ブルーオーシャンスキル」を分析したよん</li>
+<li>ココナラは、自分のスキルを売ることができるサイトだよん！</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/f03188a94bc5edb182a4395e82a00f03f8a2bce6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f61393834396334372d303166652d323537642d383839312d3830646466373330623634392e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f03188a94bc5edb182a4395e82a00f03f8a2bce6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f61393834396334372d303166652d323537642d383839312d3830646466373330623634392e676966" alt="kokonara.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/a9849c47-01fe-257d-8891-80ddf730b649.gif"></a></p>
+
+<h1>
+<span id="本研究の目的ブルーオーシャンスキルは何か特定する" class="fragment"></span><a href="#%E6%9C%AC%E7%A0%94%E7%A9%B6%E3%81%AE%E7%9B%AE%E7%9A%84%E3%83%96%E3%83%AB%E3%83%BC%E3%82%AA%E3%83%BC%E3%82%B7%E3%83%A3%E3%83%B3%E3%82%B9%E3%82%AD%E3%83%AB%E3%81%AF%E4%BD%95%E3%81%8B%E7%89%B9%E5%AE%9A%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>本研究の目的：ブルーオーシャンスキルは何か特定する</h1>
+
+<ul>
+<li>このサイトの「趣味・娯楽」カテゴリの中から、
+
+<ul>
+<li>(1)需要も高く、(2)単価の高いスキル = ブルーオーシャンスキルをデータマイニングしたよん</li>
+</ul>
+</li>
+<li>趣味でできて、単価も需要も高いブルーオーシャンスキルがあれば、遊んで暮らせるよん</li>
+<li>今回はそんなブルーオーシャンスキルを穴掘れワンワン</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/f2f6ecec33f151503e8bd65ddc61417ac19c592b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f36643261646264652d656532332d316265352d373637622d3131666166376632323436312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f2f6ecec33f151503e8bd65ddc61417ac19c592b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f36643261646264652d656532332d316265352d373637622d3131666166376632323436312e706e67" alt="ocean.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/6d2adbde-ee23-1be5-767b-11faf7f22461.png"></a></p>
+
+<h1>
+<span id="手順" class="fragment"></span><a href="#%E6%89%8B%E9%A0%86"><i class="fa fa-link"></i></a>手順　</h1>
+
+<ul>
+<li><p>具体的なやり方は、ブログを見てねん（最後の参考に貼っておくよん）</p></li>
+<li><p>ココナラのサイトをPythonでスクレイピング（詳細はブログみてね）</p></li>
+<li><p>CSVにまとめる</p></li>
+<li><p>Pandasとmatplotlibで分析</p></li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/33cd667e9fb0534898e3c7d18d554532a4d8e98f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f64353334373862312d636165652d636534662d323934312d6335323132383735666236322e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/33cd667e9fb0534898e3c7d18d554532a4d8e98f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f64353334373862312d636165652d636534662d323934312d6335323132383735666236322e676966" alt="coconala.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/d53478b1-caee-ce4f-2941-c5212875fb62.gif"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/cd407a701cc8ac0f32650d77943b5a1b3db06795/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f39356437336236622d306130352d396633352d646633612d3038376263396139666364662e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/cd407a701cc8ac0f32650d77943b5a1b3db06795/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f39356437336236622d306130352d396633352d646633612d3038376263396139666364662e6a706567" alt="data (2).jpg" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/95d73b6b-0a05-9f35-df3a-087bc9a9fcdf.jpeg"></a></p>
+
+<h1>
+<span id="データ分析結果" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%88%86%E6%9E%90%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>データ分析結果</h1>
+
+<ul>
+<li>サンプルが3000くらいとれたよ</li>
+<li>単価10000円以上、かついいね数が20以上のものを抽出した結果</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">タイトル</th>
+<th style="text-align: right">いいね数</th>
+<th style="text-align: center">価格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">奇跡！現役ギタリストがあなたをギターの天才にします：</td>
+<td style="text-align: right">24いいね</td>
+<td style="text-align: center">10000円</td>
+</tr>
+<tr>
+<td style="text-align: left">楽曲制作☆オリジナル楽曲制作致します：</td>
+<td style="text-align: right">37いいね</td>
+<td style="text-align: center">20000円</td>
+</tr>
+<tr>
+<td style="text-align: left">確率と統計を用いた競艇技術を御案内しています:</td>
+<td style="text-align: right">42いいね</td>
+<td style="text-align: center">10000円</td>
+</tr>
+<tr>
+<td style="text-align: left">電子書籍　出版　プロデュースをします：</td>
+<td style="text-align: right">54いいね</td>
+<td style="text-align: center">10000円</td>
+</tr>
+<tr>
+<td style="text-align: left">ジャグラー1k以内に光る台教えます：</td>
+<td style="text-align: right">24いいね</td>
+<td style="text-align: center">10000円</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>単価が5000円以上、かついいね数が20以上のものを抽出し、散布図に落とし込んだ結果がこちら（1万円以上と書いてあるけど、本当は）</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/d517fd14385bffdf3e4e6aae75e8d42243326e7f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f65626464666361612d393361612d376230662d633934612d6666383563643439663937372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d517fd14385bffdf3e4e6aae75e8d42243326e7f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f65626464666361612d393361612d376230662d633934612d6666383563643439663937372e706e67" alt="scatterplot.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/ebddfcaa-93aa-7b0f-c94a-ff85cd49f977.png"></a></p>
+
+<ul>
+<li>で、そのリストがこちら</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">タイトル</th>
+<th style="text-align: right">いいね数</th>
+<th style="text-align: center">価格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">毎月千円で宝くじ当選確率をあげる購入方法を教えます　</td>
+<td style="text-align: right">93いいね</td>
+<td style="text-align: center">5000円</td>
+</tr>
+<tr>
+<td style="text-align: left">ランキング1位現役スロプロが貴方に合わせて教えます</td>
+<td style="text-align: right">　87いいね</td>
+<td style="text-align: center">5000円</td>
+</tr>
+<tr>
+<td style="text-align: left">リアルなドラム打ち込みサービス制作します</td>
+<td style="text-align: right">21いいね</td>
+<td style="text-align: center">5000円</td>
+</tr>
+<tr>
+<td style="text-align: left">あなたの原稿を電子書籍にします</td>
+<td style="text-align: right">20いいね</td>
+<td style="text-align: center">5000円</td>
+</tr>
+<tr>
+<td style="text-align: left">パチンコホールの大当たりの仕組み教えます</td>
+<td style="text-align: right">23いいね</td>
+<td style="text-align: center">5000円</td>
+</tr>
+<tr>
+<td style="text-align: left">簡単な8ビートから丁寧に教えます</td>
+<td style="text-align: right">21いいね</td>
+<td style="text-align: center">5000円</td>
+</tr>
+<tr>
+<td style="text-align: left">作曲を音楽理論から解りやすく丁寧にお教えします</td>
+<td style="text-align: right">23いいね</td>
+<td style="text-align: center">5000円</td>
+</tr>
+<tr>
+<td style="text-align: left">♪歌が確実に上手くなるノウハウお裾分け、</td>
+<td style="text-align: right">24いいね</td>
+<td style="text-align: center">5000円</td>
+</tr>
+<tr>
+<td style="text-align: left">『もうダメだ』と思ったあなた、救いが本にありますよ♪</td>
+<td style="text-align: right">21いいね</td>
+<td style="text-align: center">5000円</td>
+</tr>
+<tr>
+<td style="text-align: left">あなたを”本”で救います！</td>
+<td style="text-align: right">25いいね</td>
+<td style="text-align: center">5000円</td>
+</tr>
+<tr>
+<td style="text-align: left">原稿はあるけどやり方が・・。電子書籍出版をお手伝い</td>
+<td style="text-align: right">　39いいね</td>
+<td style="text-align: center">5000円</td>
+</tr>
+<tr>
+<td style="text-align: left">オンラインカジノで勝てるロジックを提供します</td>
+<td style="text-align: right">28いいね</td>
+<td style="text-align: center">5000円</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="結論" class="fragment"></span><a href="#%E7%B5%90%E8%AB%96"><i class="fa fa-link"></i></a>結論</h1>
+
+<ul>
+<li>楽曲提供、音楽の個人指導はブルーオーシャンスキル</li>
+<li>パチスロ強者がパチスロ弱者から金を巻き上げていた</li>
+</ul>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<ul>
+<li>ということで、具体的な手法はこちらを見てね！</li>
+</ul>
+
+<p>需要が高く単価の高い「趣味で稼げるスキル」とは何か？　ココナラをデータマイニングして、「売れるスキル」を見つけてみた|Review of My Life </p>
+
+<p><a href="https://review-of-my-life.blogspot.jp/2017/11/coconala-data-mining.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/11/coconala-data-mining.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />7位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/14dd48a69aed487278dd">PythonでCOBOLの転職市場を調べてみた</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-14 09:50:09</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[cobol]</b> <b>[データ分析]</b> <b>[ラダイト運動]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やったこと" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やったこと</h1>
+
+<ul>
+<li>COBOLの転職市場価値が高いという噂を聞いてみたので、以下のことを調べてみた
+
+<ul>
+<li>COBOLエンジニアって、どんくらいお金もらえるん？</li>
+<li>COBOL採用する企業って、古い企業ばっかりなん？</li>
+<li>COBOL採用する企業って、大企業が多いの？</li>
+<li>COBOL採用する企業って、おじいさんばっかりなん？</li>
+<li>COBOLエンジニアでの必須要件ってなんなの？</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<span id="方法" class="fragment"></span><a href="#%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>方法</h1>
+
+<ul>
+<li>Paizaさんから、「COBOL」と検索して出てきたCOBOL案件データをすべてスクレイピングで取得</li>
+<li>創業年度、平均年齢、従業員数、最低提示年収、採用要件を抽出</li>
+<li>それらの平均値や、ヒストグラムを作成</li>
+</ul>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<ul>
+<li>COBOL最低提示年収平均356万円
+
+<ul>
+<li>年収500万円まで行けば、Dream COBOLer間違いなし</li>
+<li>Dream COBOLerというバンド組みたい(わかる人には分かる)</li>
+<li>Javaで置換される業務システムを、COBOLerでラダイト運動起こしたい</li>
+</ul>
+</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/43164e3f472a6e1e3eb4fcaddc123733b9baf10c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f33346539366337332d626638322d343436652d346336662d3035363838363931663033382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/43164e3f472a6e1e3eb4fcaddc123733b9baf10c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f33346539366337332d626638322d343436652d346336662d3035363838363931663033382e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/34e96c73-bf82-446e-4c6f-05688691f038.png"></a></p>
+
+<ul>
+<li>COBOL採用を行う企業の平均創業年度:1996年
+
+<ul>
+<li>2011年創業のCOBOL企業があることに驚く(COBOL START-UP)</li>
+</ul>
+</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/67199ad65d5d7ff7890fbeb01da42333c5b7bfe2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f37363863616365312d393330662d326231352d306633302d6666396563386263643830642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/67199ad65d5d7ff7890fbeb01da42333c5b7bfe2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f37363863616365312d393330662d326231352d306633302d6666396563386263643830642e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/768cace1-930f-2b15-0f30-ff9ec8bcd80d.png"></a></p>
+
+<ul>
+<li>平均従業員数:205人
+
+<ul>
+<li>内製ではなく、下請け中小で書いていることが多そう</li>
+</ul>
+</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/294b1ddaf4f955dce35bf543abaaeda82473e04f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f65303761643935302d663438302d663937372d346431642d6462393734326666616132312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/294b1ddaf4f955dce35bf543abaaeda82473e04f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f65303761643935302d663438302d663937372d346431642d6462393734326666616132312e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/e07ad950-f480-f977-4d1d-db9742ffaa21.png"></a></p>
+
+<ul>
+<li>COBOLを採用している企業の平均年齢:33.2歳
+
+<ul>
+<li>某ニュースサイトでのコメント：おじさんと働くことになる</li>
+<li><a href="https://newspicks.com/news/2543288?ref=search&amp;ref_q=COBOL&amp;ref_t=top" class="autolink" rel="nofollow noopener" target="_blank">https://newspicks.com/news/2543288?ref=search&amp;ref_q=COBOL&amp;ref_t=top</a></li>
+</ul>
+</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/1b5b52e572d0836317a975c30c3d83ec2c0f5542/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f30356564383334632d373262342d383138612d376465312d3464636265396634316538332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1b5b52e572d0836317a975c30c3d83ec2c0f5542/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f30356564383334632d373262342d383138612d376465312d3464636265396634316538332e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/05ed834c-72b4-818a-7de1-4dcbe9f41e83.png"></a></p>
+
+<ul>
+<li>COBOLエンジニアでの必須要件</li>
+</ul>
+
+<blockquote>
+<p>・COBOL 実務１年以上<br>
+・COBOLの開発実務経験1年以上<br>
+・何らかのシステム開発経験　実務３年以上<br>
+・システム設計経験　実務１年以上<br>
+・汎用系開発業務（金融,保険,証券等）<br>
+・Java, COBOLのいずれか実務３年以上<br>
+・何かしらの開発実務3年以上<br>
+・Java、Swift、Objective-Cによるアプリケーション開発経験 5年以上</p>
+</blockquote>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<p>詳細はこちらの記事を参考に。Pandasでデータいじいじするソースコードのっけています。</p>
+
+<p>COBOLで転職活動したらどうなりますのん? COBOLer転職市場を分析してみた|Review of My Life <br>
+<a href="https://review-of-my-life.blogspot.jp/2017/10/COBOL-JOB.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/10/COBOL-JOB.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />8位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/fd0f19e625a41648467f">Rで暇な女子大生のツイートをテキストマイニング</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-12 11:53:03</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[R]</b> <b>[テキストマイニング]</b> <b>[wordcloud]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やりたいこと" class="fragment"></span><a href="#%E3%82%84%E3%82%8A%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やりたいこと</h1>
+
+<ul>
+<li>Twitterの肉食女子大生アカウント　暇な女子大生のツイートをテキストマイニング
+
+<ul>
+<li>暇な女子大生がよく使う単語の可視化</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<ul>
+<li>優勝、エリート、ﾄﾞｶﾀ、早慶、東大、Tinderなどの言葉が検出された</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/be346090d8c6d0b314233ea5ab3dbad916d99063/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f65323563383765332d396131362d653464342d643361642d3031633666363462396663622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/be346090d8c6d0b314233ea5ab3dbad916d99063/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f65323563383765332d396131362d653464342d643361642d3031633666363462396663622e706e67" alt="himanajoshidaisei.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/e25c87e3-9a16-e4d4-d3ad-01c6f64b9fcb.png"></a></p>
+
+<h1>
+<span id="ソースコード" class="fragment"></span><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>ソースコード</h1>
+
+<div class="code-frame" data-lang="r">
+<div class="code-lang"><span class="bold">textmining.r</span></div>
+<div class="highlight"><pre><span></span><span class="c1">#TwitteR</span>
+
+consumerKey <span class="o">&lt;-</span> <span class="s">"Consumer Key (API Key)を入力"</span>
+consumerSecret <span class="o">&lt;-</span> <span class="s">"Consumer Secret (API Secret)を入力"</span>
+accessToken <span class="o">&lt;-</span> <span class="s">"Access Tokenを入力"</span>
+accessSecret <span class="o">&lt;-</span> <span class="s">"Access Token Secretを入力"</span>
+setup_twitter_oauth<span class="p">(</span>consumerKey<span class="p">,</span> consumerSecret<span class="p">,</span> accessToken<span class="p">,</span> accessSecret<span class="p">)</span>
+
+<span class="c1">#過去2000件のツイートを分析</span>
+tweets <span class="o">&lt;-</span> userTimeline<span class="p">(</span><span class="s">"boredjd"</span><span class="p">,</span> n <span class="o">=</span> <span class="m">2000</span><span class="p">)</span>
+
+
+<span class="c1">#データフレームに変換し、テキスト部分だけを指定しツイートを取得</span>
+
+tweets <span class="o">&lt;-</span> twListToDF<span class="p">(</span>tweets<span class="p">)</span> <span class="c1">#これでデータフレームにできます</span>
+tweets <span class="o">&lt;-</span> tweets<span class="o">$</span>text <span class="c1">#テキストデータだけ取得します</span>
+
+<span class="c1">#テキスト変換</span>
+
+write.table<span class="p">(</span>tweets<span class="p">,</span><span class="s">"tweets.txt"</span><span class="p">)</span> <span class="c1">#一時的にテキストデータに保存します</span>
+
+<span class="c1">#日本語テキストの解析用に、パッケージ「RMeCab」を呼び出し、名刺、形容詞、動詞のみ抽出</span>
+
+tweetsFrq <span class="o">&lt;-</span> RMeCabFreq<span class="p">(</span><span class="s">"tweets.txt"</span><span class="p">)</span>
+tweetsFrq2 <span class="o">&lt;-</span> tweetsFrq <span class="o">%&gt;%</span> filter<span class="p">(</span>Freq<span class="o">&gt;</span><span class="m">10</span><span class="o">&amp;</span>Freq<span class="o">&lt;</span><span class="m">400</span><span class="p">,</span> Info1 <span class="o">%in%</span> <span class="kt">c</span><span class="p">(</span><span class="s">"名詞"</span><span class="p">),</span> Info2 <span class="o">!=</span> <span class="s">"数"</span><span class="p">)</span>
+
+<span class="c1">#URLや@などを削除</span>
+
+tweetsFrq2  <span class="o">&lt;-</span> <span class="kp">gsub</span><span class="p">(</span><span class="s">"^RT\\s@[0-9a-zA-Z\\._]*:\\s+"</span><span class="p">,</span><span class="s">""</span><span class="p">,</span>tweetsFrq2 <span class="p">)</span>
+tweetsFrq2   <span class="o">&lt;-</span> <span class="kp">gsub</span><span class="p">(</span><span class="s">"https?://t.co/[0-9a-zA-Z\\._]*"</span><span class="p">,</span><span class="s">""</span><span class="p">,</span>tweetsFrq2 <span class="p">)</span>
+
+wordcloud<span class="p">(</span>tweetsFrq<span class="o">$</span>Term<span class="p">,</span>tweetsFrq<span class="o">$</span>Freq<span class="p">,</span>random.order<span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>
+  color<span class="o">=</span>rainbow<span class="p">(</span><span class="m">5</span><span class="p">),</span>random.color<span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>scale<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">),</span>min.freq<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+
+</pre></div>
+</div>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<ul>
+<li>詳しい実装方法はこちらの記事を参考にしてください</li>
+</ul>
+
+<p>【R】テキストマイニングを利用して、東京ちんこ倶楽部と暇な女子大生を分析する<br>
+<a href="https://review-of-my-life.blogspot.jp/2017/08/r-text-mining.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/08/r-text-mining.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />9位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/d5e67d9b3c58f7de654d">【Python X OCR】Google Vision APIを利用して、表形式の画像からテキストを抽出してみた</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-12 10:06:25</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[OCR]</b> <b>[GoogleVisionAPI]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やったこと" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やったこと</h1>
+
+<ul>
+<li>Pythonを利用して、Google Vision APIという、OCRの機械学習APIを利用して、以下の表形式のデータを読み取らせた
+
+<ul>
+<li>表形式の神エクセルとか絶対許せねぇ</li>
+<li>せめてPDFやろ！</li>
+<li>画像にすんなボケ！</li>
+<li>さてとお役所は変わらない！</li>
+<li>なら技術でなんとかするしかねぇ！</li>
+<li>せや！Google　Vision APIを使えば、画像からテキストデータに落とし込めるぞ！</li>
+</ul>
+</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/df46d6e4f4de76379e33c950e8aa9773c3c0df91/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f62313930326633662d396337312d393664312d633530392d3734303063663135666130322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/df46d6e4f4de76379e33c950e8aa9773c3c0df91/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f62313930326633662d396337312d393664312d633530392d3734303063663135666130322e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/b1902f3f-9c71-96d1-c509-7400cf15fa02.png"></a></p>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<ul>
+<li>
+<p>かなり高精度で読み取ってくれたものの、一部限界があり</p>
+
+<ul>
+<li>表形式のフォーマットで取得することが非常に困難だった</li>
+<li>ただ、これらの値をエクセルにコピペする作業を行えば、普通に目視で一つ一つコピーするよりも5000兆倍くらい効率がよい</li>
+<li>まだ技術でお役所エクセルは倒せなさそう</li>
+</ul>
+</li>
+<li><p>出力結果はこちら</p></li>
+</ul>
+
+<blockquote>
+<p>$python OCRproject.py<br>
+首都圏の公務員就職率の上位20位<br>
+設置<br>
+私<br>
+私<br>
+国<br>
+国<br>
+国<br>
+公<br>
+私<br>
+私<br>
+私<br>
+国<br>
+国<br>
+国<br>
+私<br>
+国<br>
+私<br>
+国<br>
+私<br>
+国<br>
+国<br>
+私<br>
+大学·学部名<br>
+日本文化大学·法学部<br>
+創価大学·看護学部<br>
+東京大学法学部<br>
+千葉大学法経学部<br>
+千葉大学·園芸学部<br>
+首都大学東京·都市環境学部<br>
+北里大学·獣医学部生物環境科学科<br>
+千葉科学大学危機管理学部<br>
+慶應義塾大学·理工学部<br>
+お茶の水女子大学·生活科学部<br>
+千葉大学·文学部<br>
+埼玉大学·工学部<br>
+中央大学·法学部<br>
+埼玉大学·経済学部(昼間)<br>
+日本社会事業大学·社会福祉学部<br>
+お茶の水女子大学文教育学部<br>
+国際武道大学·体育学部<br>
+東京大学·教養学部<br>
+東京大学·農学部(獣医学課程以外)<br>
+専修大学·法学部(一部)<br>
+母数<br>
+229<br>
+75<br>
+294<br>
+352<br>
+110<br>
+95<br>
+82<br>
+210<br>
+573<br>
+98<br>
+172<br>
+160<br>
+1188<br>
+297<br>
+193<br>
+170<br>
+460<br>
+129<br>
+74<br>
+697<br>
+48.9<br>
+41.3<br>
+31.0<br>
+28.1<br>
+26.4<br>
+26.3<br>
+25.6<br>
+23.8<br>
+23.6<br>
+23.5<br>
+23.3<br>
+22.5<br>
+21.5<br>
+20.9<br>
+19.7<br>
+18.2<br>
+18.0<br>
+17.8<br>
+17.6<br>
+17.5</p>
+</blockquote>
+
+<h1>
+<span id="ソースコード" class="fragment"></span><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>ソースコード</h1>
+
+<ul>
+<li>ソースコードの説明は、後述のリンクから見てください</li>
+<li>Google Vision APIの利用のための申請が必要でした</li>
+</ul>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">OCR.py</span></div>
+<div class="highlight"><pre><span></span>
+<span class="c1">#!/usr/bin/python</span>
+<span class="c1">#coding:utf-8</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Request</span><span class="p">,</span> <span class="n">Session</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s2">"image.JPG"</span>
+
+<span class="k">def</span> <span class="nf">recognize_captcha</span><span class="p">(</span><span class="n">str_image_path</span><span class="p">):</span>
+        <span class="n">bin_captcha</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">str_image_path</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+        <span class="c1">#str_encode_file = base64.b64encode(bin_captcha)</span>
+        <span class="n">str_encode_file</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">bin_captcha</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">)</span>
+
+
+        <span class="n">str_url</span> <span class="o">=</span> <span class="s2">"https://vision.googleapis.com/v1/images:annotate?key="</span>
+
+        <span class="n">str_api_key</span> <span class="o">=</span> <span class="s2">"ここにAPI　KEYをいれてね！"</span>
+
+        <span class="n">str_headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">}</span>
+
+        <span class="n">str_json_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">'requests'</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s1">'image'</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s1">'content'</span><span class="p">:</span> <span class="n">str_encode_file</span>
+                    <span class="p">},</span>
+                    <span class="s1">'features'</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                            <span class="s1">'type'</span><span class="p">:</span> <span class="s2">"TEXT_DETECTION"</span><span class="p">,</span>
+                            <span class="s1">'maxResults'</span><span class="p">:</span> <span class="mi">10</span>
+                        <span class="p">}</span>
+                    <span class="p">]</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s2">"begin request"</span><span class="p">)</span>
+        <span class="n">obj_session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+        <span class="n">obj_request</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span>
+                              <span class="n">str_url</span> <span class="o">+</span> <span class="n">str_api_key</span><span class="p">,</span>
+                              <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">str_json_data</span><span class="p">),</span>
+                              <span class="n">headers</span><span class="o">=</span><span class="n">str_headers</span>
+                              <span class="p">)</span>
+        <span class="n">obj_prepped</span> <span class="o">=</span> <span class="n">obj_session</span><span class="o">.</span><span class="n">prepare_request</span><span class="p">(</span><span class="n">obj_request</span><span class="p">)</span>
+        <span class="n">obj_response</span> <span class="o">=</span> <span class="n">obj_session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">obj_prepped</span><span class="p">,</span>
+                                        <span class="n">verify</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                        <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span>
+                                        <span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">"end request"</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">obj_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="c1">#print (obj_response.text)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'data.json'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">obj_response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">obj_response</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"error"</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">recognize_captcha</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"responses"</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s2">"fullTextAnnotation"</span><span class="p">][</span><span class="s2">"text"</span><span class="p">])</span>
+
+</pre></div>
+</div>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<ul>
+<li>実際のセットアップや実装方法、コードの説明は、下記記事をご覧ください</li>
+</ul>
+
+<p>【Python】Google Vision APIで、スクショした表形式の画像データから文字を抽出してみたよん</p>
+
+<p><a href="http://review-of-my-life.blogspot.jp/2017/10/pythongoogle-vision-api.html" class="autolink" rel="nofollow noopener" target="_blank">http://review-of-my-life.blogspot.jp/2017/10/pythongoogle-vision-api.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />10位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/8f76e5331d1c34f0d8dc">AndroidアプリをWebブラウザ上にディプロイして利用する方法</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-14 09:24:30</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Android]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やりたいこと" class="fragment"></span><a href="#%E3%82%84%E3%82%8A%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やりたいこと</h1>
+
+<ul>
+<li>相席屋のAndroidアプリをWeb上で使う</li>
+</ul>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<ul>
+<li>こんな感じになります。</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/9b37f9f2993b7240815815188f4ebcada9496f37/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f32636137353734312d383163322d616530662d383237382d6361366230333563383834332e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/9b37f9f2993b7240815815188f4ebcada9496f37/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f32636137353734312d383163322d616530662d383237382d6361366230333563383834332e676966" alt="相席屋.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/2ca75741-81c2-ae0f-8278-ca6b035c8843.gif"></a></p>
+
+<h1>
+<span id="手順" class="fragment"></span><a href="#%E6%89%8B%E9%A0%86"><i class="fa fa-link"></i></a>手順</h1>
+
+<p>こちらのページを参照してください。</p>
+
+<p>Androidアプリケーションを、Webブラウザ上でディプロイし利用する方法</p>
+
+<p><a href="https://review-of-my-life.blogspot.jp/2017/11/androidweb.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/11/androidweb.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />11位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/641bb2b23fcbb387bc27">Lancers案件を10399件スクレイピングして、副業したら儲かりそうな案件を見つけてみた</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-25 21:18:17</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[スクレイピング]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やったこと" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やったこと</h1>
+
+<ul>
+<li>Lancersから、10399件のエンジニア向けの案件を取得</li>
+<li>保守・運用・管理案件、スマートフォンアプリ案件、Web開発案件をヒストグラムに落とした。</li>
+</ul>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<ul>
+<li>モバイル系の案件は割と単価が全体的に高い印象。</li>
+<li>アンドロイド・iOSアプリ作れるとフリーランスやりやすかったりするのかなぁ。</li>
+<li>どういう案件があるのかについてはブログ見てください。</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/f2bd0da83446c50afb69ca10fbaa82721912e02b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f62326563626665632d333865352d346461392d396464302d3763653131393965383738622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f2bd0da83446c50afb69ca10fbaa82721912e02b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f62326563626665632d333865352d346461392d396464302d3763653131393965383738622e706e67" alt="保守.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/b2ecbfec-38e5-4da9-9dd0-7ce1199e878b.png"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/b6541725e762da90e180a71fcf344de9f53fe670/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f32633266643635322d653239652d383734372d633330332d6635306337616635616263652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b6541725e762da90e180a71fcf344de9f53fe670/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f32633266643635322d653239652d383734372d633330332d6635306337616635616263652e706e67" alt="スマホ.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/2c2fd652-e29e-8747-c303-f50c7af5abce.png"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/dc2a50da9127a1f00863908e40af1469ef92f8aa/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f30396131623236372d663732352d633331312d343565322d6437613662323162623734332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/dc2a50da9127a1f00863908e40af1469ef92f8aa/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f30396131623236372d663732352d633331312d343565322d6437613662323162623734332e706e67" alt="Web.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/09a1b267-f725-c311-45e2-d7a6b21bb743.png"></a></p>
+
+<h1>
+<span id="関連" class="fragment"></span><a href="#%E9%96%A2%E9%80%A3"><i class="fa fa-link"></i></a>関連</h1>
+
+<p>【副業したいプログラマーへ！】在宅プログラミングで稼ぐ方法まとめ　どのくらいの収入がもらえるかもデータにしてみたよ！|Review of My Life <a href="https://review-of-my-life.blogspot.jp/2017/11/programmer-sidework.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/11/programmer-sidework.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />12位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/4cbed9a991a579178a19">Pythonで、SEO対策用の共起語特定ツールを作成してみた。Selenium | Janome</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-25 11:10:03</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[自然言語処理]</b> <b>[SEO]</b> <b>[janome]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やってみたこと" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やってみたこと</h1>
+
+<ul>
+<li>Googleで特定の言語を検索したときに、その語句の共起語を表示するツールの作成</li>
+<li>SEO対策で上位表示されるためには、共起語の出現頻度を上げるといいとか聞いたので。</li>
+</ul>
+
+<h1>
+<span id="アルゴリズム" class="fragment"></span><a href="#%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0"><i class="fa fa-link"></i></a>アルゴリズム</h1>
+
+<ul>
+<li>コマンドライン引数に、検索語句を入力する　例「東ロボ　偏差値」</li>
+<li>Google検索結果の上位10記事を取得する</li>
+<li>一つ一つのページに入り、HTMLファイルのbodyの中を取得する</li>
+<li>共起語を取得する</li>
+<li>共起語をテキストファイルに保存する</li>
+<li>最後のページまでおなじ動作を繰り返す</li>
+<li>テキストを保存して終了</li>
+</ul>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<ul>
+<li>検索したクエリで、共起語を取得できている。</li>
+<li>東大の研究所がやっている、ロボットによる大学受験プログラムなのだが、それに近い単語の表示頻度が多いことがわかる。</li>
+<li>ページによってはエラーが出てスキップされてしまっているので改善が必要</li>
+<li>内容語ではない名詞や動詞が含まれている（する、れる等）ので、もう少し改善が必要</li>
+</ul>
+
+<div class="code-frame" data-lang="shell-session"><div class="highlight"><pre><span></span><span class="gp">$</span> python3 cooccur.py 東ロボ　偏差値
+</pre></div></div>
+
+<p><a href="https://camo.qiitausercontent.com/51af58e3665dd8f9b684212fd7df3d12e1641429/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f61393537636666382d363031362d313933312d616466622d3633613463316666623063622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/51af58e3665dd8f9b684212fd7df3d12e1641429/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f61393537636666382d363031362d313933312d616466622d3633613463316666623063622e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/a957cff8-6016-1931-adfb-63a4c1ffb0cb.png"></a></p>
+
+<ul>
+<li>出力結果</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>[INFO]タイトル：「東ロボくん」が偏差値57で東大受験を諦めた理由 | ＤＯＬ特別レポート | ダイヤモンド・オンライン :1位
+する | 15 
+
+ため | 7 
+
+東大 | 7 
+
+試験 | 6 
+
+東 | 5 
+
+の | 5 
+
+年 | 5 
+
+記事 | 5 
+
+くん | 5 
+
+単語 | 5 
+
+こと | 5 
+
+見る | 5 
+
+ロボ | 5 
+
+夫 | 4 
+
+的 | 4 
+
+人 | 4 
+
+妻 | 4 
+
+突破 | 4 
+
+学 | 4 
+
+いる | 4 
+
+-----------------------------------------------------------------------
+[INFO]タイトル：ＡＩで東大合格断念　「東ロボくん」偏差値伸びず　　：日本経済新聞 :5位
+日経 | 25 
+
+する | 23 
+
+情報 | 13 
+
+円 | 8 
+
+会員 | 8 
+
+有料 | 8 
+
+限定 | 7 
+
+合格 | 7 
+
+企業 | 6 
+
+値 | 6 
+
+接待 | 6 
+
+電子 | 6 
+
+一覧 | 6 
+
+版 | 6 
+
+偏差 | 5 
+
+イベント | 5 
+
+試験 | 5 
+
+東 | 5 
+
+東京 | 5 
+
+模試 | 5 
+
+-----------------------------------------------------------------------
+[INFO]タイトル：東ロボくん - Wikipedia :6位
+する | 21 
+
+大学 | 16 
+
+同上 | 12 
+
+東大 | 11 
+
+編集 | 10 
+
+研究 | 10 
+
+値 | 9 
+
+偏差 | 9 
+
+情報 | 9 
+
+くん | 8 
+
+東 | 8 
+
+合格 | 8 
+
+ロボット | 8 
+
+研究所 | 8 
+
+国立 | 8 
+
+ロボ | 8 
+
+入れる | 7 
+
+人工 | 7 
+
+いる | 7 
+
+模試 | 7 
+
+-----------------------------------------------------------------------
+[INFO]タイトル：「東ロボくん」偏差値横ばい「５７」　人工知能、東大合格は断念 - 産経ニュース :8位
+[INFO]タイトル：ロボットは東大に入れるか。Todai Robot Project :9位
+する | 12 
+
+プロジェクト | 10 
+
+新聞 | 8 
+
+れる | 7 
+
+年度 | 6 
+
+研究 | 5 
+
+掲載 | 5 
+
+面 | 5 
+
+件 | 5 
+
+的 | 4 
+
+ロボ | 4 
+
+成果 | 4 
+
+東 | 4 
+
+こと | 4 
+
+月日 | 4 
+
+日経 | 4 
+
+付 | 4 
+
+産業 | 4 
+
+朝刊 | 4 
+
+試験 | 3 
+
+-----------------------------------------------------------------------
+[INFO]タイトル：ＡＩプロ「東ロボくん」、東大諦めたら偏差値急上昇　数学４４．３→７６．２に (1/2ページ) - SankeiBiz（サンケイビズ） :4位
+する | 13 
+
+円 | 7 
+
+氏 | 6 
+
+問題 | 6 
+
+模試 | 6 
+
+東大 | 6 
+
+数学 | 6 
+
+企業 | 5 
+
+情報 | 5 
+
+車 | 5 
+
+一覧 | 5 
+
+日本 | 5 
+
+兆 | 5 
+
+スポーツ | 4 
+
+偏差 | 4 
+
+ソフトバンク | 4 
+
+マテ | 4 
+
+一 | 4 
+
+いる | 4 
+
+値 | 4 
+
+-----------------------------------------------------------------------
+[INFO]タイトル：【やじうまPC Watch】東大をあきらめた“東ロボくん”の偏差値が急上昇 ～東大模試数学で偏差値44.3から76.2に - PC Watch :5位
+[INFO]タイトル：「AIの性能を上げている場合ではない」──東ロボくん開発者が危機感を募らせる、AIに勝てない中高生の読解力 - ITmedia NEWS :6位
+する | 47 
+
+いる | 16 
+
+の | 12 
+
+問題 | 12 
+
+ある | 12 
+
+新井 | 11 
+
+教授 | 11 
+
+東 | 10 
+
+ロボ | 10 
+
+東大 | 10 
+
+こと | 10 
+
+くん | 9 
+
+文 | 9 
+
+サイト | 9 
+
+できる | 8 
+
+情報 | 8 
+
+理解 | 8 
+
+割 | 8 
+
+中高生 | 8 
+
+企業 | 7 
+
+-----------------------------------------------------------------------
+[INFO]タイトル：「東ロボくん」、東大合格を断念　苦手科目を克服できず：朝日新聞デジタル :8位
+[INFO]タイトル：国立情報学研究所の人工知能プロジェクト「ロボットは東大に入れるか」で数学と物理の偏差値を大幅に向上！ : 富士通 :9位
+する | 63 
+
+問題 | 33 
+
+処理 | 24 
+
+技術 | 22 
+
+研究所 | 22 
+
+模試 | 19 
+
+情報 | 18 
+
+数学 | 18 
+
+値 | 17 
+
+開発 | 16 
+
+偏差 | 16 
+
+富士通 | 16 
+
+物理 | 15 
+
+研究 | 15 
+
+言語 | 15 
+
+東大 | 13 
+
+入試 | 12 
+
+数式 | 12 
+
+大学 | 12 
+
+国立 | 12 
+
+-----------------------------------------------------------------------
+
+</pre></div></div>
+
+<p><a href="https://camo.qiitausercontent.com/9a23f820d90ccdb1652f99b2ed9bc2d96bb30e01/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f37656334353465372d636433302d333363332d613734612d3339336334663661353339632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/9a23f820d90ccdb1652f99b2ed9bc2d96bb30e01/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f37656334353465372d636433302d333363332d613734612d3339336334663661353339632e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/7ec454e7-cd30-33c3-a74a-393c4f6a539c.png"></a></p>
+
+<h1>
+<span id="実装" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>実装</h1>
+
+<ul>
+<li>形態素解析ライブラリJanome</li>
+<li>スクレイピングツールSelenium</li>
+<li>細かい環境とかブログとか、コードの解説はブログで。</li>
+</ul>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">cooccur.py</span></div>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.keys</span> <span class="kn">import</span> <span class="n">Keys</span>
+
+<span class="kn">from</span> <span class="nn">janome.tokenizer</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
+<span class="kn">from</span> <span class="nn">janome.analyzer</span> <span class="kn">import</span> <span class="n">Analyzer</span>
+<span class="kn">from</span> <span class="nn">janome.tokenfilter</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+
+
+<span class="k">def</span> <span class="nf">filterText</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+   <span class="sd">"""</span>
+<span class="sd">   :param text: str</span>
+<span class="sd">   :rtype : str</span>
+<span class="sd">   """</span>
+   <span class="c1"># アルファベットと半角英数と記号と改行とタブを排除</span>
+   <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">'[a-zA-Z0-9¥"¥.¥,¥@]+'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+   <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">'[!"“#$%&amp;()\*\+\-\.,\/:;&lt;=&gt;?@\[</span><span class="se">\\</span><span class="s1">\]^_`{|}~]'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+   <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">'[\n|\r|\t]'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+
+   <span class="c1"># 日本語以外の文字を排除(韓国語とか中国語とかヘブライ語とか)</span>
+   <span class="n">jp_chartype_tokenizer</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">RegexpTokenizer</span><span class="p">(</span><span class="sa">u</span><span class="s1">'([ぁ-んー]+|[ァ-ンー]+|[</span><span class="se">\u4e00</span><span class="s1">-</span><span class="se">\u9FFF</span><span class="s1">]+|[ぁ-んァ-ンー</span><span class="se">\u4e00</span><span class="s1">-</span><span class="se">\u9FFF</span><span class="s1">]+)'</span><span class="p">)</span>
+   <span class="n">text</span> <span class="o">=</span> <span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">jp_chartype_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+   <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+   <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"　"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+   <span class="k">return</span> <span class="n">text</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="s1">'/mnt/c/workspace/pydev/chromedriver.exe'</span><span class="p">)</span><span class="c1">#Selenium Chromedriverにパスを通す</span>
+    <span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"https://www.google.co.jp/"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">"[INFO]Googleにアクセスしました"</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">""</span>
+    <span class="n">argvs</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span>  <span class="c1"># コマンドライン引数を格納したリストの取得</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argvs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">argv</span> <span class="ow">in</span> <span class="n">argvs</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span> <span class="c1"># 検索語句が複数の場合は、それを全部渡す</span>
+            <span class="n">query</span> <span class="o">+=</span>  <span class="n">argv</span> <span class="o">+</span> <span class="s2">" "</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">argvs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">"[INFO]「{}」で検索しています...."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
+    <span class="n">element</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s2">"lst-ib"</span><span class="p">)</span>
+    <span class="n">element</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="c1">#クエリを入力</span>
+    <span class="n">element</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">ENTER</span><span class="p">)</span> <span class="c1">#Enterキーを押下する</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">"[INFO]検索に成功しました"</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"{}.csv"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">query</span><span class="p">),</span> <span class="s1">'w'</span><span class="p">)</span> <span class="c1">#共起語レポートの作成</span>
+
+    <span class="n">urlsList</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#ここに変数を格納しないと覚えておいてくれない</span>
+
+    <span class="n">urls</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_elements_by_css_selector</span><span class="p">(</span><span class="s2">"h3.r a"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">urls</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
+        <span class="n">urlsList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s2">"href"</span><span class="p">))</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s2">"[INFO]{}件の検索結果が見つかりました。"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">urlsList</span><span class="p">)))</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urlsList</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">"-----------------------------------------------------------------------"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">"[INFO]{}ページ目にアクセスしました"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="s2">"[INFO]タイトル：{} :{}位"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">browser</span><span class="o">.</span><span class="n">title</span><span class="p">,</span><span class="n">count</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">title</span><span class="p">)</span> <span class="c1"># 引数の文字列をファイルに書き込む</span>
+
+            <span class="n">text</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">"body"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">"[INFO]HTMLを取得しました。"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">"---------------------------------------"</span><span class="p">)</span>
+            <span class="n">filterdText</span> <span class="o">=</span> <span class="n">filterText</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+            <span class="k">print</span><span class="p">(</span><span class="n">filterdText</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">"---------------------------------------"</span><span class="p">)</span>
+            <span class="n">token_filters</span> <span class="o">=</span> <span class="p">[</span><span class="n">POSKeepFilter</span><span class="p">([</span><span class="s1">'名詞'</span><span class="p">,</span><span class="s1">'動詞'</span><span class="p">]),</span> <span class="n">TokenCountFilter</span><span class="p">(</span><span class="n">att</span><span class="o">=</span><span class="s1">'base_form'</span><span class="p">)]</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">Analyzer</span><span class="p">(</span><span class="n">token_filters</span><span class="o">=</span><span class="n">token_filters</span><span class="p">)</span>
+            <span class="n">top_words</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">filterdText</span><span class="p">))[:</span><span class="mi">20</span><span class="p">]</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">"[INFO]共起語を取得しています。"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">"-----------------------------------------------------------------------"</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">top_words</span><span class="p">:</span>
+                <span class="n">output</span> <span class="o">=</span> <span class="s2">"{} | {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">count</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">"-----------------------------------------------------------------------"</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="s2">"[ERROR] 共起語を見つけられませんでした。"</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># ファイルを閉じる    </span>
+
+</pre></div>
+</div>
+
+<h1>
+<span id="ブログも見てね" class="fragment"></span><a href="#%E3%83%96%E3%83%AD%E3%82%B0%E3%82%82%E8%A6%8B%E3%81%A6%E3%81%AD"><i class="fa fa-link"></i></a>ブログも見てね</h1>
+
+<p>【Python】SEO対策向けの共起語取得ツールを作ってみた Selenium + Janome<br>
+<a href="https://review-of-my-life.blogspot.jp/2017/11/pythonseo-selenium-janome.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/11/pythonseo-selenium-janome.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />13位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/090df8fab7c8badde839">AmazonのAPIを使って、アフィリエイトリンクの入った商品リンクを自動生成</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-23 18:58:43</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[Flask]</b> <b>[bootstrap]</b> <b>[アフィリエイト]</b> <b>[AmazonAdvertisingAPI]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やったこと" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やったこと</h1>
+
+<ul>
+<li>アフィリエイトをやるならAmazonだよね</li>
+<li>これ、自動作成したい人たくさんいるんじゃないかな(ツイッターのbotとか、記事作成とか)</li>
+<li>なので、これを自動化できる仕組みを作ったよというお話</li>
+</ul>
+
+<h1>
+<span id="完成図" class="fragment"></span><a href="#%E5%AE%8C%E6%88%90%E5%9B%B3"><i class="fa fa-link"></i></a>完成図</h1>
+
+<ul>
+<li>localserverを起動すると、Amazon Advertising APIからデータを取得した結果がHTMLに出力される</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/52cfa81da15119f19df40d9a51be5e3f16ca3314/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f30353062313363332d646533342d356361612d346439302d6338333230666537616163652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/52cfa81da15119f19df40d9a51be5e3f16ca3314/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f30353062313363332d646533342d356361612d346439302d6338333230666537616163652e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/050b13c3-de34-5caa-4d90-c8320fe7aace.png"></a></p>
+
+<h1>
+<span id="手順" class="fragment"></span><a href="#%E6%89%8B%E9%A0%86"><i class="fa fa-link"></i></a>手順</h1>
+
+<ul>
+<li>Amazon Advertising APIから、セール情報を取得</li>
+<li>FlaskでHTML表示</li>
+<li>bootstrapで加工</li>
+</ul>
+
+<h1>
+<span id="ソースコード" class="fragment"></span><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>ソースコード</h1>
+
+<ul>
+<li>詳しいことはブログで！</li>
+</ul>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">amazon.py</span></div>
+<div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">bottlenose</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+
+<span class="n">AMAZON_ACCESS_KEY</span> <span class="o">=</span> <span class="s2">""</span>
+<span class="n">AMAZON_SECRET_KEY</span><span class="o">=</span> <span class="s2">""</span>
+<span class="n">AMAZON_ASSOC_TAG</span><span class="o">=</span> <span class="s2">""</span>
+
+
+<span class="c1">#1 </span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1">#2</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">parseHTML</span><span class="p">():</span>
+
+    <span class="n">responses</span> <span class="o">=</span> <span class="n">getResponses</span><span class="p">()</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">            &lt;!doctype html&gt;</span>
+<span class="s2">            &lt;html lang="en"&gt;</span>
+<span class="s2">              &lt;head&gt;</span>
+<span class="s2">                &lt;title&gt;Hello, world!&lt;/title&gt;</span>
+<span class="s2">                &lt;!-- Required meta tags --&gt;</span>
+<span class="s2">                &lt;meta charset="utf-8"&gt;</span>
+<span class="s2">                &lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"&gt;</span>
+
+<span class="s2">                &lt;!-- Bootstrap CSS --&gt;</span>
+<span class="s2">                &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"&gt;</span>
+<span class="s2">              &lt;/head&gt;</span>
+<span class="s2">              &lt;body&gt;</span>
+<span class="s2">                &lt;div class='container'&gt;</span>
+<span class="s2">            """</span>
+    <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">+=</span> <span class="s2">"&lt;div class='row'&gt;"</span>
+            <span class="n">content</span> <span class="o">+=</span>      <span class="s2">"&lt;div class='col-md-10 col-md-offset-1'&gt;"</span>
+            <span class="n">content</span> <span class="o">+=</span>          <span class="s2">"&lt;div&gt;&lt;h3&gt;{}&lt;/h3&gt;&lt;/div&gt;</span><span class="se">\n\n</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="n">content</span> <span class="o">+=</span>          <span class="s2">"&lt;div&gt;著者：{}&lt;/div&gt;"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="n">content</span> <span class="o">+=</span>          <span class="s2">"&lt;div&gt;&lt;a href = '{}'&gt;&lt;img src = '{}'&gt;&lt;/a&gt;&lt;/div&gt;&lt;!-- 画像--&gt;</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">detailpageurl</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">largeimage</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="n">content</span> <span class="o">+=</span>          <span class="s2">"&lt;div&gt;&lt;blockquote class='blockquote'&gt;&lt;p class='mb-0'&gt;{}&lt;p&gt;&lt;/blockquote&gt;&lt;/div&gt;&lt;!-- 内容--&gt;</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="n">content</span> <span class="o">+=</span>          <span class="s2">"&lt;div&gt;&lt;a href='{}'&gt;詳細はこちら&lt;/a&gt;&lt;/div&gt;&lt;!-- リンク--&gt;</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">detailpageurl</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="n">content</span> <span class="o">+=</span>      <span class="s2">"&lt;/div&gt;"</span>
+            <span class="n">content</span><span class="o">+=</span> <span class="s2">"&lt;/div&gt;"</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">+=</span>      <span class="s2">"&lt;/div&gt;"</span>
+            <span class="n">content</span><span class="o">+=</span> <span class="s2">"&lt;/div&gt;"</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+    <span class="n">content</span> <span class="o">+=</span> <span class="s2">"""</span>
+<span class="s2">            &lt;/div&gt;</span>
+<span class="s2">            &lt;!-- Optional JavaScript --&gt;</span>
+<span class="s2">            &lt;!-- jQuery first, then Popper.js, then Bootstrap JS --&gt;</span>
+<span class="s2">            &lt;script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"&gt;&lt;/script&gt;</span>
+<span class="s2">            &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"&gt;&lt;/script&gt;</span>
+<span class="s2">            &lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"&gt;&lt;/script&gt;</span>
+<span class="s2">          &lt;/body&gt;</span>
+<span class="s2">        &lt;/html&gt;</span>
+<span class="s2">        """</span>
+    <span class="k">return</span> <span class="n">content</span>
+
+<span class="c1">#3</span>
+
+<span class="k">def</span> <span class="nf">getResponses</span><span class="p">():</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>        
+            <span class="n">amazon</span> <span class="o">=</span> <span class="n">bottlenose</span><span class="o">.</span><span class="n">Amazon</span><span class="p">(</span><span class="n">AMAZON_ACCESS_KEY</span><span class="p">,</span><span class="n">AMAZON_SECRET_KEY</span><span class="p">,</span> <span class="n">AMAZON_ASSOC_TAG</span><span class="p">,</span> <span class="n">Region</span><span class="o">=</span><span class="s1">'JP'</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">amazon</span><span class="o">.</span><span class="n">ItemSearch</span><span class="p">(</span>
+                <span class="n">SearchIndex</span> <span class="o">=</span> <span class="s1">'Books'</span><span class="p">,</span>
+                <span class="n">BrowseNode</span> <span class="o">=</span> <span class="mi">3550442051</span><span class="p">,</span>
+                <span class="n">ResponseGroup</span><span class="o">=</span> <span class="s1">'Large'</span>
+                    <span class="p">)</span>
+            <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="p">,</span><span class="s2">"lxml"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">"データの取得に成功しました"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">"item"</span><span class="p">))</span>
+            <span class="c1">#return (soup.prettify())</span>
+        <span class="k">except</span><span class="p">:</span> <span class="c1">#503エラーが出たら再取得する</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">"再取得しています...."</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">#4</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+</pre></div>
+</div>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<p>【Python】Amazonのセール商品をAmazon Product Advertising APIで抽出し、自動記事作成をやってみた|Review of My Life </p>
+
+<p><a href="https://review-of-my-life.blogspot.jp/2017/11/python-amazon-api.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/11/python-amazon-api.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />14位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/1932689a618ee5ea715a">【HTC VIVE】 VR開発チュートリアル　~ものをつかんで投げ、テレポートできるようにする~</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-11 15:58:25</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Unity]</b> <b>[VR]</b> <b>[Vive]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やったこと" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やったこと</h1>
+
+<ul>
+<li>VR上でものを持ち上げたり、テレポーテーションを行えるようにするためのチュートリアルを翻訳しました</li>
+</ul>
+
+<p>HTC Vive Tutorial for Unity(By Eric Van de Kerckhove <a href="/BlackDragonBE" class="user-mention js-hovercard" title="BlackDragonBE" data-hovercard-target-type="user" data-hovercard-target-name="BlackDragonBE">@BlackDragonBE</a>)<br>
+<a href="https://www.raywenderlich.com/149239/htc-vive-tutorial-unity" class="autolink" rel="nofollow noopener" target="_blank">https://www.raywenderlich.com/149239/htc-vive-tutorial-unity</a></p>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<ul>
+<li>こんな感じになりました</li>
+</ul>
+
+<blockquote class="">
+<p>VR開発順調！テレポーテーションと、ものをつかんで投げることができるようになったぞい！ <a href="https://t.co/WtFT2YPirU" rel="nofollow noopener" target="_blank">pic.twitter.com/WtFT2YPirU</a></p>— DAI (@never_be_a_pm) <a href="https://twitter.com/never_be_a_pm/status/928775923888820224?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">November 10, 2017</a>
+</blockquote>
+
+
+
+<p><a href="https://camo.qiitausercontent.com/dbb59efb4cb1c35afb4302f7e66f1378b8fa3769/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f33333333393666312d366363322d326532612d613438662d3630646634363034316138632e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/dbb59efb4cb1c35afb4302f7e66f1378b8fa3769/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f33333333393666312d366363322d326532612d613438662d3630646634363034316138632e676966" alt="Intro.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/333396f1-6cc2-2e2a-a48f-60df46041a8c.gif"></a></p>
+
+<h1>
+<span id="方法" class="fragment"></span><a href="#%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>方法</h1>
+
+<ul>
+<li>こちらの記事を参考にしてください</li>
+</ul>
+
+<p>【HTC VIVE】 VR開発チュートリアル　~ものをつかんで投げ、テレポートできるようにする~<br>
+<a href="https://review-of-my-life.blogspot.jp/2017/11/throw-objects-and-move-aroud-with-laser-in-vr.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/11/throw-objects-and-move-aroud-with-laser-in-vr.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />15位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/6755f8ef5d804ec39b4e">【VR開発】~町の中で空を飛んでビームを撃つ~</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-11 15:52:09</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Unity]</b> <b>[VR]</b> <b>[Vive]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やったこと" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やったこと</h1>
+
+<ul>
+<li>海外Youtubeでアイアンマンのように町で空を飛び、ビームを出すアプリのチュートリアルを翻訳しました</li>
+<li>ブログ記事にまとめ、ソースコードもまとめました。</li>
+</ul>
+
+<p>Unity VR Tutorial - How to make an IronMan like mechanic using HTC Vive<br>
+<a href="https://www.youtube.com/watch?v=FgpFGcHYswI" class="autolink" rel="nofollow noopener" target="_blank">https://www.youtube.com/watch?v=FgpFGcHYswI</a></p>
+
+<h1>
+<span id="成果物" class="fragment"></span><a href="#%E6%88%90%E6%9E%9C%E7%89%A9"><i class="fa fa-link"></i></a>成果物</h1>
+
+<ul>
+<li>こんな感じです。(Youtube見てもらったほうが早い)</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/b02fdc3f5e2986f1231284516698d7a3d0667ba5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f37353663646366342d306331312d633632332d383830372d3965373034396635393833352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b02fdc3f5e2986f1231284516698d7a3d0667ba5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3133343730342f37353663646366342d306331312d633632332d383830372d3965373034396635393833352e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/134704/756cdcf4-0c11-c623-8807-9e7049f59835.png"></a></p>
+
+<h1>
+<span id="手順" class="fragment"></span><a href="#%E6%89%8B%E9%A0%86"><i class="fa fa-link"></i></a>手順</h1>
+
+<ul>
+<li>自分のブログ記事を写すのが面倒なので、こちらを参考にしてください。</li>
+</ul>
+
+<p>【HTC VIVE】VR開発チュートリアル ~町の中で空を飛んでビームを撃つ~</p>
+
+<p><a href="https://review-of-my-life.blogspot.jp/2017/11/vr0vr.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/11/vr0vr.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>kkdmgs110さんの<br />16位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/kkdmgs110/items/f0e3c17a64736d18fbc5">PythonでWordpressの投稿を自動化してみた</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-11 14:53:55</center>
+	</td>
+	<td style="width:200px;">
+		@kkdmgs110<br />(Not in Education, or Employment.inc 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/134704/profile-images/1473719386">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[WordPress]</b> <b>[Selenium]</b> <b>[PhantomJS]</b> <b>[cloud9]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="やりたいこと" class="fragment"></span><a href="#%E3%82%84%E3%82%8A%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やりたいこと</h1>
+
+<ul>
+<li>PythonからWordpressの投稿を行う</li>
+</ul>
+
+<h1>
+<span id="環境" class="fragment"></span><a href="#%E7%92%B0%E5%A2%83"><i class="fa fa-link"></i></a>環境</h1>
+
+<ul>
+<li>Cloud9</li>
+<li>Python3</li>
+<li>PhontomJS * </li>
+<li>Selenium  * </li>
+</ul>
+
+<p>導入は[Python データ分析入門マニュアル] &gt; [スクレイピングをPythonでするときは、Cloud9・Selenium・Herokuで決まり！誰でもできるスクレイピングマニュアル]を参照してください。こちらにCloud9上でSelenium環境を作る方法などをすべてまとめています。</p>
+
+<p>スクレイピングをPythonでするときは、Cloud9・Selenium・Herokuで決まり！誰でもできるスクレイピングマニュアル<br>
+<a href="https://review-of-my-life.blogspot.jp/2017/09/selenium-5-minutes-setup-on-cloud9.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/09/selenium-5-minutes-setup-on-cloud9.html</a></p>
+
+<h1>
+<span id="実装" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>実装</h1>
+
+<ul>
+<li>ワードプレスのログイン画面に移動</li>
+<li>IDとパスワードを入力</li>
+<li>送信ボタンを入力</li>
+<li>新規投稿画面に移動</li>
+<li>タイトルと内容を入力</li>
+<li>下書き保存をクリック</li>
+</ul>
+
+<h1>
+<span id="スクリプト" class="fragment"></span><a href="#%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88"><i class="fa fa-link"></i></a>スクリプト</h1>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">wordpress.py</span></div>
+<div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span> <span class="c1">#seleniumのimport</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">PhantomJS</span><span class="p">()</span> 
+<span class="n">loginURL</span> <span class="o">=</span> <span class="s2">"http://yoursite.com/wp/wp-login.php"</span> <span class="c1">#yoursite.comにはあなたのサイトのアドレスを書いてください</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">loginURL</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">browser</span><span class="o">.</span><span class="n">title</span><span class="p">)</span> <span class="c1"># "あなたのサイト名 ‹ ログイン"と表示される</span>
+
+<span class="c1">#ログイン</span>
+
+<span class="n">username</span> <span class="o">=</span> <span class="s2">""</span><span class="err">　</span><span class="c1">#あなたのユーザー名を入れてください</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s2">""</span> <span class="c1">#あなたのパスワードを入れてください</span>
+
+<span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">"#user_login"</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="s2">"//*[@id='user_pass']"</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">"#wp-submit"</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># waiting for sign in </span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">browser</span><span class="o">.</span><span class="n">title</span><span class="p">)</span> <span class="c1">#"ダッシュボード ‹ あなたのサイト名 — WordPress"と表示される</span>
+
+<span class="c1">#投稿(下書き)</span>
+
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"http://yoursite.com/wp/wp-admin/post-new.php"</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># waiting for sign in </span>
+<span class="k">print</span><span class="p">(</span><span class="n">browser</span><span class="o">.</span><span class="n">title</span><span class="p">)</span> <span class="c1">#"新規投稿を追加 ‹ あなたのサイト名 — WordPress"と表示される</span>
+
+<span class="n">title</span> <span class="o">=</span> <span class="s2">"Test"</span>
+<span class="n">content</span> <span class="o">=</span> <span class="s2">"test post"</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">"#title"</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">"#content_ifr"</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">"#save-post"</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#waiting for post</span>
+
+</pre></div>
+</div>
+
+<h1>
+<span id="詳細" class="fragment"></span><a href="#%E8%A9%B3%E7%B4%B0"><i class="fa fa-link"></i></a>詳細</h1>
+
+<ul>
+<li>手順等は省略しているので、詳細は以下の記事を読んでください。</li>
+</ul>
+
+<p><a href="https://review-of-my-life.blogspot.jp/2017/11/python-wordpress.html" class="autolink" rel="nofollow noopener" target="_blank">https://review-of-my-life.blogspot.jp/2017/11/python-wordpress.html</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

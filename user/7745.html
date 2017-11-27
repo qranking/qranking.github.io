@@ -1,0 +1,774 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (momoiroshikibu)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (momoiroshikibu さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>momoiroshikibuさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>288</kbd>
+		<a target="_blank" href="https://qiita.com/momoiroshikibu/items/d6b30959725eea8c2038">上の階の人の騒音をAmazon Dash ButtonとGoogle Sheetsで記録する</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-25 12:11:02</center>
+	</td>
+	<td style="width:200px;">
+		@momoiroshikibu<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/7745/profile-images/1473680706">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Node.js]</b> <b>[GoogleSpreadSheet]</b> <b>[GoogleSheetsAPI]</b> <b>[AmazonDashButton]</b> <b>[Dasher]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="かくかくしかじか" class="fragment"></span><a href="#%E3%81%8B%E3%81%8F%E3%81%8B%E3%81%8F%E3%81%97%E3%81%8B%E3%81%98%E3%81%8B"><i class="fa fa-link"></i></a>かくかくしかじか</h1>
+
+<p>賃貸マンションの上の階の人がうるさい。<br>
+野球の硬式ボールを落としたような「ドン」、「ゴン」という音が朝と夜に聞こえてくる。上の階の人は野球選手？<br>
+管理会社に相談すると、記録をとって欲しいとのこと。</p>
+
+<h1>
+<span id="目的" class="fragment"></span><a href="#%E7%9B%AE%E7%9A%84"><i class="fa fa-link"></i></a>目的</h1>
+
+<p>ということで、上の階の人の騒音をなんとかしたい。<br>
+というか、管理会社になんとかして欲しい。<br>
+管理会社に連絡したところ、「騒音の日時を記録してもらえますか？」と言われた。<br>
+なんとなく「はいはい、とりあえず記録してください。話はそれからです。」的な雰囲気を感じたので、「どうですか、見てくださいよこの状況。」と自信を持って伝えたい。</p>
+
+<h1>
+<span id="記録する情報" class="fragment"></span><a href="#%E8%A8%98%E9%8C%B2%E3%81%99%E3%82%8B%E6%83%85%E5%A0%B1"><i class="fa fa-link"></i></a>記録する情報</h1>
+
+<ul>
+<li>時刻</li>
+<li>回数(断続的に騒音が続く場合があるので、その回数)</li>
+</ul>
+
+<h1>
+<span id="まずは紙とペンで" class="fragment"></span><a href="#%E3%81%BE%E3%81%9A%E3%81%AF%E7%B4%99%E3%81%A8%E3%83%9A%E3%83%B3%E3%81%A7"><i class="fa fa-link"></i></a>まずは紙とペンで</h1>
+
+<p>手っ取り早く、紙とペンで時刻と回数を記録。<br>
+<a href="https://camo.qiitausercontent.com/6a92c43ab83743239cf11ca1ee9bae303c41b710/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f34396262323963322d393864322d323461322d633364302d3830383539306539666537662e6a706567" target="_blank" rel="nofollow noopener"><img width="400" alt="初代.jpg" src="https://camo.qiitausercontent.com/6a92c43ab83743239cf11ca1ee9bae303c41b710/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f34396262323963322d393864322d323461322d633364302d3830383539306539666537662e6a706567" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/7745/49bb29c2-98d2-24a2-c3d0-808590e9fe7f.jpeg"></a><br>
+こんな感じ。「ドン」は音の感じ。お察しください。</p>
+
+<h1>
+<span id="集計して報告" class="fragment"></span><a href="#%E9%9B%86%E8%A8%88%E3%81%97%E3%81%A6%E5%A0%B1%E5%91%8A"><i class="fa fa-link"></i></a>集計して報告</h1>
+
+<p>紙に記載された記録をExcelに転記し、グラフ付きで管理会社へメールで送付。<br>
+時刻だけ記録されていても、ちゃんと見てくれなさそうな気がしたので、こんな感じのグラフを作成。<br>
+それとなく考察つき。ここが重要な気がするので。</p>
+
+<p><a href="https://camo.qiitausercontent.com/c833b9d55045da5654f1cc84b4d2eaef2ced25d1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f65633635623639382d343265342d323838392d306234642d6338663235363630386634322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/c833b9d55045da5654f1cc84b4d2eaef2ced25d1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f65633635623639382d343265342d323838392d306234642d6338663235363630386634322e706e67" alt="日別.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/7745/ec65b698-42e4-2889-0b4d-c8f256608f42.png"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/b7930e440aab0bced18ac5483e7b070deae46e9d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f61356566316630652d656532612d643233612d323733612d6333363664653365383135372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b7930e440aab0bced18ac5483e7b070deae46e9d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f61356566316630652d656532612d643233612d323733612d6333363664653365383135372e706e67" alt="時間帯別.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/7745/a5ef1f0e-ee2a-d23a-273a-c366de3e8157.png"></a></p>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<p>これを元に、管理会社も上の階の人に電話で注意してくれているようだが、結局効果はなし。<br>
+「設備不良かもしれない」という疑いもあるらしく、記録は継続することに。(本当かな？)<br>
+記録、地味にめんどい。</p>
+
+<h1>
+<span id="初代の問題点" class="fragment"></span><a href="#%E5%88%9D%E4%BB%A3%E3%81%AE%E5%95%8F%E9%A1%8C%E7%82%B9"><i class="fa fa-link"></i></a>初代の問題点</h1>
+
+<p>面倒だったこと</p>
+
+<ul>
+<li> 紙とペンという2つの道具。</li>
+<li> きれいな字で。</li>
+<li> 記録時に時計を見る必要がある。</li>
+<li> 気持ち的に。</li>
+<li> いちいちペンとメモがある場所まで移動。</li>
+<li> ペンのインクがかすれる時がある。地味ストレス。(これはお金で解決できるな…)</li>
+</ul>
+
+<p>考えていなかったこと</p>
+
+<ul>
+<li>管理会社には記録を可視化して、有無を言わせないようにしたい。</li>
+<li>これはなんだかんだ、結果を送るタイミングで気づいた。数値だけ送っても意味ないかも。みたいな。</li>
+<li>記録後、いちいちExcelに転記してグラフを作るのもまた面倒。</li>
+</ul>
+
+<h2>
+<span id="二代目の計画" class="fragment"></span><a href="#%E4%BA%8C%E4%BB%A3%E7%9B%AE%E3%81%AE%E8%A8%88%E7%94%BB"><i class="fa fa-link"></i></a>二代目の計画</h2>
+
+<p>問題点を解決するため、代替手段を探す。<br>
+家の中にAmazon Prime Dayに100円で買ったAmazon Dash Buttonを発見。箱入り娘状態。<br>
+これのボタンを押したら、記録出来るようにしよう、という単純な発想。こういう例、よく見るし簡単そう。<br>
+データの保存先はGoogle Sheetsにしよう。どのみち管理会社にはグラフで報告するし。<br>
+グラフも常に最新化されていて欲しい。いちいち集計したくない。</p>
+
+<p><a href="https://camo.qiitausercontent.com/d9a6e0996c1b667cecd4b1cb259248d5b4004e16/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f62306634643631622d653063312d376263332d333236622d3664396366356436383465382e6a706567" target="_blank" rel="nofollow noopener"><img width="400" alt="二代目.jpg" src="https://camo.qiitausercontent.com/d9a6e0996c1b667cecd4b1cb259248d5b4004e16/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f62306634643631622d653063312d376263332d333236622d3664396366356436383465382e6a706567" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/7745/b0f4d61b-e0c1-7bc3-326b-6d9cf5d684e8.jpeg"></a></p>
+
+<h2>
+<span id="二代目の登場" class="fragment"></span><a href="#%E4%BA%8C%E4%BB%A3%E7%9B%AE%E3%81%AE%E7%99%BB%E5%A0%B4"><i class="fa fa-link"></i></a>二代目の登場</h2>
+
+<p>出来たものはコレ。<a href="https://github.com/momoiroshikibu/dash-button-noise-reporter" rel="nofollow noopener" target="_blank">dash-button-noise-reporter</a></p>
+
+<p>使ったものはこんな感じ。(大したことない)</p>
+
+<ul>
+<li>Amazon Dash Button(Post-it)</li>
+<li>Node.js(dasher)</li>
+<li>Google Spread Sheet</li>
+<li>Google Sheets API</li>
+</ul>
+
+<p>簡単なイメージ</p>
+
+<p><a href="https://camo.qiitausercontent.com/54b7578a9460efe27cbe6fd9fb64c8c9b6376106/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f38643734643430392d613366622d396131612d303866632d6436353762663532386333312e706e67" target="_blank" rel="nofollow noopener"><img width="900" alt="dash-button-architecture.png" src="https://camo.qiitausercontent.com/54b7578a9460efe27cbe6fd9fb64c8c9b6376106/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f38643734643430392d613366622d396131612d303866632d6436353762663532386333312e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/7745/8d74d409-a3fb-9a1a-08fc-d657bf528c31.png"></a></p>
+
+<p>適当にググったら、<a href="https://github.com/hortinstein/node-dash-button" rel="nofollow noopener" target="_blank">node-dash-button</a>というライブラリがあったので、使った。<br>
+いい感じだった。サンプルコードをほぼ踏襲する感じでOKだった。</p>
+
+<p>こんな感じのコード。Dash Buttonのイベントを拾うのはめちゃ簡単だった。圧倒的感謝。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">DashButton</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-dash-button'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">dashButton</span> <span class="o">=</span> <span class="nx">DashButton</span><span class="p">(</span><span class="nx">dashButtonMacAddress</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s1">'all'</span><span class="p">);</span> <span class="c1">// dashButtonMacAddressは環境変数から</span>
+<span class="c1">// listen</span>
+<span class="nx">dashButton</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'detected'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">eventHappenedAt</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'button pressed'</span><span class="p">,</span> <span class="nx">eventHappenedAt</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div></div>
+
+<p>日時の記録は、Google Sheetsを使った。<br>
+上の階の人のために、IaaSのDBっぽいサービスを使うのもイヤだったので、最高の無料ソリューションだった。<br>
+グラフ化も簡単に出来た。Excelを前にすると弱気になる自分も、Google Sheetsの前だと強くなれる気がした。<br>
+グラフを画像にして参照出来るようにもなった。(これは偶然見つけた機能)<br>
+このQiitaの記事に表示されているグラフ画像も、最新のグラフの画像を参照している。Google Sheetsスゴすぎる。</p>
+
+<p>ちなみに、グラフはこんな感じ。<br>
+日別、時間帯別。毎日増え続けるけど、どうでもいい。そこは考えない。騒音が解決すれば、このSheetsともサヨナラなので。</p>
+
+<p><a href="https://camo.qiitausercontent.com/99de77289c665347e8ff549a00fa9219ae52ed16/68747470733a2f2f646f63732e676f6f676c652e636f6d2f7370726561647368656574732f642f31366c6f327368706166316e2d7161467a4f6b6e38376e756a4c543852614350585772457368546a4e4470452f70756263686172743f6f69643d33373633323438333926666f726d61743d696d616765" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/99de77289c665347e8ff549a00fa9219ae52ed16/68747470733a2f2f646f63732e676f6f676c652e636f6d2f7370726561647368656574732f642f31366c6f327368706166316e2d7161467a4f6b6e38376e756a4c543852614350585772457368546a4e4470452f70756263686172743f6f69643d33373633323438333926666f726d61743d696d616765" data-canonical-src="https://docs.google.com/spreadsheets/d/16lo2shpaf1n-qaFzOkn87nujLT8RaCPXWrEshTjNDpE/pubchart?oid=376324839&amp;format=image"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/e6844987cf816b32e580e885c1152cc9908a1a59/68747470733a2f2f646f63732e676f6f676c652e636f6d2f7370726561647368656574732f642f31366c6f327368706166316e2d7161467a4f6b6e38376e756a4c543852614350585772457368546a4e4470452f70756263686172743f6f69643d373637323834353026666f726d61743d696d616765" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e6844987cf816b32e580e885c1152cc9908a1a59/68747470733a2f2f646f63732e676f6f676c652e636f6d2f7370726561647368656574732f642f31366c6f327368706166316e2d7161467a4f6b6e38376e756a4c543852614350585772457368546a4e4470452f70756263686172743f6f69643d373637323834353026666f726d61743d696d616765" data-canonical-src="https://docs.google.com/spreadsheets/d/16lo2shpaf1n-qaFzOkn87nujLT8RaCPXWrEshTjNDpE/pubchart?oid=76728450&amp;format=image"></a></p>
+
+<h1>
+<span id="苦労したところ" class="fragment"></span><a href="#%E8%8B%A6%E5%8A%B4%E3%81%97%E3%81%9F%E3%81%A8%E3%81%93%E3%82%8D"><i class="fa fa-link"></i></a>苦労したところ</h1>
+
+<p>GoogleのAPIの認証周り。これが一番時間かかった。<br>
+クライアントシークレットファイルをダウンロードする。<br>
+このQuickstartは絶対にやるべき。絶対にやるべき。とても学びが多い。<br>
+<a href="https://developers.google.com/sheets/api/quickstart/nodejs" class="autolink" rel="nofollow noopener" target="_blank">https://developers.google.com/sheets/api/quickstart/nodejs</a></p>
+
+<p>APIをコールする際、これをベースに、などを取得してファイルに保存する必要があるので、面倒でも絶対にやるべき(二回目)。<br>
+上のリンクのコードは読んでおくべき。<br>
+結果的に、ググるよりも圧倒的に理解が早い。</p>
+
+<h1>
+<span id="運用してみてわかったこと" class="fragment"></span><a href="#%E9%81%8B%E7%94%A8%E3%81%97%E3%81%A6%E3%81%BF%E3%81%A6%E3%82%8F%E3%81%8B%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>運用してみてわかったこと</h1>
+
+<ul>
+<li>管理会社への連絡は、どんなものを作っても、結局面倒。(二代目を作ってから、まだ報告していない…)</li>
+<li>Node.jsのサーバーはMacBook Proで動かしていたのだけれど、常に起動していないと記録できない…</li>
+</ul>
+
+<p>次回、Raspberry Pi編。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>momoiroshikibuさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>60</kbd>
+		<a target="_blank" href="https://qiita.com/momoiroshikibu/items/382d820d537c1d16446c">上の階の人の騒音を記録するために、部長が自腹で買ってくれたRaspberry Piを使う</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-28 08:19:23</center>
+	</td>
+	<td style="width:200px;">
+		@momoiroshikibu<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/7745/profile-images/1473680706">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Node.js]</b> <b>[RaspberryPi]</b> <b>[AmazonDashButton]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h2>
+<span id="かくかくしかじか" class="fragment"></span><a href="#%E3%81%8B%E3%81%8F%E3%81%8B%E3%81%8F%E3%81%97%E3%81%8B%E3%81%98%E3%81%8B"><i class="fa fa-link"></i></a>かくかくしかじか</h2>
+
+<p>こちらの続きです。</p>
+
+<p>上の階の人の騒音をAmazon Dash ButtonとGoogle Sheetsで記録する<br>
+<a href="https://qiita.com/momoiroshikibu@github/items/d6b30959725eea8c2038" class="autolink" id="reference-458953110dd3882e73b2">https://qiita.com/momoiroshikibu@github/items/d6b30959725eea8c2038</a></p>
+
+<p>深く考えずに、「次回、Raspberry Pi編。」と書いてしまったので。<br>
+先に宣言しておきますが、中身はスカスカですので、ご了承ください。</p>
+
+<h2>
+<span id="一言で言うと" class="fragment"></span><a href="#%E4%B8%80%E8%A8%80%E3%81%A7%E8%A8%80%E3%81%86%E3%81%A8"><i class="fa fa-link"></i></a>一言で言うと</h2>
+
+<p>これを<br>
+<a href="https://camo.qiitausercontent.com/bf499a8faac700165080601618fc551eb118aba1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f63646139363433622d393435642d303966382d363336332d3539363233616564303936342e706e67" target="_blank" rel="nofollow noopener"><img width="896" alt="before.png" src="https://camo.qiitausercontent.com/bf499a8faac700165080601618fc551eb118aba1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f63646139363433622d393435642d303966382d363336332d3539363233616564303936342e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/7745/cda9643b-945d-09f8-6363-59623aed0964.png"></a></p>
+
+<p>こうしました。<br>
+<a href="https://camo.qiitausercontent.com/75259e49220decba76b86ce5c175b5819d144667/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f64363031323630372d373432622d386535332d386433642d3233663130306339636366622e706e67" target="_blank" rel="nofollow noopener"><img width="909" alt="after.png" src="https://camo.qiitausercontent.com/75259e49220decba76b86ce5c175b5819d144667/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f64363031323630372d373432622d386535332d386433642d3233663130306339636366622e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/7745/d6012607-742b-8e53-8d3d-23f100c9ccfb.png"></a></p>
+
+<p>これだけ。<br>
+運用して1ヶ月くらいが過ぎました。</p>
+
+<h2>
+<span id="きっかけ" class="fragment"></span><a href="#%E3%81%8D%E3%81%A3%E3%81%8B%E3%81%91"><i class="fa fa-link"></i></a>きっかけ</h2>
+
+<p>Dash Buttonにより、騒音の日時を記録できるようになったものの…</p>
+
+<p>妻「今日、ボタン押しておいたよ、記録されてるかな？」<br>
+私「あっと、、MacBook起動してなかった…」<br>
+妻「じゃ、押しても意味なかったってこと？」<br>
+私「うん、ごめんね…」</p>
+
+<p>という障害が発生。</p>
+
+<p>Dash Buttonのイベントを受けるために、MacBook Pro以外に何かのサーバーを用意することにした。<br>
+MacBook Proでも良かったのだけれど、そうすると、持ち歩けなくなってしまう。<br>
+(他に持っていたiMacなどは、売ってしまった。)</p>
+
+<h2>
+<span id="この賃貸マンションの片隅に" class="fragment"></span><a href="#%E3%81%93%E3%81%AE%E8%B3%83%E8%B2%B8%E3%83%9E%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E7%89%87%E9%9A%85%E3%81%AB"><i class="fa fa-link"></i></a>この賃貸マンションの片隅に</h2>
+
+<p>部屋の片隅に、Raspberry Piを見つけた。電源は入っていなかった。<br>
+これを使うことにした。けど、葛藤があった。</p>
+
+<p>このRaspberry Piは、半年くらい前に部長が自腹で買ってくれたものだった。(ありがとうございます)<br>
+自分が主催している社内の勉強会用に、という目的だったけど、<br>
+1台をみんなで触るにはいろいろと手間なことがあって、使用機会が無かった。<br>
+あと、活用するシーンが意外と思い浮かばなかった。</p>
+
+<p>ということで、活用した。<br>
+いえ、活用させて頂きました。部長、ありがとうございます。</p>
+
+<h2>
+<span id="raspberry-piの用途" class="fragment"></span><a href="#raspberry-pi%E3%81%AE%E7%94%A8%E9%80%94"><i class="fa fa-link"></i></a>Raspberry Piの用途</h2>
+
+<p>Dash Buttonから発せられるARPのブロードキャストを受け取り、Google Sheets APIにHTTP POSTするだけ。<br>
+そのために、Node.jsの環境があればそれで良い。ただそれだけ。<br>
+あとは騒音問題が解決するまで、ずっと動いていて欲しい。<br>
+妻のボタンプッシュを無駄にしないで欲しい。それだけ。</p>
+
+<p>つまり、用途的には、Raspberry Piである必要は全くない。</p>
+
+<p>黒くて強そうなかっこいいサーバーに比べて、電気代が安い。はず。メリットはこれくらいでは。<br>
+実際、いくらかかっているかは正確にわからないけど、たぶん安い。妻からの苦情も来ていない。<br>
+あ、もう一つメリットが。すごく小さい。</p>
+
+<h2>
+<span id="環境構築" class="fragment"></span><a href="#%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89"><i class="fa fa-link"></i></a>環境構築</h2>
+
+<p>ただデスクの上に置いただけ。ACアダプタがつながっている。<br>
+ソフトウェア面では、大したことをしていないので省略。何も困難がなかった。</p>
+
+<p><a href="https://camo.qiitausercontent.com/9c6c5c5fdbb7b8de073d6a915cad9a7b6e441d8e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f37666430633338332d383938372d316239652d336639322d3232626637376664306639362e706e67" target="_blank" rel="nofollow noopener"><img width="511" alt="raspberry-on-the-desk.png" src="https://camo.qiitausercontent.com/9c6c5c5fdbb7b8de073d6a915cad9a7b6e441d8e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f373734352f37666430633338332d383938372d316239652d336639322d3232626637376664306639362e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/7745/7fd0c383-8987-1b9e-3f92-22bf77fd0f96.png"></a></p>
+
+<h1>
+<span id="やってみてわかったこと" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%A6%E3%82%8F%E3%81%8B%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やってみてわかったこと</h1>
+
+<p>良かったこと。</p>
+
+<ul>
+<li>もともとの障害が解消。</li>
+<li>意外と安定して動作している。</li>
+<li>一度もプロセスが落ちていない。</li>
+<li>デスクの上に置いてある。掃除しやすい。</li>
+<li>「何もしてないのに壊れた」イベントが発生しない。</li>
+<li>HHKBも使える。</li>
+</ul>
+
+<p>悪かったこと。</p>
+
+<ul>
+<li>なんか、赤と黄のLEDが、夜中にチカチカしている。(妻から、やんわりと苦情あり)</li>
+<li>安定して動きすぎてて、なんか逆に寂しい。</li>
+<li>Raspberry Pi、もっとちゃんとした用途で使ってみたい。宝の持ち腐れ感。</li>
+</ul>
+
+<h1>
+<span id="各種数値など" class="fragment"></span><a href="#%E5%90%84%E7%A8%AE%E6%95%B0%E5%80%A4%E3%81%AA%E3%81%A9"><i class="fa fa-link"></i></a>各種数値など</h1>
+
+<p>サーバーがどういう状態か、少しは把握してみようかなと思ったけど、SSHの鍵が見つからない。<br>
+メルカリで旅立っていったMacBookを初期化した時かな。きっとそうだな。</p>
+
+<ul>
+<li>ロードアベレージ</li>
+<li>CPU使用率</li>
+<li><code>uptime</code></li>
+</ul>
+
+<p>すべて不明。ファンも回っていない。あ、そもそもついてないから当然か。</p>
+
+<h1>
+<span id="感想" class="fragment"></span><a href="#%E6%84%9F%E6%83%B3"><i class="fa fa-link"></i></a>感想</h1>
+
+<p>6,000円くらいあれば買えるというのがすごい。自分のお金じゃないけど。<br>
+とても気軽に楽しめる。自分のお金じゃないけど。<br>
+部長、ありがとうございました。いまは違う部門だけど。<br>
+昔、15,000円くらいで購入したデカい筐体の自宅サーバー(MADE IN TOKYO)は電気代とネットワークに苦労したのに。</p>
+
+<p>乾電池でも動くし、Wi-Fiもつながるってすごい。乾電池では運用していないけど。<br>
+そういう用途で使ってみたい。</p>
+
+<p>SSHの鍵、どうしよう。大家さん、持ってないかな。<br>
+管理会社にもらえないかな。騒音問題も解決してくれないから無理か。<br>
+そういうことじゃないか…ただの自分のミスか。</p>
+
+<p>ちなみに、この文章は、断続的に続く騒音(野球の硬式ボールを落としたみたいな音)の中、書いてます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/e6844987cf816b32e580e885c1152cc9908a1a59/68747470733a2f2f646f63732e676f6f676c652e636f6d2f7370726561647368656574732f642f31366c6f327368706166316e2d7161467a4f6b6e38376e756a4c543852614350585772457368546a4e4470452f70756263686172743f6f69643d373637323834353026666f726d61743d696d616765" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e6844987cf816b32e580e885c1152cc9908a1a59/68747470733a2f2f646f63732e676f6f676c652e636f6d2f7370726561647368656574732f642f31366c6f327368706166316e2d7161467a4f6b6e38376e756a4c543852614350585772457368546a4e4470452f70756263686172743f6f69643d373637323834353026666f726d61743d696d616765" data-canonical-src="https://docs.google.com/spreadsheets/d/16lo2shpaf1n-qaFzOkn87nujLT8RaCPXWrEshTjNDpE/pubchart?oid=76728450&amp;format=image"></a></p>
+
+<p>運命のドラフトまで、あと1ヶ月。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>momoiroshikibuさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>15</kbd>
+		<a target="_blank" href="https://qiita.com/momoiroshikibu/items/5755ba1cd39bc18102d8">ISUCON6の予選をNode.jsで突破する</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-11 08:54:55</center>
+	</td>
+	<td style="width:200px;">
+		@momoiroshikibu<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/7745/profile-images/1473680706">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Node.js]</b> <b>[isucon]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="経緯" class="fragment"></span><a href="#%E7%B5%8C%E7%B7%AF"><i class="fa fa-link"></i></a>経緯</h1>
+
+<p>去年、ISUCONに参加してみました。少しの爪痕も残すことなく敗退しました。</p>
+
+<p>Node.jsをチョイスしましたが、慣れない<code>async/await</code>とすさまじい<code>htmlify</code>の前に、何もできずに終わりました。</p>
+
+<p>で、今年のISUCON7でリベンジすべく、特訓を始めました。<br>
+いろいろと調べていると、こんな情報がありました。</p>
+
+<p><a href="http://isucon.net/archives/48501097.html" rel="nofollow noopener" target="_blank">ISUCON6 オンライン予選の利用言語比率</a></p>
+
+<p>あれ、Node.jsで本戦に出場しているチームがない…<br>
+と思ったので、少し心に火がつきました。</p>
+
+<h2>
+<span id="目標" class="fragment"></span><a href="#%E7%9B%AE%E6%A8%99"><i class="fa fa-link"></i></a>目標</h2>
+
+<p><a href="http://isucon.net/archives/48475110.html" rel="nofollow noopener" target="_blank">ISUCON6 本選出場者決定のお知らせ</a>を見る限り、90,214点を超えられれば良いらしい。<br>
+または、学生になれば良いらしい。でも、社会人学生じゃダメらしい。<br>
+ということで、90,214点を超えるのが目標。</p>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<p>このまとめにあるブログエントリをめちゃ参考にさせて頂きました。<br>
+みなさまありがとうございます。</p>
+
+<p>【更新終了】ISUCON6 オンライン予選 関連エントリまとめ<br>
+<a href="http://isucon.net/archives/48465813.html" class="autolink" rel="nofollow noopener" target="_blank">http://isucon.net/archives/48465813.html</a></p>
+
+<p>あと、この環境にお世話になりました。ありがとうございます。<br>
+<a href="https://github.com/matsuu/vagrant-isucon" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/matsuu/vagrant-isucon</a></p>
+
+<h1>
+<span id="結果" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>結果</h1>
+
+<p>まずは結果から。<br>
+これらの対応を全てやって、<strong>124,721</strong>まで到達しました。(ローカルのvagrant-standalone環境)<br>
+色々な改善策については予選に参加されたみなさんのブログエントリを参考にするのが良いと思います。<br>
+自分で発見したことは特にありません。N番煎じです。</p>
+
+<h2>
+<span id="やったこと" class="fragment"></span><a href="#%E3%82%84%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やったこと</h2>
+
+<p>明確に分けるのは難しいですが、ざっくりNode.jsに関連する/しないで、こんな変更をしました。</p>
+
+<h3>
+<span id="nodejsに関連するもの" class="fragment"></span><a href="#nodejs%E3%81%AB%E9%96%A2%E9%80%A3%E3%81%99%E3%82%8B%E3%82%82%E3%81%AE"><i class="fa fa-link"></i></a>Node.jsに関連するもの</h3>
+
+<ul>
+<li><p>Node.jsのバージョンをv8.5.0に。<br>
+効果: ★☆☆☆☆<br>
+難易度: ★☆☆☆☆</p></li>
+<li><p><code>htmlify</code>を正規表現からトライ木に。<br>
+効果: ★★★★★<br>
+難易度: ★★★★★</p></li>
+<li><p>Node.js &lt;-&gt; MySQL、Node.js &lt;-&gt; Redis はドメインソケットで。<br>
+効果: ★★☆☆☆<br>
+難易度: ★☆☆☆☆</p></li>
+<li><p><code>initialize</code>のタイミングでユーザーを全てRedisにキャッシュ。<br>
+効果: ★★★★☆<br>
+難易度: ★★★☆☆</p></li>
+<li><p>事前にHTMLをRedisにキャッシュしておく。<br>
+効果: ★★★★★<br>
+難易度: ★★★★☆</p></li>
+<li><p><code>child_process</code>をCPUのコア数(2)に合わせる<br>
+効果: ★★★★★<br>
+難易度: ★☆☆☆☆</p></li>
+<li><p>EJSのテンプレートまわりの処理を改善。<br>
+効果: ★★★★★<br>
+難易度: ★★★★☆</p></li>
+</ul>
+
+<h3>
+<span id="nodejsに関連しないもの" class="fragment"></span><a href="#nodejs%E3%81%AB%E9%96%A2%E9%80%A3%E3%81%97%E3%81%AA%E3%81%84%E3%82%82%E3%81%AE"><i class="fa fa-link"></i></a>Node.jsに関連しないもの</h3>
+
+<ul>
+<li>遅いクエリの改善。特に一覧のアレ。</li>
+<li>静的ファイルをNginxで。基本304で。</li>
+<li>istarを統合。</li>
+<li>istarのデータ保存先はMySQLではなくRedisで。</li>
+<li>その他いろいろ</li>
+</ul>
+
+<p>対応とスコアの伸びを示せません。ゴメンナサイ。<br>
+なんとなくの感覚値でおすすめ度は★で示してみました。</p>
+
+<p>最初はマメにメモっていたのですが、途中で面倒になってやめました。<br>
+そのうちまとめ直すかもしれません。<br>
+「行けたら行くわー」みたいなやつです。絶対やらないパターンですので、期待しないでください。</p>
+
+<p>実感として、上記の対応の一つでも不足すると、予選を突破できない、そんな印象です。<br>
+少なくとも、効果が★4つ以上は必須っぽい。あとは対応の組み合わせ次第でなんとかなるかも。<br>
+検証していませんが、とても高い壁に感じました。<br>
+これらの対応を数時間で実現する方たち、すごすぎる。フリースタイルダンジョンすぎる。</p>
+
+<p>ちなみに、いろいろとあって、期間としてはここまで3週間くらいかかっています。<br>
+「いろいろあって」は思うようにスコアが伸びなかったことに対する、ただの言い訳だと思ってください。</p>
+
+<h1>
+<span id="環境" class="fragment"></span><a href="#%E7%92%B0%E5%A2%83"><i class="fa fa-link"></i></a>環境</h1>
+
+<p>環境は<a href="https://github.com/matsuu/vagrant-isucon/tree/master/isucon6-qualifier-standalone" rel="nofollow noopener" target="_blank">isucon6-qualifier-standalone</a>です。</p>
+
+<p><a href="https://support.apple.com/kb/SP754" rel="nofollow noopener" target="_blank">MacBook Proの2017年モデル</a>で、一番安いやつです。<br>
+あ、色はスペースグレイです。(スコアに関係ないか)</p>
+
+<h1>
+<span id="解説" class="fragment"></span><a href="#%E8%A7%A3%E8%AA%AC"><i class="fa fa-link"></i></a>解説</h1>
+
+<p>Node.jsに関連する部分だけ少し補足していきます。少しだけです。<br>
+丁寧じゃない言い訳です。拙いレベルでも良いわけです。</p>
+
+<h1>
+<span id="nodejsのバージョンをv850に" class="fragment"></span><a href="#nodejs%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%92v850%E3%81%AB"><i class="fa fa-link"></i></a>Node.jsのバージョンをv8.5.0に</h1>
+
+<p>シンプルにただそれだけ、という感じです。<br>
+Nodebrewを使っています。いつもお世話になっております。</p>
+
+<p>そんなに効果はありませんでしたが、なんとなく<code>--tarbo</code>などもつけています。<br>
+気分的に「あとはアプリを改修するしかない」となれます。言い訳ができなくなります。</p>
+
+<p>あ、忘れていました。一つメリットがありました。<br>
+<code>bin/run_iusda</code>ではなく、<code>bin/isuda</code>を直接実行出来るようになります。<br>
+Node.jsのバージョンが上がるので、バベる必要が無くなります。</p>
+
+<p>つまり、<code>bin/run_isuda</code>内で<code>require</code>されている、<code>runkoa</code>さんが不要になる。<br>
+そんなにスコアには影響しない感じがします。気持ちの問題という印象です。<br>
+ということで、<code>isuda.js.service</code>の内容も<code>bin/isuda</code>とします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>[Service]
+WorkingDirectory=/home/isucon/webapp/js
+EnvironmentFile=/home/isucon/env.sh
+Environment=NODE_ENV=production
+
+# Node.js v8.5.0
+ExecStart = /home/isucon/.nodebrew/node/v8.5.0/bin/node /home/isucon/webapp/js/bin/isuda
+</pre></div></div>
+
+<h1>
+<span id="htmlifyを正規表現からトライ木に" class="fragment"></span><a href="#htmlify%E3%82%92%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E3%81%8B%E3%82%89%E3%83%88%E3%83%A9%E3%82%A4%E6%9C%A8%E3%81%AB"><i class="fa fa-link"></i></a><code>htmlify</code>を正規表現からトライ木に。</h1>
+
+<p>本選出場者の方々は、トライ木というアルゴリズムで実装をしているようでした。<br>
+自分は知らなかったので、余裕で敗退しました。<br>
+このアルゴリズムを知らなかったので、"知らない前提"、つまり、トライ木の対応をせずに予選を突破するスコアを出そうとしていましたが、自分の頭では、避けられませんでした。<br>
+残念ながら、知らなければ予選敗退決定という感じです。ということで、トライしました。</p>
+
+<p>やりたいことは<strong>任意のテキストに対してキーワードをマッチングし、それを置換する</strong>なので、<br>
+npmで<code>trie</code>みたいなキーワードで探しました。</p>
+
+<p>すると、<a href="https://www.npmjs.com/package/keyword-trie-js" rel="nofollow noopener" target="_blank">keyword-trie-js</a>というライブラリが見つかりました。<br>
+が、使ってみると、ベンチ的にはfailしまくりでした。<br>
+あと、キーワードの追加、削除に対応していないようでした。</p>
+
+<p>他にもいろいろと探してみましたが、欲しい機能を持つライブラリはありませんでした。残念。</p>
+
+<p>なので、自分で書くことにしました。トライ木の主要機能は<a href="https://www.npmjs.com/package/trie-js" rel="nofollow noopener" target="_blank">trie-js</a>をベースにしました。<br>
+キーワードの追加/削除が出来たので、充分でした。<br>
+速度などは他のライブラリと比べていないので、不明です。<br>
+予選を突破するスコアを出すのが目標です。</p>
+
+<p>Trie.prototypeオブジェクトを拡張し、<code>replace</code>関数を追加しました。<br>
+こんな感じの実装になりました。泥くさい感じですが、動いています。</p>
+
+<ul>
+<li>1文字ずつキーワードのプレフィックスにマッチするか確認</li>
+<li>マッチしなければ置換しない</li>
+<li>マッチしたら、次の文字を加え(2文字となる)、キーワードのプレフィックスにマッチするか確認</li>
+<li>これを続け、キーワードの完全マッチがしたら、<code>replacer</code>となる関数にキーワードを渡し、置換後の文字列を受け取る</li>
+<li>この文字列を<code>replace</code>関数の戻り値となる文字列に加える</li>
+</ul>
+
+<p>こういう処理をずっと繰り返します。最長マッチや効率などは考えていません。<br>
+きっと、もっと洗練された処理になるのでしょう。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="nx">Trie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">replace</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">replacer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">text</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="kr">const</span> <span class="nx">chars</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">newText</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="kd">let</span> <span class="nx">phrase</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">chars</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">phrase</span> <span class="o">+=</span> <span class="nx">chars</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">lookup</span><span class="p">(</span><span class="nx">phrase</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">newText</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">replacer</span><span class="p">(</span><span class="nx">phrase</span><span class="p">));</span>
+            <span class="nx">phrase</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isPrefix</span><span class="p">(</span><span class="nx">phrase</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">i</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">-</span> <span class="p">(</span><span class="nx">phrase</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="nx">newText</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">phrase</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+
+        <span class="nx">phrase</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">newText</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
+<span class="p">}</span>
+
+</pre></div></div>
+
+<p>これをこんな感じで呼び出しています。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">tree</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">content</span><span class="p">,</span> <span class="p">(</span><span class="nx">keyword</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="sb">`/keyword/</span><span class="si">${</span><span class="nx">RFC3986URIComponent</span><span class="p">(</span><span class="nx">keyword</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+    <span class="k">return</span> <span class="sb">`&lt;a href=</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">&gt;</span><span class="si">${</span><span class="nx">ejs</span><span class="p">.</span><span class="nx">escapeXML</span><span class="p">(</span><span class="nx">keyword</span><span class="p">)</span><span class="si">}</span><span class="sb">&lt;/a&gt;`</span><span class="p">;</span>
+<span class="p">});</span>
+</pre></div></div>
+
+<p>EJSのテンプレートの対応を除くと、この対応だけで<br>
+30,000点から70,000くらいになりました。かなり良い感じです。</p>
+
+<h1>
+<span id="nodejs---mysqlnodejs---redis-はドメインソケットで" class="fragment"></span><a href="#nodejs---mysqlnodejs---redis-%E3%81%AF%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%BD%E3%82%B1%E3%83%83%E3%83%88%E3%81%A7"><i class="fa fa-link"></i></a>Node.js &lt;-&gt; MySQL、Node.js &lt;-&gt; Redis はドメインソケットで。</h1>
+
+<p>これだけ。思ったより効果ありという印象。</p>
+
+<p>/etc/redis.conf</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>unixsocket /var/run/redis/redis.sock
+unixsocketperm 700
+</pre></div></div>
+
+<p>routes/isuda.js</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">cache</span> <span class="o">=</span> <span class="nx">redis</span><span class="p">.</span><span class="nx">createClient</span><span class="p">(</span><span class="s1">'/var/run/redis/redis.sock'</span><span class="p">);</span>
+</pre></div></div>
+
+<h1>
+<span id="initializeのタイミングでユーザーを全てredisにキャッシュ" class="fragment"></span><a href="#initialize%E3%81%AE%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%92%E5%85%A8%E3%81%A6redis%E3%81%AB%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5"><i class="fa fa-link"></i></a><code>initialize</code>のタイミングでユーザーを全てRedisにキャッシュ。</h1>
+
+<p>こんな感じでキャッシュします。シンプルにそれだけ。あとはそれを取り出すだけ。<br>
+ユーザーの追加/削除とかもやります。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">cacheCurrentUsers</span> <span class="o">=</span> <span class="nx">async</span> <span class="p">(</span><span class="nx">db</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">db</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s1">'SELECT * FROM user'</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">user</span> <span class="k">of</span> <span class="nx">users</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">userJson</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
+        <span class="nx">await</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">setAsync</span><span class="p">(</span><span class="sb">`user-</span><span class="si">${</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span> <span class="nx">userJson</span><span class="p">);</span>
+        <span class="nx">await</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">setAsync</span><span class="p">(</span><span class="sb">`user-</span><span class="si">${</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span> <span class="nx">userJson</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><code>cluster</code>モジュールで複数のプロセスを起動するので、何かのオブジェクトに突っ込んでおく、みたいなことは出来ません。(はじめにやって失敗…)<br>
+なので、Redisを使いました。予めdumpしておいても良いかもしれません。</p>
+
+<p>ユーザーの<code>id</code>と<code>name</code>をキーのサフィックスにしました。<br>
+ユーザーを取得する処理にはidをキーにする場合とnameをキーにする場合の2パターンがあるので。という単純な理由です。</p>
+
+<h1>
+<span id="事前にhtmlをredisにキャッシュしておく" class="fragment"></span><a href="#%E4%BA%8B%E5%89%8D%E3%81%ABhtml%E3%82%92redis%E3%81%AB%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E3%81%97%E3%81%A6%E3%81%8A%E3%81%8F"><i class="fa fa-link"></i></a>事前にHTMLをRedisにキャッシュしておく。</h1>
+
+<p>手早くこんな感じで。一回このURIに対してリクエストしてRedisのキャッシュに入れておく。で、それをdumpしておきます。</p>
+
+<p><code>SELECT * FROM entry order by id</code>のSQLは<code>*</code>の部分をもう少し丁寧にしたらスコアが上がるかもしれません。やってません。</p>
+
+<p>これで20000点から60000点くらいになった気がします。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'generate_html_caches'</span><span class="p">,</span> <span class="nx">async</span> <span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">dbh</span><span class="p">(</span><span class="nx">ctx</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="nx">conn</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">db</span><span class="p">.</span><span class="nx">getConnection</span><span class="p">();</span>
+
+    <span class="kr">const</span> <span class="nx">keywords</span> <span class="o">=</span> <span class="p">(</span><span class="nx">await</span> <span class="nx">conn</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s1">'SELECT keyword FROM entry ORDER BY CHARACTER_LENGTH(keyword) DESC'</span><span class="p">))</span>
+          <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">k</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">k</span><span class="p">.</span><span class="nx">keyword</span><span class="p">);</span>
+    <span class="nx">keywords</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">keyword</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">tree</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">keyword</span><span class="p">)});</span>
+
+    <span class="kr">const</span> <span class="nx">entries</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">conn</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s1">'SELECT * FROM entry order by id'</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">entry</span> <span class="k">of</span> <span class="nx">entries</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">await</span> <span class="nx">htmlify</span><span class="p">(</span><span class="nx">entry</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">description</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">ctx</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'caches'</span><span class="o">:</span> <span class="nx">entries</span><span class="p">.</span><span class="nx">length</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div></div>
+
+<h1>
+<span id="child_processをcpuのコア数2に合わせる" class="fragment"></span><a href="#child_process%E3%82%92cpu%E3%81%AE%E3%82%B3%E3%82%A2%E6%95%B02%E3%81%AB%E5%90%88%E3%82%8F%E3%81%9B%E3%82%8B"><i class="fa fa-link"></i></a><code>child_process</code>をCPUのコア数(2)に合わせる</h1>
+
+<p>こんな感じで。自分の環境だと2個でした。安いモデルなので。<br>
+ちなみに、テンプレートから展開したAzureの環境でも2個でした。<br>
+環境はわかっているので、整数でも良いかもしれません。</p>
+
+<p>bin/isuda</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">cluster</span><span class="p">.</span><span class="nx">isMaster</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">numChild</span> <span class="o">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">cpus</span><span class="p">().</span><span class="nx">length</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">numChild</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">cluster</span><span class="p">.</span><span class="nx">fork</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h1>
+<span id="ejsのテンプレートまわりの処理を改善" class="fragment"></span><a href="#ejs%E3%81%AE%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%81%BE%E3%82%8F%E3%82%8A%E3%81%AE%E5%87%A6%E7%90%86%E3%82%92%E6%94%B9%E5%96%84"><i class="fa fa-link"></i></a>EJSのテンプレートまわりの処理を改善。</h1>
+
+<p>これが一番盲点でした。</p>
+
+<p><code>&lt;%- include('/views/header.ejs') %&gt;</code>だったり、<code>&lt;%- include('/views/footer.ejs') %&gt;</code>の<code>include</code>の処理の度に<code>fs.readFileSync</code>をしている…<br>
+つまり、リクエストの度にほぼ3回、テンプレートのファイル(*.ejs)をreadします。<br>
+(対象ページのテンプレート、ヘッダ、フッタの3つ)</p>
+
+<p>これをキャッシュする(ファイルの読み込みを無くす)ことで、かなりスコアが上がります。<br>
+85,000点から124,721点までなりました。とても効果的です。<br>
+下の例のようにプレコンパイルしておいて、その関数を<code>ctx.body</code>の結果とする感じです。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">ejs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'ejs'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">ejsOption</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">source</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">compileDebug</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">cache</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// 大事</span>
+    <span class="nx">root</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">'../'</span><span class="p">)</span>
+<span class="p">};</span>
+
+<span class="c1">// util</span>
+<span class="kr">const</span> <span class="nx">compileTemplate</span> <span class="o">=</span> <span class="p">(</span><span class="nx">templateFileName</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">ejs</span><span class="p">.</span><span class="nx">compile</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="sb">`../views/</span><span class="si">${</span><span class="nx">templateFileName</span><span class="si">}</span><span class="sb">.ejs`</span><span class="p">),</span> <span class="s1">'utf-8'</span><span class="p">),</span> <span class="nx">ejsOption</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// compile</span>
+<span class="kr">const</span> <span class="nx">indexRenderer</span> <span class="o">=</span> <span class="nx">compileTemplate</span><span class="p">(</span><span class="s1">'index'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">authenticateRenderer</span> <span class="o">=</span> <span class="nx">compileTemplate</span><span class="p">(</span><span class="s1">'authenticate'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">registerRenderer</span> <span class="o">=</span> <span class="nx">compileTemplate</span><span class="p">(</span><span class="s1">'register'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">keywordRenderer</span> <span class="o">=</span> <span class="nx">compileTemplate</span><span class="p">(</span><span class="s1">'keyword'</span><span class="p">);</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'register'</span><span class="p">,</span> <span class="nx">async</span> <span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">await</span> <span class="nx">setName</span><span class="p">(</span><span class="nx">ctx</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">ctx</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">action</span> <span class="o">=</span> <span class="s1">'register'</span><span class="p">;</span>
+    <span class="nx">ctx</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="nx">registerRenderer</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">state</span><span class="p">);</span> <span class="c1">// render</span>
+<span class="p">});</span>
+</pre></div></div>
+
+<h1>
+<span id="余談" class="fragment"></span><a href="#%E4%BD%99%E8%AB%87"><i class="fa fa-link"></i></a>余談</h1>
+
+<p>スコアが70,000前後のときに、大人げなくAzure環境にてお金で解決を試みました。<br>
+が、1万点くらいしかアップしませんでした。やめたほうが良いと思います。</p>
+
+<p>ちなみに、このときは1インスタンスに"ベンチマーカーとアプリが同居した状態"でした。</p>
+
+<p>なので、ベンチマーカー用インスタンスを分離させて、アプリとベンチで1インスタンスずつとしました。<br>
+が、300点くらいしかアップしませんでした。やめたほうが良いと思います。</p>
+
+<p>たいした金額でもないのに、無駄遣い感がすごいです。</p>
+
+<h1>
+<span id="感想" class="fragment"></span><a href="#%E6%84%9F%E6%83%B3"><i class="fa fa-link"></i></a>感想</h1>
+
+<p>とても厳しい戦いだということがわかりました。<br>
+なんとか決勝に行きたい。</p>
+
+<h1>
+<span id="さいごに" class="fragment"></span><a href="#%E3%81%95%E3%81%84%E3%81%94%E3%81%AB"><i class="fa fa-link"></i></a>さいごに</h1>
+
+<p>Node.jsで参考実装してくださる方、ありがとうございます。<br>
+</p><blockquote class="twitter-tweet">
+<p>参考実装お手伝いの件ですが、沢山のご応募をいただきましたので Ruby,Perl,Node.js は提供可能な目処がたちました！お手伝いいただく方、また次の機会でお願いしたいという方には明日を目処にご連絡いたします。ご協力いただいた皆さま、ありがとうございました！ <a href="https://twitter.com/hashtag/isucon?src=hash&amp;ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">#isucon</a> <a href="https://t.co/Y47jXz68iP" rel="nofollow noopener" target="_blank"></a><a href="https://t.co/Y47jXz68iP" class="autolink" rel="nofollow noopener" target="_blank">https://t.co/Y47jXz68iP</a></p>— ISUCON公式 (@isucon_official) <a href="https://twitter.com/isucon_official/status/914787105615654912?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年10月2日</a>
+</blockquote><br>
+
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

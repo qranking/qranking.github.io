@@ -1,0 +1,613 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (aqubi)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (aqubi さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>aqubiさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>106</kbd>
+		<a target="_blank" href="https://qiita.com/aqubi/items/8b3c4dcd208e2581184d">iOS11のInsetsとLayout</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-16 04:22:48</center>
+	</td>
+	<td style="width:200px;">
+		@aqubi<br />(Flask LLP 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/1380/profile-images/1473683412">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[iOS]</b> <b>[UIKit]</b> <b>[ios11]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="insets" class="fragment"></span><a href="#insets"><i class="fa fa-link"></i></a>Insets</h1>
+
+<p><a href="https://camo.qiitausercontent.com/e72ba1df2ead3bd9ecd827bd8a844d6aecb36814/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f34373032333661312d616535372d323734392d373039352d3461353339393461643338342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e72ba1df2ead3bd9ecd827bd8a844d6aecb36814/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f34373032333661312d616535372d323734392d373039352d3461353339393461643338342e706e67" alt="views.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/1380/470236a1-ae57-2749-7095-4a53994ad384.png"></a></p>
+
+<p>半透明のナビゲーションバーやタブバーを配置して、下のテーブルの内容が潜り込んで見えるようにする場合、Insetsでその量を指定します。<br>
+iOS10の時は、「Adjust Scroll View Insets」にチェックを入れると、配置しているTableViewなどScrollView系のコンポーネントのContentInsetsが自動的に設定される仕組みになっていました。<br>
+<a href="https://camo.qiitausercontent.com/645da6ca33645952786b365f49e0fe761a0cbd7b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f32313263376565332d623964642d366633332d373733372d3066643465613733396531362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/645da6ca33645952786b365f49e0fe761a0cbd7b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f32313263376565332d623964642d366633332d373733372d3066643465613733396531362e706e67" alt="adjustInsets.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/1380/212c7ee3-b9dd-6f33-7737-0fd4ea739e16.png"></a></p>
+
+<p>iOS11からは、contentInsetsではなく、SafeAreaInsets → adjustedContentInset にその量が反映されるようになります。<br>
+「Adjust Scroll View Insets」(コードでは UIViewController.automaticallyAdjustsScrollViewInsets)はiOS11でdeprecatedになりました。</p>
+
+<p>Viewのレイアウトも、iOS11でSafeAreaLayoutGuidesが追加され、UIViewControllerのtopLayoutGuide, bottomLayoutGuideがdeprecatedになりました。</p>
+
+<p>Top/BottomLayoutGuideはUIViewControllerにありますが、SafeAreaLayoutGuidesはUIViewごとに存在します。<br>
+この「UIViewごとにある」というのがポイントで、Viewを複数重ねた中にある子Viewに対してもSafeAreaGuideの制約を作ることができるようになりました！</p>
+
+<p>さらに、追加されたUIViewController.additionalSafeAreaInsetsで追加が可能。<br>
+タブバー/ナビバーを標準を使わず独自に作った時など...とかに使えそうです。</p>
+
+<h1>
+<span id="iphonexのサイズ" class="fragment"></span><a href="#iphonex%E3%81%AE%E3%82%B5%E3%82%A4%E3%82%BA"><i class="fa fa-link"></i></a>iPhoneXのサイズ</h1>
+
+<p><a href="https://camo.qiitausercontent.com/e37c98573893f9e7a9cb00b5f80e78bc5c40b583/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f37653335636561382d363931352d633162612d623630342d3261356435616366353734372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e37c98573893f9e7a9cb00b5f80e78bc5c40b583/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f37653335636561382d363931352d633162612d623630342d3261356435616366353734372e706e67" alt="iPhoneXPortrait.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/1380/7e35cea8-6915-c1ba-b604-2a5d5acf5747.png"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/9457f54b5f07557624ceb742c3c5d3b03f3704f6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f37366332666266322d333032392d343366332d323037382d3633616233356339623965392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/9457f54b5f07557624ceb742c3c5d3b03f3704f6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f37366332666266322d333032392d343366332d323037382d3633616233356339623965392e706e67" alt="iPhoneXLandscape.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/1380/76c2fbf2-3029-43f3-2078-63ab35c9b9e9.png"></a></p>
+
+<p>半透明なナビゲーションバー、タブバーを配置した時の各種サイズです。<br>
+ステータスバーが20→44ptに代わり、BottomにHomeIndicatorのエリアとして34pt追加されます。<br>
+端末を横にした時には左右のInsetsが44pt出てきます。</p>
+
+<p>Table.layoutMarginの値は、「Preserve Superview Margins」がOFFの時の値です。</p>
+
+<h1>
+<span id="iphonexのbottom部分に色を塗る3つの方法" class="fragment"></span><a href="#iphonex%E3%81%AEbottom%E9%83%A8%E5%88%86%E3%81%AB%E8%89%B2%E3%82%92%E5%A1%97%E3%82%8B3%E3%81%A4%E3%81%AE%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>iPhoneXのBottom部分に色を塗る3つの方法</h1>
+
+<p><a href="https://camo.qiitausercontent.com/9430b90c411add0f26b7eb329f21013e87807f21/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f62366534336133342d663635652d356666612d356666312d3462333936316566663031652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/9430b90c411add0f26b7eb329f21013e87807f21/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f62366534336133342d663635652d356666612d356666312d3462333936316566663031652e706e67" alt="Screen Shot 2017-10-16 at 3.33.01.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/1380/b6e43a34-f65e-5ffa-5ff1-4b3961eff01e.png"></a></p>
+
+<p>こんな感じで色を塗りたい場合。</p>
+
+<h2>
+<span id="方法1" class="fragment"></span><a href="#%E6%96%B9%E6%B3%951"><i class="fa fa-link"></i></a>方法1</h2>
+
+<p>Align Bottom to: Safe Areaにして、UIViewController.view.backgroundColorを同じ色で塗る。<br>
+コレでいけるのであれば一番ラク。<br>
+<a href="https://camo.qiitausercontent.com/5b13c93958feaffc522f2b5098f35506c63ae374/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f62323439306363652d326533632d313030662d383663342d3635366163386137323363652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/5b13c93958feaffc522f2b5098f35506c63ae374/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f62323439306363652d326533632d313030662d383663342d3635366163386137323363652e706e67" alt="Screen Shot 2017-10-16 at 3.40.37.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/1380/b2490cce-2e3c-100f-86c4-656ac8a723ce.png"></a></p>
+
+<h2>
+<span id="方法2" class="fragment"></span><a href="#%E6%96%B9%E6%B3%952"><i class="fa fa-link"></i></a>方法2</h2>
+
+<p>Viewを2つ使って、1つはAlign Bottom to: Safe Area、もう1つはBottom Space to: Superview に。<br>
+この2つのViewのTop Edgeを同じにする。<br>
+<a href="https://camo.qiitausercontent.com/52c97610438ec1cdea97481c25f81488fb8ba064/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f64323037363931392d346331382d323639342d336630332d3936393739313663653532392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/52c97610438ec1cdea97481c25f81488fb8ba064/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f64323037363931392d346331382d323639342d336630332d3936393739313663653532392e706e67" alt="Screen Shot 2017-10-16 at 3.47.27.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/1380/d2076919-4c18-2694-3f03-9697916ce529.png"></a></p>
+
+<p>派生版として、この2つのViewを続けて配置するパターンもあるが、0.5ptの隙間が開くことがあったのであまりオススメしない。</p>
+
+<p><a href="https://camo.qiitausercontent.com/fb47ec5b7f4d592171e98821cb7da96b234bb501/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f61666366383861662d353431362d333136362d646632362d3035636661336634386239662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/fb47ec5b7f4d592171e98821cb7da96b234bb501/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f61666366383861662d353431362d333136362d646632362d3035636661336634386239662e706e67" alt="Screen Shot 2017-10-16 at 4.00.55.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/1380/afcf88af-5416-3166-df26-05cfa3f48b9f.png"></a></p>
+
+<h2>
+<span id="方法3" class="fragment"></span><a href="#%E6%96%B9%E6%B3%953"><i class="fa fa-link"></i></a>方法3</h2>
+
+<p>Storyboardの「Use Safe Area Layout Guides」をONにする。<br>
+2つのViewを親子の階層にする。<br>
+親のViewのSafe Area Layout Guideにチェックをいれる。<br>
+<a href="https://camo.qiitausercontent.com/f8701fc44833f4f395e1b8895de0c2cd93fc4326/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f63373464393934642d316137642d303961652d653364642d3331386166623666383066322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f8701fc44833f4f395e1b8895de0c2cd93fc4326/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f63373464393934642d316137642d303961652d653364642d3331386166623666383066322e706e67" alt="Screen Shot 2017-10-16 at 4.05.56.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/1380/c74d994d-1a7d-09ae-e3dd-318afb6f80f2.png"></a></p>
+
+<p>子ViewのBottomの制約を、Align Bottom to: Safe Area にする。<br>
+<a href="https://camo.qiitausercontent.com/bc5515cad0385f8d0fd752718d794ab4d4cfb58b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f63376137386434352d396563632d663461392d623363322d3630616332636465353366632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/bc5515cad0385f8d0fd752718d794ab4d4cfb58b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f313338302f63376137386434352d396563632d663461392d623363322d3630616332636465353366632e706e67" alt="Screen Shot 2017-10-16 at 3.51.57.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/1380/c7a78d45-9ecc-f4a9-b3c2-60ac2cde53fc.png"></a></p>
+
+<h1>
+<span id="insetsが設定されるタイミング" class="fragment"></span><a href="#insets%E3%81%8C%E8%A8%AD%E5%AE%9A%E3%81%95%E3%82%8C%E3%82%8B%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>Insetsが設定されるタイミング</h1>
+
+<p>コードで、Insetsの値を考慮したコンテンツサイズからゴニョゴニョする場合、そのタイミングが大事。<br>
+viewDidLoadのタイミングではInsetsは設定されていないからです。<br>
+基本的には ***DidChange のメソッドが用意されているので、そのタイミングをトリガーします。</p>
+
+<p>具体的に、どのタイミングで設定されるのかをログをとってみました。<br>
+半透明なナビゲーションバー、タブバーとテーブルを配置し、iPhone6sのシミュレータで実行したものです。<br>
+各メソッドが呼ばれた順に、その時点の値を記述しています。</p>
+
+<h2>
+<span id="uiviewcontrollersafeareainsets" class="fragment"></span><a href="#uiviewcontrollersafeareainsets"><i class="fa fa-link"></i></a>UIViewController.safeAreaInsets</h2>
+
+<p>(iOS11で追加)<br>
+viewSafeAreaInsetsDidChange以降で確定</p>
+
+<table>
+<thead>
+<tr>
+<th>Timing</th>
+<th>Top</th>
+<th>Left</th>
+<th>Bottom</th>
+<th>Right</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loadView</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>viewDidLoad</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>viewWillAppear</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>viewSafeAreaInsetsDidChange</td>
+<td>64.0</td>
+<td>0.0</td>
+<td>49.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>traitCollectionDidChange</td>
+<td>64.0</td>
+<td>0.0</td>
+<td>49.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>viewDidAppear</td>
+<td>64.0</td>
+<td>0.0</td>
+<td>49.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="uitableviewsafeareainsets" class="fragment"></span><a href="#uitableviewsafeareainsets"><i class="fa fa-link"></i></a>UITableView.safeAreaInsets</h2>
+
+<p>(iOS11で追加)<br>
+子ViewであるUITableView の SafeAreaInsetsは、UIViewController.viewSafeAreaInsetsDidChangeではまだ確定していない。UITableViewのsafeAreaInsetsDidChange 以降で決まる</p>
+
+<table>
+<thead>
+<tr>
+<th>Timing</th>
+<th></th>
+<th>Top</th>
+<th>Left</th>
+<th>Bottom</th>
+<th>Right</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UIViewController</td>
+<td>loadView</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewDidLoad</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewWillAppear</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewSafeAreaInsetsDidChange</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UITableView</td>
+<td>safeAreaInsetsDidChange</td>
+<td>64.0</td>
+<td>0.0</td>
+<td>49.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>traitCollectionDidChange</td>
+<td>64.0</td>
+<td>0.0</td>
+<td>49.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewDidAppear</td>
+<td>64.0</td>
+<td>0.0</td>
+<td>49.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="uitableviewlayoutmargins" class="fragment"></span><a href="#uitableviewlayoutmargins"><i class="fa fa-link"></i></a>UITableView.layoutMargins</h2>
+
+<h3>
+<span id="ios11" class="fragment"></span><a href="#ios11"><i class="fa fa-link"></i></a>iOS11</h3>
+
+<p>iOS11の時は、SafeAreaInsetsの値も含めた合計値になる。<br>
+UITableView.layoutMarginsDidChangeは2回呼ばれた。1回目は端末サイズに合わせた値になったもの、2回目はSafeAreaの値が反映されたもの。</p>
+
+<table>
+<thead>
+<tr>
+<th>Timing</th>
+<th></th>
+<th>Top</th>
+<th>Left</th>
+<th>Bottom</th>
+<th>Right</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UIViewController</td>
+<td>loadView</td>
+<td>8.0</td>
+<td>8.0</td>
+<td>8.0</td>
+<td>8.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewDidLoad</td>
+<td>8.0</td>
+<td>8.0</td>
+<td>8.0</td>
+<td>8.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewWillAppear</td>
+<td>8.0</td>
+<td>8.0</td>
+<td>8.0</td>
+<td>8.0</td>
+</tr>
+<tr>
+<td>UITableView</td>
+<td>layoutMarginsDidChange</td>
+<td>8.0</td>
+<td>15.0</td>
+<td>8.0</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewSafeAreaInsetsDidChange</td>
+<td>8.0</td>
+<td>15.0</td>
+<td>8.0</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>UITableView</td>
+<td>layoutMarginsDidChange</td>
+<td>72.0</td>
+<td>15.0</td>
+<td>57.0</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>UITableView</td>
+<td>safeAreaInsetsDidChange</td>
+<td>72.0</td>
+<td>15.0</td>
+<td>57.0</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>traitCollectionDidChange</td>
+<td>72.0</td>
+<td>15.0</td>
+<td>57.0</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewDidAppear</td>
+<td>72.0</td>
+<td>15.0</td>
+<td>57.0</td>
+<td>15.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>5.5インチの端末のTable.layoutMarginの左右は20ptになります。</p>
+
+<h3>
+<span id="ios10" class="fragment"></span><a href="#ios10"><i class="fa fa-link"></i></a>iOS10</h3>
+
+<table>
+<thead>
+<tr>
+<th>Timing</th>
+<th></th>
+<th>Top</th>
+<th>Left</th>
+<th>Bottom</th>
+<th>Right</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UIViewController</td>
+<td>loadView</td>
+<td>8.0</td>
+<td>8.0</td>
+<td>8.0</td>
+<td>8.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewDidLoad</td>
+<td>8.0</td>
+<td>8.0</td>
+<td>8.0</td>
+<td>8.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewWillAppear</td>
+<td>8.0</td>
+<td>8.0</td>
+<td>8.0</td>
+<td>8.0</td>
+</tr>
+<tr>
+<td>UITableView</td>
+<td>layoutMarginsDidChange</td>
+<td>8.0</td>
+<td>15.0</td>
+<td>8.0</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewSafeAreaInsetsDidChange</td>
+<td>8.0</td>
+<td>15.0</td>
+<td>8.0</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>UITableView</td>
+<td>layoutMarginsDidChange</td>
+<td>8.0</td>
+<td>15.0</td>
+<td>8.0</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>traitCollectionDidChange</td>
+<td>8.0</td>
+<td>15.0</td>
+<td>8.0</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewDidAppear</td>
+<td>8.0</td>
+<td>15.0</td>
+<td>8.0</td>
+<td>15.0</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="uitableviewcontentinset" class="fragment"></span><a href="#uitableviewcontentinset"><i class="fa fa-link"></i></a>UITableView.contentInset</h2>
+
+<p>UITableView.contentInsetは、iOS10とiOS11とで変わる。<br>
+iOS11では.zeroになり、代わりに、adjustedContentInsetに値が入る。</p>
+
+<table>
+<thead>
+<tr>
+<th>Timing</th>
+<th></th>
+<th>iOS10: Content Inset</th>
+<th>iOS11:Content Inset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UIViewController</td>
+<td>loadView</td>
+<td>(0,0,0,0)</td>
+<td>(0,0,0,0)</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewDidLoad</td>
+<td>(0,0,0,0)</td>
+<td>(0,0,0,0)</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewWillAppear</td>
+<td>(0,0,0,0)</td>
+<td>(0,0,0,0)</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>traitCollectionDidChange</td>
+<td>(64, 0, 49, 0)</td>
+<td>(0,0,0,0)</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewDidAppear</td>
+<td>(64, 0, 49, 0)</td>
+<td>(0,0,0,0)</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<span id="uitableviewadjustedcontentinset" class="fragment"></span><a href="#uitableviewadjustedcontentinset"><i class="fa fa-link"></i></a>UITableView.adjustedContentInset</h2>
+
+<p>(iOS11で追加)<br>
+contentInsetAdjustmentBehaviorの設定により変わります。<br>
+デフォルトの automatic指定のときの結果です。</p>
+
+<table>
+<thead>
+<tr>
+<th>Timing</th>
+<th></th>
+<th>Top</th>
+<th>Left</th>
+<th>Bottom</th>
+<th>Right</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UIViewController</td>
+<td>loadView</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewDidLoad</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewWillAppear</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UITableView</td>
+<td>layoutMarginsDidChange</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewSafeAreaInsetsDidChange</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UITableView</td>
+<td>layoutMarginsDidChange</td>
+<td>64.0</td>
+<td>0.0</td>
+<td>49.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UITableView</td>
+<td>safeAreaInsetsDidChange</td>
+<td>64.0</td>
+<td>0.0</td>
+<td>49.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UITableView</td>
+<td>adjustedContentInsetDidChange</td>
+<td>64.0</td>
+<td>0.0</td>
+<td>49.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>traitCollectionDidChange</td>
+<td>64.0</td>
+<td>0.0</td>
+<td>49.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>UIViewController</td>
+<td>viewDidAppear</td>
+<td>64.0</td>
+<td>0.0</td>
+<td>49.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

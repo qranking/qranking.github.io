@@ -1,0 +1,454 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (gogotanaka)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (gogotanaka さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>gogotanakaさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>106</kbd>
+		<a target="_blank" href="https://qiita.com/gogotanaka/items/07f9f5ed8e93a47a8bcd">[React Native事始め完全版]「いきなりデート」のアプリをReact Nativeで開発した知見をまとめます。</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-24 09:56:40</center>
+	</td>
+	<td style="width:200px;">
+		@gogotanaka<br />(慶應数学科休学 -> freee -> webpay -> aisaac.inc founder 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/30440/profile-images/1473685496">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Rails]</b> <b>[es6]</b> <b>[React]</b> <b>[reactnative]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="この記事で説明する事" class="fragment"></span><a href="#%E3%81%93%E3%81%AE%E8%A8%98%E4%BA%8B%E3%81%A7%E8%AA%AC%E6%98%8E%E3%81%99%E3%82%8B%E4%BA%8B"><i class="fa fa-link"></i></a>この記事で説明する事</h1>
+
+<ul>
+<li>React Native採用に係る意思決定の話</li>
+<li>atom + eslint + flowによるIDE風開発環境</li>
+<li>line by lineによるプロジェクト作成方法とリリース方法</li>
+<li>デバッグ方法やtips集、補助ツールの使い方</li>
+</ul>
+
+<h1>
+<span id="react-nativeとは" class="fragment"></span><a href="#react-native%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>React Nativeとは</h1>
+
+<p><a href="https://camo.qiitausercontent.com/8f4d0015c77a3dd3afc74d65f59e36ec51343137/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f30363231663936662d616462642d316364622d636466362d6234636264303437633336642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/8f4d0015c77a3dd3afc74d65f59e36ec51343137/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f30363231663936662d616462642d316364622d636466362d6234636264303437633336642e706e67" alt="rn.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/0621f96f-adbd-1cdb-cdf6-b4cbd047c36d.png"></a></p>
+
+<p>Facebookがオープソースとして開発する<a href="https://reactjs.org/" rel="nofollow noopener" target="_blank">React.js</a>の思想の一つである<em>「Learn once, Write everywhere」</em>（元ネタはもちろんJavaの<em>Write once, Run anywhere</em>）を体現した、Facebookが開発主体となるプロジェクトの一つで、<strong>要はJavascriptとReactフレームワーク1つでモバイルアプリ（iosとAndroid）を作れる</strong>、といった代物です。</p>
+
+<p>ちなみに<a href="https://facebook.github.io/react-vr/" rel="nofollow noopener" target="_blank">React VR</a>というJS+ReactでVRアプリを作るプロジェクト（これもFacebook本体が主導）というものあります。</p>
+
+<p>同じようなクロスプラットフォームアプリ開発の手法としてCordovaやIonicなどがありますが、React Nativeはその名の通り、web viewではなくあくまでもJavaScriptランタイムでNativeのAPIを叩いて、Naitveによる描画を実現しています。</p>
+
+<p>JSがNativeのコードにコンパイルされる訳でもないので、開発中においてはビルドの必要がなくHot Refreshなどが出来ます。</p>
+
+<h1>
+<span id="いきなりデートとは" class="fragment"></span><a href="#%E3%81%84%E3%81%8D%E3%81%AA%E3%82%8A%E3%83%87%E3%83%BC%E3%83%88%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>いきなりデートとは</h1>
+
+<p><a href="https://camo.qiitausercontent.com/f915f86cd1ee9c8299ecfa3d53d270dde8d4f3d1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f31373936306165392d333032622d643935332d323131352d3730653465366439616336312e706e67" target="_blank" rel="nofollow noopener"><img width="300" alt="Screen Shot 2017-10-07 at 1.37.29 PM.png" src="https://camo.qiitausercontent.com/f915f86cd1ee9c8299ecfa3d53d270dde8d4f3d1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f31373936306165392d333032622d643935332d323131352d3730653465366439616336312e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/17960ae9-302b-d953-2115-70e4e6d9ac61.png"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/446abc9c728c8a1b5b01ebbd500d18e1d2eb04d5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f64303438363263652d626539622d343436362d633138362d6162623139636234333163322e706e67" target="_blank" rel="nofollow noopener"><img width="300" alt="Screen Shot 2017-11-24 at 9.40.32 AM.png" src="https://camo.qiitausercontent.com/446abc9c728c8a1b5b01ebbd500d18e1d2eb04d5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f64303438363263652d626539622d343436362d633138362d6162623139636234333163322e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/d04862ce-be9b-4466-c186-abb19cb431c2.png"></a></p>
+
+<p><a href="https://ikinaridate.com/" rel="nofollow noopener" target="_blank">いきなりデート</a>は、厳しい審査に通過したハイスペック男女同士のデートをセッティングするサービスです。</p>
+
+<p>顔も名前も知らぬまま、メッセージすら事前にさせず運営の予約したレストランでまずは会って話して見る事に重きをおいています。</p>
+
+<p><strong>開催場所のレストランも運営スタッフが手配するので手軽に参加できます。</strong></p>
+
+<p>今回はこのサービスをアプリ化した際に得れた知見をまとめたいと思います。</p>
+
+<h1>
+<span id="react-native本当にいい感じに動くの" class="fragment"></span><a href="#react-native%E6%9C%AC%E5%BD%93%E3%81%AB%E3%81%84%E3%81%84%E6%84%9F%E3%81%98%E3%81%AB%E5%8B%95%E3%81%8F%E3%81%AE"><i class="fa fa-link"></i></a>React Native、本当にいい感じに動くの？</h1>
+
+<p>と思われる方は</p>
+
+<ul>
+<li><a href="https://itunes.apple.com/jp/app/%E3%81%84%E3%81%8D%E3%81%AA%E3%82%8A%E3%83%87%E3%83%BC%E3%83%88/id1273579885?mt=8" rel="nofollow noopener" target="_blank">iOSダウンロード</a></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.ikinaridate" rel="nofollow noopener" target="_blank">Androidダウンロード</a></li>
+</ul>
+
+<p>より使い心地をお試し下さい。</p>
+
+<p>（宣伝です！🔥）</p>
+
+<h1>
+<span id="なぜreact-nativeなのか" class="fragment"></span><a href="#%E3%81%AA%E3%81%9Creact-native%E3%81%AA%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>なぜReact Nativeなのか</h1>
+
+<p>いきなりデートを運営してる <a href="http://aisaac.in/" rel="nofollow noopener" target="_blank">aisaac inc.</a> は37siginalsやthoughtbotなどのようにエンジニアが好き好きにOSSに成果物をあげまくったり自己資本で自由に大学のラボ的なノリで様々なビジネスを回しておるため、極限まで効率を重視したくAPI開発を含めてiOS/Androidのリリースをアプリ開発経験のないエンジニア2人（1人は週末のみ）で3週間くらいでやりたいなと思っていました。（結果、出来ました🎉🎉🎉）</p>
+
+<p>最初こそ「Swift勉強するか〜〜〜」と考えあぐねておりましたが、</p>
+
+<p>👥 &lt; 「React Native、いいらしいよ」<br>
+という噂をよく聞くようになったので海外の事例など含めて徹底的に調査しました。</p>
+
+<p>React Nativeリリース直後にその思想こそは確認したものの、かなりその方向性には懐疑的でした。<br>
+というのも筆者は数年前にtitanium mobileに痛い目をみているので「またか」程度のものでした。</p>
+
+<p>がやはりFacebookという組織の後ろ盾の大きさか、コミュニティもプロジェクトも大変よく成長しており、一ヶ月毎のRelease Noteを見る限り、健全なfixとimprovementsが確認でき「期待できるかも」と思いました。その後、様々な事例を調べfacebook/instagramは元よりsoundcloudやairbnbが採用（一部らしいが）している事も大きな追い風になりました。</p>
+
+<p>パフォーマンスについてはこの記事をみて問題ない事を確信しました。</p>
+
+<p><a href="https://medium.com/the-react-native-log/comparing-the-performance-between-native-ios-swift-and-react-native-7b5490d363e2" class="autolink" rel="nofollow noopener" target="_blank">https://medium.com/the-react-native-log/comparing-the-performance-between-native-ios-swift-and-react-native-7b5490d363e2</a><br>
+（現在翻訳記事を執筆中です🖋）</p>
+
+<h1>
+<span id="開発した主な機能" class="fragment"></span><a href="#%E9%96%8B%E7%99%BA%E3%81%97%E3%81%9F%E4%B8%BB%E3%81%AA%E6%A9%9F%E8%83%BD"><i class="fa fa-link"></i></a>開発した主な機能</h1>
+
+<ul>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" checked disabled>Push通知🚀</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" checked disabled>Facebookログイン🚪</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" checked disabled>クレカ決済💳</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" checked disabled>画像アップロード📷</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" checked disabled>各種CRUD</li>
+</ul>
+
+<p>これらについては後ほど解説を致します。</p>
+
+<h1>
+<span id="諸々構成" class="fragment"></span><a href="#%E8%AB%B8%E3%80%85%E6%A7%8B%E6%88%90"><i class="fa fa-link"></i></a>諸々構成</h1>
+
+<h2>
+<span id="使っている主なパッケージ" class="fragment"></span><a href="#%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E4%B8%BB%E3%81%AA%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8"><i class="fa fa-link"></i></a>使っている主なパッケージ</h2>
+
+<p>もう、えいやとpackage.jsonから抜粋して主要なものを貼り付けちゃいます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>"react": "16.0.0-alpha.12",
+"react-native": "0.47.1",
+"react-native-drawer": "^2.3.0",
+"react-native-facebook-login": "^1.5.0",
+"react-native-fcm": "^8.0.0",
+"react-native-image-picker": "^0.26.4",
+"react-native-snap-carousel": "^2.4.0",
+"react-native-vector-icons": "^4.3.0",
+"react-navigation": "^1.0.0-beta.12",
+"react-redux": "^5.0.5",
+"redux": "^3.7.2",
+"redux-persist": "^4.8.2",
+"redux-persist-migrate": "^4.1.0",
+"redux-thunk": "^2.2.0"
+
+//dev
+"babel-eslint": "^8.0.1",
+"babel-plugin-transform-flow-strip-types": "^6.22.0",
+"babel-preset-react-native": "4.0.0",
+"eslint": "^4.2.0",
+"eslint-plugin-flowtype": "^2.39.1",
+"eslint-plugin-react": "^7.1.0",
+"react-test-renderer": "16.1.1",
+"reactotron-react-native": "^1.12.1",
+"reactotron-redux": "^1.12.0"
+</pre></div></div>
+
+<p>reduxの採用はパッケージ選択において一番の正解だったのと思っております。<br>
+httpリクエストは標準の <code>fetch</code> をベースに独自クラスを作って使ってます。</p>
+
+<p>大雑把に</p>
+
+<ul>
+<li>
+<code>react-native-facebook-login</code> ... Facebookログイン</li>
+<li>
+<code>react-native-fcm</code> ... Firebase(push notification)</li>
+<li>
+<code>react-native-vector-icons</code> ... アイコン</li>
+<li>
+<code>react-native-image-picker</code> ... 画像アップロード</li>
+<li>
+<code>babel-plugin-transform-flow-strip-types</code>, <code>eslint-plugin-flowtype</code> ... jsの型チェッカー、flowのためのパッケージ</li>
+</ul>
+
+<p>って感じです。</p>
+
+<h2>
+<span id="フォルダ構成" class="fragment"></span><a href="#%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E6%A7%8B%E6%88%90"><i class="fa fa-link"></i></a>フォルダ構成</h2>
+
+<p>割と普通のreduxアプリの構成だと思います。</p>
+
+<p><a href="https://camo.qiitausercontent.com/595269f4316a90b6287d278653827fa70c46bd60/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f62643462343363322d666562652d366466372d333834322d6265613563343732343766302e706e67" target="_blank" rel="nofollow noopener"><img width="279" alt="Screen Shot 2017-10-07 at 1.37.29 PM.png" src="https://camo.qiitausercontent.com/595269f4316a90b6287d278653827fa70c46bd60/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f62643462343363322d666562652d366466372d333834322d6265613563343732343766302e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/bd4b43c2-febe-6df7-3842-bea5c47247f0.png"></a></p>
+
+<h2>
+<span id="開発に使ったツール達" class="fragment"></span><a href="#%E9%96%8B%E7%99%BA%E3%81%AB%E4%BD%BF%E3%81%A3%E3%81%9F%E3%83%84%E3%83%BC%E3%83%AB%E9%81%94"><i class="fa fa-link"></i></a>開発に使ったツール達</h2>
+
+<ul>
+<li><p><code>Atom + eslint</code> + <code>flow</code><br>
+=&gt; linterと型チェッカー</p></li>
+<li><p><code>Reactoron</code><br>
+=&gt; Redux storeの中身が見れたりdispatchを手動で発行できます。</p></li>
+<li><p><code>Xcode + AndroidStudio</code><br>
+=&gt; リリース作業を考えておくと慣れておいた方がいいですね。</p></li>
+<li><p><code>(Expo)</code> =&gt; 結果捨てました。。m_ _m</p></li>
+</ul>
+
+<h2>
+<span id="atom--eslint--flow-でide風開発" class="fragment"></span><a href="#atom--eslint--flow-%E3%81%A7ide%E9%A2%A8%E9%96%8B%E7%99%BA"><i class="fa fa-link"></i></a>Atom + eslint + flow でIDE風開発</h2>
+
+<p>今回はEditerにatomを採用しました。js開発ぽい雰囲気が出るので。<br>
+<code>eslint</code> というlinterライブラリとjsの型チェッカーである <code>flow</code> には何度も助けられました。</p>
+
+<p><a href="https://camo.qiitausercontent.com/ae25c0d2082bc0914ff4097da2e6814baba08e33/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f63653430306137642d663939302d663333362d333336622d6634363131306663313365342e706e67" target="_blank" rel="nofollow noopener"><img width="1052" alt="Screen Shot 2017-11-24 at 7.22.55 AM.png" src="https://camo.qiitausercontent.com/ae25c0d2082bc0914ff4097da2e6814baba08e33/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f63653430306137642d663939302d663333362d333336622d6634363131306663313365342e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/ce400a7d-f990-f336-336b-f46110fc13e4.png"></a></p>
+
+<p>この様に未定義変数など簡単なタイポやシンタックスエラーはeslintでエラーを吐いてくれます。<br>
+この環境はeslintの設定と <code>atom-eslint</code> というatomのパッケージによって達成されます。</p>
+
+<p>続いてはflow+atomの挙動はこんな感じ、アプリ開発でjava/swiftに慣れている型はやはり型があった方が安心感があるでしょう。</p>
+
+<p><a href="https://camo.qiitausercontent.com/8904f8de150ae021fd3a29f63a3d7f5c0a4ffbf3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f35626237383964302d356233342d383635302d623036642d3961376631653333646434612e706e67" target="_blank" rel="nofollow noopener"><img width="794" alt="Screen Shot 2017-11-24 at 7.53.14 AM.png" src="https://camo.qiitausercontent.com/8904f8de150ae021fd3a29f63a3d7f5c0a4ffbf3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f35626237383964302d356233342d383635302d623036642d3961376631653333646434612e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/5bb789d0-5b34-8650-b06d-9a7f1e33dd4a.png"></a></p>
+
+<p>この環境はflowの設定と <code>linter-flow</code> というatomのパッケージによって達成されます。</p>
+
+<h3>
+<span id="reactoron" class="fragment"></span><a href="#reactoron"><i class="fa fa-link"></i></a>Reactoron</h3>
+
+<p>ReactoronはReact(native以外にも使用可能）のデバッグのためのDesktop Appで、</p>
+
+<p><code>reactotron-react-native</code> と <code>reactotron-redux</code> をパッケージに追加し設定を行えばredux storeの中身やdispatch履歴を見ることが出来ます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/e50764863dd34b39f7ff8552037b9aec894e1730/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f38646134653266342d393362352d356636632d333262342d3931653463643864306535382e706e67" target="_blank" rel="nofollow noopener"><img width="520" alt="Screen Shot 2017-11-24 at 8.17.25 AM.png" src="https://camo.qiitausercontent.com/e50764863dd34b39f7ff8552037b9aec894e1730/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f38646134653266342d393362352d356636632d333262342d3931653463643864306535382e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/8da4e2f4-93b5-5f6c-32b4-91e4cd8d0e58.png"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/add2e6d12c35895e0580603d5e6a0eab30e2bf16/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f62666532376236362d313830302d623361302d323131352d6236613835396364333865392e706e67" target="_blank" rel="nofollow noopener"><img width="915" alt="Screen Shot 2017-10-10 at 8.15.14 AM.png" src="https://camo.qiitausercontent.com/add2e6d12c35895e0580603d5e6a0eab30e2bf16/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f62666532376236362d313830302d623361302d323131352d6236613835396364333865392e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/bfe27b66-1800-b3a0-2115-b6a859cd38e9.png"></a></p>
+
+<p>Reactoronの設定はとても簡単で、<code>reactotron-react-native</code> と <code>reactotron-redux</code>をパッケージに追加し、</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>import Reactotron from 'reactotron-react-native';
+import { reactotronRedux } from 'reactotron-redux';
+
+Reactotron
+  .configure({ name: 'Ikinari' })
+  .use(reactotronRedux())
+  .connect();
+...
+
+const store = Reactotron.createStore(
+  reducers,
+  initialState,
+  enhancer
+);
+</pre></div></div>
+
+<p>の様にstoreを作成すれば、設定完了です。</p>
+
+<h3>
+<span id="expo" class="fragment"></span><a href="#expo"><i class="fa fa-link"></i></a>Expo</h3>
+
+<p><a href="https://camo.qiitausercontent.com/5f3e66e94c70ea9331108f125196ee3ea93c755d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f66623232383938632d383537342d363433342d393564642d3436633437633464313334302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/5f3e66e94c70ea9331108f125196ee3ea93c755d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f66623232383938632d383537342d363433342d393564642d3436633437633464313334302e706e67" alt="1-fTOXQ1j-0I5xe9BN98Hwwg.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/fb22898c-8574-6434-95dd-46c47c4d1340.png"></a></p>
+
+<p>最初、<code>create-react-native-app</code> 使って技術調査をしていた兼ね合いもあって、<br>
+「Expo最高じゃん〜」と思って使っていました。（実際すごいです</p>
+
+<p>Expoはnativeの機能を全てjsでラッピングしたExpo SDKなるものを開発しておりそれを使ったExpoエコシステムの上に乗っていると <strong>jsだけアプリ開発が完結する</strong> と思想なのですが <code>detach</code> と呼ばれる黒魔術を使わぬ限りnative（swift, objc, java）のコードが書けなくなってしまいます。</p>
+
+<p><a href="https://docs.expo.io/versions/latest/guides/detach.html" class="autolink" rel="nofollow noopener" target="_blank">https://docs.expo.io/versions/latest/guides/detach.html</a></p>
+
+<p>detachは一応試みましたが、謎なPodfileが生成されて無理やりブリッジしてる感がすごかったので諦めました。彼らもまだβ featureと言っています。</p>
+
+<p>またExpoはXDEというツールやiosとandroidのexpo clientを使えばアプリを一瞬で不特定多数の実機に飛ばせるなど色々すごいんですが、そこに必要性を見出せなかったのと諸々不安定であったので（謎のメモリリークがv0.17.0ではあり、捨てたら治りました。）途中から <code>react-native init</code> をし直してコードを移植しました。</p>
+
+<p>ただfounderがquoraのco-founderで元facebookerでチームもすごくいけてるので（linkdeinは全員チェックしましたw）今後に期待大です。頑張って欲しい。</p>
+
+<h2>
+<span id="redux" class="fragment"></span><a href="#redux"><i class="fa fa-link"></i></a>Redux</h2>
+
+<p><a href="https://camo.qiitausercontent.com/779dfeacbb3015c05449d0b94ee31c5f5cc10133/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f65333966363333362d613835372d333039632d366132362d6466313734666164336262302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/779dfeacbb3015c05449d0b94ee31c5f5cc10133/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f65333966363333362d613835372d333039632d366132362d6466313734666164336262302e706e67" alt="Untitled 2.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/e39f6336-a857-309c-6a26-df174fad3bb0.png"></a></p>
+
+<p>Reduxはfluxフレームワークの一つで、一つの大きなStoreと呼ばれる状態を一元管理するオブジェクトをdispatchと呼ばれる関数を介して変更をしその変更をViewに伝達することによってアプリケーションの動きを作っています。</p>
+
+<p>Store以外からComponentをまたがる状態が変わることがないので管理がしやすい、という訳です。</p>
+
+<p>筆者も実際にこの恩恵には充分預かり非常に快適なアプリ開発をさせてもらいました。</p>
+
+<p>おすすめです。<br>
+<a href="https://github.com/infinitered/reactotron" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/infinitered/reactotron</a><br>
+というデバッグツールが大変おすすめです。</p>
+
+<h1>
+<span id="react-nativeアプリの作り方mac編" class="fragment"></span><a href="#react-native%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E4%BD%9C%E3%82%8A%E6%96%B9mac%E7%B7%A8"><i class="fa fa-link"></i></a>React Nativeアプリの作り方(mac編)</h1>
+
+<p>この部分は公式ドキュメントであったり、記事が多いので控えめに記しておきます。</p>
+
+<h2>
+<span id="nvmnodeのバージョン管理のインストール" class="fragment"></span><a href="#nvmnode%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E7%AE%A1%E7%90%86%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>nvm（nodeのバージョン管理）のインストール</h2>
+
+<p><a href="https://github.com/creationix/nvm" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/creationix/nvm</a></p>
+
+<p>を使用しました。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
+</pre></div></div>
+
+<p>でnvmをインストールし、</p>
+
+<p>お使いのshell configに</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] &amp;&amp; . "$NVM_DIR/nvm.sh"
+</pre></div></div>
+
+<p>を記述しましょう。</p>
+
+<p>これで</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>nvm install v6.11.0 
+nvm use v6.11.0
+</pre></div></div>
+
+<p>こんな感じでnodeをインストール出来ます。</p>
+
+<h2>
+<span id="yarnとreact-native-cli" class="fragment"></span><a href="#yarn%E3%81%A8react-native-cli"><i class="fa fa-link"></i></a>yarnとreact-native-cli</h2>
+
+<p>better npmなポジションであるyarnを使います。 <br>
+npmより高速で、きちっとしたバージョン管理が出来ます。</p>
+
+<p><code>react-native-cli</code> はReact Nativeアプリの作成やコンパイルをするときに使います。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>npm install -g yarn react-native-cli
+</pre></div></div>
+
+<h2>
+<span id="プロジェクトのinitialize" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AEinitialize"><i class="fa fa-link"></i></a>プロジェクトのinitialize</h2>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>react-native init TestApp
+</pre></div></div>
+
+<p>でプロジェクトのinitializeは完了。</p>
+
+<p>iosフォルダに入っている <code>TestApp.xcodeproj</code> をxcodeで開き</p>
+
+<p><a href="https://camo.qiitausercontent.com/3a306aa3e8963d73a1a8fbe746ed3b62f2e908b8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f38633331373435652d623134322d336363342d633434612d6362393766383436356265342e706e67" target="_blank" rel="nofollow noopener"><img width="751" alt="Screen Shot 2017-11-24 at 9.32.03 AM.png" src="https://camo.qiitausercontent.com/3a306aa3e8963d73a1a8fbe746ed3b62f2e908b8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f38633331373435652d623134322d336363342d633434612d6362393766383436356265342e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/8c31745e-b142-3cc4-c44a-cb97f8465be4.png"></a></p>
+
+<p>左上の再生ボタンみたいなやつでビルドしてみよう。</p>
+
+<p><a href="https://camo.qiitausercontent.com/c65606a268382d4e580a957e581dac809d815b44/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f30316636306465332d313630372d383361352d303735642d3035303065313864636637652e706e67" target="_blank" rel="nofollow noopener"><img width="360" alt="Screen Shot 2017-11-24 at 9.33.46 AM.png" src="https://camo.qiitausercontent.com/c65606a268382d4e580a957e581dac809d815b44/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f30316636306465332d313630372d383361352d303735642d3035303065313864636637652e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/01f60de3-1607-83a5-075d-0500e18dcf7e.png"></a></p>
+
+<h2>
+<span id="開発tips" class="fragment"></span><a href="#%E9%96%8B%E7%99%BAtips"><i class="fa fa-link"></i></a>開発Tips</h2>
+
+<h3>
+<span id="debugger" class="fragment"></span><a href="#debugger"><i class="fa fa-link"></i></a>debugger</h3>
+
+<p>jsのdebuggerを使って作業をすることができます。<br>
+Macだと⌘+Dで開く<br>
+<a href="https://camo.qiitausercontent.com/2de14969cea583f4aa270702f16652235b72ae4c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f31613731313261322d343762312d386366632d616236612d3661636364633764646461372e706e67" target="_blank" rel="nofollow noopener"><img width="478" alt="Screen Shot 2017-10-10 at 8.04.36 AM.png" src="https://camo.qiitausercontent.com/2de14969cea583f4aa270702f16652235b72ae4c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f31613731313261322d343762312d386366632d616236612d3661636364633764646461372e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/1a7112a2-47b1-8cfc-ab6a-6accdc7ddda7.png"></a><br>
+上記画面よりDebug JS Remotelyを選択し、<br>
+ブラウザで ⌘+Shift+Cでinspectorをひらけば、ここでdebuggerが実行された文脈で処理を止め、コードを実行することで出来ます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/23cf9f29d2b8a97b5a57722600b2873d6f401df2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f32313534356162662d366634362d373461382d336531372d3362633632353230326633322e706e67" target="_blank" rel="nofollow noopener"><img width="1439" alt="Screen Shot 2017-10-10 at 8.05.35 AM.png" src="https://camo.qiitausercontent.com/23cf9f29d2b8a97b5a57722600b2873d6f401df2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f32313534356162662d366634362d373461382d336531372d3362633632353230326633322e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/21545abf-6f46-74a8-3e17-3bc625202f32.png"></a></p>
+
+<h3>
+<span id="view-inspector" class="fragment"></span><a href="#view-inspector"><i class="fa fa-link"></i></a>View inspector</h3>
+
+<p>⌘+Dから「Show Inspector」を選択すればbrowserのinspectorのようなものが使えます。<br>
+<a href="https://camo.qiitausercontent.com/a8e7cf1b75f2e46e6229918de287ae84294bb306/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f39626431623862642d323266302d636430392d316430382d3764663635393635643637392e706e67" target="_blank" rel="nofollow noopener"><img width="446" alt="Screen Shot 2017-10-10 at 8.09.00 AM.png" src="https://camo.qiitausercontent.com/a8e7cf1b75f2e46e6229918de287ae84294bb306/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f39626431623862642d323266302d636430392d316430382d3764663635393635643637392e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/9bd1b8bd-22f0-cd09-1d08-7df65965d679.png"></a></p>
+
+<h3>
+<span id="r" class="fragment"></span><a href="#r"><i class="fa fa-link"></i></a>⌘+R</h3>
+
+<p>でソースコードの更新を反映出来ます。（Hot Reloadも可能）</p>
+
+<h2>
+<span id="機能別開発tips" class="fragment"></span><a href="#%E6%A9%9F%E8%83%BD%E5%88%A5%E9%96%8B%E7%99%BAtips"><i class="fa fa-link"></i></a>機能別開発tips</h2>
+
+<p>機能開発のざっとしたサマリーを載せておきます。</p>
+
+<h3>
+<span id="push通知" class="fragment"></span><a href="#push%E9%80%9A%E7%9F%A5"><i class="fa fa-link"></i></a>Push通知🚀</h3>
+
+<p><a href="https://github.com/evollu/react-native-fcm" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/evollu/react-native-fcm</a></p>
+
+<p>を使って、fcm_tokenをアプリ側で取得し、apiを作ってuserに紐付ける形でdbに保管します。<br>
+push通知を送りたい時はfcm_tokenとfirebaseの秘密鍵を使用してfirebaseのAPIを叩くという実装にしています。（faradayなどのhttp clientで）</p>
+
+<h3>
+<span id="facebookログイン" class="fragment"></span><a href="#facebook%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3"><i class="fa fa-link"></i></a>Facebookログイン🚪</h3>
+
+<p><a href="https://github.com/magus/react-native-facebook-login" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/magus/react-native-facebook-login</a></p>
+
+<p>を使っています。README.mdがよく書かれているので読み込むと良いと思います。<br>
+(Androidのkeytoreまわりは結構苦労し、android経験者に助けてもらったりしました）</p>
+
+<p>アプリでfb_tokenを取得し、apiを作ってdbに保管し、facebookのAPIクライアントで各種情報を取得しています。</p>
+
+<h3>
+<span id="クレカ決済" class="fragment"></span><a href="#%E3%82%AF%E3%83%AC%E3%82%AB%E6%B1%BA%E6%B8%88"><i class="fa fa-link"></i></a>クレカ決済💳</h3>
+
+<p>特にライブラリを使っていないです。<code>fetch</code> を使ってStripeのAPIを直接叩いています。</p>
+
+<h3>
+<span id="画像アップロード" class="fragment"></span><a href="#%E7%94%BB%E5%83%8F%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>画像アップロード📷</h3>
+
+<p><a href="https://github.com/react-community/react-native-image-picker" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/react-community/react-native-image-picker</a><br>
+を使っています。README.mdがよく書かれているので読み込むと良いと思います。</p>
+
+<h3>
+<span id="各種crud" class="fragment"></span><a href="#%E5%90%84%E7%A8%AEcrud"><i class="fa fa-link"></i></a>各種CRUD</h3>
+
+<p>それぞれのComponent内の <code>state</code> としてフォームの情報を格納し、<br>
+actionにstateを送り、action内でAPIを値と一緒に叩き、返り値によってdispatchをしてviewに変更を加える、という流れを取っています。</p>
+
+<h1>
+<span id="リリースの仕方ios編" class="fragment"></span><a href="#%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%81%AE%E4%BB%95%E6%96%B9ios%E7%B7%A8"><i class="fa fa-link"></i></a>リリースの仕方（ios編）</h1>
+
+<p>基本的にはswiftで作られたiosアプリと同じ流れの様です。簡単にまとめておきます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/63d08b896ae921f5a937499642b69c7386a12b77/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f39363538616635362d623461362d343138662d373536342d6533663834663661373837372e706e67" target="_blank" rel="nofollow noopener"><img width="546" alt="Screen_Shot_2017-11-24_at_7_20_39_AM.png" src="https://camo.qiitausercontent.com/63d08b896ae921f5a937499642b69c7386a12b77/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f39363538616635362d623461362d343138662d373536342d6533663834663661373837372e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/9658af56-b4a6-418f-7564-e3f84f6a7877.png"></a></p>
+
+<p>本番用のschemaを作りDeviceに「Generic iOS Device」を選択します。</p>
+
+<p><a href="https://camo.qiitausercontent.com/feb6411d06bebc1073aa8ef366520eb7b0fca0e3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f63633333373263312d353130632d613465302d313030302d3866653235386336303936612e706e67" target="_blank" rel="nofollow noopener"><img width="218" alt="Screen Shot 2017-11-24 at 8.20.56 AM.png" src="https://camo.qiitausercontent.com/feb6411d06bebc1073aa8ef366520eb7b0fca0e3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303434302f63633333373263312d353130632d613465302d313030302d3866653235386336303936612e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30440/cc3372c1-510c-a4e0-1000-8fe258c6096a.png"></a></p>
+
+<p>Product から 「Archive」を選び諸々設定をします。</p>
+
+<p>あとは勝手にitunes connectにあげてくれるのでTestflightなりリリース申請なりしましょう💪</p>
+
+<h1>
+<span id="締め" class="fragment"></span><a href="#%E7%B7%A0%E3%82%81"><i class="fa fa-link"></i></a>締め</h1>
+
+<p>どうだったでしょうか。一部駆け足となるところもありましたが、是非、React Native採用の後押しになればと思います。また弊社(<a href="http://aisaac.in/" rel="nofollow noopener" target="_blank">aisaac inc.</a>) はReact Nativeによるアプリ開発やコミュニティ作りに力を入れています。是非アプリ制作のご相談や興味のある技術者の方はお声がけお願いします！m_ _m</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

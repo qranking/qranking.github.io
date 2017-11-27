@@ -1,0 +1,146 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (alchemist)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (alchemist さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>alchemistさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>126</kbd>
+		<a target="_blank" href="https://qiita.com/alchemist/items/83c50712d9cf0e51e750">GPUでディープラーニングやるならAWSよりFloydHub</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-14 11:03:26</center>
+	</td>
+	<td style="width:200px;">
+		@alchemist<br />(株式会社リツアンSTC 所属)<br><img width="80" height="80" src="https://gravatar.com/avatar/75b4f964a862618833d636ecb33f2272?d=https%3A%2F%2Fidenticons.github.com%2F7075b35798fc3d5f5b6e7f2954151215.png&r=x">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[DeepLearning]</b> <b>[Keras]</b> <b>[TensorFlow]</b> <b>[Floydhub]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Udacityの<a href="https://www.udacity.com/course/deep-learning-nanodegree-foundation--nd101" rel="nofollow noopener" target="_blank">Deep Learning Nanodegree Foundation</a><br>
+のコースで<a href="https://www.floydhub.com/" rel="nofollow noopener" target="_blank">FloydHub</a>という便利なサービスが紹介されていました。ディープラーニングのHerokuだそうです。</p>
+
+<p>GPUが使えるプランも月額14ドルからなので、手軽にGPUでディープラーニングを始めることができます。<br>
+TensorFlowとKerasがデフォルトですが、他にもPyTorchやChainerなどメジャーなフレームワークはだいたい使えるようになっています。</p>
+
+<h5>
+<span id="20171018-追記" class="fragment"></span><a href="#20171018-%E8%BF%BD%E8%A8%98"><i class="fa fa-link"></i></a><strong>2017/10/18 追記</strong>
+</h5>
+
+<p>この記事を書いた直後に、KaggleのKernelについての記事が投稿されています。Kaggleのデータセットに限って言えば、Kernelを使う方が簡単そうです。<br>
+<a href="https://qiita.com/jagainu/items/2a1e3779f944588d29de" id="reference-bf352a94864c70740ddb">パワーアップしたKernelでKaggleに飛び込もう - Qiita</a></p>
+
+<h2>
+<span id="floydhubのいいところ" class="fragment"></span><a href="#floydhub%E3%81%AE%E3%81%84%E3%81%84%E3%81%A8%E3%81%93%E3%82%8D"><i class="fa fa-link"></i></a>FloydHubのいいところ</h2>
+
+<h3>
+<span id="起動が簡単" class="fragment"></span><a href="#%E8%B5%B7%E5%8B%95%E3%81%8C%E7%B0%A1%E5%8D%98"><i class="fa fa-link"></i></a>起動が簡単</h3>
+
+<p>floyd-cliというコマンドラインツールが用意されていて、それを使うとコマンドラインから簡単に環境を起動することができます。<br>
+例えばGPUの環境でJupyter NotebookからPyTorchを使用したい場合は、</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>floyd run --gpu --env pytorch-0.2 --mode jupyter
+</pre></div></div>
+
+<p>と打ち込むだけでJupyter Notebookのサーバーが起動して、少し待っているとブラウザも自動的に表示されます。<br>
+SSHでホストに接続してJupyter Notebookを起動するという作業が必要がないので、すぐに使い始めることができます。</p>
+
+<p>floyd-cli自体のインストールも簡単で、普通にpipでインストールするだけです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>pip install floyd-cli
+</pre></div></div>
+
+<h3>
+<span id="同じnotebookでcpuとgpuを使い分けることができる" class="fragment"></span><a href="#%E5%90%8C%E3%81%98notebook%E3%81%A7cpu%E3%81%A8gpu%E3%82%92%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91%E3%82%8B%E3%81%93%E3%81%A8%E3%81%8C%E3%81%A7%E3%81%8D%E3%82%8B"><i class="fa fa-link"></i></a>同じNotebookでCPUとGPUを使い分けることができる</h3>
+
+<p>Jupyter Notebookで作業をしている場合、GPUインスタンスを使っていても計算をしていない時間が長くなります。<br>
+できればNotebookを編集している時は単価の安いインスタンスを使って、計算を実行するときだけGPUインスタンスを利用できるといいんですが、AWSだとインスタンスごとにデータを持つのでなかなか面倒です。<br>
+FloydHubでは同じデータでCPUのみの環境とGPUの環境を簡単に切り替えることができるので、無駄にGPUを使うことがなくなります。</p>
+
+<h3>
+<span id="データセットをダウンロードしなくてもいい" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E3%82%92%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89%E3%81%97%E3%81%AA%E3%81%8F%E3%81%A6%E3%82%82%E3%81%84%E3%81%84"><i class="fa fa-link"></i></a>データセットをダウンロードしなくてもいい</h3>
+
+<p>ディープラーニングでは巨大なデータセットを扱うことが多いので、そのダウンロードにかなりの時間がかかることがあります。<br>
+FloydHubではよく使われるデータセットが用意されていて、起動時にマウントすることができるのでダウンロードや解凍する手間を省くことができます。<br>
+例えばKaggleの<a href="https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/data" rel="nofollow noopener" target="_blank">Dogs vs. Cats</a>のデータセットを使いたい場合は、</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>floyd run --data fastai/datasets/cats-vs-dogs/2:/data --mode jupyter
+</pre></div></div>
+
+<p>と打ち込めば、/dataディレクトリにデータセットがマウントされます。</p>
+
+<h3>
+<span id="料金が事前に決まっている" class="fragment"></span><a href="#%E6%96%99%E9%87%91%E3%81%8C%E4%BA%8B%E5%89%8D%E3%81%AB%E6%B1%BA%E3%81%BE%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B"><i class="fa fa-link"></i></a>料金が事前に決まっている</h3>
+
+<p>AWSは使った分だけ後から請求されるので、インスタンスを停止するのを忘れてしまうと大変なことになります。<br>
+ディープラーニングに使うGPUインスタンスは1時間100円ぐらいからなので、例えば１ヶ月立ち上げっぱなしにしていると100円×24時間×30日＝72,000円もかかってしまいます。<br>
+FloydHubは月額の料金が決まっていてその範囲内だけ使用できるという契約になっているので個人で利用するには安心です。<br>
+足りなくなればPowerupsというのを購入すれば後から時間を追加することもできるようになっています。</p>
+
+<p><a href="https://www.floydhub.com/pricing" rel="nofollow noopener" target="_blank">Pricing | FloydHub</a></p>
+
+<h2>
+<span id="floydhubのイマイチなところ" class="fragment"></span><a href="#floydhub%E3%81%AE%E3%82%A4%E3%83%9E%E3%82%A4%E3%83%81%E3%81%AA%E3%81%A8%E3%81%93%E3%82%8D"><i class="fa fa-link"></i></a>FloydHubのイマイチなところ</h2>
+
+<h3>
+<span id="使える環境が決まっている" class="fragment"></span><a href="#%E4%BD%BF%E3%81%88%E3%82%8B%E7%92%B0%E5%A2%83%E3%81%8C%E6%B1%BA%E3%81%BE%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B"><i class="fa fa-link"></i></a>使える環境が決まっている</h3>
+
+<p>FloydHubではあらかじめいくつかのDockerイメージが用意されていてその中から選ぶことしかできません。<br>
+ハードウェアはGPUあり・なしの２種類だけです。<br>
+<a href="https://docs.floydhub.com/guides/environments/" rel="nofollow noopener" target="_blank">List of Available Environments - FloydHub Documentation</a></p>
+
+<p>ただし、floyd_requirements.txtというファイルに必要なパッケージを書いておけば起動時に追加のパッケージをインストールしてくれるので、ほとんどの場合は問題ないと思います。</p>
+
+<h3>
+<span id="環境が残らない" class="fragment"></span><a href="#%E7%92%B0%E5%A2%83%E3%81%8C%E6%AE%8B%E3%82%89%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>環境が残らない</h3>
+
+<p>起動するたびに新しい環境が作られるので、起動後にインストールしたパッケージなどは残りません。毎回インストールするか、それが面倒ならfloyd_requirements.txtに書いておく必要があります。</p>
+
+<h2>
+<span id="参考リンク" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E3%83%AA%E3%83%B3%E3%82%AF"><i class="fa fa-link"></i></a>参考リンク</h2>
+
+<p><a href="https://qiita.com/pytry3g/items/682edf2dcafd6cce5ce6" id="reference-fea5713445a66767fd2c">とりあえずFloydhubで遊んでみた - Qiita</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

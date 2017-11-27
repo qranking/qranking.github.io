@@ -1,0 +1,602 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (wasabiz)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (wasabiz さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>wasabizさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>135</kbd>
+		<a target="_blank" href="https://qiita.com/wasabiz/items/bc80581ba24eaaf0ece1">C言語でインクルードするだけで使えるNon-movingで正確なコピーGCを作った</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-09 17:46:40</center>
+	</td>
+	<td style="width:200px;">
+		@wasabiz<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/11779/profile-images/1473682152">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[C]</b> <b>[GC]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="c言語でインクルードするだけで使えるnon-movingで正確なコピーgcを作った" class="fragment"></span><a href="#c%E8%A8%80%E8%AA%9E%E3%81%A7%E3%82%A4%E3%83%B3%E3%82%AF%E3%83%AB%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B%E3%81%A0%E3%81%91%E3%81%A7%E4%BD%BF%E3%81%88%E3%82%8Bnon-moving%E3%81%A7%E6%AD%A3%E7%A2%BA%E3%81%AA%E3%82%B3%E3%83%94%E3%83%BCgc%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%9F"><i class="fa fa-link"></i></a>C言語でインクルードするだけで使えるNon-movingで正確なコピーGCを作った</h1>
+
+<p>インクルードするだけで使えるNon-movingで正確なGCをC言語用に作りました。<br>
+行数がコメントを除いて100行に満たない非常に小さなライブラリです。<br>
+GCのアルゴリズムとしてはCheneyのコピーGCを採用しています。<br>
+通常のCheneyのコピーGCではメモリ空間のうち半分が無駄になってしまいメモリ効率が悪かったり、<br>
+GC発生時にオブジェクトが移動してしまいC言語のようなポインタを直接触れる言語との相性が悪いという欠点がありました。<br>
+今回はヒープ全体を二重連結リストとして管理することでそのような問題を解決しています。<br>
+ちなみにこれはTreadmill GCのアイデアと同じです。(が、アルゴリズム自体はTreadmill GCではありません。)<br>
+APIはLinuxのlist.hに非常に近い見た目になっています。<br>
+ある構造体をgcで管理したい場合はstruct gc_head型のメンバを追加するだけで大丈夫です。<br>
+他にはヒープに対するアプリオリな知識を仮定していないという特徴があります。<br>
+結果として(実際にそれが必要になることはほとんどないと思いますが)このGCを動作させるだけであればlibcも必要ありません。</p>
+
+<h1>
+<span id="使い方" class="fragment"></span><a href="#%E4%BD%BF%E3%81%84%E6%96%B9"><i class="fa fa-link"></i></a>使い方</h1>
+
+<h2>
+<span id="listh" class="fragment"></span><a href="#listh"><i class="fa fa-link"></i></a>list.h</h2>
+
+<p>まず、APIのデザインのベースとしたLinuxのlist.hの使い方について簡単に説明します。Linuxのlist.hは非常に綺麗なAPIを持つC言語のための連結リストライブラリです。例えば構造体<code>foo</code>の連結リストを作成する場合、構造体<code>foo</code>に<code>struct list_head</code>型のメンバを(どんな位置でもいいので)追加するだけです。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">foo</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="k">struct</span> <span class="n">list_head</span> <span class="n">head</span><span class="p">;</span>
+    <span class="p">...</span>
+<span class="p">};</span>
+</pre></div></div>
+
+<p>fooを作成したら<code>head</code>メンバを<code>INIT_LIST_HEAD</code>で初期化してあげます。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">foo</span> <span class="o">*</span><span class="n">foo</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span> <span class="o">*</span><span class="n">foo</span><span class="p">);</span>
+<span class="n">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">foo</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">);</span>
+</pre></div></div>
+
+<p>リスト自体も<code>struct list_head</code>型で表されます。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">list_head</span> <span class="n">list_of_foo</span><span class="p">;</span>
+<span class="n">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">list_of_foo</span><span class="p">);</span>
+</pre></div></div>
+
+<p>追加や削除はfooそのものではなくfooのheadメンバに対して行います。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="n">list_add</span><span class="p">(</span><span class="o">&amp;</span><span class="n">foo</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">list_of_foo</span><span class="p">);</span>
+<span class="n">list_del</span><span class="p">(</span><span class="o">&amp;</span><span class="n">foo</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">);</span>
+</pre></div></div>
+
+<p>list_headのポインタから、それが属する構造体のポインタを得るには<code>list_entry</code>マクロを用います。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">list_head</span> <span class="o">*</span><span class="n">h</span> <span class="o">=</span> <span class="n">list_of_foo</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>  <span class="c1">// list_of_fooの1個目の要素</span>
+<span class="k">struct</span> <span class="n">foo</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">list_entry</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="k">struct</span> <span class="n">foo</span><span class="p">,</span> <span class="n">head</span><span class="p">);</span> <span class="c1">// hが属する構造体へのポインタ</span>
+</pre></div></div>
+
+<p>ちなみにAPIから明らかですが、<code>struct foo</code>自体はどんな方法でアロケートされていても構いません。例えばスタックに確保した構造体であっても正しくリストのメンバとして扱われます。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">foo</span> <span class="n">foo</span><span class="p">;</span>
+<span class="n">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">foo</span><span class="p">.</span><span class="n">head</span><span class="p">);</span>
+<span class="n">list_add</span><span class="p">(</span><span class="o">&amp;</span><span class="n">foo</span><span class="p">.</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">list_of_foo</span><span class="p">);</span>
+</pre></div></div>
+
+<h2>
+<span id="gch" class="fragment"></span><a href="#gch"><i class="fa fa-link"></i></a>gc.h</h2>
+
+<p>今回作ったgc.h(ファイル名がBoehmGCと被ってますね)はここ[4]に置いてあります。gc.hの使い方はlist.hと概ね同じです。GC対象にしたい構造体があればそれに<code>struct gc_head</code>型のメンバを追加します。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">foo</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="k">struct</span> <span class="n">gc_head</span> <span class="n">head</span><span class="p">;</span>
+    <span class="p">...</span>
+<span class="p">};</span>
+</pre></div></div>
+
+<p>次がポイントですが、<code>struct foo</code>型のオブジェクトをまず自分でアロケートしてから、GCに登録します。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">foo</span> <span class="o">*</span><span class="n">foo</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span> <span class="o">*</span><span class="n">foo</span><span class="p">);</span>
+<span class="n">INIT_GC_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">foo</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">foo_type</span><span class="p">);</span>
+</pre></div></div>
+
+<p>ただし、この<code>foo_type</code>というのは事前に定義しておいた定数で、foo型がどのようにmarkされるか、freeされるかの情報を保持します。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">foo_mark</span><span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">foo</span> <span class="o">*</span><span class="n">foo</span> <span class="o">=</span> <span class="n">gc_entry</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="k">struct</span> <span class="n">foo</span><span class="p">,</span> <span class="n">head</span><span class="p">);</span>
+    <span class="p">...</span>
+    <span class="cm">/* mark members of foo using `gc_mark` (if any) */</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">foo_free</span><span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">foo</span> <span class="o">*</span><span class="n">foo</span> <span class="o">=</span> <span class="n">gc_entry</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="k">struct</span> <span class="n">foo</span><span class="p">,</span> <span class="n">head</span><span class="p">);</span>
+    <span class="p">...</span>
+    <span class="cm">/* free members of foo (if any) */</span>
+    <span class="p">...</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">foo</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">const</span> <span class="k">struct</span> <span class="n">gc_object_type</span> <span class="n">foo_type</span> <span class="o">=</span> <span class="p">{</span> <span class="n">foo_mark</span><span class="p">,</span> <span class="n">foo_free</span> <span class="p">};</span>
+</pre></div></div>
+
+<p>ここで<code>foo_free</code>の中で<code>foo</code>自体をfreeしています。このように、ネイティブヒープからのアロケーションはプログラマが自分で行います。gc.hが管理するのは参照の生死だけです。オブジェクトが死んだ場合は事前に<code>INIT_GC_HEAD</code>で登録しておいたfree関数が呼ばれるので、その中で適切にネイティブヒープへメモリを返却するのもプログラマの責任です。そのようなデザインのおかげで、gc.hはlibcの関数を使用していません。</p>
+
+<p>通常のGCではヒープの管理までGCが行うので、GCはもともと設定されたタイミングで自動で走ります。しかし、gc.hはネイティブヒープについて一切感知しないというデザインのため、GCが走るタイミングはプログラマが自分で制御する必要があります。<code>malloc</code>でアロケートしたメモリの総量を数えておき、域値を越えればGCを走らせるというのが通常の戦略になると思います。GCは<code>gc_run</code>関数を呼べば走ります。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="n">gc_run</span><span class="p">();</span>
+</pre></div></div>
+
+<p>さて、参照の生死の管理について説明します。gc.hは簡単なスコープ管理の機能を持っています。スコープは<code>gc_scope_open</code>で作成、<code>gc_scope_close</code>で破棄できます。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="n">gc_scope_t</span> <span class="n">s</span> <span class="o">=</span> <span class="n">gc_scope_open</span><span class="p">();</span>
+
+    <span class="p">...</span>
+
+    <span class="n">gc_scope_close</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>まず、<code>INIT_GC_HEAD</code>で初期化されたオブジェクトはその時点でのスコープに属する生存オブジェクトになります。スコープが閉じられると、その中で確保されたオブジェクトの参照が切れます。ここで、他からの参照が一切なくなってしまったオブジェクトは次回の<code>gc_run</code>で回収されます。スコープを閉じた後にオブジェクトを使用する場合は<code>gc_protect</code>を呼びます。下のようなコードを実行した場合(make_fooの定義は普通だとして)<code>a</code>は生き残りますが<code>b</code>は次回のGCで回収されます。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="n">gc_scope_t</span> <span class="n">s</span> <span class="o">=</span> <span class="n">gc_scope_open</span><span class="p">();</span>
+
+    <span class="k">struct</span> <span class="n">foo</span> <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="n">make_foo</span><span class="p">();</span>
+    <span class="k">struct</span> <span class="n">foo</span> <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="n">make_foo</span><span class="p">();</span>
+
+    <span class="n">gc_scope_close</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="n">gc_protect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h1>
+<span id="解説" class="fragment"></span><a href="#%E8%A7%A3%E8%AA%AC"><i class="fa fa-link"></i></a>解説</h1>
+
+<p>CheneyのコピーGC(以下単にコピーGC)の詳細についてはWikipediaとか[1]を参照してください。原理の解説をしようと思いましたが、実際には基本的にはコピーGCと全く同じです。ただし、non-movingにするためにTreadmill GCの考え方を用いています。Treadmill GCについてはこのWikiとか[2]をみてください。</p>
+
+<p><code>struct gc_head</code>の中身は以下のようになっています。大きさが4ワードとかなり大きめです。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">gc_head</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">list_head</span> <span class="n">head</span><span class="p">;</span>
+    <span class="k">const</span> <span class="k">struct</span> <span class="n">gc_object_type</span> <span class="o">*</span><span class="n">type</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">stack_next</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div>
+
+<p><code>head</code>は全オブジェクト(生きているか、もしくは死んでいるが回収されていない)への二重連結リストにつながっています。<code>type</code>はこのオブジェクトに対してどのようなmarkとfreeを施すかの情報が入っています。<code>stack_next</code>はスコープの管理(=root setの管理)に用います。一重連結リストです。</p>
+
+<p>GC全体の状態は一つの変数にまとまっています。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">gc_state</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">list_head</span> <span class="n">spaces</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">stack</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">from</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div>
+
+<p><code>spaces</code>はfromスペースとtoスペースを表す二重連結リストです。<code>stack</code>は現在のスコープのトップにあるgc_headを指しています。<code>from</code>はspacesのどちらがfromかを表す1bitの状態です。</p>
+
+<p>spacesのfrom側はgc中でなければ全オブジェクトへの二重連結リストで、gc中はmarkされていないオブジェクトからなる二重連結リストです。spacesのto側はgc中でなければ常に空、gc中はmark済みのオブジェクトからなる二重連結リストです。Treadmill GCと違い、このGCではgc実行中に二つの異なる二重連結リストを使用します。これは通常のコピーGCの挙動に近いです。</p>
+
+<p>スコープの管理は非常に簡単です。まず、gc_protectはオブジェクトを<code>stack</code>につなぎます。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_protect</span><span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">head</span><span class="o">-&gt;</span><span class="n">stack_next</span> <span class="o">=</span> <span class="n">gc</span><span class="p">.</span><span class="n">stack</span><span class="p">;</span>
+    <span class="n">gc</span><span class="p">.</span><span class="n">stack</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>stackは<code>INIT_GC_HEAD</code>をすることでも伸びます。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">INIT_GC_HEAD</span><span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">gc_object_type</span> <span class="o">*</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="n">type</span><span class="p">;</span>
+    <span class="n">list_add</span><span class="p">(</span><span class="o">&amp;</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">spaces</span><span class="p">[</span><span class="n">gc</span><span class="p">.</span><span class="n">from</span><span class="p">]);</span>
+    <span class="n">gc_protect</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>そして、スコープのopenとcloseは現在の<code>stack</code>を記録、変更するだけです。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">gc_scope_t</span><span class="p">;</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="n">gc_scope_t</span> <span class="nf">gc_scope_open</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">gc</span><span class="p">.</span><span class="n">stack</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_scope_close</span><span class="p">(</span><span class="n">gc_scope_t</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">gc</span><span class="p">.</span><span class="n">stack</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><code>stack</code>から繋がる全てのオブジェクトは生存していると見なされます。というか、root setは<code>stack</code>から繋がるオブジェクト全体と同じです。</p>
+
+<h1>
+<span id="パフォーマンス" class="fragment"></span><a href="#%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9"><i class="fa fa-link"></i></a>パフォーマンス</h1>
+
+<p>力尽きたので測ってません。</p>
+
+<h1>
+<span id="今後の拡張について" class="fragment"></span><a href="#%E4%BB%8A%E5%BE%8C%E3%81%AE%E6%8B%A1%E5%BC%B5%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>今後の拡張について</h1>
+
+<p>少なくともこのリポジトリではこれ以上の拡張を行うことを予定してはいませんが、実際に使用する上では以下のような拡張が必要になるはずです。</p>
+
+<ul>
+<li>グローバルな参照への対応</li>
+<li>マルチスレッド対応</li>
+<li>インクリメンタルGC化</li>
+<li>Mark&amp;Sweep化</li>
+</ul>
+
+<p>まず、現在の実装ではグローバルに保持される参照には対応していません。<code>stack</code>のチェインの下の方にうまくオブジェクトを繋いでおくことで擬似的にグローバル参照のようなものを作ることはできます。が、その場合一番下のスコープに番兵オブジェクトを置く必要があるため面倒です。おそらく<code>gc_state</code>にもう一つの二重連結リストを付け足してグローバルな参照をそこに全部つなぎ、マークフェイズでそれらをroot setとして扱うのが良いと思います。<code>stack_next</code>メンバを使った一重連結リストでも良いですがその場合グローバルな参照を削除するのに線形の時間が必要になってしまいます。</p>
+
+<p>マルチスレッド対応は地道にlockを各所に入れれば良さそうです。<code>gc_state</code>の<code>stack</code>メンバはスレッドの数だけ用意すればcontentionが減りそうです。ただ、いずれにせよlockは必要ですが。一方で、各スレッドで独立したGCを動かす場合には、グローバル変数gcをスレッドローカルにするだけで良いはずです。</p>
+
+<p>インクリメンタル化はTreadmill GCと同じやり方で簡単に実現できます。つまり、from空間からto空間へのmoveをインクリメンタルに行う(n個単位で行うとか)だけです。と、今書いてて思ったんですがこれいい感じにTask stealingな感じでマルチスレッドに出来ないんですかね。いかにもすでにありそうだけど。</p>
+
+<p>現在のコピーGCに基づく実装は簡単でかつGC中に追加のメモリを必要としないという利点がありますが、一方でそれは必要な情報をオブジェクトのヘッダに入れているだけだと捉えることもできます。4ワードのヘッダは通常の感覚で言えばかなり大きいと思います。アルゴリズムをMark &amp; Sweepにすれば二重連結リストで管理している部分が一重で済むので3ワードにはなります。ただしその分GCを行うために追加の領域が必要になります。ちなみに、スコープの管理のために別にスタックを用意することにすれば<code>stack_next</code>を無くして2ワードまで減らせますが、メモリ使用量の観点からは効果がないです。(ただしキャッシュのヒット率が上がってGCが高速化される可能性は高いです。)</p>
+
+<h1>
+<span id="追記" class="fragment"></span><a href="#%E8%BF%BD%E8%A8%98"><i class="fa fa-link"></i></a>追記</h1>
+
+<p>その後よく考えたところいくつかの改良を行うことができました。まず、ヘッダーサイズを3ワードに減らすことができました。これ以上の削減にはアルゴリズムをマーク&amp;スイープにするなどの本質的な変更が必要で、またそのような変更を行なった場合、GC中に追加のメモリ領域を必要としないというコピーGCの恩恵は受けられないと思われます。今回のヘッダサイズ削減はヒープ全体の管理に使用している二重連結構造をルート集合の管理にも用いるようにしたことで実現されました。また、副次的な効果としてスコープの管理が柔軟になったため、グローバルな参照のサポートが簡単に実装できました。さらに、コメント欄で指摘を頂いたマルチスレッド化に向けたインターフェイスの変更についても利便性を損なわずに効率的に実装を行うことができるようになったため実装しました。具体的なコードはおまけ(その2)に追加しました。</p>
+
+<p>見かけ上はスコープ管理に関連するAPIが変更されました。改良版ではスコープは以下のようにして作成します。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">gc_scope</span> <span class="n">s</span><span class="p">;</span>
+
+<span class="n">gc_scope_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="n">gc_scope_close</span><span class="p">();</span>
+</pre></div></div>
+
+<p>また<code>gc_preserve</code>と<code>gc_release</code>という二つの関数が追加されました。<code>gc_preserve</code>はオブジェクトとスコープを受け取り、オブジェクトの生存期間を指定されたスコープに変更します。<code>gc_release</code>はオブジェクトを受け取り、所属するスコープからの参照を削除します。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">gc_scope</span> <span class="n">s0</span><span class="p">;</span>
+<span class="n">gc_scope_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s0</span><span class="p">);</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">gc_scope</span> <span class="n">s1</span><span class="p">;</span>
+    <span class="n">gc_scope_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s1</span><span class="p">);</span>
+
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">make_obj</span><span class="p">();</span>
+    <span class="n">gc_preserve</span><span class="p">(</span><span class="o">&amp;</span><span class="n">obj</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">s0</span><span class="p">);</span>
+    <span class="n">gc_scope_close</span><span class="p">();</span>
+
+    <span class="c1">// obj is alive</span>
+<span class="p">}</span>
+<span class="n">gc_scope_close</span><span class="p">();</span>
+
+<span class="c1">// obj is dead</span>
+</pre></div></div>
+
+<p><code>gc_preserve</code>の特殊な場合として、受け取ったオブジェクトの生存期間を現在のスコープからみて一つ下のスコープに延長する<code>gc_protect</code>と最上位のスコープに延長する<code>gc_pin</code>を追加しました。たいていの場合<code>gc_pin</code>は大域変数に代入されたオブジェクトに対して使用するはずです。</p>
+
+<h1>
+<span id="参照" class="fragment"></span><a href="#%E5%8F%82%E7%85%A7"><i class="fa fa-link"></i></a>参照</h1>
+
+<ul>
+<li>[1] <a href="https://en.wikipedia.org/wiki/Cheney%27s_algorithm" class="autolink" rel="nofollow noopener" target="_blank">https://en.wikipedia.org/wiki/Cheney%27s_algorithm</a>
+</li>
+<li>[2] <a href="http://seesaawiki.jp/w/author_nari/d/GC/extend/TreadmillGC%28Barker%201992%29" class="autolink" rel="nofollow noopener" target="_blank">http://seesaawiki.jp/w/author_nari/d/GC/extend/TreadmillGC%28Barker%201992%29</a>
+</li>
+<li>[3] <a href="https://github.com/kazuho/picogc" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/kazuho/picogc</a>
+</li>
+<li>[4] <a href="https://github.com/nyuichi/gc.h" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/nyuichi/gc.h</a>
+</li>
+</ul>
+
+<h1>
+<span id="おまけ" class="fragment"></span><a href="#%E3%81%8A%E3%81%BE%E3%81%91"><i class="fa fa-link"></i></a>おまけ</h1>
+
+<p>gc.hの全容。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="k">struct</span> <span class="n">gc_state</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">list_head</span> <span class="n">spaces</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">stack</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">from</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">gc</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">gc_head</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">list_head</span> <span class="n">head</span><span class="p">;</span>
+    <span class="k">const</span> <span class="k">struct</span> <span class="n">gc_object_type</span> <span class="o">*</span><span class="n">type</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">stack_next</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">gc_object_type</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">mark</span><span class="p">)(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">free</span><span class="p">)(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="cp">#define gc_entry(ptr, type, field) container_of(ptr, type, field)</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">spaces</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="n">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">spaces</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="n">gc</span><span class="p">.</span><span class="n">stack</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">gc</span><span class="p">.</span><span class="n">from</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">gc_scope_t</span><span class="p">;</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="n">gc_scope_t</span> <span class="nf">gc_scope_open</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">gc</span><span class="p">.</span><span class="n">stack</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_scope_close</span><span class="p">(</span><span class="n">gc_scope_t</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">gc</span><span class="p">.</span><span class="n">stack</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_protect</span><span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">head</span><span class="o">-&gt;</span><span class="n">stack_next</span> <span class="o">=</span> <span class="n">gc</span><span class="p">.</span><span class="n">stack</span><span class="p">;</span>
+    <span class="n">gc</span><span class="p">.</span><span class="n">stack</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">INIT_GC_HEAD</span><span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">gc_object_type</span> <span class="o">*</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="n">type</span><span class="p">;</span>
+    <span class="n">list_add</span><span class="p">(</span><span class="o">&amp;</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">spaces</span><span class="p">[</span><span class="n">gc</span><span class="p">.</span><span class="n">from</span><span class="p">]);</span>
+    <span class="n">gc_protect</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_mark</span><span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">stack_next</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="n">head</span><span class="o">-&gt;</span><span class="n">stack_next</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">stack_next</span> <span class="o">|</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">list_move_tail</span><span class="p">(</span><span class="o">&amp;</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">spaces</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="n">gc</span><span class="p">.</span><span class="n">from</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_run</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">n</span><span class="p">;</span>
+    <span class="cm">/* copy live objects */</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">head</span> <span class="o">=</span> <span class="n">gc</span><span class="p">.</span><span class="n">stack</span><span class="p">;</span> <span class="n">head</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="n">head</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">stack_next</span> <span class="o">&amp;</span> <span class="o">~</span><span class="mi">1ul</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">gc_mark</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">list_for_each_entry</span> <span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">spaces</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="n">gc</span><span class="p">.</span><span class="n">from</span><span class="p">],</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">mark</span><span class="p">)</span>
+            <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">mark</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="cm">/* clean up */</span>
+    <span class="n">list_for_each_entry</span> <span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">spaces</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="n">gc</span><span class="p">.</span><span class="n">from</span><span class="p">],</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">head</span><span class="o">-&gt;</span><span class="n">stack_next</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">stack_next</span> <span class="o">&amp;</span> <span class="o">~</span><span class="mi">1ul</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">list_for_each_entry_safe</span> <span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">spaces</span><span class="p">[</span><span class="n">gc</span><span class="p">.</span><span class="n">from</span><span class="p">],</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">list_del</span><span class="p">(</span><span class="o">&amp;</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">free</span><span class="p">)</span>
+            <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">free</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">gc</span><span class="p">.</span><span class="n">from</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">gc</span><span class="p">.</span><span class="n">from</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_destroy</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">gc</span><span class="p">.</span><span class="n">stack</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">gc_run</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>以下はpicogcのテスト[3]を移植したもの。</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">"gc.h"</span><span class="cp"></span>
+
+<span class="k">struct</span> <span class="n">gc_state</span> <span class="n">gc</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">list</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">list</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">gc_head</span> <span class="n">head</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">list_mark</span><span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">list</span> <span class="o">*</span><span class="n">list</span> <span class="o">=</span> <span class="n">gc_entry</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="k">struct</span> <span class="n">list</span><span class="p">,</span> <span class="n">head</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">gc_mark</span><span class="p">(</span><span class="o">&amp;</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">list_free</span><span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">list</span> <span class="o">*</span><span class="n">list</span> <span class="o">=</span> <span class="n">gc_entry</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="k">struct</span> <span class="n">list</span><span class="p">,</span> <span class="n">head</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"free %d!</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">);</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">list</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">const</span> <span class="k">struct</span> <span class="n">gc_object_type</span> <span class="n">list_type</span> <span class="o">=</span> <span class="p">{</span> <span class="n">list_mark</span><span class="p">,</span> <span class="n">list_free</span> <span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">list</span> <span class="o">*</span><span class="nf">cons</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="k">struct</span> <span class="n">list</span> <span class="o">*</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">list</span> <span class="o">*</span><span class="n">list</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">list</span><span class="p">));</span>
+    <span class="n">INIT_GC_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">list_type</span><span class="p">);</span>
+    <span class="n">list</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+    <span class="n">list</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">struct</span> <span class="n">list</span> <span class="o">*</span><span class="nf">doit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">gc_scope_t</span> <span class="n">s</span> <span class="o">=</span> <span class="n">gc_scope_open</span><span class="p">();</span>
+
+    <span class="k">struct</span> <span class="n">list</span> <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="n">cons</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="k">struct</span> <span class="n">list</span> <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="n">cons</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="k">struct</span> <span class="n">list</span> <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="n">cons</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="k">struct</span> <span class="n">list</span> <span class="o">*</span><span class="n">d</span> <span class="o">=</span> <span class="n">cons</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
+
+    <span class="n">gc_run</span><span class="p">();</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"0 objects must be released"</span><span class="p">);</span>
+
+    <span class="n">gc_scope_close</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="n">gc_protect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">d</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">gc_init</span><span class="p">();</span>
+
+    <span class="p">{</span>
+        <span class="n">gc_scope_t</span> <span class="n">s</span> <span class="o">=</span> <span class="n">gc_scope_open</span><span class="p">();</span>
+
+        <span class="k">struct</span> <span class="n">list</span> <span class="o">*</span><span class="n">list</span> <span class="o">=</span> <span class="n">doit</span><span class="p">();</span>
+
+        <span class="n">gc_run</span><span class="p">();</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">"2 objects must be released"</span><span class="p">);</span>
+
+        <span class="n">list</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+        <span class="n">gc_run</span><span class="p">();</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">"1 object must be released"</span><span class="p">);</span>
+
+        <span class="n">gc_scope_close</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">gc_run</span><span class="p">();</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"1 object must be released"</span><span class="p">);</span>
+
+    <span class="n">gc_destroy</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h1>
+<span id="おまけその2" class="fragment"></span><a href="#%E3%81%8A%E3%81%BE%E3%81%91%E3%81%9D%E3%81%AE2"><i class="fa fa-link"></i></a>おまけ(その2)</h1>
+
+<p>改良版</p>
+
+<div class="code-frame" data-lang="c"><div class="highlight"><pre><span></span>
+<span class="k">struct</span> <span class="n">gc_scope</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">list_head</span> <span class="n">local</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">gc_scope</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">extern</span> <span class="k">struct</span> <span class="n">gc_state</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">list_head</span> <span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">gc_scope</span> <span class="o">*</span><span class="n">scope</span><span class="p">,</span> <span class="n">global</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">gc</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">gc_head</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">list_head</span> <span class="n">head</span><span class="p">;</span>
+    <span class="k">const</span> <span class="k">struct</span> <span class="n">gc_object_type</span> <span class="o">*</span><span class="n">type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">gc_object_type</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">mark</span><span class="p">)(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">free</span><span class="p">)(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="cp">#define gc_entry(ptr, type, field) container_of(ptr, type, field)</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_scope_open</span><span class="p">(</span><span class="k">struct</span> <span class="n">gc_scope</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">local</span><span class="p">);</span>
+    <span class="n">s</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">gc</span><span class="p">.</span><span class="n">scope</span><span class="p">;</span>
+    <span class="n">gc</span><span class="p">.</span><span class="n">scope</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_scope_close</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">list_splice</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">scope</span><span class="o">-&gt;</span><span class="n">local</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">from</span><span class="p">);</span>
+    <span class="n">gc</span><span class="p">.</span><span class="n">scope</span> <span class="o">=</span> <span class="n">gc</span><span class="p">.</span><span class="n">scope</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_preserve</span><span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="k">struct</span> <span class="n">gc_scope</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">list_move</span><span class="p">(</span><span class="o">&amp;</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">local</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_release</span><span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">list_move</span><span class="p">(</span><span class="o">&amp;</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">from</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">#define gc_protect(head) gc_preserve((head), gc.scope-&gt;next)</span>
+<span class="cp">#define gc_pin(head) gc_preserve((head), &amp;gc.global)</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">INIT_GC_HEAD</span><span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">gc_object_type</span> <span class="o">*</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">);</span>
+    <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="n">type</span><span class="p">;</span>
+    <span class="n">gc_preserve</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">gc</span><span class="p">.</span><span class="n">scope</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_mark</span><span class="p">(</span><span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">gc_object_type</span> <span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">|</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">list_move_tail</span><span class="p">(</span><span class="o">&amp;</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">to</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">#define gc_type(head) ((struct gc_object_type *) ((unsigned long) (head)-&gt;type &amp; ~1ul))</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_run</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">gc_head</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">n</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">gc_scope</span> <span class="o">*</span><span class="n">s</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">s</span> <span class="o">=</span> <span class="n">gc</span><span class="p">.</span><span class="n">scope</span><span class="p">;</span> <span class="n">s</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">list_for_each_entry</span> <span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">local</span><span class="p">,</span> <span class="n">head</span><span class="p">)</span>
+            <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">gc_object_type</span> <span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">|</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="cm">/* copy live objects */</span>
+    <span class="n">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">to</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">s</span> <span class="o">=</span> <span class="n">gc</span><span class="p">.</span><span class="n">scope</span><span class="p">;</span> <span class="n">s</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">list_for_each_entry</span> <span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">local</span><span class="p">,</span> <span class="n">head</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">gc_type</span><span class="p">(</span><span class="n">head</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">mark</span><span class="p">)</span> <span class="n">gc_type</span><span class="p">(</span><span class="n">head</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">mark</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">list_for_each_entry</span> <span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">to</span><span class="p">,</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">gc_type</span><span class="p">(</span><span class="n">head</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">mark</span><span class="p">)</span> <span class="n">gc_type</span><span class="p">(</span><span class="n">head</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">mark</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="cm">/* clean up */</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">s</span> <span class="o">=</span> <span class="n">gc</span><span class="p">.</span><span class="n">scope</span><span class="p">;</span> <span class="n">s</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">list_for_each_entry</span> <span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">local</span><span class="p">,</span> <span class="n">head</span><span class="p">)</span>
+            <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">gc_object_type</span> <span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">&amp;</span> <span class="o">~</span><span class="mi">1ul</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">list_for_each_entry</span> <span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">to</span><span class="p">,</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">gc_object_type</span> <span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">&amp;</span> <span class="o">~</span><span class="mi">1ul</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">list_for_each_entry_safe</span> <span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">from</span><span class="p">,</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">free</span><span class="p">)</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">free</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">from</span><span class="p">);</span>
+    <span class="n">list_splice</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">to</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">from</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">INIT_LIST_HEAD</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">from</span><span class="p">);</span>
+    <span class="n">gc</span><span class="p">.</span><span class="n">scope</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">gc_scope_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">gc</span><span class="p">.</span><span class="n">global</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">gc_destroy</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">gc</span><span class="p">.</span><span class="n">scope</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">gc_run</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div></div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

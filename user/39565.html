@@ -1,0 +1,663 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (Kta-M)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (Kta-M さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>Kta-Mさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>265</kbd>
+		<a target="_blank" href="https://qiita.com/Kta-M/items/afa94a6728416511b78b">メールにパスワード付きzipを添付して「パスワードは別途お送りいたします」とする慣習がめんどくさいのでなんとかした</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-19 20:34:35</center>
+	</td>
+	<td style="width:200px;">
+		@Kta-M<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/39565/profile-images/1473688153">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[AWS]</b> <b>[mail]</b> <b>[amazonses]</b> <b>[serverless]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h2>
+<span id="あの慣習" class="fragment"></span><a href="#%E3%81%82%E3%81%AE%E6%85%A3%E7%BF%92"><i class="fa fa-link"></i></a>あの慣習</h2>
+
+<p>メールにパスワード付きzipを添付して「パスワードは別途お送りいたします」とする慣習、ありますよね。<br>
+自分からはやらないけど、相手に合わせてやらざるを得なかったりしてめんどくさい。</p>
+
+<p>ここでは、このやり方の是非は問題にしません。<br>
+どんなに是非を説いても、この慣習があるという状況は変わらないので。</p>
+
+<p>そして、この慣習を無くすことも考えません。<br>
+そういうのは巨大な力を持った何かにおまかせします。</p>
+
+<p>昔のエラい人は言いました。「長いものには巻かれろ」と。<br>
+ただし、巻かれ方は考えたほうがいいと思うのです。</p>
+
+<h2>
+<span id="スマートな巻かれ方を考える" class="fragment"></span><a href="#%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E3%81%AA%E5%B7%BB%E3%81%8B%E3%82%8C%E6%96%B9%E3%82%92%E8%80%83%E3%81%88%E3%82%8B"><i class="fa fa-link"></i></a>スマートな巻かれ方を考える</h2>
+
+<p>巻かれるにあたって、解決したいことはただ一つ。めんどくさくないこと。<br>
+このためにWebシステム作って、ブラウザ開いてどうのこうのなんてやってると本末転倒です。<br>
+可能な限り、普通のメール送信に近い形で実現したい。</p>
+
+<p>というわけで、あれこれ考えた末、一部の制約を許容しつつ、AmazonSESを使ってサーバーレスな感じで解決してみました。</p>
+
+<h3>
+<span id="仕様" class="fragment"></span><a href="#%E4%BB%95%E6%A7%98"><i class="fa fa-link"></i></a>仕様</h3>
+
+<ol>
+<li>普通にメールを書く(新規・返信・転送問わず)</li>
+<li>ファイルをzipで固めずにそのまま放り込む</li>
+<li>SES宛のメールアドレスを<code>To</code>に、実際にファイルを送りたい相手を<code>Reply-To</code>に設定する。</li>
+<li>システムを信じて送信ボタンを押す</li>
+<li>自分と相手に、パスワード付きzipが添付されたメールとパスワードのお知らせメールが届く</li>
+</ol>
+
+<p>ただし、以下の制約があります。個人的には許容範囲です。</p>
+
+<ul>
+<li>結果的に相手方には全員<code>To</code>で届く。<code>Cc</code>はできない(自分は<code>Bcc</code>)</li>
+<li>zipファイルの名前は日時(yymmddHHMMSS.zip)になる(中身のファイル名はそのまま)</li>
+</ul>
+
+<h2>
+<span id="システム構成" class="fragment"></span><a href="#%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E6%A7%8B%E6%88%90"><i class="fa fa-link"></i></a>システム構成</h2>
+
+<p><a href="https://camo.qiitausercontent.com/31166a1e0abd2cb973a51ee20e7dc3d7cc3a5671/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f61353132323738642d623830372d646135612d353431622d6536613637623934386239322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/31166a1e0abd2cb973a51ee20e7dc3d7cc3a5671/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f61353132323738642d623830372d646135612d353431622d6536613637623934386239322e706e67" alt="flow_01.png" title="flow_01.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/a512278d-b807-da5a-541b-e6a67b948b92.png"></a></p>
+
+<ol>
+<li>SESに宛ててメールを送る</li>
+<li>メールデータがS3に保存される</li>
+<li>それをトリガーにしてLambdaが起動する</li>
+<li>Lambdaがメールの内容を解析してパスワードとzipファイルを生成する</li>
+<li>いい感じにメールを送る（念のため自分にもBccで送る）</li>
+</ol>
+
+<h2>
+<span id="実装" class="fragment"></span><a href="#%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>実装</h2>
+
+<h3>
+<span id="lambda" class="fragment"></span><a href="#lambda"><i class="fa fa-link"></i></a>Lambda</h3>
+
+<p>真面目にpython書いたの初めてだけどこんな感じでいいのかな？<br>
+大体メールと文字コードとファイルとの戦いです。</p>
+
+<div class="code-frame" data-lang="python"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">urllib.parse</span>
+<span class="kn">import</span> <span class="nn">boto3</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">smtplib</span>
+<span class="kn">import</span> <span class="nn">email</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">from</span> <span class="nn">email</span>                <span class="kn">import</span> <span class="n">encoders</span>
+<span class="kn">from</span> <span class="nn">email.header</span>         <span class="kn">import</span> <span class="n">decode_header</span>
+<span class="kn">from</span> <span class="nn">email.mime.base</span>      <span class="kn">import</span> <span class="n">MIMEBase</span>
+<span class="kn">from</span> <span class="nn">email.mime.multipart</span> <span class="kn">import</span> <span class="n">MIMEMultipart</span>
+<span class="kn">from</span> <span class="nn">email.mime.text</span>      <span class="kn">import</span> <span class="n">MIMEText</span>
+<span class="kn">from</span> <span class="nn">email.mime.image</span>     <span class="kn">import</span> <span class="n">MIMEImage</span>
+<span class="kn">from</span> <span class="nn">datetime</span>             <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)),</span> <span class="s1">'vendored'</span><span class="p">))</span>
+<span class="kn">import</span> <span class="nn">pyminizip</span>
+
+<span class="n">s3</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">'s3'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">MailParser</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    メール解析クラス</span>
+<span class="sd">    (参考) http://qiita.com/sayamada/items/a42d344fa343cd80cf86</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email_string</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        初期化</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">email_message</span>    <span class="o">=</span> <span class="n">email</span><span class="o">.</span><span class="n">message_from_string</span><span class="p">(</span><span class="n">email_string</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subject</span>          <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_address</span>     <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reply_to_address</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body</span>             <span class="o">=</span> <span class="s2">""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attach_file_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># emlの解釈</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parse</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_attr_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        メールデータの取得</span>
+<span class="sd">        """</span>
+        <span class="n">attr</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">"from"</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">from_address</span><span class="p">,</span>
+                <span class="s2">"reply_to"</span><span class="p">:</span>     <span class="bp">self</span><span class="o">.</span><span class="n">reply_to_address</span><span class="p">,</span>
+                <span class="s2">"subject"</span><span class="p">:</span>      <span class="bp">self</span><span class="o">.</span><span class="n">subject</span><span class="p">,</span>
+                <span class="s2">"body"</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
+                <span class="s2">"attach_files"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">attach_file_list</span>
+                <span class="p">}</span>
+        <span class="k">return</span> <span class="n">attr</span>
+
+
+    <span class="k">def</span> <span class="nf">_parse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        メールファイルの解析</span>
+<span class="sd">        """</span>
+
+        <span class="c1"># メッセージヘッダ部分の解析</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subject</span>          <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_decoded_header</span><span class="p">(</span><span class="s2">"Subject"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_address</span>     <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_decoded_header</span><span class="p">(</span><span class="s2">"From"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reply_to_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_decoded_header</span><span class="p">(</span><span class="s2">"Reply-To"</span><span class="p">)</span>
+
+        <span class="c1"># メールアドレスの文字列だけ抽出する</span>
+        <span class="n">from_list</span> <span class="o">=</span>  <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">"&lt;(.*@.*)&gt;"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_address</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">from_list</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">from_address</span> <span class="o">=</span> <span class="n">from_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">reply_to_list</span> <span class="o">=</span>  <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">"&lt;(.*@.*)&gt;"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reply_to_address</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">reply_to_list</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reply_to_address</span> <span class="o">=</span> <span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">reply_to_list</span><span class="p">)</span>
+
+        <span class="c1"># メッセージ本文部分の解析</span>
+        <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">email_message</span><span class="o">.</span><span class="n">walk</span><span class="p">():</span>
+            <span class="c1"># ContentTypeがmultipartの場合は実際のコンテンツはさらに</span>
+            <span class="c1"># 中のpartにあるので読み飛ばす</span>
+            <span class="k">if</span> <span class="n">part</span><span class="o">.</span><span class="n">get_content_maintype</span><span class="p">()</span> <span class="o">==</span> <span class="s1">'multipart'</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="c1"># ファイル名の取得</span>
+            <span class="n">attach_fname</span> <span class="o">=</span> <span class="n">part</span><span class="o">.</span><span class="n">get_filename</span><span class="p">()</span>
+            <span class="c1"># ファイル名がない場合は本文のはず</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">attach_fname</span><span class="p">:</span>
+                <span class="n">charset</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">get_content_charset</span><span class="p">())</span>
+                <span class="k">if</span> <span class="n">charset</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">charset</span> <span class="o">==</span> <span class="s1">'utf-8'</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">body</span> <span class="o">+=</span> <span class="n">part</span><span class="o">.</span><span class="n">get_payload</span><span class="p">()</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">body</span> <span class="o">+=</span> <span class="n">part</span><span class="o">.</span><span class="n">get_payload</span><span class="p">(</span><span class="n">decode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">charset</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"replace"</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">body</span> <span class="o">+=</span> <span class="n">part</span><span class="o">.</span><span class="n">get_payload</span><span class="p">(</span><span class="n">decode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># ファイル名があるならそれは添付ファイルなので</span>
+                <span class="c1"># データを取得する</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">attach_file_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s2">"name"</span><span class="p">:</span> <span class="n">attach_fname</span><span class="p">,</span>
+                    <span class="s2">"data"</span><span class="p">:</span> <span class="n">part</span><span class="o">.</span><span class="n">get_payload</span><span class="p">(</span><span class="n">decode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                <span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">_get_decoded_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key_name</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        ヘッダーオブジェクトからデコード済の結果を取得する</span>
+<span class="sd">        """</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="s2">""</span>
+
+        <span class="c1"># 該当項目がないkeyは空文字を戻す</span>
+        <span class="n">raw_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">email_message</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">raw_obj</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">""</span>
+        <span class="c1"># デコードした結果をunicodeにする</span>
+        <span class="k">for</span> <span class="n">fragment</span><span class="p">,</span> <span class="n">encoding</span> <span class="ow">in</span> <span class="n">decode_header</span><span class="p">(</span><span class="n">raw_obj</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">fragment</span><span class="p">,</span> <span class="s2">"decode"</span><span class="p">):</span>
+                <span class="n">ret</span> <span class="o">+=</span> <span class="n">fragment</span>
+                <span class="k">continue</span>
+            <span class="c1"># encodeがなければとりあえずUTF-8でデコードする</span>
+            <span class="k">if</span> <span class="n">encoding</span><span class="p">:</span>
+                <span class="n">ret</span> <span class="o">+=</span> <span class="n">fragment</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ret</span> <span class="o">+=</span> <span class="n">fragment</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">"UTF-8"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+<span class="k">class</span> <span class="nc">MailForwarder</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email_attr</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        初期化</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">email_attr</span> <span class="o">=</span> <span class="n">email_attr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encode</span>     <span class="o">=</span> <span class="s1">'utf-8'</span>
+
+    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        添付ファイルにパスワード付き圧縮を行い転送、さらにパスワード通知メールを送信</span>
+<span class="sd">        """</span>
+
+        <span class="c1"># パスワード生成</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_password</span><span class="p">()</span>
+
+        <span class="c1"># zipデータ生成</span>
+        <span class="n">zip_name</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y%m</span><span class="si">%d</span><span class="s1">%H%M%S'</span><span class="p">)</span>
+        <span class="n">zip_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_zip</span><span class="p">(</span><span class="n">zip_name</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+        <span class="c1"># zipデータを送信</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_forward_with_zip</span><span class="p">(</span><span class="n">zip_name</span><span class="p">,</span> <span class="n">zip_data</span><span class="p">)</span>
+
+        <span class="c1"># パスワードを送信</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_send_password</span><span class="p">(</span><span class="n">zip_name</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_generate_password</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        パスワード生成</span>
+<span class="sd">        記号、英字、数字からそれぞれ4文字ずつ取ってシャッフル</span>
+<span class="sd">        """</span>
+        <span class="n">password_chars</span> <span class="o">=</span> <span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="o">+</span> \
+                         <span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="o">+</span> \
+                         <span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">digits</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">password_chars</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">password_chars</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="nf">_generate_zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zip_name</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        パスワード付きZipファイルのデータを生成</span>
+<span class="sd">        """</span>
+        <span class="n">tmp_dir</span>  <span class="o">=</span> <span class="s2">"/tmp/"</span> <span class="o">+</span> <span class="n">zip_name</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">)</span>
+
+        <span class="c1"># 一旦ローカルにファイルを保存</span>
+        <span class="k">for</span> <span class="n">attach_file</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">email_attr</span><span class="p">[</span><span class="s1">'attach_files'</span><span class="p">]:</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">tmp_dir</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="n">attach_file</span><span class="p">[</span><span class="s1">'name'</span><span class="p">],</span> <span class="s1">'wb'</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">attach_file</span><span class="p">[</span><span class="s1">'data'</span><span class="p">])</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="c1"># パスワード付きzipに</span>
+        <span class="n">dst_file_path</span> <span class="o">=</span> <span class="s2">"/tmp/</span><span class="si">%s</span><span class="s2">.zip"</span> <span class="o">%</span> <span class="n">zip_name</span>
+        <span class="n">src_file_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">tmp_dir</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">)]</span>
+
+        <span class="n">pyminizip</span><span class="o">.</span><span class="n">compress_multiple</span><span class="p">(</span><span class="n">src_file_names</span><span class="p">,</span> <span class="n">dst_file_path</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+        <span class="c1"># # 生成したzipファイルを読み込み</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dst_file_path</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span>
+        <span class="n">zip_data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">zip_data</span>
+
+    <span class="k">def</span> <span class="nf">_forward_with_zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zip_name</span><span class="p">,</span> <span class="n">zip_data</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        パスワード付きZipファイルのデータを生成</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_send_message</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">email_attr</span><span class="p">[</span><span class="s1">'subject'</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">email_attr</span><span class="p">[</span><span class="s2">"body"</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">),</span>
+                <span class="n">zip_name</span><span class="p">,</span>
+                <span class="n">zip_data</span>
+                <span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">_send_password</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zip_name</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        zipファイルのパスワードを送信</span>
+<span class="sd">        """</span>
+
+        <span class="n">subject</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">email_attr</span><span class="p">[</span><span class="s1">'subject'</span><span class="p">]</span>
+
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">先ほどお送りしたファイルのパスワードのお知らせです。</span>
+
+<span class="s2">[件名] {}</span>
+<span class="s2">[ファイル名] {}.zip</span>
+<span class="s2">[パスワード] {}</span>
+<span class="s2">        """</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">zip_name</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_send_message</span><span class="p">(</span>
+                <span class="s1">'[password]</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">subject</span><span class="p">,</span>
+                <span class="n">message</span><span class="p">,</span>
+                <span class="bp">None</span><span class="p">,</span>
+                <span class="bp">None</span>
+                <span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">_send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">attach_name</span><span class="p">,</span> <span class="n">attach_data</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        メール送信</span>
+<span class="sd">        """</span>
+
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">MIMEMultipart</span><span class="p">()</span>
+
+        <span class="c1"># ヘッダ</span>
+        <span class="n">msg</span><span class="p">[</span><span class="s1">'Subject'</span><span class="p">]</span> <span class="o">=</span> <span class="n">subject</span>
+        <span class="n">msg</span><span class="p">[</span><span class="s1">'From'</span><span class="p">]</span>    <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">email_attr</span><span class="p">[</span><span class="s1">'from'</span><span class="p">]</span>
+        <span class="n">msg</span><span class="p">[</span><span class="s1">'To'</span><span class="p">]</span>      <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">email_attr</span><span class="p">[</span><span class="s1">'reply_to'</span><span class="p">]</span>
+        <span class="n">msg</span><span class="p">[</span><span class="s1">'Bcc'</span><span class="p">]</span>     <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">email_attr</span><span class="p">[</span><span class="s1">'from'</span><span class="p">]</span>
+
+        <span class="c1"># 本文</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">MIMEText</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="s1">'plain'</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">)</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+
+        <span class="c1"># 添付ファイル</span>
+        <span class="k">if</span> <span class="n">attach_data</span><span class="p">:</span>
+            <span class="n">file_name</span> <span class="o">=</span> <span class="s2">"</span><span class="si">%s</span><span class="s2">.zip"</span> <span class="o">%</span> <span class="n">attach_name</span>
+            <span class="n">attachment</span> <span class="o">=</span> <span class="n">MIMEBase</span><span class="p">(</span><span class="s1">'application'</span><span class="p">,</span> <span class="s1">'zip'</span><span class="p">)</span>
+            <span class="n">attachment</span><span class="o">.</span><span class="n">set_param</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+            <span class="n">attachment</span><span class="o">.</span><span class="n">set_payload</span><span class="p">(</span><span class="n">attach_data</span><span class="p">)</span>
+            <span class="n">encoders</span><span class="o">.</span><span class="n">encode_base64</span><span class="p">(</span><span class="n">attachment</span><span class="p">)</span>
+            <span class="n">attachment</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s2">"Content-Dispositon"</span><span class="p">,</span> <span class="s2">"attachment"</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">file_name</span><span class="p">)</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">attachment</span><span class="p">)</span>
+
+        <span class="c1"># 送信</span>
+        <span class="n">smtp_server</span>   <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_decrypted_environ</span><span class="p">(</span><span class="s2">"SMTP_SERVER"</span><span class="p">)</span>
+        <span class="n">smtp_port</span>     <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_decrypted_environ</span><span class="p">(</span><span class="s2">"SMTP_PORT"</span><span class="p">)</span>
+        <span class="n">smtp_user</span>     <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_decrypted_environ</span><span class="p">(</span><span class="s2">"SMTP_USER"</span><span class="p">)</span>
+        <span class="n">smtp_password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_decrypted_environ</span><span class="p">(</span><span class="s2">"SMTP_PASSWORD"</span><span class="p">)</span>
+        <span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="n">smtp_server</span><span class="p">,</span> <span class="n">smtp_port</span><span class="p">)</span>
+        <span class="n">smtp</span><span class="o">.</span><span class="n">ehlo</span><span class="p">()</span>
+        <span class="n">smtp</span><span class="o">.</span><span class="n">starttls</span><span class="p">()</span>
+        <span class="n">smtp</span><span class="o">.</span><span class="n">ehlo</span><span class="p">()</span>
+        <span class="n">smtp</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">smtp_user</span><span class="p">,</span> <span class="n">smtp_password</span><span class="p">)</span>
+        <span class="n">smtp</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">smtp</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">"Successfully sent email"</span><span class="p">)</span>
+
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">_get_decrypted_environ</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        暗号化された環境変数を復号化</span>
+<span class="sd">        """</span>
+
+        <span class="n">client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">'kms'</span><span class="p">)</span>
+        <span class="n">encrypted_data</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">CiphertextBlob</span><span class="o">=</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">encrypted_data</span><span class="p">))[</span><span class="s1">'Plaintext'</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+
+    <span class="c1"># イベントからバケット名、キー名を取得</span>
+    <span class="n">bucket</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s1">'Records'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'s3'</span><span class="p">][</span><span class="s1">'bucket'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">unquote_plus</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s1">'Records'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'s3'</span><span class="p">][</span><span class="s1">'object'</span><span class="p">][</span><span class="s1">'key'</span><span class="p">])</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># S3からファイルの中身を読み込む</span>
+        <span class="n">s3_object</span> <span class="o">=</span> <span class="n">s3</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket</span><span class="p">,</span> <span class="n">Key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">email_string</span> <span class="o">=</span> <span class="n">s3_object</span><span class="p">[</span><span class="s1">'Body'</span><span class="p">]</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span>
+
+        <span class="c1"># メールを解析</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">MailParser</span><span class="p">(</span><span class="n">email_string</span><span class="p">)</span>
+
+        <span class="c1"># メール転送</span>
+        <span class="n">forwarder</span> <span class="o">=</span> <span class="n">MailForwarder</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">get_attr_data</span><span class="p">())</span>
+        <span class="n">forwarder</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+        <span class="k">return</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">e</span>
+</pre></div></div>
+
+<h3>
+<span id="pyminizip" class="fragment"></span><a href="#pyminizip"><i class="fa fa-link"></i></a>pyminizip</h3>
+
+<p>パスワード付きzipは標準のライブラリじゃできないっぽい。<br>
+ということで、ここだけ<a href="https://github.com/smihica/pyminizip" rel="nofollow noopener" target="_blank">pyminizip</a>という外部ライブラリに頼りました。<br>
+ただこれ、インストール時にビルドしてバイナリ作る系のライブラリだったので、Lambdaで動かすためにローカルでAmazonLinuxのDockerコンテナ立ててバイナリを作りました。何かほかにいい方法あるのかな。。</p>
+
+<h3>
+<span id="aws-sam" class="fragment"></span><a href="#aws-sam"><i class="fa fa-link"></i></a>AWS SAM</h3>
+
+<p>ちなみに、これは<a href="https://github.com/awslabs/aws-sam-local" rel="nofollow noopener" target="_blank">AWS SAM</a>を使ってローカルテストしてみました。<br>
+SMTPサーバーの情報を直書きして試してたところまでは良かったけど、それを環境変数に移すとうまく動かなくて挫折しました。<a href="https://github.com/awslabs/aws-sam-local/issues/49" rel="nofollow noopener" target="_blank">修正はされてるけどリリースされてないっぽい。</a></p>
+
+<h2>
+<span id="導入方法" class="fragment"></span><a href="#%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>導入方法</h2>
+
+<p>せっかくなので公開してみます。コードネーム<code>zaru</code>。<br>
+かなり設定方法が泥臭いままですがご容赦ください。。<br>
+<a href="https://github.com/Kta-M/zaru" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/Kta-M/zaru</a></p>
+
+<p>自分の環境(Mac, Thunderbird)でしか試してないので、メーラーやその他環境によってはうまくいかないかも？自己責任でお願いします。</p>
+
+<h3>
+<span id="ses" class="fragment"></span><a href="#ses"><i class="fa fa-link"></i></a>SES</h3>
+
+<p>SESはまだ東京リージョンで使えないので、オレゴンリージョン(us-west-2)で構築します。</p>
+
+<h4>
+<span id="ドメイン検証" class="fragment"></span><a href="#%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E6%A4%9C%E8%A8%BC"><i class="fa fa-link"></i></a>ドメイン検証</h4>
+
+<p>まずはSESに向けてメールが送れるように、ドメインの検証を行います。<br>
+やり方はいろいろなので、このあたりは割愛。<br>
+たとえばこのあたりとか参考になるかも -&gt; <a href="http://qiita.com/tanakaworld/items/94f1ba66801100f6a44f" id="reference-1100ac127e7efb74ffde">RailsでAmazon SES・Route53を用いてドメインメールを送信する</a></p>
+
+<h4>
+<span id="rule作成" class="fragment"></span><a href="#rule%E4%BD%9C%E6%88%90"><i class="fa fa-link"></i></a>Rule作成</h4>
+
+<p>ドメインの検証ができたら、Ruleを作成します。</p>
+
+<p>メニュー右側の<code>Rule Sets</code>から、<code>View Active Rule Set</code>をクリック。<br>
+<a href="https://camo.qiitausercontent.com/240450d00784e716203a85962ee933e6e281175b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f39656635393164322d666462302d356364642d646430382d3865376431393938663831642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/240450d00784e716203a85962ee933e6e281175b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f39656635393164322d666462302d356364642d646430382d3865376431393938663831642e706e67" alt="ses_rule_01.png" title="ses_rule_01.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/9ef591d2-fdb0-5cdd-dd08-8e7d1998f81d.png"></a></p>
+
+<p><code>Create Rule</code>をクリック。<br>
+<a href="https://camo.qiitausercontent.com/d93f6b24909b10365e573d3b9394c6ef70b355ea/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f63396663616333612d323937302d383865662d663232622d3339363764363565313265382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d93f6b24909b10365e573d3b9394c6ef70b355ea/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f63396663616333612d323937302d383865662d663232622d3339363764363565313265382e706e67" alt="ses_rule_02.png" title="ses_rule_02.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/c9fcac3a-2970-88ef-f22b-3967d65e12e8.png"></a></p>
+
+<p>受信するメールアドレスを登録。検証を行なったドメインのメールアドレスを入力して、<code>Add Recipient</code>をクリック。<br>
+<a href="https://camo.qiitausercontent.com/051f2443663b98513408c5e0e0fce4999f9b91f4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f63333463306136392d396237662d663839342d303265632d3234346232343033316135652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/051f2443663b98513408c5e0e0fce4999f9b91f4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f63333463306136392d396237662d663839342d303265632d3234346232343033316135652e706e67" alt="ses_rule_03.png" title="ses_rule_03.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/c34c0a69-9b7f-f894-02ec-244b24031a5e.png"></a></p>
+
+<p>メール受信時のアクションを登録。<br>
+アクションタイプとして<code>S3</code>を選択し、受信したメールデータを保存するバケットを指定します。このとき、<code>Create S3 bucket</code>でバケットを作成してあげると、必要なバケットポリシーが自動で登録されて便利。<br>
+SESからバケットへのファイルアップロードを許可するポリシーが設定されます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowSESPuts-XXXXXXXXXXXX",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ses.amazonaws.com"
+            },
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::&lt;ses-bucket-name&gt;/*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:Referer": "XXXXXXXXXXXX"
+                }
+            }
+        }
+    ]
+}
+</pre></div></div>
+
+<p>また、バケットに保存されたメールデータは、貯めておいても仕方ないので、ライフサイクルを設定して一定期間経過後削除されるようにしておくといいかも。<br>
+<a href="https://camo.qiitausercontent.com/66b6630216b1bdc1d0e90d554914175fcc3ddaab/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f35303034303037372d666561342d396539312d356233362d3963316136333264333562302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/66b6630216b1bdc1d0e90d554914175fcc3ddaab/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f35303034303037372d666561342d396539312d356233362d3963316136333264333562302e706e67" alt="ses_rule_04.png" title="ses_rule_04.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/50040077-fea4-9e91-5b36-9c1a632d35b0.png"></a></p>
+
+<p>ルールに名前を付けます。あとはデフォルトで。<br>
+<a href="https://camo.qiitausercontent.com/3e477599cd992e89c51a2fd721f805f0e6c52b99/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f39653563643338332d373366392d303933372d353136322d3266313436616363613565632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/3e477599cd992e89c51a2fd721f805f0e6c52b99/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f39653563643338332d373366392d303933372d353136322d3266313436616363613565632e706e67" alt="ses_rule_05.png" title="ses_rule_05.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/9e5cd383-73f9-0937-5162-2f146acca5ec.png"></a></p>
+
+<p>登録内容を確認して、登録！<br>
+<a href="https://camo.qiitausercontent.com/7baacbebb2df5518918033d887418fa729c64af1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f38303938636138332d303864662d626262332d616665632d3031393236346565613939372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7baacbebb2df5518918033d887418fa729c64af1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f38303938636138332d303864662d626262332d616665632d3031393236346565613939372e706e67" alt="ses_rule_06.png" title="ses_rule_06.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/8098ca83-08df-bbb3-afec-019264eea997.png"></a></p>
+
+<h3>
+<span id="lambda-1" class="fragment"></span><a href="#lambda-1"><i class="fa fa-link"></i></a>Lambda</h3>
+
+<h4>
+<span id="デプロイ" class="fragment"></span><a href="#%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4"><i class="fa fa-link"></i></a>デプロイ</h4>
+
+<p>SESと同じくオレゴンリージョンにデプロイします。<br>
+CloudFormationを利用するので、データをアップロードするS3バケットを作っておいてください。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span># git clone git@github.com:Kta-M/zaru.git
+# cd zaru
+# aws cloudformation package --template-file template.yaml --s3-bucket &lt;cfn-bucket-name&gt; --output-template-file packaged.yaml
+# aws cloudformation deploy --template-file packaged.yaml --stack-name zaru-stack --capabilities CAPABILITY_IAM --region us-west-2
+</pre></div></div>
+
+<p>Lambdaのコンソールに行くと、関数が作成されています。<br>
+また、この関数の実行に必要なIAMロールも作成されています。<br>
+<a href="https://camo.qiitausercontent.com/8e4d23a54aa6d3739fe0c3b2362a8bb92508390c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f31656637643435622d316539362d643030372d666130322d3836323230376234653830392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/8e4d23a54aa6d3739fe0c3b2362a8bb92508390c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f31656637643435622d316539362d643030372d666130322d3836323230376234653830392e706e67" alt="lambda_01.png" title="lambda_01.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/1ef7d45b-1e96-d007-fa02-862207b4e809.png"></a></p>
+
+<h4>
+<span id="トリガー設定" class="fragment"></span><a href="#%E3%83%88%E3%83%AA%E3%82%AC%E3%83%BC%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>トリガー設定</h4>
+
+<p>バケットにメールデータが入るのをトリガーにして、Lambdaが動くように設定します。</p>
+
+<p>関数の詳細画面のトリガータブに移動します。<br>
+<a href="https://camo.qiitausercontent.com/de10929b2b0768808aa5d752f87b397ac7e59997/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f61633333323533662d333234612d643163392d393534382d3563623066393935373438392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/de10929b2b0768808aa5d752f87b397ac7e59997/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f61633333323533662d333234612d643163392d393534382d3563623066393935373438392e706e67" alt="lambda_02.png" title="lambda_02.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/ac33253f-324a-d1c9-9548-5cb0f9957489.png"></a></p>
+
+<p><code>トリガーを追加</code>をクリックし、S3のイベントを作成します。<br>
+SESからデータが来るバケット、イベントタイプはPutです。それ以外はデフォルト。<br>
+バケットは<a href="https://camo.qiitausercontent.com/41afc8982e5b30db5185f6e8f0a0ecdaa9f69afe/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f64356564663938372d356630632d613734302d316239632d3364316232346565613932322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/41afc8982e5b30db5185f6e8f0a0ecdaa9f69afe/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f64356564663938372d356630632d613734302d316239632d3364316232346565613932322e706e67" alt="lambda_03.png" title="lambda_03.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/d5edf987-5f0c-a740-1b9c-3d1b24eea922.png"></a></p>
+
+<h4>
+<span id="暗号化キーを作成" class="fragment"></span><a href="#%E6%9A%97%E5%8F%B7%E5%8C%96%E3%82%AD%E3%83%BC%E3%82%92%E4%BD%9C%E6%88%90"><i class="fa fa-link"></i></a>暗号化キーを作成</h4>
+
+<p>このLambda関数内では、暗号化された環境変数からSMTP関連の情報を取得しています。<br>
+その暗号化に使用するキーを作成します。</p>
+
+<p>IAMコンソールから、左下にある<code>暗号化キー</code>をクリックします。<br>
+リージョンをオレゴンに変更し、キーを作成してください。<br>
+<a href="https://camo.qiitausercontent.com/26a6ab30bffab485d16e860de00703df56e4e708/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f34663961653766632d653435312d353661312d303939372d3037646633333162396534662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/26a6ab30bffab485d16e860de00703df56e4e708/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f34663961653766632d653435312d353661312d303939372d3037646633333162396534662e706e67" alt="lambda_04.png" title="lambda_04.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/4f9ae7fc-e451-56a1-0997-07df331b9e4f.png"></a></p>
+
+<p>設定内容は、任意のエイリアスを設定するだけで、残りはデフォルトでOKです。<br>
+<a href="https://camo.qiitausercontent.com/8999e049be63faa1efb1363ca573523c0177ed0d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f31346561356564332d373034312d303438382d396132382d3438633334346133363663312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/8999e049be63faa1efb1363ca573523c0177ed0d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f31346561356564332d373034312d303438382d396132382d3438633334346133363663312e706e67" alt="lambda_05.png" title="lambda_05.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/14ea5ed3-7041-0488-9a28-48c344a366c1.png"></a></p>
+
+<h4>
+<span id="環境変数数設定" class="fragment"></span><a href="#%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0%E6%95%B0%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>環境変数数設定</h4>
+
+<p>Lambdaに戻って、関数内で使用する環境変数を設定します。<br>
+コードタブの下のほうに、環境変数を設定するフォームがあります。<br>
+<code>暗号化ヘルパーを有効にする</code>にチェックを入れ、先ほど作成した暗号化キーを指定します。<br>
+環境変数は、変数名と値(平文)を入力し、<code>暗号化</code>ボタンを押します。すると、指定した暗号化キーで暗号化してくれます。<br>
+設定する環境変数は以下の4つです。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">変数名</th>
+<th style="text-align: left">説明</th>
+<th style="text-align: left">例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">SMTP_SERVER</td>
+<td style="text-align: left">smtpサーバー</td>
+<td style="text-align: left">smtp.example.com</td>
+</tr>
+<tr>
+<td style="text-align: left">SMTP_PORT</td>
+<td style="text-align: left">smtpポート</td>
+<td style="text-align: left">587</td>
+</tr>
+<tr>
+<td style="text-align: left">SMTP_USER</td>
+<td style="text-align: left">smtpサーバーにログインするユーザー名</td>
+<td style="text-align: left"><a href="mailto:test@example.com" class="autolink">test@example.com</a></td>
+</tr>
+<tr>
+<td style="text-align: left">SMTP_PASSWORD</td>
+<td style="text-align: left">SMTP_USERのパスワード</td>
+<td style="text-align: left"></td>
+</tr>
+</tbody>
+</table>
+
+<p><a href="https://camo.qiitausercontent.com/2a79ebbf1865a81729d14eebcb58e0dd18b8baa1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f65653339383436642d636133352d383835312d643830322d3036636463306562666534362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/2a79ebbf1865a81729d14eebcb58e0dd18b8baa1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f65653339383436642d636133352d383835312d643830322d3036636463306562666534362e706e67" alt="lambda_06.png" title="lambda_06.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/ee39846d-ca35-8851-d802-06cdc0ebfe46.png"></a></p>
+
+<h4>
+<span id="ロール設定" class="fragment"></span><a href="#%E3%83%AD%E3%83%BC%E3%83%AB%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>ロール設定</h4>
+
+<p>最後に、このLambda関数を実行するロールに必要な権限を付けます。<br>
+- メールデータを保存するS3バケットからデータを取得する権限<br>
+- 暗号化キーを使って環境変数を復号する権限</p>
+
+<p>まず、IAMコンソールの<code>ポリシー</code>に行き、<code>ポリシーの作成</code>-&gt;<code>独自のポリシーを作成</code>で以下の2つのポリシーを作成します。<br>
+<a href="https://camo.qiitausercontent.com/5c31b3fad0bd8e8232c34c54061a5606576cb922/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f38346435363036302d343834302d663138342d353163392d3736386536646434396362392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/5c31b3fad0bd8e8232c34c54061a5606576cb922/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f38346435363036302d343834302d663138342d353163392d3736386536646434396362392e706e67" alt="lambda_07.png" title="lambda_07.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/84d56060-4840-f184-51c9-768e6dd49cb9.png"></a></p>
+
+<p><strong>ポリシー：s3-get-object-zaru</strong><br>
+<code>&lt;ses-bucket-name&gt;</code>には、SESからメールデータを受け取るバケット名を指定してください。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1505586008000",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::&lt;ses-bucket-name&gt;/*"
+            ]
+        }
+    ]
+}
+</pre></div></div>
+
+<p><strong>ポリシー；kms-decrypt-zaru</strong><br>
+<code>&lt;kms-arn&gt;</code>には、暗号化キーのARNを指定してください。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1448696327000",
+            "Effect": "Allow",
+            "Action": [
+                "kms:Decrypt"
+            ],
+            "Resource": [
+                "&lt;kms-arn&gt;"
+            ]
+        }
+    ]
+}
+</pre></div></div>
+
+<p>最後に、この2つのポリシーを、Lambda関数実行ロールにアタッチします。<br>
+まず、IAMコンソールの<code>ロール</code>に行き、ロールを選択し、<code>ポリシーのアタッチ</code>からアタッチします。<br>
+<a href="https://camo.qiitausercontent.com/9327dfb994ebffa0fb4210beb66e742aaaded996/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f37396539666139312d633765652d303438612d393466392d6362636331396234313466612e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/9327dfb994ebffa0fb4210beb66e742aaaded996/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33393536352f37396539666139312d633765652d303438612d393466392d6362636331396234313466612e706e67" alt="lambda_08.png" title="lambda_08.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/39565/79e9fa91-c7ee-048a-94f9-cbcc19b414fa.png"></a></p>
+
+<h2>
+<span id="動作確認" class="fragment"></span><a href="#%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D"><i class="fa fa-link"></i></a>動作確認</h2>
+
+<p>これで動くようになったはずです。<br>
+<code>To</code>にSES向けに設定したメールアドレス、<code>Reply-To</code>に相手のメールアドレスを設定し、適当なファイルを添付して送ってみてください。どうでしょう？</p>
+
+<h2>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h2>
+
+<p>どんとこいzip添付!</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

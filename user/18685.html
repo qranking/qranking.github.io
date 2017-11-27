@@ -1,0 +1,141 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (ossan-engineer)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (ossan-engineer さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>ossan-engineerさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>229</kbd>
+		<a target="_blank" href="https://qiita.com/ossan-engineer/items/66feec268f9c4e582bb6">Reactアハ体験</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-27 15:12:56</center>
+	</td>
+	<td style="width:200px;">
+		@ossan-engineer<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/18685/profile-images/1473682498">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[reactjs]</b> <b>[React]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Reactはちょっとしたコツを掴むと一気に理解が進みます。<br>
+Googleのデベロッパーであり数々のReactトレーニングを手がけてきた<a href="https://github.com/tylermcginnis" rel="nofollow noopener" target="_blank">Tyler McGinnis氏</a>による<a href="https://tylermcginnis.com/react-aha-moments/" rel="nofollow noopener" target="_blank">React "Aha" Moments</a>が非常に参考になるため、本人の許可を得て意訳しました。<br>
+誤りやより良い表現などがあればご指摘頂けると助かります。</p>
+
+<p>原文：<a href="https://tylermcginnis.com/react-aha-moments/" class="autolink" rel="nofollow noopener" target="_blank">https://tylermcginnis.com/react-aha-moments/</a></p>
+
+<hr>
+
+<p>私が技術的なコンテンツを教えたり書いたりする時の主な目標の1つは「アハ体験」を最大化することです。<a href="https://en.wikipedia.org/wiki/Eureka_effect" rel="nofollow noopener" target="_blank">アハ体験</a>は物事が突然理解できた瞬間のひらめきです。私たちは皆これを体験してきましたし、私の知る最高の教師たちは聴衆に応じて、それらの瞬間を最大化するための教えを最適化することができます。</p>
+
+<p>ここ数年、私はほぼ全ての一般的なメディアでReactを教えてきました。その間、私はReact習得における「アハ体験」の引き金について書き留めてきました。2週間ほど前、私は偶然<a href="https://www.reddit.com/r/reactjs/comments/5gmywc/what_were_the_biggest_aha_moments_you_had_while/" rel="nofollow noopener" target="_blank">Redditのこのスレッド</a>を見かけ、そこには同じアイデアが詰まっていました。そこで私がこの記事で意図しているのは、これらの体験についての知見を共有しつつ、Redditのスレッドで紹介された知見についても私の考えを述べることです。あなたがReactについてまだよく分かっていないようでしたら、この記事がその助けになることを願っています。</p>
+
+<blockquote>
+<p>fn(d) = V。UIは状態の関数であり、コンポーネントにとってのpropsは、関数にとっての引数のようなものです。</p>
+</blockquote>
+
+<p>React最大の利点の1つは、いつどこでReactコンポーネントを作成するかについて、JavaScriptの関数と同じ感覚をそのまま適用できることです。しかしながら、関数がいくつかの引数を受け取って値を返すのに対し、Reactはいくつかの引数を受け取ってUIのオブジェクト表現を返します。この考えは fn(d) = V という式でまとめられます。関数はデータを引数として受け取ってビューを返します。これはUI開発を考える上で最適な方法です。というのも、UIが異なる関数の呼び出しのみで構成されるからです。この手法は既に皆さんがアプリケーション開発で慣れ親しんでいるので、UI構築の際には関数合成の全ての利点を享受できるようになります。</p>
+
+<blockquote>
+<p>Reactでは、アプリケーションのUIは関数合成によって構築され、JSXはそれらの関数を抽象化しています。</p>
+</blockquote>
+
+<p>React初心者はほぼ例外なく「React自体は良さそうだけど、JSXがキモいんだよね。関心の分離ができてないし」と言います。JSXはHTMLになろうとしているわけではなく、間違いなくテンプレート言語以上のものです。JSXを理解するために重要な2つのポイントがあります。1つ目は、<a href="https://tylermcginnis.com/react-elements-vs-react-components/" rel="nofollow noopener" target="_blank">JSXはReact.createElementの抽象化である</a>ということです。その関数はDOMのオブジェクト表現を返します。それは冗長なのですが、JSXを書くたびにトランスパイルされ、実際のDOM（もしくはiOSやAndroidなどのプラットフォームでのビュー）を表現するオブジェクトになります。さらにReactはそのオブジェクトを分析し、変更前後の差分を抽出して、変更のあったDOMのみを更新します。これにはいくつかのパフォーマンス上の問題がありますが、もっと重要な点はJSXが本当に「単なるJavaScript」であることです。2つめは、JSXが単なるJavaScriptであることで、JavaScriptの宣言性（そして馴染みやすさ）はもちろんのこと、合成、静的検証やデバッグなどのJavaScriptが提供する全ての利点を活かすことができます。</p>
+
+<blockquote>
+<p>コンポーネントは必ずしもDOMノードに対応していなくても良いです。</p>
+</blockquote>
+
+<p>Reactを学び始めると、「コンポーネントはReactの建築用ブロックである」と教わります。入力を受け取り、UIを返すということは、全てのコンポーネントが直接UIを返さなくてはならないということでしょうか？他のコンポーネントをレンダリングするコンポーネント（HOCパターン）が必要な場合はどうでしょうか？stateの一部を管理し、UIを返す代わりにstateを渡す関数呼び出しを返すコンポーネント（レンダーpropsパターン）は？ビジュアルUIではなくサウンドを管理するコンポーネントがあったらそれは何を返すのでしょうか？Reactの素晴らしい点は、コンポーネントから典型的な「ビュー」を返す必要はないということです。最終的に返されるのは、React要素、nullまたはfalseです。素敵でしょう？</p>
+
+<p>他のコンポーネントだって返せます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>render() {
+  return &lt;MyOtherComponent /&gt;
+}
+</pre></div></div>
+
+<p>関数呼び出しも。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>render() {
+  return this.props.children(this.someImportantState)
+}
+</pre></div></div>
+
+<p>何も返さなくてもOKです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>render() {
+  return null
+}
+</pre></div></div>
+
+<p>Ryan Florence氏の<a href="https://www.youtube.com/watch?v=kp-NOggyz54" rel="nofollow noopener" target="_blank">React Rally talk</a>はこの原則をより深くカバーしているのでオススメです。</p>
+
+<blockquote>
+<p>2つのコンポーネントがstateを共有したい場合、stateを同期させるのではなくstateを持ち上げる必要があります。</p>
+</blockquote>
+
+<p>コンポーネントベースのアーキテクチャでは、stateの共有は自ずと困難になります。2つのコンポーネントが同じstateに依存する場合、そのstateはどこにあるべきでしょうか？これは最終的にReduxで決着した解決策のエコシステム全体を活性化するような人気のある質問でした。Reduxの解決策は「store」と呼ばれる別の場所にstateを集約することです。コンポーネントはstoreを必要な部分だけ購読でき、storeを更新するための「actions」をdispatchすることもできます。Reactの解決策は2つのコンポーネントの最も近い親を探し、そこで共有stateを管理して必要に応じて子コンポーネントに渡すことです。どちらのアプローチにも一長一短がありますが、その選択肢を認識することが重要です。</p>
+
+<blockquote>
+<p>Reactでは継承は不要であり、封じ込めと専門特化の両方を合成によって達成できます。</p>
+</blockquote>
+
+<p>Reactは正当な理由により、関数型プログラミングの原則を採用するのに寛大です。React v0.13がES6クラスのミックスインをサポートをしないことが明らかになった時、継承から脱却して合成に向かって前進しました。その理由は、ミックスイン（または継承）によって達成できることのほとんど全てが合成によっても達成でき、しかも副作用をより抑えることができるからです。もしあなたが継承を重んじる考え方からReactに入ってきたのであれば、この考え方は難しく、おそらくあまり自然ではないと感じられることでしょう。幸運なことに、いくつかの素晴らしいリソースがあります。<a href="https://www.youtube.com/watch?v=wfMtDGfHWpA" rel="nofollow noopener" target="_blank">この動画</a>はReact固有の内容ではないですが役立つでしょう。</p>
+
+<blockquote>
+<p>コンテナコンポーネントとプレゼンテーショナルコンポーネントの分離</p>
+</blockquote>
+
+<p>Reactコンポーネントの解剖学について考える時、state、潜在的なライフサイクルフック、そしてJSX経由のマークアップが通常含まれます。それら全てが1つのコンポーネントに含まれる代わりに、stateとライフサイクルフックをマークアップから分離したらどうでしょうか？これにより2つのコンポーネントが生まれます。最初の1つは、stateとライフサイクルメソッドを持ち、コンポーネントがどのように動作するのかについて担当します。2つ目は、propsとしてデータを受け取りコンポーネントの外観を担当します。このアプローチにより、プレゼンテーショナルコンポーネントは受け取ったデータに結合されなくなるため、再利用性が向上します。さらに、あなた（もしくはプロジェクトへの新規参入者）がアプリケーションの構造を理解しやすくなります。開発者はUIを意識することなくコンポーネントの実装を取り替えることができ、その逆に、デザイナーはプレゼンテーショナルコンポーネントがどのようにデータを受け取るかを心配することなくUIを微調整することもまた可能になります。</p>
+
+<p>この話題についての詳細は、<a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.q9tui51xz" rel="nofollow noopener" target="_blank">プレセンテーショナルとコンテナコンポーネント</a>を参照してください。</p>
+
+<blockquote>
+<p>ほとんどのコンポーネントをピュアにすれば、ステートレスなものは保守がずっと簡単になります。</p>
+</blockquote>
+
+<p>これはプレゼンテーショナルコンポーネントをコンテナコンポーネントから分離するもう1つの利点です。stateは一貫性の欠如と切り離して考えることはできません。適切な境界線を引くことで、複雑さをカプセル化してアプリケーションの予測可能性を大幅に改善させることができます。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

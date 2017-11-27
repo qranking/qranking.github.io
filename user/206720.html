@@ -1,0 +1,220 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (Watt)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (Watt さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>Wattさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>358</kbd>
+		<a target="_blank" href="https://qiita.com/Watt/items/49d65b6377c1a44e670f">理不尽なリジェクトを受けたiOSアプリが公開されるまでの経緯</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-11 07:59:53</center>
+	</td>
+	<td style="width:200px;">
+		@Watt<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/206720/profile-images/1507645652">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[iOS]</b> <b>[ポエム]</b> <b>[リジェクト]</b> <b>[AppStore]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h2>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h2>
+
+<p>あなたが作成したアプリを多くのユーザーに利用してもらうにはモバイル・アプリ・ストア (Apple の App Store や Google Play など) を通じてアプリを配布することが最適な方法です。<br>
+しかし、App Store にアプリを公開するためには、Apple のレビューを避けて通ることはできません。Apple のレビューは彼らが自ら定め、公開されているガイドラインにもとづき、評価が下されます。<br>
+ほとんどの場合において、彼らのレビューは適切に行われていると言えますが、ごく僅かなケースにおいては理不尽な評価が下される場合もあります。アプリに対して理不尽な評価が下されると、それを覆すことは難しく、最悪の場合アプリの公開を断念しなくてはなりません。</p>
+
+<p>この記事では、理不尽なリジェクトを受けたあるアプリが、AppStore へ公開されるまでの経緯を説明しています。</p>
+
+<h2>
+<span id="アプリの開発" class="fragment"></span><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA"><i class="fa fa-link"></i></a>アプリの開発</h2>
+
+<p>WWDC 2017 にて iOS11 が発表された際に、私は CoreNFC というフレームワークに注目しました。CoreNFC は iOS で NFC タグを読み込むことを可能にするフレームワークです。<br>
+AppStore で様々な開発者が QR コードリーダーをリリースしていることを思い出した私は、早速このフレームワークを使用して汎用的な NFC タグリーダーアプリを完成させました。多くの NFC タグフォーマットをサポートすることができたので、このアプリは多くのユーザーに満足してもらえるのではないかと思えました。</p>
+
+<h2>
+<span id="最初の申請" class="fragment"></span><a href="#%E6%9C%80%E5%88%9D%E3%81%AE%E7%94%B3%E8%AB%8B"><i class="fa fa-link"></i></a>最初の申請</h2>
+
+<p>iOS11 向けのアプリの受付が開始された日、私は急いでアプリを申請しました。早朝から iTunes Connect でトラブルが発生していましたが、無事に申請を完了し、あとは iOS11 と同時にリリースされるまで待つだけでした。<br>
+私は多くの NFC タグを使用してアプリをテストしていましたし、この時は Apple のレビューも問題なく通過できるだろうと考えていました。</p>
+
+<h2>
+<span id="最初のリジェクト" class="fragment"></span><a href="#%E6%9C%80%E5%88%9D%E3%81%AE%E3%83%AA%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88"><i class="fa fa-link"></i></a>最初のリジェクト</h2>
+
+<p>審査から数日後、私の iPhone に通知が来ました。そこにはアプリがレビューによりリジェクトされたと記載されていました。</p>
+
+<p>リジェクト！その事実が信じられなかった私は、急いで iTunes Connect の Resolution Center を確認しました。</p>
+
+<blockquote>
+<p>Guideline 4.2 - Design - Minimum Functionality</p>
+
+<p>We found that the usefulness of your app is limited by the minimal amount of content or features it includes. </p>
+</blockquote>
+
+<p>この曖昧で、理不尽なリジェクトがついに私のアプリにも来てしまったのです。</p>
+
+<h2>
+<span id="繰り返されるリジェクト" class="fragment"></span><a href="#%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%95%E3%82%8C%E3%82%8B%E3%83%AA%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88"><i class="fa fa-link"></i></a>繰り返されるリジェクト</h2>
+
+<p>私はまず、リジェクト理由に従い、アプリに機能を追加することにしました。 私のアプリは「NFC タグの読み込み」「読み込みタグの履歴」「読み込み設定の変更」というシンプルな構成になっています。汎用的な NFC タグリーダーを目指していたので、追加すべき機能を検討するのは難航しました。それでも、Web アプリとの連携や、複数の NFC タグの連続読み込み機能などを追加してレビューに再提出しましたが、再び「4.2 Design: Minimum Functionality」でリジェクトされました。</p>
+
+<blockquote>
+<p>Guideline 4.2 - Design - Minimum Functionality</p>
+
+<p>We found that the usefulness of your app is limited by the minimal amount of content or features it includes. </p>
+</blockquote>
+
+<p>そんな事をしているうちに、iOS11 が公開され、iOS11 に対応した新しいアプリたちがどんどん AppStore へ公開されていきます。iOS11 との同時リリースが叶わず、これからどのような新機能を追加するべきか頭を悩ませていたところ、ある事実に気づきました。</p>
+
+<p>なんと、AppStore に他の開発者による NFC タグリーダーアプリが公開されていたのです！ しかもその数は日付が経つごとに徐々に増えていき、1週間後には10を超えるアプリが並んでいました。</p>
+
+<p>そして、何よりも驚くべきことは、それらのアプリは私のアプリと同等かそれ以下の機能しか備えていなかったということです！</p>
+
+<p>他の競合アプリがリリースされていく中、3回目の「4.2 Design: Minimum Functionality」リジェクトを受けた私は、Resolution Center でレビューの不公平さを訴えました。Apple からの返信はまるで噛み合わないものでしたが、しつこくアピールを繰り返す私に対して、電話でのコンタクトを頂けることになりました。</p>
+
+<h2>
+<span id="わずかな希望" class="fragment"></span><a href="#%E3%82%8F%E3%81%9A%E3%81%8B%E3%81%AA%E5%B8%8C%E6%9C%9B"><i class="fa fa-link"></i></a>わずかな希望</h2>
+
+<p>数日後、約束通り Apple から国際電話がかかって来ました。こちらが日本人である事を配慮してくれたようで、電話口では日本人の方が対応してくれました。</p>
+
+<p>私はなぜ機能が少ないと判断されたのか尋ねましたが、「レビュワーがそう判断しています」としか回答をもらえません。他のアプリの機能を引き合いに出しても「他のアプリは関係ありません」と私のアピールが受け入れてもらえる余地は全くありませんでした。</p>
+
+<p>しかし、対話を進めるうちに、私のアプリが他のアプリよりも多くの NFC タグに対応している事が、上手くレビュワーに伝わっていないようだと判明しました。また、NFC タグはフィジカルデバイスなので、実際にアプリが読み込んでいるところを動画にしてアップすれば良いのではないかというアドバイスを頂けました。まさに最後の希望でした。</p>
+
+<p>これでレビューを通過する可能性が出てきたと思い、私は急いでアプリの動作、特に NFC タグ読み込み後の動作に関する説明資料と動画を作成しました。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left"><a href="https://camo.qiitausercontent.com/530f1b714df7f1c591f9814eb3d459bcaba1ed5d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363732302f35366435393135342d663265352d313138652d306338642d3665613161393537643134332e706e67" target="_blank" rel="nofollow noopener"><img width="240" alt="AppSpec 1" src="https://camo.qiitausercontent.com/530f1b714df7f1c591f9814eb3d459bcaba1ed5d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363732302f35366435393135342d663265352d313138652d306338642d3665613161393537643134332e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206720/56d59154-f2e5-118e-0c8d-6ea1a957d143.png"></a></th>
+<th style="text-align: left"><a href="https://camo.qiitausercontent.com/52ab719c125ace55f64ac26064d58c564313792a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363732302f35393130386238612d666565372d343166392d333038342d6265373036633262313038332e706e67" target="_blank" rel="nofollow noopener"><img width="240" alt="AppSpec 2" src="https://camo.qiitausercontent.com/52ab719c125ace55f64ac26064d58c564313792a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363732302f35393130386238612d666565372d343166392d333038342d6265373036633262313038332e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206720/59108b8a-fee7-41f9-3084-be706c2b1083.png"></a></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+<p>そして4回目の審査に提出して数日後、待ちに待ったレビュー結果は…</p>
+
+<blockquote>
+<p>Guideline 4.2 - Design - Minimum Functionality</p>
+
+<p>We found that the usefulness of your app is limited by the minimal amount of content or features it includes. </p>
+</blockquote>
+
+<p>何も変わらず「4.2 Design: Minimum Functionality」によるリジェクトでした。</p>
+
+<p>最後の希望は存在していなかったのです。</p>
+
+<h2>
+<span id="燃え上がる復讐心" class="fragment"></span><a href="#%E7%87%83%E3%81%88%E4%B8%8A%E3%81%8C%E3%82%8B%E5%BE%A9%E8%AE%90%E5%BF%83"><i class="fa fa-link"></i></a>燃え上がる復讐心</h2>
+
+<p>度重なるリジェクトとその対応に疲れ果てた私は、このアプリをリリースする気持ちもすっかりなくなっていました。</p>
+
+<p>もはやレビューを通すためにはシンプルなアプリをやめて、AR で NFC タグが表示されたり、iMessage で NFC タグのステッカーでも送信できるようにしなければいけないのではないか...そんな事を思いながら憂鬱に過ごしていました。</p>
+
+<p>しかし、ある NFC タグリーダーアプリが AppStore にリリースされたことにより私の気持ちに再び火がつきました。</p>
+
+<p>それがこのアプリです。（モザイクをかけてあります）</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left"><a href="https://camo.qiitausercontent.com/32889a11c8dda85536f7f373befae255ce81e008/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363732302f65653863303061642d643764652d653034652d336530662d3264336233383362643938312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/32889a11c8dda85536f7f373befae255ce81e008/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363732302f65653863303061642d643764652d653034652d336530662d3264336233383362643938312e706e67" alt="Screen_Shot_2017-10-11_at_12_05_54_AM.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206720/ee8c00ad-d7de-e04e-3e0f-2d3b383bd981.png"></a></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+<p>画面にはボタンがなく、読み込み履歴には未対応で、設定を変更することもできません。<br>
+アプリ起動時にスキャン機能が起動しますが、再びスキャンを行うにはアプリを終了しないといけません。<br>
+さらに iPhone 7plus / 8plusでこのアプリを起動すると画面右側に謎の余白があらわれるのです。<br>
+肝心の NFC タグスキャン機能も、URLという最もベーシックな形式ですら読み込み後にアプリがクラッシュしてしまいます。</p>
+
+<p>...控えめに言っても「どうしようもないクソアプリ」です。</p>
+
+<p>こんなアプリですらレビューに通過するのに、私のアプリが通過しないというのはやはりレビューがおかしいとしか思えません。私の心は Apple レビューへの復讐心に燃えていました。</p>
+
+<h2>
+<span id="万全の体制" class="fragment"></span><a href="#%E4%B8%87%E5%85%A8%E3%81%AE%E4%BD%93%E5%88%B6"><i class="fa fa-link"></i></a>万全の体制</h2>
+
+<p>再びレビューに挑む事を決意した私は、私のアプリと他の開発者のアプリの機能比較表を作成して、そのリンクを Review Note へと記載しました。私のアプリが AppStore にリリースされている10以上の NFC タグリーダーアプリと同等以上の機能をもち、それらのアプリよりも多くの NFC タグに対応している事を強調しました。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left"><a href="https://camo.qiitausercontent.com/c52c6201acbc2db1941c52a9fca84eae6a02794b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363732302f33323862396635662d346436392d353837352d303634622d3339346138306438373561322e706e67" target="_blank" rel="nofollow noopener"><img width="425" alt="NFC Apps" src="https://camo.qiitausercontent.com/c52c6201acbc2db1941c52a9fca84eae6a02794b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230363732302f33323862396635662d346436392d353837352d303634622d3339346138306438373561322e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/206720/328b9f5f-4d69-5875-064b-394a80d875a2.png"></a></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+<p>資料やコメントでどんなにアピールしても、おそらく5回目のリジェクトを受けるであろうから、最後は再び電話でのアピールをしようと考えていました。想定問答を用意し、イメージトレーニングに励みました。</p>
+
+<p>5回目のレビュー提出から数日後、アプリは想定通りにリジェクトされました。理由はやはり「4.2 Design: Minimum Functionality」です。私は Resolution Center にいつも通りのアピールを書き、再び電話でコンタクトを頂けることになりました。</p>
+
+<h2>
+<span id="唐突な終わり" class="fragment"></span><a href="#%E5%94%90%E7%AA%81%E3%81%AA%E7%B5%82%E3%82%8F%E3%82%8A"><i class="fa fa-link"></i></a>唐突な終わり</h2>
+
+<p>数日後、前回と同じように Apple から国際電話が着信しました。アピールの方法をイメージトレーニングしていた私は勇んで電話に出たところ、私がアピールする前に Apple の方から意外な言葉が発せられました。</p>
+
+<p>「ガイドラインを満たしていると判断しましたので、アプリのステータスを公開に変更します」</p>
+
+<p>そして電話から数分後、私のアプリは Ready For Sale となり AppStore に並びました。</p>
+
+<p>こうして、私の一ヶ月に近い Apple レビューとの戦いは唐突に、理不尽さを残したまま、終わったのです。</p>
+
+<h2>
+<span id="おわりに" class="fragment"></span><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>おわりに</h2>
+
+<p>今回のレビューから得られる教訓は何でしょうか？ 結局、何が問題で、何が解決につながったのか、全く分かりませんでした。<br>
+どんなにテストしたアプリにもバグが見つかるように、理不尽なレビューも想定外の産物なのかもしれません。そう考えると、この一ヶ月のAppleとのやりとりは欠陥レビュワーに対するバグフィックスであったとも言えます。</p>
+
+<p>せめて、この記事がどなたかの参考になれば、私の苦労が報われたと言えるのかもしれません。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

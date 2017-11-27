@@ -1,0 +1,313 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (taaaaaaak22)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (taaaaaaak22 さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>taaaaaaak22さんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>184</kbd>
+		<a target="_blank" href="https://qiita.com/taaaaaaak22/items/abfb9f2a672689c20505">帰宅したらGoogleHomeから好きな音声で「おかえり」って言ってもらいます</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-23 00:12:46</center>
+	</td>
+	<td style="width:200px;">
+		@taaaaaaak22<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/161726/profile-images/1508519800">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Node.js]</b> <b>[RaspberryPi]</b> <b>[IoT]</b> <b>[GoogleHome]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="https://qiita.com/azipinsyan/items/db4606aaa51426ac8dac" id="reference-30d7471c4fadce9bd42f">GoogleHomeスピーカーに外部からプッシュして自発的に話してもらいます</a>の記事を読んだときにこう思った。<br>
+帰宅したらGoogleHomeに自発的に「おかえり」や「お疲れ様」って言ってもらいたい。<br>
+しかも自分の好きな音声で。<br>
+今回は、RaspberryPiを利用して作ってみました。</p>
+
+<h1>
+<span id="必要なもの" class="fragment"></span><a href="#%E5%BF%85%E8%A6%81%E3%81%AA%E3%82%82%E3%81%AE"><i class="fa fa-link"></i></a>必要なもの</h1>
+
+<ul>
+<li>RaspberryPi(照度センサーを使います)</li>
+<li>GoogleHome</li>
+</ul>
+
+<h1>
+<span id="流れ" class="fragment"></span><a href="#%E6%B5%81%E3%82%8C"><i class="fa fa-link"></i></a>流れ</h1>
+
+<ol>
+<li>RaspberryPiで帰宅を検知</li>
+<li>google-home-notifier.jsを使ってGoogleHomeに音声ファイルを再生させる</li>
+</ol>
+
+<h2>
+<span id="raspberrypiで帰宅を検知" class="fragment"></span><a href="#raspberrypi%E3%81%A7%E5%B8%B0%E5%AE%85%E3%82%92%E6%A4%9C%E7%9F%A5"><i class="fa fa-link"></i></a>RaspberryPiで帰宅を検知</h2>
+
+<p>ワンルームに住んでいるので、RaspberryPiで部屋の照明の状態を監視することで帰宅を検知できないか考えました。<br>
+以下の条件にすべて当てはまれば、帰宅したとみなします。<br>
+1. 照明がONになった<br>
+2. 照明がONになった時間帯が18:00 ~ 24:00の間<br>
+3. 照明がOFFからONに変わるまで6時間以上たっている</p>
+
+<h3>
+<span id="回路を組む" class="fragment"></span><a href="#%E5%9B%9E%E8%B7%AF%E3%82%92%E7%B5%84%E3%82%80"><i class="fa fa-link"></i></a>回路を組む</h3>
+
+<p>RaspberryPiで照明の状態を監視するために、照度センサーを組み込みます。<br>
+当方、電子工作初心者ですが、下記のサイトを参考に回路を組んでみました。<br>
+<a href="https://qiita.com/Ichiro_Tsuji/items/e77d7d3ec4469ef006ce" id="reference-b1651bad9dc89a564476">RaspberryPiで照度計をつくろう</a></p>
+
+<p>照度を取得する処理はnode.jsで実装します。</p>
+
+<h3>
+<span id="照度の値を取得する" class="fragment"></span><a href="#%E7%85%A7%E5%BA%A6%E3%81%AE%E5%80%A4%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>照度の値を取得する</h3>
+
+<p>下記のサイトを参考にnode.jsで照度を取得しました。<br>
+<a href="http://blog.mlkcca.com/iot/realtime-data-visualization-with-raspberry-pi-2/" rel="nofollow noopener" target="_blank">Raspberry Piで取得したセンサーデータをリアルタイムに可視化する（センサー編）</a></p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">app.js</span></div>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">SPI</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'pi-spi'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">spi</span> <span class="o">=</span> <span class="nx">SPI</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span><span class="s2">"/dev/spidev0.0"</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">MCP3002</span> <span class="o">=</span> <span class="nx">Buffer</span><span class="p">([</span><span class="mh">0x78</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span> <span class="c1">// チャンネルは1にセット</span>
+
+<span class="c1">// 毎秒照明の値を監視</span>
+<span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">spi</span><span class="p">.</span><span class="nx">transfer</span><span class="p">(</span><span class="nx">MCP3002</span><span class="p">,</span> <span class="nx">MCP3002</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">((</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="nx">data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0x03FF</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+</pre></div>
+</div>
+
+<p>照度を取得できているか確認するため実行してみます。</p>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="nx">$</span> <span class="nx">node</span> <span class="nx">app</span><span class="p">.</span><span class="nx">js</span>
+
+<span class="mi">521</span> <span class="c1">// 照明がONの状態</span>
+<span class="mi">508</span>
+<span class="mi">512</span>
+<span class="mi">505</span>
+<span class="mi">510</span>
+<span class="mi">499</span> <span class="c1">// 照明をOFFにした</span>
+<span class="mi">473</span>
+<span class="mi">475</span>
+<span class="mi">132</span>
+<span class="mi">45</span>
+<span class="mi">22</span>
+<span class="mi">0</span>
+<span class="mi">501</span> <span class="c1">// 照明をONにした</span>
+<span class="mi">509</span>
+</pre></div></div>
+
+<p>今回は、照度が500を超えていれば、照明がONになっているとします。</p>
+
+<h3>
+<span id="帰宅検知" class="fragment"></span><a href="#%E5%B8%B0%E5%AE%85%E6%A4%9C%E7%9F%A5"><i class="fa fa-link"></i></a>帰宅検知</h3>
+
+<p>以下の条件にすべて当てはまれば、帰宅したとみなします。<br>
+1. 照明がONになった<br>
+2. 照明がONになった時間帯が18:00 ~ 24:00の間<br>
+3. 照明がOFFからONに変わるまで6時間以上たっている</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">app.js</span></div>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'moment'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">previousStatus</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span> <span class="c1">// 照明の状態</span>
+<span class="kd">let</span> <span class="nx">previousTime</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>   <span class="c1">// 照明の状態が変わった時間</span>
+
+<span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">((</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="nx">data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0x03FF</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&gt;=</span> <span class="mi">500</span> <span class="o">&amp;&amp;</span> <span class="nx">previousStatus</span> <span class="o">===</span> <span class="s1">'off'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 照明がon</span>
+    <span class="nx">previousStatus</span> <span class="o">=</span> <span class="s1">'on'</span><span class="p">;</span>
+    <span class="kr">const</span> <span class="nx">changeTime</span> <span class="o">=</span> <span class="nx">moment</span><span class="p">();</span>
+    <span class="kr">const</span> <span class="nx">durationMinutes</span> <span class="o">=</span> <span class="nx">changeTime</span><span class="p">.</span><span class="nx">diff</span><span class="p">(</span><span class="nx">previousTime</span><span class="p">,</span> <span class="s1">'minutes'</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">changeTime</span> <span class="o">&gt;=</span> <span class="nx">moment</span><span class="p">({</span><span class="nx">H</span><span class="o">:</span><span class="mi">18</span><span class="p">,</span> <span class="nx">m</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">s</span><span class="o">:</span><span class="mi">0</span><span class="p">})</span> <span class="o">&amp;&amp;</span> <span class="nx">changeTime</span> <span class="o">&lt;=</span> <span class="nx">moment</span><span class="p">({</span><span class="nx">H</span><span class="o">:</span><span class="mi">23</span><span class="p">,</span> <span class="nx">m</span><span class="o">:</span><span class="mi">59</span><span class="p">,</span> <span class="nx">s</span><span class="o">:</span><span class="mi">59</span><span class="p">})</span> <span class="o">&amp;&amp;</span> <span class="nx">durationMinutes</span> <span class="o">&gt;=</span> <span class="mi">300</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'帰宅！'</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">previousTime</span> <span class="o">=</span> <span class="nx">changeTime</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&lt;</span> <span class="mi">500</span> <span class="o">&amp;&amp;</span> <span class="nx">previousStatus</span> <span class="o">===</span> <span class="s1">'on'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 照明がoff</span>
+    <span class="nx">previousStatus</span> <span class="o">=</span> <span class="s1">'off'</span><span class="p">;</span>
+    <span class="nx">previousTime</span> <span class="o">=</span> <span class="nx">changeTime</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="google-home-notifierjsを使ってgooglehomeに音声ファイルを再生させる" class="fragment"></span><a href="#google-home-notifierjs%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6googlehome%E3%81%AB%E9%9F%B3%E5%A3%B0%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E5%86%8D%E7%94%9F%E3%81%95%E3%81%9B%E3%82%8B"><i class="fa fa-link"></i></a>google-home-notifier.jsを使ってGoogleHomeに音声ファイルを再生させる</h2>
+
+<h3>
+<span id="google-home-notifierjs" class="fragment"></span><a href="#google-home-notifierjs"><i class="fa fa-link"></i></a><a href="https://github.com/noelportugal/google-home-notifier" rel="nofollow noopener" target="_blank">google-home-notifier.js</a>
+</h3>
+
+<p>Chromecast Client向けのプロトコルを利用して、GoogleHomeにしゃべらせることができるとのこと。<br>
+好きなテキストをGoogleHomeに喋らせることができるようですが、音声ファイルを喋らせるメソッドもあることを発見。</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">google-home-notifier.js</span></div>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">play</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mp3_url</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">deviceAddress</span><span class="p">){</span>
+    <span class="nx">browser</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+    <span class="nx">browser</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'serviceUp'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">service</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Device "%s" at %s:%d'</span><span class="p">,</span> <span class="nx">service</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">service</span><span class="p">.</span><span class="nx">addresses</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">service</span><span class="p">.</span><span class="nx">port</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">service</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">device</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">))){</span>
+        <span class="nx">deviceAddress</span> <span class="o">=</span> <span class="nx">service</span><span class="p">.</span><span class="nx">addresses</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="nx">getPlayUrl</span><span class="p">(</span><span class="nx">mp3_url</span><span class="p">,</span> <span class="nx">deviceAddress</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">callback</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+        <span class="p">});</span>
+      <span class="p">}</span>
+      <span class="nx">browser</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
+    <span class="p">});</span>
+  <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+    <span class="nx">getPlayUrl</span><span class="p">(</span><span class="nx">mp3_url</span><span class="p">,</span> <span class="nx">deviceAddress</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+
+<p>GoogleHomeに接続するための設定をするにあたり、<code>gooogle-home-notifier.js</code>に手を加えます。</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">gooogle-home-notifier.js</span></div>
+<div class="highlight"><pre><span></span><span class="c1">// 第２引数からGoogleHomeのIPアドレスを指定できるようにします。</span>
+<span class="kd">var</span> <span class="nx">device</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">address</span><span class="p">,</span> <span class="nx">lang</span> <span class="o">=</span> <span class="s1">'en'</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 第2引数にaddressを追加</span>
+    <span class="nx">device</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="nx">deviceAddress</span> <span class="o">=</span> <span class="nx">address</span><span class="p">;</span> <span class="c1">// ここを追加</span>
+    <span class="nx">language</span> <span class="o">=</span> <span class="nx">lang</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+
+<p>帰宅を検知すると、<code>play</code>メソッドを呼び出します。</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">app.js</span></div>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">googleHomeNotifier</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'google-home-notifier'</span><span class="p">);</span>
+<span class="nx">googleHomeNotifier</span><span class="p">.</span><span class="nx">device</span><span class="p">(</span><span class="s1">'GoogleHome'</span><span class="p">,</span><span class="s1">'192.168.x.x'</span><span class="p">,</span> <span class="s1">'ja'</span><span class="p">);</span>
+<span class="nx">googleHomeNotifier</span><span class="p">.</span><span class="nx">accent</span><span class="p">(</span><span class="s1">'ja'</span><span class="p">);</span>
+
+<span class="c1">// 帰宅を検知したらGoogleHomeから音声を再生する</span>
+<span class="nx">googleHome</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'http://192.168.x.x:8080/audio/test.mp3'</span><span class="p">,</span> <span class="p">(</span><span class="nx">notifyRes</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notifyRes</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>今回はラズパイ上にmp3ファイルを保持するため、音声ファイルを返すAPIをexpressでサクッと実装します。</p>
+
+<h3>
+<span id="音声ファイルを返すapi" class="fragment"></span><a href="#%E9%9F%B3%E5%A3%B0%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E8%BF%94%E3%81%99api"><i class="fa fa-link"></i></a>音声ファイルを返すAPI</h3>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">api.js</span></div>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">serverPort</span> <span class="o">=</span> <span class="mi">8080</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">urlencodedParser</span> <span class="o">=</span> <span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="nx">extended</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
+
+<span class="c1">// CORSを許可</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">header</span><span class="p">(</span><span class="s2">"Access-Control-Allow-Origin"</span><span class="p">,</span> <span class="s2">"*"</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">header</span><span class="p">(</span><span class="s2">"Access-Control-Allow-Headers"</span><span class="p">,</span> <span class="s2">"Origin, X-Requested-With, Content-Type, Accept"</span><span class="p">);</span>
+  <span class="nx">next</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * 音声ファイルを取得</span>
+<span class="cm"> */</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/googlehome/:audioName'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">audioName</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">audioName</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">audio</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Invalid Parameters.'</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kr">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">'/public/audio/'</span> <span class="o">+</span> <span class="nx">audioName</span><span class="p">,</span> <span class="s1">'binary'</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s1">'Content-Length'</span><span class="p">,</span> <span class="nx">file</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="s1">'binary'</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">serverPort</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Start api-server. Port is </span><span class="si">${</span><span class="nx">serverPort</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+
+<h3>
+<span id="raspberrypi上でプログラムを常駐させる" class="fragment"></span><a href="#raspberrypi%E4%B8%8A%E3%81%A7%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E3%82%92%E5%B8%B8%E9%A7%90%E3%81%95%E3%81%9B%E3%82%8B"><i class="fa fa-link"></i></a>RaspberryPi上でプログラムを常駐させる</h3>
+
+<div class="code-frame" data-lang="javascript"><div class="highlight"><pre><span></span><span class="c1">// 照度を監視</span>
+<span class="nx">forever</span> <span class="nx">start</span> <span class="o">--</span><span class="nx">spinSleepTime</span> <span class="mi">7000</span> <span class="o">-</span><span class="nx">m</span> <span class="mi">1000</span> <span class="nx">google</span><span class="o">-</span><span class="nx">home</span><span class="o">/</span><span class="nx">app</span><span class="o">/</span><span class="nx">index</span><span class="p">.</span><span class="nx">js</span>
+
+<span class="c1">// 音声ファイルを返すAPI</span>
+<span class="nx">forever</span> <span class="nx">start</span> <span class="o">--</span><span class="nx">spinSleepTime</span> <span class="mi">7000</span> <span class="o">-</span><span class="nx">m</span> <span class="mi">1000</span> <span class="nx">google</span><span class="o">-</span><span class="nx">home</span><span class="o">/</span><span class="nx">api</span><span class="o">-</span><span class="nx">server</span><span class="o">/</span><span class="nx">index</span><span class="p">.</span><span class="nx">js</span>
+</pre></div></div>
+
+<p>全ソースコードは<a href="https://github.com/taaaaaaak22/google-home" rel="nofollow noopener" target="_blank">こちら</a>をご参考ください。</p>
+
+<h1>
+<span id="できたもの" class="fragment"></span><a href="#%E3%81%A7%E3%81%8D%E3%81%9F%E3%82%82%E3%81%AE"><i class="fa fa-link"></i></a>できたもの</h1>
+
+<blockquote class="twitter-tweet">
+<p>照度センサー用いて帰宅検知して、GoogleHomeに「おかえりなさい」って言ってもらうようにした。音声はmp3ファイル再生してるだけだから夢が広がりますな。とりあえず帰宅時間帯に応じていろんな「おかえりなさい」をランダム再生してる。<a href="https://twitter.com/hashtag/googlehome?src=hash&amp;ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">#googlehome</a> <a href="https://t.co/G3UrDwcIup" rel="nofollow noopener" target="_blank">pic.twitter.com/G3UrDwcIup</a></p>— のなめ (@dotsline_22) <a href="https://twitter.com/dotsline_22/status/919560500886650880?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年10月15日</a>
+</blockquote>
+
+
+
+<h1>
+<span id="最後に" class="fragment"></span><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB"><i class="fa fa-link"></i></a>最後に</h1>
+
+<p>帰宅後、前より寂しい気持ちになった(´・ω・`)</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

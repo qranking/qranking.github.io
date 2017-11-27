@@ -1,0 +1,254 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (ygkn)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (ygkn さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>ygknさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>304</kbd>
+		<a target="_blank" href="https://qiita.com/ygkn/items/eed01ae9c01339d6086a">jQueryとは何なのか？　なぜ使わなくても（あるいは使わないほうが）いいのか？</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-26 23:42:51</center>
+	</td>
+	<td style="width:200px;">
+		@ygkn<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/104663/profile-images/1506920149">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[jQuery]</b> <b>[フロントエンド]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>昨今、よく「jQueryはもう必要ない」という声を聞きます。<br>
+しかし、一時期JavaScriptのデファクトスタンダードのライブラリといわれたjQueryに対しての扱いの変化を疑問に思う方もいるでしょう。<br>
+そこで、この記事ではそもそもjQueryとは何のために作られたどんなライブラリか、そしてそれがなぜレガシーと呼ばれるようになったのかを学んでいきたいと思います。</p>
+
+<p>間違った事を書いているなどのご指摘は大歓迎です。</p>
+
+<h1>
+<span id="なぜ-jquery-ができたのか" class="fragment"></span><a href="#%E3%81%AA%E3%81%9C-jquery-%E3%81%8C%E3%81%A7%E3%81%8D%E3%81%9F%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>なぜ jQuery ができたのか</h1>
+
+<h2>
+<span id="昔のweb開発" class="fragment"></span><a href="#%E6%98%94%E3%81%AEweb%E9%96%8B%E7%99%BA"><i class="fa fa-link"></i></a>昔のWeb開発</h2>
+
+<p>jQuery ができたのは2006年。<br>
+そのころはJavaScriptはWebページに文章を読むのを妨げる動きをつける言語で、HTML5やCSS3、ES2015なんてものはもちろんなく、今ではコード数行でできることが時にはトリッキーな方法も混ぜながら何十行も書く必要がありました。その上、ECMAによって標準化されているとはいえ、ブラウザが提供していたAPIには差異があり、開発者は常にブラウザ互換についても考えながらコードを書く必要がありました。</p>
+
+<h2>
+<span id="jqueryがもたらしたもの" class="fragment"></span><a href="#jquery%E3%81%8C%E3%82%82%E3%81%9F%E3%82%89%E3%81%97%E3%81%9F%E3%82%82%E3%81%AE"><i class="fa fa-link"></i></a>jQueryがもたらしたもの</h2>
+
+<p>そんなWeb開発に革命を起こしたのがjQueryです。<br>
+jQueryは各ブラウザが提供しているDOMなどのAPIを一つのメソッドにまとめ、ブラウザ間の差異をなくしました。<br>
+それだけじゃなく、Web上でのアニメーションを簡単に記述できたり、現在のJavaScriptの非同期処理に欠かせないPromiseと似たDeferredという機能を取り入れたりもしました。</p>
+
+<p>お世辞にも綺麗とは言えなかったJavaScriptの <code>for</code> 文などを簡潔に書けるユーティリティの機能も存在します。</p>
+
+<p>そしてjQueryの最大の功績はなんと言ってもAjaxを簡潔かつわかりやすく書けることでしょう。<br>
+これによりサーバー↔クライアント間の通信がページ転移を伴わないでもできるようになりました。<br>
+これは現在のSPA（シングルページアプリケーション）の元となります。</p>
+
+<h1>
+<span id="jqueryの仕組み" class="fragment"></span><a href="#jquery%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF"><i class="fa fa-link"></i></a>jQueryの仕組み</h1>
+
+<p>jQueryはそのロゴに「write less, do more」とあるようにとても少ない記述量で多くのことができます。<br>
+それゆえ、jQueryが実際にしている動作は半ブラックボックス化されているような気もします。<br>
+初心者Webプログラマやデザイナー向けの「jQuery入門」と銘打たれた本には「こうしたいときはこう書け」としか書いておらず、それがなぜそう動くのかまで書かれている本はまれです。初心者の中では、jQueryとJavaScriptは別の言語だと思っていたという話も聞きます。<br>
+簡単に書けるとは言え、適当に書けば可読性皆無なコードや必要以上に低速なプログラムが生まれてしまいます。</p>
+
+<p>ここでjQueryの動く仕組みを確認してみましょう。</p>
+
+<h2>
+<span id="javascriptのおさらい" class="fragment"></span><a href="#javascript%E3%81%AE%E3%81%8A%E3%81%95%E3%82%89%E3%81%84"><i class="fa fa-link"></i></a>JavaScriptのおさらい</h2>
+
+<p>さて、ここでjQueryの仕組みを知る前に、JavaScriptの基本のおさらいをしましょう。<br>
+JavaScriptは動的型付けのオブジェクト指向のプログラミング言語です。ですが、関数が第一級オブジェクトであったりと関数型言語としての特徴も併せ持っています。これは、関数が変数に代入でき、関数のプロパティやメソッドを追加できるということです。<br>
+こうした柔軟な言語仕様が、jQueryの「write less, do more.」を支えているのです。</p>
+
+<h2>
+<span id="" class="fragment"></span><a href="#"><i class="fa fa-link"></i></a>$？</h2>
+
+<p>さて、jQueryの使い方は皆さんご存知の通り、<code>&lt;script&gt;</code>タグでjQueryのソースを読みこみます。<br>
+その後、</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$(() =&gt; {
+  /* 処理 */
+})
+</pre></div></div>
+
+<p>と書きます。<br>
+この謎の<code>$</code>記号はDOM操作をする時にも現れ、<code>$(セレクタ)</code>のようにしてHTML要素を取得します。<br>
+また、POSTやGETなどAjax系の機能や、<code>each()</code>などDOMに関係のない機能を使う時は <code>$.get()</code> のように書き、やっぱり <code>$</code> マークが出てきます。</p>
+
+<p>この記号は一体何なのでしょう。</p>
+
+<p>シェルスクリプトやPHP、Perlなどを学んだことのある人は何か特別な意味のある記号なのかな、と思われるかもしれませんが、JavaScriptでは <code>$</code>、<code>_</code>といった記号は通常のアルファベットや数字などと一緒で変数名に使うことができます。</p>
+
+<p>そう、<code>$</code> とは単なる変数なのです。</p>
+
+<p>では、どんな変数なのでしょう。</p>
+
+<p>ブラウザのJavaScriptコンソールで確かめてみましよう。<br>
+jQueryが使われてるサイト<sup id="fnref1"><a href="#fn1" rel="footnote" title="jQuery （公式サイト） とか">1</a></sup>で</p>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">$</span><span class="p">);</span>
+</pre></div></div>
+
+<p>とコンソールに打ってください。</p>
+
+<p><a href="https://camo.qiitausercontent.com/a9cbd2b1913ac46edcb5931baed8c81639412219/68747470733a2f2f64326d787565667165616137736a2e636c6f756466726f6e742e6e65742f735f433830464533454243353433464346334636324542433935434137413942383435353237304331323033373936454444313535324337384637383637324138365f313530383835393636303638365f696d6167652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a9cbd2b1913ac46edcb5931baed8c81639412219/68747470733a2f2f64326d787565667165616137736a2e636c6f756466726f6e742e6e65742f735f433830464533454243353433464346334636324542433935434137413942383435353237304331323033373936454444313535324337384637383637324138365f313530383835393636303638365f696d6167652e706e67" alt="" data-canonical-src="https://d2mxuefqeaa7sj.cloudfront.net/s_C80FE3EBC543FCF3F62EBC95CA7A9B8455270C1203796EDD1552C78F78672A86_1508859660686_image.png"></a></p>
+
+<p>このように表示されたと思います。</p>
+
+<p><strong>そう、 jQuery の <code>$</code> は関数なのです。</strong></p>
+
+<p>この関数の主な働きは、与えられた文字列（セレクタだったりHTMLだったり）を元にjQueryオブジェクトを作ることです<sup id="fnref2"><a href="#fn2" rel="footnote" title='また、$ 関数の引数に関数を与えた場合は、$(document).on("ready", 関数) （DOM木構造が最初に完成したら呼ばれるイベント）のエイリアスになります。'>2</a></sup>。これは何かに似てると思いませんか？　そう、クラスですね。</p>
+
+<p>JavaScriptにおけるクラスのメソッドは <code>クラス.prototype</code> に生えてますが、jQueryオブジェクトの場合はどこにあるのでしょう。</p>
+
+<p>その答えは、<code>$.fn</code> です。</p>
+
+<p><a href="https://camo.qiitausercontent.com/de5be4ed949bab89f46930d20bec65ac01000654/68747470733a2f2f64326d787565667165616137736a2e636c6f756466726f6e742e6e65742f735f433830464533454243353433464346334636324542433935434137413942383435353237304331323033373936454444313535324337384637383637324138365f313530393032313939333034345f696d6167652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/de5be4ed949bab89f46930d20bec65ac01000654/68747470733a2f2f64326d787565667165616137736a2e636c6f756466726f6e742e6e65742f735f433830464533454243353433464346334636324542433935434137413942383435353237304331323033373936454444313535324337384637383637324138365f313530393032313939333034345f696d6167652e706e67" alt="" data-canonical-src="https://d2mxuefqeaa7sj.cloudfront.net/s_C80FE3EBC543FCF3F62EBC95CA7A9B8455270C1203796EDD1552C78F78672A86_1509021993044_image.png"></a></p>
+
+<p>コンソールで見るとこんなかんじです。見慣れたメソッドたちがいっぱいですね。 <code>$(".my-plugin").myPlugin()</code> 系のプラグインはこれをいじってます。</p>
+
+<p>では、 <code>$.get()</code>  などの <code>$</code> に直接生えているのはというと、JavaScriptでは関数はオブジェクトであることを思い出してください。オブジェクトなのでそこにメソッドを生やせるということです。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ ()→ jQueryオブジェクト ┌&gt; .addClass()
+├ .getJSON()           │  .animate()
+├ .each()              │  .data()
+├ .isArray()           │  ：
+│：                    │
+└ .fn ─────────────────┘
+</pre></div></div>
+
+<p>さて、ではなぜ <code>$</code> 一つに全ての機能をまとめているのでしょう<sup id="fnref3"><a href="#fn3" rel="footnote" title="Prototype.js など、他の $ 変数を使うライブラリと競合した時のために、jQueryという変数でも $ にアクセスできるようになってます。">3</a></sup>。</p>
+
+<p>Webブラウザ上のJavaScriptではモジュール機能は実用的なレベルではありません。その上、jQueryができた当初は<a href="http://browserify.org/" rel="nofollow noopener" target="_blank">Browserify</a>や<a href="https://webpack.js.org/" rel="nofollow noopener" target="_blank">webpack</a>、<a href="https://rollupjs.org/" rel="nofollow noopener" target="_blank">Rollup</a>といったモジュールバンドラーもありませんでした。</p>
+
+<p>そこで、jQuery含む多くのライブラリはそれぞれのライブラリごとにグルーバル変数に関数などを定義していました。そこで、グローバルには何か一つオブジェクトを置いておき、そこに自身のライブラリの関数を生やしていく、という方法が採られました。</p>
+
+<h1>
+<span id="そしてその後のweb事情" class="fragment"></span><a href="#%E3%81%9D%E3%81%97%E3%81%A6%E3%81%9D%E3%81%AE%E5%BE%8C%E3%81%AEweb%E4%BA%8B%E6%83%85"><i class="fa fa-link"></i></a>そして、その後のWeb事情</h1>
+
+<h2>
+<span id="モダンなwebをめざして" class="fragment"></span><a href="#%E3%83%A2%E3%83%80%E3%83%B3%E3%81%AAweb%E3%82%92%E3%82%81%E3%81%96%E3%81%97%E3%81%A6"><i class="fa fa-link"></i></a>モダンなWebをめざして</h2>
+
+<p>その後、Web開発事情は大きく変化しました。</p>
+
+<p>先程申し上げたサーバー↔クライアント間の通信により、Webアプリはサーバー主体から重きをクライアントに移し、より効率のよいWebフロントエンドの開発方法が求められ、Node.jsというサーバーで動くJavaScriptの開発もその後を押し、JavaScriptはもはや簡単なDOM操作を行うだけの言語ではなくなりました。</p>
+
+<p>周りを取り巻く環境だけでなく、HTML/CSS/JavaScript自身も進化していき、jQueryでやっと実現できた機能がブラウザ側でサポートしていきます。</p>
+
+<h2>
+<span id="ライブラリフレームワーク戦国時代" class="fragment"></span><a href="#%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF%E6%88%A6%E5%9B%BD%E6%99%82%E4%BB%A3"><i class="fa fa-link"></i></a>ライブラリ/フレームワーク戦国時代</h2>
+
+<p>そして、肥大化していくクライアントサイドを処理するのに、Backbone.jsを皮切りに、Angular、React、Vue、Riotなど様々なライブラリが登場します。</p>
+
+<p>そして、モダンなライブラリの代名詞とも言える仮想DOMという概念がこれまでのJavaScriptの常識を覆しました。</p>
+
+<p>すると、DOM操作をすることは少なくなり、jQueryの時代はもう終わったのではないかという声が出てきました。</p>
+
+<h1>
+<span id="jqueryはいらない子" class="fragment"></span><a href="#jquery%E3%81%AF%E3%81%84%E3%82%89%E3%81%AA%E3%81%84%E5%AD%90"><i class="fa fa-link"></i></a>jQueryはいらない子？</h1>
+
+<h2>
+<span id="なぜ使わなくてもあるいは使わないほうがいいのか" class="fragment"></span><a href="#%E3%81%AA%E3%81%9C%E4%BD%BF%E3%82%8F%E3%81%AA%E3%81%8F%E3%81%A6%E3%82%82%E3%81%82%E3%82%8B%E3%81%84%E3%81%AF%E4%BD%BF%E3%82%8F%E3%81%AA%E3%81%84%E3%81%BB%E3%81%86%E3%81%8C%E3%81%84%E3%81%84%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>なぜ使わなくても（あるいは使わないほうが）いいのか？</h2>
+
+<p>jQueryは必要ないと考られる理由はいくつかあります。</p>
+
+<p>jQueryはたくさんのブラウザの挙動を標準化するのをJavaScriptでブラウザのAPIを無視し、新しくjQueryオブジェクトというものを定義し、１からメソッドを追加することで実現しています。<br>
+この方法は、ブラウザ間の挙動の統一が取れてなかったころは都合がよかったのですが、今では逆に車輪の再発明をしてしまうことになり、パフォーマンス的にもよくないです。</p>
+
+<p>そして、jQueryはできた時のWeb事情に合わせて作られている（当たり前ですが）ので今のWeb事情とか合わないという点もあります。</p>
+
+<p>また、外部のライブラリを使うとなると埋め込み方法やバージョン管理にもリソースを使う必要があります。</p>
+
+<p>もし、例えばスムーズスクロールなどライブラリを必要とする場合でも、jQueryの他にその機能だけを担う別の<a href="https://tsuyoshiwada.github.io/sweet-scroll/" rel="nofollow noopener" target="_blank">sweet-scroll</a>などのライブラリを使えばいいだけです。わざわざ使わない機能がついたjQueryを使う必要はありません。</p>
+
+<p>IEなど古いブラウザをサポートしなければいけないときは、APIをECMAScriptで定められた挙動に再現してくれる<a href="https://babeljs.io/" rel="nofollow noopener" target="_blank">Babel</a>とPolyfillを使いましょう。</p>
+
+<p>jQueryを使ったプラグインは、たいていjQueryを使わないライブラリがあります。探してみましょう。</p>
+
+<p><code>$</code> を使ってDOMオブジェクトを取得したいときは、</p>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">$</span> <span class="o">=</span> <span class="p">(...</span><span class="nx">s</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(...</span><span class="nx">s</span><span class="p">)</span>
+</pre></div></div>
+
+<p>とすればいいです。</p>
+
+<h2>
+<span id="jqueryはクソライブラリ" class="fragment"></span><a href="#jquery%E3%81%AF%E3%82%AF%E3%82%BD%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA"><i class="fa fa-link"></i></a>jQueryはクソライブラリ？</h2>
+
+<p>ここまで読むとjQueryをディスってるように聞こえますが、jQueryは素晴らしいライブラリだと思います。<br>
+jQueryは黎明を支えてきたライブラリです。</p>
+
+<p>ブラウザ標準のAPIにはjQueryから着想を得たものがたくさんありますし、Ajaxをあれほど簡単に書けなければSPAという概念が生まれることもなかったかもしれません。</p>
+
+<p>jQueryが果たした功績は大きいですが、もう役割は終わったと、そう感じています。</p>
+
+<h1>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h1>
+
+<p><a href="https://jquery.com/" rel="nofollow noopener" target="_blank">jQuery （公式サイト）</a><br>
+<a href="https://ja.wikipedia.org/wiki/JQuery" rel="nofollow noopener" target="_blank">jQuery - Wikipedia</a></p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p><a href="https://jquery.com/" rel="nofollow noopener" target="_blank">jQuery （公式サイト）</a> とか <a href="#fnref1">↩</a></p>
+</li>
+
+<li id="fn2">
+<p>また、<code>$</code> 関数の引数に関数を与えた場合は、<code>$(document).on(</code><code>"</code><code>ready</code><code>"</code><code>, 関数)</code> （DOM木構造が最初に完成したら呼ばれるイベント）のエイリアスになります。 <a href="#fnref2">↩</a></p>
+</li>
+
+<li id="fn3">
+<p><a href="http://prototypejs.org/" rel="nofollow noopener" target="_blank">Prototype.js</a> など、他の <code>$</code> 変数を使うライブラリと競合した時のために、<code>jQuery</code>という変数でも <code>$</code> にアクセスできるようになってます。<a href="https://camo.qiitausercontent.com/5137d5e4885af350767cad37824906756561b57f/68747470733a2f2f64326d787565667165616137736a2e636c6f756466726f6e742e6e65742f735f433830464533454243353433464346334636324542433935434137413942383435353237304331323033373936454444313535324337384637383637324138365f313530393032343636343133355f696d6167652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/5137d5e4885af350767cad37824906756561b57f/68747470733a2f2f64326d787565667165616137736a2e636c6f756466726f6e742e6e65742f735f433830464533454243353433464346334636324542433935434137413942383435353237304331323033373936454444313535324337384637383637324138365f313530393032343636343133355f696d6167652e706e67" alt="" data-canonical-src="https://d2mxuefqeaa7sj.cloudfront.net/s_C80FE3EBC543FCF3F62EBC95CA7A9B8455270C1203796EDD1552C78F78672A86_1509024664135_image.png"></a> <a href="#fnref3">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

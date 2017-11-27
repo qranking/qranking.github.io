@@ -1,0 +1,1241 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (koher)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (koher さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>koherさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>99</kbd>
+		<a target="_blank" href="https://qiita.com/koher/items/29357b5e00aec1962601">Proposalには載っていないSwift 5のasync/awaitが素晴らしいと思う理論的背景</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-24 09:09:49</center>
+	</td>
+	<td style="width:200px;">
+		@koher<br />(Qoncept, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/47085/profile-images/1473690868">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Swift]</b> <b>[swtws]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>2ヶ月ほど前、 Chris Lattner から swift-evolution に <a href="https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170814/038892.html" rel="nofollow noopener" target="_blank">"async/await + actors"</a> というタイトルで驚きのメールが流れました。</p>
+
+<p><a href="https://camo.qiitausercontent.com/922b6cd4fa845d6c78ee625afc441ec7f9a9f48d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34373038352f63333361306133362d333064322d343264362d656237382d6331646136656465323762322e706e67" target="_blank" rel="nofollow noopener"><img width="1087" alt="async-await-actors.png" src="https://camo.qiitausercontent.com/922b6cd4fa845d6c78ee625afc441ec7f9a9f48d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34373038352f63333361306133362d333064322d343264362d656237382d6331646136656465323762322e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/47085/c33a0a36-30d2-42d6-eb78-c1da6ede27b2.png"></a></p>
+
+<p>これは Swift における並行処理関連の提案で、主に <code>async/await</code> と <code>actor</code> についてのものです。本投稿では、そのうち <code>async/await</code> に着目します。 <code>async/await</code> といえば C# や JavaScript が思い浮かびますが、 Swift の <code>async/await</code> は Swift にフィットするように独自の変更が加えられています。</p>
+
+<blockquote class="twitter-tweet">
+<p>understanding async/await in 7 seconds <a href="https://t.co/IJOQJ2DR35" rel="nofollow noopener" target="_blank">pic.twitter.com/IJOQJ2DR35</a></p>— Wassim Chegham シ (@manekinekko) <a href="https://twitter.com/manekinekko/status/855824609299636230?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">April 22, 2017</a>
+</blockquote>
+
+<p>（ JavaScript の <code>Promise</code> と <code>async/await</code> ）</p>
+
+<p>まだ正式な Proposal になっていませんが、<a href="https://gist.github.com/lattner/429b9070918248274f25b714dcfc7619" rel="nofollow noopener" target="_blank">こちら</a> から Proposal 全文を閲覧できます。これを読めば Swift の <code>async/await</code> がどのようなもので、何のために提案されているのかがわかります。この Proposal は平易な英語で書かれていて読みやすいので、是非一読をオススメします。 Proposal に書かれていることをそのまま書いてもおもしろくないので、 <strong>この投稿では Proposal では詳しく述べられていない背景思想について説明します</strong>。とはいえ、予備知識がなくても、基本的な Swift の構文さえ知っていれば <code>async/await</code> について一通り理解できるように説明するので安心して下さい。</p>
+
+<p>実は、僕はこの Proposal の <code>async/await</code> とほぼ同じ内容のものを提案しようと考えていました。 GW 頃にまとめ、 <a href="https://twitter.com/rayfix" rel="nofollow noopener" target="_blank">Ray Fix さん</a>に<a href="https://gist.github.com/koher/3e04b4f1b8adbbf0379d38c0ad83a3ea/revisions#diff-74461ad55c78f93ada5df9d114aa66b4" rel="nofollow noopener" target="_blank">英文のネイティブチェック</a>をしてもらったものが<a href="https://gist.github.com/koher/3e04b4f1b8adbbf0379d38c0ad83a3ea" rel="nofollow noopener" target="_blank">こちら</a>です。ただ、当時すでに Swift 4 のまとめの時期に入っており新機能を提案できる感じではありませんでした。 Swift 5 の議論が始まったら投稿しようと思ってそのまま寝かしていました。そして、 8 月にようやく Swift 5 の議論が始まったのでそろそろ投稿しようかと思ってたところに冒頭の <a href="https://twitter.com/clattner_llvm?lang=en" rel="nofollow noopener" target="_blank">Chris Lattner</a> のメールが投稿されました。中身を確認してみると自分が考えていたのとほぼ同じ内容だったのでびっくりというわけです。</p>
+
+<p><a href="https://camo.qiitausercontent.com/94c307ae780dd0af7baa0300033fa34065f72bb8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34373038352f62633139613936312d633963372d353062382d343330302d6435303165316632346638322e706e67" target="_blank" rel="nofollow noopener"><img width="1537" alt="native-check.png" src="https://camo.qiitausercontent.com/94c307ae780dd0af7baa0300033fa34065f72bb8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34373038352f62633139613936312d633963372d353062382d343330302d6435303165316632346638322e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/47085/bc19a961-c9c7-50b8-4300-d501e1f24f82.png"></a></p>
+
+<p>（原型をとどめないネイティブチェックの図）</p>
+
+<p>しかし、 Proposal の説明は自体はとてもわかりやすいのですが、その説明は僕がほぼ同じ <code>async/await</code> に思い至った経緯とはずいぶん異なっていました。この投稿では、僕がそのような <code>async/await</code> に至った過程を説明することで、なぜこの <code>async/await</code> が Swift に良くフィットするのかを説明します。</p>
+
+<h2>
+<span id="コールバック地獄" class="fragment"></span><a href="#%E3%82%B3%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF%E5%9C%B0%E7%8D%84"><i class="fa fa-link"></i></a>コールバック地獄</h2>
+
+<p>Swift の非同期処理にはコールバックが用いられることが多いです。 <code>Delegate</code> もありますが、 Obj-C 由来なのでここでは触れません。</p>
+
+<p>コールバックの問題としてよく知られるものに <strong>コールバック地獄</strong> があります。↓のように、複数の非同期処理を連ねるとピラミッド状のネストが生まれてしまいます。可読性もメンテナンス性も良くありません。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">downloadFooImage</span><span class="p">(</span><span class="n">callback</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Image</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">())</span> <span class="p">{</span>
+  <span class="n">downloadServerURL</span><span class="p">()</span> <span class="p">{</span> <span class="n">url</span> <span class="k">in</span>
+    <span class="n">downloadJSON</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">json</span> <span class="k">in</span>
+      <span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">json</span><span class="p">[</span><span class="s">"foo"</span><span class="p">][</span><span class="s">"image"</span><span class="p">][</span><span class="s">"url"</span><span class="p">].</span><span class="n">string</span><span class="p">!</span> <span class="p">)</span> <span class="p">{</span> <span class="n">imageData</span> <span class="k">in</span>
+        <span class="n">callback</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">imageData</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h2>
+<span id="promise" class="fragment"></span><a href="#promise"><i class="fa fa-link"></i></a><code>Promise</code>
+</h2>
+
+<p>コールバック地獄の対策の一つとして、 JavaScript で有名になった <code>Promise</code> があります。</p>
+
+<p><code>Promise&lt;Foo&gt;</code> は今はまだ手に入っていないけど、将来のいつか手に入る <code>Foo</code> 型の値を意味します。たとえば、 <code>url</code> を渡して <code>Data</code> をダウンロードする関数 <code>download</code> を考えてみます。コールバック版と <code>Promise</code> 版のシグネチャはそれぞれ次のようになります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// コールバック</span>
+<span class="kd">func</span> <span class="nf">download</span><span class="p">(</span><span class="n">from</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Data</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">())</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="c1">// Promise</span>
+<span class="kd">func</span> <span class="nf">download</span><span class="p">(</span><span class="n">from</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="n">Data</span><span class="p">&gt;</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div></div>
+
+<p><code>Promise&lt;Data&gt;</code> を将来のいつか手に入る <code>Data</code> 型の値と読めれば、 <code>url</code> を渡して <code>Promise&lt;Data&gt;</code> を返してくれる後者の方が（少なくとも僕は）わかりやすいと思います。</p>
+
+<p>では、 <code>Promise</code> を使ってどのようにコールバック地獄を解消するのでしょうか？そのためにはもう少し <code>Promise</code> について説明しなければなりません。</p>
+
+<h3>
+<span id="promisek" class="fragment"></span><a href="#promisek"><i class="fa fa-link"></i></a>PromiseK</h3>
+
+<p>僕の勤務先である Qoncept では、 Swift 1.0 のリリースと同時に Swift を使い始めたんですが、 2014 年の年末頃にはコールバック地獄の問題が顕在化していました。そんなときに、僕の同僚の <a href="/omochimetaru" class="user-mention js-hovercard" title="omochimetaru" data-hovercard-target-type="user" data-hovercard-target-name="omochimetaru">@omochimetaru</a> が「 Swift にも JavaScript の <code>Promise</code> がほしい。」と言って Swift で再現したものをサクッと実装し、使い始めました。</p>
+
+<p>僕はそのとき初めて <code>Promise</code> を知ったんですが、使ってみてなかなかいいなと思いました。しかし、使っている内に僕はいくつかの不満を抱き始めました。</p>
+
+<p>たとえば、 Swift 1.0 の頃には <code>Optional</code> の <code>nil</code> でエラーを表すことが一般的でした。しかし、 JavaScript の <code>Promise</code> は非同期だけでなくエラーも扱っていました。非同期処理はエラー処理を伴うことが多いとはいえ、本質的には二つは直交した概念です。 Swift にはせっかく <code>Optional</code> があるのに、 <code>Promise</code> を使うときは <code>Promise</code> でエラー処理をするというのが気に入りませんでした。</p>
+
+<p>そこで、 JavaScript の <code>Promise</code> からエラー処理に関する機能を取り除いて非同期処理に特化した <code>Promise</code> ライブラリ <a href="https://github.com/koher/PromiseK" rel="nofollow noopener" target="_blank">PromiseK</a> を作りました。 PromiseK の <code>Promise</code> は純粋に非同期であることだけを表します。エラーが起こり得ることは <code>Promise&lt;Optional&lt;Foo&gt;&gt;</code> のように <code>Optional</code> 等と組み合わせて表現します。</p>
+
+<p>提案されている <code>async/await</code> と、このエラー処理を取り除いた <code>Promise</code> は強く関連しているので、 PromiseK をベースに <code>Promise</code> について説明します。</p>
+
+<h3>
+<span id="結果のハンドリング" class="fragment"></span><a href="#%E7%B5%90%E6%9E%9C%E3%81%AE%E3%83%8F%E3%83%B3%E3%83%89%E3%83%AA%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>結果のハンドリング</h3>
+
+<p>コールバックだろうが <code>Promise</code> だろうが、非同期処理の結果を受け取ってハンドリングすることは必須です。先程の <code>download</code> 関数を利用するコードはそれぞれ次のようになります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// コールバック</span>
+<span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">)</span> <span class="k">in</span> <span class="c1">// 非同期処理完了時に実行</span>
+  <span class="c1">// `data` を使う処理</span>
+<span class="p">}</span>
+
+<span class="c1">// Promise</span>
+<span class="kd">let</span> <span class="nv">data</span><span class="p">:</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="n">Data</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+<span class="n">data</span><span class="p">.</span><span class="kr">get</span> <span class="p">{</span> <span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">)</span> <span class="k">in</span> <span class="c1">// 非同期処理完了時に実行</span>
+  <span class="c1">// `data` を使う処理</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>このコードを見ただけでは、 <code>Promise</code> を使って何がうれしいのかわからないと思います。重要なのは、 <code>Promise</code> 版の場合は結果が値として返されるということです。 <code>Promise&lt;Data&gt;</code> という形で非同期処理そのものが値として返されるので、それを取り回して複数の非同期処理を結合して順番に実行したり、並列に走らせてから最後に結合したりという操作が可能になります。</p>
+
+<p>具体的には後で詳しく説明しますが、そのように複数の非同期処理に対して結合などの操作を実行できることがコールバック地獄のネストを取り除くことを可能にします。なので、先程のコードのように単発で非同期処理の結果を受け取るだけでは <code>Promise</code> のうまみがわかりませんが、値として取り回せるということが重要なポイントです。</p>
+
+<h3>
+<span id="map" class="fragment"></span><a href="#map"><i class="fa fa-link"></i></a><code>map</code>
+</h3>
+
+<p>では、どのように非同期処理を操作するのでしょう？ JavaScript の <code>Promise</code> では <code>then</code> メソッド <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then" class="autolink" rel="nofollow noopener" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then</a> が肝となります。しかし、　<strong>僕が JavaScript の <code>Promise</code> について気に入らなかったもう一つの点がその <code>then</code> メソッドでした</strong>。</p>
+
+<p>当時モナドについて知りたいと思って <a href="https://www.amazon.co.jp/dp/B009RO80XY" rel="nofollow noopener" target="_blank">"すごいHaskell"</a> を読んでいた僕は、 <code>Promise</code> はモナドで <code>then</code> メソッドは <code>map</code> と <code>flatMap</code> をごちゃ混ぜにしたものだと気付きました。モナドというのは、　<code>Array</code> や <code>Optional</code> のように <code>map</code> と <code>flatMap</code> を持っている型のことです。そこで、僕は PromiseK を実装するに当たって <code>then</code> メソッドを廃止し、 <code>map</code> メソッドと <code>flatMap</code> メソッドに分解することにしました。</p>
+
+<p><code>map</code> メソッドは Swift を書いていると馴染み深いんじゃないかと思います。たとえば、 <code>Array&lt;Int&gt;</code> ( <code>[Int]</code> )の各要素を 2 乗するコードは次のように書けます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">numbers</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nv">squares</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">numbers</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">*</span> <span class="nv">$0</span> <span class="p">}</span> <span class="c1">// [4, 9, 25]</span>
+</pre></div></div>
+
+<p><code>Optional</code> でも同じです。 <code>map</code> メソッドを使って、値がある場合は 2 乗し、 <code>nil</code> の場合は <code>nil</code> のままとすることができます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">number</span><span class="p">:</span> <span class="nb">Optional</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="mi">3</span>
+<span class="kd">let</span> <span class="nv">square</span><span class="p">:</span> <span class="nb">Optional</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">number</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">*</span> <span class="nv">$0</span> <span class="p">}</span> <span class="c1">// Optional(9)</span>
+</pre></div></div>
+
+<p><code>Optional</code> は値が入っているかもしれないし、入っていないかもしれない箱だと考えられます。 <code>Optional&lt;Int&gt;</code> ( <code>Int?</code> ) なら <code>Int</code> が入っているかもしれないし、入っていない（ <code>nil</code> ）かもしれないわけです。</p>
+
+<p><code>Promise</code> も同じように箱だと考えられます。 <code>Promise</code> はどんな箱かというと、今はまだ手に入っていないけれども将来値が手に入る箱です。それなら、同じように <code>map</code> を使って将来手に入る値を 2 乗することができてもおかしくありません。</p>
+
+<p><code>Promise</code> を使って将来手に入る値を 2 乗するコードは次のようになります。 <code>Array</code> や <code>Optional</code> とまったく同じなのがわかると思います。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">number</span><span class="p">:</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">downloadInt</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">square</span><span class="p">:</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">number</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">*</span> <span class="nv">$0</span> <span class="p">}</span>
+</pre></div></div>
+
+<p>この場合、 <code>number</code> に <code>get</code> して将来得られる値が <code>3</code> だとすると、 <code>square</code> に <code>get</code> して将来得られる値は <code>9</code> となります。</p>
+
+<p>このようにして、 <code>Promise</code> の <code>map</code> メソッドを使えば <strong>今はまだ手に入っていない将来の値に対して操作を加えることができます</strong>。</p>
+
+<h3>
+<span id="flatmap" class="fragment"></span><a href="#flatmap"><i class="fa fa-link"></i></a><code>flatMap</code>
+</h3>
+
+<p><code>Promise</code> にとってより重要なのが <code>flatMap</code> です。</p>
+
+<p><code>Promise</code> の <code>flatMap</code> を考える前に、まず <code>Optional</code> の <code>flatMap</code> <a href="https://developer.apple.com/documentation/swift/optional/1540500-flatmap" rel="nofollow noopener" target="_blank">(API Reference)</a> についておさらいしましょう。</p>
+
+<p>たとえば、 <code>[String: String]</code> から値を取り出し、得られた <code>String</code> を整数に変換したいとします。 Web アプリで GET パラメータを処理する場合などにありがちです。この場合、 <code>parameters["id"]</code> 等で得られる値は <code>String</code> ではなく <code>String?</code> です。また、 <code>String</code> を <code>Int</code> に変換する処理も、パースに失敗すると <code>nil</code> となるので <code>Int?</code> が返されます。</p>
+
+<p>これを単純に結合すると <code>Optional</code> がネストして <code>Optional&lt;Optional&lt;Int&gt;</code> ( <code>Int??</code> ) になってしまします。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">idString</span><span class="p">:</span> <span class="nb">Optional</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s">"id"</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nv">id</span> <span class="p">=</span> <span class="n">idString</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="nb">Int</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">}</span> <span class="c1">// `id` の型は `Optional&lt;Optional&lt;Int&gt;&gt;`</span>
+</pre></div></div>
+
+<p>今求めているのは、 <code>parameters["id"]</code> か <code>Int($0)</code> のどちらかに失敗すると <code>nil</code> になり、両方に成功した場合には <code>Int</code> の <code>id</code> が得られることです。つまり、結果としてほしい値の型は <code>Optional&lt;Int&gt;</code> です。しかし、先程のコードでは <code>Optional&lt;Optional&lt;Int&gt;&gt;</code> のようにネストしてしまいました。そんなときに役に立つのが <code>flatMap</code> です。</p>
+
+<p><code>map</code> の代わりに <code>flatMap</code> を使うと、ネストした <code>Optional</code> をつぶしてフラット（一重）にしてくれます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">idString</span><span class="p">:</span> <span class="nb">Optional</span><span class="p">&lt;</span><span class="nb">String</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s">"id"</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nv">id</span><span class="p">:</span> <span class="nb">Optional</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">idString</span><span class="p">.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="nb">Int</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+
+</pre></div></div>
+
+<p>これは <code>parameters["id"]</code> と <code>Int($0)</code> という二つの失敗し得る処理を結合したとも考えられます。失敗しうる処理が結合されると、どちらか一方でも失敗したら <code>nil</code> になり、両方に成功した場合だけ結果が得られるわけです。</p>
+
+<p>同じことが <code>Promise</code> でも言えます。まずダウンロード先の <code>URL</code> をダウンロードし、それを使って <code>id</code> をダウンロードする二つの非同期処理を次のように <code>flatMap</code> で結合できます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">idURL</span><span class="p">:</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="n">URL</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">downloadURL</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">id</span><span class="p">:</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">idURL</span><span class="p">.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="n">downloadInt</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+</pre></div></div>
+
+<p><code>Optional</code> を <code>flatMap</code> で結合すると両方に成功した場合だけ値が得られました。 <code>Promise</code> では両方の非同期処理を順番に実行し、両方とも完了したときに初めて値が得られる <code>Promise</code> が得られます。</p>
+
+<p>次のようにして <code>flatMap</code> を使うことで非同期処理を結合することができます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">idURL</span><span class="p">:</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="n">URL</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">downloadURL</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">id</span><span class="p">:</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">idURL</span><span class="p">.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="n">downloadInt</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="n">id</span><span class="p">.</span><span class="kr">get</span> <span class="p">{</span> <span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="k">in</span>
+  <span class="c1">// `downloadURL` がまず実行され、次に `downloadInt` が実行され、</span>
+  <span class="c1">// 両方の非同期処理が完了したときに初めてこのクロージャが実行される。</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>では、これを使って先程のコールバック地獄を解消してみましょう。先程挙げた↓のコールバック地獄ですが、</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">downloadFooImage</span><span class="p">(</span><span class="n">callback</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Image</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">())</span> <span class="p">{</span>
+  <span class="n">downloadServerURL</span><span class="p">()</span> <span class="p">{</span> <span class="n">url</span> <span class="k">in</span>
+    <span class="n">downloadJSON</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">json</span> <span class="k">in</span>
+      <span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">json</span><span class="p">[</span><span class="s">"foo"</span><span class="p">][</span><span class="s">"image"</span><span class="p">][</span><span class="s">"url"</span><span class="p">].</span><span class="n">string</span><span class="p">!</span> <span class="p">)</span> <span class="p">{</span> <span class="n">imageData</span> <span class="k">in</span>
+        <span class="n">callback</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">imageData</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>コールバックの部分がすべて <code>Promise</code> なら↓のように <code>flatMap</code> の連結で書けます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">downloadFooImage</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="n">Image</span><span class="p">&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">downloadServerURL</span><span class="p">().</span><span class="n">flatMap</span> <span class="p">{</span> <span class="n">url</span> <span class="k">in</span>
+    <span class="n">downloadJSON</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+  <span class="p">}.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="n">json</span> <span class="k">in</span>
+    <span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">json</span><span class="p">[</span><span class="s">"foo"</span><span class="p">][</span><span class="s">"image"</span><span class="p">][</span><span class="s">"url"</span><span class="p">].</span><span class="n">string</span><span class="p">!</span> <span class="p">)</span>
+  <span class="p">}.</span><span class="bp">map</span> <span class="p">{</span> <span class="n">imageData</span> <span class="k">in</span>
+    <span class="n">Image</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">imageData</span><span class="p">)</span><span class="o">!</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>これがわかりやすいかどうかは人によると思います。ネストが深くてもコールバックの方が読みやすいという人も当然いると思います。</p>
+
+<p>それでは、なぜこんなにも延々と <code>Promise</code> と <code>flatMap</code> の話をしているのかと言うと、 <code>async</code> は <code>Promise</code> を <code>return</code> することに、 <code>await</code> は <code>flatMap</code> に対応するからです。</p>
+
+<p><code>Promise</code> を知っていると <code>async/await</code> がどういうものなのか格段に理解しやすくなります。</p>
+
+<h3>
+<span id="コールバックの-promise-化" class="fragment"></span><a href="#%E3%82%B3%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF%E3%81%AE-promise-%E5%8C%96"><i class="fa fa-link"></i></a>コールバックの <code>Promise</code> 化</h3>
+
+<p>さて、ここまでの話は <code>Promise</code> のレベル 1 で、ここからがレベル 2 です。これまでは <code>Promise</code> 化された API をどのように使うかについてで、ここからは自分で <code>Promise</code> 化された API を作る話です。</p>
+
+<p>ちなみに、レベル 3 は自分で <code>Promise</code> を作る話です。今日のテーマには含まれませんが、すごく勉強になるので <code>Promise</code> を実装してみることをオススメします。</p>
+
+<p><code>Promise</code> がおもしろいのは、並行処理の仕組みそのものとは独立していることです。 iOS アプリ開発であれば、 GCD や Foundation の <code>Thread</code> など様々な方法で並行処理を実現できます。 <code>Promise</code> はそれらと組み合わせて利用することができます。また、コールバックで実装された既存のメソッド（ <code>UIView.animate(...)</code> 等）を <code>Promise</code> 化することもできます。</p>
+
+<p>たとえば、 <code>func foo(_ completion: (Int) -&gt; ())</code> というコールバックで結果を受け取る関数があったとして、これを <code>Promise</code> 化したものは次のように実装できます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">promisedFoo</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">{</span> <span class="n">fulfill</span> <span class="k">in</span>
+    <span class="n">foo</span> <span class="p">{</span> <span class="n">fulfill</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>ちょっと複雑ですが何をしているのが順に見ていきましょう。まず、 <code>Promise</code> のイニシャライザのシグネチャは次のようになっています。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">executor</span><span class="p">:</span> <span class="p">(</span><span class="kc">_</span> <span class="n">fulfill</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Value</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">())</span> <span class="p">-&gt;</span> <span class="p">())</span>
+</pre></div></div>
+
+<p><code>Promise</code> は生まれた直後には値を持っていませんが、いつかは非同期処理が終わって値を手に入れなければなりません。 <code>Promise</code> に値を通知する手段を提供するのが <code>fulfill</code> です。　<code>Promise&lt;Foo&gt;</code> のとき、 <code>fulfill</code> は <code>(Foo) -&gt; ()</code> という型の関数です。 <code>fulfill</code> の引数に <code>Foo</code> 型を与えて呼び出せば <code>Promise</code> の非同期処理は完了し <code>Foo</code> が得られたことを意味します。</p>
+
+<p>極端な話、↓のようにすれば即時に値が手に入る <code>Promise</code> を作ることもできます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">Promise</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">{</span> <span class="n">fulfill</span> <span class="k">in</span>
+  <span class="n">fulfill</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>先の例では、このクロージャ式の中で非同期処理 <code>foo</code> を呼び出し、コールバックの中で <code>fulfill</code> を呼び出すことでコールバックを <code>Promise</code> 化しているわけです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">Promise</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">{</span> <span class="n">fulfill</span> <span class="k">in</span>
+  <span class="n">foo</span> <span class="p">{</span> <span class="n">fulfill</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>この仕組みを使えば、任意の非同期処理を <code>Promise</code> 化することが可能です。後でもう一度触れますが、この <code>Promise</code> のイニシャライザは <code>async/await</code> の Proposal 中の <code>suspendAsync</code> に相当します。</p>
+
+<p>また、 <code>async/await</code> の話と直接関係ないですが、僕が <code>Promise</code> についておもしろいと思うのは、それそのものが状態でできているような存在なのに、イミュータブルのように振る舞う点です。 <code>Promise</code> を使う側はすでに非同期処理が終わって値が決定されているのかを気にする必要はないですし、一度決定された値が後で変更されることもありません。何度 <code>get</code> しても同じ値が得られます。 <code>get</code> や <code>map</code>, <code>flatMap</code> に渡した関数がいつ呼ばれるかがわからないだけで、得られる値は常に一つです。状態変化を扱うのにそれを内部に隠蔽し、利用者はイミュータブルなコードを書けるというのが <code>Promise</code> のおもしろいところです。</p>
+
+<p>さらに余談ですが、この <code>Promise</code> の実装は<a href="https://github.com/koher/PromiseK/blob/dev-3.0/Sources/PromiseK/Promise.swift" rel="nofollow noopener" target="_blank">ここ</a> にあります。実質的にはわずか 38 行のコードです。これは、僕がこれまでに Swift で書いた最もキレイなコードの一つだと思うので、良かったら見てみて下さい。</p>
+
+<h2>
+<span id="throwstry" class="fragment"></span><a href="#throwstry"><i class="fa fa-link"></i></a><code>throws/try</code>
+</h2>
+
+<p>さて、 Swift 1 から少し時代が進んで、 2015 年の夏に Swift 2.0 がリリースされました。 Swift 2.0 で最も注目すべきだったのは何と言っても <code>throws/try</code> です。なぜここで突然 <code>throws/try</code> の話を始めたかと言うと、 <code>throws/try</code> が <code>async/await</code> ととても良く似た仕組みの上に成り立っているからです。</p>
+
+<p>Swift 1 時代には <code>Optional</code> を返すことで失敗し得る処理を扱うことができました。しかし、 <code>nil</code> ではエラーの理由を表すことができないので、色々な理由でエラーが起こり得る場合には不便です。特に、エラーの原因によって処理を分けることは <code>Optional</code> では不可能です。また、 Obj-C 由来の <code>NSError</code> の扱いも Swift 1 時代は大変でした。</p>
+
+<p>Swift 2.0 からは、 <code>throws/try</code> を使うことによってエレガントにエラー処理をすることができるようになりました。</p>
+
+<p>Swift の <code>throws/try</code> は Java の検査例外とよく似ているのですが、そのまま持ってきたのではなく Swift にフィットするようによく考えて変更されています。 "SwiftはどのようにJavaの検査例外を改善したか" については<a href="https://qiita.com/koher/items/e4c1d88981291c35d571" id="reference-a52c2fe5d8e0d36d8cbf">こちらの投稿</a>にまとめてあります。この投稿はあまり伸びませんでしたが、個人的にはとてもおもしろいことが書いてあると思うのでよかったら読んでみて下さい。</p>
+
+<p><code>throws/try</code> を使えば失敗し得る処理を次のように書けます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">loadFoo</span><span class="p">()</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Foo</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="k">do</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nv">foo</span><span class="p">:</span> <span class="n">Foo</span> <span class="p">=</span> <span class="k">try</span> <span class="n">loadFoo</span><span class="p">()</span>
+  <span class="c1">// `foo` を使う処理</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="n">error</span> <span class="p">{</span>
+  <span class="c1">// エラー処理</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>この <code>throws/try</code> の仕組自体は僕はとても素晴らしいと感じていますが、一つ大きな問題があります。それが、非同期処理と組み合わせて使いづらいことです。</p>
+
+<p>たとえば、これまで <code>download</code> 関数が失敗する可能性を無視してきましたが、現実的にはダウンロードは失敗し得る処理です。しかし、 <code>download</code> に <code>throws</code> を付けることはできません。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// コールバック（これではダメ⛔）</span>
+<span class="kd">func</span> <span class="nf">download</span><span class="p">(</span><span class="n">from</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Data</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">())</span> <span class="kr">throws</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="c1">// Promise （これもダメ⛔）</span>
+<span class="kd">func</span> <span class="nf">download</span><span class="p">(</span><span class="n">from</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="n">Data</span><span class="p">&gt;</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div></div>
+
+<p>なぜなら、 <code>throws</code> によるエラーは関数のコールに対して同期的に対処しなければならないからです。しかし、ダウンロード中のエラーは非同期に発生するので、同期的に処理することはできません。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="k">do</span> <span class="p">{</span>
+  <span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">)</span> <span class="k">in</span>
+    <span class="c1">// 本当はここでエラー処理したい</span>
+  <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="kd">let</span> <span class="nv">error</span> <span class="p">{</span>
+  <span class="c1">// ここでエラー処理したいわけではない</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>↓のようにすれば無理やりコールバックや <code>Promise</code> でエラー処理させることができますがちょっと辛いです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// コールバック（一応できるがわかりづらい🤔）</span>
+<span class="kd">func</span> <span class="nf">download</span><span class="p">(</span><span class="n">from</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(()</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Data</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">())</span> <span class="kr">throws</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="c1">// Promise （これもできるがわかりづらい🤔）</span>
+<span class="kd">func</span> <span class="nf">download</span><span class="p">(</span><span class="n">from</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Promise</span><span class="o">&lt;</span><span class="p">()</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Data</span><span class="p">&gt;</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div></div>
+
+<p>これを使うコードは↓です。クロージャで受け取るのが値（ <code>data</code> ）ではなく関数（ <code>getData</code> ）という点がわかりづらいです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">getData</span> <span class="k">in</span>
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">data</span> <span class="p">=</span> <span class="k">try</span> <span class="n">getData</span><span class="p">()</span>
+    <span class="c1">// `data` を使う処理</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="kd">let</span> <span class="nv">error</span> <span class="p">{</span>
+    <span class="c1">// エラー処理</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></div></div>
+
+<h2>
+<span id="result" class="fragment"></span><a href="#result"><i class="fa fa-link"></i></a><code>Result</code>
+</h2>
+
+<p><code>throws/try</code> は非同期処理と相性が悪いということで <code>Result</code> ライブラリが流行りました。一番有名なのは <a href="https://github.com/antitypical/Result" rel="nofollow noopener" target="_blank">antitypical/Result</a> です。しかし、ここでは話の都合上、僕が実装した <a href="https://github.com/koher/ResultK" rel="nofollow noopener" target="_blank">ResultK</a> を使って説明します。</p>
+
+<p>antitypical/Result と ResultK の一番の違いは、前者が <code>Result&lt;T, E: Error&gt;</code> と型パラメータでエラーの型を指定できるのに対して、後者は <code>Result&lt;T&gt;</code> とエラーの型が指定できないことです。 Swift の <code>throws</code> 節には Java のようにエラーの型を指定することができません。そのため、エラーの型が指定できない <code>Result</code> の方が <code>throws/try</code> にキレイに対応します。それが ResultK で説明する理由です。</p>
+
+<p><code>Result</code> は次のように宣言されています。成功して <code>T</code> 型の値を持つか、失敗して <code>Error</code> を持つかのどちらかであることを表す型です。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">enum</span> <span class="nc">Result</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">success</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="k">case</span> <span class="n">failure</span><span class="p">(</span><span class="n">Error</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><code>Result</code> を使えば <code>throws</code> で書かれた関数を↓のように書き換えることができます。 <code>throws</code> を付与するのと <code>Result</code> を <code>return</code> するのが対応していることに注目して下さい。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// throws/try</span>
+<span class="kd">func</span> <span class="nf">loadFoo</span><span class="p">()</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Foo</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="kd">func</span> <span class="nf">loadFoo</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">Result</span><span class="p">&lt;</span><span class="n">Foo</span><span class="p">&gt;</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div></div>
+
+<p><code>Result</code> は <code>enum</code> なので、↓のようにしてエラー処理することができます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="k">switch</span> <span class="p">(</span><span class="n">loadFoo</span><span class="p">())</span> <span class="p">{</span>
+<span class="k">case</span> <span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="kd">let</span> <span class="nv">foo</span><span class="p">)</span>
+  <span class="c1">// `foo` を使う処理</span>
+<span class="k">case</span> <span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="kd">let</span> <span class="nv">error</span><span class="p">)</span>
+  <span class="c1">// エラー処理</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><code>Result</code> を使ってうれしいのは非同期処理と組み合わせたときです。 <code>Result</code> があれば先程の <code>download</code> は次のように書けます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// コールバック（非同期処理の結果が `Result&lt;Data&gt;` で得られるのでわかりやすい✅）</span>
+<span class="kd">func</span> <span class="nf">download</span><span class="p">(</span><span class="n">from</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Result</span><span class="p">&lt;</span><span class="n">Data</span><span class="p">&gt;)</span> <span class="p">-&gt;</span> <span class="p">())</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="c1">// Promise （非同期処理の結果が `Result&lt;Data&gt;` で得られるのでわかりやすい✅）</span>
+<span class="kd">func</span> <span class="nf">download</span><span class="p">(</span><span class="n">from</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="n">Result</span><span class="p">&lt;</span><span class="n">Data</span><span class="p">&gt;</span><span class="o">&gt;</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="map-flatmap" class="fragment"></span><a href="#map-flatmap"><i class="fa fa-link"></i></a><code>map</code>, <code>flatMap</code>
+</h3>
+
+<p><code>Result</code> もモナドなので、 <code>Optional</code> や <code>Promise</code> と同じく <code>map</code> や <code>flatMap</code> を持ちます。</p>
+
+<p>たとえば、 <code>map</code> を使って <code>Result</code> の中身を 2 乗するコードは↓のようになります。　<code>Optional</code> や <code>Promise</code> のときとまったく同じですね。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">number</span><span class="p">:</span> <span class="n">Result</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">loadInt</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">path</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">square</span><span class="p">:</span> <span class="n">Result</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">number</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">*</span> <span class="nv">$0</span> <span class="p">}</span>
+</pre></div></div>
+
+<p><code>flatMap</code> も同様です。 <code>Optional</code> のときと同じように、 <code>flatMap</code> を使って失敗し得る処理を結合することができます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">json</span><span class="p">:</span> <span class="n">Result</span><span class="p">&lt;</span><span class="n">Data</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">loadData</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">path</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">user</span><span class="p">:</span> <span class="n">Result</span><span class="p">&lt;</span><span class="n">User</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">json</span><span class="p">.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="n">decodeUser</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+</pre></div></div>
+
+<p>この処理では、まず JSON ファイルからデータを読み込み、次の読み込まれたデータを <code>User</code> 型の値にデコードしています。どちらも失敗しうる処理であり、 <code>flatMap</code> で結合して両方に成功した場合だけ <code>User</code> が得られます。</p>
+
+<h3>
+<span id="throwstry-と-result" class="fragment"></span><a href="#throwstry-%E3%81%A8-result"><i class="fa fa-link"></i></a><code>throws/try</code> と <code>Result</code>
+</h3>
+
+<p>先程、関数に <code>throws</code> を付与するのと <code>Result</code> を <code>return</code> するのは同じだと言いました。</p>
+
+<p><code>flatMap</code> にも対応するものがあります。 <code>throws/try</code> と <code>Result</code> で同じ処理が書かれた次のコードを見比べてみて下さい。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// throws/try</span>
+<span class="kd">let</span> <span class="nv">json</span><span class="p">:</span> <span class="n">Data</span> <span class="p">=</span> <span class="k">try</span> <span class="n">loadData</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">path</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">user</span><span class="p">:</span> <span class="n">User</span> <span class="p">=</span> <span class="k">try</span> <span class="n">decodeUser</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">json</span><span class="p">)</span>
+<span class="c1">// `user` を使う処理</span>
+
+<span class="c1">// Result</span>
+<span class="n">loadData</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">path</span><span class="p">).</span><span class="n">flatMap</span> <span class="p">{</span> <span class="p">(</span><span class="n">json</span><span class="p">:</span> <span class="n">Data</span><span class="p">)</span> <span class="k">in</span>
+  <span class="n">decodeUser</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">json</span><span class="p">)</span>
+<span class="p">}.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">)</span> <span class="k">in</span>
+  <span class="c1">// `user` を使う処理</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>どちらのコードも <code>loadData</code> と <code>decodeUser</code> に成功した場合だけ <code>user</code> が得られ、失敗した場合にはその <code>Error</code> が得られます。一番重要なのは、 <code>flatMap</code> でモナドの中身を取り出して処理しているのと同じように、 <code>try</code> もエラーの場合を剥がして中身を取り出す処理になっていることです。 <strong><code>try</code> して代入するのは本質的に <code>flatMap</code> と同じことなのです。</strong></p>
+
+<h3>
+<span id="小まとめ" class="fragment"></span><a href="#%E5%B0%8F%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>小まとめ</h3>
+
+<ul>
+<li>
+<code>throws</code> を付与 == <code>Result</code> を <code>return</code>
+</li>
+<li>
+<code>try</code> して代入 == <code>flatMap</code>
+</li>
+</ul>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// throws/try</span>
+<span class="kd">func</span> <span class="nf">loadUser</span><span class="p">(</span><span class="n">from</span> <span class="n">path</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">User</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nv">json</span><span class="p">:</span> <span class="n">Data</span> <span class="p">=</span> <span class="k">try</span> <span class="n">loadData</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">path</span><span class="p">)</span>
+  <span class="k">return</span> <span class="k">try</span> <span class="n">decodeUser</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">json</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="kd">func</span> <span class="nf">loadUser</span><span class="p">(</span><span class="n">from</span> <span class="n">path</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Result</span><span class="p">&lt;</span><span class="n">User</span><span class="p">&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">loadData</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">path</span><span class="p">).</span><span class="n">flatMap</span> <span class="p">{</span> <span class="p">(</span><span class="n">json</span><span class="p">:</span> <span class="n">Data</span><span class="p">)</span> <span class="k">in</span>
+    <span class="n">decodeUser</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">json</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h2>
+<span id="result--throwstry--promise--" class="fragment"></span><a href="#result--throwstry--promise--"><i class="fa fa-link"></i></a><code>Result</code> : <code>throws/try</code> = <code>Promise</code> : ?</h2>
+
+<p>さらに時は進んで 2016 年の 1 月、僕は <code>Result</code> やエラー処理をテーマに <a href="https://www.tryswift.co/" rel="nofollow noopener" target="_blank">try! Swift</a> の発表の準備をしていました。</p>
+
+<p><code>Result</code> は <code>throws/try</code> と違って非同期処理と一緒に使いやすいです。一方で <code>flatMap</code> をチェーンするコードより <code>try</code> して代入を繰り返すコードの方がわかりやすいです。両者のいいとこどりができたら最高です。なので、 <code>throws -&gt; Foo</code> を <code>Result&lt;Foo&gt;</code> を <code>return</code> することのシンタックスシュガーにして、二つの世界を自由に行き来できるようにすればいいんじゃないかと考えました。</p>
+
+<p>たとえば、↓のような感じです。これなら、普段は <code>throws/try</code> で使っておいて、非同期処理などで必要なときだけ <code>Result</code> として扱えます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">loadFoo</span><span class="p">()</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Foo</span> <span class="p">{</span> <span class="c1">// `-&gt; Result&lt;Foo&gt;` でも同じ</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nv">foo1</span><span class="p">:</span> <span class="n">Foo</span> <span class="p">=</span> <span class="k">try</span> <span class="n">loadFoo</span><span class="p">()</span>     <span class="c1">// `try` すると `Foo` が得られる</span>
+<span class="kd">let</span> <span class="nv">foo2</span><span class="p">:</span> <span class="n">Result</span><span class="p">&lt;</span><span class="n">Foo</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">loadFoo</span><span class="p">()</span> <span class="c1">// `try` しないと `Result&lt;Foo&gt;` が得られる</span>
+</pre></div></div>
+
+<p>このような話を発表しようと考えているときに、ふと <code>Result</code> に対して <code>throws/try</code> が考えられるなら、 <code>Promise</code> に対しても同じようなものが考えられないかと思いました。なにせ、 <code>Result</code> も <code>Promise</code> も同じモナドです。 <code>try</code> して代入することが <code>flatMap</code> に相当するなら、同じことが <code>Promise</code> に大してもできるはずです。</p>
+
+<p>そう考えると、 C# の <code>async/await</code> が（少し変更は必要ですが）ぴたりとそれに当てはまることに気付きました。 C# の <code>async</code> は次のように <code>async</code> を付けた上で <code>Promise</code> （ C# では <code>Task</code> ）を返します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// C# の `async` を Swift っぽい構文で書くと</span>
+<span class="kd">func</span> <span class="nf">download</span><span class="p">(</span><span class="n">from</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">)</span> <span class="n">async</span> <span class="p">-&gt;</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="n">Data</span><span class="p">&gt;</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div></div>
+
+<p><code>async</code> を書いた上で <code>Promise</code> を返すのは冗長なので、↓のような構文にすると <code>Promise</code> : <code>async</code> = <code>Result</code> : <code>throws</code> でぴたりとハマります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// Swift にフィットするように構文を変更</span>
+<span class="kd">func</span> <span class="nf">download</span><span class="p">(</span><span class="n">from</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">)</span> <span class="n">async</span> <span class="p">-&gt;</span> <span class="n">Data</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div></div>
+
+<p>つまり、↓の二つを同じ意味にしてしまうわけです。 <code>throws</code> と <code>Result</code> の関係とまったく同じです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// async</span>
+<span class="kd">func</span> <span class="nf">download</span><span class="p">(</span><span class="n">from</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">)</span> <span class="n">async</span> <span class="p">-&gt;</span> <span class="n">Data</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="c1">// Promise</span>
+<span class="kd">func</span> <span class="nf">download</span><span class="p">(</span><span class="n">from</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="n">Data</span><span class="p">&gt;</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div></div>
+
+<p><code>throws</code> と <code>async</code> が対応するなら <code>try</code> に対応するものも必要です。これも <code>await</code> と考えればぴったりです。 <code>throws/try</code> と <code>Result</code> のときとまったく同じです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// async/await</span>
+<span class="kd">let</span> <span class="nv">data</span><span class="p">:</span> <span class="n">Data</span> <span class="p">=</span> <span class="n">await</span> <span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+<span class="c1">// `data` を使う処理</span>
+
+<span class="c1">// Promise</span>
+<span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">).</span><span class="n">flatMap</span> <span class="p">{</span> <span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">)</span> <span class="k">in</span>
+  <span class="c1">// `data` を使う処理</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><strong>このような <code>async/await</code> を考えると <code>throws</code> : <code>try</code> : <code>Result</code> = <code>async</code> : <code>await</code> : <code>Promise</code> という関係が成り立ちます。なんて美しい関係でしょう。</strong></p>
+
+<h2>
+<span id="非同期エラー処理" class="fragment"></span><a href="#%E9%9D%9E%E5%90%8C%E6%9C%9F%E3%82%A8%E3%83%A9%E3%83%BC%E5%87%A6%E7%90%86"><i class="fa fa-link"></i></a>非同期エラー処理</h2>
+
+<p><code>Promise</code> と <code>Result</code> が組み合わせられるように、 <code>throws/try</code> と <code>async/await</code> も組み合わせられます。非同期かつ失敗し得る <code>download</code> 関数は次のように書けます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// async/await + throws/try</span>
+<span class="kd">func</span> <span class="nf">download</span><span class="p">(</span><span class="n">from</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">)</span> <span class="n">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Data</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="c1">// Promise + Result</span>
+<span class="kd">func</span> <span class="nf">download</span><span class="p">(</span><span class="n">from</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Promise</span><span class="p">&lt;</span><span class="n">Result</span><span class="p">&lt;</span><span class="n">Data</span><span class="p">&gt;</span><span class="o">&gt;</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</pre></div></div>
+
+<p>これらを使うときのコードは↓です。一つ目の <code>flatMap</code> が <code>await</code> に、二つ目の <code>flatMap</code> が <code>try</code> に対応しています。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// async/await + throws/try</span>
+<span class="kd">let</span> <span class="nv">data</span><span class="p">:</span> <span class="n">Data</span> <span class="p">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+<span class="c1">// `data` を使う処理</span>
+
+<span class="c1">// Promise + Result</span>
+<span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">).</span><span class="n">flatMap</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">flatMap</span> <span class="p">{</span> <span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">)</span> <span class="k">in</span>
+  <span class="c1">// `data` を使う処理</span>
+<span class="p">}</span> <span class="p">}</span>
+</pre></div></div>
+
+<h2>
+<span id="モナド地獄" class="fragment"></span><a href="#%E3%83%A2%E3%83%8A%E3%83%89%E5%9C%B0%E7%8D%84"><i class="fa fa-link"></i></a>モナド地獄</h2>
+
+<p>そんなわけで僕は <code>throws</code> は <code>Result</code> を、 <code>async</code> は <code>Promise</code> を返すことのシュガーにしたらいいんじゃないかということを <a href="https://academy.realm.io/posts/tryswift-yuta-koshizawa-error-handling-swift/" rel="nofollow noopener" target="_blank">try! Swift で話しました</a>。このときに Ray Fix さんに興味を持っていただき「もし Proposal を出すなら英文チェックするよ。」と申し出て下さったことから、冒頭に書いたネイティブチェックにつながりました。</p>
+
+<p>try! Swift が終わって、 <code>throws</code> を <code>Result</code> のシュガーにする部分だけを切り出して <a href="https://github.com/apple/swift-evolution" rel="nofollow noopener" target="_blank">swift-evolution</a> に投げたところ、 Core Team の Joe Groff から<a href="https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160314/012545.html" rel="nofollow noopener" target="_blank">こちらのコメント</a>をもらいました。以下、僕の解釈で説明します。</p>
+
+<p>たとえば、 <code>Array&lt;Data&gt;</code> があったとして、これをすべてデコードして <code>Array&lt;User&gt;</code> に変更したいとします。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">jsons</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="n">Data</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">...</span>
+<span class="kd">let</span> <span class="nv">users</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="n">Result</span><span class="p">&lt;</span><span class="n">Data</span><span class="p">&gt;</span><span class="o">&gt;</span> <span class="p">=</span> <span class="n">jsons</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="n">decodeUser</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+</pre></div></div>
+
+<p>しかし、得られたのは <code>Array&lt;Result&lt;User&gt;&gt;</code> です。一つでも失敗したらエラーとしたい場合ほしいのは <code>Result&lt;Array&lt;User&gt;&gt;</code> です。　Haskell などの言語では、 <code>Array&lt;Result&lt;User&gt;&gt;</code> を <code>Result&lt;Array&lt;User&gt;&gt;</code> に変換するための <code>sequence</code> という関数が用意されていたりします。この他にも <code>Result&lt;Promise&lt;Result&lt;T&gt;&gt;</code> → <code>Promise&lt;Result&lt;T&gt;&gt;</code> 、 <code>Array&lt;Result&lt;Promise&lt;T&gt;&gt;</code> → <code>Promise&lt;Result&lt;Array&lt;T&gt;&gt;</code> なんかもやりたくなりそうです。</p>
+
+<p>極端な話、次のようなことをやろうとしたら、モナド的には戻り値の型は <code>Result&lt;Promise&lt;Result&lt;Promise&lt;Result&lt;Foo&gt;&gt;&gt;&gt;&gt;</code> です。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">a</span> <span class="p">=</span> <span class="k">try</span> <span class="p">...</span>
+<span class="kd">let</span> <span class="nv">b</span> <span class="p">=</span> <span class="n">await</span> <span class="p">...</span>
+<span class="kd">let</span> <span class="nv">c</span> <span class="p">=</span> <span class="k">try</span> <span class="p">...</span>
+<span class="kd">let</span> <span class="nv">d</span> <span class="p">=</span> <span class="n">await</span> <span class="p">...</span>
+<span class="kd">let</span> <span class="nv">e</span> <span class="p">=</span> <span class="k">try</span> <span class="p">...</span>
+<span class="k">return</span> <span class="n">Foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+</pre></div></div>
+
+<p>でも、 99% のケースでは本当にほしいのは <code>Promise&lt;Result&lt;Foo&gt;&gt;</code> のはずです。このモナドパズルを解かないといけないのは <strong>モナド地獄</strong> です。</p>
+
+<p><code>async/await</code> と <code>throws/try</code> であれば <code>async throws -&gt; Foo</code> とすれば良いだけです。入れ子のパズルに苦しめられることもありません。これの意味するところは、 <strong><code>throws/try</code> や <code>async/await</code> はモナドパズルの解き方を定めていて、それが自動で適用される</strong> ということです。</p>
+
+<p>この話に関連して面白いのが <code>rethrows</code> です。 <code>map</code> して <code>Result</code> を返した場合は結果は <code>Array&lt;Result&lt;User&gt;&gt;</code> となりますが、エラーを <code>throw</code> すると <code>map</code> 自体がエラーを <code>throw</code> します。言い換えると、 <code>Result&lt;Array&lt;User&gt;&gt;</code> 相当のところまで変換してくれているということです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// throws/try</span>
+<span class="kd">let</span> <span class="nv">users</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="n">User</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">try</span> <span class="n">jsons</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="k">try</span> <span class="n">decode</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="nv">$0</span><span class="p">)</span> <span class="p">}</span> <span class="c1">// `Result&lt;Array&lt;User&gt;&gt;` 相当</span>
+
+<span class="c1">// Result</span>
+<span class="kd">let</span> <span class="nv">users</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="n">Resut</span><span class="p">&lt;</span><span class="n">User</span><span class="p">&gt;</span><span class="o">&gt;</span> <span class="p">=</span> <span class="n">jsons</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="n">decode</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+</pre></div></div>
+
+<p><code>Array&lt;Result&lt;T&gt;&gt;</code> がほしいことは滅多にないので、 <code>rethrows</code> が勝手にモナドのネスト順序を入れ替えて <code>Result&lt;Array&lt;T&gt;&gt;</code> 相当まで変換してくれているということです。</p>
+
+<h2>
+<span id="promise-のない-asyncawait" class="fragment"></span><a href="#promise-%E3%81%AE%E3%81%AA%E3%81%84-asyncawait"><i class="fa fa-link"></i></a><code>Promise</code> のない <code>async/await</code>
+</h2>
+
+<p>Swift が <code>Result</code> を採用しない道を進むなら、 <code>async/await</code> にも <code>Promise</code> がない方が良いように思います。</p>
+
+<p>C# や JavaScript の <code>async/await</code> は <code>Promise</code> （ C# では <code>Task</code> ）の上に構築されているので、 <code>Promise</code> のない <code>async/await</code> は挑戦的です。しかし、 <code>throws/try</code> が <code>Result</code> なしで実現できているのだから <code>async/await</code> にもできそうなものです。</p>
+
+<p>そんなことを <a href="https://gist.github.com/koher/5cd16adac7a62b6d3eb0b910ccc13534" rel="nofollow noopener" target="_blank">SwiftJP Slack などで話してた</a> んですが、 swift-evolution で非同期処理の話が始まらないので提案せずに放置していました。しかし、今年の GW 頃にやっぱり Swift に <code>async/await</code> を導入するならこれしかない！と思い立ってまとめたのが冒頭で挙げた<a href="https://gist.github.com/koher/3e04b4f1b8adbbf0379d38c0ad83a3ea" rel="nofollow noopener" target="_blank">こちら</a>です。</p>
+
+<h3>
+<span id="beginasync-と-suspendasync" class="fragment"></span><a href="#beginasync-%E3%81%A8-suspendasync"><i class="fa fa-link"></i></a><code>beginAsync</code> と <code>suspendAsync</code>
+</h3>
+
+<p>単に <code>Promise</code> を返す代わりに <code>async</code> と書き、 <code>flatMap</code> の代わりに <code>await</code> するのではいけません。 <code>async/await</code> から <code>Promise</code> を取り除くに当たっては、 <code>Promise</code> の <code>get</code> と <code>init</code> に相当するものも提供しなければなりません。それが <code>beginAsync</code> と <code>suspendAsync</code> です（僕の提案中では <code>nonblock</code> と <code>asyncronize</code> です。さすがに名称は異なってますが、同じ道具が必要になってるのがおもしろいです）。</p>
+
+<p><code>beginAsync</code> と <code>suspendAsync</code> のシグネチャは↓です。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">beginAsync</span><span class="p">(</span><span class="kc">_</span> <span class="n">body</span><span class="p">:</span> <span class="p">()</span> <span class="n">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="kr">rethrows</span> <span class="p">-&gt;</span> <span class="nb">Void</span>
+
+<span class="kd">func</span> <span class="nf">suspendAsync</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span>
+  <span class="kc">_</span> <span class="n">body</span><span class="p">:</span> <span class="p">(</span><span class="kc">_</span> <span class="n">continuation</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">())</span> <span class="p">-&gt;</span> <span class="p">()</span>
+<span class="p">)</span> <span class="n">async</span> <span class="p">-&gt;</span> <span class="n">T</span>
+
+<span class="kd">func</span> <span class="nf">suspendAsync</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span>
+  <span class="kc">_</span> <span class="n">body</span><span class="p">:</span> <span class="p">(</span><span class="kc">_</span> <span class="n">continuation</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">(),</span>
+           <span class="kc">_</span> <span class="n">error</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">Error</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">())</span> <span class="p">-&gt;</span> <span class="p">()</span>
+<span class="p">)</span> <span class="n">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">T</span>
+</pre></div></div>
+
+<p><code>Promise</code> では <code>get</code> を使って非同期的に値を受け取れました。 <code>beginAsync</code> を使えばこれと似たようなことができます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// Promise</span>
+<span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">).</span><span class="kr">get</span> <span class="p">{</span> <span class="n">data</span> <span class="k">in</span>
+  <span class="c1">// `data` を使う処理</span>
+<span class="p">}</span>
+
+<span class="c1">// async/await</span>
+<span class="n">beginAsync</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nv">data</span> <span class="p">=</span> <span class="n">await</span> <span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+  <span class="c1">// `data` を使う処理</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>また、 <code>Promise</code> のイニシャライザを使ってコールバックで値を受け取る API を <code>Promise</code> 化できました。これも <code>suspendAsync</code> で似たことができます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// Promise</span>
+<span class="n">Promise</span><span class="p">&lt;</span><span class="n">Data</span><span class="p">&gt;</span> <span class="p">{</span> <span class="n">fulfill</span> <span class="k">in</span>
+  <span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">data</span> <span class="k">in</span>
+    <span class="n">fulfill</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// async/await</span>
+<span class="n">await</span> <span class="n">suspendAsync</span> <span class="p">{</span> <span class="n">fulfill</span> <span class="k">in</span>
+  <span class="n">await</span> <span class="n">download</span><span class="p">(</span><span class="n">from</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">data</span> <span class="k">in</span><span class="p">}</span>
+    <span class="n">fulfill</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>こうして、 <code>Promise</code> がなくても <code>async/await</code> を実現することができました。</p>
+
+<p>やや余談ですが、 Proposal の中では <code>beginAsync</code> の <code>body</code> に <code>throws</code> が付けられており、 <code>beginAsync</code> 自体も <code>rethrows</code> になっています。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">beginAsync</span><span class="p">(</span><span class="kc">_</span> <span class="n">body</span><span class="p">:</span> <span class="p">()</span> <span class="n">async</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="kr">rethrows</span> <span class="p">-&gt;</span> <span class="nb">Void</span>
+</pre></div></div>
+
+<p>僕はこの <code>throws</code> と <code>rethrows</code> には反対です。 <code>beginAsync</code> に渡された <code>body</code> は非同期処理を行うので、即座にエラーを <code>throw</code> することができません。 <code>beginAsync</code> がエラーを <code>rethrow</code> できるのは、 <code>body</code> の中の最初の <code>await</code> までにエラーが <code>throw</code> された場合だけです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="k">do</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="n">beginAsync</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="n">foo</span><span class="p">()</span> <span class="c1">// ここで発生したエラーを・・・</span>
+    <span class="n">await</span> <span class="n">bar</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span> <span class="c1">// ここで `catch`</span>
+  <span class="c1">// エラー処理</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>非同期的に発生したエラーは <code>catch</code> できないので、エラーが <code>throw</code> されたらクラッシュするしかありません。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="k">do</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="n">beginAsync</span> <span class="p">{</span>
+    <span class="n">await</span> <span class="n">bar</span><span class="p">()</span>
+    <span class="k">try</span> <span class="n">foo</span><span class="p">()</span> <span class="c1">// ここでエラーが発生しても・・・</span>
+  <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span> <span class="c1">// ここで `catch` できないのでクラッシュ！</span>
+  <span class="c1">// エラー処理</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>最初の <code>await</code> の前に <code>try</code> したい場合は、それを <code>beginAsync</code> の外に出せるはずです。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="k">do</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="n">foo</span><span class="p">()</span> <span class="c1">// `beginAsync` の外に出す</span>
+  <span class="n">beginAsync</span> <span class="p">{</span>
+    <span class="n">await</span> <span class="n">bar</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+  <span class="c1">// エラー処理</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>もし <code>beginAsync</code> の <code>body</code> に <code>throws</code> が付いてなければ、 <code>body</code> の中でエラー処理が強制されるので、 <code>await</code> してから <code>try</code> のようなケースも安全に対処できます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">beginAsync</span> <span class="p">{</span>
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="n">await</span> <span class="n">bar</span><span class="p">()</span>
+    <span class="k">try</span> <span class="n">foo</span><span class="p">()</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span> <span class="c1">// これがないとコンパイルエラー</span>
+    <span class="c1">// エラー処理</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>せっかくコンパイル時にチェック可能なエラー処理機構を持っているのに、 <code>beginAsync</code> に渡すクロージャの中ではそれが台無しになってしまいます。</p>
+
+<p>この点については一度 swift-evolution に書いたのですがうまく伝わってなさそうなので、今度もう一度投稿したいと考えています。</p>
+
+<h3>
+<span id="小まとめ-1" class="fragment"></span><a href="#%E5%B0%8F%E3%81%BE%E3%81%A8%E3%82%81-1"><i class="fa fa-link"></i></a>小まとめ</h3>
+
+<p>長々と書いてきましたが、 Proposal の中には出てこない <code>Promise</code> モナドを考えて、 <code>Result</code> や <code>throws/try</code> との関係を考えると、 Swift にフィットする <code>async/await</code> はこれしかないという気持ちになります。</p>
+
+<p>その根拠は関係が「美しい」ことだけかもしれませんが、僕は経験則的に美しさは重要であると考えています。 <strong>関係や構造が美しく整理できるときは物事の本質を突いていることが多いです。</strong></p>
+
+<p>逆にそれを外すと、後で思いもよらないところで問題が発生して困ったりします。</p>
+
+<p>たとえば、今回の <code>async/await</code> の Proposal にも、非同期処理はほぼ確実にエラーを伴うんだから <code>async</code> と <code>await</code> だけ書けば <code>throws</code> と <code>try</code> も付いていることにしてはどうかという意見もあります。しかし、この一見筋が通ったように見える意見には問題があります。たとえば、後で紹介する Generator を <code>async/await</code> で実現しようとすると <code>throws/try</code> であってほしくありません。</p>
+
+<p>人はすべてを見通せるわけではないので一見問題がなさそうに見えても何かを見逃している可能性があります。できるだけ「美しい」方を選択することで、将来的なトラブルの可能性を低減できるんじゃないでしょうか。</p>
+
+<h2>
+<span id="throws--try----async--await--" class="fragment"></span><a href="#throws--try----async--await--"><i class="fa fa-link"></i></a><code>throws</code> : <code>try</code> : △ = <code>async</code> : <code>await</code> : □</h2>
+
+<p><code>throws/try</code> と <code>async/await</code> の関係を考えると Proposal に書かれていないいくつかの興味深いことが見えてきます。</p>
+
+<h3>
+<span id="throws--try--catch--async--await--" class="fragment"></span><a href="#throws--try--catch--async--await--"><i class="fa fa-link"></i></a><code>throws</code> : <code>try</code> : <code>catch</code> = <code>async</code> : <code>await</code> : ?</h3>
+
+<p><code>throws/try</code> の <code>do/catch</code> に対応するものを <code>async/await</code> にも考えるとどうなるでしょうか。 <code>do/catch</code> しない場合、 <code>try</code> を含む関数は必ず <code>throws</code> でなければなりません。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// do/catch なし</span>
+<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Bar</span> <span class="p">{</span> <span class="c1">// `throws` 必須</span>
+  <span class="k">return</span> <span class="k">try</span> <span class="n">bar</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// do/catch あり</span>
+<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">Bar</span> <span class="p">{</span> <span class="c1">// `throws` でなくて良い</span>
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">try</span> <span class="n">bar</span><span class="p">()</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="c1">// エラー処理</span>
+    <span class="k">return</span> <span class="n">Bar</span><span class="p">(...)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><code>async/await</code> でも同様に <code>await</code> を含む関数は <code>async</code> でなければなりません。では、 <code>do/xxx</code> を考えるとどのようなものである必要があるでしょう？</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// do/xxx なし</span>
+<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="n">async</span> <span class="p">-&gt;</span> <span class="n">Bar</span> <span class="p">{</span> <span class="c1">// `async` 必須</span>
+  <span class="k">return</span> <span class="k">try</span> <span class="n">bar</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// do/xxx あり</span>
+<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">Bar</span> <span class="p">{</span> <span class="c1">// `async` でなくて良い</span>
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">await</span> <span class="n">bar</span><span class="p">()</span>
+  <span class="p">}</span> <span class="n">xxx</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>このような挙動を実現する <code>xxx</code> は何を意味するでしょうか？ <code>bar()</code> は非同期なのに <code>foo()</code> は（ <code>async</code> でないので）同期的に <code>return</code> された <code>Bar</code> を返せています。</p>
+
+<p>これを実現するには、 <code>xxx</code> によって非同期処理が同期化されなければなりません。つまり、 <code>xxx</code> は <code>bar()</code> の非同期処理が終わって結果が得られるまで待つという意味になるはずです。</p>
+
+<p>「待つ」なので <code>xxx</code> に <code>wait</code> という単語を当てれば↓のようになります（他にも、 <code>sync</code> とか <code>block</code> とかの方がいいかもしれませんが）。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// do/wait なし</span>
+<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="n">async</span> <span class="p">-&gt;</span> <span class="n">Bar</span> <span class="p">{</span> <span class="c1">// `async` 必須 → 非同期</span>
+  <span class="k">return</span> <span class="k">try</span> <span class="n">bar</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// do/wait あり</span>
+<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">Bar</span> <span class="p">{</span> <span class="c1">// `async` でなくて良い → 同期</span>
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">await</span> <span class="n">bar</span><span class="p">()</span>
+  <span class="p">}</span> <span class="n">wait</span> <span class="c1">// `bar()` が完了するまでここで待つ</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="throws--try--try--async--await--" class="fragment"></span><a href="#throws--try--try--async--await--"><i class="fa fa-link"></i></a><code>throws</code> : <code>try</code> : <code>try!</code> = <code>async</code> : <code>await</code> : ?</h3>
+
+<p>次は <code>try!</code> に当たるものを考えてみましょう。</p>
+
+<p><code>throws</code> が <code>Result</code> を返すことに対応することを考えると、 <code>try!</code> は強制的に <code>Result</code> を unwrap するようなものです。 <code>Optional</code> の <code>!</code> に近い操作です。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// ! なし</span>
+<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="kr">throws</span> <span class="p">-&gt;</span> <span class="n">Bar</span> <span class="p">{</span> <span class="c1">// `throws` 必須</span>
+  <span class="k">return</span> <span class="k">try</span> <span class="n">bar</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// ! あり</span>
+<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">Bar</span> <span class="p">{</span> <span class="c1">// `throws` でなくて良い</span>
+  <span class="k">return</span> <span class="k">try</span><span class="p">!</span> <span class="n">bar</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>では、 <code>Promise</code> を unwrap する操作とか何でしょうか。それはやはり値が手に入るまで待つことを意味するのではないでしょうか。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// ! なし</span>
+<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="n">async</span> <span class="p">-&gt;</span> <span class="n">Bar</span> <span class="p">{</span> <span class="c1">// `async` 必須</span>
+  <span class="k">return</span> <span class="n">await</span> <span class="n">bar</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// ! あり</span>
+<span class="kd">func</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">Bar</span> <span class="p">{</span> <span class="c1">// `async` でなくて良い</span>
+  <span class="k">return</span> <span class="n">await</span><span class="p">!</span> <span class="n">bar</span><span class="p">()</span> <span class="c1">// `bar()` が完了するまでここで待つ</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><code>try!</code> が失敗時にクラッシュするのと同じように、処理が完了してなかったらクラッシュと考えることもできるかもしれません。しかし、 <code>try!</code> がクラッシュするのは <code>Result</code> でいう <code>.failure</code> 由来の性質だと思うので、僕はクラッシュではなく同期的に待つ方が自然だと思います。</p>
+
+<p>ただし、 <code>await!</code> という表記は適切だとは思いません。 Swift では <code>!</code> が Forced Unwrapping の他に、 <code>try!</code>, <code>as!</code> など一貫して「失敗しうる処理の失敗を無視する（失敗したらハンドリングせずクラッシュさせる）」という意味で使われているからです。あくまで、 <code>try!</code> 相当の強制的に <code>Promise</code> を unwrap するような処理を考えると同期になるんじゃないかという話です。</p>
+
+<h3>
+<span id="throws--try--rethrows--async--await--" class="fragment"></span><a href="#throws--try--rethrows--async--await--"><i class="fa fa-link"></i></a><code>throws</code> : <code>try</code> : <code>rethrows</code> = <code>async</code> : <code>await</code> : ?</h3>
+
+<p>次は <code>rethrows</code> です。これについては <a href="https://gist.github.com/lattner/429b9070918248274f25b714dcfc7619#rethrows-could-be-generalized-to-support-potentially-async-operations" rel="nofollow noopener" target="_blank">Proposal でも簡単に触れられています</a>。</p>
+
+<p><code>rethrows</code> が付与されている高階関数は、渡されたクロージャが <code>throws</code> だった場合に自分自身も <code>throws</code> になります。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="n">foo</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>         <span class="c1">// `map` は `throws` でない</span>
+<span class="k">try</span> <span class="n">array</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="k">try</span> <span class="n">bar</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">}</span> <span class="c1">// `map` も `throws` になる</span>
+
+</pre></div></div>
+
+<p>同じように、渡されたクロージャが <code>async</code> だった場合に自身も <code>async</code> になる <code>reasync</code> のようなものも考えられます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="n">foo</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>             <span class="c1">// `map` は `async` でない</span>
+<span class="n">await</span> <span class="n">array</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="n">await</span> <span class="n">bar</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">}</span> <span class="c1">// `map` も `async` になる</span>
+</pre></div></div>
+
+<h2>
+<span id="generator" class="fragment"></span><a href="#generator"><i class="fa fa-link"></i></a>Generator</h2>
+
+<p>ここまで非同期と言い続けてきましたが、 <code>async/await</code> はコルーチンを実現するための仕組みであって非同期に限ったものではありません。</p>
+
+<p>非同期に限らない例として、いくつかの言語にある Generator と呼ばれる仕組みを紹介します。たとえば、↓は Python の例です。</p>
+
+<div class="code-frame" data-lang="python"><div class="highlight"><pre><span></span><span class="c1"># Python</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+  <span class="k">yield</span> <span class="mi">2</span>
+  <span class="k">yield</span> <span class="mi">3</span>
+  <span class="k">yield</span> <span class="mi">5</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">foo</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>  <span class="c1"># 2</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>  <span class="c1"># 3</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>  <span class="c1"># 5</span>
+</pre></div></div>
+
+<p>この <code>Generator</code> は、専用の言語機能を持たなくても <code>async/await</code> で実現することができます。たとえば、 Swift に <code>async/await</code> があったとして、↓のような <code>Generator</code> 型を作ることができます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">g</span> <span class="p">=</span> <span class="n">Generator</span> <span class="p">{</span> <span class="n">yield</span> <span class="k">in</span>
+  <span class="n">await</span> <span class="n">yield</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+  <span class="n">await</span> <span class="n">yield</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+  <span class="n">await</span> <span class="n">yield</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="bp">print</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">next</span><span class="p">()</span><span class="o">!</span><span class="p">)</span> <span class="c1">// 2</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">next</span><span class="p">()</span><span class="o">!</span><span class="p">)</span> <span class="c1">// 3</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">next</span><span class="p">()</span><span class="o">!</span><span class="p">)</span> <span class="c1">// 5</span>
+</pre></div></div>
+
+<p><code>Generator</code> の実装例は<a href="https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20170821/039150.html" rel="nofollow noopener" target="_blank">ここ</a>にあります。</p>
+
+<p>別々の言語機能として持つのではなく、 <code>async/await</code> だけで両方実現できるのは本質を表していて美しいように思います。</p>
+
+<h2>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h2>
+
+<ul>
+<li>
+<code>throws</code> : <code>try</code> : <code>Result</code> = <code>async</code> : <code>await</code> : <code>Promise</code>
+</li>
+<li>美しいは正義</li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>koherさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>62</kbd>
+		<a target="_blank" href="https://qiita.com/koher/items/344657d7a9ce85322c09">Swift 4の魅力の一面を3行で表す</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-26 09:50:45</center>
+	</td>
+	<td style="width:200px;">
+		@koher<br />(Qoncept, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/47085/profile-images/1473690868">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Swift]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>先日 Swift 4 がリリースされました。みんな注目しているのは <code>Codable</code> など劇的にコーディングが楽になる新機能だと思いますが、ちょっとした便利な小技もあります。</p>
+
+<p>そんな、 Swift 4 の小技の魅力の一面を 3 行にぎゅっと詰め込んだコードを思い付いたので紹介します。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// User の Array から、 team ごとの人数を集計する</span>
+<span class="kd">let</span> <span class="nv">teamToCount</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span> <span class="nb">Int</span><span class="p">]</span> <span class="p">=</span> <span class="n">users</span><span class="p">.</span><span class="bp">reduce</span><span class="p">(</span><span class="n">into</span><span class="p">:</span> <span class="p">[:])</span> <span class="p">{</span> <span class="n">teamToCount</span><span class="p">,</span> <span class="n">user</span> <span class="k">in</span>
+  <span class="n">teamToCount</span><span class="p">[</span><span class="n">user</span><span class="p">.</span><span class="n">team</span><span class="p">,</span> <span class="k">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>これは、 <code>User</code> の <code>Array</code> を <code>team</code> ごとに集計するコードで、次の二つの新 API を使っています。</p>
+
+<ul>
+<li>
+<code>Dictionary</code> の <code>subscript(_:default:)</code> （<a href="https://developer.apple.com/documentation/swift/dictionary/2894528-subscript" rel="nofollow noopener" target="_blank">リファレンス</a>）</li>
+<li>
+<code>Sequence</code> の <code>reduce(into:_:)</code> （<a href="https://developer.apple.com/documentation/swift/sequence/2926337-reduce" rel="nofollow noopener" target="_blank">リファレンス</a>）</li>
+</ul>
+
+<h2>
+<span id="swift-3だと" class="fragment"></span><a href="#swift-3%E3%81%A0%E3%81%A8"><i class="fa fa-link"></i></a>Swift 3だと</h2>
+
+<p>もし、 Swift 3 で同じことを書こうとすると次のようなコードになるでしょう。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// Swift 3 の場合</span>
+<span class="kd">var</span> <span class="nv">teamToCount</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span> <span class="nb">Int</span><span class="p">]</span> <span class="p">=</span> <span class="p">[:]</span>
+<span class="k">for</span> <span class="n">user</span> <span class="k">in</span> <span class="n">users</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nv">team</span> <span class="p">=</span> <span class="n">user</span><span class="p">.</span><span class="n">team</span>
+  <span class="k">if</span> <span class="kd">let</span> <span class="nv">count</span> <span class="p">=</span> <span class="n">teamToCount</span><span class="p">[</span><span class="n">team</span><span class="p">]</span> <span class="p">{</span>
+    <span class="n">teamToCount</span><span class="p">[</span><span class="n">team</span><span class="p">]</span> <span class="p">=</span> <span class="bp">count</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">teamToCount</span><span class="p">[</span><span class="n">team</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>長いですね・・・。しかも、 <code>teamToCount</code> が無駄に <code>var</code> になってしまいました。</p>
+
+<h2>
+<span id="ちょっとした解説" class="fragment"></span><a href="#%E3%81%A1%E3%82%87%E3%81%A3%E3%81%A8%E3%81%97%E3%81%9F%E8%A7%A3%E8%AA%AC"><i class="fa fa-link"></i></a>ちょっとした解説</h2>
+
+<p>どうして Swift 3 だと長くなってしまうかと言うと、 <code>Dictionary</code> の <code>subscript</code> を使おうとした部分で、キーに対応した値が存在しないケースを別で扱わないといけないからです。 <code>Dictionary</code> を使った集計というのは（少なくとも僕は）よく書く処理であり、他の言語を書いている場合も含めてストレスフルなパターンの一つです。それを、 <code>default</code> 値を与えられるようにし、 <code>+=</code> と組み合わせて使えるというのが素晴らしいところです。</p>
+
+<p>また、 <code>Sequence</code> から何かを組み立てるときに <code>reduce</code> は便利ですが、 Swift 3 までは <code>Dictionary</code> を <code>reduce</code> で組み立てる良い方法がありませんでした。新しい <code>reduce(into:_:)</code> は <code>inout</code> な引数を持つ関数を渡すというアイデアでその点を見事に解決しています。</p>
+
+<p>それぞれの API の詳しい説明は次の投稿を御覧ください。</p>
+
+<ul>
+<li>
+<code>Dictionary</code> の <code>subscript(_:default:)</code>: <a href="https://qiita.com/hanawat/items/341a6f7843f4e19780b5#subscript_default" id="reference-a13b06209318abad4cc1">Swift4.0でDictionaryが大幅にパワーアップした</a> by <a href="/hanawat" class="user-mention js-hovercard" title="hanawat" data-hovercard-target-type="user" data-hovercard-target-name="hanawat">@hanawat</a>
+</li>
+<li>
+<code>Sequence</code> の <code>reduce(into:_:)</code>: <a href="https://qiita.com/koher/items/17636e95e18e529e5b9b" id="reference-16f2f51e6cff216c80c0">Swift 4の新しいreduceが素晴らしいので紹介する</a> by <a href="/koher" class="user-mention js-hovercard" title="koher" data-hovercard-target-type="user" data-hovercard-target-name="koher">@koher</a>
+</li>
+</ul>
+
+<p><code>group(by:)</code> 的なメソッドがあればもっと簡単なんじゃないかという考え方もありますが、よりプリミティブで汎用性が高く、使い勝手の良い道具が用意されて、それを組み合わせてこれまで面倒だったケースに対応できたというところが僕が感動した点です。</p>
+
+<h2>
+<span id="動作するコード全体" class="fragment"></span><a href="#%E5%8B%95%E4%BD%9C%E3%81%99%E3%82%8B%E3%82%B3%E3%83%BC%E3%83%89%E5%85%A8%E4%BD%93"><i class="fa fa-link"></i></a>動作するコード全体</h2>
+
+<p>検証用に書いた動作するコードの全体です。そのまま実行できます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="c1">// 型の準備</span>
+<span class="kd">struct</span> <span class="nc">User</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nv">team</span><span class="p">:</span> <span class="nb">String</span>
+<span class="p">}</span>
+
+<span class="c1">// 値の準備</span>
+<span class="kd">let</span> <span class="nv">users</span> <span class="p">=</span> <span class="p">[</span>
+  <span class="n">User</span><span class="p">(</span><span class="n">team</span><span class="p">:</span> <span class="s">"A"</span><span class="p">),</span>
+  <span class="n">User</span><span class="p">(</span><span class="n">team</span><span class="p">:</span> <span class="s">"B"</span><span class="p">),</span>
+  <span class="n">User</span><span class="p">(</span><span class="n">team</span><span class="p">:</span> <span class="s">"B"</span><span class="p">),</span>
+  <span class="n">User</span><span class="p">(</span><span class="n">team</span><span class="p">:</span> <span class="s">"A"</span><span class="p">),</span>
+  <span class="n">User</span><span class="p">(</span><span class="n">team</span><span class="p">:</span> <span class="s">"C"</span><span class="p">),</span>
+  <span class="n">User</span><span class="p">(</span><span class="n">team</span><span class="p">:</span> <span class="s">"A"</span><span class="p">),</span>
+  <span class="n">User</span><span class="p">(</span><span class="n">team</span><span class="p">:</span> <span class="s">"C"</span><span class="p">),</span>
+  <span class="n">User</span><span class="p">(</span><span class="n">team</span><span class="p">:</span> <span class="s">"B"</span><span class="p">),</span>
+  <span class="n">User</span><span class="p">(</span><span class="n">team</span><span class="p">:</span> <span class="s">"D"</span><span class="p">),</span>
+  <span class="n">User</span><span class="p">(</span><span class="n">team</span><span class="p">:</span> <span class="s">"A"</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1">// 集計</span>
+<span class="kd">let</span> <span class="nv">teamToCount</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span> <span class="nb">Int</span><span class="p">]</span> <span class="p">=</span> <span class="n">users</span><span class="p">.</span><span class="bp">reduce</span><span class="p">(</span><span class="n">into</span><span class="p">:</span> <span class="p">[:])</span> <span class="p">{</span> <span class="n">teamToCount</span><span class="p">,</span> <span class="n">user</span> <span class="k">in</span>
+  <span class="n">teamToCount</span><span class="p">[</span><span class="n">user</span><span class="p">.</span><span class="n">team</span><span class="p">,</span> <span class="k">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="p">}</span>
+
+<span class="c1">// 出力</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">team</span><span class="p">,</span> <span class="bp">count</span><span class="p">)</span> <span class="k">in</span> <span class="p">(</span><span class="n">teamToCount</span><span class="p">.</span><span class="bp">sorted</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">key</span> <span class="o">&lt;</span> <span class="nv">$1</span><span class="p">.</span><span class="n">key</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="bp">print</span><span class="p">(</span><span class="s">"</span><span class="si">\(</span><span class="n">team</span><span class="si">)</span><span class="s">: </span><span class="si">\(</span><span class="bp">count</span><span class="si">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div></div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>koherさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>21</kbd>
+		<a target="_blank" href="https://qiita.com/koher/items/c2ad26a587682eaeaf74">KotlinのListとSwiftのArrayの違い</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-04 19:47:23</center>
+	</td>
+	<td style="width:200px;">
+		@koher<br />(Qoncept, Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/47085/profile-images/1473690868">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Kotlin]</b> <b>[Swift]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>これは <a href="https://mobileact.connpass.com/event/65935/" rel="nofollow noopener" target="_blank">Mobile Act OSAKA #1</a> での発表した内容をまとめたものです。</p>
+
+<hr>
+
+<p>iOS / Android 双方に関係あることとして、 Kotlin の <code>List</code> と Swift の <code>Array</code> を比べてみます。</p>
+
+<h2>
+<span id="一番大事なこと" class="fragment"></span><a href="#%E4%B8%80%E7%95%AA%E5%A4%A7%E4%BA%8B%E3%81%AA%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>一番大事なこと</h2>
+
+<p>最初に一番大事なことを言います。それは、 Kotlin の <code>List</code> は <strong>参照型</strong> だということです。コレクションが参照型なのは当たり前と思うかもしれませんが、 Swift の <code>Array</code> はなんと <strong>値型</strong> です。この違いがこれから説明するすべての違いを生む原因なので重要です。</p>
+
+<h2>
+<span id="ミュータビリティ" class="fragment"></span><a href="#%E3%83%9F%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%93%E3%83%AA%E3%83%86%E3%82%A3"><i class="fa fa-link"></i></a>ミュータビリティ</h2>
+
+<p>では実際にどんな違いがあるのか、まずはミュータビリティについてです。</p>
+
+<h3>
+<span id="kotlin" class="fragment"></span><a href="#kotlin"><i class="fa fa-link"></i></a>Kotlin</h3>
+
+<p>Kotlin では <code>List</code> がミュータブルかイミュータブルかを型で表します。</p>
+
+<div class="code-frame" data-lang="kotlin"><div class="highlight"><pre><span></span><span class="k">val</span> <span class="py">a</span><span class="p">:</span> <span class="n">MutableList</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">mutableListOf</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="n">a</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="m">7</span><span class="p">)</span> <span class="c1">// [2, 3, 5, 7]</span>
+
+<span class="k">val</span> <span class="py">b</span><span class="p">:</span> <span class="n">ImmutableList</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">immutableListOf</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="k">val</span> <span class="py">b2</span> <span class="p">=</span> <span class="n">b</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="m">7</span><span class="p">)</span> <span class="c1">// b=[2, 3, 5], b2=[2, 3, 5, 7]</span>
+
+<span class="c1">// `val` は Swift の `let` 相当</span>
+</pre></div></div>
+
+<p>ミュータブルだとこのように新しい要素を <code>add</code> するとそのインスタンス自身に変更が加えられますが、イミュータブルだと当然インスタンスを変更することはできません。 <code>add</code> すると新しい要素が加えられた生成され返されます。</p>
+
+<p>ちなみに、この <code>ImmutableList</code> はまだ <a href="https://github.com/Kotlin/kotlinx.collections.immutable/blob/master/proposal.md" rel="nofollow noopener" target="_blank">Proposal</a> の段階なので標準ライブラリには存在しません。将来的には追加されるんじゃないかと思います。</p>
+
+<p>この二つのリストを抽象的にまとめて扱いたいことがあるので、第三の型として、これらのスーパータイプである <code>List</code> がほしくなります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>List &lt;-+-- ImmutableList
+       |
+       +-- MutableList
+</pre></div></div>
+
+<p><code>List</code> は <code>MutableList</code> や <code>ImmutableList</code> のスーパータイプなので、それらのインスタンスを <code>List</code> 型の変数に代入することができます。しかし、逆はできません。</p>
+
+<div class="code-frame" data-lang="kotlin"><div class="highlight"><pre><span></span><span class="k">val</span> <span class="py">c</span><span class="p">:</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">mutableListOf</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span> <span class="c1">// OK</span>
+<span class="k">val</span> <span class="py">d</span><span class="p">:</span> <span class="n">MutableList</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">c</span> <span class="c1">// NG</span>
+</pre></div></div>
+
+<p>↓のように明示的に変換してやる必要があります。</p>
+
+<div class="code-frame" data-lang="kotlin"><div class="highlight"><pre><span></span><span class="k">val</span> <span class="py">c</span><span class="p">:</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">mutableListOf</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span> <span class="c1">// OK</span>
+<span class="c1">// val d: MutableList&lt;Int&gt; = c // NG</span>
+<span class="k">val</span> <span class="py">d</span><span class="p">:</span> <span class="n">MutableList</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">c</span><span class="p">.</span><span class="n">toMutableList</span><span class="p">()</span> <span class="c1">// OK</span>
+</pre></div></div>
+
+<p><code>MutableList</code> と <code>ImmutableList</code> の間でも当然変換が必要です。</p>
+
+<p>このように、 Kotlin ではミュータビリティを適切に扱おうとすると三つの型を使い分ける必要があります。</p>
+
+<h3>
+<span id="swift" class="fragment"></span><a href="#swift"><i class="fa fa-link"></i></a>Swift</h3>
+
+<p>では Swift ではどうかと言うと <code>Array</code> 型一つだけを使います。 <code>Array</code> は値型なので、ミュータビリティの切り替えは <code>var</code> か <code>let</code> か、つまり変数か定数かによって行います。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nv">a</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">a</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="c1">// OK</span>
+
+<span class="kd">let</span> <span class="nv">b</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">b</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="c1">// NG</span>
+
+<span class="c1">// `let` は Kotlin の `val` 相当</span>
+</pre></div></div>
+
+<p><code>var</code> で宣言すればミュータブルなので <code>append</code> で要素を追加することができますが、 <code>let</code> にするとイミュータブルなので <code>append</code> がコンパイルエラーになります。</p>
+
+<p>また、 Kotlin の場合と違い、 <code>var</code> だろうと <code>let</code> だろうと型の上では同じ <code>Array&lt;Int&gt;</code> 型なので、相互に代入することができます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">c</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="c1">// OK</span>
+<span class="kd">var</span> <span class="nv">d</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">c</span> <span class="c1">// OK</span>
+</pre></div></div>
+
+<h2>
+<span id="インスタンスの共有" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9%E3%81%AE%E5%85%B1%E6%9C%89"><i class="fa fa-link"></i></a>インスタンスの共有</h2>
+
+<p>次はインスタンスの共有についてです。</p>
+
+<h3>
+<span id="kotlin-1" class="fragment"></span><a href="#kotlin-1"><i class="fa fa-link"></i></a>Kotlin</h3>
+
+<p>Kotlin の <code>List</code> は参照型なので↓のように <code>a</code> を <code>b</code> に代入してから <code>a</code> を変更すると <code>b</code> も変更されてしまいます。</p>
+
+<div class="code-frame" data-lang="kotlin"><div class="highlight"><pre><span></span><span class="k">val</span> <span class="py">a</span><span class="p">:</span> <span class="n">MutableList</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">mutableListOf</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="k">val</span> <span class="py">b</span><span class="p">:</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">a</span>
+<span class="n">a</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="m">7</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1">// [2, 3, 5, 7]</span>
+</pre></div></div>
+
+<p>これは、 <code>a</code> と <code>b</code> が同一のインスタンスを参照しているからです。</p>
+
+<p>意図せずにインスタンスが共有されてしまうとバグを生みかねません。特に、コンストラクタやメソッドの引数に渡す場合や、メソッドの戻り値として返す場合など、インスタンスをまたぐときに問題を生みやすいので注意が必要です。</p>
+
+<p>それを避けるためには明示的にコピーをする必要があります。</p>
+
+<div class="code-frame" data-lang="kotlin"><div class="highlight"><pre><span></span><span class="k">val</span> <span class="py">a</span><span class="p">:</span> <span class="n">MutableList</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">mutableListOf</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="k">val</span> <span class="py">b</span><span class="p">:</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">a</span><span class="p">.</span><span class="n">toList</span><span class="p">()</span> <span class="c1">// Copy</span>
+<span class="n">a</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="m">7</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1">// [2, 3, 5, 7]</span>
+</pre></div></div>
+
+<h3>
+<span id="swift-1" class="fragment"></span><a href="#swift-1"><i class="fa fa-link"></i></a>Swift</h3>
+
+<p>Swift では <code>Array</code> は値型なのでインスタンスが共有されることはありません。同じように、 <code>a</code> を <code>b</code> に代入してから <code>a</code> を変更しても <code>b</code> が変更されることはありません。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nv">a</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nv">b</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">a</span>
+<span class="n">a</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1">// [2, 3, 5]</span>
+</pre></div></div>
+
+<p>値型は代入の度にコピーされるので、コレクションのようにインスタンスが巨大だとコピーコストが気になりますが、 Swift の <code>Array</code> は Copy-on-Write という仕組みで無駄なコピーが発生しないようになっています。</p>
+
+<p>たとえばこの例では代入のタイミングではなく <code>append</code> したときに Lazy にコピーされます。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nv">a</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nv">b</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="nb">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">a</span> <span class="c1">// No copy</span>
+<span class="n">a</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1">// [2, 3, 5]</span>
+</pre></div></div>
+
+<p>これは参照型で先行してコピーコストを支払わなければならないのと対照的です。</p>
+
+<h2>
+<span id="変性" class="fragment"></span><a href="#%E5%A4%89%E6%80%A7"><i class="fa fa-link"></i></a>変性</h2>
+
+<p>最後は変性（ Variance ）についてです。</p>
+
+<h3>
+<span id="kotlin-2" class="fragment"></span><a href="#kotlin-2"><i class="fa fa-link"></i></a>Kotlin</h3>
+
+<p><code>Animal</code> クラスを継承した <code>Cat</code> クラスがあるとします。</p>
+
+<p><code>Cat</code> の <code>List</code> は <code>Animal</code> の <code>List</code> のサブタイプになります。そのため、↓の <code>cats</code> を <code>animals</code> に代入することができます。</p>
+
+<div class="code-frame" data-lang="kotlin"><div class="highlight"><pre><span></span><span class="k">val</span> <span class="py">cats</span><span class="p">:</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Cat</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">Cat</span><span class="p">())</span>
+<span class="k">val</span> <span class="py">animals</span><span class="p">:</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Animal</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">cats</span> <span class="c1">// OK</span>
+</pre></div></div>
+
+<p>このような性質を、 <code>List</code> は型パラメータ <code>E</code> について共変（ Covariant ）であると言います。これは <code>ImmutableList</code> でも同じです。</p>
+
+<p>しかし、 <code>MutableList</code> では事情が異なります。もし、この <code>cats</code> を <code>animals</code> に代入できてしまうと、↓のように <code>animals</code> を通して <code>cats</code> に <code>Dog</code> を追加でき、タイプセーフティが破綻してしまいます。なので <code>MutableList</code> は共変ではなく非変（ Invariant ）です。</p>
+
+<div class="code-frame" data-lang="kotlin"><div class="highlight"><pre><span></span><span class="k">val</span> <span class="py">cats</span><span class="p">:</span> <span class="n">MutableList</span><span class="p">&lt;</span><span class="n">Cat</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">mutableListOf</span><span class="p">(</span><span class="n">Cat</span><span class="p">())</span>
+<span class="k">val</span> <span class="py">animals</span><span class="p">:</span> <span class="n">MutableList</span><span class="p">&lt;</span><span class="n">Animal</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">cats</span> <span class="c1">// NG</span>
+<span class="n">animals</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dog</span><span class="p">())</span> <span class="c1">// !!</span>
+</pre></div></div>
+
+<h3>
+<span id="swift-2" class="fragment"></span><a href="#swift-2"><i class="fa fa-link"></i></a>Swift</h3>
+
+<p>Swift はどうかというと、当然イミュータブルな <code>Array</code> は共変です。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">cats</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="n">Cat</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">[</span><span class="n">Cat</span><span class="p">()]</span>
+<span class="kd">let</span> <span class="nv">animals</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="n">Animal</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">cats</span> <span class="c1">// OK</span>
+</pre></div></div>
+
+<p>しかし、なんとミュータブルな <code>Array</code> でも <code>cats</code> を <code>animals</code> に代入可能です。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nv">cats</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="n">Cat</span><span class="p">&gt;</span> <span class="p">=</span> <span class="p">[</span><span class="n">Cat</span><span class="p">()]</span>
+<span class="kd">var</span> <span class="nv">animals</span><span class="p">:</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="n">Animal</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">cats</span> <span class="c1">// OK</span>
+</pre></div></div>
+
+<p>これは、 Swift の <code>Array</code> が値型だからです。インスタンスが共有されることはないので、 <code>animals</code> に <code>Dog</code> を加えても <code>cats</code> は変更されません。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="n">animals</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Dog</span><span class="p">())</span> <span class="c1">// OK</span>
+</pre></div></div>
+
+<h2>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h2>
+
+<p>Kotlin の <code>List</code> と Swift の <code>Array</code> では挙動が色々と異なります。この違いを知らずに単純移植しようとすると大怪我をしかねないので気を付けて下さい。</p>
+
+<p>個人的には、値型のコレクションはめずらしくて挙動がおもしろいので Swift の <code>Array</code> には注目しています。みなさんも興味があれば色々調べてみて下さい。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

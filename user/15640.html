@@ -1,0 +1,166 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (sinmetal)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (sinmetal さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>sinmetalさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>110</kbd>
+		<a target="_blank" href="https://qiita.com/sinmetal/items/7c6e146fbad8ff8a0f5a">DatastoreとFirestoreとApp Engineの関連</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-05 23:54:58</center>
+	</td>
+	<td style="width:200px;">
+		@sinmetal<br />(メルカリ/ソウゾウ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/15640/profile-images/1474548897">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[GoogleAppEngine]</b> <b>[GoogleCloudPlatform]</b> <b>[Firebase]</b> <b>[GoogleCloudDatastore]</b> <b>[GoogleCloudFirestore]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="https://firebase.google.com/docs/firestore/" rel="nofollow noopener" target="_blank">Cloud Firestore</a> がBetaで公開されました。<br>
+Cloud Firestoreは、Firebase Realtime Databaseの後継に当たるサービスです。</p>
+
+<p>Firebase Realtime DBに存在していたリアルタイム更新やデータベースルール, オフライン機能や、Firebase Authとの連携などを受け継いでいます。</p>
+
+<p>大きく変わったのはバックエンドです。<br>
+Firebase Realtime DBは、もともとGoogleが作ったものではなく、Googleが買収したサービスでした。<br>
+買収後、FirebaseはAuth, Push通知, Analytics, Remote Configなどなど様々な機能が追加されていきましたが、Firebase Realtime DBは抜本的な機能が増えたりすることはありませんでした。</p>
+
+<p>そして、抜本的にUpdateが入ったのが今回のFirestoreです。<br>
+バックエンドをGoogle Cloud Datastoreに差し替えて、機能を拡張し、Availabilityを向上させることを狙っています。<br>
+たとえば、ソートについてはDatastoreのIndexを利用することで、Firebase Realtime DBと比べてソート条件の選択肢を大幅に増やしています。</p>
+
+<p>さて、そんなFirestoreですが、まだベータで公開されたばかりなので、色々と気を付けることがあります。</p>
+
+<h2>
+<span id="cloud-firestoreの始め方" class="fragment"></span><a href="#cloud-firestore%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9"><i class="fa fa-link"></i></a>Cloud Firestoreの始め方</h2>
+
+<p><a href="https://console.firebase.google.com/" class="autolink" rel="nofollow noopener" target="_blank">https://console.firebase.google.com/</a> からProjectを作成するか、GCP ProjectのImportを行います。<br>
+GCP ProjectをImportする場合、そのProjectがまだApp EngineかDatastoreを利用していない必要があります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/6fdf02d5151dd981a3ea90f8f396d31ac34f1bfd/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353634302f30313065636666662d616665302d656436612d383131662d3930333762373664313865342e706e67" target="_blank" rel="nofollow noopener"><img width="1393" alt="firestore-start.png" src="https://camo.qiitausercontent.com/6fdf02d5151dd981a3ea90f8f396d31ac34f1bfd/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353634302f30313065636666662d616665302d656436612d383131662d3930333762373664313865342e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15640/010ecfff-afe0-ed6a-811f-9037b76d18e4.png"></a></p>
+
+<p>DatabaseメニューからFirestoreを選択すると、Firestoreを利用できます。<br>
+もし、すでにApp Engine or Datastoreを利用している場合は以下のようにエラーになります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/579aef5f724378da3b50a60b41eb49f9cba1f490/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353634302f65653930313866332d303134642d613030622d373334302d3061353738643339313163302e706e67" target="_blank" rel="nofollow noopener"><img width="675" alt="sinmetal-firestore-2_–_Database_–_Firebase_console.png" src="https://camo.qiitausercontent.com/579aef5f724378da3b50a60b41eb49f9cba1f490/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353634302f65653930313866332d303134642d613030622d373334302d3061353738643339313163302e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15640/ee9018f3-014d-a00b-7340-0a578d3911c0.png"></a></p>
+
+<p>あとはドキュメントに従って、好きなクライアントから呼び出せばOKです。<br>
+データを入れると以下のような感じで見えます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/ac9199bd05a3803c7a42c75e82fdb136d7d0e06b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353634302f64663564346263632d343230372d666366322d303533372d6238316232646435313239632e706e67" target="_blank" rel="nofollow noopener"><img width="1127" alt="firestore-console.png" src="https://camo.qiitausercontent.com/ac9199bd05a3803c7a42c75e82fdb136d7d0e06b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353634302f64663564346263632d343230372d666366322d303533372d6238316232646435313239632e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15640/df5d4bcc-4207-fcf2-0537-b81b2dd5129c.png"></a></p>
+
+<h2>
+<span id="datastoreとの関係" class="fragment"></span><a href="#datastore%E3%81%A8%E3%81%AE%E9%96%A2%E4%BF%82"><i class="fa fa-link"></i></a>Datastoreとの関係</h2>
+
+<p>Firestoreは、Firebase Realtime DBの後継として登場したわけですが、Firestoreを有効にしているGCP ProjectのDatastoreのConsoleを表示すると以下のような画面が出てきて、DatastoreのConsoleを利用することはできません。</p>
+
+<p><a href="https://camo.qiitausercontent.com/e67b4ef0d8ed16cdd0bfa8dd35760ad8d2d4c09f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353634302f35333164643363622d386162362d383436642d386637642d6162623938626262386166342e706e67" target="_blank" rel="nofollow noopener"><img width="691" alt="datastore.png" src="https://camo.qiitausercontent.com/e67b4ef0d8ed16cdd0bfa8dd35760ad8d2d4c09f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353634302f35333164643363622d386162362d383436642d386637642d6162623938626262386166342e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15640/531dd3cb-8ab6-846d-8f7d-abb98bbb8af4.png"></a></p>
+
+<p>そして、この画面のメッセージには、Firestoreは <strong>Datastoreの後継</strong> だと書かれています。<br>
+確かに、FirestoreはDatastoreの機能をほぼすべて受け継いだ上で、追加の機能を足しているような状態になっています。<br>
+まだ、ベータ公開されたばかりなので、荒削りなところはありますが、Datastore使いから見ても魅力的なサービスです。</p>
+
+<h3>
+<span id="firestoreとdatastoreの併用" class="fragment"></span><a href="#firestore%E3%81%A8datastore%E3%81%AE%E4%BD%B5%E7%94%A8"><i class="fa fa-link"></i></a>FirestoreとDatastoreの併用</h3>
+
+<p>Firestoreを利用していると、DatastoreのConsoleは使えないのですが、後ろではDatastoreを利用しているので、DatastoreのAPIを利用して、データを登録しても、Firestoreに反映されます。<br>
+そのため、 <a href="https://cloud.google.com/dataflow/?hl=ja" rel="nofollow noopener" target="_blank">Google Cloud Dataflow</a> のDatastore IOを利用して、データの読み書きを行うことができます。<br>
+初期データの投入なんかはDataflowから行うのが簡単です。</p>
+
+<h2>
+<span id="app-engineとfirestore" class="fragment"></span><a href="#app-engine%E3%81%A8firestore"><i class="fa fa-link"></i></a>App EngineとFirestore</h2>
+
+<p>App Engineをすでに利用しているGCP ProjectではFirestoreを使えませんが、Firestoreを初めてから、App EngineをDeployすることは可能です。<br>
+この場合、App Engineは <code>us-central-1</code> となります。App Engine &amp; Cloud Datastoreはすでに <code>asia-northeast-1</code> にいるわけですが、おそらくFirestoreは現状USにしかいないのでしょう。<br>
+GAになるころには、 <code>asia-northeast-1</code> に来るように信仰心が試されます。</p>
+
+<p>App EngineからFirestoreを使う方法ですが、２種類あります。<br>
+1つはFirestoreだと思わずに、普通にApp EngineにビルトインされているDatastore Libraryを利用してアクセスします。<br>
+Firestoreは普通にDatastoreにデータを入れているので、普通に読み書きできます。<br>
+もう1つはFirestoreのLibraryを利用する方法です。<br>
+<a href="https://cloud.google.com/firestore/docs/apis" rel="nofollow noopener" target="_blank">Cloud Client Library</a> が用意されているので、これを利用します。<br>
+オフラインDBや、リアルタイム同期などのサポートはApp Engine Standardでは利用できませんが、普通に読み書きするのは可能です。<br>
+ただ、App Engine StandardでCloud Client Libraryを利用した場合、後ろではgRPCを利用します。<br>
+gPRCを利用する時に、App Engine Socket APIを利用するので、Quotaに注意が必要です。</p>
+
+<p>どちらの方法でも、App EngineからFirestoreを利用した場合、App EngineのConsoleからはFirestoreとして表示されます。<br>
+現在、Firestoreの料金体系はDatastoreと同じような感じです。 <br>
+なぜかFirestoreには、Datastore Small Ops相当のものが書いてないのが、ちょっと気になるぐらいです。</p>
+
+<ul>
+<li><a href="https://cloud.google.com/firestore/pricing" class="autolink" rel="nofollow noopener" target="_blank">https://cloud.google.com/firestore/pricing</a></li>
+<li><a href="https://cloud.google.com/datastore/pricing" class="autolink" rel="nofollow noopener" target="_blank">https://cloud.google.com/datastore/pricing</a></li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/de2cc68a299c71948b59ed7629e453ab09092800/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353634302f62343462383133322d383436362d393866612d323566662d6363363231353738343935332e706e67" target="_blank" rel="nofollow noopener"><img width="1487" alt="App_Engine_Dashboard_-_sinmetal-firestore-3.png" src="https://camo.qiitausercontent.com/de2cc68a299c71948b59ed7629e453ab09092800/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31353634302f62343462383133322d383436362d393866612d323566662d6363363231353738343935332e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/15640/b44b8132-8466-98fa-25ff-cc6215784953.png"></a></p>
+
+<h2>
+<span id="現時点での課題" class="fragment"></span><a href="#%E7%8F%BE%E6%99%82%E7%82%B9%E3%81%A7%E3%81%AE%E8%AA%B2%E9%A1%8C"><i class="fa fa-link"></i></a>現時点での課題</h2>
+
+<p>さて、ベータなので、やっぱり課題はまだまだあります。<br>
+現時点で僕が一番感じている問題は <strong>パフォーマンスが悪い</strong> です。<br>
+おそらく、FirestoreのAPIを受け取っている何かがDatastoreとやりとりしてるんじゃないかと思ってるんですが、ぼちぼち遅いです。<br>
+まぁ、Datastore自体がそんなに1回ずつのやり取りが早いDatabaseじゃないので、びびるレベルで早くするのは難しいような気はちょっとしてるけど、それにしてもちょっと遅くない！？みたいなところが少しあります。<br>
+実際、App Engine Standard for GoからビルトインのDatastoreを呼ぶと50ms ~ 100msぐらいですが、Firestoreを呼ぶと200ms ~ 4500msぐらいかかっています。<br>
+Socket APIが間に入っているとは言え、さすがに1件putに4500msは遅くない！？みたいな気持ちです。<br>
+だんだん早くなっていってくれるのを祈る or 早くやり取りできるデータ構成を考える 必要がありそうな感じです。</p>
+
+<p>Datastoreとの併用については、将来的にはできるようにするみたいなことを言ってたという噂を聞いたので、FirestoreがDatastoreをガッと奪っている感じにベータの間だけで、将来的には1つのGCP Projectで同居できるようになりそうです。</p>
+
+<h2>
+<span id="さいごに" class="fragment"></span><a href="#%E3%81%95%E3%81%84%E3%81%94%E3%81%AB"><i class="fa fa-link"></i></a>さいごに</h2>
+
+<p>Datastoreジャンキーの僕としてはFirestoreは非常に期待しているサービスです。<br>
+Firebase Realtime DBは便利なサービスですが、Availabilityの問題やGCPのサービスたちとの連携に少々課題がありましたが、Firestoreはそれを解決してくれるぴったりなサービスです。<br>
+Datastoreを使うのをやめて、Firestoreを使うようにするような世界がいつ来るかは分かりませんが、これからはそれも頭の片隅においてアーキテクチャを考えていこうかなと思います。</p>
+
+<p>現時点のFirestoreでのアーキテクチャを理解するためには、Datastoreを理解する必要があり、Datastoreを理解するためにはBigtableを理解する必要があるみたいなところが、ちょっとあるかもしれない。<br>
+その辺りもいずれ書けたら書こう。</p>
+
+<p>Cloud Firestoreに興味がある人は、 GCPUGのSlackの <code>#c-firestore_ja</code> でコミュニティのメンバーがうだうだ言ってるので、参加してみるとよいかも。<br>
+GCPUG Slackへは <a href="http://gcpug.jp/join" class="autolink" rel="nofollow noopener" target="_blank">http://gcpug.jp/join</a> にあるFormから参加できます。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

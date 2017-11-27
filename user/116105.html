@@ -1,0 +1,470 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (rotelstift)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (rotelstift さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>rotelstiftさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>333</kbd>
+		<a target="_blank" href="https://qiita.com/rotelstift/items/70461f35c0d691e7b246">Rubyのtrueとfalseの話</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-27 15:38:45</center>
+	</td>
+	<td style="width:200px;">
+		@rotelstift<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/116105/profile-images/1473930408">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Ruby]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>　この記事は、技術系同人誌としてまとめるはずだった原稿をほぼそのまま転載しています。諸事情により向こうかなり長い間同人誌即売会に売り手として参加することが難しくなったためです。<br>
+　長いですが、お楽しみいただければ幸いです。</p>
+
+<h1>
+<span id="まえがき" class="fragment"></span><a href="#%E3%81%BE%E3%81%88%E3%81%8C%E3%81%8D"><i class="fa fa-link"></i></a>まえがき</h1>
+
+<p>　この本は、Rubyコミッタである卜部昌平に、その妻である私、卜部一恵がRubyのtrueとfalseについて突っ込んで聞いてみた話です。本文は両者の対話形式で進んでいきます。<br>
+　私は昌平と同じ大学同じ研究室に所属していたのでプログラミングについての基礎は一応ありますが、エンジニアとして職を得たことはありません。つまり、プログラミング初級者です。この本はそのくらいのレベル感の本だと思います。<br>
+　私自身が初級者なりにRubyを使っていて、if文が思った通りに動かない、そんなときに抱いた疑問からこの本が生まれました。<br>
+　同じような疑問を抱いている方の一助になれば幸いです。</p>
+
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>K：この本は卜部昌平と卜部一恵の対話形式で構成されています。Ｓは昌平、Ｋは一恵です。よろしくお願いします。</p>
+
+<p>S：よろしくお願いします。</p>
+
+<p>K：今回はRubyのtrueとfalseの話ということで、私がRubyを使っていて気になったところを訊いていこうと思います。結構しつこく訊くかも。</p>
+
+<p>S：頑張って答えます。</p>
+
+<p>K：では、張り切って疑問その1から行きたいと思います。</p>
+
+<h1>
+<span id="trueクラスとfalseクラスそしてbooleanの話" class="fragment"></span><a href="#true%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%A8false%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%9D%E3%81%97%E3%81%A6boolean%E3%81%AE%E8%A9%B1"><i class="fa fa-link"></i></a>trueクラスとfalseクラス、そしてBooleanの話</h1>
+
+<h2>
+<span id="boolean型は存在しない" class="fragment"></span><a href="#boolean%E5%9E%8B%E3%81%AF%E5%AD%98%E5%9C%A8%E3%81%97%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>Boolean型は存在しない</h2>
+
+<p>K：まず、trueがtrueに、falseがfalseになる理由について訊きたいと思います。 この二つはboolean型の定数ですよね？</p>
+
+<p>S：いえ、違います。そもそも型ってなんでしょう？</p>
+
+<p>K：例えば、</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>int n = 20        # =&gt; 型 
+new Int m = 30    # =&gt; クラス
+</pre></div></div>
+
+<p> みたいな感じに思っていたのだけれど、違うのですか？</p>
+
+<p>S：その違いがあるのは、Javaですね。でも、Rubyは両者に実は差がないんです。</p>
+
+<p>K：え！？なんでですか？</p>
+
+<p>S：例えば、値というものに型なりクラスなりが付いている。それとは別に、変数にも型なりクラスなりがある。この二つは区別して考えなければなりません。 <br>
+そう考えると、まず値に関しては、Rubyでは全部クラスであって、型ではない。ここで言う『型ではない』という言葉は、<code>int n = 20</code> の <code>int</code> に相当するものがない、という意味です。後で説明するけど、Rubyという言語の仕様における型が、値には存在します。 <br>
+次に変数に関して言うと、Rubyは変数には型が付いていない。クラスも付いていない。『動的変数』という言葉の意味がこれです。 なので、じつは <code>int</code> とか <code>new Int</code> とか書かなくてもいい。というか、書いちゃいけない。</p>
+
+<p>K：サンプルコードを作ってみます。 </p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="nb">p</span> <span class="n">n</span><span class="err"> </span>
+</pre></div></div>
+
+<p>これ、確かに実行できないですね。 <code>undefined method ‘int' for main:Object (NoMethodError)</code> となります。 <br>
+こう書けないのは動的変数であることを明示的にするためですか？</p>
+
+<p>S：わざわざ複雑に書かなくていいじゃないですか。むしろなんで書きたいの？って感じ。</p>
+
+<p>K：例えば、この変数には数値だけが入っているということを明示したいとかです。明示すると、数値が入っているはずの変数に文字列を入れてしまって結果バグるという未来を回避できると思います。</p>
+
+<p>S：そうですね。それは一面で正しいけれども、Rubyの場合は今はそうなっていない。未来的にはこの変数には数値だけが入っているということを保証できるようになるかもしれないけれど、それでもプログラマが明示的に型を書くという形にはならないと思います。</p>
+
+<p>K：それはなぜですか？</p>
+
+<p>S：JavaScriptやSwiftでもそうだけれど、今は型を書かないのが流行しています。それはなぜかというと、 <code>n=20</code> と書いてあれば、nが整数なのは明らか。後からそれに文字列を入れようとするとエラーになって欲しいんだけど、今はその機能を実現するためにわざわざ型を書かなくても良くなったんです。なぜなら、代入が最初にあった時点で、右辺を見て勝手に判断できるようになったからですね。<br>
+ 実はRubyにはまだこの機能はないのだけれど、今後そうなっていくのだと思います。</p>
+
+<p>K：なるほど。では、今のところRubyは動的変数を用いていて、型がない言語である、という訳ですね。Rubyは型がない、とはよく聞いていましたが、ようやくその意味がわかった気がします。</p>
+
+<p>S：でも注意して欲しいのは、実際には『変数に』型がないだけであって、『値には』型がある。例えば20っていうのは数値だけれど、これを文字列として扱います、ということにはならない。</p>
+
+<p>K：<code>print(20)</code> は動かなくて、 <code>print(20.string)</code> にしないとダメだということですか？</p>
+
+<p>S：いや、 <code>print(20)</code> は実は変換されちゃうな。 </p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">20</span> <span class="o">+</span> <span class="s2">"30"</span><span class="p">)</span><span class="err"> </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"20"</span> <span class="o">+</span> <span class="s2">"30"</span><span class="p">)</span><span class="err"> </span>
+</pre></div></div>
+
+<p>にすると、上は動かなくて下は動く、という話です。</p>
+
+<p>K：納得しました。<br>
+ ちなみに、 <code>print(20)</code> が普通に20と表示されるのはなんでなんでしょう？</p>
+
+<p>S：printはなんでも引き取って文字列っぽく表示するすごい関数で、数値を引き取っても勝手に文字列にしてくれるからですね。本当に文字列しか表示しない関数は、実はない。</p>
+
+<p>K：ふむふむ。ちゃんと言語の仕様と関数の仕様を分けて考えないと混乱しますね。 <br>
+さて、ここでboolean型がないことに話を戻して考えてみると、押さえておくべきことは、値には型がある、変数には型がない、ということですね。<br>
+ とすると、trueという値とfalseという値はあるけれど、変数にbooleanという属性のようなものはつけられない、ということで、boolean型がない、ということの意味になりますか？</p>
+
+<p>S：そういうことになります。</p>
+
+<h2>
+<span id="booleanクラスも存在しない" class="fragment"></span><a href="#boolean%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%82%E5%AD%98%E5%9C%A8%E3%81%97%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>Booleanクラスも存在しない</h2>
+
+<p>K：ではここで、trueという値とfalseという値、これらとtrueクラスとfalseクラスについて訊いていきたいと思います。 <br>
+まず、trueクラスがあり、falseクラスがあり、そうするとBooleanクラスに入れるものがないので、Booleanクラスは存在しない、という話を聞いたのですが、とするとBooleanは型もクラスも存在しないということなんでしょうか？</p>
+
+<p>S：はい。</p>
+
+<p>K：例えば、Booleanというクラスがあってtrueクラスとfalseクラスはそれを継承している、という話でもない？</p>
+
+<p>S：でもないです。その理由はあって、継承というのは親があって子がある、親クラスの振る舞いと子クラスの振る舞いは共通しているから子クラスで親クラスの挙動をちょっとだけ変えて使う、というのが継承の基礎になります。 <br>
+けれども、trueとfalseは正反対の性質なので、同じ挙動ではない。なので、trueとfalseの共通の親は用意していないんです。</p>
+
+<p>K：そうなんですね。なんかコンパイルすると真偽値になるクラスがあったとして、そのクラスのパラメータを一つ変えるだけでtrueとしての振る舞いと、falseとしての振る舞いを切り替えられるのかなぁ？と漠然と思ってましたが、全くそんなことはないのですね。</p>
+
+<p>S：全くそんなことはないです。</p>
+
+<p>K：とすると、trueクラスとfalseクラスさえ用意すれば、Booleanクラスはいらない、という話が納得できてきました。</p>
+
+<h2>
+<span id="trueクラスとfalseクラスについて" class="fragment"></span><a href="#true%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%A8false%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>trueクラスとfalseクラスについて</h2>
+
+<p>K：ではここまでの話を踏まえて、trueクラスとtrueという型の値、falseクラスとfalseという型の値の関係性について訊いていきたいと思います。 <br>
+まず、trueという型の値は、trueクラスのインスタンス、という理解でいいでしょうか？</p>
+
+<p>S：いいでしょうか？の答えは、ハイです。true型の値、ということと、trueクラスのインスタンス、ということは同じことを別の言葉で言っているだけのこと。</p>
+
+<p>K：またちょっと脱線しますが、trueのインスタンスは一つのプログラムで複数存在することはありますか？</p>
+
+<p>S：ないです。</p>
+
+<p>K：とすると、<code>true.object_id</code>は全て同一なんですね。これはfalseに関してもそうですか？</p>
+
+<p>S：そうですね。</p>
+
+<p>K：そうすると、<code>true == true</code>と<code>false == false</code>は常にtrueになるんですね。ここは当たり前だけど、ものすごく大切なところですね。<br>
+ そして、trueはtrue、falseはfalseだと、定義・実装しているから、そう動くと。<br>
+ ここでこれらの振る舞いについて注意しておいたほうがいいことはありますか？例えば、変数にfalseを代入したはずなのにtrueと判断されてしまう、とか。</p>
+
+<p>S：それはあまりない気がしますね。</p>
+
+<h1>
+<span id="ゼロを真にした話" class="fragment"></span><a href="#%E3%82%BC%E3%83%AD%E3%82%92%E7%9C%9F%E3%81%AB%E3%81%97%E3%81%9F%E8%A9%B1"><i class="fa fa-link"></i></a>ゼロを真にした話</h1>
+
+<p>K：ゼロって、例えばCなどではfalseと判断され、そのことを前提としたアルゴリズムもあったりすると思うのですが、Rubyではここがtrueなのは何故なのでしょうか？</p>
+
+<p>S：そもそもCには、歴史上最初にはfalseが無かったのです。今はありますが。なので無いなら何か他のものを代わりに使わなければならない、そのためにゼロが使われていたんです。</p>
+
+<p>K：はー、そんな歴史があったのですね。</p>
+
+<p>S：でも、Rubyには最初からfalseがあるので、無理してゼロのことをfalseだと思わなくていいのです。 <br>
+もうちょっと一般的な話をすると、世の中のプログラミング言語というのはだいたいifの条件文の中に何が書けるのかということが何パターンかあります。ひとつは真の値trueと偽の値falseしか書けず、他の値は何らかの方法でtrueかfalseに変換するという言語。もうひとつは偽になる値、例えばゼロ、以外は全部真になるという言語。だいたいこの二つのどちらかです。</p>
+
+<p>K：Rubyは後者だと考えていいですか？</p>
+
+<p>S：だいたいそうなんだけど、Rubyにはnilがあって特殊だね、とは思います。</p>
+
+<h1>
+<span id="nilクラスについての話" class="fragment"></span><a href="#nil%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%AE%E8%A9%B1"><i class="fa fa-link"></i></a>nilクラスについての話</h1>
+
+<p>K：では、nilクラスについて聞きたいと思います。まず、 <code>nil == true</code> はfalseですよね？</p>
+
+<p>S：はい。</p>
+
+<p>K：nilをfalseにするのは、言語仕様としてそう決めているわけですよね？</p>
+
+<p>S：混乱してきましたね。用語の整理をしたいです。 <br>
+まず、falseというのはfalseクラスのインスタンス、ということにしましょう。次に、if文の中に書いたときにelseの方に行くという現象、これはfalseとは別の名前で呼びたいので、日本語の『偽』という言葉を使いましょう。<br>
+ そうすると、nilは偽です。</p>
+
+<p>K：<code>nil == false</code> はtrueでは無い、ということですか？</p>
+
+<p>S：はい。試してみましょう。<br>
+ irbで次のように打ってください。 </p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="kp">nil</span> <span class="o">==</span> <span class="kp">false</span><span class="err"> </span>
+</pre></div></div>
+
+<p>これは実行されると、 <code>=&gt; false</code> になるはずです。</p>
+
+<p>K：おお、本当だ！では、nilとは何なのでしょう？</p>
+
+<p>S：nilというのは、例えば変数がまだ初期化されていないなど後から何かが入ってくるけどとりあえず場所だけある、つまり、『何も無いという印』のことです。 <br>
+なので、本当はtrueとfalseとnilで三分岐するif文を考えることもできたかもしれません。でもそれはややこしいので今は普通に二分岐するif文ができていて、thenの側とelseの側と、どちらにnilを分岐させるか考えたときにelseの側に行ってくれたほうが便利、という理由で『偽』になっています。</p>
+
+<p>K：なるほど。if文の中に書いたときに『偽』にはなるけれど、falseとは別の役割があるから、 <code>nil == false</code> はfalseになるのですね。 <br>
+そうすると、nilは一つのプログラムの中で複数インスタンスがあるのでしょうか？</p>
+
+<p>S：それについてはtrueとfalseと同じように、インスタンスは一つです。</p>
+
+<p>K：配列の中などに複数のnilを入れることもできますが、それでもインスタンスは一つなのでしょうか？先程聞いたように何も無い場所を指し示しているのであれば、インスタンスは複数あっていい気がします。</p>
+
+<p>S：それでも一つです。 <br>
+例えば、 <code>x="hoge"</code> という式があります。これは、 <code>x</code> という変数の箱の中に <code>"hoge"</code> というオブジェクトが入っているのかというと、Rubyの場合実は違うわけです。<code>n</code>という変数の箱の中には <code>"hoge"</code> というオブジェクトを指し示すメモリアドレスが入っています。</p>
+
+<p>K：Rubyは全部ポインタ！という話ですね。</p>
+
+<p>S：そうです。ここで、<code>y</code>という変数だけ用意したいと考えたとき、それが難しい。なので、 <code>y=nil</code> と書いて <code>y</code> という変数があり、それが <code>nil</code> というオブジェクトを指し示していることを、 <code>y</code> という変数だけ用意した、という意味として考えよう、という工夫をしたのです。 <br>
+なので、 <code>y=nil</code> でも <code>z=nil</code> でも、右辺の <code>nil</code> は同じオブジェクトが指し示されているだけなのです。</p>
+
+<p>K：だからnilもインスタンスは一つだけなんですね。 <br>
+そして、nilは『偽』として振る舞ったほうが便利だからif文に入れたときに『偽』になるけれども、その本来の役割は空き地を表すことであって、falseであるということとはまた違う、という理解でいいでしょうか？</p>
+
+<p>S：そうです。</p>
+
+<h1>
+<span id="配列やハッシュがnilだったり空だったりするときの話" class="fragment"></span><a href="#%E9%85%8D%E5%88%97%E3%82%84%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E3%81%8Cnil%E3%81%A0%E3%81%A3%E3%81%9F%E3%82%8A%E7%A9%BA%E3%81%A0%E3%81%A3%E3%81%9F%E3%82%8A%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AE%E8%A9%B1"><i class="fa fa-link"></i></a>配列やハッシュがnilだったり空だったりするときの話</h1>
+
+<p>K：では、配列やハッシュがnilを指し示していたときの話です。これらがtrueとなるのは以下のコードで確認できます。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">[</span><span class="kp">nil</span><span class="o">]</span><span class="err"> </span>
+<span class="k">if</span> <span class="n">a</span> <span class="k">then</span><span class="err"> </span>
+    <span class="nb">p</span> <span class="s2">"true"</span><span class="err"> </span>
+<span class="k">end</span><span class="err"> </span>
+</pre></div></div>
+
+<p>これは <code>"true"</code> を出力します。<br>
+ しかし一方で、 </p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">[</span><span class="kp">nil</span><span class="o">]</span>
+<span class="err"> </span><span class="n">a</span> <span class="o">==</span> <span class="kp">true</span><span class="err"> </span>
+</pre></div></div>
+
+<p>は、 <code>false</code> となります。 <br>
+この振る舞いの差はどうして生まれるのでしょう？</p>
+
+<p>S：ここでもやはり用語を整理しましょう。trueクラスのインスタンスのことをtrueと呼びましょう。<br>
+ 一方、if文の中に入れたときにthenの側に来ることを、日本語で『真』と呼ぶこととしましょう。</p>
+
+<p>K：先ほどの例に習うと、 <code>a = [nil]</code> は『真』ではあるけれどもtrueでは無い、ということで、後者の比較式はfalseになるのですね。</p>
+
+<p>S：そうですね。 nilが『偽』になったときと同じような議論です。</p>
+
+<p>K：では、先程nilは『偽』として扱うという話になったのに、配列から指し示した途端に『真』の側に行ってしまうようになったのは何故なのでしょうか？</p>
+
+<p>S：それは、配列が『真』だからです。<br>
+ 真偽を判定するときに、配列の中まで見に行って配列の中身で真偽が変わるということはありません。</p>
+
+<p>K：それはハッシュでも同じなんですね。ただの変数のときだけは、中身を見に行ってnilを『偽』だと判定すると。</p>
+
+<p>S：そうです。変数と配列が同じようにポインタを使っているというのは鋭い着眼点ですね。</p>
+
+<p>K：さらに、配列の中身を見に行かないということは、空配列であっても、『真』と判断してしまうということでしょうか？</p>
+
+<p>S：はい。</p>
+
+<p>K：けれども配列やハッシュが空であるときを真偽値に絡めて判定したいという需要は確実にあります。それを行う関数として、 <code>.empty?</code> があるのですね。<br>
+この <code>.empty?</code> の挙動についてまとめたいです。 <br>
+まず、次のコードで実験です。 </p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">[]</span><span class="err"> </span>
+<span class="n">a</span><span class="o">.</span><span class="n">empty?</span><span class="err"> </span>
+</pre></div></div>
+
+<p>これは <code>true</code> になります。<br>
+ 一方、</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="o">[</span><span class="kp">nil</span><span class="o">]</span><span class="err"> </span>
+<span class="n">b</span><span class="o">.</span><span class="n">empty?</span><span class="err"> </span>
+</pre></div></div>
+
+<p>これは <code>false</code> です。 <br>
+配列aが空配列であるということと、配列bの先頭が空き地を表すという意味を持っていること、この二つが <code>.empty?</code> という関数で違う値を返す理由は何故ですか？</p>
+
+<p>S：これは難しいですね。難しいけど、配列の場合はemptyというのは中身がどうという話ではなく、サイズがゼロかどうかというふうに決めました。それだけが理由です。 <br>
+でも、中身まで見てnilしか無いかどうかを確認したい、という需要も確かにあります。そのための関数はすでにあって、 <code>.compact</code> というものがあります。この関数を配列に対して実行すると、nil以外のものを残します。<br>
+ この <code>.compact</code> を使った結果、空配列になったのならば、その配列の中にはnilしかなかったということになります。</p>
+
+<p>K：つまり、  </p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="o">[</span><span class="kp">nil</span><span class="o">]</span><span class="err"> </span>
+<span class="n">b</span><span class="o">.</span><span class="n">compact</span><span class="o">.</span><span class="n">empty?</span><span class="err"> </span>
+</pre></div></div>
+
+<p>とやれば、 <code>true</code> が返ってくるということですね。 うまく使い分けたいところです。 <br>
+ところで、 <code>.compact</code> はハッシュに対しては定義されていないようですがこの場合はどうすればいいでしょうか？</p>
+
+<p>S：<code>.delete_if{}</code> がありますので、それを使えば似たようなことできます。けれども、あまり一般的では無いかもしれません。ハッシュに対してはニーズがあまり無いのかも。</p>
+
+<blockquote>
+<p>注：@watson1978 氏からご指摘がありました。<br>
+Ruby 2.4.0からハッシュに対しても<code>.compact</code>が実装されています。<br>
+<a href="https://github.com/ruby/ruby/blob/v2_4_0/NEWS" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/ruby/ruby/blob/v2_4_0/NEWS</a><br>
+調べが足りていなかったことをお詫びするとともに、訂正をさせていただきます。</p>
+</blockquote>
+
+<h1>
+<span id="配列やハッシュにtrueやfalseを入れたときの話" class="fragment"></span><a href="#%E9%85%8D%E5%88%97%E3%82%84%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E3%81%ABtrue%E3%82%84false%E3%82%92%E5%85%A5%E3%82%8C%E3%81%9F%E3%81%A8%E3%81%8D%E3%81%AE%E8%A9%B1"><i class="fa fa-link"></i></a>配列やハッシュにtrueやfalseを入れたときの話</h1>
+
+<p>K：では、配列やハッシュにtrueやfalseを入れた場合ですが </p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">[</span><span class="kp">false</span><span class="o">]</span><span class="err"> </span>
+<span class="k">if</span> <span class="n">a</span> <span class="k">then</span><span class="err"> </span>
+    <span class="nb">p</span> <span class="s2">"true"</span><span class="err"> </span>
+<span class="k">else</span><span class="err"> </span>
+    <span class="nb">p</span> <span class="s2">"false"</span><span class="err"> </span>
+<span class="k">end</span><span class="err"> </span>
+</pre></div></div>
+
+<p>これは <code>"true"</code> を返します。これも先程と同じ結論でしょうか？つまり、配列やハッシュにtrueやfalseを入れても、中身まで見にはいかないから『真』だと判断されると。</p>
+
+<p>S：その通りです。</p>
+
+<p>K：ちなみに、以下のコードだとちゃんと配列の中を覗きに行くから配列に入れた真偽値が反映されるんですね。</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">[</span><span class="kp">false</span><span class="o">]</span><span class="err"> </span>
+<span class="k">if</span> <span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="k">then</span><span class="err"> </span>
+    <span class="nb">p</span> <span class="s2">"true"</span><span class="err"> </span>
+<span class="k">else</span><span class="err"> </span>
+    <span class="nb">p</span> <span class="s2">"false"</span><span class="err"> </span>
+<span class="k">end</span>    <span class="c1"># =&gt; "false"</span>
+</pre></div></div>
+
+<p>S：そうですね。</p>
+
+<p>K：多少脱線しますが、ハッシュのキーにtrueやfalseを入れるのは大丈夫なんでしょうか？</p>
+
+<p>S：やってみればわかりますよ。</p>
+
+<p>K：やってみます。 </p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="kp">true</span> <span class="o">=&gt;</span> <span class="s2">"hello"</span><span class="p">,</span> <span class="kp">false</span> <span class="o">=&gt;</span> <span class="s2">"bye"</span><span class="p">}</span>
+<span class="err"> </span><span class="nb">p</span> <span class="n">a</span><span class="o">[</span><span class="kp">true</span><span class="o">]</span>                  <span class="c1"># =&gt; "hello"</span>
+<span class="nb">p</span> <span class="n">a</span><span class="o">.</span><span class="n">key</span><span class="p">(</span><span class="s2">"hello"</span><span class="p">)</span>           <span class="c1"># =&gt; true </span>
+<span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">key</span><span class="p">(</span><span class="s2">"hello"</span><span class="p">)</span> <span class="k">then</span><span class="err"> </span>
+    <span class="nb">p</span> <span class="s2">"true"</span><span class="err"> </span>
+<span class="k">end</span>                        <span class="c1"># =&gt; "true" </span>
+</pre></div></div>
+
+<p>大丈夫ですね。trueやfalseは予約語なので使えないかと思ってました。</p>
+
+<p>S：実際には使えますね。</p>
+
+<h1>
+<span id="自作クラスの真偽の話" class="fragment"></span><a href="#%E8%87%AA%E4%BD%9C%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%AE%E7%9C%9F%E5%81%BD%E3%81%AE%E8%A9%B1"><i class="fa fa-link"></i></a>自作クラスの真偽の話</h1>
+
+<p>K：あとは自作クラスについて聞きたいのですが、例えば、次のようなコードはどうでしょう？</p>
+
+<div class="code-frame" data-lang="ruby"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BoolTest</span><span class="err"> </span>
+<span class="k">end</span><span class="err"> </span>
+
+<span class="nb">test</span> <span class="o">=</span> <span class="no">BoolTest</span><span class="o">.</span><span class="n">new</span><span class="err"> </span>
+
+<span class="k">if</span> <span class="nb">test</span> <span class="k">then</span><span class="err"> </span>
+    <span class="nb">p</span> <span class="s2">"true"</span><span class="err"> </span>
+<span class="k">else</span><span class="err"> </span>
+    <span class="nb">p</span> <span class="s2">"false"</span><span class="err"> </span>
+<span class="k">end</span><span class="err"> </span>
+</pre></div></div>
+
+<p>これは <code>"true"</code> が出てきます。</p>
+
+<p>S：そうですね。</p>
+
+<p>K：これもまた配列の時と同様に、クラスのガワだけを見て中身は気にしない、そしてクラスは『真』だと定義されているから、という理由で良いのでしょうか？</p>
+
+<p>S：はい、その理解ですごく正しいと思います。</p>
+
+<p>K：例えばコンストラクタを作っていないなどの理由でnewだけしてもクラスの中身が何も無いという場合も、そのままifの条件文の中に入れたらtrueになりますね。<br>
+ ここで、classの中身に何かがあるか、何もないことを判定するにはどうしたら良いのでしょうか？</p>
+
+<p>S：結論だけ言うと、そういうことは気にしないように作るのがRubyのやり方です。</p>
+
+<p>K：とすると、適当にクラスを作っても <code>.empty?</code> みたいなメソッドは無いということになるのでしょうか？</p>
+
+<p>S：そもそもそのメソッドが必要とされるシーンはどういったシーンですか？</p>
+
+<p>K：例えば、車を買おうとするときに欲しい車がまだ見つかっていないなら <code>wanted_car = Car.new</code> として、見つかったら <code>wanted_car = prius</code> などとするようにしておいて、wanted_carが見つかっているか見つかっていないか調べたい場合です。ここでpriusはCarクラスのインスタンスだと思ってください。</p>
+
+<p>S：そういうことに使うならクラス自体に <code>.empty?</code> が必要そうですね。 <br>
+けれども、そのようなメソッドはクラスに対しては用意されていません。なので、それが必要なら自分で実装するようにしてください。</p>
+
+<h1>
+<span id="結論条件文には真偽値だけ書けるようにしておけばよかったんだよ" class="fragment"></span><a href="#%E7%B5%90%E8%AB%96%E6%9D%A1%E4%BB%B6%E6%96%87%E3%81%AB%E3%81%AF%E7%9C%9F%E5%81%BD%E5%80%A4%E3%81%A0%E3%81%91%E6%9B%B8%E3%81%91%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%97%E3%81%A6%E3%81%8A%E3%81%91%E3%81%B0%E3%82%88%E3%81%8B%E3%81%A3%E3%81%9F%E3%82%93%E3%81%A0%E3%82%88"><i class="fa fa-link"></i></a>結論：条件文には真偽値だけ書けるようにしておけばよかったんだよ！</h1>
+
+<p>K：ここまでさまざまなtrueとfalseの話をしてきました。RubyにはそもそもBooleanというクラスも型も無い、という衝撃的な話から、trueであることと『真』であることが違う、falseと『偽』についても同様という話など、大変参考になりました。 <br>
+でも、これらは結構ややこしいなぁ、というのが正直な感想です。昌平さんはどうですか？</p>
+
+<p>S：つまりですね、ifの条件文には真偽値だけ書けるようにしておけばよかったんですね。</p>
+
+<p>K：なるほど。配列やクラスなどが直接ifの条件文の中に置けるからややこしくなる、という話ですね。<br>
+ でも、もしもこれを今から是正するとなると、Rubyで書かれた既存のコードとの互換性を確保するのが相当難しいですね。</p>
+
+<p>S：既存のコードとの互換性はなくなりますね。このifの条件文に置けるものを変えると、既存のコードは一切動かなくなる。<br>
+だから、このややこしさを解消するためだけにifの条件文に置けるものを変える、ということは無いでしょう。</p>
+
+<p>K：それもそうですね。<br>
+ このややこしさを覚えておくために押さえるべきところは、以下の点で良いでしょうか？</p>
+
+<ol>
+<li>trueクラスのインスタンスがtrueという値</li>
+<li>falseクラスのインスタンスがfalseという値</li>
+<li>trueという値でもfalseという値でも無いが、ほとんどのオブジェクトはその中身に関係なく『真』だと判断される。</li>
+<li>ただし、nilオブジェクト、及び変数の中身のnilは『偽』と判断される。</li>
+</ol>
+
+<p>S：はい、いいと思います。足りないところも無いです。</p>
+
+<p>K：ありがとうございます。</p>
+
+<h1>
+<span id="あとがき" class="fragment"></span><a href="#%E3%81%82%E3%81%A8%E3%81%8C%E3%81%8D"><i class="fa fa-link"></i></a>あとがき</h1>
+
+<p>　お楽しみいただけたでしょうか？<br>
+　この本を作るにあたって昌平にいろいろ質問をしたのですが、こちらがどう思っているのかを的確に察しながら答えを返してくれたことに感謝しています。<br>
+　この本を作るためにいろいろ質問して理解したことのうち、『真』であることとtrueが違う、『偽』とfalseについても同様、という話が個人的に一番衝撃的だったかもしれません。『真』であることはtrue、『偽』であることはfalseと頭っから覚え込んでいたので、ここが違うとわかった時、頭の靄が晴れるような思いをしました。この本で質問した多くのことは、値がtrueであることと『真』の分岐に向かうこと、値がfalseであることと『偽』の分岐に向かうこと、この両者をごちゃ混ぜに考えているから生まれたもののように思います。<br>
+　ここがはっきりしたのが私個人にとっては大きな収穫ですし、読者の方も同じような収穫をこの本の中から得てくれていたとしたら、それに勝る喜びはありません。</p>
+
+<h1>
+<span id="謝辞" class="fragment"></span><a href="#%E8%AC%9D%E8%BE%9E"><i class="fa fa-link"></i></a>謝辞</h1>
+
+<p>　この本のレビューをしてくださいました、<a href="/tatsuoSakurai" class="user-mention js-hovercard" title="tatsuoSakurai" data-hovercard-target-type="user" data-hovercard-target-name="tatsuoSakurai">@tatsuoSakurai</a>氏に感謝します。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

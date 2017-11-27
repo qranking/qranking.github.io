@@ -1,0 +1,532 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (azipinsyan)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (azipinsyan さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>azipinsyanさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>124</kbd>
+		<a target="_blank" href="https://qiita.com/azipinsyan/items/db4606aaa51426ac8dac">GoogleHomeスピーカーに外部からプッシュして自発的に話してもらいます</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-08 22:40:39</center>
+	</td>
+	<td style="width:200px;">
+		@azipinsyan<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/94796/profile-images/1473706371">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[ifttt]</b> <b>[RaspberryPi]</b> <b>[GoogleHome]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>GoogleHomeスピーカから自発的話してもらうためにいろいろ細工をします。具体的にはraspberryPiからGoogleHomeスピーカーに話してほしいことを送ってしゃべってもらいます。<br>
+これができると、ある条件の時に好きなことをGoogleHomeからしゃべってもらえます。（例えば明日雨の場合に教えてくれたり、IFTTTを利用すると、ツイッターとかでリプライが来たら教えてくれます。）</p>
+
+<h1>
+<span id="ざっくりな流れ" class="fragment"></span><a href="#%E3%81%96%E3%81%A3%E3%81%8F%E3%82%8A%E3%81%AA%E6%B5%81%E3%82%8C"><i class="fa fa-link"></i></a>ざっくりな流れ</h1>
+
+<p>①Raspberry PiにGoogleHomeを操作するためのソフト(google-home-notifier.js)を導入<br>
+②自宅のGoogleHomeにリクエストを送るための設定を実施<br>
+③リスナーを実行して、RaspberryPi上にgoogle-home-notifierを常駐させる<br>
+④RaspberryPiにGoogleHomeにしゃべらせたいことをPOSTすることでGoogleHomeがしゃべる</p>
+
+<h1>
+<span id="必要な環境" class="fragment"></span><a href="#%E5%BF%85%E8%A6%81%E3%81%AA%E7%92%B0%E5%A2%83"><i class="fa fa-link"></i></a>必要な環境</h1>
+
+<p>・RaspberryPi(Node.jsとnpmを使います）<br>
+・GoogleHome</p>
+
+<h1>
+<span id="raspberrypiに必要なものを導入" class="fragment"></span><a href="#raspberrypi%E3%81%AB%E5%BF%85%E8%A6%81%E3%81%AA%E3%82%82%E3%81%AE%E3%82%92%E5%B0%8E%E5%85%A5"><i class="fa fa-link"></i></a>RaspberryPiに必要なものを導入</h1>
+
+<h2>
+<span id="nodejsとmpm" class="fragment"></span><a href="#nodejs%E3%81%A8mpm"><i class="fa fa-link"></i></a>Node.jsとmpm</h2>
+
+<p>RaspberryPiにNode.jsとnpmを使うためにあらかじめインストールしておきます。以下のページを参照していただけばと思います。</p>
+
+<p><a href="https://qiita.com/mascii/items/77c685df65c4cbca9315" class="autolink" id="reference-aa3fd357fc39abb59fcd">https://qiita.com/mascii/items/77c685df65c4cbca9315</a></p>
+
+<h2>
+<span id="google-home-notifier" class="fragment"></span><a href="#google-home-notifier"><i class="fa fa-link"></i></a>google-home-notifier</h2>
+
+<p>続いて、GoogleHomeを操作するための必要なプログラム「google-home-notifier」をGitHubから導入します。サイトは以下です。</p>
+
+<p><a href="https://github.com/noelportugal/google-home-notifier" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/noelportugal/google-home-notifier</a></p>
+
+<p>上記プログラムは、前からあったChromecast Client向けのプロトコルを利用して、GoogleHomeにしゃべらせるという代物です。プロトコルの詳細は<a href="https://www.npmjs.com/package/castv2-client" rel="nofollow noopener" target="_blank">ここ</a>を参照してください。</p>
+
+<p>上記プログラムを導入します。リスナーを利用して実現するため、以下の通りのコマンドを実行してインストールします。</p>
+
+<p><code>curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -<br>
+sudo apt-get install nodejs<br>
+sudo apt-get install git-core libnss-mdns libavahi-compat-libdnssd-dev<br>
+git clone https://github.com/noelportugal/google-home-notifier<br>
+cd google-home-notifier<br>
+npm install</code></p>
+
+<p>上記コマンドを実行することで、必要なパッケージ含めてインストールされます。</p>
+
+<h1>
+<span id="google-home-notifierの設定" class="fragment"></span><a href="#google-home-notifier%E3%81%AE%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>google-home-notifierの設定</h1>
+
+<p>本章では、自宅にあるGoogleHomeに接続するための設定を実行します。<br>
+設定を実施するにあたり、以下の条件および情報が必要です。<br>
+・GoogleHomeのIPアドレス（固定されている必要があります。）<br>
+　　→今回は仮に192.168.1.10とします。</p>
+
+<p>まず最初に「example.js」を編集します。今回はあらかじめ用意されているものを利用します。<br>
+以下の項目を編集します。<br>
+・serverPort<br>
+　　→リスナーが利用するポートです。変更する場合は変更してください。<br>
+・deviceName <br>
+　　→GoogleHomeのデバイス名を記載します。ただし、このデバイス名は任意で結構です。<br>
+　　→今回は'リビング'とつけてます。</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">example.js</span></div>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">googlehome</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./google-home-notifier'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">ngrok</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'ngrok'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">serverPort</span> <span class="o">=</span> <span class="mi">8080</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">deviceName</span> <span class="o">=</span> <span class="s1">'リビング'</span><span class="p">;</span>
+<span class="nx">googlehome</span><span class="p">.</span><span class="nx">device</span><span class="p">(</span><span class="nx">deviceName</span><span class="p">);</span>
+<span class="c1">//googlehome.accent('uk'); // uncomment for british voice</span>
+
+<span class="kd">var</span> <span class="nx">urlencodedParser</span> <span class="o">=</span> <span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="nx">extended</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/google-home-notifier'</span><span class="p">,</span> <span class="nx">urlencodedParser</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span> <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">sendStatus</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">text</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">text</span><span class="p">){</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">deviceName</span> <span class="o">+</span> <span class="s1">' will say: '</span> <span class="o">+</span> <span class="nx">text</span> <span class="o">+</span> <span class="s1">'\n'</span><span class="p">);</span>
+    <span class="nx">googlehome</span><span class="p">.</span><span class="nx">notify</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Please POST "text=Hello Google Home"'</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="p">})</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">serverPort</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">ngrok</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">serverPort</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'POST "text=Hello Google Home" to:'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'    http://localhost:'</span> <span class="o">+</span> <span class="nx">serverPort</span> <span class="o">+</span> <span class="s1">'/google-home-notifier'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'    '</span> <span class="o">+</span><span class="nx">url</span> <span class="o">+</span> <span class="s1">'/google-home-notifier'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'example:'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'curl -X POST -d "text=Hello Google Home" '</span> <span class="o">+</span> <span class="nx">url</span> <span class="o">+</span> <span class="s1">'/google-home-notifier'</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+
+<p>続いて、同ディレクトにある「google-home-notifier.js」を編集します。本ファイルには、GoogleHomeの接続先並びに言語設定を実施します。</p>
+
+<p>・lang<br>
+　　→言語を日本語に設定するため、「ja」に変更する</p>
+
+<p>・googlettsaccent<br>
+　　→言語を日本語に設定するため、「ja」に変更する</p>
+
+<p>・deviceAddressを追記<br>
+　　→GoogleHomeのIPアドレスを記載します。</p>
+
+<div class="code-frame" data-lang="javascript">
+<div class="code-lang"><span class="bold">google-home-notifier.js</span></div>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'castv2-client'</span><span class="p">).</span><span class="nx">Client</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">DefaultMediaReceiver</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'castv2-client'</span><span class="p">).</span><span class="nx">DefaultMediaReceiver</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">mdns</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mdns'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">browser</span> <span class="o">=</span> <span class="nx">mdns</span><span class="p">.</span><span class="nx">createBrowser</span><span class="p">(</span><span class="nx">mdns</span><span class="p">.</span><span class="nx">tcp</span><span class="p">(</span><span class="s1">'googlecast'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">deviceAddress</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">language</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">device</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">lang</span> <span class="o">=</span> <span class="s1">'ja'</span><span class="p">)</span> <span class="p">{</span>　　　　<span class="c1">//ここをjaに変更</span>
+    <span class="nx">device</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="nx">language</span> <span class="o">=</span> <span class="nx">lang</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">googletts</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'google-tts-api'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">googlettsaccent</span> <span class="o">=</span> <span class="s1">'ja'</span><span class="p">;</span>　　　　　　　　　　　　<span class="c1">//ここをjaに変更</span>
+<span class="kd">var</span> <span class="nx">accent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">accent</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">googlettsaccent</span> <span class="o">=</span> <span class="nx">accent</span><span class="p">;</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">deviceAddress</span> <span class="o">=</span> <span class="s1">'192.168.1.10'</span><span class="p">;</span>　　　　　　　　　　<span class="c1">//ここにIPアドレスを追記</span>
+
+<span class="kd">var</span> <span class="nx">notify</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">deviceAddress</span><span class="p">){</span>
+    <span class="nx">browser</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+    <span class="nx">browser</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'serviceUp'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">service</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Device "%s" at %s:%d'</span><span class="p">,</span> <span class="nx">service</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">service</span><span class="p">.</span><span class="nx">addresses</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">service</span><span class="p">.</span><span class="nx">port</span><span class="p">);</span>
+
+<span class="nx">後略</span>
+
+</pre></div>
+</div>
+
+<h1>
+<span id="google-home-notifierの起動" class="fragment"></span><a href="#google-home-notifier%E3%81%AE%E8%B5%B7%E5%8B%95"><i class="fa fa-link"></i></a>google-home-notifierの起動</h1>
+
+<p>設定完了したら、RaspberryPi上で起動します。</p>
+
+<p><code>node example.js</code></p>
+
+<p>起動すると、POSTする際の例文が表示されるはずです。</p>
+
+<h1>
+<span id="googlehomeにしゃべらせる" class="fragment"></span><a href="#googlehome%E3%81%AB%E3%81%97%E3%82%83%E3%81%B9%E3%82%89%E3%81%9B%E3%82%8B"><i class="fa fa-link"></i></a>GoogleHomeにしゃべらせる</h1>
+
+<p>google-home-notifierの起動が完了したら、RaspberryPiにGoogleHomeにしゃべってほしい内容を送ります。送り方は、例文に倣って以下の通りです。試しに「明日は雨になります」としゃべらせてみます。</p>
+
+<p><code>curl -X POST -d "text=明日は雨になります" http://(RaspberryPiのIP):8080/google-home-notifier</code></p>
+
+<p>上記コマンドを実行すると、GoogleHomeから「明日は雨になります」と突然話だすはずです。</p>
+
+<h1>
+<span id="最後に" class="fragment"></span><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB"><i class="fa fa-link"></i></a>最後に</h1>
+
+<p>今回のやり方で実行すると、声がいつものGoogleHomeの声とは異なる声でしゃべりだします。これはおそらく「iSpeech API」の声を利用しているためです。詳細は<a href="http://www.neo-tech-lab.co.uk/googletts/" rel="nofollow noopener" target="_blank">ここ</a>を参照いただけるといいと思います。</p>
+
+<p>また、この方法は外部からPOSTでしゃべらせることができるため、IFTTTの「webhooks」を利用することで、様々なトリガーでしゃべらせることができます。IFTTTを利用する場合は、セキュリティ上今のままだと、誰でも実行できてしまうため、認証等をさらに付け加えたほうがいいかもしれません。</p>
+
+<p>ともあれ、Googleが公式にPUSH型のサービスを提供してくれるまでのつなぎとしては利用できるかもしれません。</p>
+
+<p>どなたかjsに明るい方がいたら、認証回りを強化したプログラムを公開していただけるとより多くの方が利用できるようになるので、なにとぞお願いします。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>azipinsyanさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>15</kbd>
+		<a target="_blank" href="https://qiita.com/azipinsyan/items/e5395e5b1dc7254bbbbd">GoogleHome→IFTTT→HomeAssistantで部屋の電気を付けてみる</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-07 12:22:30</center>
+	</td>
+	<td style="width:200px;">
+		@azipinsyan<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/94796/profile-images/1473706371">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[ifttt]</b> <b>[RaspberryPi]</b> <b>[HomeAssistant]</b> <b>[GoogleHome]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>日本でやっと発売されたインテリジェンススピーカであるGoogleHomeを使って部屋の電気を付けたり消したりしてもらいました。スマートホームを実現したいけど、お金はあまりかけたくないので、RaspberryPi（赤外線リモコンであるirMagicianを操作）を利用して実現します。</p>
+
+<p>追記（2017/10/7）<br>
+予約語によりうまくいかない場合の対処を追記しました。</p>
+
+<h1>
+<span id="ざっくりした流れ" class="fragment"></span><a href="#%E3%81%96%E3%81%A3%E3%81%8F%E3%82%8A%E3%81%97%E3%81%9F%E6%B5%81%E3%82%8C"><i class="fa fa-link"></i></a>ざっくりした流れ</h1>
+
+<p>電気が操作されるまでは流れは以下の通りです。<br>
+1.GoogleHomeに「電気を付けて/消して」とお願いする<br>
+2.GoogleHomeからIFTTTにアクセスして、あらかじめ用意していたレシピを実行する<br>
+3.IFTTTからHomeAssistant(Raspberry Pi）に向けて電気を操作するAPIを実行するようにお願いする<br>
+4.HomeAssistantにあらかじめ設定された電気の操作が実行される</p>
+
+<h1>
+<span id="環境" class="fragment"></span><a href="#%E7%92%B0%E5%A2%83"><i class="fa fa-link"></i></a>環境</h1>
+
+<p>・GoogleHomeスピーカー<br>
+・IFTTT<br>
+・Raspberry Pi3（HomeAssistantインストール用。赤外線リモコンで電気操作可能にします）<br>
+　→部屋の電気を操作するために必要です。</p>
+
+<h1>
+<span id="１raspberry-piの準備とhomeassistantの準備" class="fragment"></span><a href="#%EF%BC%91raspberry-pi%E3%81%AE%E6%BA%96%E5%82%99%E3%81%A8homeassistant%E3%81%AE%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>１．Raspberry Piの準備とHomeAssistantの準備</h1>
+
+<p>部屋の電気等を操作するためにRaspberry Piを準備します。このRaspberry Piは家の中で電子機器（電気等）を操作できるようにしておきます。</p>
+
+<h2>
+<span id="raspberry-piと赤外線リモコンの準備" class="fragment"></span><a href="#raspberry-pi%E3%81%A8%E8%B5%A4%E5%A4%96%E7%B7%9A%E3%83%AA%E3%83%A2%E3%82%B3%E3%83%B3%E3%81%AE%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>Raspberry Piと赤外線リモコンの準備</h2>
+
+<p>Raspberry(Raspbian)に赤外線リモコンを接続して利用できるようにします。今回利用する赤外線リモコンは、扱いが楽な「irMagician」を利用します。ただし、すでに他の方法でRaspberry Piから家の中の電子機器を操作できるようにしている方は本作業は飛ばしてください。本リモコンの使い方と設定方法は以下のサイトを参考に設定するとわかりやすいと思います。<br>
+<a href="http://it-hack.net/2017/04/25/post-2601/" rel="nofollow noopener" target="_blank">【irMagician編】Raspberry Piで音声認識システムを使ったホームオートメーション化計画 その2</a></p>
+
+<p>上記サイトで実施されている通り、pythonを実行するだけで機器を操作できるようになります。<br>
+Pythonで実行するコマンドは、後ほどHomeAssistantの設定ファイルで利用します。</p>
+
+<h2>
+<span id="homeassistantのインストールと設定" class="fragment"></span><a href="#homeassistant%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%A8%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>HomeAssistantのインストールと設定</h2>
+
+<p>Raspberry Piに<a href="https://home-assistant.io/" rel="nofollow noopener" target="_blank">HomeAssistant</a>をインストールします。HomeAssistantはオープンソースで開発されているオートメーションプラットフォームです。類似ソフトとしてhomebridgeやOpenHABがあります。現在GitHub的にはHomeAssistantが活発なので、本ソフトウェアを利用します。<br>
+参考にさせていただいたサイトは以下の通りです。<br>
+<a href="https://qiita.com/spicemanjp/items/59032bad6c93c5ac28ab" class="autolink" id="reference-88cce6d178c6c3049b70">https://qiita.com/spicemanjp/items/59032bad6c93c5ac28ab</a></p>
+
+<p><strong>①インストール</strong><br>
+インストールは非常に簡単です。<a href="https://home-assistant.io/getting-started/" rel="nofollow noopener" target="_blank">公式サイト</a>にいろいろ記載されていますが、以下のコマンドを実行します。</p>
+
+<p><code>sudo pip3 install homeassistant</code></p>
+
+<p>※pip3をインストールしていない方は、以下のサイトでPytonをインストールしてから実行してください<br>
+<a href="https://home-assistant.io/docs/installation/raspberry-pi/" class="autolink" rel="nofollow noopener" target="_blank">https://home-assistant.io/docs/installation/raspberry-pi/</a></p>
+
+<p>インストール後、HomeAssistantの実行は以下のコマンドです。</p>
+
+<p><code>hass</code></p>
+
+<p>初回実行時は設定ファイル等作られるので時間がかかります。起動後、http://(Raspberry PiのIP):8123にアクセスすると、HomeAssistantの制御ページが表示されればインストール完了です。</p>
+
+<p><strong>②設定</strong><br>
+HomeAssistantの設定を実施していきます。設定ファイルは、実行ユーザのディレクトリ下に「.homeassistant」ディレクトリが作成され、その中に「configuration.yaml」ファイルが作成されます。以降、設定は「configuration.yaml」にすべて追記していきます。</p>
+
+<p>「configuration.yaml」に今後利用するAPIの設定並びに操作する機器の設定を記載します。参考ページに倣い、初期設定とデバイス設定に分けて記載します。</p>
+
+<h3>
+<span id="初期設定" class="fragment"></span><a href="#%E5%88%9D%E6%9C%9F%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>初期設定</h3>
+
+<p>初期設定では、APIで利用するためのパスワードを追記します。設定ファイル内のhttp部分にある「api_password」のコメントを外し、「YOURPASS」部分に任意のパスワードを記入します。後ほどIFTTTで利用するときに利用します。</p>
+
+<div class="code-frame" data-lang="yaml">
+<div class="code-lang"><span class="bold">configuration.yaml</span></div>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">(前略)</span>
+<span class="l l-Scalar l-Scalar-Plain">http</span><span class="p p-Indicator">:</span>
+  <span class="c1"># Uncomment this to add a password (recommended!)</span>
+  <span class="l l-Scalar l-Scalar-Plain">api_password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">YOURPASS</span>
+  <span class="c1"># Uncomment this if you are using SSL/TLS, running in Docker container, etc.</span>
+  <span class="c1"># base_url: example.duckdns.org:8123</span>
+<span class="l l-Scalar l-Scalar-Plain">(後略)</span>
+</pre></div>
+</div>
+
+<h3>
+<span id="デバイス設定" class="fragment"></span><a href="#%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>デバイス設定</h3>
+
+<p>続いて、設定ファイルに操作するデバイスの設定を記載していきます。スイッチのON,OFFだけの操作なら以下のサイトの設定をそのまま利用できます。</p>
+
+<p><a href="https://home-assistant.io/components/switch.command_line/" class="autolink" rel="nofollow noopener" target="_blank">https://home-assistant.io/components/switch.command_line/</a></p>
+
+<p>今回は、「switch」を新たに追加し、ONとOFFをPythonのコマンドを実行することで操作できるようにします。</p>
+
+<div class="code-frame" data-lang="yaml">
+<div class="code-lang"><span class="bold">configuration.yaml</span></div>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">(前略)</span>
+<span class="l l-Scalar l-Scalar-Plain">switch</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">platform</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">command_line</span>
+  <span class="l l-Scalar l-Scalar-Plain">switches</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">light</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">command_on</span><span class="p p-Indicator">:</span> <span class="s">"sudo</span><span class="nv"> </span><span class="s">python</span><span class="nv"> </span><span class="s">/home/pi/irm.py</span><span class="nv"> </span><span class="s">-p</span><span class="nv"> </span><span class="s">-f</span><span class="nv"> </span><span class="s">/home/pi/light_on.json"</span>
+      <span class="l l-Scalar l-Scalar-Plain">command_off</span><span class="p p-Indicator">:</span> <span class="s">"sudo</span><span class="nv"> </span><span class="s">python</span><span class="nv"> </span><span class="s">/home/pi/irm.py</span><span class="nv"> </span><span class="s">-p</span><span class="nv"> </span><span class="s">-f</span><span class="nv"> </span><span class="s">/home/pi/light_off.json"</span>
+<span class="l l-Scalar l-Scalar-Plain">(後略)</span>
+</pre></div>
+</div>
+
+<p>command_onとcommand_off部分に、Pythonで赤外線リモコンを操作するコマンドを記載します。Python以外で操作している方は、そのコマンドを記載してください。</p>
+
+<p>HomeAssistantから利用するだけなら本設定で完了です。多くの機器を登録する場合はグループ化など実施したほうが見やすくなりますが、ここでは割愛いたします。</p>
+
+<p>設定ファイルの編集が終わったら、HomeAssistantのサービスを再起動し、再度http://(Raspberry PiのIP):8123にアクセスすると、デバイス設定で追加した項目がトップページに表示されるため、操作できることを確認して完了です。</p>
+
+<h1>
+<span id="2iftttの準備" class="fragment"></span><a href="#2ifttt%E3%81%AE%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>2.IFTTTの準備</h1>
+
+<p>ここまでで、Raspberry PiにインストールしたHomeAssistantから、家電を操作できるようになったと思います。<br>
+続いては、GoogleHomeとHomeAssistantを繋ぐためのサービスとして<a href="https://ifttt.com/" rel="nofollow noopener" target="_blank">IFTTT</a>を設定します。</p>
+
+<p>なお、色々調べると<a href="https://home-assistant.io/components/emulated_hue/" rel="nofollow noopener" target="_blank">Emulated Hue Bridge</a>を利用することでIFTTTを利用せずGoogleHomeと連携できる記事がありますが、あくまで「<a href="http://www2.meethue.com/ja-jp/productdetail/philips-hue-bridge" rel="nofollow noopener" target="_blank">Philips Hueブリッジ</a>」を持っている方のみ実施可能となっております。<br>
+※昔は出来たらしいですが、今（2017/10/7現在）は出来なくなってます</p>
+
+<h2>
+<span id="前々準備" class="fragment"></span><a href="#%E5%89%8D%E3%80%85%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>前々準備</h2>
+
+<p>さて、IFTTTからHomeAssistantを操作できるように設定するにあたり、以下の条件が必要です。<br>
+・HomeAssistantがインストールされたRaspberry Piがインターネットから接続可能なこと<br>
+　→固定IPおよび、任意のポート（おすすめしないですがデフォルト設定を利用する場合は8123）が開いている必要があります。</p>
+
+<p>外部から接続するための固定IPについては、<a href="https://www.mydns.jp/" rel="nofollow noopener" target="_blank">MyDNS</a>等無料で利用できるDNSサービスを利用することで解決できます。</p>
+
+<p>ポートについては、ご家庭のルータのポートを解放しておく必要があります。デフォルトでは8123ポートを開けることになりますが、ポートマッピング等で任意のポートを解放して利用した方がいいかもしれません。</p>
+
+<p>※外部からRaspberry Piへアクセスできるよう設定することは、セキュリティ上リスクがあります。実施には十分注意し、自己責任でお願いします。本設定で発生した被害について責任を負いかねます。</p>
+
+<h2>
+<span id="ifttt利用に伴うhomeassistantの設定" class="fragment"></span><a href="#ifttt%E5%88%A9%E7%94%A8%E3%81%AB%E4%BC%B4%E3%81%86homeassistant%E3%81%AE%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>IFTTT利用に伴うHomeAssistantの設定</h2>
+
+<p>まずは、<a href="https://ifttt.com/discover" rel="nofollow noopener" target="_blank">IFTTT</a>にログインします。アカウントがない方は新規作成を実施します。</p>
+
+<p>以降は以下のページを参考に設定していきます。</p>
+
+<p><a href="https://home-assistant.io/components/ifttt/" class="autolink" rel="nofollow noopener" target="_blank">https://home-assistant.io/components/ifttt/</a></p>
+
+<p>ログイン後、<a href="https://ifttt.com/services/maker_webhooks/settings" rel="nofollow noopener" target="_blank">Webhooks settings</a>を開き、APIキーを取得します。（例えば<a href="https://maker.ifttt.com/use/MYAPIKEY%E3%81%A7%E3%81%82%E3%82%8C%E3%81%B0%E3%80%8CMYAPIKEY%E3%80%8D%E9%83%A8%E5%88%86%EF%BC%89" class="autolink" rel="nofollow noopener" target="_blank">https://maker.ifttt.com/use/MYAPIKEYであれば「MYAPIKEY」部分）</a></p>
+
+<p>取得したAPIキーをHomeAssistantの設定ファイルに記載します。（本設定は今後HomeAssistantからIFTTTを操作する場合に必要のため）</p>
+
+<div class="code-frame" data-lang="yaml">
+<div class="code-lang"><span class="bold">configuration.yaml</span></div>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">(前略)</span>
+<span class="l l-Scalar l-Scalar-Plain">ifttt</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">key</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+<span class="l l-Scalar l-Scalar-Plain">(後略)</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="iftttレシピ作成に必要な情報収集" class="fragment"></span><a href="#ifttt%E3%83%AC%E3%82%B7%E3%83%94%E4%BD%9C%E6%88%90%E3%81%AB%E5%BF%85%E8%A6%81%E3%81%AA%E6%83%85%E5%A0%B1%E5%8F%8E%E9%9B%86"><i class="fa fa-link"></i></a>IFTTTレシピ作成に必要な情報収集</h2>
+
+<p>続いて、レシピを作成するにあたり必要な情報を確認します。<br>
+IFTTTからHomeAssistantを操作するためには、APIURLを利用して機能を呼び出します。そのために必要な情報を取得していきます。</p>
+
+<p>APIURLについての詳細は以下のサイトをご確認ください。<br>
+<a href="https://home-assistant.io/developers/rest_api/" class="autolink" rel="nofollow noopener" target="_blank">https://home-assistant.io/developers/rest_api/</a><br>
+本サイトで紹介するAPIURLに関しては上記サイトをコピペしてます。</p>
+
+<p><strong>①操作すべきデバイスのドメイン、サービス名の値を取得する</strong><br>
+HomeAssistantでは、登録したデバイスに対して、そのドメインとサービス名が定義されています。APIを利用する場合はその名称を確認する必要があります。確認方法は以下のコマンドを実行します。</p>
+
+<p><code>curl -X GET -H "x-ha-access: YOURPASS" \<br>
+-H "Content-Type: application/json" \<br>
+http://(Raspberry PiのIP):8123/api/services</code></p>
+
+<p>出力結果はドメインとそれに含まれるサービスが記載されています。本記事の設定の場合、<br>
+・ドメイン名：switch<br>
+・電気を付けるサービス：turn_on<br>
+・電気を消すサービス：turn_off<br>
+ここで、サービス名は設定ファイルに記載したcommand_on出ではないことに注意してください。実際の値は各自の環境で実行した値を確認してください。</p>
+
+<p><strong>②操作すべきデバイスのentity_idの値を取得する</strong><br>
+続いて、APIを利用するために必要なentity_idを取得します。確認方法は以下のコマンドです。</p>
+
+<p><code>curl -X GET -H "x-ha-access: YOURPASS" \<br>
+-H "Content-Type: application/json" \<br>
+http://(Raspberry PiのIP):8123/api/states</code></p>
+
+<p>出力結果は、entity_id、state、last_changed、およびattributesが表示されます。本記事の設定の場合<br>
+・entity_id：switch.light</p>
+
+<h2>
+<span id="iftttレシピの作成" class="fragment"></span><a href="#ifttt%E3%83%AC%E3%82%B7%E3%83%94%E3%81%AE%E4%BD%9C%E6%88%90"><i class="fa fa-link"></i></a>IFTTTレシピの作成</h2>
+
+<p>情報取得が完了したら、<a href="https://ifttt.com/discover" rel="nofollow noopener" target="_blank">IFTTT</a>のレシピを作成していきます。<a href="https://ifttt.com/create" rel="nofollow noopener" target="_blank">新規レシピの作成ページ</a>に移動します。</p>
+
+<p>ページの「this」部分を押して、レシピの作成を行います。</p>
+
+<p><strong>①GoogleHomeからIFTTTを呼び出せるようにする</strong><br>
+ここまで一切出てこなかったGoogleHomeが登場です。といっても、スピーカー自体は設定の必要はありません。<br>
+先ほど開いたIFTTTのページ上部の検索部分に「Google Assistant」と入力すると、「Google Assistant」が表示されるので、選択します。<br>
+続いて、triggerを設定します。今回は、簡単なキーワード「電気つけて」とお願いしたら電気を付けてもらうようにしたいので、「Say a simple phrase」を選択します。<br>
+・What do you want to say?（必須）<br>
+　→本レシピを実行するためのキーワードを記入します。ここでは「電気つけて」を記入します。</p>
+
+<p>・What's another way to say it? (optional)、And another way? (optional)<br>
+　→ほかの言い回しをする場合に記載します。</p>
+
+<p>・What do you want the Assistant to say in response?<br>
+　→GoogleHomeスピーカーからの返答を記載します。ここでは「電気をつけました」と入力します</p>
+
+<p>・Language<br>
+　→Japaneseを選択します。</p>
+
+<p>すべて入力完了したらSAVEして完了です。</p>
+
+<p><strong>②IFTTTからHomeAssistantを呼び出せるようにする</strong><br>
+続いて、ページの「that」部分を押して、レシピの作成を行います。IFTTTのページ上部の検索部分に「webhooks」と入力すると、「webhooks」が表示されるので、選択します。triggerは「Make a web request」のみのため、選択します。</p>
+
+<p>ここからの設定は再度以下のサイトを参考に設定していきます。</p>
+
+<p><a href="https://home-assistant.io/components/ifttt/" class="autolink" rel="nofollow noopener" target="_blank">https://home-assistant.io/components/ifttt/</a></p>
+
+<p>・URL<br>
+URLフィールドには、API URLを記入します。フォーマットは以下の通りです。<br>
+「http://(Raspberry Piの外部から接続可能なIPまたはDNS名):ポート/api/services/(domain名)/（service名）?api_password=YOURPASS」<br>
+本記事の例では以下の通りとなります。<br>
+「http://(Raspberry PiのIP):8123/api/services/switch/turn_on?api_password=YOURPASS」</p>
+
+<p>・Method<br>
+POSTを選択します。</p>
+
+<p>・Content Type<br>
+application/jsonを選択します。</p>
+
+<p>・Body<br>
+Bodyには以下のフォーマットで入力します。<br>
+「{"entity_id": "YOURENTITY_ID"}」<br>
+本記事では以下の通りとなります。<br>
+「{"entity_id": "switch.light"}」</p>
+
+<p>すべて入力したら、「Create action」を選択して、「Finish」で完了です。</p>
+
+<p><strong>追記</strong><br>
+<strong>予約語によりうまくいかない場合の対処</strong><br>
+GoogleHomeにはいくつか予約語があるみたいで、IFTTTに接続せずに予約語の動作が優先される場合があるみたいです。その場合の対処として<a href="https://support.google.com/googlehome/answer/7382893?hl=ja" rel="nofollow noopener" target="_blank">GoogleHomeのシュートカット</a>を利用すればうまくいきました。ご参考までに。</p>
+
+<p><strong>①IFTTTの「What do you want to say?（必須）」をでたらめな単語で設定する</strong><br>
+通常、ここに設定する言葉は一般的な言葉（いってきます、ただいま、お休み等）にしますが、予約語でうまくいかない場合はでたらめな単語にします。例えば、ただいまと言いたいときに「帰宅しました」等で設定をします。（ふつうはこんな言葉使いしないと思います）</p>
+
+<p><strong>②GoogleHomeアプリ内でショートカットを設定する</strong><br>
+IFTTTのでたらめな単語を設定したら、GoogleHomeアプリのショートカットに登録します。スマートフォンにインストールしているGoogleHomeアプリを開き、デバイス→設定→ショートカットを開きます。既存のものを編集もしくは新規作成をし、先ほど作成したIFTTTレシピと紐付けます。<br>
+ここでは、「OK Google」と言ったらに「ただいま」、「Googleアシスタントによる操作」に「帰宅しました」を入力します。これにより、ただいまと言ったときに裏で「帰宅しました」が認識され、IFTTTのレシピが実行されます。<br>
+<strong>追記終わり</strong></p>
+
+<h1>
+<span id="3googlehomeに話しかける" class="fragment"></span><a href="#3googlehome%E3%81%AB%E8%A9%B1%E3%81%97%E3%81%8B%E3%81%91%E3%82%8B"><i class="fa fa-link"></i></a>3.GoogleHomeに話しかける</h1>
+
+<p>ここまで出来たら、GoogleHomeスピーカーに話しかけてみましょう。「OK,Google、電気つけて」とお願いすると、部屋の電気がつくはずです。</p>
+
+<h1>
+<span id="4最後に" class="fragment"></span><a href="#4%E6%9C%80%E5%BE%8C%E3%81%AB"><i class="fa fa-link"></i></a>4.最後に</h1>
+
+<p>以上でGoogleHomeから部屋に電気を操作できるようになりました。必要に応じてレシピを増やしてあげれば何でもできるようになります。<br>
+ただし、一度外部のサービスを利用するため、部屋の電気がつくまで少し時間差があるのが今後の課題かもしれません。ローカルLANだけで完結できる方法を今後は探して行きたいと思います。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

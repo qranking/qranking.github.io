@@ -1,0 +1,298 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (cokaholic)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (cokaholic さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>cokaholicさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>156</kbd>
+		<a target="_blank" href="https://qiita.com/cokaholic/items/6a8ee3852c8ed28ea2aa">【随時更新】iPhoneX完全対応マニュアル</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-27 19:26:52</center>
+	</td>
+	<td style="width:200px;">
+		@cokaholic<br />(株式会社サイバーエージェント 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/46227/profile-images/1490701946">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Xcode]</b> <b>[iOS]</b> <b>[Swift]</b> <b>[ios11]</b> <b>[iPhoneX]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>この記事は既存、もしくは新規で開発するiOSアプリをiPhoneXに対応するための知見をまとめたものです。<br>
+新しい情報やTipsをコメントいただけると随時更新させていただきますので、よろしくお願いします！</p>
+
+<h2>
+<span id="iphonexについて" class="fragment"></span><a href="#iphonex%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>iPhoneXについて</h2>
+
+<ul>
+<li>2017年9月12日に開催されたApple Special Eventにて発表された最新のiPhone</li>
+<li>顔認証でロック解除ができる「Face ID」を搭載</li>
+<li>
+<strong>ベゼルレスディスプレイ</strong>
+
+<ul>
+<li>今までのデバイスと違って、<strong>四隅が丸くなっていたり、フロントカメラ部分の凹みがディスプレイに被っていたりする</strong>ので、このようなディスプレイに対応するために<strong>セーフエリア</strong>の概念が新しく追加された</li>
+</ul>
+</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/8552738048910cdbe0b67e22bb6db6bb7f68a338/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f64313466663939312d343838622d393266342d353262342d3336653330383735323666352e706e67" target="_blank" rel="nofollow noopener"><img width="750" alt="iPhoneXの凹み" src="https://camo.qiitausercontent.com/8552738048910cdbe0b67e22bb6db6bb7f68a338/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f64313466663939312d343838622d393266342d353262342d3336653330383735323666352e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/46227/d14ff991-488b-92f4-52b4-36e3087526f5.png"></a></p>
+
+<h2>
+<span id="セーフエリアについて" class="fragment"></span><a href="#%E3%82%BB%E3%83%BC%E3%83%95%E3%82%A8%E3%83%AA%E3%82%A2%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>セーフエリアについて</h2>
+
+<ul>
+<li>AppleがiOS11から導入した概念</li>
+<li>ナビゲーションバーやステータスバーなどの外側のUIに被らない安全な領域を取得できる</li>
+<li>使用するには<strong>Xcode9+、iOS11+ SDK</strong>が必要</li>
+<li>セーフエリアの領域やマージン幅については<a href="https://qiita.com/usagimaru">usagimaruさん</a>の以下の記事がとても参考になる
+
+<ul>
+<li><a href="https://qiita.com/usagimaru/items/761e9a5f3d78b1939df8" id="reference-1f116f39fc3715775c22">iPhone Xのセーフエリアやマージン幅について - Qiita</a></li>
+</ul>
+</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/f2de12689f946fff8a2d8fe17fbce74ee7a44301/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f32316334386135632d663136382d626134662d333765372d6134316263303337396436622e706e67" target="_blank" rel="nofollow noopener"><img width="750" alt="セーフエリア" src="https://camo.qiitausercontent.com/f2de12689f946fff8a2d8fe17fbce74ee7a44301/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f32316334386135632d663136382d626134662d333765372d6134316263303337396436622e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/46227/21c48a5c-f168-ba4f-37e7-a41bc0379d6b.png"></a></p>
+
+<h1>
+<span id="iphonex対応-tips集" class="fragment"></span><a href="#iphonex%E5%AF%BE%E5%BF%9C-tips%E9%9B%86"><i class="fa fa-link"></i></a>iPhoneX対応 Tips集</h1>
+
+<p>ここからは対応するためのTipsを紹介していきます。</p>
+
+<h2>
+<span id="storyboardでセーフエリアを有効にするには" class="fragment"></span><a href="#storyboard%E3%81%A7%E3%82%BB%E3%83%BC%E3%83%95%E3%82%A8%E3%83%AA%E3%82%A2%E3%82%92%E6%9C%89%E5%8A%B9%E3%81%AB%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF"><i class="fa fa-link"></i></a>Storyboardでセーフエリアを有効にするには</h2>
+
+<ol>
+<li>任意のStoryboardを開く</li>
+<li>右側にあるInterface Builderのインスペクタを開く</li>
+<li>「<strong>Use Safe Area Layout Guides</strong>」のチェックをONにする</li>
+<li>セーフエリア(UILayoutGuide) が追加される</li>
+</ol>
+
+<p><a href="https://camo.qiitausercontent.com/2ad1a5f2aa08b4dafa4d46843a5efdc44797fe15/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f36663532653030312d366633642d643936652d623262612d3737373539613435353032302e706e67" target="_blank" rel="nofollow noopener"><img width="300" alt="Use Safe Area Layout Guidesのチェッカー" src="https://camo.qiitausercontent.com/2ad1a5f2aa08b4dafa4d46843a5efdc44797fe15/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f36663532653030312d366633642d643936652d623262612d3737373539613435353032302e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/46227/6f52e001-6f3d-d96e-b2ba-77759a455020.png"></a></p>
+
+<ul>
+<li>セーフエリアを有効にしていなかったStoryboardでセーフエリアを有効にすると、Top Layout GuideやBottom Layout Guideに接続していたビューは自動でセーフエリアのTop、Bottomに差し替えてくれる</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/2f234e5d00a0749fac1285e31cb43d7368359d4e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f35643662393439662d306633612d393761382d316564662d3062313865346163373764642e706e67" target="_blank" rel="nofollow noopener"><img width="750" alt="セーフエリアの適用前後" src="https://camo.qiitausercontent.com/2f234e5d00a0749fac1285e31cb43d7368359d4e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f35643662393439662d306633612d393761382d316564662d3062313865346163373764642e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/46227/5d6b949f-0f3a-97a8-1edf-0b18e4ac77dd.png"></a></p>
+
+<h2>
+<span id="ソースコード上からセーフエリアを取得したい" class="fragment"></span><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%E4%B8%8A%E3%81%8B%E3%82%89%E3%82%BB%E3%83%BC%E3%83%95%E3%82%A8%E3%83%AA%E3%82%A2%E3%82%92%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%81%84"><i class="fa fa-link"></i></a>ソースコード上からセーフエリアを取得したい</h2>
+
+<ul>
+<li>iOS11からは上記のStoryboardでセーフエリアを有効にしたときに追加されるUILayoutGuideがUIViewのプロパティに <a href="https://developer.apple.com/documentation/uikit/uiview/2891102-safearealayoutguide" rel="nofollow noopener" target="_blank"><strong>safeAreaLayoutGuide (UILayoutGuide)</strong></a> として追加されている</li>
+<li>iOS11からはUIViewのプロパティに <a href="https://developer.apple.com/documentation/uikit/uiview/2891103-safeareainsets" rel="nofollow noopener" target="_blank"><strong>safeAreaInsets (UIEdgeInsets)</strong></a> が追加されていて、そこからセーフエリアのマージンを取得できる</li>
+<li>iOS11+しか使えないプロパティのため、<strong> #available(iOS 11, *) での分岐</strong>が必要</li>
+<li>以下の<a href="https://qiita.com/hituziando">hituziandoさん</a>の記事によると、UIViewControllerのライフサイクルで一番最初にsafeAreaInsetsが確定するのは<strong>viewWillLayoutSubviews</strong>
+
+<ul>
+<li><a href="https://qiita.com/hituziando/items/e5873b5bfa42247071e6" id="reference-1beec3824e77ae0c015c">【iOS11】safeAreaInsetsの値が取得できるタイミング</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">ViewController.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">import</span> <span class="nc">UIKit</span>
+
+<span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewWillLayoutSubviews</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">viewWillLayoutSubviews</span><span class="p">()</span>
+
+        <span class="c1">// iOS11かどうかで分岐する</span>
+        <span class="kd">let</span> <span class="nv">safeAreaInsets</span><span class="p">:</span> <span class="bp">UIEdgeInsets</span>
+        <span class="k">if</span> <span class="cp">#available</span><span class="p">(</span><span class="cp">iOS</span> <span class="mi">11</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">safeAreaInsets</span> <span class="p">=</span> <span class="n">view</span><span class="p">.</span><span class="n">safeAreaInsets</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">safeAreaInsets</span> <span class="p">=</span> <span class="p">.</span><span class="n">zero</span>
+        <span class="p">}</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">"safeAreaInsets: </span><span class="si">\(</span><span class="n">safeAreaInsets</span><span class="si">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="ソースコード上からセーフエリアの変化を感知したい" class="fragment"></span><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%E4%B8%8A%E3%81%8B%E3%82%89%E3%82%BB%E3%83%BC%E3%83%95%E3%82%A8%E3%83%AA%E3%82%A2%E3%81%AE%E5%A4%89%E5%8C%96%E3%82%92%E6%84%9F%E7%9F%A5%E3%81%97%E3%81%9F%E3%81%84"><i class="fa fa-link"></i></a>ソースコード上からセーフエリアの変化を感知したい</h2>
+
+<ul>
+<li>iOS11からはセーフエリアの変化を感知するために<strong>UIView</strong>に <strong>open func safeAreaInsetsDidChange()</strong> が、<strong>UIViewController</strong>に <strong>open func viewSafeAreaInsetsDidChange()</strong> が追加されている
+
+<ul>
+<li>それぞれ、オーバーライドすることで、メソッド内でセーフエリアの変化を感知できる</li>
+</ul>
+</li>
+<li>このメソッドを便利に使えるようにする拡張方法などは<a href="https://qiita.com/marty-suzuki">marty-suzukiさん</a>の以下の記事が参考になる
+
+<ul>
+<li><a href="https://qiita.com/marty-suzuki/items/f3dcab7624c9079d74ab" id="reference-64cbe7f30f592965c546">safeAreaInsetsの変更を感知する - Qiita</a></li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="セーフエリアだけで切り取るだけのデザインは非推奨" class="fragment"></span><a href="#%E3%82%BB%E3%83%BC%E3%83%95%E3%82%A8%E3%83%AA%E3%82%A2%E3%81%A0%E3%81%91%E3%81%A7%E5%88%87%E3%82%8A%E5%8F%96%E3%82%8B%E3%81%A0%E3%81%91%E3%81%AE%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%81%AF%E9%9D%9E%E6%8E%A8%E5%A5%A8"><i class="fa fa-link"></i></a>セーフエリアだけで切り取るだけのデザインは非推奨</h2>
+
+<ul>
+<li>上下に常に黒いバーが存在するような、セーフエリアで切り取るだけのデザインのアプリは<strong>Appleが提供する標準アプリと矛盾したデザインになってしまうため</strong>、非推奨となっている</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/0563fed586e412a77342ada9a3eba49051c8dde4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f31636261363631382d383737382d653238632d336332622d6433306363663261653962632e706e67" target="_blank" rel="nofollow noopener"><img width="750" alt="切り取るだけは非推奨" src="https://camo.qiitausercontent.com/0563fed586e412a77342ada9a3eba49051c8dde4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f31636261363631382d383737382d653238632d336332622d6433306363663261653962632e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/46227/1cba6618-8778-e28c-3c2b-d30ccf2ae9bc.png"></a></p>
+
+<ul>
+<li>以下の画像のように、<strong>上下の背景とコンテンツが溶け込むような意識</strong>をする必要がある</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/417a95023c7c9a1d9483148b33531df609b1a723/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f63313136343538302d666163612d303566372d376266632d3965633566353632343333662e706e67" target="_blank" rel="nofollow noopener"><img width="750" alt="Appleの提供する標準アプリの例" src="https://camo.qiitausercontent.com/417a95023c7c9a1d9483148b33531df609b1a723/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f63313136343538302d666163612d303566372d376266632d3965633566353632343333662e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/46227/c1164580-faca-05f7-7bfc-9ec5f562433f.png"></a></p>
+
+<h2>
+<span id="必要な箇所でclipstoboundsがtrueになっているかを注意する" class="fragment"></span><a href="#%E5%BF%85%E8%A6%81%E3%81%AA%E7%AE%87%E6%89%80%E3%81%A7clipstobounds%E3%81%8Ctrue%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%82%92%E6%B3%A8%E6%84%8F%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>必要な箇所でclipsToBoundsがtrueになっているかを注意する</h2>
+
+<ul>
+<li>今までのデバイスだと、ディスプレイの外に配置しておけば見えなくなるので、安心して画面外に置いていたビューが、セーフエリアによってあられもない姿にされてしまう</li>
+<li>見切れさせたくない箇所は、しっかりと<strong>clipsToBoundsをtrueに</strong>しておく必要がある</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/092ee2edb8b389823ce8159e536d673cb19b1bb8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f36393037316639662d323835362d663933652d396465322d6134653835313738303531312e706e67" target="_blank" rel="nofollow noopener"><img width="750" alt="clipsToBoundsの見直し" src="https://camo.qiitausercontent.com/092ee2edb8b389823ce8159e536d673cb19b1bb8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f36393037316639662d323835362d663933652d396465322d6134653835313738303531312e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/46227/69071f9f-2856-f93e-9de2-a4e851780511.png"></a></p>
+
+<h2>
+<span id="コンテンツをフルスクリーン表示する際にはアスペクト比を保つ" class="fragment"></span><a href="#%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E3%82%92%E3%83%95%E3%83%AB%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E3%81%AF%E3%82%A2%E3%82%B9%E3%83%9A%E3%82%AF%E3%83%88%E6%AF%94%E3%82%92%E4%BF%9D%E3%81%A4"><i class="fa fa-link"></i></a>コンテンツをフルスクリーン表示する際にはアスペクト比を保つ</h2>
+
+<ul>
+<li>iPhoneXでコンテンツをフルスクリーンで表示する際には、iPhone8を基準にした場合、<strong>左右を切り取って上下を埋めて表示するか、左右を合わせて上下を凹ませて表示するか</strong>して、アスペクト比は保つようにする必要がある</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/b607f4ea8f9f1ea7682887aa56f5685ab9c8f547/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f66623563333866352d366233382d663634302d333636362d6563396362383339383734302e706e67" target="_blank" rel="nofollow noopener"><img width="750" alt="コンテンツをフルスクリーン表示する際にはアスペクト比を保つ" src="https://camo.qiitausercontent.com/b607f4ea8f9f1ea7682887aa56f5685ab9c8f547/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f66623563333866352d366233382d663634302d333636362d6563396362383339383734302e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/46227/fb5c38f5-6b38-f640-3666-ec9cb8398740.png"></a></p>
+
+<h2>
+<span id="iphonexの下のバーを消したい" class="fragment"></span><a href="#iphonex%E3%81%AE%E4%B8%8B%E3%81%AE%E3%83%90%E3%83%BC%E3%82%92%E6%B6%88%E3%81%97%E3%81%9F%E3%81%84"><i class="fa fa-link"></i></a>iPhoneXの下のバーを消したい</h2>
+
+<ul>
+<li>バーの正式名称は<strong>Home Indicator</strong>
+</li>
+<li>iOS11からはHome Indicatorを非表示にするためのメソッド(<code>open func prefersHomeIndicatorAutoHidden() -&gt; Bool</code>)が<strong>UIViewController</strong>に追加されている
+
+<ul>
+<li>オーバーライドしてtrueを返せば、Home Indicatorは<strong>画面に一定時間触らなければ</strong>、自動的に非表示になる</li>
+<li>非表示になってから画面に触れると、Home Indocatorはすぐに表示される</li>
+</ul>
+</li>
+<li>Home Indicatorは基本表示されていないとユーザーに混乱を招くため、画像や動画をフルスクリーン表示する際など、<strong>Home Indocatorが被ることでコンテンツの表示に影響が出てしまう場合以外は非表示にしない</strong>ようにする</li>
+</ul>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">ViewController.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">import</span> <span class="nc">UIKit</span>
+
+<span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">isHiddenHomeIndicator</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">true</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="cp">#available</span><span class="p">(</span><span class="cp">iOS</span> <span class="mi">11</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span> <span class="p">{</span> 
+            <span class="c1">// HomeIndicatorの表示を更新するためのメソッド</span>
+            <span class="cp">setNeedsUpdateOfHomeIndicatorAutoHidden</span><span class="p">()</span> 
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="p">@</span><span class="n">available</span><span class="p">(</span><span class="n">iOS</span> <span class="mi">11</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span>
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">prefersHomeIndicatorAutoHidden</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">isHiddenHomeIndicator</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/1a91adb8d350fcfd4fcdbf8fc71d4412037c994c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f66636264646633642d663339652d356165362d623537612d6262393135643632383164332e676966" target="_blank" rel="nofollow noopener"><img width="750" alt="Home Indicator Auto Hidden" src="https://camo.qiitausercontent.com/1a91adb8d350fcfd4fcdbf8fc71d4412037c994c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34363232372f66636264646633642d663339652d356165362d623537612d6262393135643632383164332e676966" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/46227/fcbddf3d-f39e-5ae6-b57a-bb915d6281d3.gif"></a></p>
+
+<h1>
+<span id="セーフエリアに対応済みのレイアウト系ライブラリ一覧" class="fragment"></span><a href="#%E3%82%BB%E3%83%BC%E3%83%95%E3%82%A8%E3%83%AA%E3%82%A2%E3%81%AB%E5%AF%BE%E5%BF%9C%E6%B8%88%E3%81%BF%E3%81%AE%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E7%B3%BB%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E4%B8%80%E8%A6%A7"><i class="fa fa-link"></i></a>セーフエリアに対応済みのレイアウト系ライブラリ一覧</h1>
+
+<ul>
+<li>
+<a href="https://github.com/robb/Cartography" rel="nofollow noopener" target="_blank">robb/Cartography</a>
+
+<ul>
+<li>
+<a href="https://github.com/yysskk" rel="nofollow noopener" target="_blank">yysskkさん</a>の<a href="https://github.com/robb/Cartography/pull/267" rel="nofollow noopener" target="_blank">プルリク</a>がマージされたver.<code>2.1.0</code>からサポートされている</li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/marty-suzuki/MisterFusion" rel="nofollow noopener" target="_blank">marty-suzuki/MisterFusion</a>
+
+<ul>
+<li>開発者本人の<a href="https://github.com/marty-suzuki/MisterFusion/commit/4e22003dd314fca710353b9e11d27434199f7b62" rel="nofollow noopener" target="_blank">コミット</a>が反映されたver.<code>3.1.0</code>からサポートされている</li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/SnapKit/SnapKit" rel="nofollow noopener" target="_blank">SnapKit/SnapKit</a>
+
+<ul>
+<li>
+<a href="http://snapkit.io/docs/" rel="nofollow noopener" target="_blank">公式ドキュメント</a>にて、safeAreaLayoutGuideへの対応方法が追加されている</li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<span id="参考リンク一覧" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E3%83%AA%E3%83%B3%E3%82%AF%E4%B8%80%E8%A6%A7"><i class="fa fa-link"></i></a>参考リンク一覧</h1>
+
+<ul>
+<li><a href="https://speakerdeck.com/cokaholic/aihuonx-ao-miwoqie-ruka-ao-miwoshi-uka-iphonexdui-ying-falsesusume" rel="nofollow noopener" target="_blank">アイフォンX、凹みを切るか？凹みを使うか？ ~iPhoneX対応のススメ~ - Speaker Deck</a></li>
+<li><a href="https://developer.apple.com/videos/play/fall2017/801/" rel="nofollow noopener" target="_blank">Designing for iPhone X - Fall 2017 - Videos - Apple Developer</a></li>
+<li><a href="https://developer.apple.com/ios/human-interface-guidelines/overview/iphone-x/" rel="nofollow noopener" target="_blank">iPhone X - Overview - iOS Human Interface Guidelines</a></li>
+<li><a href="https://qiita.com/usagimaru/items/761e9a5f3d78b1939df8">iPhone Xのセーフエリアやマージン幅について - Qiita</a></li>
+<li><a href="https://qiita.com/hituziando/items/e5873b5bfa42247071e6">【iOS11】safeAreaInsetsの値が取得できるタイミング - Qiita</a></li>
+<li><a href="https://qiita.com/marty-suzuki/items/f3dcab7624c9079d74ab">safeAreaInsetsの変更を感知する - Qiita</a></li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

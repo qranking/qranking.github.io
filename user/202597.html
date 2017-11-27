@@ -1,0 +1,1318 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (bitrinjani)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (bitrinjani さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>bitrinjaniさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>156</kbd>
+		<a target="_blank" href="https://qiita.com/bitrinjani/items/3ed756da9baf7d171306">ビットコイン自動裁定取引システムを開発・トレードした結果</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-16 20:53:43</center>
+	</td>
+	<td style="width:200px;">
+		@bitrinjani<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/202597/profile-images/1509272555">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Node.js]</b> <b>[Bitcoin]</b> <b>[自動売買]</b> <b>[アービトラージ]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="ビットコインをapiで自動売買する" class="fragment"></span><a href="#%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%82%92api%E3%81%A7%E8%87%AA%E5%8B%95%E5%A3%B2%E8%B2%B7%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>ビットコインをAPIで自動売買する</h1>
+
+<p>ビットコインの自動裁定取引システムのプロトタイプを開発しました。<br>
+以下の取引所に対し、3秒ごとに板情報を解析し、裁定機会があれば注文を送信します。</p>
+
+<ul>
+<li>Bitflyer</li>
+<li>Quoine</li>
+<li>Coincheck</li>
+</ul>
+
+<p>ソースコードを以下に公開しています。</p>
+
+<ul>
+<li>R2(現行バージョン): <a href="https://github.com/bitrinjani/r2" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/bitrinjani/r2</a>
+</li>
+<li>旧バージョン: <a href="https://github.com/bitrinjani/rinjani" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/bitrinjani/rinjani</a> </li>
+</ul>
+
+<p>R2はMac OS, Windows, Linux環境で実行可能です。各取引所に口座開設をし、APIキーを取得すればだれでも実行可能です。ライセンスはMITで、無償で無制限に利用可能です。</p>
+
+<h2>
+<span id="裁定アービトラージ取引で収益をあげられるのか" class="fragment"></span><a href="#%E8%A3%81%E5%AE%9A%E3%82%A2%E3%83%BC%E3%83%93%E3%83%88%E3%83%A9%E3%83%BC%E3%82%B8%E5%8F%96%E5%BC%95%E3%81%A7%E5%8F%8E%E7%9B%8A%E3%82%92%E3%81%82%E3%81%92%E3%82%89%E3%82%8C%E3%82%8B%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>裁定(アービトラージ)取引で収益をあげられるのか?</h2>
+
+<p>ビットコインには、取引所間での価格差を利用した裁定機会が残っています。実際に各取引所で配信されている価格をみると、タイミングによってはかなりの価格差があります。</p>
+
+<p>この価格差を利用して、ある取引所で安く買い、同時に他の取引所で高く売れば、Bitcoinの価格変動にかかわらず、リスクなしに収益を得られることになります。</p>
+
+<p>大半のBitcoin取引所はAPIを公開しており、理論的には一瞬の価格差を利用して、自動取引で継続的に収益を上げることが可能です。仮に価格差が非常に小さかったとしても、10秒単位で繰り返し取引を行うことで累積収益は十分に大きくなる可能性があります。</p>
+
+<p>例えば、10秒に一度裁定機会をみつけ、10円の収益を上げる自動裁定システムを開発したとしましょう。一見たった10円に思えるかもしれませんが、秒速1円の収益です。このシステムを24時間一ヶ月間連続で作動させると60*60*24*30 = 2,592,000、つまり250万以上の収益となります。悪く見積もって1分に10円の収益であっても、月45万となります。</p>
+
+<h2>
+<span id="実際の実行結果" class="fragment"></span><a href="#%E5%AE%9F%E9%9A%9B%E3%81%AE%E5%AE%9F%E8%A1%8C%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>実際の実行結果</h2>
+
+<p>以下は実際にこの自動裁定取引システムを実行したときのスクリーン動画です。</p>
+
+<p><a href="https://camo.qiitausercontent.com/d0966fdbcdf45e7eb9760b5750ae0c3a0f2b9084/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f6c33373870664c444c56666b71796b75732f736f757263652e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d0966fdbcdf45e7eb9760b5750ae0c3a0f2b9084/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f6c33373870664c444c56666b71796b75732f736f757263652e676966" alt="rinjani.gif" data-canonical-src="https://media.giphy.com/media/l378pfLDLVfkqykus/source.gif"></a></p>
+
+<p>約30秒で二回の裁定機会を捉え、66円の収益を上げています。取引所の手数料等を差し引いても、秒速1円以上の収益を上げています。</p>
+
+<p>このことから、ビットコイン市場には十分な裁定機会がある、と結論付けることができます。</p>
+
+<p>しかし、実際にしばらく運用した後、長期運用にはいくつかの現実的な手間とコストが発生することが判明しました。それについては後述します。</p>
+
+<h1>
+<span id="自動裁定取引システムの動作" class="fragment"></span><a href="#%E8%87%AA%E5%8B%95%E8%A3%81%E5%AE%9A%E5%8F%96%E5%BC%95%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AE%E5%8B%95%E4%BD%9C"><i class="fa fa-link"></i></a>自動裁定取引システムの動作</h1>
+
+<h2>
+<span id="裁定取引フロー" class="fragment"></span><a href="#%E8%A3%81%E5%AE%9A%E5%8F%96%E5%BC%95%E3%83%95%E3%83%AD%E3%83%BC"><i class="fa fa-link"></i></a>裁定取引フロー</h2>
+
+<ol>
+<li>3秒ごとに各取引所から板情報(価格・数量ペアのリスト)を取得する。</li>
+<li>現在のBitcoinポジションのネットエクスポージャーが設定された最大値を超えていないかチェックする。超えている場合、システムを停止する。</li>
+<li>各取引所から取得した板情報のうち、裁定取引の対象になりえないものを取り除く。例えば、Bitflyerで現在のポジションが０で、かつ空売りをしない設定の場合、Bitflyerからのビッド(売値)は取り除く。</li>
+<li>最良ビッド(売値)、最良アスク(買値)を計算する。もしそのスプレッドが逆転してない場合(買値が売値より高い場合)、裁定機会は存在しないため、ステップ１に戻る。</li>
+<li>スプレッドが逆転しているとき、期待収益(仮に最良ビッド/最良アスクで売り買いできたときにどれだけの収益が得られるか)を計算する。その値が設定された目標収益を超えている場合、各取引所に指値注文を送信する。</li>
+<li>注文送信後、3秒ごとに各注文が約定したかチェックする。</li>
+<li>もし売り買い注文両方が約定した場合、収益を表示しステップ１に戻る。</li>
+</ol>
+
+<h2>
+<span id="アーキテクチャ概要" class="fragment"></span><a href="#%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>アーキテクチャ概要</h2>
+
+<p><a href="https://camo.qiitausercontent.com/d20531f62027013e2e439fe51095347e63ad5335/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230323539372f63386262353430312d663866312d363833372d613132322d6332373231356238623661612e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d20531f62027013e2e439fe51095347e63ad5335/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230323539372f63386262353430312d663866312d363833372d613132322d6332373231356238623661612e706e67" alt="diagram_ja.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/202597/c8bb5401-f8f1-6837-a122-c27215b8b6aa.png"></a></p>
+
+<h1>
+<span id="インストール方法" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>インストール方法</h1>
+
+<p>1) <a href="https://nodejs.org" rel="nofollow noopener" target="_blank">Node.js</a> 8.5以降をインストール<br>
+2) リポジトリをクローン</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>git clone https://github.com/bitrinjani/r2.git
+</pre></div></div>
+
+<p>3) フォルダr2に移動し、<code>npm install</code>をコンソールで実行</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> r2
+npm install
+</pre></div></div>
+
+<p>4) srcフォルダ内の<code>config_default.json</code>を<code>config.json</code>にリネーム<br>
+5) <code>key</code>、<code>secret</code>フィールドを、各取引所から取得したAPIキー、シークレットに置き換える <br>
+6) 日本語UIにする場合、<code>language</code>フィールドを"en"から"ja"に変更する<br>
+7) コンソールから<code>npm start</code>で起動</p>
+
+<p>なお、旧バージョンは<a href="https://github.com/bitrinjani/rinjani/releases" rel="nofollow noopener" target="_blank">Windwos用のexeファイルを公開</a>しています。いくつかの設定をサポートしていないため、R2(現行バージョン)を利用することをおすすめします。</p>
+
+<h2>
+<span id="設定" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>設定</h2>
+
+<p>設定は<code>config.json</code>ファイルで行います。全体に影響する設定と、各取引所(ブローカー)に対する設定があります。<br>
+設定項目は、裁定取引システムの先駆者である<a href="https://github.com/butor/blackbird" rel="nofollow noopener" target="_blank">Blackbird</a>を参考にしています。</p>
+
+<h3>
+<span id="全体設定" class="fragment"></span><a href="#%E5%85%A8%E4%BD%93%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>全体設定</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>demoMode</td>
+<td>true or false</td>
+<td>真のとき、裁定機会の解析は行うが実際の注文は送らない。</td>
+</tr>
+<tr>
+<td>priceMergeSize</td>
+<td>number</td>
+<td>板情報の細かい価格を集約する。100に設定されているとき、100円刻みにクオートの数量を合計した板情報を再構成し、その板情報に対し裁定機会の計算を行う。</td>
+</tr>
+<tr>
+<td>maxSize</td>
+<td>number</td>
+<td>取引所に送る注文数量の最大値。仮にこの値よりも大きい数量で裁定可能であっても、この設定値の注文を送信する。</td>
+</tr>
+<tr>
+<td>minSize</td>
+<td>number</td>
+<td>取引所に送るオーダー数量の最小値。裁定機会がこの値より小さい数量の場合、取引を行わない。</td>
+</tr>
+<tr>
+<td>minTargetProfit</td>
+<td>number</td>
+<td>最小目標収益。裁定機会の期待収益がこの値より小さい場合、取引を行わない。</td>
+</tr>
+<tr>
+<td>minTargetProfitPercent(R2のみ)</td>
+<td>number</td>
+<td>最小目標収益割合。期待収益の裁定取引の円換算(取引価格*数量)に対する割合(%)がこれよりい小さい場合、取引を行わない。minTargetProfitとminTargetProfitPercentの両方が設定されている場合、両方を上回らない限り取引を行わない。</td>
+</tr>
+<tr>
+<td>iterationInterval</td>
+<td>Millisecond</td>
+<td>裁定プロセスのインターバル。この値が3000に設定されている場合、3秒に一回板情報を取得し裁定機会を探る。</td>
+</tr>
+<tr>
+<td>positionRefreshInterval</td>
+<td>Millisecond</td>
+<td>ポジション更新インターバル。</td>
+</tr>
+<tr>
+<td>sleepAfterSend</td>
+<td>Millisecond</td>
+<td>裁定取引完了後、このミリ秒だけ休止する。</td>
+</tr>
+<tr>
+<td>maxNetExposure</td>
+<td>number</td>
+<td>最大ネットエクスポージャー*。取引所の合計ネットエクスポージャーがこの値を超える場合、システムを停止する。</td>
+</tr>
+<tr>
+<td>maxRetryCount</td>
+<td>number</td>
+<td>裁定取引のオーダーを送信後、注文の約定状態をチェックする最大回数。</td>
+</tr>
+<tr>
+<td>orderStatusCheckInterval</td>
+<td>Millisecond</td>
+<td>裁定取引の注文を送信後、注文の約定状態をチェックするインターバル。</td>
+</tr>
+</tbody>
+</table>
+
+<p>*minTargetProfitPercentの例:<br>
+minTargetProfitPercent: 0.1%<br>
+ベストアスク: 800,000円, 0.3 BTC<br>
+ベストビッド: 801,000円, 0.2 BTC<br>
+-&gt; MID: 800,500円, 期待収益1,000円、目標数量0.2 BTCとなり、収益の割合は1000 / (800500 * 0.2) = 0.0062、つまり0.62%。<br>
+この値はminTargetProfitPercentである0.1%を上回っているので、取引を送信します。</p>
+
+<p>*ここでのネットエクスポージャーとは、各取引所のポジションを合計した"BTC数量"です。一般にはエクスポージャーには数量ではなく割合を指すが、簡略化のため数量としています。例えば、Bitflyerで0.1 BTC, Quoineで0.1 BTC, Coincheckでマイナス0.1 BTC(空売り)のとき、ネットエクスポージャーは 0.1 + 0.1 - 0.1 = 0.1 BTCとなります。仮にMaxNetExposure=0.05と設定されていた場合、0.1 &gt; 0.05のためシステムは停止します。</p>
+
+<h3>
+<span id="取引所設定" class="fragment"></span><a href="#%E5%8F%96%E5%BC%95%E6%89%80%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>取引所設定</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>broker</td>
+<td>Bitflyer, Quoine or Coincheck</td>
+<td>取引所名</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>true or false</td>
+<td>裁定取引の対象とするかどうかの設定</td>
+</tr>
+<tr>
+<td>key</td>
+<td>string</td>
+<td>取引所APIのキーもしくはトークン</td>
+</tr>
+<tr>
+<td>secret</td>
+<td>string</td>
+<td>取引所APIのシークレット</td>
+</tr>
+<tr>
+<td>maxLongPosition</td>
+<td>number</td>
+<td>最大ロングポジション</td>
+</tr>
+<tr>
+<td>maxShortPosition</td>
+<td>number</td>
+<td>最大ショートポジション</td>
+</tr>
+<tr>
+<td>cashMarginType(R2のみ変更可)</td>
+<td>Cash, MarginOpen or NetOut</td>
+<td>オーダータイプ。現金取引、証拠金取引オープン、ネットアウトのどれか。取引所ごとにサポートしているタイプは異なる。下記テーブルを参照。</td>
+</tr>
+<tr>
+<td>commissionPercent(R2のみ)</td>
+<td>number</td>
+<td>取引手数料割合。裁定プロセスが予想利益を計算する際、取引手数料(目標価格 * 目標数量 * (commissionPercent / 100))を期待収益から差し引いた上で、取引を送信するか判断する。</td>
+</tr>
+</tbody>
+</table>
+
+<p>*取引所は最低2つ有効になっている必要があります。</p>
+
+<h3>
+<span id="cashmargintype詳細" class="fragment"></span><a href="#cashmargintype%E8%A9%B3%E7%B4%B0"><i class="fa fa-link"></i></a>cashMarginType詳細</h3>
+
+<table>
+<thead>
+<tr>
+<th>取引所</th>
+<th>サポートされるcashMarginType</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bitflyer</td>
+<td>Cash</td>
+</tr>
+<tr>
+<td>Quoine</td>
+<td>NetOut</td>
+</tr>
+<tr>
+<td>Coincheck</td>
+<td>Cash, MarginOpen, NetOut*</td>
+</tr>
+</tbody>
+</table>
+
+<p>*Coincheckのネットアウトは、取引所APIに存在しない取引タイプのため、アプリケーション内部でどのポジションをクローズするか判断しています。(Quoine APIはネットアウトをネイティブでサポートしています)<br>
+CoincheckのcashMarginTypeをNetOutに設定すると、裁定プロセスはオーダーを送信する前に現在のオープンポジションをチェックします。もしほとんど同じサイズのポジションが見つかれば、そのうち最も古いものに対しクローズオーダーを送信します。(FIFO)<br>
+ここで「ほとんど同じ」とは、1%以内の差異としています。コインチェックは、0.01 BTCの売注文を出すと、発生するポジションの数量が0.010005 BTCなど微妙に違う値になります。この違いを吸収するために1%の差異を許容しています。</p>
+
+<h1>
+<span id="問題点" class="fragment"></span><a href="#%E5%95%8F%E9%A1%8C%E7%82%B9"><i class="fa fa-link"></i></a>問題点</h1>
+
+<h2>
+<span id="取引所の証拠金取引レバレッジ取引の可否" class="fragment"></span><a href="#%E5%8F%96%E5%BC%95%E6%89%80%E3%81%AE%E8%A8%BC%E6%8B%A0%E9%87%91%E5%8F%96%E5%BC%95%E3%83%AC%E3%83%90%E3%83%AC%E3%83%83%E3%82%B8%E5%8F%96%E5%BC%95%E3%81%AE%E5%8F%AF%E5%90%A6"><i class="fa fa-link"></i></a>取引所の証拠金取引(レバレッジ取引)の可否</h2>
+
+<p>取引所によっては、証拠金取引が行えないケースがあります。<br>
+例えば、Bitflyerは証拠金取引を「ビットコインFX」として提供していますが、ビットコイン現物とはまったく異なる価格帯で取引が行われています。ビットコインFXに対しては、シンプルな価格比較では裁定取引が行なえません。<br>
+そのため、Bitflyerに対しては、この自動裁定取引システムはビットコイン現物のみを裁定対象としています。<br>
+レバレッジがかけられないと、ショートポジションが取れない、多額の現金が必要になるなど、継続的な裁定取引の障害となります。</p>
+
+<h2>
+<span id="取引所のapiのスピード品質" class="fragment"></span><a href="#%E5%8F%96%E5%BC%95%E6%89%80%E3%81%AEapi%E3%81%AE%E3%82%B9%E3%83%94%E3%83%BC%E3%83%89%E5%93%81%E8%B3%AA"><i class="fa fa-link"></i></a>取引所のAPIのスピード、品質</h2>
+
+<p>取引所によっては、APIから指値注文を送信後、10秒以上実際の注文が作成されない場合があります。この現象は特にBitflyerで一時的に発生します。これがAPIインフラの遅延なのか、意図的なものなのかは不明ですが、10秒遅れると約定する見込みはほとんどなくなります。</p>
+
+<p>また、取引所によってAPIの品質に非常に大きなばらつきがあります。今回使用した３社だけでなく、７社の口座を開設しAPIの使用感を確認しました。<br>
+使いやすさ、統一性という点では、Bitflyer, Quoineが非常に素晴らしいAPIを提供しています。(上記のようにBitflyerにはスピードの問題がありますが、それはAPI設計ではなくインフラの問題だと思われます)<br>
+それに対し、Bitbank, Bitpointなど、価格取得すら安定的にできないレベルのAPIを提供している取引所も多数あります。<br>
+より多くの取引所を対象にすれば、より多くの裁定機会を見つけられるはずですが、実際に裁定取引に耐える品質のAPIを提供している取引所は多くありません。</p>
+
+<h2>
+<span id="取引所ごとの価格の偏りから派生するポジションの偏り" class="fragment"></span><a href="#%E5%8F%96%E5%BC%95%E6%89%80%E3%81%94%E3%81%A8%E3%81%AE%E4%BE%A1%E6%A0%BC%E3%81%AE%E5%81%8F%E3%82%8A%E3%81%8B%E3%82%89%E6%B4%BE%E7%94%9F%E3%81%99%E3%82%8B%E3%83%9D%E3%82%B8%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E5%81%8F%E3%82%8A"><i class="fa fa-link"></i></a>取引所ごとの価格の偏りから派生するポジションの偏り</h2>
+
+<p>取引所ごとに、価格の高低に偏りがあります。例えば、Bitflyerは安値になる傾向があり、Quoineは高値になる傾向があります。このとき、裁定取引はBitflyerに対し買いを出し、Quoineに対し売りをだすことになります。そして、この傾向が長期間続くとBitflyerではロングポジションが増大していき、Quoineではショートポジションが増大していきます。</p>
+
+<p>各取引所でポジションが偏ると、その分だけ現金・証拠金が多く必要になります。また、偏りをならすために取引所間でBitcoinを移動する必要が出てきます。Bitcoinの移動の手数料は大きくありませんが、移動後の取引所内で売り買いの決済取引のコストが発生します。決済取引のコストは、その取引所のその時点のスプレッドとなり、１BTCあたり1000円以上になることがあります。</p>
+
+<h1>
+<span id="結論" class="fragment"></span><a href="#%E7%B5%90%E8%AB%96"><i class="fa fa-link"></i></a>結論</h1>
+
+<p>自動裁定取引システムである程度の収益を上げることは十分可能です。今後さらに取引所API、取引所システムが洗練されていけば、より効率的に裁定が行えるようになっていくはずです。それに伴い、裁定取引への参入者が増え、各人の裁定収益は減っていくことも予想されます。<br>
+品質の悪いAPIを提供している取引所を逆に自分以外への参入障壁とみなし、あえてそこで裁定取引を行うことで独占的利益を得られるかもしれません。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>bitrinjaniさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>31</kbd>
+		<a target="_blank" href="https://qiita.com/bitrinjani/items/03c37ffa8db9ef51e1df">ビットコイン裁定取引のチャンスを可視化する</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-30 16:14:40</center>
+	</td>
+	<td style="width:200px;">
+		@bitrinjani<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/202597/profile-images/1509272555">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Node.js]</b> <b>[TypeScript]</b> <b>[Bitcoin]</b> <b>[reactjs]</b> <b>[ビットコイン]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="ビットコイン裁定機会を可視化" class="fragment"></span><a href="#%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E8%A3%81%E5%AE%9A%E6%A9%9F%E4%BC%9A%E3%82%92%E5%8F%AF%E8%A6%96%E5%8C%96"><i class="fa fa-link"></i></a>ビットコイン裁定機会を可視化</h1>
+
+<p>GitHub Pagesにビットコイン裁定機会をビジュアライズするサイトを作成しました。<br>
+<a href="https://bitrinjani.github.io/cryptic-analysis/" class="autolink" rel="nofollow noopener" target="_blank">https://bitrinjani.github.io/cryptic-analysis/</a><br>
+<a href="https://camo.qiitausercontent.com/467a92a702c2081009daf58d68b12631f5f0cd5a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230323539372f35396131373861372d303965642d643531632d336139612d3763616366396637653262652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/467a92a702c2081009daf58d68b12631f5f0cd5a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230323539372f35396131373861372d303965642d643531632d336139612d3763616366396637653262652e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/202597/59a178a7-09ed-d51c-3a9a-7cacf9f7e2be.png"></a></p>
+
+<p>このスクリーンショットの瞬間では、Bitflyerで1.75 BTCを471,109円で買い、Quoineで1.75 BTCを475,042円で売れば、裁定収益6,884円が得られることを示しています。</p>
+
+<h1>
+<span id="追記-20171004" class="fragment"></span><a href="#%E8%BF%BD%E8%A8%98-20171004"><i class="fa fa-link"></i></a>追記 (2017/10/04)</h1>
+
+<p>取引所を横断して表示する板画面を追加しました。100円より細かい価格帯はすべて100円台に集約して表示しています。</p>
+
+<p><a href="https://camo.qiitausercontent.com/66049ee63b472bfdd51f7bb4d2e47bedc63a8c92/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230323539372f34663064336136312d393164312d613839352d323366642d3136666536633466396263662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/66049ee63b472bfdd51f7bb4d2e47bedc63a8c92/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230323539372f34663064336136312d393164312d613839352d323366642d3136666536633466396263662e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/202597/4f0d3a61-91d1-a895-23fd-16fe6c4f9bcf.png"></a></p>
+
+<h1>
+<span id="なぜこのwebページを作ったのか" class="fragment"></span><a href="#%E3%81%AA%E3%81%9C%E3%81%93%E3%81%AEweb%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>なぜこのWebページを作ったのか</h1>
+
+<p>前回の記事に書いたとおり、ビットコインの価格は取引所間で大きな差があります。<br>
+しかし、どの取引所で買いどの取引所で売るべきかは、各取引所のサイトを回って確認していると時間がかかり、チャンスを逃してしまいます。<br>
+そこで、各取引所価格をウォッチできるページを作成しました。</p>
+
+<p>また、ビットコイン取引をしている方ならすぐにわかると思いますが、取引所は一見正常に動いているようにみえても、システム障害等で古い価格を配信し続けていることが多々あります。<br>
+この状態の取引所に注文を送信してもまったく約定しないか、最悪の場合は注文自体が作成されません。<br>
+システム障害中の取引所を避けるため、取引所の状態を色で即座に判別できるようにしました。</p>
+
+<h1>
+<span id="サイトの見かた" class="fragment"></span><a href="#%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E8%A6%8B%E3%81%8B%E3%81%9F"><i class="fa fa-link"></i></a>サイトの見かた</h1>
+
+<p>上部のボックスは次を表しています。<br>
+- 左: 最安買い価格(ベストアスク)<br>
+- 右: 最高売り価格(ベストビッド)<br>
+- 中間: ベストアスク、ビッドで裁定取引をしたときの期待収益</p>
+
+<p>その下のグラフでは、各取引所の価格推移を表示しています。<br>
+赤色が売り価格(ビッド)、青色が買い価格です。</p>
+
+<p>最下部は各取引所の稼働状況を表しています。<br>
+- 青: 正常に価格を配信中<br>
+- 黄: 価格の更新に遅れが見られる<br>
+- 赤: 1分以上価格が更新されていない、もしくはAPIで価格が受信できない。この状態の取引所は裁定取引対象から取り除かれ、上部ボックスやグラフに表示されない。</p>
+
+<p>参考までに、アプリケーションの構成は以下です。<br>
+- クライアントサイド: TypeScript + React<br>
+- サーバーサイド: TypeScript + Node<br>
+- インフラ: GitHub Pages, AWS (EC2, API Gateway)</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>bitrinjaniさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>26</kbd>
+		<a target="_blank" href="https://qiita.com/bitrinjani/items/92453dc6b1d8fa52a19a">ビットコイン自動裁定取引システムをC#からNode.js+TypeScriptに移行(Mac OS, Linux対応)</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-28 21:33:04</center>
+	</td>
+	<td style="width:200px;">
+		@bitrinjani<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/202597/profile-images/1509272555">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Node.js]</b> <b>[C#]</b> <b>[TypeScript]</b> <b>[Bitcoin]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="nodejstypescript環境に移植" class="fragment"></span><a href="#nodejstypescript%E7%92%B0%E5%A2%83%E3%81%AB%E7%A7%BB%E6%A4%8D"><i class="fa fa-link"></i></a>Node.js+TypeScript環境に移植</h1>
+
+<p><a href="https://qiita.com/bitrinjani/items/3ed756da9baf7d171306" id="reference-9e1e6646e1ef51312ea2">以前の投稿</a>で紹介したビットコイン自動裁定取引システムをNode.jsに移行しました。</p>
+
+<p>R2 Bitcoin Arbitrager<br>
+<a href="https://github.com/bitrinjani/r2" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/bitrinjani/r2</a></p>
+
+<p>移行した理由は以下の2つです。</p>
+
+<ul>
+<li>Windows以外のOSのサポート (Mac OS, Linux)</li>
+<li>
+<a href="https://qiita.com/bitrinjani/items/03c37ffa8db9ef51e1df" id="reference-47b98b6999a4a1c4d7d7">別の投稿</a>で紹介した<a href="https://bitrinjani.github.io/cryptic-analysis/" rel="nofollow noopener" target="_blank">可視化Web UI</a>との統合(未実装)</li>
+</ul>
+
+<p>数千行のC#をTypeScript/JavaScriptへ書き換えることは、言語仕様のみならず、ランタイムの非同期処理の違いなど予想以上に学ぶことが多く、それは別の投稿で紹介したいと思います。</p>
+
+<h1>
+<span id="インストール方法" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>インストール方法</h1>
+
+<p>1) <a href="https://nodejs.org" rel="nofollow noopener" target="_blank">Node.js</a> 8.5以降をインストール<br>
+2) リポジトリをクローン</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>git clone https://github.com/bitrinjani/r2.git
+</pre></div></div>
+
+<p>3) フォルダr2に移動し、<code>npm install</code>をコンソールで実行</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> r2
+npm install
+</pre></div></div>
+
+<p>4) srcフォルダ内の<code>config_default.json</code>を<code>config.json</code>にリネーム<br>
+5) <code>key</code>、<code>secret</code>フィールドを、各取引所から取得したAPIキー、シークレットに置き換える <br>
+6) 日本語UIにする場合、<code>language</code>フィールドを"en"から"ja"に変更する<br>
+7) コンソールから<code>npm start</code>で起動</p>
+
+<h1>
+<span id="設定" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>設定</h1>
+
+<p>以下の記事を参照。<br>
+<a href="https://qiita.com/bitrinjani/items/3ed756da9baf7d171306#%E8%A8%AD%E5%AE%9A" class="autolink" id="reference-9e1e6646e1ef51312ea2">https://qiita.com/bitrinjani/items/3ed756da9baf7d171306#%E8%A8%AD%E5%AE%9A</a></p>
+
+<h1>
+<span id="r2にあり前バージョンにない機能" class="fragment"></span><a href="#r2%E3%81%AB%E3%81%82%E3%82%8A%E5%89%8D%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%AB%E3%81%AA%E3%81%84%E6%A9%9F%E8%83%BD"><i class="fa fa-link"></i></a>R2にあり前バージョンにない機能</h1>
+
+<h2>
+<span id="売買手数料設定" class="fragment"></span><a href="#%E5%A3%B2%E8%B2%B7%E6%89%8B%E6%95%B0%E6%96%99%E8%A8%AD%E5%AE%9A"><i class="fa fa-link"></i></a>売買手数料設定</h2>
+
+<p>config.json内で各取引所に対し設定すると、予想収益の計算時に売買手数料が考慮されるようになります。以下の例では、bitFlyerの取引に対し0.15%の売買手数料を計算し予想収益から差し引き、その予想収益をもとに取引を送るか決定します。</p>
+
+<div class="code-frame" data-lang="JSON"><div class="highlight"><pre><span></span><span class="err">...</span>
+    <span class="p">{</span>
+      <span class="nt">"broker"</span><span class="p">:</span> <span class="s2">"Bitflyer"</span><span class="p">,</span>
+      <span class="nt">"enabled"</span><span class="p">:</span> <span class="s2">"true"</span><span class="p">,</span>
+      <span class="nt">"key"</span><span class="p">:</span> <span class="s2">"xxxxx"</span><span class="p">,</span>
+      <span class="nt">"secret"</span><span class="p">:</span> <span class="s2">"xxxxx"</span><span class="p">,</span>
+      <span class="nt">"maxLongPosition"</span><span class="p">:</span> <span class="s2">"0.20"</span><span class="p">,</span>
+      <span class="nt">"maxShortPosition"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="nt">"cashMarginType"</span><span class="p">:</span> <span class="s2">"Cash"</span><span class="p">,</span>
+      <span class="nt">"commissionPercent"</span><span class="p">:</span> <span class="mf">0.15</span>
+    <span class="p">}</span><span class="err">,</span>
+<span class="err">...</span>
+</pre></div></div>
+
+<h2>
+<span id="コインチェックの現金取引ネットアウト取引" class="fragment"></span><a href="#%E3%82%B3%E3%82%A4%E3%83%B3%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%81%AE%E7%8F%BE%E9%87%91%E5%8F%96%E5%BC%95%E3%83%8D%E3%83%83%E3%83%88%E3%82%A2%E3%82%A6%E3%83%88%E5%8F%96%E5%BC%95"><i class="fa fa-link"></i></a>コインチェックの現金取引・ネットアウト取引</h2>
+
+<p>コインチェックのcashMarginTypeはこれまでMarginOpenのみサポートしていましたが、Cash, NetOutのサポートを追加しました。</p>
+
+<p>コインチェックのネットアウトは、取引所APIに存在しない取引タイプのため、アプリケーション内部でどのポジションをクローズするか判断しています。(Quoine APIはネットアウトをネイティブでサポートしています)</p>
+
+<p>コインチェックのcashMarginTypeをNetOutに設定すると、裁定プロセスはオーダーを送信する前に現在のオープンポジションをチェックします。もしほとんど同じサイズのポジションが見つかれば、そのうち最も古いものに対しクローズオーダーを送信します。(FIFO)<br>
+ここで「ほとんど同じ」とは、1%以内の差異としています。コインチェックは、0.01 BTCの売注文を出すと、発生するポジションの数量が0.010005 BTCなど微妙に違う値になります。この違いを吸収するために1%の差異を許容しています。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>bitrinjaniさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>20</kbd>
+		<a target="_blank" href="https://qiita.com/bitrinjani/items/fff7e2bf6a2b8be6eac0">各ビットコイン取引所APIの認証で陥りやすいポイント</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-05 18:13:27</center>
+	</td>
+	<td style="width:200px;">
+		@bitrinjani<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/202597/profile-images/1509272555">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Bitcoin]</b> <b>[ビットコイン]</b> <b>[Trading]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="ビットコインapi取引の最初の壁" class="fragment"></span><a href="#%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3api%E5%8F%96%E5%BC%95%E3%81%AE%E6%9C%80%E5%88%9D%E3%81%AE%E5%A3%81"><i class="fa fa-link"></i></a>ビットコインAPI取引の最初の壁</h1>
+
+<p>ビットコイン取引所のAPIを利用しようとして、おそらく殆どの人が最初につまづくのは認証の部分でしょう。<br>
+各取引所で微妙に仕様・作法が異なる上、エラーになっても「認証に失敗しました」などの、なんの手がかりも与えてくれない無慈悲なメッセージが帰ってくるだけです。<br>
+私自身も<a href="https://qiita.com/bitrinjani/items/3ed756da9baf7d171306" id="reference-fe8534b15a076628538f">裁定取引のアプリケーション</a>を作るにあたり、新しい取引所を追加するたびに、認証方式の微妙な違いにぶつかり手間取ってしましました。<br>
+自分の失敗を晒すことで、この記事が今後API取引にトライする方々の助けになればと思います。</p>
+
+<h1>
+<span id="認証のフロー" class="fragment"></span><a href="#%E8%AA%8D%E8%A8%BC%E3%81%AE%E3%83%95%E3%83%AD%E3%83%BC"><i class="fa fa-link"></i></a>認証のフロー</h1>
+
+<p>はじめに、認証の一般的なフローを説明します。<br>
+プログラミング言語にかかわらず、HTTPリクエストを作成するという観点では同じフローになります。</p>
+
+<ol>
+<li>取引所Webサイトからキー、シークレットを発行する。</li>
+<li>各オペレーション(オーダー送信、ポジション取得等)のAPIのURLとパラメータリストを用意する。</li>
+<li>各取引所で定められた方式で各データを連結し、「メッセージ」文字列を作成する。</li>
+<li>メッセージ文字列をシークレットを使ってハッシュ化する。</li>
+<li>適切なContent-Typeヘッダーを設定する。</li>
+<li>その他のHTTPヘッダーを設定する。</li>
+<li>HTTPリクエストを送信する。</li>
+</ol>
+
+<p>どの取引所も、大枠としてはこのフローに従っているのですが、メッセージ文字列の作成方法等、各々で独自の加工が必要になります。<br>
+このフローのどの部分を間違えても、取引所からのエラーレスポンスは何が間違っていたのか教えてくれません。おそらく認証がうまくいかずAPI取引を諦めた人も多数いることかと思います。</p>
+
+<h1>
+<span id="認証方式テーブル" class="fragment"></span><a href="#%E8%AA%8D%E8%A8%BC%E6%96%B9%E5%BC%8F%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB"><i class="fa fa-link"></i></a>認証方式テーブル</h1>
+
+<p>そこで、以下に各取引所の認証方式をテーブルにまとめました。</p>
+
+<table>
+<thead>
+<tr>
+<th>Exchange</th>
+<th>メッセージ内容</th>
+<th>メッセージ連結方法</th>
+<th>ハッシュアルゴリズム</th>
+<th>Content-Typeヘッダー</th>
+<th>その他の必須ヘッダー</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bitflyer</td>
+<td>- Nonce <br>- HTTPメソッド名 <br>- パス: <strong>/v1/me/から始まる文字列</strong>
+</td>
+<td>文字列の連結</td>
+<td>HMAC-SHA256</td>
+<td>application/json</td>
+<td>- ACCESS-KEY<br>- ACCESS-TIMESTAMP <br>- ACCESS-SIGN</td>
+</tr>
+<tr>
+<td>Coincheck</td>
+<td>- Nonce <br>- URL: <strong>httpsから始まるURL全体</strong> <br>- リクエストボディ</td>
+<td>文字列の連結</td>
+<td>HMAC-SHA256</td>
+<td>application/x-www-form-urlencoded</td>
+<td>- ACCESS-KEY <br>- ACCESS-NONCE <br>- ACCESS-SIGNATURE</td>
+</tr>
+<tr>
+<td>Quoine</td>
+<td>- Nonce <br>- パス <br>- キー</td>
+<td><strong>JSON Web Token</strong></td>
+<td>HMAC-SHA256</td>
+<td>application/json</td>
+<td>- <strong>X-Quoine-API-Version (常に“2”)</strong> <br>- X-Quoine-Auth (シグニチャ)</td>
+</tr>
+<tr>
+<td>Zaif</td>
+<td>- Nonce <br>- APIメソッド名 <br>- APIパラメータ</td>
+<td>クエリ文字列</td>
+<td><strong>HMAC-SHA512</strong></td>
+<td>application/x-www-form-urlencoded</td>
+<td>- Key <br>- Sign</td>
+</tr>
+<tr>
+<td>Bitbank</td>
+<td>- Nonce <br>- <strong>パス: /v1から始まる文字列</strong> (GETリクエスト時のみ) <br>- リクエストボディ (POSTリクエスト時のみ)</td>
+<td>文字列の連結</td>
+<td>HMAC-SHA256</td>
+<td>application/json</td>
+<td>- ACCESS-KEY<br>- ACCESS-NONCE<br>- ACCESS-SIGNATURE</td>
+</tr>
+</tbody>
+</table>
+
+<p>太字の部分が私自身がハマったポイントです。<br>
+特に"/v1"等の部分を含むか含まないかは、ドキュメントに記述が見つからず手探りで繰り返し試行して判明しました。<br>
+また、Content-Typeヘッダーもドキュメントに書いていないケースが散見されました。</p>
+
+<h1>
+<span id="quoine-apiの品質" class="fragment"></span><a href="#quoine-api%E3%81%AE%E5%93%81%E8%B3%AA"><i class="fa fa-link"></i></a>Quoine APIの品質</h1>
+
+<p>余談ですが、上記した取引所の中ではQuoineのAPIの品質が最もよいと思います。APIの設計もとてもクリーンで、扱いやすいものとなっています。<br>
+また、レバレッジ取引でネットアウトをサポートしている点など、裁定取引で非常に使いやすい取引所です。<br>
+WebのUIにはやや難がありますが(特に入出金)、個人的にはお気に入りの取引所です。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>bitrinjaniさんの<br />5位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>17</kbd>
+		<a target="_blank" href="https://qiita.com/bitrinjani/items/d60bdac10e5ced126d1a">TypeScriptのリフレクションでJSONの型変換を自動化する</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-20 19:17:42</center>
+	</td>
+	<td style="width:200px;">
+		@bitrinjani<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/202597/profile-images/1509272555">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[JSON]</b> <b>[TypeScript]</b> <b>[es6]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="数値をダブルクォートでくくってjsonで送ってくるwebサービスに対処する" class="fragment"></span><a href="#%E6%95%B0%E5%80%A4%E3%82%92%E3%83%80%E3%83%96%E3%83%AB%E3%82%AF%E3%82%A9%E3%83%BC%E3%83%88%E3%81%A7%E3%81%8F%E3%81%8F%E3%81%A3%E3%81%A6json%E3%81%A7%E9%80%81%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8Bweb%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AB%E5%AF%BE%E5%87%A6%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>数値をダブルクォートでくくってJSONで送ってくるWebサービスに対処する</h1>
+
+<p>たまには純粋に技術的な話を。</p>
+
+<p>今C#でプロトタイプを作った<a href="https://qiita.com/bitrinjani/items/3ed756da9baf7d171306" id="reference-ab089b2f28482bc9c779">ビットコイン自動取引システム</a>をNode.jsに移行しようと試みています。C#の型安全性を保ったまま移植するため、TypeScriptを採用しました。そこでぶつかったのが、外部サービスから受け取ったJSONの型の変換がうまくいかないという問題です。</p>
+
+<p>例えば、以下のシンプルなJavaScriptをみてみましょう。外部サービスがserverResponseのデータをJSON文字列で返してきたとします。</p>
+
+<div class="code-frame" data-lang="JavaScript"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">serverResponse</span> <span class="o">=</span> <span class="sb">`{</span>
+<span class="sb">　　"name": "Milk", </span>
+<span class="sb">　　"price": "200", </span>
+<span class="sb">　　"tax": "10", </span>
+<span class="sb">}`</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">product</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">serverResponse</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">product</span><span class="p">.</span><span class="nx">price</span> <span class="o">+</span> <span class="nx">product</span><span class="p">.</span><span class="nx">tax</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`sum: </span><span class="si">${</span><span class="nx">sum</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> <span class="c1">// "200" + "10" = "20010"⛔️</span>
+</pre></div></div>
+
+<p>JSON.parseでオブジェクトに変換し、価格が200円, 税金が10円で合計額210円、と計算されると思いきや、合計額sumにはなぜか"20010"という文字列が入ってされてしまいました。</p>
+
+<p>この原因は、<strong>外部サービスが数値をダブルクォートでくくって返してきており、JSON.parseはそれを文字列型と認識してしまったこと</strong>です。<br>
+ビットコイン取引所のAPIを使っていると、それぞれの取引所が適当な方法でJSON化した文字列が帰ってきます。価格や数量が文字列になっている取引所APIは私の知る限り複数あります。C#の場合は、静的型付け言語だけあってライブラリがほぼ自動変換してくれるのですが、JavaScriptではそう簡単にはいきません。</p>
+
+<p>この問題を解決するには、明示的に型変換を行うコードを書きます。</p>
+
+<div class="code-frame" data-lang="JavaScript"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">serverResponse</span> <span class="o">=</span> <span class="sb">`{</span>
+<span class="sb">　　"name": "Milk", </span>
+<span class="sb">　　"price": "200", </span>
+<span class="sb">　　"tax": "10", </span>
+<span class="sb">}`</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">product</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">serverResponse</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">product</span><span class="p">.</span><span class="nx">price</span><span class="p">)</span> <span class="o">+</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">product</span><span class="p">.</span><span class="nx">tax</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`sum: </span><span class="si">${</span><span class="nx">sum</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> <span class="c1">// 200 + 10 = 210👍</span>
+</pre></div></div>
+
+<p>プロパティ2つ程度なら上記のように明示的にキャストすればよいのですが、これが数十プロパティを持つ数十クラスとなると、何百行にもなり不具合の温床となります。</p>
+
+<h1>
+<span id="typescriptで型指定すると" class="fragment"></span><a href="#typescript%E3%81%A7%E5%9E%8B%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E3%81%A8"><i class="fa fa-link"></i></a>TypeScriptで型指定すると。。。</h1>
+
+<p>これをTypeScriptで型に当てはめれば自動変換してくれるはず、と期待して以下を実行してみると、number型に指定しているのにもかかわらず文字列型として連結されてしまいます。</p>
+
+<div class="code-frame" data-lang="TypeScript"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Product</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+  <span class="nx">price</span>: <span class="kt">number</span><span class="p">;</span>
+  <span class="nx">tax</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">serverResponse</span> <span class="o">=</span> <span class="err">`</span><span class="p">{</span><span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Milk"</span><span class="p">,</span> <span class="s2">"price"</span><span class="o">:</span> <span class="s2">"200"</span><span class="p">,</span> <span class="s2">"tax"</span><span class="o">:</span> <span class="s2">"10"</span><span class="p">}</span><span class="err">`</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">product</span>: <span class="kt">Product</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">serverResponse</span><span class="p">)</span> <span class="kr">as</span> <span class="nx">Product</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">product</span><span class="p">.</span><span class="nx">price</span> <span class="o">+</span> <span class="nx">product</span><span class="p">.</span><span class="nx">tax</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="nx">sum</span>: <span class="kt">$</span><span class="p">{</span><span class="nx">sum</span><span class="p">}</span><span class="err">`</span><span class="p">);</span> <span class="c1">// "200" + "10" = "20010"⛔️</span>
+</pre></div></div>
+
+<p>この原因は、TypeScriptの"as Product"は型キャスト(型変換)ではなく、型アサーションにすぎないためです。ざっくりと違いをまとめると以下になります。</p>
+
+<ul>
+<li>型キャスト: 実行時に型変換を強制し、実行時エラーを抑制する。</li>
+<li>型アサーション: コンパイラに型を指示して、コンパイルエラーを抑制する。</li>
+</ul>
+
+<p>TypeScriptのJavaScriptへコンパイルすると、TypeScriptで指定していた型情報はなくなります。実行時にはその型情報を使う方法はないのか、、と諦めかけましたが、いろいろと試した結果、ESの新機能のデコレータと仕様策定中のリフレクションで解決できることがわかりました。</p>
+
+<h1>
+<span id="typeconverterクラスの使用方法" class="fragment"></span><a href="#typeconverter%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%AE%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>TypeConverterクラスの使用方法</h1>
+
+<p>実装方法は後で説明するとして、実際の使い方を先に示します。</p>
+
+<div class="code-frame" data-lang="TypeScript"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">cast</span><span class="p">,</span> <span class="nx">TypeConverter</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./TypeConverter'</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">Product</span> <span class="kr">extends</span> <span class="nx">TypeConverter</span> <span class="p">{</span> 
+  <span class="kd">@cast</span> <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+  <span class="kd">@cast</span> <span class="nx">price</span>: <span class="kt">number</span><span class="p">;</span>
+  <span class="kd">@cast</span> <span class="nx">tax</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">serverResponse</span> <span class="o">=</span> <span class="err">`</span><span class="p">{</span><span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Milk"</span><span class="p">,</span> <span class="s2">"price"</span><span class="o">:</span> <span class="s2">"200"</span><span class="p">,</span> <span class="s2">"tax"</span><span class="o">:</span> <span class="s2">"10"</span><span class="p">}</span><span class="err">`</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">product</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Product</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">serverResponse</span><span class="p">));</span>
+<span class="kr">const</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">product</span><span class="p">.</span><span class="nx">price</span> <span class="o">+</span> <span class="nx">product</span><span class="p">.</span><span class="nx">tax</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="nx">sum</span>: <span class="kt">$</span><span class="p">{</span><span class="nx">sum</span><span class="p">}</span><span class="err">`</span><span class="p">);</span> <span class="c1">// 200 + 10 = 210👍</span>
+</pre></div></div>
+
+<p>使い方は以下です。<br>
+1. 対象のクラスにTypeConverterを継承させる<br>
+2. 各プロパティに<a href="/cast" class="user-mention js-hovercard" title="cast" data-hovercard-target-type="user" data-hovercard-target-name="cast">@cast</a>デコレーターをつける<br>
+3. JSON.parseの結果をコンストラクタでくくる</p>
+
+<p>これだけで、TypeScriptで指定した型に自動的に変換されます。</p>
+
+<h1>
+<span id="typeconverterの実装" class="fragment"></span><a href="#typeconverter%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>TypeConverterの実装</h1>
+
+<p>では、TypeConverterの実装をみてみましょう。そのコードはたった47行です。</p>
+
+<div class="code-frame" data-lang="TypeScript"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="s1">'reflect-metadata'</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">cast</span><span class="p">(...</span><span class="nx">args</span>: <span class="kt">any</span><span class="p">[])</span><span class="o">:</span> <span class="nx">any</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nx">target</span>: <span class="kt">any</span><span class="p">,</span> <span class="nx">propKey</span>: <span class="kt">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nx">Reflect</span><span class="p">.</span><span class="nx">defineMetadata</span><span class="p">(</span><span class="s1">'custom:type'</span><span class="p">,</span> <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">target</span><span class="p">,</span> <span class="nx">propKey</span><span class="p">);</span> <span class="p">};</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">element</span><span class="p">(...</span><span class="nx">types</span>: <span class="kt">Function</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="nx">target</span>: <span class="kt">any</span><span class="p">,</span> <span class="nx">propertyKey</span>: <span class="kt">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">metadataKey</span> <span class="o">=</span> <span class="s1">'custom:element-type0'</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">type</span> <span class="nx">of</span> <span class="nx">types</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">Reflect</span><span class="p">.</span><span class="nx">defineMetadata</span><span class="p">(</span><span class="nx">metadataKey</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">target</span><span class="p">,</span> <span class="nx">propertyKey</span><span class="p">);</span>
+      <span class="nx">metadataKey</span> <span class="o">=</span> <span class="nx">metadataKey</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(\d+)$/</span><span class="p">,</span> <span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">p1</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="err">`</span><span class="nx">$</span><span class="p">{</span><span class="nb">Number</span><span class="p">(</span><span class="nx">p1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="err">`</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">TypeConverter</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">source</span>: <span class="kt">any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">properties</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyNames</span><span class="p">(</span><span class="nx">source</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">propertyKey</span> <span class="nx">of</span> <span class="nx">properties</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="nx">designType</span> <span class="o">=</span> <span class="nx">Reflect</span><span class="p">.</span><span class="nx">getMetadata</span><span class="p">(</span><span class="s1">'design:type'</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">propertyKey</span><span class="p">);</span>
+      <span class="kr">const</span> <span class="nx">customType</span> <span class="o">=</span> <span class="nx">Reflect</span><span class="p">.</span><span class="nx">getMetadata</span><span class="p">(</span><span class="s1">'custom:type'</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">propertyKey</span><span class="p">);</span>
+      <span class="kr">const</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">customType</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="o">?</span> <span class="nx">customType</span> : <span class="kt">designType</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">[</span><span class="nx">propertyKey</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">convert</span><span class="p">(</span><span class="nx">source</span><span class="p">[</span><span class="nx">propertyKey</span><span class="p">],</span> <span class="nx">propertyKey</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nx">convert</span><span class="p">(</span><span class="nx">source</span>: <span class="kt">any</span><span class="p">,</span> <span class="nx">propertyKey</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">type</span>: <span class="kt">any</span><span class="p">,</span> <span class="nx">depth</span>: <span class="kt">number</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">source</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">type</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="s1">'Number'</span><span class="o">:</span>
+        <span class="k">return</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">source</span><span class="p">);</span>
+      <span class="k">case</span> <span class="s1">'String'</span><span class="o">:</span>
+        <span class="k">return</span> <span class="nb">String</span><span class="p">(</span><span class="nx">source</span><span class="p">);</span>
+      <span class="k">case</span> <span class="s1">'Boolean'</span><span class="o">:</span>
+        <span class="k">return</span> <span class="nx">source</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="o">===</span> <span class="s1">'true'</span><span class="p">;</span>
+      <span class="k">case</span> <span class="s1">'Array'</span><span class="o">:</span>
+        <span class="kr">const</span> <span class="nx">elementType</span> <span class="o">=</span> <span class="nx">Reflect</span><span class="p">.</span><span class="nx">getMetadata</span><span class="p">(</span><span class="s1">'custom:element-type'</span> <span class="o">+</span> <span class="nx">depth</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">propertyKey</span><span class="p">)</span> <span class="kr">as</span> <span class="nb">Function</span><span class="p">;</span>
+        <span class="kr">const</span> <span class="nx">nextDepth</span> <span class="o">=</span> <span class="nx">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">source</span> <span class="kr">as</span> <span class="nx">any</span><span class="p">[]).</span><span class="nx">map</span><span class="p">(</span><span class="nx">el</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">convert</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">propertyKey</span><span class="p">,</span> <span class="nx">elementType</span><span class="p">,</span> <span class="nx">nextDepth</span><span class="p">));</span>
+      <span class="k">default</span><span class="o">:</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">type</span><span class="p">(</span><span class="nx">source</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>はじめに、リフレクションのpolyfillである<a href="https://github.com/rbuckton/reflect-metadata" rel="nofollow noopener" target="_blank">reflect-metadata</a>をインポートします。このモジュールは、MicrosoftのTypeScriptチームによって作られており、将来的に標準規格に含まれる可能性があります。</p>
+
+<p>次に、デコレータ<a href="/cast" class="user-mention js-hovercard" title="cast" data-hovercard-target-type="user" data-hovercard-target-name="cast">@cast</a>, <a href="/element" class="user-mention js-hovercard" title="element" data-hovercard-target-type="user" data-hovercard-target-name="element">@element</a>()を定義します。<br>
+基本的に以下の型に対しては、<a href="/cast" class="user-mention js-hovercard" title="cast" data-hovercard-target-type="user" data-hovercard-target-name="cast">@cast</a>を頭につけるだけでOKです。</p>
+
+<ul>
+<li>プリミティブ型 (string, number, boolean)</li>
+<li>TypeScript内で明示的にclass定義されている型</li>
+</ul>
+
+<p>例外的にDate型に対しては、<a href="/cast" class="user-mention js-hovercard" title="cast" data-hovercard-target-type="user" data-hovercard-target-name="cast">@cast</a>(Date)と明示的に指定する必要があります。これは<a href="https://github.com/Microsoft/TypeScript/issues/14643" rel="nofollow noopener" target="_blank">TypeScriptのリフレクションの現時点の制限</a>によるものです。また、<a href="https://github.com/Microsoft/TypeScript/issues/7169" rel="nofollow noopener" target="_blank">配列型に対しても制限</a>があり、要素型を<a href="/element" class="user-mention js-hovercard" title="element" data-hovercard-target-type="user" data-hovercard-target-name="element">@element</a>()で指定する必要があります。これらは次の節で例示します。</p>
+
+<p>次に抽象クラスTypeConverterを定義します。<br>
+コンストラクタ内で、派生クラスのプロパティを列挙し、そのプロパティのコンパイル時型情報を実行時にリフレクションで取得します。<br>
+convertメソッドにその型情報を渡し、それぞれの型に対してカスタムの型変換を実装しています。<strong>ネストされた型や配列型に対しても、再帰的に変換</strong>をしていきます。<br>
+型変換が完了した後、コンストラクタは生成されたオブジェクトを返します。</p>
+
+<h1>
+<span id="typeconverter使用例" class="fragment"></span><a href="#typeconverter%E4%BD%BF%E7%94%A8%E4%BE%8B"><i class="fa fa-link"></i></a>TypeConverter使用例</h1>
+
+<h2>
+<span id="ネストされた型" class="fragment"></span><a href="#%E3%83%8D%E3%82%B9%E3%83%88%E3%81%95%E3%82%8C%E3%81%9F%E5%9E%8B"><i class="fa fa-link"></i></a>ネストされた型</h2>
+
+<p>ネストされた型がある場合、含まれるすべての型に対しTypeConverterを継承し、プロパティにデコレータをつけます。</p>
+
+<div class="code-frame" data-lang="TypeScript"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">cast</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">TypeConverter</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./TypeConverter'</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">Detail</span> <span class="kr">extends</span> <span class="nx">TypeConverter</span> <span class="p">{</span>
+  <span class="kd">@cast</span> <span class="nx">shipping</span>: <span class="kt">number</span><span class="p">;</span>
+  <span class="kd">@cast</span> <span class="nx">address</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">Product</span> <span class="kr">extends</span> <span class="nx">TypeConverter</span> <span class="p">{</span>
+  <span class="kd">@cast</span> <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+  <span class="kd">@cast</span> <span class="nx">price</span>: <span class="kt">number</span><span class="p">;</span>
+  <span class="kd">@cast</span> <span class="nx">tax</span>: <span class="kt">number</span><span class="p">;</span>
+  <span class="kd">@cast</span> <span class="nx">detail</span>: <span class="kt">Detail</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h2>
+<span id="配列型の要素の型を指定するデコレータ" class="fragment"></span><a href="#%E9%85%8D%E5%88%97%E5%9E%8B%E3%81%AE%E8%A6%81%E7%B4%A0%E3%81%AE%E5%9E%8B%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E3%83%87%E3%82%B3%E3%83%AC%E3%83%BC%E3%82%BF"><i class="fa fa-link"></i></a>配列型の要素の型を指定するデコレータ</h2>
+
+<p>現時点では、reflect-metadataは配列型の型情報はArrayとだけしか返さず、その要素の型は返してくれません。(<a href="https://github.com/Microsoft/TypeScript/issues/7169" rel="nofollow noopener" target="_blank">Github issue</a>)<br>
+この制限に対応するため、配列型に対しては<a href="/cast" class="user-mention js-hovercard" title="cast" data-hovercard-target-type="user" data-hovercard-target-name="cast">@cast</a>だけでなく<a href="/element" class="user-mention js-hovercard" title="element" data-hovercard-target-type="user" data-hovercard-target-name="element">@element</a>()デコレータを指定する必要があります。</p>
+
+<div class="code-frame" data-lang="TypeScript"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">cast</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">TypeConverter</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./TypeConverter'</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">Product</span> <span class="kr">extends</span> <span class="nx">TypeConverter</span> <span class="p">{</span>
+  <span class="kd">@cast</span> <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+  <span class="kd">@cast</span> <span class="nx">price</span>: <span class="kt">number</span><span class="p">;</span>
+  <span class="kd">@cast</span> <span class="nx">tax</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">OrderList</span> <span class="kr">extends</span> <span class="nx">TypeConverter</span> <span class="p">{</span>
+  <span class="kd">@cast</span> <span class="kd">@element</span><span class="p">(</span><span class="nx">Product</span><span class="p">)</span> <span class="nx">orders</span>: <span class="kt">Product</span><span class="p">[];</span> <span class="c1">// &lt;--- 配列の要素型を指定</span>
+  <span class="kd">@cast</span><span class="p">(</span><span class="nb">Date</span><span class="p">)</span> <span class="nx">dueDate</span>: <span class="kt">Date</span><span class="p">;</span>                 <span class="c1">// &lt;--- Date型に対しては@cast(Date)とする</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">serverResponse</span> <span class="o">=</span> <span class="err">`</span><span class="p">{</span>
+  <span class="s2">"orders"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Milk"</span><span class="p">,</span> <span class="s2">"price"</span><span class="o">:</span> <span class="s2">"200"</span><span class="p">,</span> <span class="s2">"tax"</span><span class="o">:</span> <span class="s2">"10"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Water"</span><span class="p">,</span> <span class="s2">"price"</span><span class="o">:</span> <span class="s2">"50"</span><span class="p">,</span> <span class="s2">"tax"</span><span class="o">:</span> <span class="s2">"5"</span><span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"dueDate"</span><span class="o">:</span> <span class="s2">"2017-10-25T06:28:08Z"</span>
+<span class="p">}</span><span class="err">`</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">products</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OrderList</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">serverResponse</span><span class="p">));</span>
+</pre></div></div>
+
+<h2>
+<span id="トップレベルが配列型のケース" class="fragment"></span><a href="#%E3%83%88%E3%83%83%E3%83%97%E3%83%AC%E3%83%99%E3%83%AB%E3%81%8C%E9%85%8D%E5%88%97%E5%9E%8B%E3%81%AE%E3%82%B1%E3%83%BC%E3%82%B9"><i class="fa fa-link"></i></a>トップレベルが配列型のケース</h2>
+
+<p>トップレベルが配列型で、その中にオブジェクトを含むケースは、mapで変換可能です。</p>
+
+<div class="code-frame" data-lang="TypeScript"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">cast</span><span class="p">,</span> <span class="nx">TypeConverter</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./TypeConverter'</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">Product</span> <span class="kr">extends</span> <span class="nx">TypeConverter</span> <span class="p">{</span>
+  <span class="kd">@cast</span> <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+  <span class="kd">@cast</span> <span class="nx">price</span>: <span class="kt">number</span><span class="p">;</span>
+  <span class="kd">@cast</span> <span class="nx">tax</span>: <span class="kt">number</span><span class="p">;</span>
+  <span class="kd">@cast</span><span class="p">(</span><span class="nb">Date</span><span class="p">)</span> <span class="nx">date</span>: <span class="kt">Date</span><span class="p">;</span>  
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">serverResponse</span> <span class="o">=</span> <span class="err">`</span><span class="p">[</span>
+  <span class="p">{</span><span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Milk"</span><span class="p">,</span> <span class="s2">"price"</span><span class="o">:</span> <span class="s2">"200"</span><span class="p">,</span> <span class="s2">"tax"</span><span class="o">:</span> <span class="s2">"10"</span><span class="p">,</span> <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2017-10-20T06:28:08Z"</span><span class="p">},</span>
+  <span class="p">{</span><span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Water"</span><span class="p">,</span> <span class="s2">"price"</span><span class="o">:</span> <span class="s2">"50"</span><span class="p">,</span> <span class="s2">"tax"</span><span class="o">:</span> <span class="s2">"5"</span><span class="p">,</span> <span class="s2">"date"</span><span class="o">:</span> <span class="s2">"2017-10-20T06:28:08Z"</span><span class="p">}</span>
+<span class="p">]</span><span class="err">`</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">products</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">serverResponse</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">Product</span><span class="p">(</span><span class="nx">x</span><span class="p">));</span>
+</pre></div></div>
+
+<h2>
+<span id="多次元配列のケース" class="fragment"></span><a href="#%E5%A4%9A%E6%AC%A1%E5%85%83%E9%85%8D%E5%88%97%E3%81%AE%E3%82%B1%E3%83%BC%E3%82%B9"><i class="fa fa-link"></i></a>多次元配列のケース</h2>
+
+<p><a href="/element" class="user-mention js-hovercard" title="element" data-hovercard-target-type="user" data-hovercard-target-name="element">@element</a>()は、多次元配列対応のため可変長引数を受け取ります。二次元配列の場合は、<a href="/element" class="user-mention js-hovercard" title="element" data-hovercard-target-type="user" data-hovercard-target-name="element">@element</a>(Array, &lt;要素型&gt;)と指定します。</p>
+
+<div class="code-frame" data-lang="TypeScript"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Pair</span> <span class="kr">extends</span> <span class="nx">TypeConverter</span> <span class="p">{</span>
+  <span class="kd">@cast</span> <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+  <span class="kd">@cast</span> <span class="nx">n</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">class</span> <span class="nx">C</span> <span class="kr">extends</span> <span class="nx">TypeConverter</span> <span class="p">{</span>
+  <span class="kd">@cast</span> <span class="kd">@element</span><span class="p">(</span><span class="nb">Array</span><span class="p">,</span> <span class="nx">Pair</span><span class="p">)</span> <span class="nx">arr</span>: <span class="kt">Pair</span><span class="p">[][];</span>
+<span class="p">}</span>
+<span class="kr">const</span> <span class="nx">s</span> <span class="o">=</span> <span class="err">`</span><span class="p">{</span> 
+  <span class="s2">"arr"</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">[</span> <span class="p">{</span> <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"abc"</span><span class="p">,</span> <span class="s2">"n"</span><span class="o">:</span> <span class="s2">"123"</span> <span class="p">},</span> <span class="p">{</span> <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"def"</span><span class="p">,</span> <span class="s2">"n"</span><span class="o">:</span> <span class="s2">"999"</span> <span class="p">}</span> <span class="p">],</span>
+    <span class="p">[</span> <span class="p">{</span> <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"abc2"</span><span class="p">,</span> <span class="s2">"n"</span><span class="o">:</span> <span class="s2">"200"</span> <span class="p">},</span> <span class="p">{</span> <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"def2"</span><span class="p">,</span> <span class="s2">"n"</span><span class="o">:</span> <span class="s2">"300"</span> <span class="p">}</span> <span class="p">]</span> 
+  <span class="p">]</span>
+<span class="p">}</span><span class="err">`</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">C</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">s</span><span class="p">));</span>
+</pre></div></div>
+
+<h1>
+<span id="終わりに" class="fragment"></span><a href="#%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>終わりに</h1>
+
+<p>リフレクション自体が実験的機能であることもあり、TypeConverterも実験的な実装です。うまく動作しないケースも多々あるかと思います。もしより良い実装方法や、すでに存在するライブラリ等ご存知だったら教えていただけるとうれしいです。</p>
+
+<p>TypeConverterのGitHubリポジトリは以下です。<br>
+<a href="https://github.com/bitrinjani/type-converter" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/bitrinjani/type-converter</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>bitrinjaniさんの<br />6位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>13</kbd>
+		<a target="_blank" href="https://qiita.com/bitrinjani/items/15baf71f279da33215e7">ビットコイン自動裁定取引システムの日本語化と実行可能ファイルのリリース</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-08 19:47:29</center>
+	</td>
+	<td style="width:200px;">
+		@bitrinjani<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/202597/profile-images/1509272555">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[C#]</b> <b>[Bitcoin]</b> <b>[ビットコイン]</b> <b>[自動取引]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="日本語対応しました" class="fragment"></span><a href="#%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%AF%BE%E5%BF%9C%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F"><i class="fa fa-link"></i></a>日本語対応しました</h1>
+
+<p>以前の<a href="https://qiita.com/bitrinjani/items/3ed756da9baf7d171306" id="reference-9d2cc0a7044efa23cb35">記事</a>で紹介した、ビットコイン自動裁定取引システムの表示を日本語にできるようにしました。<br>
+日本語OS上では、自動的に日本語で表示されるようになります。一部英語のメッセージが残っていますが、主要部分はほぼすべて日本語にしました。</p>
+
+<p><a href="https://camo.qiitausercontent.com/4404fbc742cf12490f3e83d9d605ddae9f10599b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230323539372f64613262616332622d393638612d626539622d353432662d6464386237623965653133372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/4404fbc742cf12490f3e83d9d605ddae9f10599b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3230323539372f64613262616332622d393638612d626539622d353432662d6464386237623965653133372e706e67" width="60%/" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/202597/da2bac2b-968a-be9b-542f-dd8b7b9ee137.png"></a></p>
+
+<p>もしうまく日本語が表示されない場合や、英語版OSで強制的に日本語にしたい場合は、Rinjani.exe.configの以下の部分を変更してください。</p>
+
+<p>変更前:</p>
+
+<div class="code-frame" data-lang="xml">
+<div class="code-lang"><span class="bold">Rinjani.exe.config</span></div>
+<div class="highlight"><pre><span></span>  <span class="nt">&lt;appSettings&gt;</span>
+    <span class="c">&lt;!--&lt;add key="Culture" value="ja-JP" /&gt;--&gt;</span>
+  <span class="nt">&lt;/appSettings&gt;</span>
+</pre></div>
+</div>
+
+<p>変更後:</p>
+
+<div class="code-frame" data-lang="xml">
+<div class="code-lang"><span class="bold">Rinjani.exe.config</span></div>
+<div class="highlight"><pre><span></span>  <span class="nt">&lt;appSettings&gt;</span>
+    <span class="nt">&lt;add</span> <span class="na">key=</span><span class="s">"Culture"</span> <span class="na">value=</span><span class="s">"ja-JP"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/appSettings&gt;</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="実行可能ファイルのリリース" class="fragment"></span><a href="#%E5%AE%9F%E8%A1%8C%E5%8F%AF%E8%83%BD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9"><i class="fa fa-link"></i></a>実行可能ファイルのリリース</h1>
+
+<p>以下にコンパイル済みの実行可能ファイルをリリースしました。<br>
+<a href="https://github.com/bitrinjani/rinjani/releases" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/bitrinjani/rinjani/releases</a><br>
+.NET Framework 4.52以降がインストールされたWindows OSで動作します。Windows 7以降であれば、基本的にそのまま動作すると思います。</p>
+
+<p>手順<br>
+1. <a href="https://github.com/bitrinjani/rinjani/releases" rel="nofollow noopener" target="_blank">GitHubリリースページ</a>から Rinjani_exe_1.0.6490.34229.zipをダウンロードする<br>
+2. zipファイルを解凍し、Rinjani_exe/config.jsonを開く<br>
+3. 各取引所から取得したAPIキー、シークレットを設定する。<br>
+例えば、Coincheckのキー、シークレットは以下の"Key", "Secret"のxxxxxの部分を入れ替える。</p>
+
+<div class="code-frame" data-lang="json">
+<div class="code-lang"><span class="bold">config.json</span></div>
+<div class="highlight"><pre><span></span>    <span class="s2">"Brokers"</span><span class="err">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">"Broker"</span><span class="p">:</span> <span class="s2">"Coincheck"</span><span class="p">,</span>
+                <span class="nt">"Enabled"</span><span class="p">:</span> <span class="s2">"true"</span><span class="p">,</span>
+                <span class="nt">"Key"</span><span class="p">:</span> <span class="s2">"xxxxx"</span><span class="p">,</span>
+                <span class="nt">"Secret"</span><span class="p">:</span> <span class="s2">"xxxxx"</span><span class="p">,</span>
+</pre></div>
+</div>
+
+<p>以上の準備の後、Rinjani.exeを実行します。Exeファイルを実行する際に、Windowsディフェンダーが警告を出す可能性がありますが、適宜スキップしてください。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>bitrinjaniさんの<br />7位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/bitrinjani/items/c63946ff1a81ee4e7e63">[ES2018] for-await-ofループでページングされたデータをシンプルかつ効率的に処理する</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-23 21:35:05</center>
+	</td>
+	<td style="width:200px;">
+		@bitrinjani<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/202597/profile-images/1509272555">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[TypeScript]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="データ取得とデータ利用のロジックを切り離したい" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%96%E5%BE%97%E3%81%A8%E3%83%87%E3%83%BC%E3%82%BF%E5%88%A9%E7%94%A8%E3%81%AE%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF%E3%82%92%E5%88%87%E3%82%8A%E9%9B%A2%E3%81%97%E3%81%9F%E3%81%84"><i class="fa fa-link"></i></a>データ取得とデータ利用のロジックを切り離したい</h1>
+
+<p>データ取得とデータ利用のロジックを切り離すことは、イテレータパターンとして知られています。</p>
+
+<blockquote>
+<p>コンテナオブジェクトの要素を列挙する手段を独立させることによって、コンテナの内部仕様に依存しない反復子を提供することを目的とする。<br>
+<a href="https://ja.wikipedia.org/wiki/Iterator_%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3" class="autolink" rel="nofollow noopener" target="_blank">https://ja.wikipedia.org/wiki/Iterator_%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3</a></p>
+</blockquote>
+
+<p>イテレータパターンは、たいていの現代的なプログラミング言語で言語仕様レベルで実装されています。JavaScriptも例外ではなく、イテレータとその利用を簡単にするジェネレータ、for-ofループが仕様で定められています。</p>
+
+<p>しかし、ES2017までのJavaScript(ECMAScript)には大きな問題がありました。ほとんどのAPIが非同期処理であるのにもかかわらず、<strong>イテレータが非同期処理をサポートしていない</strong>ことです。</p>
+
+<p>ES2018でその状況もついに終焉を迎えそうです。ES2018では、<strong>非同期イテレータ、非同期ジェネレータ、そして非同期for-ofループ</strong>が規定される見込みです。その動作を実際のサンプルでみていきましょう。</p>
+
+<h1>
+<span id="qiita-api-の例" class="fragment"></span><a href="#qiita-api-%E3%81%AE%E4%BE%8B"><i class="fa fa-link"></i></a>Qiita API の例</h1>
+
+<p>Qiita APIから「今日の投稿のうちいいね数が10以上のもの」を取得し、コンソールに表示する場合を考えてみましょう。仮に検索API等はなく、投稿を新しい順に列挙するAPI(GET /api/v2/items)だけ用意されているとします。</p>
+
+<h2>
+<span id="効率的だが密結合してしまっている実装" class="fragment"></span><a href="#%E5%8A%B9%E7%8E%87%E7%9A%84%E3%81%A0%E3%81%8C%E5%AF%86%E7%B5%90%E5%90%88%E3%81%97%E3%81%A6%E3%81%97%E3%81%BE%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>効率的だが密結合してしまっている実装</h2>
+
+<p>深く考えずに処理する順番に実装するとしたら、以下のようになります。</p>
+
+<ol>
+<li>[データ取得] 投稿をQiita APIからGETする。Qiita APIは直近の20件のみを返す。</li>
+<li>[データ利用] その20件のうち、今日の投稿でいいね数10以上であれば表示する。</li>
+<li>[データ取得] 20件中の最後の投稿が今日のものであれば、次のデータをQiita APIでページングパラメータ(?page=2)を指定して取得する。</li>
+<li>[データ利用] その20件のうち、今日の投稿でいいね数10以上であれば表示する。</li>
+<li>3-4を繰り返し、昨日の投稿になった時点で終了する。</li>
+</ol>
+
+<p>上記の流れだと、データの取得とその利用が交互に現れ、取得ロジックと利用ロジックが密結合してしまっています。</p>
+
+<h2>
+<span id="非効率だがクリーンな実装" class="fragment"></span><a href="#%E9%9D%9E%E5%8A%B9%E7%8E%87%E3%81%A0%E3%81%8C%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%81%AA%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>非効率だがクリーンな実装</h2>
+
+<p>パフォーマンスを気にしなければ以下の実装が可能ですが、現実的ではないでしょう。</p>
+
+<ol>
+<li>[データ取得] 過去の全投稿をQiita APIから取得する。(<strong>非効率!!</strong>)</li>
+<li>[データ利用] forループで今日の投稿でいいね数10のものを出力する。昨日の投稿が現れたらbreakしてループから抜ける。</li>
+</ol>
+
+<p>この実装の利点は、データ取得ロジックと利用ロジックが完全に分離していることです。</p>
+
+<h2>
+<span id="イテレータによる効率的かつクリーンな実装" class="fragment"></span><a href="#%E3%82%A4%E3%83%86%E3%83%AC%E3%83%BC%E3%82%BF%E3%81%AB%E3%82%88%E3%82%8B%E5%8A%B9%E7%8E%87%E7%9A%84%E3%81%8B%E3%81%A4%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%81%AA%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>イテレータによる効率的かつクリーンな実装</h2>
+
+<p>イテレータパターンを適用したケースを考えてみましょう。</p>
+
+<ol>
+<li>[データ取得] 投稿を必要に応じてQiita APIから取得してくるイテレータをジェネレータ関数で生成する。</li>
+<li>[データ利用] forループで今日の投稿でいいね数10以上のものを出力する。昨日の投稿が現れたらbreakしてループから抜ける。</li>
+</ol>
+
+<p>データ取得部分は、ジェネレータ関数が必要な分だけ取得するので効率的です。データ利用部分は、イテレータオブジェクトをforループで処理するだけなので、取得・利用ロジックは分離できてきます。<br>
+しかし、Qiita APIからのデータ取得は非同期処理であり、<strong>ES2017ではイテレータ/ジェネレータは非同期処理を含むことができません</strong>。非同期に対応したイテレータを自力で実装したとしても、forループがその自作イテレータに対応しないため、クリーンな実装とはなりません。</p>
+
+<h1>
+<span id="es2018-非同期イテレータジェネレータとfor-await-ofループ" class="fragment"></span><a href="#es2018-%E9%9D%9E%E5%90%8C%E6%9C%9F%E3%82%A4%E3%83%86%E3%83%AC%E3%83%BC%E3%82%BF%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF%E3%81%A8for-await-of%E3%83%AB%E3%83%BC%E3%83%97"><i class="fa fa-link"></i></a>ES2018 非同期イテレータ/ジェネレータとfor-await-ofループ</h1>
+
+<p>そこで登場するのが、ES2018に含まれる見込みの非同期イテレータ/ジェネレータです。すでにBabelやTypeScriptに実装されており、Stage 3で仕様も安定しています。</p>
+
+<p>実際に上記のQiita APIのロジックを実装してみましょう。</p>
+
+<div class="code-frame" data-lang="TypeScript"><div class="highlight"><pre><span></span>
+<span class="kr">import</span> <span class="s1">'core-js/shim'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">isToday</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'date-fns'</span>
+
+<span class="c1">// データ取得部分</span>
+<span class="kr">export</span> <span class="nx">async</span> <span class="kd">function</span><span class="o">*</span> <span class="nx">qiitaItemsGenerator() {</span>
+  <span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="s1">'http://qiita.com/api/v2/items?page=1'</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="nx">DEBUG</span>: <span class="kt">Fetching</span> <span class="nx">$</span><span class="p">{</span><span class="nx">url</span><span class="p">}</span><span class="err">`</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="nx">iterable</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+    <span class="nx">yield</span><span class="o">*</span> <span class="nx">iterable</span><span class="p">;</span>
+    <span class="c1">// URL末尾の数字をインクリメントする。例えば page=1 --&gt; page=2</span>
+    <span class="nx">url</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(\d+)$/</span><span class="p">,</span> <span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">p1</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="err">`</span><span class="nx">$</span><span class="p">{</span><span class="nb">Number</span><span class="p">(</span><span class="nx">p1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="err">`</span><span class="p">);</span> 
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// データ利用部分</span>
+<span class="nx">async</span> <span class="kd">function</span> <span class="nx">print() {</span>
+  <span class="kr">const</span> <span class="nx">asyncIterator</span> <span class="o">=</span> <span class="nx">qiitaItemsGenerator</span><span class="p">();</span>
+  <span class="k">for</span> <span class="nx">await</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">item</span> <span class="nx">of</span> <span class="nx">asyncIterator</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// &lt;--- for await!!  </span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">likes_count</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>           <span class="c1">// いいね数10以上の投稿を出力</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="o">&gt;&gt;</span><span class="nx">Title</span>: <span class="kt">$</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">title</span><span class="p">},</span> <span class="err">👍</span><span class="o">:</span> <span class="nx">$</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">likes_count</span><span class="p">}</span><span class="err">`</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kr">const</span> <span class="nx">created</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">created_at</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isToday</span><span class="p">(</span><span class="nx">created</span><span class="p">))</span> <span class="p">{</span> 
+      <span class="k">break</span><span class="p">;</span>                                <span class="c1">// 今日の分だけをチェックしてループから抜ける</span>
+
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">print</span><span class="p">();</span>
+</pre></div></div>
+
+<p>実行結果:</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>DEBUG: Fetching http://qiita.com/api/v2/items?page=1
+DEBUG: Fetching http://qiita.com/api/v2/items?page=2
+&gt;&gt;Title: フロントエンドチェックリスト（日本語訳）, 👍: 62
+DEBUG: Fetching http://qiita.com/api/v2/items?page=3
+&gt;&gt;Title: 府大生が趣味ではなくニューラルネットワークの認識精度世界一を奪還してしまった論文を読んだ, 👍: 21
+DEBUG: Fetching http://qiita.com/api/v2/items?page=4
+DEBUG: Fetching http://qiita.com/api/v2/items?page=5
+DEBUG: Fetching http://qiita.com/api/v2/items?page=6
+&gt;&gt;Title: ﻿【強化学習】実装しながら学ぶA3C【CartPoleで棒立て：1ファイルで完結】, 👍: 10
+&gt;&gt;Title: PHPにコメントを書かせる、あるいはDocComment入門 (前編), 👍: 17
+DEBUG: Fetching http://qiita.com/api/v2/items?page=7
+DEBUG: Fetching http://qiita.com/api/v2/items?page=8
+&gt;&gt;Title: 帰宅したらGoogleHomeから好きな音声で「おかえり」って言ってもらいます, 👍: 11
+</pre></div></div>
+
+<p>最低限必要なページ数分だけ、Qiita APIから取得していることがわかります。</p>
+
+<p>qiitaItemsGenerator()がデータ取得ロジック部分です。普段からジェネレータとasync/awaitを使い慣れていれば、特に説明の必要はないかと思います。文法的にジェネレータ内でawaitが使えるようになっただけです。<br>
+async function* というシグニチャが非同期ジェネレータを表しています。このジェネレータは、yieldされるたびに以下のような次のページのURLをGETします。無限ループになっていますが、ジェネレータなのでyieldされた回数しかGETしません。</p>
+
+<p><a href="http://qiita.com/api/v2/items?page=1" class="autolink">http://qiita.com/api/v2/items?page=1</a><br>
+<a href="http://qiita.com/api/v2/items?page=2" class="autolink">http://qiita.com/api/v2/items?page=2</a><br>
+<a href="http://qiita.com/api/v2/items?page=3" class="autolink">http://qiita.com/api/v2/items?page=3</a><br>
+...</p>
+
+<p>print()の中でqiitaItemsGenerator()を呼び出しイテレータを取得し、for awaitループ内で各投稿を処理しています。必要なデータを取得後、breakで抜けることで余計なAPIリクエストを出さないようにしています。</p>
+
+<p>結果的に、print()は<strong>裏で行われている複数の非同期リクエストについて一切知らずに、まるでただの配列を受け取ったかのようにforループで処理できる</strong>ようになります。</p>
+
+<h2>
+<span id="データ取得部分の抽象化" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%96%E5%BE%97%E9%83%A8%E5%88%86%E3%81%AE%E6%8A%BD%E8%B1%A1%E5%8C%96"><i class="fa fa-link"></i></a>データ取得部分の抽象化</h2>
+
+<p>上記実装でデータの取得と利用のロジックを分離することができました。しかし、まだ改善の余地はあります。<br>
+qiitaItemsGenerator()をみると、次のページのURLを取得するロジックがQiita API特有のものになってしまっています。つまり、<strong>qiitaItemsGenerator()はQiita APIの実装に依存</strong>してしまっています。この依存性を反転するために、「次のページのURLを取得する」部分を注入できるようにします。</p>
+
+<div class="code-frame" data-lang="TypeScript"><div class="highlight"><pre><span></span><span class="c1">// pagingWrapper.js</span>
+<span class="kr">export</span> <span class="nx">async</span> <span class="kd">function</span><span class="o">*</span> <span class="nx">pagingWrapper</span><span class="p">(</span><span class="nx">initUrl</span><span class="p">,</span> <span class="nx">getNextUrl</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// &lt;--- getNextUrl関数をパラメータ化する</span>
+  <span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">initUrl</span><span class="p">;</span>
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="nx">DEBUG</span>: <span class="kt">Fetching</span> <span class="nx">$</span><span class="p">{</span><span class="nx">url</span><span class="p">}</span><span class="err">`</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="nx">iterable</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+    <span class="nx">yield</span><span class="o">*</span> <span class="nx">iterable</span><span class="p">;</span>
+    <span class="nx">url</span> <span class="o">=</span> <span class="nx">getNextUrl</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>    <span class="c1">// &lt;--- getNextUrl関数を呼び出して次のURLを取得する</span>
+  <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>一般化された非同期ジェネレータをもとの例に適用してみます。</p>
+
+<div class="code-frame" data-lang="TypeScript"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">pagingWrapper</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./pagingWrapper'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">isToday</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'date-fns'</span>
+
+<span class="kd">function</span> <span class="nx">getNextUrl</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(\d+)$/</span><span class="p">,</span> <span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">p1</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="err">`</span><span class="nx">$</span><span class="p">{</span><span class="nb">Number</span><span class="p">(</span><span class="nx">p1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="err">`</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">async</span> <span class="kd">function</span> <span class="nx">print() {</span>
+  <span class="kr">const</span> <span class="nx">initUrl</span> <span class="o">=</span> <span class="s1">'http://qiita.com/api/v2/items?page=1'</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">asyncIterator</span> <span class="o">=</span> <span class="nx">pagingWrapper</span><span class="p">(</span><span class="nx">initUrl</span><span class="p">,</span> <span class="nx">getNextUrl</span><span class="p">);</span> <span class="c1">// Qiita APIへの依存性を注入</span>
+  <span class="k">for</span> <span class="nx">await</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">item</span> <span class="nx">of</span> <span class="nx">asyncIterator</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">likes_count</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="nx">Title</span>: <span class="kt">$</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">title</span><span class="p">},</span> <span class="err">👍</span><span class="o">:</span> <span class="nx">$</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">likes_count</span><span class="p">}</span><span class="err">`</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kr">const</span> <span class="nx">created</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">created_at</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isToday</span><span class="p">(</span><span class="nx">created</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">print</span><span class="p">();</span>
+</pre></div></div>
+
+<h2>
+<span id="github-apiへの適用" class="fragment"></span><a href="#github-api%E3%81%B8%E3%81%AE%E9%81%A9%E7%94%A8"><i class="fa fa-link"></i></a>GitHub APIへの適用</h2>
+
+<p>pagingWrapperがQiita APIから独立していることを示すために、GitHub APIに対して使ってみます。User googleのレポジトリを順にチェックし、スター数が10000以上のレポジトリが見つかったら終了します。GitHub APIは次のページのURLをHTTPレスポンスのLinkヘッダーに含めて返してくるため、getNextUrl関数でそれを取り出しています。</p>
+
+<div class="code-frame" data-lang="TypeScript"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">pagingWrapper</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./pagingWrapper'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">getNextUrl</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">firstLink</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'Link'</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">','</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="s1">';'</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">firstLink</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">' rel="next"'</span><span class="p">)</span> 
+    <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">firstLink</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">async</span> <span class="kd">function</span> <span class="nx">print() {</span>
+  <span class="kr">const</span> <span class="nx">ghUrl</span> <span class="o">=</span> <span class="s1">'https://api.github.com/users/google/repos'</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">asyncIterator</span> <span class="o">=</span> <span class="nx">pagingWrapper</span><span class="p">(</span><span class="nx">ghUrl</span><span class="p">,</span> <span class="nx">getNextUrl</span><span class="p">);</span>
+  <span class="k">for</span> <span class="nx">await</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">repo</span> <span class="nx">of</span> <span class="nx">asyncIterator</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">repo</span><span class="p">.</span><span class="nx">stargazers_count</span> <span class="o">&gt;=</span> <span class="mi">10000</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="nx">Name</span>: <span class="kt">$</span><span class="p">{</span><span class="nx">repo</span><span class="p">.</span><span class="nx">name</span><span class="p">},</span> <span class="err">⭐</span><span class="o">:</span> <span class="nx">$</span><span class="p">{</span><span class="nx">repo</span><span class="p">.</span><span class="nx">stargazers_count</span><span class="p">}</span><span class="err">`</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">print</span><span class="p">();</span>
+</pre></div></div>
+
+<p>結果:</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>DEBUG: Fetching https://api.github.com/users/google/repos
+DEBUG: Fetching https://api.github.com/user/1342004/repos?page=2
+DEBUG: Fetching https://api.github.com/user/1342004/repos?page=3
+DEBUG: Fetching https://api.github.com/user/1342004/repos?page=4
+DEBUG: Fetching https://api.github.com/user/1342004/repos?page=5
+DEBUG: Fetching https://api.github.com/user/1342004/repos?page=6
+DEBUG: Fetching https://api.github.com/user/1342004/repos?page=7
+DEBUG: Fetching https://api.github.com/user/1342004/repos?page=8
+DEBUG: Fetching https://api.github.com/user/1342004/repos?page=9
+Name: deepdream, ⭐: 10624
+</pre></div></div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

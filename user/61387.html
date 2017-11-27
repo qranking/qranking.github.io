@@ -1,0 +1,593 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (piroor)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (piroor さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>piroorさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>126</kbd>
+		<a target="_blank" href="https://qiita.com/piroor/items/21ce5c99d5311973661b">ツリー型タブのWebExtensionsへの移行のおはなし</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-03 13:12:55</center>
+	</td>
+	<td style="width:200px;">
+		@piroor<br />(ClearCode Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/61387/profile-images/1473695642">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[CSS]</b> <b>[firefox]</b> <b>[アドオン]</b> <b>[WebExtensions]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="http://piro.sakura.ne.jp/latest/blosxom/mozilla/extension/treestyletab/2017-10-03_migration-we-en.htm" rel="nofollow noopener" target="_blank">Here is the English version of this article.</a><br>
+この投稿は<a href="http://piro.sakura.ne.jp/latest/blosxom/mozilla/extension/treestyletab/2017-10-03_migration-we-ja.htm" rel="nofollow noopener" target="_blank">個人サイトとのクロスポストです</a>。</p>
+
+<p>2017年の8月下旬に思い立って、<a href="https://addons.mozilla.org/firefox/addon/tree-style-tab/" rel="nofollow noopener" target="_blank">ツリー型タブ</a>のWebExtensions版を作り始め、去る9月26日にバージョン2.0としてリリースしました。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/b8489166-b0ea-84ea-d094-bab57290effd.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/08213be7f82434f2225a19669948fc3ceda7db74/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f62383438393136362d623065612d383465612d643039342d6261623537323930656666642e706e67" alt="（ツリー型タブのサイドバーパネルを表示した状態のスクリーンショット）" width="400" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/b8489166-b0ea-84ea-d094-bab57290effd.png"></a></p>
+
+<p>重い腰を上げて取り組む気になれたのは、<a href="https://blog.mozilla.org/addons/2017/09/28/webextensions-in-firefox-57/" rel="nofollow noopener" target="_blank">必須と目していたAPIが一通り実装されてきて</a>、Firefox 57でようやく技術的に作れる目処が立ってきたからでした。<br>
+関係者の皆さんの尽力に改めて感謝の意を表明します。</p>
+
+<p>やっている事自体はそう難しい話ではなく、技術的に目新しいトピックは無いのですが、主に歴史的資料としてレガシーなアドオンの移行の一事例の記録を残しておこうと思います。</p>
+
+
+
+<h3>
+<span id="ツリー型タブとは" class="fragment"></span><a href="#%E3%83%84%E3%83%AA%E3%83%BC%E5%9E%8B%E3%82%BF%E3%83%96%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>ツリー型タブとは？</h3>
+
+<p>一言でいうと、ツリー型タブ（Tree Style Tab、略してTST）は「Firefox用の、タブ同士の来歴・関係をツリー構造として視覚化してWebブラウスを支援するアドオン」です。</p>
+
+<h4>
+<span id="tstの来歴昔話" class="fragment"></span><a href="#tst%E3%81%AE%E6%9D%A5%E6%AD%B4%E6%98%94%E8%A9%B1"><i class="fa fa-link"></i></a>TSTの来歴（昔話）</h4>
+
+<p>今あるTSTの源流を遡ると、「<a href="http://piro.sakura.ne.jp/xul/tabextensions/" rel="nofollow noopener" target="_blank">タブブラウザ拡張（TabBrowser Extensions､TBE）</a>」という拙作の古いFirefox用アドオンと、<a href="http://la.ma.la/blog/diary_200512301450.htm" rel="nofollow noopener" target="_blank">「iRider」という個性的なWebブラウザ</a>に行き着きます。</p>
+
+<p>2004年頃のFirefoxの貧弱なタブ管理機能を補完するオールインワン型のアドオンとして開発していたTBEは、良さげな機能をなんでも無秩序に取り込む方針でした。<br>
+紹介記事を見て知ったiRiderの「タブのように見えるサムネイル付きの履歴項目がツリー状に表示される」「タブのクローズボックスをドラッグして選択してまとめて項目を閉じられる」といった挙動も、腕試しを兼ねてTBEに実装したと記憶しています。</p>
+
+<p>無秩序に肥大化・複雑化したTBEはFirefox 2での大規模な仕様変更に追従できず、Firefox 1.5と共に歴史の闇に消えていくこととなります。<br>
+TBEを諦める代わりに、僕は当時自分自身がTBEで愛用していた機能のいくつかを機能単位で切り出して再実装することにしました。<br>
+そうして「タブのインデントによるツリー表示」という機能に特化して2007年に生まれたのがTSTです。</p>
+
+<p>Firefoxの更新に追従しきれずドロップアウトしていくアドオンも多い中、TSTはメンテナンスを繰り返しながら2017年まで地味に生き残ってきました。<br>
+「Firefox 57以降に対応したWebExtensions版」（以下、WE版）であるTST 2.0は、そのTSTの誕生以来最大のマイルストーンと言えます。</p>
+
+<h3>
+<span id="フェイズ1移行計画" class="fragment"></span><a href="#%E3%83%95%E3%82%A7%E3%82%A4%E3%82%BA1%E7%A7%BB%E8%A1%8C%E8%A8%88%E7%94%BB"><i class="fa fa-link"></i></a>フェイズ1：移行計画</h3>
+
+<p>作業に着手する前から、TSTのWebExtensionsへの「完全な移行」は不可能だということは分かっていました。<br>
+そのため今回のWE版開発は、<em>コンセプトを今一度明確化し、何をやって何をやらないか（諦めるか）をハッキリさせる</em>という所から始めました。</p>
+
+<h4>
+<span id="tstのwebextensions対応ではないtstのwebextensions版開発" class="fragment"></span><a href="#tst%E3%81%AEwebextensions%E5%AF%BE%E5%BF%9C%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84tst%E3%81%AEwebextensions%E7%89%88%E9%96%8B%E7%99%BA"><i class="fa fa-link"></i></a>「TSTのWebExtensions対応」ではない、「TSTのWebExtensions版開発」</h4>
+
+<p>ところで、<a href="http://point2000.hatenablog.com/entry/2017/09/13/222108" title="FirefoxのWebextensionアポカリプスに備える(主要アドオンのWebextensions対応について) - 俺の話を聞いてくれ" rel="nofollow noopener" target="_blank">FirefoxのWebextensionアポカリプスに備える(主要アドオンのWebextensions対応について)</a>のように「WebExtensions対応」という言葉を目にする事があります。<br>
+これに対し、自分は「WebExtensions版」という表現を使う事が多いです。<br>
+この違いはどこからきているのでしょうか。</p>
+
+<p>元々Firefoxは、「Geckoという実行環境レイヤの上で、XML＋CSS＋JavaScriptを動かして、Webページの要領でアプリケーションを実現する」という構造をしています。<br>
+従来のアドオンは本質的には、このFirefoxのJavaScriptが動作している名前空間に任意のスクリプトを注入して動作を変える、いわゆる「モンキーパッチ」であったと言えます。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/a6a96194-9234-41da-15f0-03f384b0fe31.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/da76e4bbfa9907531ffc7f08ecb5b0bcdf2276a7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f61366139363139342d393233342d343164612d313566302d3033663338346230666533312e706e67" alt="（Firefoxのレガシーなアドオンのアーキテクチャの概念図）" height="300" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/a6a96194-9234-41da-15f0-03f384b0fe31.png"></a></p>
+
+<p>対するWebExtensionsベースのアドオンは、隔離された専用の名前空間の中でアドオンのスクリプトを実行し、あらかじめ用意されたAPI（WebExtensions API）を介してFirefoxと相互作用するという仕組みで成り立つソフトウェアです。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/8a474573-968f-4f8d-98ea-7cb8ecae4fde.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/a469df515c4373cbc27d88c7a5f6e83b1051e0dc/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f38613437343537332d393638662d346638642d393865612d3763623865636165346664652e706e67" alt="（FirefoxのWebExtensionsなアドオンのアーキテクチャの概念図）" height="300" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/8a474573-968f-4f8d-98ea-7cb8ecae4fde.png"></a></p>
+
+<p>この本質的な差異ゆえに、直接Firefoxの中身をいじくり回していたレガシーなアドオンを「若干手直ししてFirefox 57でも使えるようにする」ということは不可能で、<em>「従来提供していたユーザー体験を再現する事を目指して、WebExtensionsベースで新しくアドオンを開発し直す」</em>というアプローチを取らざるを得ません。<br>
+TSTのWE版も、実質的にゼロからの開発に等しい作業となりました。<br>
+これが、自分が「WebExtensions版」という言葉を使っている理由です。</p>
+
+<h4>
+<span id="技術的制約から決まってくる部分" class="fragment"></span><a href="#%E6%8A%80%E8%A1%93%E7%9A%84%E5%88%B6%E7%B4%84%E3%81%8B%E3%82%89%E6%B1%BA%E3%81%BE%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8B%E9%83%A8%E5%88%86"><i class="fa fa-link"></i></a>技術的制約から決まってくる部分</h4>
+
+<p>WebExtensionsの仕様上の制約から、レガシー版TSTのどの機能を実現できてどの機能は実現できないかというのはある程度決まってきます。</p>
+
+<ul>
+<li>「縦長のタブバー」の実現にあたっては、<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/user_interface/Sidebars" rel="nofollow noopener" target="_blank">サイドバー</a>が唯一の選択肢になります。
+WebExtensionsのサイドバーは、サイドバー自体を任意のイベントで開閉したり、位置をウィンドウの下や上に移動する機能はありません。
+この事から、「タブバーを自動で隠す」機能や「横長のタブバー内でツリー表示」機能は実現不可能だということになります。</li>
+<li>
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1270763#c9" rel="nofollow noopener" target="_blank">WebExtensionsのAPIの方針故に</a>、「Firefoxがタブを開こうとした時に、その前のタイミングに割り込んで何かをする」ということもできません。
+全ては事後的に通知されるのみなので、事前の処理に割り込む必要がある系統の機能はすべて再現不可能です。</li>
+<li>タブを開くトリガーとなる操作への割り込みや、タブが開かれる前の判断への介入ができない以上、リンク等から開かれたタブの親子関係を推測する材料は<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/create" rel="nofollow noopener" target="_blank"><code>tabs.Tab.openerTabId</code></a>だけが唯一の頼みの綱ということになります。
+<code>openerTabId</code>は、Google Chromeの仕様には以前から存在していたもののWebExtensionsには長らく実装されないままとなっていた機能の1つです。
+実は、<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1238314" rel="nofollow noopener" target="_blank">これの実装を取り扱うbug</a>にパッチが提出され、Fx57で正式に実装済みとなったという事が、TSTのWE版開発に着手する直接のきっかけとなりました。</li>
+<li>ツリー構造の保存と復元は、レガシー版ではタブやウィンドウに紐付けて情報を保持していましたが、WE版開発を始めた時点ではまだ<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/sessions" rel="nofollow noopener" target="_blank">sessions API</a>には対応する機能がありませんでした。
+ただ、<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1322060" rel="nofollow noopener" target="_blank">実装を取り扱っていたbug</a>を見ていると、Fx57には間に合いそうな勢いでパッチの提出とレビューが進行していましたので、これが必要になる頃には投入されていそうな様子でした。</li>
+</ul>
+
+<p>以上のような簡単な分析を踏まえ、半ば見切り発車で作業を始めたのでした。</p>
+
+<h4>
+<span id="技術的制約以外の明確な意図を持って決める部分" class="fragment"></span><a href="#%E6%8A%80%E8%A1%93%E7%9A%84%E5%88%B6%E7%B4%84%E4%BB%A5%E5%A4%96%E3%81%AE%E6%98%8E%E7%A2%BA%E3%81%AA%E6%84%8F%E5%9B%B3%E3%82%92%E6%8C%81%E3%81%A3%E3%81%A6%E6%B1%BA%E3%82%81%E3%82%8B%E9%83%A8%E5%88%86"><i class="fa fa-link"></i></a>技術的制約以外の、明確な意図を持って決める部分</h4>
+
+<p>レガシーなアドオンのWebExtensions移行では、全ての機能について「移行できて、する」「移行できないので、しない」「移行できるが、コストが見合わないので移行しない」といったことを判断しなくてはなりません。<br>
+これは精神的ストレスの大きな難しい仕事です。<br>
+TST 2.0においてそれをやり遂げられた事の背景には、<em>核となるコンセプトがはっきりしていて、すべての判断をそのコンセプトに基づいて行えた</em>という事がありました。</p>
+
+<p>僕がTSTのTBEからの切り出し時から一貫して意識してきたコンセプトは、</p>
+
+<ul>
+<li>「タブのツリー」という単機能に特化する。主題と無関係の（且つ、Firefox本体の機能でもない）機能は、技術的には実現可能でも入れない。</li>
+<li>その代わり、他のアドオンと併用できるようにして、ユーザーが欲しい機能をユーザー自身が任意に組み合わせられるようにする。</li>
+</ul>
+
+<p>という2つの事でした。</p>
+
+<p>単機能のアドオンは設計を簡潔に保ちやすくなります。<br>
+それは、機能が少ないからと言うよりも、<a href="http://piro.sakura.ne.jp/latest/blosxom/mozilla/xul/2011-06-30_ui.htm" rel="nofollow noopener" target="_blank">コンセプトが明確であるという事自体が設計の骨子となり、全体に秩序と一貫性をもたらすからだ</a>……と僕は考えています。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/3fd4af8c-9dbd-491e-b8bf-6075f9bab5c2.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/465be260f19a9ff802102d2595ef400e8c755184/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f33666434616638632d396462642d343931652d623862662d3630373566396261623563322e706e67" alt="（オールインワン型のアドオンの利点と欠点）" width="450" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/3fd4af8c-9dbd-491e-b8bf-6075f9bab5c2.png"></a><br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/5410bd24-dc4d-ef16-203e-a3cc61fa0d4a.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/c7bb178ee4c605e9666fe4c151783a3f23277762/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f35343130626432342d646334642d656631362d323033652d6133636336316661306434612e706e67" alt="（単機能型アドオンの利点と欠点）" width="450" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/5410bd24-dc4d-ef16-203e-a3cc61fa0d4a.png"></a></p>
+
+<p>取捨選択の判断基準が明確であればそれだけ意志決定のコストも下がります。<br>
+「大事にしなくてもいい事を切り捨てて、大事にしたい事にリソースを集中する」というのは何事にも言える理想ですが、それを実際にやるためには「そもそも何を大事にするのか」がはっきりしていないといけないわけです。</p>
+
+<h4>
+<span id="webextensionsでは得られにくいアドオン同士のシナジー" class="fragment"></span><a href="#webextensions%E3%81%A7%E3%81%AF%E5%BE%97%E3%82%89%E3%82%8C%E3%81%AB%E3%81%8F%E3%81%84%E3%82%A2%E3%83%89%E3%82%AA%E3%83%B3%E5%90%8C%E5%A3%AB%E3%81%AE%E3%82%B7%E3%83%8A%E3%82%B8%E3%83%BC"><i class="fa fa-link"></i></a>WebExtensionsでは得られにくいアドオン同士のシナジー</h4>
+
+<p>そして、単機能に集中する事と同時に大事にしたかったのが、もう1つのコンセプトであった「他のアドオンとの相互運用性」です。</p>
+
+<p>実質的にはモンキーパッチであったレガシーなアドオンではアドオン同士が衝突しないように気をつける必要があったのに対し、決まったAPIに基づいて実装されるWebExtensionsのアドオンでそんな事をわざわざ気にする必要など無いのでは？　と思うかもしれませんが、逆です。<br>
+WebExtensionsではアドオン同士が綺麗に隔離されすぎているせいで、<em>複数のアドオンの機能を連携させにくくなっている</em>のです。</p>
+
+<p>例えば従来のアドオンでは、「ツリー型タブによって縦置きされたタブの中で、別のアドオンによって埋め込まれたサムネイルが表示されていて、さらにタブをダブルクリックするとまた別のアドオンによって提供された機能が発動する。さらに、タブが無い無駄な領域には別のサイドバーパネルが表示されている。」というように、アドオン同士が暗黙のうちにお互いを補完しあう形で作用するということが自然とできていました。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/ac0c80f3-5be6-6f3d-711b-099cbfbedd87.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/1c5cc7fcfa0b24ba20e038f9680fd6b3a2285265/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f61633063383066332d356265362d366633642d373131622d3039396362666265646438372e706e67" alt="（レガシーなアドオン同士の暗黙的な連携の様子の概念図）" height="300" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/ac0c80f3-5be6-6f3d-711b-099cbfbedd87.png"></a></p>
+
+<p>ところが、WebExtensionsではそれはできません。<br>
+WE版ツリー型タブが提供する縦型タブバーとしてのサイドバーはそれ自体で完結しており、その中に他のアドオンが提供する機能は入り込むことができません。<br>
+また、サイドバーパネル同士は排他的なので、「ツリー型タブのサイドバー」と「ブックマーク一覧のサイドバー」はどちらか片方だけしか表示できません。<br>
+<em>それぞれの機能を単独で使う事はできても、機能同士を組み合わせることによるシナジーが生まれにくいのです</em>。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/b6933dcb-31ff-d31c-f703-9219e8201d6b.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/78def47d19fbb2531e380c92b71c9bb52acb6ffb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f62363933336463622d333166662d643331632d663730332d3932313965383230316436622e706e67" alt="（WebExtensionsなアドオン同士では暗黙的な連携が無い様子の概念図）" height="300" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/b6933dcb-31ff-d31c-f703-9219e8201d6b.png"></a></p>
+
+<p>どんなに便利な機能を提供するアドオンでも、他の機能と排他的にしか使えないのでは意味がありません。<br>
+どちらしか使われなくなるならまだいい方で、最悪の場合どちらも使われなくなってしまうという事にもなり得ます。<br>
+僕がWebExtensionsに対して抱いていた最大の懸念事項は、むしろこの点にありました。</p>
+
+<p>結論を先に言ってしまうと、WE版TSTはこの点で大幅な後退を余儀なくされています。<br>
+他のアドオンとの暗黙的な連携は非常に限定的で、他のアドオン作者の厚意に期待して<a href="https://github.com/piroor/treestyletab/wiki/API-for-other-addons" rel="nofollow noopener" target="_blank">明示的な連携のためのAPI</a>を用意する事しかできませんでした。<br>
+これについては後ほど詳しく述べます。</p>
+
+<h3>
+<span id="フェイズ2初期開発" class="fragment"></span><a href="#%E3%83%95%E3%82%A7%E3%82%A4%E3%82%BA2%E5%88%9D%E6%9C%9F%E9%96%8B%E7%99%BA"><i class="fa fa-link"></i></a>フェイズ2：初期開発</h3>
+
+<p>既に述べたとおり、TSTのWebExtensions移行は実質的には「レガシー版TSTをリファレンスとした、新しいWebExtensionsアドオンの開発」に他なりませんでした。<br>
+WebExtensionsアドオンの一般的な開発の仕方に属する部分についてはあまり詳しくは述べず、ここでは「TSTのWE版」の開発という点にフォーカスして、実際の進め方を振り返ってみます。</p>
+
+<h4>
+<span id="実証実験を兼ねた開発" class="fragment"></span><a href="#%E5%AE%9F%E8%A8%BC%E5%AE%9F%E9%A8%93%E3%82%92%E5%85%BC%E3%81%AD%E3%81%9F%E9%96%8B%E7%99%BA"><i class="fa fa-link"></i></a>実証実験を兼ねた開発</h4>
+
+<p>TSTのWebExtensionsベースでの再実装にあたっては、他の既存のアドオンの派生として開発する方向と、全くのスクラッチで開発する方向の2通りの進め方があり得ました。</p>
+
+<p>WE版TSTはWebExtensionsでの縦長タブバー型アドオンとしては最後発になるため、既に十分に使い勝手の良い物があるのなら、それを改造する形で作ったほうが効率が良いというのは道理です。<br>
+しかし他の人の書いたコードを何種類も読み込んで比較検討するら事の精神的コストを考えると気が遠くなったのと、「何だかんだでまだまだレガシーなアドオン開発の意識が抜けきっていない僕自身の発想」をWebExtensionsに移行するためには単純に経験を積み増す方が良いと思ったのとで、敢えてのフルスクラッチでいくことにしました。<br>
+（実際の所は、とりあえず実験的にやり始めてみたらこれはやはり大変そうだということが分かって、大変だからこそ浅い理解のまま他人のプロダクトに乗っかったら大火傷する・そうならないためには細部までの深い理解が必要だと思って、完全に理解できる程度の小規模から作り始めてAPIへの理解を深める事に決めた……という感じでした。）</p>
+
+<p><a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/user_interface/Sidebars" rel="nofollow noopener" target="_blank">サイドバー関連API</a>への慣熟と、実装されたばかりの新機能の<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/create" rel="nofollow noopener" target="_blank"><code>tabs.Tab.openerTabId</code></a>の検証のため、最初はサイドバー内で完結する物として、</p>
+
+<ul>
+<li>タブを開く前に何かするのでなく、開かれた後のタブから情報を得てツリーに組み込む。
+特に、<code>tabs.Tab.openerTabId</code>で「どのタブから開かれたか」の情報が与えられている場合は明示的に子タブが開かれたものとみなして取り扱う。</li>
+<li>Firefox自身のタブバー上のドラッグ操作やWebExtensions API経由での操作によってタブの位置が変更された場合、タブが既存のツリーの中のどこに出現したのかを検出して、ツリー内に矛盾なく組み込む。</li>
+<li>親にあたるタブが閉じられたときは、そのタブがなくなった後もツリー構造が破綻しないように、既存のタブを新しい親に昇格させるなどの対応を取る。</li>
+<li>親のタブが自身の配下の子孫のタブが並ぶ中の位置に移動された場合は、ツリー構造の破綻を防ぐために、そのタブを元の位置に自動的に押し戻す。</li>
+<li>ツリーが折り畳まれている状態で親にあたるタブが閉じられたときは、子孫のタブも道連れに閉じる。</li>
+</ul>
+
+<p>などなど、タブに起こったイベントを監視し縦型タブバーとして表示する所から始めました。</p>
+
+<p>そうして実装が進むうちに、ツリーの一部が閉じられた場合などの挙動も検証する必要が出てきたので、ツリーの開閉機能、タブのツリーをドラッグ＆ドロップで編集する機能、ウィンドウをまたいだタブの移動、タブバーの自動スクロールなども早々に実装しました。<br>
+これらの処理は元々Firefoxの実装に強く依存していたわけではなかった一方で、「様々な局面で、空気を読んでイイ感じに自動判断する」というTSTの特徴を形作る部分であったため、下手にスクラッチから書き直せばロジックが変わって使い勝手も別物になってしまうと考え、使える所は可能な限りコードをそのまま使い回すようにしています。</p>
+
+<p>「Firefoxによってタブが複数開かれる場面で、それらをグループ化用のタブで自動的にツリー化する」という機能については、タブを開く前の時点で処理に介入できない事がはっきりしていたため、当初は移植もしないつもりでした。<br>
+しかし「一定時間以内に連続して複数のタブが単独で開かれた場合」のように場面を限定すればある程度の推測は可能かも知れないと思い立ち、そのような場面でタブを自動的にグループにまとめる機能を実装してみました。<br>
+苦肉の策ではありましたが、結果的にはこれはそこそこ期待通りの成果をもたらす事となりました。</p>
+
+<p>また、予定外でしたがこの時点で「セッションをまたいだツリー構造の保存・復元」の<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/local" rel="nofollow noopener" target="_blank">storage.local</a>による暫定的な実装も投入しました。<br>
+自分は基本的に「捨てる前提の実装」はしないようにしているのですが、毎回Firefoxを起動する度に検証用のツリーを構築する手間が馬鹿にならなくなってきたため、この時ばかりはポリシーを曲げざるを得ませんでした。<br>
+（最終的には、この暫定的な実装は削除し、<code>browser.sessions.setWindowValue()</code>と<code>browser.sessions.setTabValue()</code>に基づく本来の想定通りの実装に置き換えました。）</p>
+
+<h4>
+<span id="バックグラウンドページを中心とした設計への転換" class="fragment"></span><a href="#%E3%83%90%E3%83%83%E3%82%AF%E3%82%B0%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%89%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E4%B8%AD%E5%BF%83%E3%81%A8%E3%81%97%E3%81%9F%E8%A8%AD%E8%A8%88%E3%81%B8%E3%81%AE%E8%BB%A2%E6%8F%9B"><i class="fa fa-link"></i></a>バックグラウンドページを中心とした設計への転換</h4>
+
+<p>レガシー版TSTはFirefoxの各ウィンドウ内でタブバーに寄生するような形で動作する設計で、全体を統括する管理機構のような物はありませんでした。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/a1dea2df-f927-d158-237b-c2f581fb25c7.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/4f93f69582d51d5d09bee4e89cf365b0cf404136/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f61316465613264662d663932372d643135382d323337622d6332663538316662323563372e706e67" alt="（レガシー版TSTのアーキテクチャの概念図）" width="450" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/a1dea2df-f927-d158-237b-c2f581fb25c7.png"></a></p>
+
+<p>WE版TSTの初期開発段階もそれと同じ設計でスタートしましたが、途中で「バックグラウンドページがマスタープロセスとして全体を管理し、サイドバーは基本的にはその指示を受けてツリーを描画する」という設計に改めることとなります。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/62790713-b834-86b5-d3a1-8d3a7f6cee66.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/9024100f62cc74c893426a4c9eb03b1de58895d0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f36323739303731332d623833342d383662352d643361312d3864336137663663656536362e706e67" alt="（WE版TSTのアーキテクチャの概念図）" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/62790713-b834-86b5-d3a1-8d3a7f6cee66.png"></a></p>
+
+<p>これには大きく以下の2つの動機がありました。</p>
+
+<ul>
+<li>マスタープロセス不在の状態でのフラグ管理の煩雑さの低減。<br>
+タブに起こった変化を監視するにあたっては、「TSTによって意図的に行われた変更であれば何もせず、そうでない外部要因によって意図せず引き起こされた変更であれば、その変更後もツリーの構成に矛盾が生じないようにツリーを自動修復する」といった要領で、内部操作と外部操作とを厳密に識別する必要があります。 
+そのためには、WebExtensions APIには<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/create" rel="nofollow noopener" target="_blank">タブを開く時</a>にメタ情報を指定する機能が無いため、「これからTST自身がタブを開こうとしている」という事を意味するフラグを何らかの方法で立てて、WebExtensions APIを呼び、処理が終わったらフラグを下ろすという事をする必要があります。<br>
+しかし、WebExtensionsでは<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/sendMessage" rel="nofollow noopener" target="_blank">ウィンドウ間のメッセージのやりとり</a>を非同期にしか行えないため、まともにやろうとすると、ウィンドウをまたいでタブを移動するような場面では「フラグは移動元のウィンドウと移動先のウィンドウのどちらで立てるのか」「立てたフラグをいつ下ろせばいいのか」「フラグを立てる事を通知するメッセージとタブを操作するAPIの呼び出しのどちらが先に発生するか保証できない」などの問題に悩まされることになります。<br>
+同期的にフラグを管理するためには、ウィンドウをまたがってタブの変化を横断的に監視するマスタープロセスを用意する他の方法はありませんでした。</li>
+<li>サイドバーが閉じられている間・TSTが機能していない間のタブ操作のトラッキングの必要性。<br>
+WebExtensionsのサイドバー機能は排他的な選択式サイドバーパネルを提供する物なので、当然、TSTが提供する「タブバーとしてのサイドバーパネル」も切り替えによってメモリ外に追い出される事があります。<br>
+そうなると、TSTが機能していない状態でツリーの中のタブが部分的に閉じられたり、あるいはツリーの中に新たにタブが開かれたりといった変化が起こる事を避けられません。<br>
+再びサイドバーパネルがアクティブになった時に壊れきったツリー構造をまとめて修復する、というのは現実的ではなく、ツリー構造が破綻しないようにするためには、タブに起こる変化を常時監視し、変化が起こる度に適切なメンテナンスを行う必要があります。<br>
+これにも監視用のマスタープロセスが必要となります。</li>
+</ul>
+
+<p>また、このあたりのタイミングで、<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1322060" rel="nofollow noopener" target="_blank">ウィンドウやタブのセッション情報にメタ情報を保持できるようにするAPI</a>の実装がFirefoxに投入されたため、TSTでもこれを使い、セッションをまたいでタブを一意に識別するためのIDを保持するようにし始めました（<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=529477" rel="nofollow noopener" target="_blank">そういう事をFirefox自身がやって欲しいという要望は出ています</a>が、長らく動きが無いのです……）。<br>
+これもマスタープロセスの重要な仕事の1つとなっています。</p>
+
+<p>ただ、「全ての判断をバックグラウンドページに任せてサイドバーは描画のみに特化する」という方針は厳密には徹底していません。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/cf37f307-02a9-7b57-5292-c221b0aa1e7e.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/95c2e5096485b0186065da1175a9d7a5f679d2a3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f63663337663330372d303261392d376235372d353239322d6332323162306161316537652e706e67" alt="（WE版TSTで採用しなかった、完全な中央集権の様子の概念図）" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/cf37f307-02a9-7b57-5292-c221b0aa1e7e.png"></a><br><br>
+そうではなく実際にはサイドバー側でも、タブの増減や移動の反映などで難しい判断が必要ない部分は自律的に処理したり、タブの親子関係を示す完全な情報を保持していたりします。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/f6ee6c9c-6743-8329-ff10-a725c5183e60.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/0590fe5df82ff164052bbba6a82b21ff024a4327/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f66366565366339632d363734332d383332392d666631302d6137323563353138336536302e706e67" alt="（WE版TSTで各モジュールが半自律動作する様子の概念図）" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/f6ee6c9c-6743-8329-ff10-a725c5183e60.png"></a><br><br>
+このことにより、タブのドラッグ操作などイベントリスナ内で即座にイベントをキャンセルしなくてはならないような場面で、バックグラウンドにいちいち非同期処理で問い合わせなくても、サイドバー内のスクリプトだけで同期的に「このタブは折り畳まれた子孫を持っているかどうか？」のような判断を行えるようになっています。</p>
+
+<p>（ちなみに、WebExtensionsでは<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/getBackgroundPage" rel="nofollow noopener" target="_blank"><code>browser.runtime.getBackgroundPage()</code></a>でバックグラウンドページのグローバルオブジェクトそのものにアクセスできるのですが、この機能は使わず、バックグラウンドとサイドバーとの間での情報のやり取りには必ず<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/sendMessage" rel="nofollow noopener" target="_blank"><code>browser.runtime.sendMessage()</code></a>を使うようにしています。<br>
+これは、プライベートブラウジングモードのウィンドウからは<code>browser.runtime.getBackgroundPage()</code>でバックグラウンドページにアクセスできないという制約があるからです。）</p>
+
+<h4>
+<span id="cssによるスタイリングとアニメーション効果" class="fragment"></span><a href="#css%E3%81%AB%E3%82%88%E3%82%8B%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%A8%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E5%8A%B9%E6%9E%9C"><i class="fa fa-link"></i></a>CSSによるスタイリングとアニメーション効果</h4>
+
+<p>タブとしての見た目を整える事については、「面倒だが、やればできる事である」という事が分かりきっていたため、後回しにして実証実験レベルの実装を優先して作業を進めていました。<br>
+その実装がある程度進行したため、このタイミングでようやくスタイリングに着手し始めました。</p>
+
+<p>タブの外観はレガシー版でもWE版でもCSSで制御していますが、その内容については顕著な改善がありました。</p>
+
+<ul>
+<li>レガシー版はFirefox本体がタブに反映しているスタイル指定を一旦キャンセルし、その上から独自のスタイル指定を反映していました。
+この「Firefox本体の指定のキャンセル」が結構な難題で、Firefoxのバージョンやプラットフォームの違いによってバラバラなスタイル指定を片っ端から潰してまわるために、今まで相当な労力が費やされていました。<br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/d7a1f33a-ca4e-e24e-280b-b52a9cad4f4f.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/4dafa9cb27ead57c9fcff6a2d9f958370fcacf49/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f64376131663333612d636134652d653234652d323830622d6235326139636164346634662e706e67" alt="（レガシー版のスタイル指定：Firefoxの組み込みのスタイル指定をキャンセルするために多くの行が割かれている）" width="450" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/d7a1f33a-ca4e-e24e-280b-b52a9cad4f4f.png"></a><br>
+WE版ではサイドバー内のコンテンツには自分で一からスタイルを指定することになるため、そういった苦労一切が不要となり、はるかに素直な形でCSSを記述できています。<br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/03f54f0d-9caf-0bc5-16f6-355ba1e1b4ed.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/0e923c82ca9a11cfb092e8ccbcfd8a21e51e61d3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f30336635346630642d396361662d306263352d313666362d3335356261316531623465642e706e67" alt="（WE版のスタイル指定：本当にスタイル指定に必要な行だけが含まれている）" width="450" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/03f54f0d-9caf-0bc5-16f6-355ba1e1b4ed.png"></a>
+</li>
+<li>単位となる値の定義やアニメーションの挙動など、レガシー版ではJavaScriptとCSSの複雑な組み合わせで成立していた部分の多くをCSSだけで完結させるように改めました。<br>
+UIの見た目をCSSで指定する時に問題になるのが、各要素のサイズの定義です。
+タブのアイコンは縦横16ピクセルで一定なのに対し、UIの文字サイズはプラットフォームによって12ピクセルだったり16ピクセルだったりと様々です。
+そのため、例えばタブの高さを32ピクセルと決め打ちすると、文字の大きな環境では狭苦しくなり、文字の小さな環境では余白が大きくなりすぎるという結果になってしまいます。
+かといってem単位を使っても、今度はタブのアイコンが相対的に大きすぎる・小さすぎるといった問題が起こります。<br>
+WE版TSTではこの問題の解決のために、カスタムプロパティを多用する事にしました。
+これはいわゆる「CSSの変数」で、1箇所で定義した長さや数値を<code>var(変数名)</code>で他の箇所から参照できるというものなのですが、実は値の定義を後から動的に変更する（新しい値の指定で上書きする）こともできます。
+これと<code>calc()</code>を併用して各部分のサイズ指定を「この部分は<code>--tab-height</code>の半分」「この部分は<code>100%</code>分の高さから<code>--favicon-size</code>を引いた長さ」のように書いておき、リファレンスとなる要素の大きさを起動時に<code>getBoundingClientRect()</code>で測定して、その結果をカスタムプロパティの値として再定義すれば、実行環境に適したサイズで全体の見た目を簡単に揃えられます。<br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/f6383c68-dd7e-040e-723d-2c59debe7a02.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/13fc3b6b9dc594ab6ddda474642768afa521f874/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f66363338336336382d646437652d303430652d373233642d3263353964656265376130322e706e67" alt="（タブのサイズを計測してスタイルシートを動的に定義している部分）" width="450" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/f6383c68-dd7e-040e-723d-2c59debe7a02.png"></a><br>
+なお、サイズ計測用のダミーの要素は、<code>position: fixed</code>で通常のフローから切り離して画面の隅に置いた上で、<code>visibility: hidden</code>や<code>opacity: 0</code>でユーザーの目に見えないようにしつつ、ユーザーのクリック操作に反応してしまわないように<code>pointer-events: none</code>も指定しています。
+<code>pointer-events: none</code>を指定したボックスは他にも「ユーザーの操作を横取りしないで、見た目上だけ半透明の色付きボックスを上に重ねる」のようなことをするのにも有用で、背景画像で頑張るとか、枠をつけるためだけにボックスを一階層増やすとかの無理をしなくてよくなります。</li>
+<li>カスタムプロパティと値の計算は、インデントの深さの変更やツリーの折りたたみでのアニメーション効果にも活かされています。
+レガシー版では個々のタブの要素に対してその都度<code>style</code>を操作しアニメーション効果を適用していましたが、WE版では全てのアニメーション効果を事前に動的に生成したスタイルシートで定義しきっておき、個々の要素はそのトリガーとなるクラスの追加・削除のみ行うという設計に改めました。<br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/9c48b5ca-d51c-61fe-989b-7e9629af73b1.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/2a237cd0269470c1622276887535eca88d51d9e0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f39633438623563612d643531632d363166652d393839622d3765393632396166373362312e706e67" alt="（インデントのアニメーション効果を実現するために自動生成されたスタイル指定の様子）" width="450" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/9c48b5ca-d51c-61fe-989b-7e9629af73b1.png"></a><br>
+この設計変更を決断できた背景には、上記のカスタムプロパティと値の計算が使えるようになった事に加え、テンプレート構文によって変数の値を埋め込んだ長大な文字列を容易に定義できるようになったからという事もあります。
+（理論上は同じ改善をレガシー版にも反映できるのですが、余生の短いレガシー版のためにこれ以上の時間を割きたくないので、自分の手でそれをやる事はもう無いでしょう。）</li>
+</ul>
+
+<h3>
+<span id="フェイズ3他のアドオンとの連携を考慮した作り込み" class="fragment"></span><a href="#%E3%83%95%E3%82%A7%E3%82%A4%E3%82%BA3%E4%BB%96%E3%81%AE%E3%82%A2%E3%83%89%E3%82%AA%E3%83%B3%E3%81%A8%E3%81%AE%E9%80%A3%E6%90%BA%E3%82%92%E8%80%83%E6%85%AE%E3%81%97%E3%81%9F%E4%BD%9C%E3%82%8A%E8%BE%BC%E3%81%BF"><i class="fa fa-link"></i></a>フェイズ3：他のアドオンとの連携を考慮した作り込み</h3>
+
+<p>単体のアドオンとしてのWE版TSTが形になる目処が立ってきた辺りから、もう1つのコンセプトである「他のアドオンとの相互運用性」を意識した作り込みにも着手し始めました。</p>
+
+<h4>
+<span id="アドオン同士の暗黙的な連携" class="fragment"></span><a href="#%E3%82%A2%E3%83%89%E3%82%AA%E3%83%B3%E5%90%8C%E5%A3%AB%E3%81%AE%E6%9A%97%E9%BB%99%E7%9A%84%E3%81%AA%E9%80%A3%E6%90%BA"><i class="fa fa-link"></i></a>アドオン同士の暗黙的な連携</h4>
+
+<p>TSTの基本機能のうちいくつかは、WebExtensionsにおいてもアドオン同士の暗黙的な連携が可能なように設計してあります。</p>
+
+<ul>
+<li>
+<code>browser.tabs.create()</code>で<code>openerTabId</code>を指定して開かれたタブは子タブになる。
+（それ以外にも、<code>openerTabId</code>を伴った状態でタブが開かれる場面はすべてTSTの検出対象となる。）</li>
+<li>現在のタブ配下のツリーが折り畳まれた状態で現在のタブを閉じると、子孫タブも道連れに閉じる。</li>
+</ul>
+
+<p>これらの仕様により、マウスジェスチャ系アドオンやキーボードショートカット変更系アドオンが真っ当にWebExtensions APIを使用していれば、それらは違和感なくTSTと一緒に働いてくれるはずです。</p>
+
+<h4>
+<span id="タブのコンテキストメニューの提供" class="fragment"></span><a href="#%E3%82%BF%E3%83%96%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E3%81%AE%E6%8F%90%E4%BE%9B"><i class="fa fa-link"></i></a>タブのコンテキストメニューの提供</h4>
+
+<p>ただ、先にも触れましたが、WebExtensionsではあるアドオンが提供する領域内での他のアドオンと暗黙的な連携はほぼ不可能です。<br>
+せめてコンテキストメニューを介してだけでも連携できれば良かったのですが、現在のところWebExtensionsでは「サイドバーで独自のタブバー風UIを提供する」場合であっても一般的なタブのコンテキストメニューをそこに流用する方法がありません（<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1376251" title="1376251 - Allow sidebar extensions access to native tab context menu" rel="nofollow noopener" target="_blank">bug 1376251</a>、<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1396031" title="1396031 - Create browser.menus.show(contextType, parameters, contextParameters);" rel="nofollow noopener" target="_blank">bug 1396031</a>などで提案はなされていますが……）。</p>
+
+<p>正直な所としてはAPIが整備されるのを待ちたかったのですが、タブのコンテキストメニュー無しでは実用に支障をきたす事が明白です。<br>
+よって、非常に不本意ではあるのですが、他の同系統のアドオンがやっているように、TSTでもサイドバー内に独自のコンテキストメニューを実装する事にしました。</p>
+
+<p>ただし、半端なオレオレUIにはせずに、Firefoxのタブのコンテキストメニューを可能な限り真似るようにという事には気を遣っています。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/d6c3129b-09b4-0d54-6b16-162e6f50951b.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/18da1ae491657b41e15047723aeeb031e1d2ffd7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f64366333313239622d303962342d306435342d366231362d3136326536663530393531622e706e67" alt="（サイドバー内の偽コンテキストメニュー）" height="380" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/d6c3129b-09b4-0d54-6b16-162e6f50951b.png"></a></p>
+
+<p>自分としてはこれはあくまで「普通のタブのコンテキストメニューをサイドバー上でも使えるようになるまでの暫定的な実装」「いずれ捨てるつもりの実装」なので、この部分で独自の世界観を作り込むつもりは無く、技術的に不可能であるという以外の理由での差異は可能な限り発生させたくなかったのです。</p>
+
+<p>メニューそのものの内容・見た目を真似るだけでなく、<a href="https://github.com/piroor/treestyletab/wiki/API-for-other-addons#extra-context-menu-items-on-tabs" rel="nofollow noopener" target="_blank">コンテキストメニューに項目を追加するAPI</a>も、<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/menus" rel="nofollow noopener" target="_blank">WebExtensionsネイティブのmenus API</a>を真似ています。<br>
+指定する内容や提供する機能はmenus APIの下位互換となるように注意しており、そのため他のアドオン対しては</p>
+
+<ul>
+<li>既存のコードに対して行わなくてはいけないTSTのための変更は最小限で済む</li>
+<li>将来のバージョンのFirefoxでmenus APIがサイドバー内のコンテンツに対しても有効になった時には、単にTST対応のためのコードを削除するだけで済む</li>
+</ul>
+
+<p>といったメリットがあります。<br>
+ドッグフーディングも兼ねて、TST自身の追加のコンテキストメニュー項目そのものも完全にこの枠組みの上で提供するようにしています。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/800a8a49-dc18-7153-6f02-7c95526c9838.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/c71fcc1e495f727d4a88d43a78e08e369af15c30/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f38303061386134392d646331382d373135332d366630322d3763393535323663393833382e706e67" alt="（サイドバー内の偽コンテキストメニューにおける、ツリー型タブの追加のコンテキストメニュー項目）" height="380" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/800a8a49-dc18-7153-6f02-7c95526c9838.png"></a></p>
+
+<h4>
+<span id="メニュー以外のapi" class="fragment"></span><a href="#%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E4%BB%A5%E5%A4%96%E3%81%AEapi"><i class="fa fa-link"></i></a>メニュー以外のAPI</h4>
+
+<p>menus APIを真似た部分以外のTST独自のAPIは、「TSTに指示を与えるAPI」と「TSTからの通知を受け取るAPI」の2種類を実装しました。</p>
+
+<ul>
+<li>前者は「ツリーを折り畳む・展開する」や「特定のタブを別のタブの子にする」などで、これはTSTに対して<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/sendMessage" rel="nofollow noopener" target="_blank"><code>browser.runtime.sendMessage()</code></a>でIDを指定して通知のメッセージを送るだけで使えます。
+戻り値も、WebExtensionsの他の機能と同様に<code>Promise</code>で返されます。</li>
+<li>後者は「タブバー上でのクリック」「ドラッグ操作の開始」などを通知するイベントAPIです。
+<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/runtime/onMessageExternal" rel="nofollow noopener" target="_blank"><code>browser.runtime.onMessageExternal</code></a>に登録したリスナで通知を受け取るというものですが、TSTのイベントAPIではもう1ステップ、「TSTに対して自身の存在を知らせる」という事も必要となっています。
+これは、<code>browser.runtime.onMessageExternal</code>で待ち受けているリスナにメッセージを送るためには、送信側で必ず受け手のアドオンのIDを明示しないといけない、という制約があるからです。</li>
+</ul>
+
+<p>ここで問題になるのがアドオンの起動順序です。<br>
+TSTが先に初期化を終えている場合なら、連携する側のアドオンは単にTST宛に通知を送るだけで済みます。<br>
+しかし場合によっては、連携する側のアドオンの方が先に初期化されているという事も当然起こり得ます。<br>
+この場合、連携する側のアドオンからは「TSTに対していつ自分の存在を知らせればいいのか」が分かりません。<br>
+「TSTの初期化が完了した、という通知をTSTから送れば……」と思っても、そもそもそれができないわけで、鶏と卵です。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/566c911e-cd47-94dc-0ac2-04df88baf6fa.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/d78834352aed0b278b6cb51391d8a6b742d39f33/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f35363663393131652d636434372d393464632d306163322d3034646638386261663666612e706e67" alt="（メッセージベースで連携する2つのアドオンの起動順序を示したシーケンス図）" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/566c911e-cd47-94dc-0ac2-04df88baf6fa.png"></a></p>
+
+<p>この点は突き詰めるとどうしようもないので、TSTでは</p>
+
+<ul>
+<li>他のアドオンに対しては、基本的に自分からは通知を送らない。</li>
+<li>過去に存在を通知されたアドオンに対しては、自分の初期化が完了した時点でその事を通知する。</li>
+<li>TSTと連携できるアドオンがTSTより先にインストールされていた場合、ユーザーが明示的に再読み込み（無効化→有効化）するか自動更新で再起動されるかして存在を通知されるまでは、連携できないままでも仕方ない。</li>
+</ul>
+
+<p>と割り切ることにしました。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/c0c903fc-7331-e20f-8440-161e5dbcc440.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/e4a2135470764d062f6b8a093f0e49f50d0d6fe5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f63306339303366632d373333312d653230662d383434302d3136316535646263633434302e706e67" alt="（キャッシュされた情報に基づき滞りなく初期化処理を行う様子のシーケンス図）" height="350" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/c0c903fc-7331-e20f-8440-161e5dbcc440.png"></a></p>
+
+<p>このようにして実装した通知系APIについて、当初は必要最小限の情報のみを通知するようにしていたのですが、実際にそれに基づいて連携のための処理を実装してみると、思った通りの結果にはならないという事が分かりました。<br>
+というのも、通知される情報が足りないとイベントを受け取った側でまた改めて別の非同期な問い合わせ用APIを呼ばねばならず、その結果を待っている間にまたTSTから新しいイベントが通知されてしまって……という事が繰り替えされて、受け手側でイベントの状態を管理しきれなくなったのです。<br><br>
+<a href="https://qiita-image-store.s3.amazonaws.com/0/61387/4d311fdd-17ec-0518-2736-d8e1d8f11f7d.png" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/7ed08788647e3ce636735220cd7de82379e7ecc1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f34643331316664642d313765632d303531382d323733362d6438653164386631316637642e706e67" alt="（十分でない情報しか提供されない通知APIによる連携の様子のシ&lt;br&gt;
+ーケンス図）" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/4d311fdd-17ec-0518-2736-d8e1d8f11f7d.png"></a></p>
+
+<p>そのため最終的には、WebExtensionsの元々のAPIがそうなっているように、イベントAPIでは通知するメッセージの中に可能な限り情報を多く入れるようにしました。<br>
+例えば「タブがクリックされた」「タブの上でドラッグ操作を開始した」などのイベントでは、タブのIDだけを通知するのではなく、<a href="https://github.com/piroor/treestyletab/wiki/API-for-other-addons#data-format" rel="nofollow noopener" target="_blank"><code>tabs.Tab</code>形式のオブジェクト、ツリー型タブが独自に把握しているツリーの開閉状態などの情報、さらに子孫タブについても同じ形式の情報を収集して</a>すべて1つのメッセージに載せています。<br><br>
+<a href="/latest/entries/mozilla/extension/treestyletab/2017-10-03_migration-we-ja.files/api-rich-info-ja.png"><img src="https://camo.qiitausercontent.com/145e7d16a0def1691e55835842337a0081c6f08b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f36313338372f31303435396134342d316537652d346531632d346339662d6530313937633863343362372e706e67" alt="（必要十分な情報を伴ったメッセージに基づく通知APIによる連携の様子のシーケンス図）" width="500" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/61387/10459a44-1e7e-4e1c-4c9f-e0197c8c43b7.png"></a><br>
+イベントが短時間に連続して通知される可能性があるAPIを実装しようと思っている人は、この点に気をつけておくと、API利用者にとって「使いやすい・使い勝手の良い」APIになると思います。</p>
+
+<h3>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h3>
+
+<h4>
+<span id="諦めなければ道は開けるかもしれない" class="fragment"></span><a href="#%E8%AB%A6%E3%82%81%E3%81%AA%E3%81%91%E3%82%8C%E3%81%B0%E9%81%93%E3%81%AF%E9%96%8B%E3%81%91%E3%82%8B%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>諦めなければ道は開ける……かもしれない</h4>
+
+<p>このような経過を経て、TSTのWebExtensions移行は「バージョン2.0のリリース」という一旦の区切りを見るに至りました。</p>
+
+<p>「元のTSTと全く同一のユーザー体験が実現されていないので」あるいは「自分にとって必要だった機能がなくなってしまったので」この移行計画は失敗だった、と言いたい人もいるかも知れません。<br>
+しかしそれらをゴールにしていては、恐らく「WebExtensions版のリリース」という節目すらも迎える事はできなかったでしょう。<br>
+不可能な事は諦め、最も重要なユーザーである自分自身にとって必要な機能・特徴に注力し、やる事のスコープを絞り込んだからこそ、「TST 2.0」は世に出る事ができたと自分は考えています。</p>
+
+<p>自分以外のレガシーアドオンの作者の方々も、きっと同じような事で悩んでいると思います。<br>
+「全部をそっくりそのまま移行できないのなら、やる意味がない」と自暴自棄になってしまう気持ちは非常によく分かります。<br>
+それでも、実際にTST 2.0の開発段階においても、一旦は諦めていた事が意外な角度から実現できたという事は何度かありました。<br>
+誰にも解決できなかった問題をユニークなやり方で解決してきたパイオニア達が、このまま完全に無かった物になってしまうのは忍びないです。<br>
+元の物の核となる価値をほんの少しでもWebExtensionsの上で再現できないかという事を、どうか今一度検討して頂ければと思います。</p>
+
+<h4>
+<span id="webextensionsの今後とtst以外のアドオンの今後について" class="fragment"></span><a href="#webextensions%E3%81%AE%E4%BB%8A%E5%BE%8C%E3%81%A8tst%E4%BB%A5%E5%A4%96%E3%81%AE%E3%82%A2%E3%83%89%E3%82%AA%E3%83%B3%E3%81%AE%E4%BB%8A%E5%BE%8C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>WebExtensionsの今後と、TST以外のアドオンの今後について</h4>
+
+<p>従来のアドオンの仕組みは、自由度の高さ故に様々なアドオンが登場する土壌となりました。<br>
+最初からWebExtensionsのような方針で始めたとしたら、ここまで多種多様なアドオンが出てくることも無かったでしょう。</p>
+
+<p>しかし、APIと言えるAPIが無い状態でのモンキーパッチであったがために、従来のアドオンではFirefoxのバージョン依存や本体機能の劣化・阻害という副作用の発生を避けられませんでした。<br>
+また、それらを避けられるような造詣の深い人以外はアドオンを作れないという状況をも生んでしまいました。</p>
+
+<p>WebExtensionsでないアドオンの廃止はいつか必ず起こる事で、それがFirefoxという名前の間に起こるのか、それともFirefoxが従来のアドオンと共に完全に死んで別のプロダクトが最初からそうなっていたか、という程度の違いでしかありません。<br>
+Firefoxという名前の間に起こったことで、設定の引き継ぎ等がスムーズに進みやすくなったと考えると、これが一番妥当だったのだと思います（本当は、もっと早くにそうなるべきだったのでしょうが……）。</p>
+
+<p>WebExtensions APIでは、「Google Chromeとの互換性」に拘らない独自のAPIも提供され始めています。<br>
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1322060" rel="nofollow noopener" target="_blank"><code>browser.sessions.setTabValue()</code>、<code>browser.sessions.getTabValue()</code>、<code>browser.sessions.setWindowValue()</code>、<code>browser.sessions.getWindowValue()</code></a>はその一例で、TSTもこれが無くては実用レベルでのWE版開発は不可能でした。<br>
+要望や提案は却下される事の方が多い、というか自分が起票した提案はほとんど全部却下か放置されているのが現実ですが、明文化されていない領域での「ここまではあり」「ここから先は無し」というFirefox開発チーム内での判断基準が炙り出される事にも意義はあるはずと信じて、今後もめげずにやっていきたいと思います。</p>
+
+<hr>
+
+<p>以上、TST WE版作成のための一連の作業の締めくくりとして、長々と思いの丈を語ってみました。</p>
+
+<p>TST 2.0は一般向けにリリースしたことでより多くの耳目に晒されるようになったため、開発段階とは比較にならない量のバグ報告が連日寄せられている状況です。<br>
+TST 2.0の後はさっさと<a href="https://addons.mozilla.org/firefox/addon/multiple-tab-handler/" rel="nofollow noopener" target="_blank">マルチプルタブハンドラ</a>のWE版の作業に移りたかったのですが、この分だとまだまだ時間がかかりそうです……</p>
+
+<p>ちなみに、自分は普段はこういったアドオン開発の経験やその障害の原因調査を通じて培ったMozilla製品に関する知見を活かして、<a href="http://www.clear-code.com/" rel="nofollow noopener" target="_blank">株式会社クリアコード</a>でFirefox・Thunderbirdの法人向け技術サポート等の業務を行っています。<br>
+業務上でFirefoxやThunderbirdの技術的な事に関してお困りの場合、何かお力になれるかもしれません。</p>
+
+<p>また、この記事中の図のように技術を図解する事にも関心があり、日経Linux誌にて<a href="http://system-admin-girl.com/" rel="nofollow noopener" target="_blank">シス管系女子</a>というマンガ形式の技術解説記事も執筆しております。</p>
+
+<p>ということで、図らずも上から下まで自分の持つ技能のすべてを投じた記事となってしまったのでした。<br>
+ご笑覧頂けましたら幸いです。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>piroorさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>12</kbd>
+		<a target="_blank" href="https://qiita.com/piroor/items/ea683ba61cfb3cb5b1d7">アドオン「テキストリンク」のWebExtensions移行、失敗と成功の分かれ目について</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-04 22:07:50</center>
+	</td>
+	<td style="width:200px;">
+		@piroor<br />(ClearCode Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/61387/profile-images/1473695642">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[firefox]</b> <b>[アドオン]</b> <b>[WebExtensions]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p><a href="http://piro.sakura.ne.jp/latest/blosxom/mozilla/xul/textlink/2017-11-04_migration-we.htm" rel="nofollow noopener" target="_blank">この投稿は個人サイトとのクロスポストです</a>。</p>
+
+<p>Firefox 57で従来型のアドオンが使えなくなるという事で進めているアドオンのWebExtensions移行作業ですが、<a href="https://qiita.com/piroor/items/21ce5c99d5311973661b" id="reference-e5b7669ccc4bbab3f018">ツリー型タブ</a>、<a href="http://piro.sakura.ne.jp/latest/blosxom/mozilla/extension/multipletab/2017-10-13_migration-we.htm" rel="nofollow noopener" target="_blank">マルチプルタブハンドラ</a>に続いて、<a href="http://piro.sakura.ne.jp/xul/textlink/" rel="nofollow noopener" target="_blank">テキストリンク</a>もWebExtensionsに移行しました。移行後の最初のバージョンは6.0.0で、そこから若干の修正を施した最新版は6.0.1となっています。</p>
+
+<h3>
+<span id="テキストリンクってどんなアドオン" class="fragment"></span><a href="#%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%83%AA%E3%83%B3%E3%82%AF%E3%81%A3%E3%81%A6%E3%81%A9%E3%82%93%E3%81%AA%E3%82%A2%E3%83%89%E3%82%AA%E3%83%B3"><i class="fa fa-link"></i></a>テキストリンクってどんなアドオン？</h3>
+
+<p>テキストリンクは、<a href="http://piro.sakura.ne.jp/xul/textlink/#testcases" rel="nofollow noopener" target="_blank">テストケースの各種の例</a>のようにWebページ中に普通のテキストとして書かれたURI文字列を、ダブルクリックするだけでリンクのように読み込めるようにするという物です。最盛期には10万を超えるユーザーに使われていた事もあった、僕がMozilla Add-onsに登録していたアドオンの中では統計上最もユーザー数の多「かった」アドオンです。</p>
+
+<p>個人的にもこれが無いとイラッとする場面が結構あって地味に依存度が高かったので、いずれWebExtensions移行はするつもりでいたのですが、先月末にMozilla Corporationのアドオンコミュニティマネージャーの方（<a href="http://piro.sakura.ne.jp/latest/blosxom/mozilla/xul/2016-06-20_mozlondon-technical-topics.htm" rel="nofollow noopener" target="_blank">昨年のMozLondon</a>にアテンドしてくださった方）から「そろそろFirefox 57リリースが近付いてるけど、テキストリンクの移行はどんな感じ？（大意）」というメールを頂いてしまい、顔を合わせた事のある人から直々にせっつかれてはやらないわけにはいくまい……と、予定を繰り上げて移行に着手したのでした。</p>
+
+<p>メールをもらってからリリースまでに要したのがちょうど1週間で、これまでの2例の難航度合いに比べるとびっくりするぐらいあっさり完了した感があります。数を重ねてきてだんだん「WebExtensionsのやり方」に慣れてきたということでしょうか。</p>
+
+<p>実を言うと、テキストリンクは<a href="https://github.com/piroor/textlink/tree/webextensions" rel="nofollow noopener" target="_blank">1年ちょっと前にWebExtensions移行に挑戦してみた事があった</a>のですが、その時は途中ですっかり投げ出してしまっていたのでした。今回は、この時の成果物をまるっきり無視しての再挑戦での成功と相成りました。</p>
+
+<p>1回挫折した物が仕切り直して成功したという典型的な例なので、ここでは「何故前回は失敗し、今回は成功したか」という観点から語ってみようと思います。</p>
+
+<h3>
+<span id="移行に失敗した時にやったやろうとした事" class="fragment"></span><a href="#%E7%A7%BB%E8%A1%8C%E3%81%AB%E5%A4%B1%E6%95%97%E3%81%97%E3%81%9F%E6%99%82%E3%81%AB%E3%82%84%E3%81%A3%E3%81%9F%E3%82%84%E3%82%8D%E3%81%86%E3%81%A8%E3%81%97%E3%81%9F%E4%BA%8B"><i class="fa fa-link"></i></a>移行に失敗した時にやった（やろうとした）事</h3>
+
+<p>過去の挑戦時の方針は、端的に言えば「最低限の手直しでの移行」ということになります。</p>
+
+<p>テキストリンクは初版が2004年という非常に歴史の古いアドオンで、Firefoxの仕様変更に対し、その都度手直しでの追従を繰り返してきました。最初のバージョンからバージョン4までの間、テキストリンクはすべての処理が特権領域内で完結する仕様でした。バージョン5でのe10s（マルチプロセス）への対応にあたって、DOM RangeなどのWebページの生のDOMに触らないといけない「コンテントプロセス側で実行しなくてはならない処理」を分割するという変更を行いましたが、本質的な設計はずっと変化していなかったと言えます。</p>
+
+<p>その延長線上にあったこの時の進め方は、<a href="https://github.com/piroor/textlink/tree/webextensions" rel="nofollow noopener" target="_blank">WebExtensions化の作業用にブランチを切って</a>、元のコードを「バックグラウンドスクリプト用」や「コンテントスクリプト用」といったフォルダに移動し、XPCOMやXULに依存していた部分を除去していく形でそれぞれのソースの中身を破壊的に変更していく、というものでした。</p>
+
+<p>旧版テキストリンクは、選択範囲（※カーソルも選択範囲の一種なのです）からのURI検出や、ユーザーの操作からタブで開くかウィンドウで開くかといった判断を行う部分など、主要な処理のほとんどがコンテントプロセス側で動作する設計でした。chromeプロセス側は、コンテントプロセスからの指示に従って実際にタブやウィンドウを開くだけという感じです。</p>
+
+<p>また、それとは別にコンテキストメニュー周りの実装がchromeプロセス側にあり、こちらはユーザーがコンテキストメニューを開いたタイミングで処理を開始して、コンテントプロセスに処理を依頼してはその結果を受け取って……という事を繰り返すようになっていました。</p>
+
+<p>これをそっくりそのままWebExtensionsに持っていこうとすると、主要な処理はすべて<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Content_scripts" rel="nofollow noopener" target="_blank">コンテントスクリプト</a>に移植することになります。しかし、WebExtensionsではコンテントスクリプトでできる事の範囲が大きく制限されています。そこで「コンテントスクリプトではこの機能が動かないのでバックグラウンドスクリプトに移す」という事をその都度やっていると、キリが無い上に、場当たり的な切り貼りの繰り返しでコードはどんどんカオスになっていきます。</p>
+
+<p>また、従来のアドオンでの「コンテントプロセスで動作するスクリプト」とWebExtensionsの「コンテントスクリプト」には大きな違いがあります。それは、<em>従来のコンテントプロセス用スクリプトは「1つのプロセスにつき1つのインスタンスが作られる」のに対し、コンテントスクリプトはタブ内のフレームの数だけインスタンスが作られる</em>という点です。プロセスの数だけインスタンスが増えるという時点でいかがな物かという感じですが、フレームの数だけ増えるとなると、さすがに主要な機能をそこで動かすのは非効率的です。</p>
+
+<p>このほか、コンテキストメニュー項目の動的な更新についての知見がなかったために、選択範囲からのURI文字列の検出結果を受けてメニュー項目を制御するやり方が分からなかった事や、XPCOMとXULがあることを前提として書かれたコードを総点検してXPCOMフリーに書き直すにあたって、代替手段が見つからなかった処理がいくつかあった（WebExtensionsでも最新のWeb技術でも機能が提供されていない部分があった）事など、数々の困難に嫌気がさし、また<a href="http://system-admin-girl.com/" rel="nofollow noopener" target="_blank">「シス管系女子」</a>の連載の〆切が迫っていた事も相まって、道半ばで移行作業を放棄してしまったのでした。</p>
+
+<p><a href="http://piro.sakura.ne.jp/latest/blosxom/mozilla/extension/treestyletab/2017-10-03_migration-we-ja.htm" rel="nofollow noopener" target="_blank">TSTの移行に際しての振り返り</a>で「直接Firefoxの中身をいじくり回していたレガシーなアドオンを『若干手直ししてFirefox 57でも使えるようにする』ということは不可能」と書きましたが、この時の失敗はまさにこれが原因であったと総括できます。例えて言うなら、従来バージョンから持ち越した既存の実装という大荷物を背負って道を歩いていて、道のど真ん中にある車止めに荷物が引っかかってしまい先に進めず、「こんなもんどけてやる！」とばかりに軽く考えて邪魔な車止めを取り除こうとして、でも地面にしっかりコンクリートで固定されていて蹴っても叩いても動きやしなくて、その埒の明かなさと背負っている荷物の重みとのダブルパンチで心が折れてしまった……という感じでしょうか。</p>
+
+<h3>
+<span id="移行に成功した時にやった事" class="fragment"></span><a href="#%E7%A7%BB%E8%A1%8C%E3%81%AB%E6%88%90%E5%8A%9F%E3%81%97%E3%81%9F%E6%99%82%E3%81%AB%E3%82%84%E3%81%A3%E3%81%9F%E4%BA%8B"><i class="fa fa-link"></i></a>移行に成功した時にやった事</h3>
+
+<p>今回の再挑戦では、TSTやMTHのWebExtensions移行で成功をもたらした<em>「旧版の動作をリファレンスとして、同等のユーザー体験をもたらす新しいWebExtensionsベースのアドオンを新規に開発する（つもりで臨む）」というやり方</em>を取りました。具体的には以下の順で作業を進めました。</p>
+
+<ol>
+<li> 「選択範囲とその前後のテキストの抽出」といった必須の要素技術をコンテントスクリプトで実装する。</li>
+<li>文字列からのURI文字列の検出という、純粋にJavaScriptのコードだけで完結できるモジュールを、従来版から選択的にバックグラウンドスクリプトとして移植する。</li>
+<li>ダブルクリック操作をトリガーとして、コンテントスクリプトで可視状態のテキストを抽出し、それをバックグラウンドスクリプトに送ってURIを検出させて開く、という形で最も基本的な機能を実装する。</li>
+<li>開いた後のURI文字列を選択範囲にする、という挙動を実装する。</li>
+<li>選択範囲の変化をトリガーとして、コンテントスクリプトで可視状態のテキストを抽出し、それを材料にバックグラウンドスクリプトでURI文字列の検出とコンテキストメニューの更新を行う、という一連の事を実装する。</li>
+<li>テキスト編集領域内での動作に対応する。</li>
+<li>設定画面を実装する。</li>
+</ol>
+
+<p>この説明にも表れている通り、今バージョンのほとんどのコードはスクラッチで書いた物で、旧版からコードを引き継いだのは「文字列の中からURIらしき部分を検出する」部分だけです。以下、一般的な話は省略してテキストリンクに固有の事情だった部分に絞って詳しく述べます。</p>
+
+<h4>
+<span id="選択範囲やその前後にあるテキストの見た目通りの状態での抽出" class="fragment"></span><a href="#%E9%81%B8%E6%8A%9E%E7%AF%84%E5%9B%B2%E3%82%84%E3%81%9D%E3%81%AE%E5%89%8D%E5%BE%8C%E3%81%AB%E3%81%82%E3%82%8B%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%81%AE%E8%A6%8B%E3%81%9F%E7%9B%AE%E9%80%9A%E3%82%8A%E3%81%AE%E7%8A%B6%E6%85%8B%E3%81%A7%E3%81%AE%E6%8A%BD%E5%87%BA"><i class="fa fa-link"></i></a>選択範囲やその前後にあるテキストの、見た目通りの状態での抽出</h4>
+
+<p>URI文字列を検出するにあたっては、<code>window.getSelection()</code>で取得できるRangeの<code>toString()</code>の結果ではなく、「ページ中で目に見えているとおりのテキスト」を対象にマッチングを行わなくてはいけません。というのも、Rangeの<code>toString()</code>はその範囲にあるテキストノードの内容を単純に連結した結果を返す物なので、親要素が非表示であるテキストノードがある場合や、CSSの<code>display:block</code>などで見た目上改行されているだけの部分がある場合に、「見た目上は改行されているように見えるのにデータ上は改行が存在しないので、複数の行が連結されて見える（そのためURI文字列の検出結果がおかしくなる）」という事が起こるからです。</p>
+
+<p>旧版では、Webページをプレーンテキスト形式で保存する場面や、ThunderbirdでHTMLメールとして編集された本文からプレーンテキストの本文を生成する場面などで使われる<a href="http://doxygen.db48x.net/mozilla-full/html/d6/d14/interfacensIDocumentEncoder.html" rel="nofollow noopener" target="_blank">nsDocumentEncoderというXPCOMコンポーネント</a>（<code>@mozilla.org/layout/documentEncoder;1?type=text/plain</code>）を使ってこれを一発で行えていたのですが、WebExtensionsでは当然使えません。<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1271534" rel="nofollow noopener" target="_blank">相当する機能を提供して欲しいというbug</a>はずいぶん前に立てたのですが、今に至るまで具体的な実装はまだなされていないままなので、諦めて自力で実装してみました。</p>
+
+<p>詳しい事は<a href="https://github.com/piroor/textlink/blob/52b3cb102df31c18a0649ee6ff0a2903864105cb/webextensions/content_scripts/range.js#L8" rel="nofollow noopener" target="_blank">当該処理のソース</a>を見てもらうのが一番早いのですが、簡単にいうと、<a href="https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker" rel="nofollow noopener" target="_blank">DOM2 TraversalのTreeWalker</a>を使って泥臭い事をやっています。TreeWalkerは<code>nextNode()</code>と<code>previousNode()</code>を使うとDOMツリー上の全ノードをツリー構造を無視して文書順で参照するイテレータとして使えるので、CSSのセレクタやXPathでは条件にできない生のDOMの情報を条件とした絞り込みを行っています。具体的には、<a href="https://github.com/piroor/textlink/blob/52b3cb102df31c18a0649ee6ff0a2903864105cb/webextensions/content_scripts/range.js#L110" rel="nofollow noopener" target="_blank">まず<code>NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT</code>でざっくりテキストノードと要素ノードに絞り込んで</a>、さらに<a href="https://github.com/piroor/textlink/blob/52b3cb102df31c18a0649ee6ff0a2903864105cb/webextensions/content_scripts/range.js#L122" rel="nofollow noopener" target="_blank">そのノードの祖先に非表示の要素ノードがないかを<code>window.getComputedStyle()</code>で順にチェックして</a>、確かに可視状態だと確認できたノードだけを取り出しています。その後、<a href="https://github.com/piroor/textlink/blob/52b3cb102df31c18a0649ee6ff0a2903864105cb/webextensions/content_scripts/range.js#L39" rel="nofollow noopener" target="_blank">テキストノードであれば<code>nodeVaue</code>を、要素ノードで<code>display:inline</code>以外の物があれば適宜改行文字を「表示されているテキスト」として取り出しています</a>。</p>
+
+<p>以上のようなやり方で、一応実用に耐える精度で「見た目通りのテキストを抽出する」を実現できたのですが、想像の及んでいなかったエッジケースなどで想定外の結果になる可能性は依然としてありそうな気がしています。<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1271534" rel="nofollow noopener" target="_blank">nsDocumentEncoder相当の機能</a>が実現されるまでは、まだまだ悩みは尽きない感じです。</p>
+
+<h4>
+<span id="文字列からのuriの検出処理" class="fragment"></span><a href="#%E6%96%87%E5%AD%97%E5%88%97%E3%81%8B%E3%82%89%E3%81%AEuri%E3%81%AE%E6%A4%9C%E5%87%BA%E5%87%A6%E7%90%86"><i class="fa fa-link"></i></a>文字列からのURIの検出処理</h4>
+
+<p><a href="https://github.com/piroor/textlink/blob/52b3cb102df31c18a0649ee6ff0a2903864105cb/webextensions/background/uriMatcher.js" rel="nofollow noopener" target="_blank">与えられた文字列からURIを検出する処理</a>は、今回の移行で唯一、旧バージョンからほとんどそのままコードを引き継いだ箇所です。</p>
+
+<p>この処理は、データ量にして最終的に完成したWebExtensions版テキストリンクの全体の1/3を占める巨大なモジュールなのですが、やっている事は至って単純で、<a href="https://github.com/piroor/textlink/blob/52b3cb102df31c18a0649ee6ff0a2903864105cb/webextensions/background/uriMatcher.js#L155" rel="nofollow noopener" target="_blank">「相対パスも許容するのか？」「全角英数字も許容するのか？」等の条件に基づいてURIらしき文字列にマッチする正規表現を組み立てるだけの物です</a>。相対パスを絶対パスに解決する部分などでXPCOMコンポーネントの機能を使っている部分はありましたが、全体の中ではそういった箇所はごく一部に限られており、ほとんどは単純な文字列処理だけで構成されていました。</p>
+
+<p>また、元々自動テストを容易にするためにモジュール間の結合を弱めていた結果、<a href="https://github.com/piroor/textlink/blob/52b3cb102df31c18a0649ee6ff0a2903864105cb/webextensions/background/uriMatcher.js#L928" rel="nofollow noopener" target="_blank">機能を使うのに必要なパラメータはほとんどすべて外部から与えられるようになっており</a>、旧テキストリンクの実装の中ではここだけ突出して浮いているようにも感じられるほどでした。</p>
+
+<p>そういう事情があったため、このモジュールについてはほとんど苦労する事なくほぼそのままの形でWebExtensions版に組み込む事ができました。</p>
+
+<h4>
+<span id="ダブルクリック操作で開いた後のuri文字列を選択範囲にする" class="fragment"></span><a href="#%E3%83%80%E3%83%96%E3%83%AB%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E6%93%8D%E4%BD%9C%E3%81%A7%E9%96%8B%E3%81%84%E3%81%9F%E5%BE%8C%E3%81%AEuri%E6%96%87%E5%AD%97%E5%88%97%E3%82%92%E9%81%B8%E6%8A%9E%E7%AF%84%E5%9B%B2%E3%81%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>ダブルクリック操作で開いた後のURI文字列を選択範囲にする</h4>
+
+<p>旧版テキストリンクでコンテントプロセス側に大部分の処理があったのは、<a href="https://github.com/piroor/textlink/blob/52b3cb102df31c18a0649ee6ff0a2903864105cb/webextensions/content_scripts/range.js#L204" rel="nofollow noopener" target="_blank">「URI文字列として検出した部分を新しい選択範囲にする」という挙動</a>を実現したかったからでした。これをやるには、Rangeを対象に文字列を検索してヒット箇所をRangeで返すというAPIが不可欠です。</p>
+
+<p>旧版では<a href="http://doxygen.db48x.net/mozilla-full/html/df/def/interfacensIFind.html" rel="nofollow noopener" target="_blank">nsFindというXPCOMコンポーネント</a>（<code>@mozilla.org/embedcomp/rangefind;1</code>）を使ってこれを実現していましたが、当然ですがこれはWebExtensionsでは使えません。また、W3Cで提案されていたらしい<a href="http://w3c.github.io/rangefinder/" rel="nofollow noopener" target="_blank">RangeFinderというAPI</a>が実装されていればそれで代替できたのですが、こちらは残念ながら未実装です。という具合で代わりの手段がなかったという事が、過去の移行失敗時に移行を断念した理由の1つでもありました。</p>
+
+<p>幸い、最近になってWebExtensionsに<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/find" rel="nofollow noopener" target="_blank"><code>browser.find</code></a>というAPIが追加され、Firefox 57ではRangeFinder的な事ができるようになっています。なので今回はこれを使ってみる事にしました。</p>
+
+<p>RangeFinderを使う時にネックになるのが、DOM Rangeの取り扱いです。コンテントスクリプトとバックグラウンドスクリプトの間ではJSON文字列に変換できるデータしか交換できないのですが、<code>browser.find</code>はコンテントスクリプトでは動作しないためバックグラウンドスクリプトで呼び出す必要があり、しかし選択範囲の操作はコンテントスクリプト側でやらなくてはならない……ということで、どうやってDOM Rangeの情報を双方の間で受け渡すかが問題となります。</p>
+
+<p>この事について何かヒントはないかと<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/find/find" rel="nofollow noopener" target="_blank"><code>browser.find.find()</code></a>の説明を読み進めてみた所、まさに<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/find/find#Using_rangeData" rel="nofollow noopener" target="_blank">この通りの事をやる例</a>が載っていました。このAPIは<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/find/find#Return_value" rel="nofollow noopener" target="_blank"><code>rangeData</code>という形式</a>で検索結果のRangeをシリアライズして返すようになっており、その情報に基づいて<a href="https://github.com/piroor/textlink/blob/52b3cb102df31c18a0649ee6ff0a2903864105cb/webextensions/content_scripts/range.js#L233" rel="nofollow noopener" target="_blank">コンテントスクリプト側でRangeを組み立てれば良い</a>ようです。DOM Rangeをシリアライズして受け渡す事自体は容易に考えつくものの、どういう考え方でシリアライズするかという事についてはいろいろな考え方が可能であったため、自分で考えていたらそれだけでまた時間がかかってしまっていたでしょう。「既に動いている実装があるのなら、それとフォーマットを揃える」という具合に考える手間を省けたのは助かりました。</p>
+
+<p>ただ、実際に<code>browser.find.find()</code>を使ってみるとメチャクチャ遅いです。それもそのはず、このAPIは検索対象の範囲をRangeで絞り込む事ができなくて、実行すると必ずページ全体を対象に検索し、しかもすべてのヒット箇所を列挙してくるのです。検出対象のURIの数が増えれば増えるほど実行回数が増え、ページが長くなればなるほど1回あたりの処理時間が増えるという感じで、テストケースのページ全体からURIとしてマッチした箇所をRandeで取り出すのにトータルで10秒とかそのくらいかかってしまいました。なので最終的には、バージョン6.0.1の時点では「選択範囲が変化したらまず<code>browser.find.find()</code>無しでURI文字列の検出だけを行い、それらを開くとかコピーするとかの操作が行われた時点で初めて<code>browser.find.find()</code>を実行してRangeを取り出す」という風にして、日常的な操作であるテキストの範囲選択とコンテキストメニューの操作に悪影響が出ないようにしています。</p>
+
+<h4>
+<span id="選択範囲の内容に応じてコンテキストメニュー項目の表示非表示を切り替える" class="fragment"></span><a href="#%E9%81%B8%E6%8A%9E%E7%AF%84%E5%9B%B2%E3%81%AE%E5%86%85%E5%AE%B9%E3%81%AB%E5%BF%9C%E3%81%98%E3%81%A6%E3%82%B3%E3%83%B3%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E9%A0%85%E7%9B%AE%E3%81%AE%E8%A1%A8%E7%A4%BA%E9%9D%9E%E8%A1%A8%E7%A4%BA%E3%82%92%E5%88%87%E3%82%8A%E6%9B%BF%E3%81%88%E3%82%8B"><i class="fa fa-link"></i></a>選択範囲の内容に応じてコンテキストメニュー項目の表示・非表示を切り替える</h4>
+
+<p>Firefoxの各種メニューに項目を追加するためのAPIである<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/menus" rel="nofollow noopener" target="_blank"><code>browser.menus</code>（<code>browser.contextMenus</code>）</a>では、<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/menus/ContextType" rel="nofollow noopener" target="_blank"><code>menus.ContextType</code></a>のいずれかを伴って定義したメニュー項目については、その指定にマッチする場面でのみ表示されるようになります。その中に<code>selection</code>というコンテキストもあり、テキストリンクの「選択範囲内のURIを待て馬手開く」系の機能はそのようにして登録しています。</p>
+
+<p>しかし、ここに1つ問題があります。このコンテキストでは<em>「テキストを範囲選択しているかどうか」しか考慮されず、「その中にどういう内容が含まれているか」までを判断材料とする事ができないの</em>です。</p>
+
+<p>テキストリンクは選択範囲のURI文字列を開く物ですから、選択範囲にURIらしき文字列が無い時にまでメニュー項目が表示されるのは混乱の元です。そこで旧版ではコンテキストメニューが開かれる瞬間に発火する<code>popupshowing</code>イベントを検知してメニュー項目の表示・非表示を切り替えていたのですが（これ自体はXULで作られたアドオンの一般的な作法です）、他方、WebExtensionsの<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/menus#Events" rel="nofollow noopener" target="_blank"><code>browser.menus</code>で監視できるイベント</a>には「メニューが開かれた時」に発火されるイベントがありません。これじゃあ動的にメニューの表示・非表示を切り替えられないじゃないか！ということで、これも過去の移行失敗時の躓きポイントの1つとなっていました。</p>
+
+<p>現時点に至るまで<code>popupshowing</code>を代替できるイベント型はまだ実装されていないままなのですが、この回避策はTSTやMTHのWebExtensions移行を進める中で知らず知らずのうちに気が付いていました。要するに、<em>「コンテキストメニューが表示されようとしているその時にメニューを更新する」のではなく、「コンテキストメニューの内容に影響を与える変化が起こったまさにその時に先行してメニュー項目を変化させておく（メニューが開かれる時には、既に定義済みのメニュー項目が表示されるだけになる）」</em>という事なのです。その後実際にコンテキストメニューが開かれなければこの時の処理はまるっきり無駄になってしまいますが、これ以外に方法がない以上は仕方ありません。</p>
+
+<p>WebExtensions版テキストリンクでもこの方針に則って、「<a href="https://developer.mozilla.org/en-US/docs/Web/Events/selectionchange" rel="nofollow noopener" target="_blank"><code>selectionchange</code>イベント</a>を<a href="https://github.com/piroor/textlink/blob/52b3cb102df31c18a0649ee6ff0a2903864105cb/webextensions/content_scripts/content.js#L149" rel="nofollow noopener" target="_blank">コンテントスクリプトで監視し</a>、変化があったらその時点で<a href="https://github.com/piroor/textlink/blob/52b3cb102df31c18a0649ee6ff0a2903864105cb/webextensions/content_scripts/content.js#L196" rel="nofollow noopener" target="_blank">選択範囲からのURI文字列の検出を開始する指示をバックグラウンドスクリプトに送る</a>」→「<a href="https://github.com/piroor/textlink/blob/52b3cb102df31c18a0649ee6ff0a2903864105cb/webextensions/background/background.js#L94" rel="nofollow noopener" target="_blank">バックグラウンドスクリプトでコンテキストメニューの内容を更新する</a>」という事を行うようにしました。バージョン6.0.0の時点では前述の<code>browser.find.find()</code>がメチャクチャ遅いという問題に引きずられて、範囲選択から数秒待たないとコンテキストメニューの内容が更新されないという状況でしたが、バージョン6.0.1で<a href="https://github.com/piroor/textlink/blob/52b3cb102df31c18a0649ee6ff0a2903864105cb/webextensions/background/uriMatcher.js#L112" rel="nofollow noopener" target="_blank">範囲選択時のURI検出には<code>browser.find.find()</code>をバイパスした簡易的な処理を使うようにした</a>結果、概ね一瞬でメニューを更新できるようになり、実用上ほとんどの場合では「しばらくお待ち下さい」的なメッセージを目にする事はなくなりました。</p>
+
+<p>この件を通じて、コンテキストメニューで<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/menus/ContextType" rel="nofollow noopener" target="_blank">APIで用意されているコンテキスト</a>以上にきめ細かい判断を行いたい場合に、WebExtensionsでのベストプラクティスはレガシーなXULアドオンでのベストプラクティスとはまったく異なるのだ、という事をまざまざと思い知らされたのでした。</p>
+
+<h4>
+<span id="テキスト編集領域への対応" class="fragment"></span><a href="#%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E7%B7%A8%E9%9B%86%E9%A0%98%E5%9F%9F%E3%81%B8%E3%81%AE%E5%AF%BE%E5%BF%9C"><i class="fa fa-link"></i></a>テキスト編集領域への対応</h4>
+
+<p>旧版テキストリンクでは、<code>&lt;textarea&gt;</code>などのテキスト入力欄についてもXPCOMコンポーネントの機能を経由して内部的なDOMツリーに触っていました。これは、上記の「検出したURIの箇所を新しい選択範囲にする」という挙動を実現したかったからです。しかしWebExtensionsではその方法が使えず、テキスト入力欄内部のDOMツリーには触れません。</p>
+
+<p>じゃあどうすればいいのかという話なのですが、これについては「無理なものは無理」という事で、テキスト入力欄の選択範囲はその要素ノードの<code>selectionStart</code>/<code>selectionEnd</code>/<code>setSelectionRange()</code>を介して触れる範囲以上の事はしない事にしました。</p>
+
+<p>移行に失敗した時の考え方だと、こういう時も何か対策はないかと手を尽くして、それでも機能が見つからなくて仕方なくBugを立ててそれが解決されるのを待つ、という事になっていたでしょうが、今回は「完全でなくても今できる範囲でできる事だけをする」という方針だったため、この点はリリースをブロックする要因にはなりませんでした。</p>
+
+<h3>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h3>
+
+<p><a href="http://www.hyuki.com/kokoro/#hajime" rel="nofollow noopener" target="_blank">はじめからやり直したい症候群</a>や、それに類する言葉を見かける事があります。プログラミングの世界においても、メジャー製品の大規模アップデートで「ここらで一区切り付けて、最初から作り直してもっとスッキリした設計にしよう」みたいな事をやろうとして、収拾がつかなくなり失敗に終わってしまい、最終的に旧版からの小規模な修正のみに留めるしかなかった……みたいな事はたまにあります。そういった事例をいくつか見聞きして、また自分自身もそういった無謀な挑戦をしようとして挫折するという経験を何度かした結果、<em>「スクラップ＆ビルドですべてが上手くいくようになるというのは甘い幻想で、実際には地道な改良をコツコツ続けていくしか無い」という教訓</em>が、自分の中である種の呪いのように刻み込まれていました。</p>
+
+<p>しかし実際には、その「教訓」に従って進めようとした前回の移行は失敗に終わり、大部分でスクラッチに近いレベルでの作り直しとなった今回の移行の方が成功するという皮肉な結果となりました。ただし、今回スクラッチせず引き継いだ部分まで作り直していたら、この移行は再び失敗に終わっていた事でしょう。</p>
+
+<ul>
+<li>「ああもうめんどくさい、リセットしちまおう」と乱暴に投げ出してしまわず、小さな改良の積み重ねで乗り切るのが適切な場合</li>
+<li>「これは小さな変更で乗り切れるようなレベルの話じゃない」と割り切って、一からやり直す方が適切な場合</li>
+</ul>
+
+<p>今まさに自分が直面している問題がどちらのケースなのか、を適切に見極めるのは難しい事です。考える事を放棄して当て推量で雑な判断をすれば、痛い目を見ることになるのは自分自身です。確実な成功に繋げるためには、そこで使おうとしている・使わなければならない技術の特性と限界、現行技術とのギャップの大きさ、取り組んでいる問題の複雑さなど、様々な要因を考慮に入れた総合的な判断を、プログラム全体やモジュール単位で下す必要がある、という当たり前といえば当たり前の事を、自分は今回の移行を通じて実感した次第です。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

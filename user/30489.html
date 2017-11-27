@@ -1,0 +1,1698 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (little_hand_s)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (little_hand_s さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>little_hand_sさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>97</kbd>
+		<a target="_blank" href="https://qiita.com/little_hand_s/items/c612b061d2b2b1eb8c1a">なぜDDD初心者はググり出してすぐに心がくじけてしまうのか</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-24 01:18:56</center>
+	</td>
+	<td style="width:200px;">
+		@little_hand_s<br />(株式会社ビズリーチ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/30489/profile-images/1473685506">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[DDD]</b> <b>[ドメイン駆動設計]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>DDD連載記事<br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/09/24/005903" rel="nofollow noopener" target="_blank">なぜDDD初心者はググリ出してすぐに心がくじけてしまうのか</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/09/27/014403" rel="nofollow noopener" target="_blank">ドメイン駆動設計の定義についてEric Evansはなんと言っているのか</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/04/201201" rel="nofollow noopener" target="_blank">モデルでドメイン知識を表現するとは何か</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/04/231743" rel="nofollow noopener" target="_blank">ドメイン駆動設計で実装を始めるのに一番とっつきやすいアーキテクチャは何か</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/11/075634" rel="nofollow noopener" target="_blank">ドメイン駆動 + オニオンアーキテクチャ概略</a></p>
+
+<h2>
+<span id="背景" class="fragment"></span><a href="#%E8%83%8C%E6%99%AF"><i class="fa fa-link"></i></a>背景</h2>
+
+<p>直近のプロジェクトでDDDの思想に則ったアーキテクチャで一つリリースまで漕ぎ付けまして、そこに至るまで色々と調べたり試行錯誤をしながら学んだことを書いていこうと思います。</p>
+
+<p>一番にですね、大体のDDDに興味を持った人がいうのが</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>「単語が難しいばかりで結局イメージが湧かない」
+
+「ドメイン駆動の本を読もうとして速攻で心が折れた」
+
+</pre></div></div>
+
+<p>ということなんですよね。</p>
+
+<p>DDDは思想としてすごく面白く、とても実用性なものなのに、なんでこんなにわかりづらいのか、ハードルが高いのか！！</p>
+
+<p>という点について、私なりの解釈を述べたいと思います。</p>
+
+<h2>
+<span id="心をくじく要因" class="fragment"></span><a href="#%E5%BF%83%E3%82%92%E3%81%8F%E3%81%98%E3%81%8F%E8%A6%81%E5%9B%A0"><i class="fa fa-link"></i></a>心をくじく要因</h2>
+
+<h3>
+<span id="eric-evans本は説明が圧倒的に下手笑" class="fragment"></span><a href="#eric-evans%E6%9C%AC%E3%81%AF%E8%AA%AC%E6%98%8E%E3%81%8C%E5%9C%A7%E5%80%92%E7%9A%84%E3%81%AB%E4%B8%8B%E6%89%8B%E7%AC%91"><i class="fa fa-link"></i></a>Eric Evans本は説明が圧倒的に下手。笑</h3>
+
+<p>ドメイン駆動設計といえば原著がこの本(以下、原典)なのですが、</p>
+
+<p><a href="https://www.amazon.co.jp/gp/product/4798121967/ref=as_li_tl?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798121967&amp;linkCode=as2&amp;tag=majackyy-22&amp;linkId=fcff16d1f17171252e6e345455e9e396" rel="nofollow noopener" target="_blank">エリック・エヴァンスのドメイン駆動設計</a><a href="https://camo.qiitausercontent.com/52f49bbe2fa16872ddf759ce29abe4fecfea498a/68747470733a2f2f69722d6a702e616d617a6f6e2d616473797374656d2e636f6d2f652f69723f743d6d616a61636b79792d3232266c3d616d32266f3d3926613d34373938313231393637" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/52f49bbe2fa16872ddf759ce29abe4fecfea498a/68747470733a2f2f69722d6a702e616d617a6f6e2d616473797374656d2e636f6d2f652f69723f743d6d616a61636b79792d3232266c3d616d32266f3d3926613d34373938313231393637" width="1" height="1" alt="" data-canonical-src="//ir-jp.amazon-adsystem.com/e/ir?t=majackyy-22&amp;l=am2&amp;o=9&amp;a=4798121967"></a></p>
+
+<p>この本は本当〜〜〜にわかりづらいです。重要なことは確かに書いてあるんですが、構成がかなりしんどくてまとまりがないのです。一通り実装してからも結局この結論になるので、あの本でわからないのは仕方ないです。笑</p>
+
+<p>まず書籍は実践DDD(以下、IDDD)から入るのが良いと思います。</p>
+
+<p><a href="https://www.amazon.co.jp/gp/product/B00UX9VJGW/ref=as_li_tl?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=B00UX9VJGW&amp;linkCode=as2&amp;tag=majackyy-22&amp;linkId=a121f28c6f7cbe6c3477d79a5fed7405" rel="nofollow noopener" target="_blank">実践ドメイン駆動設計</a><a href="https://camo.qiitausercontent.com/834dfc592e252ff0874c6ea2fa9761ab5942ade0/68747470733a2f2f69722d6a702e616d617a6f6e2d616473797374656d2e636f6d2f652f69723f743d6d616a61636b79792d3232266c3d616d32266f3d3926613d423030555839564a4757" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/834dfc592e252ff0874c6ea2fa9761ab5942ade0/68747470733a2f2f69722d6a702e616d617a6f6e2d616473797374656d2e636f6d2f652f69723f743d6d616a61636b79792d3232266c3d616d32266f3d3926613d423030555839564a4757" width="1" height="1" alt="" data-canonical-src="//ir-jp.amazon-adsystem.com/e/ir?t=majackyy-22&amp;l=am2&amp;o=9&amp;a=B00UX9VJGW"></a></p>
+
+<p>ここである程度イメージをもたせてから、興味があったら原点に当たるというのが良いでしょう。</p>
+
+<h3>
+<span id="dddは対象領域が広いがそれが理解されずそれぞれ局所的な説明がされていることが多い" class="fragment"></span><a href="#ddd%E3%81%AF%E5%AF%BE%E8%B1%A1%E9%A0%98%E5%9F%9F%E3%81%8C%E5%BA%83%E3%81%84%E3%81%8C%E3%81%9D%E3%82%8C%E3%81%8C%E7%90%86%E8%A7%A3%E3%81%95%E3%82%8C%E3%81%9A%E3%81%9D%E3%82%8C%E3%81%9E%E3%82%8C%E5%B1%80%E6%89%80%E7%9A%84%E3%81%AA%E8%AA%AC%E6%98%8E%E3%81%8C%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8%E3%81%8C%E5%A4%9A%E3%81%84"><i class="fa fa-link"></i></a>DDDは対象領域が広いが、それが理解されずそれぞれ局所的な説明がされていることが多い</h3>
+
+<p>DDDの領域は大きく分けて3つに分けられます。</p>
+
+<ul>
+<li>開発思想：
+
+<ul>
+<li>システムの複雑性に取り組むために、業務の専門家と技術の専門家で言語・モデルの認識を合わせ、継続的に進化させていこう、という考え方</li>
+</ul>
+</li>
+<li>戦略的設計：
+
+<ul>
+<li>ドメインモデリングの前提を揃えるための、モデリング対象を定義する原則と手法(コアドメイン/サブドメイン、境界付けられたコンテキスト、コンテキストマップ等)</li>
+</ul>
+</li>
+<li>戦術的設計
+
+<ul>
+<li>モデルを具体的に表現するためのパターン(エンティティ、レポジトリ、レイヤードアーキテクチャ等)</li>
+</ul>
+</li>
+</ul>
+
+<p>この全体像が整理されないまま、メリットやHowの話になってしまうと、全体像が見えないので何の話をしているのか混乱してしまうのです。</p>
+
+<p>強引に例を挙げるならスクラムの見積もり手法とGoFデザインパターンのいくつかを並べて同時に「開発の効率化とは」と論じるようなものです。それぞれに目的があり、関係性があり、それが繋がって本当にやりたいことができるわけです。</p>
+
+<h3>
+<span id="アーキテクチャの話のウェイトが軽い" class="fragment"></span><a href="#%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%81%AE%E8%A9%B1%E3%81%AE%E3%82%A6%E3%82%A7%E3%82%A4%E3%83%88%E3%81%8C%E8%BB%BD%E3%81%84"><i class="fa fa-link"></i></a>アーキテクチャの話のウェイトが軽い</h3>
+
+<p>戦術設計の話で、レイヤー化アーキテクチャについては 「ドメイン層を設けてドメインロジックはそこに閉じ込めましょう」ぐらいで終わっていきなりエンティティやレポジトリパターンの話になってしまう。</p>
+
+<p>これも罠だと思っています。なぜなら、</p>
+
+<p><b>DDD戦術的設計の最大のメリット、同時に一番頭をひねるところはとにかくアーキテクチャにある</b></p>
+
+<p>と言っても過言ではないと思うからです。</p>
+
+<p>まず、DDDの推奨するアーキテクチャを採用することによっていかにメリットがあるか。ここについてきちんと時間を割き、その後のモチベーションを高めることがまずは重要だと思っています。<b>エンティティ、レポジトリというパターンは、あくまでレイヤーを綺麗に分ける上でのHowでしかない</b>のです。ここのウェイトの認識を間違えないようにすることが重要です。</p>
+
+<p>しかし！ここからはより具体的な問題が出てきます。。</p>
+
+<h3>
+<span id="アーキテクチャのお手本が一つに統合されていない" class="fragment"></span><a href="#%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%81%AE%E3%81%8A%E6%89%8B%E6%9C%AC%E3%81%8C%E4%B8%80%E3%81%A4%E3%81%AB%E7%B5%B1%E5%90%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>アーキテクチャのお手本が一つに統合されていない</h3>
+
+<p>実は、原典でお手本とされているレイヤー化アーキテクチャと、IDDDでお手本とされているアーキテクチャが違うのです。</p>
+
+<p>これは、IDDDでは原典から10年のときを経て洗練されたアーキテクチャになっているということなのですが、これはつまりエンティティなどのデザインパターンは原典でかなり完成されていたのに対して、レイヤー化アーキテクチャに関しては実はある意味未成熟なものであったということ。</p>
+
+<p>そしてそれによりネット上の文献で紹介されるアーキテクチャが様々なものとなっているのです。IDDDではヘキサゴナルアーキテクチャというものが掲げられていましたが、それを進化させたオニオンアーキテクチャ、クリーンアーキテクチャなどの有名な亜種が存在します。また日本の著名なDDD推進されている方のスライドを見ると、ヘキサゴナルとは思想の異なるアーキテクチャを提案しています。</p>
+
+<p>これが実装に着手する際に非常に大きな混乱を呼ぶのです。文脈の理解、採用するアーキテクチャの選定に時間を取られることでしょう。</p>
+
+<h2>
+<span id="今後のお話" class="fragment"></span><a href="#%E4%BB%8A%E5%BE%8C%E3%81%AE%E3%81%8A%E8%A9%B1"><i class="fa fa-link"></i></a>今後のお話</h2>
+
+<p>以上、ひとまず導入して思うところをつらつらと書かせていただきました。</p>
+
+<p>ひとまず上記のような分かりづらさがあるよね、というのを整理した上で、私なりに分かりやすいと思う説明の記事を書いていこうと思います。ご興味ありましたら、どうぞおつきあいくださいませ。</p>
+
+<h2>
+<span id="後続記事" class="fragment"></span><a href="#%E5%BE%8C%E7%B6%9A%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>後続記事</h2>
+
+<p>よろしければどうぞ！<br>
+<a href="http://little-hands.hatenablog.com/entry/2017/09/27/014403" rel="nofollow noopener" target="_blank">DDDの定義についてEric Evansはなんと言っているのか</a><br>
+<a href="http://little-hands.hatenablog.com/entry/2017/10/04/201201" rel="nofollow noopener" target="_blank">【DDD】モデルでドメイン知識を表現するとは何か</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>little_hand_sさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>60</kbd>
+		<a target="_blank" href="https://qiita.com/little_hand_s/items/7288a0b3dd5dfb1a4c35">[DDD]ドメイン駆動設計の定義についてEric Evansはなんと言っているのか</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-27 01:55:51</center>
+	</td>
+	<td style="width:200px;">
+		@little_hand_s<br />(株式会社ビズリーチ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/30489/profile-images/1473685506">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[DDD]</b> <b>[ドメイン駆動設計]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>DDD連載記事<br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/09/24/005903" rel="nofollow noopener" target="_blank">なぜDDD初心者はググリ出してすぐに心がくじけてしまうのか</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/09/27/014403" rel="nofollow noopener" target="_blank">ドメイン駆動設計の定義についてEric Evansはなんと言っているのか</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/04/201201" rel="nofollow noopener" target="_blank">モデルでドメイン知識を表現するとは何か</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/04/231743" rel="nofollow noopener" target="_blank">ドメイン駆動設計で実装を始めるのに一番とっつきやすいアーキテクチャは何か</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/11/075634" rel="nofollow noopener" target="_blank">ドメイン駆動 + オニオンアーキテクチャ概略</a></p>
+
+<p>ドメイン駆動設計について、「どうやって実装するのさ？」の前に、まずは定義について認識合わせをしたいと思います。</p>
+
+<h2>
+<span id="背景" class="fragment"></span><a href="#%E8%83%8C%E6%99%AF"><i class="fa fa-link"></i></a>背景</h2>
+
+<p><strong><em>「ドメイン駆動設計とは何か？」</em></strong></p>
+
+<p>ドメイン駆動設計について興味を持った時に、一番最初に疑問に思うのがこれですね。</p>
+
+<p>ところが、ググって見ると結構いろんなサイトでいろいろな書きぶりをしているんですよね・・・。</p>
+
+<blockquote>
+<p>「顧客と開発者が業務を戦略的に理解し、共通の言葉を使いながらシステムを発展させる手法」<br>
+<a href="https://codezine.jp/article/detail/9546" rel="nofollow noopener" target="_blank">ドメイン駆動設計のメリットと始め方(Codezine記事)</a></p>
+</blockquote>
+
+<p>-</p>
+
+<blockquote>
+<p>「厳しい現実の中で、ソフトウェア設計を習得しようと奮闘してきた技術者の物語。不完全な状況の中で、抽象的な設計原則を、現実のソフトウェアに適用するための助言　  日本語版への序文by エリック・エヴァンス」<br>
+<a href="https://www.slideshare.net/masuda220/ss-59756718" rel="nofollow noopener" target="_blank">ドメイン駆動 基本を理解する(ギルドワークス増田さんのスライド)</a></p>
+</blockquote>
+
+<p>-</p>
+
+<blockquote>
+<p>「ドメイン駆動設計（英: Domain-driven design, DDD）とはソフトウェアの設計手法であり、「複雑なドメインの設計は、モデルベースで行うべき」であり、また「大半のソフトウェアプロジェクトでは、システムを実装するための特定の技術ではなく、ドメインそのものとドメインのロジックに焦点を置くべき」であるとする」<br>
+<a href="https://ja.wikipedia.org/wiki/%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E8%A8%AD%E8%A8%88" rel="nofollow noopener" target="_blank">Wikipedia ドメイン駆動</a></p>
+</blockquote>
+
+<p>うーん、かぶるところもあるし、違うところもあるし、結局何が正しいのかわからないですね。</p>
+
+<p>いろいろな方の解釈が入っているので、どれが間違っているということはないと思いますが、入り口としては混乱してしまいます。</p>
+
+<p>さらに、Eric EvansのDDD本、実践ドメイン駆動(IDDD)を読んでも、いろいろとDDDすべき理由など書いてあるんですが「DDDとは？」と言い切っているところが意外とないんですよね。</p>
+
+<p>これがまずDDD入門の最初の障壁かと思います。</p>
+
+<p>そこで、<strong><em>「一次ソースにあたれ」</em></strong>の発想で、Eric EvansがWeb上で公式に発信している情報を探してみましょう。まずはそれを共通認識にしようではありませんか。</p>
+
+<h2>
+<span id="domain-langugaeの公式サイト" class="fragment"></span><a href="#domain-langugae%E3%81%AE%E5%85%AC%E5%BC%8F%E3%82%B5%E3%82%A4%E3%83%88"><i class="fa fa-link"></i></a>Domain Langugaeの公式サイト</h2>
+
+<p><a href="https://domainlanguage.com/" rel="nofollow noopener" target="_blank">https://domainlanguage.com/</a></p>
+
+<p>ありました。DDDの総本山とも言うべきサイトが。「About Us」にもEric Evansの名前が載っています。ここに書いてあることはきっと正しいに違いありませんね。</p>
+
+<p>結構講座とかe-learningの話が中心のサイトなのですが、良いものがありました。</p>
+
+<p><a href="https://domainlanguage.com/ddd/reference/" rel="nofollow noopener" target="_blank">DDD Reference</a></p>
+
+<p>こちらのリンクにあるPDFが、Eric EvansのDDD本で定義されているパターンの簡単なサマリで、2015年に書かれたものだそうです。</p>
+
+<p>また、<br>
+<a href="https://domainlanguage.com/conferences/videos-from-ddd-europe-2016/" rel="nofollow noopener" target="_blank">Videos from DDD Europe 2016</a>の"where DDD is now"のリンクにも本人が「What is DDD?」などについて1時間話しているビデオがあります。</p>
+
+<p>これを参考にしていきましょう。</p>
+
+<h2>
+<span id="ドメイン駆動の定義" class="fragment"></span><a href="#%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E3%81%AE%E5%AE%9A%E7%BE%A9"><i class="fa fa-link"></i></a>ドメイン駆動の定義</h2>
+
+<p><a href="https://domainlanguage.com/ddd/reference/" rel="nofollow noopener" target="_blank">DDD Reference</a>と<a href="https://domainlanguage.com/conferences/videos-from-ddd-europe-2016/" rel="nofollow noopener" target="_blank">Videos from DDD Europe 2016</a>では、実は定義の文言が少しだけ違うので、1年新しいビデオの方の定義を見てみましょう。</p>
+
+<p>DDD の明確な定義は難しいと前置きした上で、DDD とは以下4つの原則からなると説明しています。</p>
+
+<blockquote>
+<p>What is Domain Driven Design?</p>
+
+<ol>
+<li>Focus on the core complexity and opportunity in the domain</li>
+<li>Explore models in a collaboration of domain experts and software experts</li>
+<li>Write software that expresses those models explicitly</li>
+<li>Speak ubiquitous language within a bounded context</li>
+</ol>
+</blockquote>
+
+<p>意訳すると以下のようになると思います。</p>
+
+<blockquote>
+<p>ドメイン駆動とは？</p>
+
+<ol>
+<li>ドメイン(＊1)の中核となる複雑さと機会に焦点を当てる</li>
+<li>ドメイン専門家とソフトウェア専門家のコラボレーションでモデルを探求する</li>
+<li>明示的にそれらのモデルを表現するソフトウェアを書く</li>
+<li>境界付けられたコンテキスト(＊2)の中のユビキタス言語(＊3)で話す</li>
+</ol>
+</blockquote>
+
+<p>(＊末尾に用語の定義を乗せたので参照してください。)</p>
+
+<p>以下、ビデオの説明を要約します。</p>
+
+<h4>
+<span id="ドメインの中核となる複雑さと機会に焦点を当てる" class="fragment"></span><a href="#%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%81%AE%E4%B8%AD%E6%A0%B8%E3%81%A8%E3%81%AA%E3%82%8B%E8%A4%87%E9%9B%91%E3%81%95%E3%81%A8%E6%A9%9F%E4%BC%9A%E3%81%AB%E7%84%A6%E7%82%B9%E3%82%92%E5%BD%93%E3%81%A6%E3%82%8B"><i class="fa fa-link"></i></a>ドメインの中核となる複雑さと機会に焦点を当てる</h4>
+
+<p><strong><em>技術的な問題ではなく</em></strong>、ドメインの"価値のある、複雑な部分"にフォーカスするべきである。</p>
+
+<h4>
+<span id="ドメイン専門家とソフトウェア専門家のコラボレーションでモデルを探求する" class="fragment"></span><a href="#%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%B0%82%E9%96%80%E5%AE%B6%E3%81%A8%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E5%B0%82%E9%96%80%E5%AE%B6%E3%81%AE%E3%82%B3%E3%83%A9%E3%83%9C%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%A7%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E6%8E%A2%E6%B1%82%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>ドメイン専門家とソフトウェア専門家のコラボレーションでモデルを探求する</h4>
+
+<p><strong><em>モデルは一度定義して終わりではない。</em></strong><br>
+継続的に行われ続けるものであるから、モデルの「探求(Explore)」という言葉を使っている。モデルの探求は、ソフトウェア開発者とドメインエキスパートが協調して行うものである。</p>
+
+<p>ソフトウェア開発者はドメインエキスパートに「あなたはビジネスに詳しいのだからモデルを提示してください。私たちはソフトウェアについて責任を持ちます。」と言ってしまいがちである。しかし、モデルの探求を一緒に行うことこそがソフトウェア開発を成功させるために必要なことである。</p>
+
+<h4>
+<span id="明示的にそれらのモデルを表現するソフトウェアを書く" class="fragment"></span><a href="#%E6%98%8E%E7%A4%BA%E7%9A%84%E3%81%AB%E3%81%9D%E3%82%8C%E3%82%89%E3%81%AE%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E8%A1%A8%E7%8F%BE%E3%81%99%E3%82%8B%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%82%92%E6%9B%B8%E3%81%8F"><i class="fa fa-link"></i></a>明示的にそれらのモデルを表現するソフトウェアを書く</h4>
+
+<p>ソフトウェアはモデルを表現する必要がある。<br>
+ドメインエキスパートと素晴らしい議論をして、様々なコンセプト、ガイド、図、を作ったとしても、最終的には明示的にソフトウェアに表現されなければならない。</p>
+
+<h4>
+<span id="境界付けられたコンテキストの中のユビキタス言語で話す" class="fragment"></span><a href="#%E5%A2%83%E7%95%8C%E4%BB%98%E3%81%91%E3%82%89%E3%82%8C%E3%81%9F%E3%82%B3%E3%83%B3%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%81%AE%E4%B8%AD%E3%81%AE%E3%83%A6%E3%83%93%E3%82%AD%E3%82%BF%E3%82%B9%E8%A8%80%E8%AA%9E%E3%81%A7%E8%A9%B1%E3%81%99"><i class="fa fa-link"></i></a>境界付けられたコンテキストの中のユビキタス言語で話す</h4>
+
+<p>言語の意味を定義づける境界を定義し、その中ではすべての人(ソフトウェア開発者、ドメインエキスパート)が同じ意味で言葉を使う必要がある。</p>
+
+<p>さらに、ドメインの問題を解決するソリューションの作成、モデルの探求は、常に定義した言語とその進化を中心として行われる必要がある。</p>
+
+<p>ユビキタスとは"in everywhere"ということである。それはつまり、ビジネスサイドの人と話すとき、エンジニアと話すとき、プログラミングをするとき、ドキュメントを書くとき、ということを意味する。<br>
+しかし、それは「全システムを通じて」ということではない。よって、正しくは"境界付けられたコンテキスト内のユビキタス言語"といわなければならない。</p>
+
+<h2>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h2>
+
+<p>いかがだったでしょうか。4つの原則を統合すると、</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>ソフトウェア開発者、ドメインエキスパートと共に常に同じ言語で認識を合わせ、ドメインモデルについて常に探求を続ける。
+そして最終的にモデルと言語をソフトウェアにまで落としこむことを目指す。
+</pre></div></div>
+
+<p>とでもなるでしょうか。</p>
+
+<p>Eric Evans本人も「明確に定義するのは難しい」と言っていたり、「DDDとは」というものに対して4つの原則(Principle)で定義するあたり、根本的にDDDというものを定義づけることが難しいものであるということなのかもしれません。</p>
+
+<p>ただ、揺れる定義の中で「Eric Evansが言っているのはこうだよ」というものがあるのは、議論をするときに一つ軸として考えられる材料になるのではないでしょうか。</p>
+
+<p>どう実装するのさ？については今後別途書いていこうと思いますが、その辺すっ飛ばして作ったアーキテクチャこんなんやで、というスライドがあるのでご興味ある方はどうぞ。<br>
+<a href="https://www.slideshare.net/dcubeio/ddd-cqrs-orm" rel="nofollow noopener" target="_blank">DDD × CQRS 更新系と参照系で異なるORMを併用して上手くいった話</a></p>
+
+<h2>
+<span id="用語の定義" class="fragment"></span><a href="#%E7%94%A8%E8%AA%9E%E3%81%AE%E5%AE%9A%E7%BE%A9"><i class="fa fa-link"></i></a>用語の定義</h2>
+
+<p>先ほどのReferenceではDDDの定義の前に用語の定義があったので引用しておきます。</p>
+
+<blockquote>
+<p>(＊1)domain <br><br>
+A sphere of  knowledge, influence, or activity. <br><br>
+The subject area to which the  user applies a program is the domain of the software.<br><br>
+知識、影響力、または活動の領域。<br>
+ユーザーがプログラムを適用する対象エリアは、ソフトウェアのドメインである。</p>
+</blockquote>
+
+<p>つまり業務アプリケーションに限って言うなれば、「アプリケーションの対象となる業務領域」とでも言うとわかりやすいでしょうか。</p>
+
+<blockquote>
+<p>(＊2)bounded context<br><br>
+A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable. <br><br>
+特定のモデルが定義され適用される境界（通常、サブシステム、または特定のチームの作業）の説明。</p>
+</blockquote>
+
+<p>共通言語はどこまで共通なんだっけ？というのを定義するという概念です。<br><br>
+全世界共通？難しい。会社全体で？プロダクト全体？もっと狭めてチームぐらいかな、という形に「この言語をこの意味で使う範囲はここまで」という風に決めましょうという概念です。実はDDDにとってめちゃくちゃ重要だったりします。<br>
+できれば別の記事でもう少し詳しく書きたいと思います。</p>
+
+<blockquote>
+<p>(＊3)ubiquitous language<br><br>
+A language structured around the domain model and used by all team members within a bounded context to connect all the activities of the team with the software.<br><br>
+ドメインモデルを中心に構造化された言語。<br><br>
+チームのすべてのアクティビティをソフトウェアと結びつけるために、境界付けられたコンテキスト内のすべてのチームメンバーが使用する。</p>
+</blockquote>
+
+<p>まずは「チームで使う共通言語」ぐらいの和訳でとらえておくのがわかりやすいと思っています。</p>
+
+<h2>
+<span id="後続記事" class="fragment"></span><a href="#%E5%BE%8C%E7%B6%9A%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>後続記事</h2>
+
+<p>よろしければどうぞ！<br>
+<a href="http://little-hands.hatenablog.com/entry/2017/10/04/201201" rel="nofollow noopener" target="_blank">【DDD】モデルでドメイン知識を表現するとは何か</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>little_hand_sさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>58</kbd>
+		<a target="_blank" href="https://qiita.com/little_hand_s/items/ebb4284afeea0e8cc752">[DDD]ドメイン駆動設計で実装を始めるのに一番とっつきやすいアーキテクチャは何か</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-04 23:18:58</center>
+	</td>
+	<td style="width:200px;">
+		@little_hand_s<br />(株式会社ビズリーチ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/30489/profile-images/1473685506">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Java]</b> <b>[オブジェクト指向]</b> <b>[DDD]</b> <b>[ドメイン駆動設計]</b> <b>[モデリング]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>DDD連載記事<br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/09/24/005903" rel="nofollow noopener" target="_blank">なぜDDD初心者はググリ出してすぐに心がくじけてしまうのか</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/09/27/014403" rel="nofollow noopener" target="_blank">ドメイン駆動設計の定義についてEric Evansはなんと言っているのか</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/04/201201" rel="nofollow noopener" target="_blank">モデルでドメイン知識を表現するとは何か</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/04/231743" rel="nofollow noopener" target="_blank">ドメイン駆動設計で実装を始めるのに一番とっつきやすいアーキテクチャは何か</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/11/075634" rel="nofollow noopener" target="_blank">ドメイン駆動 + オニオンアーキテクチャ概略</a></p>
+
+<h1>
+<span id="背景前提" class="fragment"></span><a href="#%E8%83%8C%E6%99%AF%E5%89%8D%E6%8F%90"><i class="fa fa-link"></i></a>背景・前提</h1>
+
+<p><a href="http://little-hands.hatenablog.com/entry/2017/09/24/005903" rel="nofollow noopener" target="_blank">なぜDDD初心者はググリ出してすぐに心がくじけてしまうのか</a>の記事で、</p>
+
+<blockquote>
+<p>ネット上の文献で紹介されるアーキテクチャが様々なものとなっているのです。IDDDではヘキサゴナルアーキテクチャというものが掲げられていましたが、それを進化させたオニオンアーキテクチャ、クリーンアーキテクチャなどの有名な亜種が存在します。<br>
+これが実装に着手する際に非常に大きな混乱を呼ぶのです。文脈の理解、採用するアーキテクチャの選定に時間を取られることでしょう。</p>
+</blockquote>
+
+<p>と書きました。こちらに対して、私が「一番とっつきやすい」と考えるアーキテクチャを紹介します。</p>
+
+<p>前提としてですが、<strong><em>完全に個人的な経験に基づく私見</em></strong>になります。</p>
+
+<p>DDDの理論の中で、アーキテクチャに関しては<a href="https://www.amazon.co.jp/gp/product/4798121967/ref=as_li_tl?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798121967&amp;linkCode=as2&amp;tag=majackyy-22&amp;linkId=7699973b1a98ab103afb5d261de7bfb1" rel="nofollow noopener" target="_blank">エリック・エヴァンスのドメイン駆動設計</a><a href="https://camo.qiitausercontent.com/52f49bbe2fa16872ddf759ce29abe4fecfea498a/68747470733a2f2f69722d6a702e616d617a6f6e2d616473797374656d2e636f6d2f652f69723f743d6d616a61636b79792d3232266c3d616d32266f3d3926613d34373938313231393637" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/52f49bbe2fa16872ddf759ce29abe4fecfea498a/68747470733a2f2f69722d6a702e616d617a6f6e2d616473797374656d2e636f6d2f652f69723f743d6d616a61636b79792d3232266c3d616d32266f3d3926613d34373938313231393637" width="1" height="1" alt="" data-canonical-src="//ir-jp.amazon-adsystem.com/e/ir?t=majackyy-22&amp;l=am2&amp;o=9&amp;a=4798121967"></a>(以下原典)と<a href="https://www.amazon.co.jp/gp/product/479813161X/ref=as_li_tl?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=479813161X&amp;linkCode=as2&amp;tag=majackyy-22&amp;linkId=aff868b58c9e780a12c6e0c21d99699d" rel="nofollow noopener" target="_blank">実践ドメイン駆動設計 (Object Oriented SELECTION)</a><a href="https://camo.qiitausercontent.com/d06519e2a38f60aa540ad5cac91a6e6f09e0a64a/68747470733a2f2f69722d6a702e616d617a6f6e2d616473797374656d2e636f6d2f652f69723f743d6d616a61636b79792d3232266c3d616d32266f3d3926613d34373938313331363158" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d06519e2a38f60aa540ad5cac91a6e6f09e0a64a/68747470733a2f2f69722d6a702e616d617a6f6e2d616473797374656d2e636f6d2f652f69723f743d6d616a61636b79792d3232266c3d616d32266f3d3926613d34373938313331363158" width="1" height="1" alt="" data-canonical-src="//ir-jp.amazon-adsystem.com/e/ir?t=majackyy-22&amp;l=am2&amp;o=9&amp;a=479813161X"></a>(以下IDDD)とでも異なったものが紹介されており、唯一の正解というものは提示されていません。アーキテクチャは各プロジェクトの判断に委ねられているものであり、合う合わないはプロジェクトの要件やメンバーによって異なります。</p>
+
+<p>ただ、それだけではまず始める時にどう着手すればよいか迷ってしまうと思うので、<em>「初学者が手をつけるならこれが良いのでは」</em>というものを私が提案する形になります。ご了承ください。</p>
+
+<h1>
+<span id="候補となるアーキテクチャとその関係性" class="fragment"></span><a href="#%E5%80%99%E8%A3%9C%E3%81%A8%E3%81%AA%E3%82%8B%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%81%A8%E3%81%9D%E3%81%AE%E9%96%A2%E4%BF%82%E6%80%A7"><i class="fa fa-link"></i></a>候補となるアーキテクチャと、その関係性</h1>
+
+<p>ネットでDDDの記事を漁るとだいたい以下のものがでてくると思います。</p>
+
+<ol>
+<li>レイヤードアーキテクチャ</li>
+<li>ヘキサゴナルアーキテクチャ</li>
+<li>オニオンアーキテクチャ</li>
+<li>クリーンアーキテクチャ</li>
+</ol>
+
+<p>これらの概略を簡単にお話しします。</p>
+
+<h1>
+<span id="レイヤードアーキテクチャ" class="fragment"></span><a href="#%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%89%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3"><i class="fa fa-link"></i></a>レイヤードアーキテクチャ</h1>
+
+<p><a href="https://camo.qiitausercontent.com/6ff61fe6a89bc802f2bc90deb81b947aa4e0f719/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f31373864613639652d623131612d353931652d333433302d3132386135353539656437352e706e67" target="_blank" rel="nofollow noopener"><img width="453" alt="Layered.png" src="https://camo.qiitausercontent.com/6ff61fe6a89bc802f2bc90deb81b947aa4e0f719/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f31373864613639652d623131612d353931652d333433302d3132386135353539656437352e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/178da69e-b11a-591e-3430-128a5559ed75.png"></a></p>
+
+<p>原典で紹介されているアーキテクチャ。<br>
+従来の3層アーキテクチャに比べて、Domain層を確立させ、そこにドメインロジックを凝集させよう、という発想のものです。</p>
+
+<h2>
+<span id="ヘキサゴナルアーキテクチャ" class="fragment"></span><a href="#%E3%83%98%E3%82%AD%E3%82%B5%E3%82%B4%E3%83%8A%E3%83%AB%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3"><i class="fa fa-link"></i></a>ヘキサゴナルアーキテクチャ</h2>
+
+<p><a href="https://camo.qiitausercontent.com/49fe1e759a71edb1cbbd8a6673fff8aa3a7daa40/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f66356336366131322d613530302d613533362d353830352d6561666365626162383463652e706e67" target="_blank" rel="nofollow noopener"><img width="676" alt="Hexagonal.png" src="https://camo.qiitausercontent.com/49fe1e759a71edb1cbbd8a6673fff8aa3a7daa40/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f66356336366131322d613530302d613533362d353830352d6561666365626162383463652e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/f5c66a12-a500-a536-5805-eafcebab84ce.png"></a></p>
+
+<p>IDDDで紹介されているアーキテクチャ。別名「ポートアンドアダプターアーキテクチャ」。<br>
+元は<a href="http://alistair.cockburn.us/Hexagonal+architecture" rel="nofollow noopener" target="_blank">こちらのブログ</a>で2005年に提唱されたものです。</p>
+
+<p>実は<strong><em>「ヘキサゴナル、オニオン、クリーン」の3つは、本質的には全く同じ</em></strong>です。</p>
+
+<p>思想としてはこのヘキサゴナルで完成されているんですよ。責務の区切り方と名称が少しずつ違うだけなんです。じゃあ、ヘキサゴナルでいいじゃないかって？</p>
+
+<p>そうです、本質的には基本的にヘキサゴナルでよいし、結果的に同じ設計をしていることになるんです。</p>
+
+<p>ただし・・・・</p>
+
+<p><strong><em>この図を見ても、実装イメージが湧かなくないですか？</em></strong></p>
+
+<p>私はこれがポイントだと思っていて、このわかりづらさがIDDDを読んだ人が手をすぐ動かせない理由ではないかと考えているのです。</p>
+
+<p>結論を変な位置でいうと、<strong><em>私のオススメはオニオンアーキテクチャ</em></strong>です。これは本質的には同じでも、責務の区切りと名称を変えた結果 直感的にわかりやすくなっているので、最初の導入はこの図を見ながらやるのが良いと思っています。</p>
+
+<p>では、次にそちらを紹介します。</p>
+
+<h2>
+<span id="オニオンアーキテクチャ" class="fragment"></span><a href="#%E3%82%AA%E3%83%8B%E3%82%AA%E3%83%B3%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3"><i class="fa fa-link"></i></a>オニオンアーキテクチャ</h2>
+
+<p>ヘキサゴナルアーキテクチャを受けて、2008年に<a href="http://jeffreypalermo.com/blog/the-onion-architecture-part-1/" rel="nofollow noopener" target="_blank">こちらのブログ</a>で提唱されたのがオニオンアーキテクチャです。</p>
+
+<p><a href="https://camo.qiitausercontent.com/8aa7593d5693224af29b2cba2750b21d7eeb4674/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f38316663666439352d326365312d383261382d646236392d3836313833333861356632322e706e67" target="_blank" rel="nofollow noopener"><img width="480" alt="Onion.png" src="https://camo.qiitausercontent.com/8aa7593d5693224af29b2cba2750b21d7eeb4674/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f38316663666439352d326365312d383261382d646236392d3836313833333861356632322e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/81fcfd95-2ce1-82a8-db69-8618338a5f22.png"></a><br>
+同じ構造を、平らに表現したのが以下の図です。<br>
+<a href="https://camo.qiitausercontent.com/76361da5dafb40d4cf4d4d6e915bb8c64a1789b1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f38343339353261352d666432652d636464372d323435642d3437643935313335613261662e706e67" target="_blank" rel="nofollow noopener"><img width="660" alt="Onion(Flattened).png" src="https://camo.qiitausercontent.com/76361da5dafb40d4cf4d4d6e915bb8c64a1789b1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f38343339353261352d666432652d636464372d323435642d3437643935313335613261662e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/843952a5-fd2e-cdd7-245d-47d95135a2af.png"></a></p>
+
+<p>少〜し、どういう構造にするのかイメージが湧いてきませんか？<br>
+詳細はこの後説明するのですが、ポイントは<strong><em>依存関係逆転の原則</em></strong>によってDomain層がInfrastructure層に依存しなくなっていることです。これによりDomain層のモデルが特定のライブラリなどに依存しない形の実装になるのです。</p>
+
+<p>これはヘキサゴナルアーキテクチャでも全く同じ思想なのですが、概念図からはそのことが読み取りづらいのです。そのため、図を見たときの直感的なわかりやすさから、私は最初に着手するにあたってはオニオンアーキテクチャを推しています。</p>
+
+<p>変な順番になってしまいましたが、比較のためにクリーンアーキテクチャも紹介します。</p>
+
+<h2>
+<span id="クリーンアーキテクチャ" class="fragment"></span><a href="#%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3"><i class="fa fa-link"></i></a>クリーンアーキテクチャ</h2>
+
+<p>ヘキサゴナル、オニオンやその他のアーキテクチャを受けて、2013年に概念を統合しようとしたのがクリーンアーキテクチャです。<a href="https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html" rel="nofollow noopener" target="_blank">こちらのブログ</a>で提唱されました。</p>
+
+<p><a href="https://camo.qiitausercontent.com/ab2c44404db78808154ff0eb36e765c652c858fd/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f65646530373437382d336265312d373332612d383262332d6333353538663463396534392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ab2c44404db78808154ff0eb36e765c652c858fd/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f65646530373437382d336265312d373332612d383262332d6333353538663463396534392e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/ede07478-3be1-732a-82b3-c3558f4c9e49.png"></a><br>
+画像は<a href="https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html" rel="nofollow noopener" target="_blank">同ブログ</a>から引用</p>
+
+<p>同じく同心円が重なっている構造からわかるように、基本的に言っていることは同じです。違いとしては単語だけだと思っています。</p>
+
+<p>クリーンアーキテクチャは、Androidアプリケーションのアーキテクチャとして、DDDとは関係なく使われている記事がちらほら見受けられました。</p>
+
+<p>これは全くもって好みになるのですが、「UseCase層」というレイヤに何を書くのかわかりにくい点、「Domain層」ではなく「Entity層」というネーミング(DDD的にはEntityはDomain層の一部なので、収まりが悪い)から、私はオニオンアーキテクチャの方がよいと思っています。</p>
+
+<p>これがしっくり来る方はクリーンアーキテクチャのネーミングを採用すれば良いかと思います。</p>
+
+<h1>
+<span id="アーキテクチャを使ってどう実装するのか" class="fragment"></span><a href="#%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%A9%E3%81%86%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>アーキテクチャを使ってどう実装するのか</h1>
+
+<p>ドメイン層にどのようにふるまいを詰め込むのか、について、<br>
+<a href="http://little-hands.hatenablog.com/entry/2017/10/04/201201" rel="nofollow noopener" target="_blank">【DDD】モデルでドメイン知識を表現するとは何か</a><br>
+こちらの記事でサンプルコード付きで紹介しています。</p>
+
+<p><a href="https://camo.qiitausercontent.com/76361da5dafb40d4cf4d4d6e915bb8c64a1789b1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f38343339353261352d666432652d636464372d323435642d3437643935313335613261662e706e67" target="_blank" rel="nofollow noopener"><img width="660" alt="Onion(Flattened).png" src="https://camo.qiitausercontent.com/76361da5dafb40d4cf4d4d6e915bb8c64a1789b1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f38343339353261352d666432652d636464372d323435642d3437643935313335613261662e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/843952a5-fd2e-cdd7-245d-47d95135a2af.png"></a></p>
+
+<p>記事内のTaskエンティティがDomainModel、TaskRepositoryがDomainService、TaskApplicationがApplicationに該当します。<br>
+こうして見てみると、結構シンプルですし、レイヤーの名前と内容がイメージしやすいのではないでしょうか。</p>
+
+<p>そういったわけで、私はDDDを最初に説明するときは、オニオンアーキテクチャと先ほどのようなサンプルコードの説明をするところから始めるようにしています。</p>
+
+<p>オニオンアーキテクチャ、依存性の逆転については、また別の記事でもう少し深堀りしてみたいと思います。</p>
+
+<h1>
+<span id="後続記事" class="fragment"></span><a href="#%E5%BE%8C%E7%B6%9A%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>後続記事</h1>
+
+<p><a href="https://qiita.com/little_hand_s/items/2040fba15d90b93fc124" id="reference-b8eac87baf330d8dac7f">ドメイン駆動 + オニオンアーキテクチャ概略</a><br>
+こちらぜひご覧ください。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>little_hand_sさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>50</kbd>
+		<a target="_blank" href="https://qiita.com/little_hand_s/items/2040fba15d90b93fc124">[DDD]ドメイン駆動 + オニオンアーキテクチャ概略</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-11 07:53:16</center>
+	</td>
+	<td style="width:200px;">
+		@little_hand_s<br />(株式会社ビズリーチ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/30489/profile-images/1473685506">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Java]</b> <b>[オブジェクト指向]</b> <b>[DDD]</b> <b>[設計]</b> <b>[ドメイン駆動設計]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>DDD連載記事<br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/09/24/005903" rel="nofollow noopener" target="_blank">なぜDDD初心者はググリ出してすぐに心がくじけてしまうのか</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/09/27/014403" rel="nofollow noopener" target="_blank">ドメイン駆動設計の定義についてEric Evansはなんと言っているのか</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/04/201201" rel="nofollow noopener" target="_blank">モデルでドメイン知識を表現するとは何か</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/04/231743" rel="nofollow noopener" target="_blank">ドメイン駆動設計で実装を始めるのに一番とっつきやすいアーキテクチャは何か</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/11/075634" rel="nofollow noopener" target="_blank">ドメイン駆動 + オニオンアーキテクチャ概略</a></p>
+
+<h1>
+<span id="背景" class="fragment"></span><a href="#%E8%83%8C%E6%99%AF"><i class="fa fa-link"></i></a>背景</h1>
+
+<p><a href="http://little-hands.hatenablog.com/entry/2017/10/04/231743" rel="nofollow noopener" target="_blank">ドメイン駆動設計で実装を始めるのに一番とっつきやすいアーキテクチャは何か</a>の記事で、オススメしていたのはオニオンアーキテクチャでした。</p>
+
+<p>今回は、オニオンアーキテクチャについて詳しく説明したいと思います。</p>
+
+<p>上述の記事でも書いた通り、「ヘキサゴナル、オニオン、クリーン」の3つは、本質的には全く同じで、思想としてはヘキサゴナルで完成されているのですが、より具体的に説明されているオニオンアーキテクチャから説明を読んだ方が理解がしやすいと思います。<br><br>
+その後にヘキサゴナルの説明を読むと「なるほど」となって「あれ、結局ヘキサゴナルじゃん」となります。笑</p>
+
+<h1>
+<span id="伝統的レイヤードアーキテクチャ" class="fragment"></span><a href="#%E4%BC%9D%E7%B5%B1%E7%9A%84%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%89%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3"><i class="fa fa-link"></i></a>伝統的レイヤードアーキテクチャ</h1>
+
+<p><a href="https://camo.qiitausercontent.com/1a5a95e945157345eb2f9b78f0f84542970e7b61/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f39336166646437332d616633662d616264302d333034612d6232633739326566363335372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1a5a95e945157345eb2f9b78f0f84542970e7b61/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f39336166646437332d616633662d616264302d333034612d6232633739326566363335372e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/93afdd73-af3f-abd0-304a-b2c792ef6357.png"></a></p>
+
+<p>このアーキテクチャでは、BusinessLogic層に文字通りすべてのビジネスロジックを凝集するという設計です。しかし、</p>
+
+<ul>
+<li>DataAccess層の存在でモデリングの中心がDBになり、業務的なモデリングが阻害されがち</li>
+<li>BusinessLogic層がファットになりがち</li>
+<li>結果、長く運用しているほどメンテが辛くなって行きがち</li>
+</ul>
+
+<p>といったデメリットがあります。</p>
+
+<h1>
+<span id="ericevansのドメイン駆動で紹介されたレイヤードアーキテクチャ" class="fragment"></span><a href="#ericevans%E3%81%AE%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E3%81%A7%E7%B4%B9%E4%BB%8B%E3%81%95%E3%82%8C%E3%81%9F%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%89%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3"><i class="fa fa-link"></i></a>「EricEvansのドメイン駆動」で紹介されたレイヤードアーキテクチャ</h1>
+
+<p><a href="https://camo.qiitausercontent.com/9777db71b799c5398ee41799046098fba8534141/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f31306132373864642d643664612d316631372d383366322d3732623931633436353236642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/9777db71b799c5398ee41799046098fba8534141/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f31306132373864642d643664612d316631372d383366322d3732623931633436353236642e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/10a278dd-d6da-1f17-83f2-72b91c46526d.png"></a></p>
+
+<p>伝統的レイヤードアーキテクチャから、Domain層のモデルに業務的な知識を持たせ、メンテナンス性を高めようとしたのがこちらのアーキテクチャです。</p>
+
+<p>これに関しては<a href="http://little-hands.hatenablog.com/entry/2017/10/04/201201" rel="nofollow noopener" target="_blank">モデルでドメイン知識を表現するとは何か</a>の記事でサンプルコード付きで解説しているのでそちらをご参照ください。</p>
+
+<p>この設計によってモデリングのしやすいさは大幅に改善されましたが、まだ弱点があります。 <strong><em>Domain層がInfrastructure層に依存していること</em></strong> です。</p>
+
+<p>これはつまり、ライブラリの変更やデータベースの切り替えなどのインフラストラクチャレイヤの変更により、ビジネスロジック全体に影響が発生する可能性があるということです。</p>
+
+<p>具体例を挙げてみましょう。</p>
+
+<p><a href="https://camo.qiitausercontent.com/137a10023daa98ba609db3311d3e6bb45d57d11b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f33643833326364312d333061392d333433632d663765322d3739636338636132373464342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/137a10023daa98ba609db3311d3e6bb45d57d11b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f33643833326364312d333061392d333433632d663765322d3739636338636132373464342e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/3d832cd1-30a9-343c-f7e2-79cc8ca274d4.png"></a></p>
+
+<p>あるモデルのDBアクセスをRDBとして実装していたとします。<br>Infrastructure、Domain層の実装が特定のRDBMSで使用する前提の記述になっていた場合、後からRDBをAWSのDynamoに変更しようすると、どれだけのコードを変更しないといけないか・・・？想像するだけでも大変ですね。</p>
+
+<p>Infrastructure層を差し替える他の事例としては、メール送信サービスを最初は自作していたところから、より高機能な外部サービスに切り替えたくなる、というケースは現実的に想像がつくのではないでしょうか。</p>
+
+<p>これはつまり、「ドメインモデルを中心に設計」しようとしているのに、Domain層がなんらかのレイヤーに依存していることが問題なのです。Domain層は、ドメインモデルに変更があった時のみ、修正するようにしたいのです。</p>
+
+<h1>
+<span id="オニオンアーキテクチャ" class="fragment"></span><a href="#%E3%82%AA%E3%83%8B%E3%82%AA%E3%83%B3%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3"><i class="fa fa-link"></i></a>オニオンアーキテクチャ</h1>
+
+<h2>
+<span id="依存関係逆転の原則" class="fragment"></span><a href="#%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E9%80%86%E8%BB%A2%E3%81%AE%E5%8E%9F%E5%89%87"><i class="fa fa-link"></i></a>依存関係逆転の原則</h2>
+
+<p><a href="https://camo.qiitausercontent.com/c559bbd8b740b6ed1eb9579bbefe65930ce7897a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f31643732353935342d656535322d656264392d303538302d3937636531313134656563652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/c559bbd8b740b6ed1eb9579bbefe65930ce7897a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f31643732353935342d656535322d656264392d303538302d3937636531313134656563652e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/1d725954-ee52-ebd9-0580-97ce1114eece.png"></a><br>
+そこでこのアーキテクチャです。</p>
+
+<p><a href="http://little-hands.hatenablog.com/entry/2017/10/04/201201" rel="nofollow noopener" target="_blank">モデルでドメイン知識を表現するとは何か</a>の記事で紹介しているサンプルのオブジェクトを元に説明すると・・・</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>Task： DomainModel層(実クラス)
+TaskRepository： DomainService層(レポジトリ / インターフェイス)
+TaskApplication： ApplicationService層
+TaskRDBRepository： Infrastructure層(レポジトリ / 実クラス)
+TaskDynamoRepository： Infrastructure層(レポジトリ / 実クラス)
+</pre></div></div>
+
+<p><a href="https://camo.qiitausercontent.com/26b2595829a2ebefba08dda872881b4bd0a42c79/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f38313766653636392d376533302d366538632d653438612d6634303938623035643934652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/26b2595829a2ebefba08dda872881b4bd0a42c79/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f38313766653636392d376533302d366538632d653438612d6634303938623035643934652e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/817fe669-7e30-6e8c-e48a-f4098b05d94e.png"></a></p>
+
+<p>おっと、見事にドメインモデルを何にも依存しないクラスとして実装することができました！</p>
+
+<p>違いは何でしょうか？</p>
+
+<p>そう、TaskRepositoryが実クラスではなくInterfaceになったことにより、Infrastructure層との依存関係が逆転したのです。</p>
+
+<p>このような手法を依存関係逆転の原則と言います。(<a href="https://www.slideshare.net/ShintaroKurosawa/20160526-62511723" rel="nofollow noopener" target="_blank">参考資料</a>)<br><strong><em>ローレベルなレイヤを実装してからハイレベルなレイヤに依存させるのではなく、ハイレベルなレイヤが公開したInterfaceに基づいてローレベルレイヤが実装する</em></strong>のです！これにより、ハイレベルなレイヤの独立性を高めることができます。</p>
+
+<p>この事例では、</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">inteterface</span> <span class="n">TaskRepository</span> <span class="o">{</span>
+  <span class="n">Task</span> <span class="nf">findById</span><span class="o">(</span><span class="n">Long</span> <span class="n">taksId</span><span class="o">);</span>
+
+  <span class="kt">void</span> <span class="nf">save</span><span class="o">(</span><span class="n">Task</span> <span class="n">task</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div></div>
+
+<p>DomainService内では、このように呼び出し方と、戻りの型だけ定義していて、永続化先は明言していません。 <em>「永続化先はどこでもいいけど、こういう風に検索・保存するから実装クラスはこれに合わせてね」</em> という形で宣言するわけですね。ApplicationServiceはTaskRepository型で定義しておいて、あとは<a href="https://ja.wikipedia.org/wiki/%E4%BE%9D%E5%AD%98%E6%80%A7%E3%81%AE%E6%B3%A8%E5%85%A5" rel="nofollow noopener" target="_blank">DI(依存性の注入)</a>などの仕組みで実クラスが実行時に判断されるようにするのです。</p>
+
+<p>これで、永続化先がRDBからDynamoに差し替えたい場合も、実装クラスを別のものを用意すれば、DomainModel, DomainService, ApplicationServiceいずれも一切修正しなくて良い設計になります。素晴らしいですね。</p>
+
+<p>メリットとしては、実装クラスの差し替えが容易になるだけではなく、業務を表現するモデルにローレベルなコードが入らなくなるので、読みやすくなりメンテナンス性が上がる、ということもあります。</p>
+
+<h2>
+<span id="丸型で表現する意味" class="fragment"></span><a href="#%E4%B8%B8%E5%9E%8B%E3%81%A7%E8%A1%A8%E7%8F%BE%E3%81%99%E3%82%8B%E6%84%8F%E5%91%B3"><i class="fa fa-link"></i></a>丸型で表現する意味</h2>
+
+<p>前述の図では、レイヤードアーキテクチャとの比較のためにフラットにレイヤを表現しましたが、「オニオン」と名がつくだけあって丸型に表現される方が元の定義になります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/8c6d5819bd0addf3195d35c20f31673c70d7dad6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f31613330396231352d643164392d303832392d383435362d3932616231316261353063622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/8c6d5819bd0addf3195d35c20f31673c70d7dad6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f31613330396231352d643164392d303832392d383435362d3932616231316261353063622e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/1a309b15-d1d9-0829-8456-92ab11ba50cb.png"></a></p>
+
+<p>ではこの丸型は何を意味しているのでしょうか？</p>
+
+<p>これは、 <strong><em>アプリケーションとその外側に境界があり、その間はアダプターを通じて通信する</em></strong> というモデルを表現しています。(矢印はリクエストの向きを表現しています。それぞれが逆向きにレスポンスを受けます)</p>
+
+<p><a href="https://camo.qiitausercontent.com/4fb32fa4b4e0c120208e00f10fe30c01552570eb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f31386633366265362d633662372d643939632d633763622d3633663165633434336132382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/4fb32fa4b4e0c120208e00f10fe30c01552570eb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f31386633366265362d633662372d643939632d633763622d3633663165633434336132382e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/18f36be6-c6b7-d99c-c7cb-63f1ec443a28.png"></a></p>
+
+<p>例えば、あるHttpClientからのリクエストの場合はまず専用のAdapterで受け、アプリケーションがなんらかの処理を行い、必要に応じてDBから情報取得を行い、アプリケーションがDBのレスポンスを加工してHttpClientのレスポンスとして返します。</p>
+
+<p>結合テストの場合も専用のAdapterからリクエストを受けてアプリケーションで処理をするのですが、その場合はDBをMockDB(インメモリなど)に差し替えることも可能です。</p>
+
+<p>このモデルのメリットは、 <strong><em>DomainModel、Applicationが常に独立した形で書け、その単位で品質保証をすることができるということ</em></strong> です。<br>
+外部からはApplicationが許可したメソッドでしか呼び出せないので、Apllicationが自動テストで品質保証されていれば、それを呼び出すクライアントはなんであろうとApplicationがおかしな挙動することはない、と考えることができます。この安心感は非常に大きいものです。</p>
+
+<h2>
+<span id="テスト戦略" class="fragment"></span><a href="#%E3%83%86%E3%82%B9%E3%83%88%E6%88%A6%E7%95%A5"><i class="fa fa-link"></i></a>テスト戦略</h2>
+
+<p>ここは各プロジェクトの方針によるものだと思いますが、私個人的にはApplicationServiceに対する結合テストのみ実装するのが最低限、という方針が一番費用対効果がよいと思っています。</p>
+
+<p>また、DDDではリファクタリングをしてモデルを成熟させていくことを重視するのですが、ApplicationSericeというある程度大きな粒度でのテストにしておいたほうが、内部を自由にリファクタがしやすいという利点もあります。あまりクラス単位で細かくテストすると、リファクタ時にクラスごとなくなったりとリファクタする気が重くなり、結果リファクタしなくなる、という力学が働くことがあります。</p>
+
+<p>前述の通り、ApplicationService単位でテストしておくとかなり品質は安心感が持てます。テスト戦略を検討の際には参考に指定だければと思います。</p>
+
+<h2>
+<span id="あれこの形って" class="fragment"></span><a href="#%E3%81%82%E3%82%8C%E3%81%93%E3%81%AE%E5%BD%A2%E3%81%A3%E3%81%A6"><i class="fa fa-link"></i></a>あれ、この形って</h2>
+
+<p>おっと、そして最後のAdapterのは何かに似ているような・・・<br>そう、ヘキサゴナルアーキテクチャです。</p>
+
+<p><a href="https://camo.qiitausercontent.com/6e45e3b1e200541266a3fcaee8b1a25d61ec9110/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f37653133336466362d326238342d643666362d653039652d3735613131383265656330622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/6e45e3b1e200541266a3fcaee8b1a25d61ec9110/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f37653133336466362d326238342d643666362d653039652d3735613131383265656330622e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/7e133df6-2b84-d6f6-e09e-75a1182eec0b.png"></a></p>
+
+<p><a href="http://little-hands.hatenablog.com/entry/2017/10/04/231743" rel="nofollow noopener" target="_blank">ドメイン駆動設計で実装を始めるのに一番とっつきやすいアーキテクチャは何か</a>の記事で紹介したヘキサゴナルアーキテクチャのモデル図</p>
+
+<p>そうなんです、このアプリケーションと外界をアダプターでつなぐという発想はヘキサゴナルのものをそのまま使っているのです。結局、このヘキサゴナルの思想がとても優れているのですよね。</p>
+
+<p>オニオンアーキテクチャは、Applicationの内部のレイヤを少し細かくして、Adapterの種類を明示して全体的に少し具体的になっただけなのです。</p>
+
+<p>この記事の冒頭で書いた通り、「あれ、結局ヘキサゴナルじゃん」となっていただけましたか？笑</p>
+
+<h2>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h2>
+
+<p>さて、オニオンアーキテクチャの魅力と実装イメージは伝わったでしょうか？ここまでがイメージできれば、あとは細かい話を必要都度参照していけば少しずつ進めていけると思います。</p>
+
+<p>今後はより細かい話を書いていこうと思いますので、またよろしければお付き合いください。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>little_hand_sさんの<br />5位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>36</kbd>
+		<a target="_blank" href="https://qiita.com/little_hand_s/items/868bab9d8dc82ade859e">「悪い設計」の定義について考えたことはあるか</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-10 01:01:14</center>
+	</td>
+	<td style="width:200px;">
+		@little_hand_s<br />(株式会社ビズリーチ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/30489/profile-images/1473685506">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Java]</b> <b>[オブジェクト指向]</b> <b>[設計]</b> <b>[oop]</b> <b>[オブジェクト]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>DDD連載記事<br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/09/24/005903" rel="nofollow noopener" target="_blank">なぜDDD初心者はググリ出してすぐに心がくじけてしまうのか</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/09/27/014403" rel="nofollow noopener" target="_blank">ドメイン駆動設計の定義についてEric Evansはなんと言っているのか</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/04/201201" rel="nofollow noopener" target="_blank">モデルでドメイン知識を表現するとは何か</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/04/231743" rel="nofollow noopener" target="_blank">ドメイン駆動設計で実装を始めるのに一番とっつきやすいアーキテクチャは何か</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/11/075634" rel="nofollow noopener" target="_blank">ドメイン駆動 + オニオンアーキテクチャ概略</a></p>
+
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>設計の善し悪しについて日々色々と議論することはあると思いますが、「良い設計」「悪い設計」について明文化した定義はあるでしょうか。各々の頭の中にぼんやりと、もしくは断片的にはあるものの、チームで良し悪しについて定義まですることはあまり多くないのではないでしょうか。</p>
+
+<p>各プロジェクトで議論することには価値があると思いますが、一つ基準になるものがあると議論しやすいと思います。そこで一つ、オブジェクト指向の原則を提唱したUncle BobことRobert Cecil Martinが提唱している「悪い設計」の定義について参照してみましょう。</p>
+
+<h1>
+<span id="uncle-bobについて" class="fragment"></span><a href="#uncle-bob%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>Uncle Bobについて</h1>
+
+<p>そのまえに、Uncle Bobについて紹介します。</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Robert_Cecil_Martin" rel="nofollow noopener" target="_blank">Robert Cecil Martin(wikipedia)</a></p>
+
+<p>有名な「クリーンコード」の著者、と言えばわかりやすいでしょう。そのほかにも、オブジェクト指向の設計原則であるSOLID原則の提唱者であったり、<a href="http://agilemanifesto.org/iso/ja/manifesto.html" rel="nofollow noopener" target="_blank">アジャイルソフトウェア開発宣言</a>の共著者であったりと、ソフトウェア業界に与えた影響は計り知れない方ですね。</p>
+
+<p>(余談ですが、<a href="http://little-hands.hatenablog.com/entry/2017/10/04/231743" rel="nofollow noopener" target="_blank">ドメイン駆動設計で実装を始めるのに一番とっつきやすいアーキテクチャは何か</a>で紹介したアプリケーションアーキテクチャ「クリーンアーキテクチャ」の提唱者もこの方です。運営されているサイトも<a href="https://sites.google.com/site/unclebobconsultingllc/" rel="nofollow noopener" target="_blank">Clean Coder</a>という名前で、クリーンという名称にはこだわりがあるみたいですね。クリーンアーキテクチャの"クリーン"ってどこから来たのか？と思ったらここからだったようです。納得。)</p>
+
+<h1>
+<span id="原典" class="fragment"></span><a href="#%E5%8E%9F%E5%85%B8"><i class="fa fa-link"></i></a>原典</h1>
+
+<p>今回の参照する原典は、<a href="http://butunclebob.com/" rel="nofollow noopener" target="_blank">古いUncleBobのサイト</a>の<a href="http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod" rel="nofollow noopener" target="_blank">The Principles of OOD</a>のページのさらに中、<a href="https://drive.google.com/file/d/0BwhCYaYDn8EgMjdlMWIzNGUtZTQ0NC00ZjQ5LTkwYzQtZjRhMDRlNTQ3ZGMz/view" rel="nofollow noopener" target="_blank">The Dependency Inversion Principleの記事</a>の中で紹介されていたものです。こちらの内容を引用・要約したものになります。</p>
+
+<h1>
+<span id="悪い設計とは" class="fragment"></span><a href="#%E6%82%AA%E3%81%84%E8%A8%AD%E8%A8%88%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>「悪い設計」とは</h1>
+
+<p>すべてのエンジニアが合意できると思われる、以下のような3つの性質を持つ設計を「悪い設計」と言っています。</p>
+
+<blockquote>
+<ol>
+<li>Rigidity : <br>It is hard to change because every change affects too many other parts of the system.</li>
+<li>Fragility: <br>When you make a change, unexpected parts of the system break. </li>
+<li>Immobility: <br>It is hard to reuse in another application because it cannot be disentangled from the current application. </li>
+</ol>
+</blockquote>
+
+<p>和訳し、その後に記述があった詳細について一部意訳、要約を記述します。</p>
+
+<h4>
+<span id="1-rigidity硬さ" class="fragment"></span><a href="#1-rigidity%E7%A1%AC%E3%81%95"><i class="fa fa-link"></i></a>1. Rigidity(硬さ)：</h4>
+
+<blockquote>
+<p>一つ一つ変更がシステムの他の多くの部分に影響を与えるため、変更するのが難しい。</p>
+</blockquote>
+
+<p>一つの変更のために、依存モジュールに連鎖的に修正を加えないといけないことが原因となります。<br>修正を加える必要が有る範囲を設計者が予測できない場合、その影響やコストが予測できなくなります。そうすると、権限者は変更の承認を嫌い、変更に硬直的な圧力が働きます。</p>
+
+<p>対策「依存するモジュールを少なくすること」、「依存するモジュールが論理的に推測できる範囲にすること」と言ったことが考えられるでしょう。</p>
+
+<p>対照的な性質は、Flexibility(柔軟性)です。</p>
+
+<h4>
+<span id="2-fragility脆さ" class="fragment"></span><a href="#2-fragility%E8%84%86%E3%81%95"><i class="fa fa-link"></i></a>2. Fragility(脆さ)：</h4>
+
+<blockquote>
+<p>変更を加えると、システムの予期しない部分が壊れる。</p>
+</blockquote>
+
+<p>しばしば、変更時に概念的に関係がない領域にて新しい問題を生じさせることがあります。これにより、保守チームの信頼性の低下を引き起こします。開発を続けるほど、無関係に見えるところでの障害発生が発生し、その修正をするたびにまた別の障害が発生し・・・と、メンテナンスに掛かる工数が継続的にかかりづつけてしまいます。</p>
+
+<p>対策は「概念的に関連があるモジュールのみに依存するようにすること」、1と同じく「依存するモジュールが論理的に推測できる範囲にすること」と言ったことが考えられるでしょう。</p>
+
+<p>対照的な性質は、Robustness(堅牢性)です。</p>
+
+<h4>
+<span id="3-immobility移植性のなさ" class="fragment"></span><a href="#3-immobility%E7%A7%BB%E6%A4%8D%E6%80%A7%E3%81%AE%E3%81%AA%E3%81%95"><i class="fa fa-link"></i></a>3. Immobility(移植性のなさ)：</h4>
+
+<blockquote>
+<p>現在のアプリケーションとの結合が強く、別のアプリケーションでの再利用が難しい。</p>
+</blockquote>
+
+<p>実装の一部が業務的に固有なものに大きく依存する場合、その実装の再利用性は低くなります。設計者が実装の再利用について調べると、モジュールの分離、再利用のために必要な作業が非常に多いことが判明し、多くの場合は再利用することを諦めます。</p>
+
+<p>対策は「モジュールの凝集度を高めること」でしょうか。</p>
+
+<p>対照的な性質は、Reusability(再利用容易性)です。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>いかがでしょうか。「良い設計の定義」よりも、意外と「悪い設計の定義、の裏返し」で考えたほうがイメージがしやすいこともあるのではないでしょうか。</p>
+
+<p>また、これを元に自分自身の考えや、チームの方針を再検討する土台としても使えるかもしれませんね。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>little_hand_sさんの<br />6位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>22</kbd>
+		<a target="_blank" href="https://qiita.com/little_hand_s/items/a0b6ff6fa092f95b89b3">モデルとは&quot;現実世界を正しく表現したもの&quot;ではないという話 / 境界付けられたコンテキストの必要性</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-16 00:14:57</center>
+	</td>
+	<td style="width:200px;">
+		@little_hand_s<br />(株式会社ビズリーチ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/30489/profile-images/1473685506">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Java]</b> <b>[オブジェクト指向]</b> <b>[DDD]</b> <b>[設計]</b> <b>[ドメイン駆動設計]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>DDD連載記事<br><br>
+<a href="http://little-hands.hatenablog.com/entry/2017/09/24/005903" rel="nofollow noopener" target="_blank">なぜDDD初心者はググリ出してすぐに心がくじけてしまうのか</a><br>
+<a href="http://little-hands.hatenablog.com/entry/2017/09/27/014403" rel="nofollow noopener" target="_blank">ドメイン駆動設計の定義についてEric Evansはなんと言っているのか</a><br>
+<a href="http://little-hands.hatenablog.com/entry/2017/10/04/201201" rel="nofollow noopener" target="_blank">モデルでドメイン知識を表現するとは何か</a><br>
+<a href="http://little-hands.hatenablog.com/entry/2017/10/04/231743" rel="nofollow noopener" target="_blank">ドメイン駆動設計で実装を始めるのに一番とっつきやすいアーキテクチャは何か</a><br>
+<a href="http://little-hands.hatenablog.com/entry/2017/10/11/075634" rel="nofollow noopener" target="_blank">ドメイン駆動 + オニオンアーキテクチャ概略</a></p>
+
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>ドメイン駆動設計における「モデル」の捉え方の話と、境界付けられたコンテキストの必要性の話をします。</p>
+
+<p>「境界付けられたコンテキスト」というものはドメイン駆動設計の上で非常に重要ですが理解しにくいポイントなので、その必要性と定義を理解しやすいように書こうと思います。</p>
+
+<h1>
+<span id="モデルとは" class="fragment"></span><a href="#%E3%83%A2%E3%83%87%E3%83%AB%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>モデルとは？</h1>
+
+<p>ソフトウェア開発において「モデル」「モデリング」という単語はよく聞きますが、定義について立ち止まって考えたことがない人もいるのではないでしょうか。</p>
+
+<p>日本語で定義をググってみると、UMLの文脈で話題になることが多いようです。抽象的な単語なので定義は様々だと思いますが、日経コンピュータの記事の定義を引用してみます。</p>
+
+<p><a href="http://itpro.nikkeibp.co.jp/article/Keyword/20070202/260614/" rel="nofollow noopener" target="_blank">ITレポート(キーワード3分間講座) - モデリング</a></p>
+
+<blockquote>
+<p>業務の流れやシステム構造といった、目に見えないものを可視化するためのシステム構築技法。<br>記号を使って平面図（モデル）を作成する。</p>
+</blockquote>
+
+<p>目に見えないものを <strong><em>可視化する</em></strong> のがモデルと書いてあります。</p>
+
+<p>これもある文脈では正しいと思いますが、ドメイン駆動でモデリングをしていく際には、少し捉え方を注意した方が良いことがあります。</p>
+
+<p><strong><em>モデリング = 現実世界のものを正しく表現するものではない</em></strong></p>
+
+<p>ということです。</p>
+
+<h1>
+<span id="eric-evansの定義" class="fragment"></span><a href="#eric-evans%E3%81%AE%E5%AE%9A%E7%BE%A9"><i class="fa fa-link"></i></a>Eric Evansの定義</h1>
+
+<p><a href="http://domainlanguage.com/ddd/reference/" rel="nofollow noopener" target="_blank">Eric EvansのDDD Reference</a>を見てみましょう。<br>(こちらの資料が何かは<a href="http://little-hands.hatenablog.com/entry/2017/09/27/014403" rel="nofollow noopener" target="_blank">ドメイン駆動設計の定義についてEric Evansはなんと言っているのか</a>の記事に書きました)</p>
+
+<blockquote>
+<p>model:<br>
+A system of abstractions that describes selected aspects of a domain and can be used to solve problems related to that domain<br>
+対象領域の特定の側面を表現し、関連する問題を解決するために使用する抽象物</p>
+</blockquote>
+
+<p>重要なことは、<br>モデルが表現するのは <strong><em>特定の側面(selected aspects)</em></strong> であり、<br>目的にあるのは <strong><em>関連する問題を解決する</em></strong> ということなのです。</p>
+
+<p>特定の事象について抽象化するということは、いろいろな具体的な物事をそぎ落としているので、「正確に描写することは不可能である」というのが前提になります。では正確さを目指さずに何を目指すのか？<br>それは <strong><em>問題解決という目的に合致するかどうか</em></strong> です。</p>
+
+<p>これは"可視化する"とは少しニュアンスに違いがあると思います。</p>
+
+<h3>
+<span id="事例" class="fragment"></span><a href="#%E4%BA%8B%E4%BE%8B"><i class="fa fa-link"></i></a>事例</h3>
+
+<p>例として、<a href="https://en.wikipedia.org/wiki/Domain-driven_design#Building_blocks" rel="nofollow noopener" target="_blank">Domain Driven Design(en.wikipedia)</a>の中でEntityとValueObjectの違いについてこのような記述があります。(Entity、ValueObjectの定義については後々記事を書く予定です)</p>
+
+<blockquote>
+<p>Example: <br>Most airlines distinguish each seat uniquely on every flight. Each seat is an entity in this context. <br>However, Southwest Airlines, EasyJet and Ryanair do not distinguish between every seat; all seats are the same. In this context, a seat is actually a value object.<br>
+ほとんどの航空会社はすべての便で一意に各座席を区別します。この文脈では、各座席はEntityとなります。<br>しかし、Southwest Airlines、EasyJet、Ryanairはすべての座席を区別せず、すべての座席は同じです。この文脈では、座席はValue Objectといえるでしょう。</p>
+</blockquote>
+
+<p>飛行機の座席というものをただ「可視化」するのであれば、座席は座席なので、同じモデルになるはずです。<br>しかし、この事例では物理的には同じものが、運営会社のサービス方針によってモデルとしての認識が分かれたのです。</p>
+
+<p>これはつまり、それぞれの問題解決の文脈によって、フォーカスする側面が変わり、定義されたモデルが変わったということです。</p>
+
+<h1>
+<span id="モデルを適用する範囲を限定する" class="fragment"></span><a href="#%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E9%81%A9%E7%94%A8%E3%81%99%E3%82%8B%E7%AF%84%E5%9B%B2%E3%82%92%E9%99%90%E5%AE%9A%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>モデルを適用する範囲を限定する</h1>
+
+<p>航空会社によってモデルの認識が異なることがあることがわかりました。では、同じ航空会社の中では常にモデルは統一されているのでしょうか？</p>
+
+<p>少し想像するだけでも、「座席」を物理的に作るチームと、「座席」の予約管理をするチームでは「座席」の問題を解決するための捉え方は違いそうです。</p>
+
+<p>モデルの認識が同じ範囲は世界共通ではあり得ない、会社単位でもない、だとすると部署？チーム？そもそも人によって違うもの・・・？</p>
+
+<p>こう考えていくと、 <strong><em>モデルを適用する範囲を明示的に定義する必要がある</em></strong> という結論になるかと思います。この明示的な境界付けを、ドメイン駆動設計の用語では <strong><em>境界付けられたコンテキスト(bounded context)</em></strong> と呼びます。</p>
+
+<p><a href="http://domainlanguage.com/ddd/reference/" rel="nofollow noopener" target="_blank">Eric EvansのDDD Reference</a>の定義を参照します。</p>
+
+<blockquote>
+<p>bounded context:<br>
+A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable. <br><br>
+境界付けられたコンテキスト:<br>特定のモデルが定義され適用される境界（通常はサブシステム、または特定のチームの作業）に関する記述</p>
+</blockquote>
+
+<p>ドメイン駆動設計では、この境界付けられたコンテキストというものを非常に重要視します。前述の通り、この境界を設けないことには、何のモデルも正しく定義できないからです。</p>
+
+<p>そして、コンテキスト同士がどういう関係性を持つのかを定義します。その成果物をコンテキストマップと呼びます。これがドメイン駆動設計における設計の一番のベースになります。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>言葉の認識合わせとしてのモデルについて定義し、DDDのわかりづらいワード境界付けられたコンテキストについて説明しました。</p>
+
+<p>今後は境界付けられたコンテキストがどのように実装に落とし込まれていくのか？を書いていきたいと思います。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>little_hand_sさんの<br />7位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
+		<a target="_blank" href="https://qiita.com/little_hand_s/items/74db7695744599137c3a">リファクタか、リライトか。それをどう判断するのか。 (レガシーソフトウェア改善ガイド)</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-03 22:56:54</center>
+	</td>
+	<td style="width:200px;">
+		@little_hand_s<br />(株式会社ビズリーチ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/30489/profile-images/1473685506">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[リファクタリング]</b> <b>[設計]</b> <b>[プロジェクト管理]</b> <b>[新人プログラマ応援]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>リファクタか、リライト(作り直し)か。</p>
+
+<p>この大きなテーマについてこの本で言及されています。</p>
+
+<p><a href="https://www.amazon.co.jp/gp/product/4798145149/ref=as_li_tl?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798145149&amp;linkCode=as2&amp;tag=majackyy-22&amp;linkId=0007cc7ae7cce37d7791983561000d3f" rel="nofollow noopener" target="_blank">レガシーソフトウェア改善ガイド (Object Oriented Selection)</a><a href="https://camo.qiitausercontent.com/ac37375a297a018f6554c5a03efcce6e981a87aa/68747470733a2f2f69722d6a702e616d617a6f6e2d616473797374656d2e636f6d2f652f69723f743d6d616a61636b79792d3232266c3d616d32266f3d3926613d34373938313435313439" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ac37375a297a018f6554c5a03efcce6e981a87aa/68747470733a2f2f69722d6a702e616d617a6f6e2d616473797374656d2e636f6d2f652f69723f743d6d616a61636b79792d3232266c3d616d32266f3d3926613d34373938313435313439" width="1" height="1" alt="" data-canonical-src="//ir-jp.amazon-adsystem.com/e/ir?t=majackyy-22&amp;l=am2&amp;o=9&amp;a=4798145149"></a></p>
+
+<h3>
+<span id="リファクタかリライトかの結論" class="fragment"></span><a href="#%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%81%8B%E3%83%AA%E3%83%A9%E3%82%A4%E3%83%88%E3%81%8B%E3%81%AE%E7%B5%90%E8%AB%96"><i class="fa fa-link"></i></a>リファクタか、リライトかの結論</h3>
+
+<p>結論からいうと</p>
+
+<p><strong><em>「リライトしたい欲求と戦い、どうにかリファクタで解決できないか考えるべし。最善を尽くしてどうしても駄目であればリライトを検討しても良い」</em></strong></p>
+
+<p>ということでした。</p>
+
+<h3>
+<span id="リライトのリスク" class="fragment"></span><a href="#%E3%83%AA%E3%83%A9%E3%82%A4%E3%83%88%E3%81%AE%E3%83%AA%E3%82%B9%E3%82%AF"><i class="fa fa-link"></i></a>リライトのリスク</h3>
+
+<blockquote>
+<p>最初に明らかにしておくが、完全な書き直しは、ほとんど常によくないアイデアだと私は信じている。けれど「あなたも信じなさい」と言うのではない。できれば納得していただきたい。以下に、リライトに対する詳しい反論を書く。</p>
+</blockquote>
+
+<p>から始まる"リライトへの反論"が以下の通りです。(だいぶ要約してあります)</p>
+
+<h4>
+<span id="リスク" class="fragment"></span><a href="#%E3%83%AA%E3%82%B9%E3%82%AF"><i class="fa fa-link"></i></a>リスク</h4>
+
+<p>大規模な開発プロジェクトで、何ヶ月、あるいは何年もかかることにより、以下のようなリスクを抱える</p>
+
+<ul>
+<li>潜在的な数え切れないバグがあるかもしれない</li>
+<li>計画より長い時間がかかり、予算を超過するかもしれない</li>
+<li>新しいアーキテクチャが現プロダクションレベルを満たすかがわからず、途中で不可能であることが判明するかもしれない</li>
+</ul>
+
+<h4>
+<span id="オーバーヘッド" class="fragment"></span><a href="#%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC%E3%83%98%E3%83%83%E3%83%89"><i class="fa fa-link"></i></a>オーバーヘッド</h4>
+
+<p>新規プロダクトのセットアップには非常に多くの実装が必要になり、技術者はそのオーバーヘッドを過小に見積もりがち。</p>
+
+<h4>
+<span id="リライト時の現行プロダクトへの対応策が難しい" class="fragment"></span><a href="#%E3%83%AA%E3%83%A9%E3%82%A4%E3%83%88%E6%99%82%E3%81%AE%E7%8F%BE%E8%A1%8C%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%83%88%E3%81%B8%E3%81%AE%E5%AF%BE%E5%BF%9C%E7%AD%96%E3%81%8C%E9%9B%A3%E3%81%97%E3%81%84"><i class="fa fa-link"></i></a>リライト時の現行プロダクトへの対応策が難しい</h4>
+
+<p>以下の3つどれも現実的ではない。</p>
+
+<ul>
+<li>元のソフトウェアの開発を、リライト期間は凍結する</li>
+<li>仕様変更を許し、リライト期間常に追いつくようにする</li>
+<li>仕様変更は許すが、リライトはどの変更も実装しない</li>
+</ul>
+
+<h4>
+<span id="まっさらな新天地は長く続かない" class="fragment"></span><a href="#%E3%81%BE%E3%81%A3%E3%81%95%E3%82%89%E3%81%AA%E6%96%B0%E5%A4%A9%E5%9C%B0%E3%81%AF%E9%95%B7%E3%81%8F%E7%B6%9A%E3%81%8B%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>「まっさらな新天地」は長く続かない</h4>
+
+<p>リライトでは以下のような自体が起こりがち</p>
+
+<ol>
+<li>新鮮で素晴らしい設計でスタート</li>
+<li>実装してみたらモデルの不備に気づき、ヘルパーコードを追加</li>
+<li>古いコードにあった不必要だと思ったコードが使われていることが判明し、サポート機能を実装する</li>
+<li>DBの中で、存在するはずのないデータに遭遇し、不必要なはずのチェックを実装する</li>
+<li>この時点で、新しいコードと置き換えようとしているコードが驚くほど似ていることに気づく</li>
+</ol>
+
+<h3>
+<span id="リライトの条件" class="fragment"></span><a href="#%E3%83%AA%E3%83%A9%E3%82%A4%E3%83%88%E3%81%AE%E6%9D%A1%E4%BB%B6"><i class="fa fa-link"></i></a>リライトの条件</h3>
+
+<p>これに対して、リライトをして良い条件で以下のものが挙げられています。</p>
+
+<h4>
+<span id="リファクタリングを試みたが失敗した" class="fragment"></span><a href="#%E3%83%AA%E3%83%95%E3%82%A1%E3%82%AF%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0%E3%82%92%E8%A9%A6%E3%81%BF%E3%81%9F%E3%81%8C%E5%A4%B1%E6%95%97%E3%81%97%E3%81%9F"><i class="fa fa-link"></i></a>リファクタリングを試みたが失敗した</h4>
+
+<p>一旦リファクタリングにある程度の時間と労力を注ぎ込んでから検討するべき</p>
+
+<h4>
+<span id="パラダイムシフト" class="fragment"></span><a href="#%E3%83%91%E3%83%A9%E3%83%80%E3%82%A4%E3%83%A0%E3%82%B7%E3%83%95%E3%83%88"><i class="fa fa-link"></i></a>パラダイムシフト</h4>
+
+<p>テクノロジーの根本的な変化があった時。<br><br>
+最も一般的な変化は、言語の変更。COBOLからJavaへの移植のように。</p>
+
+<h3>
+<span id="第3の道" class="fragment"></span><a href="#%E7%AC%AC3%E3%81%AE%E9%81%93"><i class="fa fa-link"></i></a>第3の道</h3>
+
+<p>また、リライトをする際にも以下のものを検討するべきだと書かれています。</p>
+
+<h4>
+<span id="第3の道としてインクリメンタルな書き直し" class="fragment"></span><a href="#%E7%AC%AC3%E3%81%AE%E9%81%93%E3%81%A8%E3%81%97%E3%81%A6%E3%82%A4%E3%83%B3%E3%82%AF%E3%83%AA%E3%83%A1%E3%83%B3%E3%82%BF%E3%83%AB%E3%81%AA%E6%9B%B8%E3%81%8D%E7%9B%B4%E3%81%97"><i class="fa fa-link"></i></a>第3の道として、インクリメンタルな書き直し</h4>
+
+<p>全てのリライトはコストもリスクも大きすぎるので、リライトの単位を分割する。</p>
+
+<p>機能を分割してそれぞれをコンポーネントとして分割して書き直すアプローチを試みる。詳細は本の5章「リアーキテクティング」に記載あり。</p>
+
+<h3>
+<span id="感想" class="fragment"></span><a href="#%E6%84%9F%E6%83%B3"><i class="fa fa-link"></i></a>感想</h3>
+
+<p>自分のプロジェクト経験をかんがみた際に、心当たりがあることが非常に多く振り返っていろいろ考えるきっかけになりました。。</p>
+
+<p><strong><em>「リライトしなくてもリファクタでこれだけやれることがある」</em></strong>というのは心強いメッセージですね。この本にはその詳細も書いてあるので、そちらも参考にしたいと思います。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>little_hand_sさんの<br />8位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
+		<a target="_blank" href="https://qiita.com/little_hand_s/items/9d1bb19daa54ae346914">議論で迷った時、まず取りうる選択肢を列挙すると道が開けるという話</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-28 22:56:58</center>
+	</td>
+	<td style="width:200px;">
+		@little_hand_s<br />(株式会社ビズリーチ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/30489/profile-images/1473685506">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Qiita]</b> <b>[初心者]</b> <b>[ポエム]</b> <b>[新人プログラマ応援]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>エンジニアとして働くなかで、色々な職種の方と議論をして意思決定をすることがあります。</p>
+
+<p>そのなかで、</p>
+
+<ul>
+<li>会議が紛糾してなかなか結論に辿りつかない時</li>
+<li>他の人から仕様について相談をうけて、なかなか向こうの言いたいことが見えて来ず、議論が進まない</li>
+<li>一人で案を考えていて、堂々巡りでになってしまう</li>
+</ul>
+
+<p>なんてこと、ありますよね。</p>
+
+<p>こういうケースで自分で心がけたり、人に「こういう風に案をまとめてきてください」というものがあるので、それをまとめます。</p>
+
+<h1>
+<span id="検討の3step" class="fragment"></span><a href="#%E6%A4%9C%E8%A8%8E%E3%81%AE3step"><i class="fa fa-link"></i></a>検討の3Step</h1>
+
+<h2>
+<span id="step1取りうる選択肢を列挙する" class="fragment"></span><a href="#step1%E5%8F%96%E3%82%8A%E3%81%86%E3%82%8B%E9%81%B8%E6%8A%9E%E8%82%A2%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Step1.取りうる選択肢を列挙する</h2>
+
+<p>色々な論点が交差して混乱したとしても、最終的には何かのアクションに落とし込まないといけません。それならば最初から取り得る選択肢を並べましょう。多くの場合、選択肢は意外と多くないことに気づくでしょう。</p>
+
+<p>有効な選択肢があまり思いつかない場合は、そもそもの設定している問題に無理があるのかもしれません。そこを疑ってみましょう。</p>
+
+<p>選択肢が多すぎる場合は、問題のフォーカスする粒度が粗すぎる可能性があります。一度問題を分解することを考えましょう。</p>
+
+<p>現実的な選択肢が幾つか並んだら、その時点で答えが自ずと出るかもしれません。おめでとうございます。</p>
+
+<p>複数の選択肢で迷うことがあったら、Step2に進みましょう。</p>
+
+<p>とにかく、迷ったら取りうる選択肢を並べるだけでも、現状の問題がどこにあるのか整理されます。まずはここから始めましょう。</p>
+
+<h2>
+<span id="step2検討観点と検討結果を整理する" class="fragment"></span><a href="#step2%E6%A4%9C%E8%A8%8E%E8%A6%B3%E7%82%B9%E3%81%A8%E6%A4%9C%E8%A8%8E%E7%B5%90%E6%9E%9C%E3%82%92%E6%95%B4%E7%90%86%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Step2.検討観点と検討結果を整理する</h2>
+
+<p>選択肢を複数並べたら、それぞれのメリット、デメリットを書き出しましょう。</p>
+
+<p>メリットデメリット以外に、検討時に重要な項目は独立させましょう。(工数、リスクのように横串で検討しないといけないものなど)</p>
+
+<p>これを書き出すと複数案を同じ軸できちんと比較できるようになります。</p>
+
+<p>そうでない状況の例:<br>A案は機能上のメリットを話していて、B案は工数の話をしていて、のような状況では、比較をしようとしても同じ条件の比較でないので論理的な判断がしにくくなります。A案とB案ではどれほど機能に違いがあるのか、工数はどれほど変わるのか。また現在重みを置くのは機能なのか工数なのか、ということを踏まえて総合的に判断がしやすくなります。</p>
+
+<h2>
+<span id="step3分析結果を踏まえた結論を出す" class="fragment"></span><a href="#step3%E5%88%86%E6%9E%90%E7%B5%90%E6%9E%9C%E3%82%92%E8%B8%8F%E3%81%BE%E3%81%88%E3%81%9F%E7%B5%90%E8%AB%96%E3%82%92%E5%87%BA%E3%81%99"><i class="fa fa-link"></i></a>Step3.分析結果を踏まえた結論を出す</h2>
+
+<p>上記を踏まえて、現時点の判断結果を導きだします。明らかに特定の案がよさそうであれば決まりです。</p>
+
+<p>特定の案を除外しても、残った案で判断がつかない場合は、なぜ判断がつかないのかを切り分けましょう。項目の重み付けに迷うのか、判断する材料が不足しているのかなどです。迷う場合は近くにいる人、特にその重み付けに責任を持つ人に相談しましょう。材料不足の場合は必要な情報を得るためにアクションを起こしましょう。</p>
+
+<h1>
+<span id="人に報告する時の順番" class="fragment"></span><a href="#%E4%BA%BA%E3%81%AB%E5%A0%B1%E5%91%8A%E3%81%99%E3%82%8B%E6%99%82%E3%81%AE%E9%A0%86%E7%95%AA"><i class="fa fa-link"></i></a>人に報告する時の順番</h1>
+
+<p>大体の意思決定は関係者の合意が必要となります。その場合は上述のStepの内容を以下の内容で話しましょう。</p>
+
+<p>まず、Step0として背景や概要の頭出しをします。</p>
+
+<p>Step1の選択肢一覧を概要レベルで話しましょう。この段階ではあまり詳細まで触れないほうが良いです。まずは全体感を伝えましょう。</p>
+
+<p>次は詳細より先にStep3の分析結果を述べましょう。自分の中で結論が決まっているのか、迷っているので相談したいのかのスタンスを伝えることが重要です。相手も聞く前提が大きく変わります。</p>
+
+<p>最後に、Step2の詳細を述べて、Step3に戻りましょう。</p>
+
+<p>このプロセスのなかで寄り道をすることはあると思います。例えば、選択肢を並べた段階で「こういう案もあるよね」という話がでることもあるでしょう。</p>
+
+<p>その場合はその案をその場で改めて検討するば良いと思います。準備したStepはあくまで思考の整理と、たたき台として捉えましょう。自分の時間で論点を整理したことにより、複数人で検証する時間を短縮し、時間を有効に使うことはできたはずです。</p>
+
+<p>重要なのは「自分で考えたほうが効率が良いのか、相手と考えたほうがよいのか」を常に考えることです。その判断軸で、準備と相談のバランスを考えられるとよいと思います。</p>
+
+<h1>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h1>
+
+<p>お気づきの方もいらっしゃるかと思いますが、議論で迷った時ときとは言っていますが、一般的な選択肢検討のテンプレだったりします。</p>
+
+<p>ただ、議論の時にふと当てはめてみると効率的に話を進められるきっかけになるかもしれません。よろしければ、迷った時に思い返してみてください。</p>
+
+<h1>
+<span id="新人応援関連記事" class="fragment"></span><a href="#%E6%96%B0%E4%BA%BA%E5%BF%9C%E6%8F%B4%E9%96%A2%E9%80%A3%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>新人応援関連記事</h1>
+
+<p><a href="http://little-hands.hatenablog.com/entry/2017/10/10/005933" rel="nofollow noopener" target="_blank">「悪い設計」の定義について考えたことはあるか</a><br>
+<a href="http://little-hands.hatenablog.com/entry/2017/10/16/000110" rel="nofollow noopener" target="_blank">モデルとは"現実世界を正しく表現したもの"ではないという話</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>little_hand_sさんの<br />9位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
+		<a target="_blank" href="https://qiita.com/little_hand_s/items/69ccbb9915d75ad09ad5">[DDD]モデルでドメイン知識を表現するとは何か</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-04 22:19:36</center>
+	</td>
+	<td style="width:200px;">
+		@little_hand_s<br />(株式会社ビズリーチ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/30489/profile-images/1473685506">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Java]</b> <b>[オブジェクト指向]</b> <b>[DDD]</b> <b>[ドメイン駆動設計]</b> <b>[モデリング]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>DDD連載記事<br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/09/24/005903" rel="nofollow noopener" target="_blank">なぜDDD初心者はググリ出してすぐに心がくじけてしまうのか</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/09/27/014403" rel="nofollow noopener" target="_blank">ドメイン駆動設計の定義についてEric Evansはなんと言っているのか</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/04/201201" rel="nofollow noopener" target="_blank">モデルでドメイン知識を表現するとは何か</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/04/231743" rel="nofollow noopener" target="_blank">ドメイン駆動設計で実装を始めるのに一番とっつきやすいアーキテクチャは何か</a><br>
+* <a href="http://little-hands.hatenablog.com/entry/2017/10/11/075634" rel="nofollow noopener" target="_blank">ドメイン駆動 + オニオンアーキテクチャ概略</a></p>
+
+<h2>
+<span id="概要" class="fragment"></span><a href="#%E6%A6%82%E8%A6%81"><i class="fa fa-link"></i></a>概要</h2>
+
+<p><a href="http://little-hands.hatenablog.com/entry/2017/09/27/014403" rel="nofollow noopener" target="_blank">DDDの定義についてEric Evansはなんと言っているのか</a><br>
+この記事でドメイン駆動開発の定義は以下のようなものであると書きました。</p>
+
+<blockquote>
+<ol>
+<li>ドメインの中核となる複雑さと機会に焦点を当てる</li>
+<li>ドメイン専門家とソフトウェア専門家のコラボレーションでモデルを探求する</li>
+<li>明示的にそれらのモデルを表現するソフトウェアを書く</li>
+<li>境界付けられたコンテキストの中のユビキタス言語で話す</li>
+</ol>
+</blockquote>
+
+<p>では、ドメインの知識を言語化したモデルは、最終的にコードでどのように表現されるのでしょうか？</p>
+
+<h2>
+<span id="不変条件" class="fragment"></span><a href="#%E4%B8%8D%E5%A4%89%E6%9D%A1%E4%BB%B6"><i class="fa fa-link"></i></a>不変条件</h2>
+
+<p>まず、業務の制約について考える時に <strong><em>不変条件</em></strong> というものについて考えます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>不変条件： モデルが有効である期間中、常に一貫している必要のある状態のこと
+</pre></div></div>
+
+<p>仕様、制約条件といった様々な呼び方がありますが、DDDの用語としては不変条件、という言葉を使うのでそれで統一します。</p>
+
+<h2>
+<span id="ドメインの知識を表現していないモデル" class="fragment"></span><a href="#%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%81%AE%E7%9F%A5%E8%AD%98%E3%82%92%E8%A1%A8%E7%8F%BE%E3%81%97%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%83%A2%E3%83%87%E3%83%AB"><i class="fa fa-link"></i></a>ドメインの知識を表現していないモデル</h2>
+
+<p>例えば、とある業務アプリケーションでタスクというものをモデリングするとします。要件定義したところ、以下の不変条件を満たす必要があるということがわかりました。</p>
+
+<blockquote>
+<ul>
+<li>タスクは必ずタスク名、期日を持つ</li>
+<li>タスクは未完了状態で作成し、完了したら戻すことはできない</li>
+<li>タスクは3回だけ、1日ずつ延期することができる。</li>
+<li>タスク名は変更することができない</li>
+</ul>
+</blockquote>
+
+<p>これを実装してみます。</p>
+
+<p>※ Spring Data JPA(Hibernate)を使用した実装イメージです。Spring Data JPAについてあまり詳しくなくてもイメージはわくと思いますが、不明な点は別途調べてみてください。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Task</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">TaskStatus</span> <span class="n">taskStatus</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">LocalDate</span> <span class="n">dueDate</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">postponeCount</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">POSTPONE_MAX_COUNT</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Task</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="cm">/*</span>
+<span class="cm">     * すべての項目にsetter</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTaskStatus</span><span class="o">(</span><span class="n">TaskStatus</span> <span class="n">taskStatus</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">taskStatus</span> <span class="o">=</span> <span class="n">taskStatus</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDueDate</span><span class="o">(</span><span class="n">LocalDate</span> <span class="n">dueDate</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">dueDate</span> <span class="o">=</span> <span class="n">dueDate</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPostponeCount</span><span class="o">(</span><span class="kt">int</span> <span class="n">postponeCount</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">postponeCount</span> <span class="o">=</span> <span class="n">postponeCount</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="cm">/*</span>
+<span class="cm">     * すべての項目にgetter</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="n">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">TaskStatus</span> <span class="nf">getTaskStatus</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">taskStatus</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">LocalDate</span> <span class="nf">getDueDate</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">dueDate</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPostponeCount</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">postponeCount</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="cm">/*</span>
+<span class="cm">     * かろうじて振る舞いを持たせたメソッド</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">canPostpone</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">postponeCount</span> <span class="o">&lt;</span> <span class="n">POSTPONE_MAX_COUNT</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">enum</span> <span class="n">TaskStatus</span> <span class="o">{</span>
+    <span class="n">UNDONE</span><span class="o">,</span> <span class="n">DONE</span>
+<span class="o">}</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TaskApplication</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">TaskRepository</span> <span class="n">taskRepository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createTask</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">LocalDate</span> <span class="n">dueDate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">name</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">dueDate</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">"必須項目が設定されていません"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">Task</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Task</span><span class="o">();</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setTaskStatus</span><span class="o">(</span><span class="n">TaskStatus</span><span class="o">.</span><span class="na">UNDONE</span><span class="o">);</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setDueDate</span><span class="o">(</span><span class="n">dueDate</span><span class="o">);</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setPostponeCount</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="n">taskRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postponeTask</span><span class="o">(</span><span class="n">Long</span> <span class="n">taskId</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Task</span> <span class="n">task</span> <span class="o">=</span> <span class="n">taskRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">taskId</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">taks</span><span class="o">.</span><span class="na">canPostpone</span><span class="o">())</span> <span class="o">{</span>      
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">"最大延期回数を超過しています"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setDueDate</span><span class="o">(</span><span class="n">task</span><span class="o">.</span><span class="na">getDueDate</span><span class="o">().</span><span class="na">plusDays</span><span class="o">(</span><span class="mi">1L</span><span class="o">));</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setPostponeCount</span><span class="o">(</span><span class="n">task</span><span class="o">.</span><span class="na">getPostponeCount</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+        <span class="n">taskRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// 完了処理は略</span>
+<span class="o">}</span>
+</pre></div></div>
+
+<p>できました！要件を満たしていそうですね。TaskApplicationクラスを見る限り、Taskの作成、更新処理は問題なさそうです。これでリリースをしましょう。</p>
+
+<p>・・・ところが、リリースしてから数週間たち、業務をよくわかっていないエンジニアが以下のようなコードを実装してしまいました。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AnotherTaskApplication</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">TaskRepository</span> <span class="n">taskRepository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createDoneTask</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">LocalDate</span> <span class="n">dueDate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Task</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Task</span><span class="o">();</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setTaskStatus</span><span class="o">(</span><span class="n">TaskStatus</span><span class="o">.</span><span class="na">DONE</span><span class="o">);</span>  <span class="c1">// × 完了状態でタスク生成</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setPostponeCount</span><span class="o">(-</span><span class="mi">1</span><span class="o">);</span> <span class="c1">// × カウントがまさかのマイナス</span>
+        <span class="n">taskRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeTask</span><span class="o">(</span><span class="n">Long</span> <span class="n">taskId</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">LocalDate</span> <span class="n">dueDate</span><span class="o">,</span> <span class="n">TaskStatus</span> <span class="n">taskStatus</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Task</span> <span class="n">task</span> <span class="o">=</span> <span class="n">taskRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">taskId</span><span class="o">);</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">name</span><span class="o">);</span> <span class="c1">// × 変更してはいけないタスク名を変更</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setDueDate</span><span class="o">(</span><span class="n">dueDate</span><span class="o">);</span> <span class="c1">// × 勝手に期日を入力値で設定、延期回数も無視</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setTaskStatu</span><span class="o">(</span><span class="n">taskStatus</span><span class="o">);</span> <span class="c1">// × タスクを未完了に戻せてしまう</span>
+        <span class="n">taskRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>     <span class="o">}</span>
+<span class="o">}</span>
+</pre></div></div>
+
+<p>すごいですね、不変条件をしこたま破壊することができました。</p>
+
+<p>やっかいなのは、AnotherTaskAPplicationクラスを作って実装しているので、元のTaskApplicationクラスを実装した人はこんな処理が別クラスで書かれていることを気づけませんでした。(レビュー体制どうなってんだとかは一旦置いておきましょう)</p>
+
+<p>この事例では、Applicationで仕様を表現していますが、すべての項目にSetter/GetterがあるTaskモデル自体は何も表現できていません。</p>
+
+<p>このような状態を <strong><em>ドメインモデル貧血症</em></strong> といいます。</p>
+
+<p>不変条件を表現できていないこのオブジェクトは、もはやモデルではなく、リレーショナルモデルをオブジェクトに投影した <strong><em>単なるデータモデル</em></strong> にすぎません。そしてこのようなアプリケーションは、 <strong><em>トランザクションスクリプト</em></strong> と言えます。</p>
+
+<p>さて、それではどうすればモデルに不変条件を表現させることができるのでしょうか？</p>
+
+<h2>
+<span id="ドメインの知識を表現しているモデル" class="fragment"></span><a href="#%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%81%AE%E7%9F%A5%E8%AD%98%E3%82%92%E8%A1%A8%E7%8F%BE%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%83%A2%E3%83%87%E3%83%AB"><i class="fa fa-link"></i></a>ドメインの知識を表現しているモデル</h2>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="nd">@Entity</span>
+<span class="kd">class</span> <span class="nc">Task</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">TaskStatus</span> <span class="n">taskStatus</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">LocalDate</span> <span class="n">dueDate</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">postponeCount</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">POSTPONE_MAX_COUNT</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+
+    <span class="cm">/*</span>
+<span class="cm">     * コンストラクタ： エンティティ作成時の不変条件を表現する</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">Task</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">LocalDate</span> <span class="n">dueDate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">name</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">dueDate</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">"必須項目が設定されていません"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">dueDate</span> <span class="o">=</span> <span class="n">dueDate</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">taskStatus</span> <span class="o">=</span> <span class="n">TaskStatus</span><span class="o">.</span><span class="na">UNDONE</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">postponeCount</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/*</span>
+<span class="cm">     * 状態遷移メソッド：作成済みエンティティの状態遷移に関する不変条件を表現する</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postpone</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">postponeCount</span> <span class="o">&gt;=</span> <span class="n">POSTPONE_MAX_COUNT</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">"最大延期回数を超過しています"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">dueDate</span><span class="o">.</span><span class="na">plusDays</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>
+        <span class="n">postponeCount</span><span class="o">++;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">done</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">taskStatus</span> <span class="o">=</span> <span class="n">TaskStatus</span><span class="o">.</span><span class="na">DONE</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// nameのsetterは存在しないので、nameを変更することはできない</span>
+
+    <span class="cm">/*</span>
+<span class="cm">     * getter、状態取得メソッド</span>
+<span class="cm">     */</span>
+    <span class="kd">public</span> <span class="n">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">name</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">LocalDate</span> <span class="nf">getDueDate</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">dueDate</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isUndone</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">taskStatus</span> <span class="o">==</span> <span class="n">TaskStatus</span><span class="o">.</span><span class="na">UNDONE</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">canPostpone</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">postponeCount</span> <span class="o">&lt;</span> <span class="n">POSTPONE_MAX_COUNT</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// 同じパッケージに、enumはパッケージプライベートで定義する</span>
+<span class="kd">enum</span> <span class="n">TaskStatus</span> <span class="o">{</span>
+    <span class="n">UNDONE</span><span class="o">,</span> <span class="n">DONE</span>
+<span class="o">}</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TaskApplication</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">TaskRepository</span> <span class="n">taskRepository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createTask</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">LocalDate</span> <span class="n">dueDate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Task</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Task</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">dueDate</span><span class="o">);</span> <span class="c1">// taskインスタンスは、常に不変条件を満たした形で生成される</span>
+        <span class="n">taskRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postpone</span><span class="o">(</span><span class="n">Long</span> <span class="n">taskId</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Task</span> <span class="n">task</span> <span class="o">=</span> <span class="n">taskRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">taskId</span><span class="o">);</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">postpone</span><span class="o">();</span>　<span class="c1">// 取得したオブジェクトに対して、不変条件を破壊するような処理はapplicationから書くことができない</span>
+        <span class="n">taskRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// 完了処理は略</span>
+    <span class="c1">// バリデーションは略</span>
+<span class="o">}</span>
+</pre></div></div>
+
+<p>不変条件を課す処理をモデルに移譲したところ・・・非常に表現力が豊かなモデルができあがりました！！</p>
+
+<p>Taskモデルのコンストラクタと状態遷移メソッドで不変条件を見事に表現しています。</p>
+
+<p>この設計のメリットとして以下のようなものが挙げられます。</p>
+
+<ul>
+<li>Taskクラスを読むだけで、Taskモデルの不変条件が理解できる</li>
+<li>アプリケーションでどのようなコードを書こうが、不変条件を破った状態遷移をさせることができない</li>
+<li>レビュー時にもこのクラスだけ見れば安心</li>
+<li>1クラス単体テストで不変条件保持の担保ができる</li>
+</ul>
+
+<p>いいことづくめですね。</p>
+
+<p>こう書けば <strong><em>モデルがドメインの知識を表現している</em></strong> ということができるでしょう。</p>
+
+<h2>
+<span id="定義の振り返り" class="fragment"></span><a href="#%E5%AE%9A%E7%BE%A9%E3%81%AE%E6%8C%AF%E3%82%8A%E8%BF%94%E3%82%8A"><i class="fa fa-link"></i></a>定義の振り返り</h2>
+
+<p>ドメイン駆動の定義を再度振り返ってみましょう。</p>
+
+<blockquote>
+<ol>
+<li>ドメインの中核となる複雑さと機会に焦点を当てる</li>
+<li>ドメイン専門家とソフトウェア専門家のコラボレーションでモデルを探求する</li>
+<li>明示的にそれらのモデルを表現するソフトウェアを書く</li>
+<li>境界付けられたコンテキストの中のユビキタス言語で話す</li>
+</ol>
+</blockquote>
+
+<p>上記の例で、モデルを表現したソフトウェアを書くことができました。</p>
+
+<p>このような設計にしただけでも、大きなメリットを得ることができましたが、ドメイン駆動はそれだけでは終わりません。<br>このようなモデルが、どのような振る舞いをするのか、仕様変更時にどう変わるのか。それを業務(ドメイン)のエキスパートと言葉の定義を合わせ、常に最新の、より表現力の高いモデルを追求し、コードを追従させていく。</p>
+
+<p>これこそが読んで字のごとく <strong><em>ドメインモデル駆動開発</em></strong> なのです。</p>
+
+<p>この記事を読んで、「あれ、DDDいいかも？」と思っていただければ幸いです。今後も引き続きDDDを布教する記事を書いていきますので、よろしければお付き合いください。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>little_hand_sさんの<br />10位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/little_hand_s/items/7d7921fded1bf027c7b4">英語の文章を選択するだけで和訳を表示させる方法</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-03 00:16:52</center>
+	</td>
+	<td style="width:200px;">
+		@little_hand_s<br />(株式会社ビズリーチ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/30489/profile-images/1473685506">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Chrome]</b> <b>[英語]</b> <b>[翻訳]</b> <b>[新人プログラマ応援]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>英語文献を読む際に、単語がわからなかったりパッと読み取れなかったりする場合、一度google翻訳をかけたくなることがあります。</p>
+
+<p>その際、文章をコピーしてgoogle翻訳のページを立ち上げて貼り付け、としていませんか？</p>
+
+<p>もっと簡単に、文章を選択しただけで翻訳結果を取得する方法があります！</p>
+
+<p>(ただし、chrome限定になります)</p>
+
+<h3>
+<span id="まずはgoogle翻訳chrome拡張" class="fragment"></span><a href="#%E3%81%BE%E3%81%9A%E3%81%AFgoogle%E7%BF%BB%E8%A8%B3chrome%E6%8B%A1%E5%BC%B5"><i class="fa fa-link"></i></a>まずはgoogle翻訳chrome拡張</h3>
+
+<p>まず、chrome拡張をインストールします。</p>
+
+<p><a href="https://chrome.google.com/webstore/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb?hl=ja" rel="nofollow noopener" target="_blank">Google 翻訳 - Chrome ウェブストア</a></p>
+
+<p>これだけでも、だいぶ便利に使うことができます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/0b9056f54966b07b639994e7a2353b2f569cfed3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f65376231353839642d643933302d613331312d626334342d3938646531653765616433372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/0b9056f54966b07b639994e7a2353b2f569cfed3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f65376231353839642d643933302d613331312d626334342d3938646531653765616433372e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/e7b1589d-d930-a311-bc44-98de1e7ead37.png"></a></p>
+
+<p>英語の文字列を選択するとアイコンが表示されるので、それをクリックすると。。</p>
+
+<p><a href="https://camo.qiitausercontent.com/bebfc628704d9e84c9df70651472e84d5c5d5633/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f37373639336264372d616166322d343934342d383134312d6330313266656332653334612e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/bebfc628704d9e84c9df70651472e84d5c5d5633/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f37373639336264372d616166322d343934342d383134312d6330313266656332653334612e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/77693bd7-aaf2-4944-8141-c012fec2e34a.png"></a></p>
+
+<p>訳文が表示されました。便利ですね！！</p>
+
+<p>ただ、私の英語力だと同じページでなんども使いたくなるので、そうすると<strong><em>「選択→アイコンクリック→選択→アイコンクリック」</em></strong>の繰り返しが結構面倒になります。</p>
+
+<h3>
+<span id="設定を変更してより便利に" class="fragment"></span><a href="#%E8%A8%AD%E5%AE%9A%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%97%E3%81%A6%E3%82%88%E3%82%8A%E4%BE%BF%E5%88%A9%E3%81%AB"><i class="fa fa-link"></i></a>設定を変更してより便利に！</h3>
+
+<p>そんな時に良い設定があります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/b919ebfc57905f00bbfa3556b202788c0050b0c8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f33316461386165332d643638662d333237362d653431642d3462616139396636653266352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b919ebfc57905f00bbfa3556b202788c0050b0c8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f33316461386165332d643638662d333237362d653431642d3462616139396636653266352e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/31da8ae3-d68f-3276-e41d-4baa99f6e2f5.png"></a></p>
+
+<p>この「拡張機能オプション」をクリック</p>
+
+<p><a href="https://camo.qiitausercontent.com/235a5595368ec9885bbdd843c747b1c2fd24d687/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f37643436643434332d316336392d336534642d313433622d3036613366343135303138612e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/235a5595368ec9885bbdd843c747b1c2fd24d687/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f33303438392f37643436643434332d316336392d336534642d313433622d3036613366343135303138612e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/30489/7d46d443-1c69-3e4d-143b-06a3f415018a.png"></a></p>
+
+<p>ここで「すぐにポップアップを表示する」を選択して「保存」ましょう。</p>
+
+<p>すると、英語の文字を選択しただけですぐに訳文が表示されます！</p>
+
+<p>これは非常に便利で、手放せなくなります。ぜひお試しあれ。</p>
+
+<h4>
+<span id="その他ネタ" class="fragment"></span><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%83%8D%E3%82%BF"><i class="fa fa-link"></i></a>その他ネタ</h4>
+
+<p><a href="http://office-hacks.hatenablog.com/entry/2017/10/29/213551" rel="nofollow noopener" target="_blank">googleスプレッドシートのフィルタ機能で自分だけの絞り込みを行う方法</a><br>
+<a href="http://office-hacks.hatenablog.com/entry/2017/10/29/185522" rel="nofollow noopener" target="_blank">セルの値を連結するとき、「A1 &amp; B1 &amp; C1 &amp; D1 &amp; ......」という長くて面倒な式を書かなくて良くなる方法</a><br>
+<a href="http://little-hands.hatenablog.com/entry/2017/10/31/002552" rel="nofollow noopener" target="_blank">ドメイン駆動設計関連情報のググるときのコツ</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>little_hand_sさんの<br />11位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
+		<a target="_blank" href="https://qiita.com/little_hand_s/items/d1bf020e4d043e92be5f">ドメイン駆動設計関連情報のググるときのコツ</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-31 00:31:21</center>
+	</td>
+	<td style="width:200px;">
+		@little_hand_s<br />(株式会社ビズリーチ 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/30489/profile-images/1473685506">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Java]</b> <b>[オブジェクト指向]</b> <b>[DDD]</b> <b>[設計]</b> <b>[ドメイン駆動設計]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h2>
+<span id="ddd関連でほしい情報は英語であるという覚悟を決める" class="fragment"></span><a href="#ddd%E9%96%A2%E9%80%A3%E3%81%A7%E3%81%BB%E3%81%97%E3%81%84%E6%83%85%E5%A0%B1%E3%81%AF%E8%8B%B1%E8%AA%9E%E3%81%A7%E3%81%82%E3%82%8B%E3%81%A8%E3%81%84%E3%81%86%E8%A6%9A%E6%82%9F%E3%82%92%E6%B1%BA%E3%82%81%E3%82%8B"><i class="fa fa-link"></i></a>DDD関連でほしい情報は英語であるという覚悟を決める。</h2>
+
+<p>これは冗談のようですが本当です！笑<br>英語と日本語でDDD情報は本当に格差がある！！</p>
+
+<p>なのでまず英語で調べるという覚悟を決めましょう。</p>
+
+<h2>
+<span id="アメリカのgoogleにアクセスする" class="fragment"></span><a href="#%E3%82%A2%E3%83%A1%E3%83%AA%E3%82%AB%E3%81%AEgoogle%E3%81%AB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>アメリカのgoogleにアクセスする</h2>
+
+<p>日本のgoogleで「domain driven design」と調べても日本語の資料がたくさん出てきてしまいます。それを回避するために、以下のURLからアメリカのgoogleを使用しましょう。</p>
+
+<p><a href="https://www.google.com/webhp?gl=us&amp;hl=en&amp;gws_rd=cr" class="autolink" rel="nofollow noopener" target="_blank">https://www.google.com/webhp?gl=us&amp;hl=en&amp;gws_rd=cr</a></p>
+
+<p>これはパラメーターに意味があります。</p>
+
+<ul>
+<li>gl=us：国がUSであることを指定。</li>
+<li>hl=en：言語が英語であることを指定。</li>
+<li>gws_rd=cr：リダイレクトを無効にする設定。これがないとgoogole.co.jpにリダイレクトされます。</li>
+</ul>
+
+<p>このURLをブックマークしておくとよいでしょう。</p>
+
+<h2>
+<span id="最近の和訳ツールや字幕ツールに頼る" class="fragment"></span><a href="#%E6%9C%80%E8%BF%91%E3%81%AE%E5%92%8C%E8%A8%B3%E3%83%84%E3%83%BC%E3%83%AB%E3%82%84%E5%AD%97%E5%B9%95%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%A0%BC%E3%82%8B"><i class="fa fa-link"></i></a>最近の和訳ツールや字幕ツールに頼る</h2>
+
+<p>英語に自信がなくても、最近のツールを使うとかなり楽に英語情報を読むことができます。</p>
+
+<p>一押しなのがこちら</p>
+
+<p><a href="https://chrome.google.com/webstore/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb?hl=ja" rel="nofollow noopener" target="_blank">Google 翻訳</a></p>
+
+<p>Chrome限定ですが、google翻訳のアドオンです。マウスオーバーするだけで即和訳を表示してくれるので、これは非常に助かります。</p>
+
+<p>ページまるまる翻訳ではなく、選択したところの訳なので多少おかしな訳も原文と見比べて理解することができます。</p>
+
+<p>(より便利に設定する方法を<a href="http://little-hands.hatenablog.com/entry/2017/11/03/google-translator" rel="nofollow noopener" target="_blank">こちらの記事</a>に書きました。)</p>
+
+<p>また、youtubeの動画も最近は英語の自動字幕生成機能があるので、ヒアリングができなくてもその字幕を頼りに戻って進んですれば意味を拾うことができます。</p>
+
+<p>あとは慣れです。エンジニアはもう英語情報読めてなんぼです。ツールの力を借りつつもたくさん読んでればなんとかなります。頑張りましょう。笑</p>
+
+<h3>
+<span id="関連記事" class="fragment"></span><a href="#%E9%96%A2%E9%80%A3%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>関連記事</h3>
+
+<p><a href="http://little-hands.hatenablog.com/entry/2017/09/24/005903" rel="nofollow noopener" target="_blank">なぜDDD初心者はググり出してすぐに心がくじけてしまうのか</a><br>
+<a href="http://little-hands.hatenablog.com/entry/2017/09/27/014403" rel="nofollow noopener" target="_blank">ドメイン駆動設計の定義についてEric Evansはなんと言っているのか</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

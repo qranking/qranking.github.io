@@ -1,0 +1,348 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (nonanona)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (nonanona さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>nonanonaさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>354</kbd>
+		<a target="_blank" href="https://qiita.com/nonanona/items/b148c212ba7c24942e93">絵文字を支える技術の紹介</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-14 18:05:01</center>
+	</td>
+	<td style="width:200px;">
+		@nonanona<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/156590/profile-images/1510981939">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Android]</b> <b>[emoji]</b> <b>[unicode]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>絵文字を扱う上で知っておくと良いかもしれないことをまとめてみました。<br>
+<a href="https://note.mu/ruiu/n/nc9d93a45c2ec" rel="nofollow noopener" target="_blank">Ruiさんの記事</a>を見て、「EmojiはSurrogate Pair以外にも、色々とおもしろい技術があるんですよ〜」思って書いてみました。<br>
+なお、書いた人はAndroidの人間なので、特に表記していない場合は主にAndroid上での動作のことを書いてます。<br>
+またQiita初めてなので読みにくい部分等がありましてもご容赦ください。</p>
+
+<h1>
+<span id="サロゲートペアsurrogate-pairs" class="fragment"></span><a href="#%E3%82%B5%E3%83%AD%E3%82%B2%E3%83%BC%E3%83%88%E3%83%9A%E3%82%A2surrogate-pairs"><i class="fa fa-link"></i></a>サロゲートペア(Surrogate Pairs)</h1>
+
+<p>このエントリーを書くきっかけにもなったサロゲートペア。なぜこれが導入されたかの経緯は、Ruiさんのブログエントリーに譲るとして、技術的な解説をします。</p>
+
+<p>サロゲートペアは、U+0000..U+FFFFに収まりきらなかった範囲のUnicodeコードポイント(U+10000..U+10FFFF)を、なんとか16bitでエンコードしようとして導入されました。つまり1,048,576個分のスペースを、なんとかしてひねり出さないといけません。ですがUTF-16の１文字あたりのサイズは16bit、つまり65,536個なので逆立ちしても足りません。そこで考えついたのが、「２つのUTF-16文字を組み合わせて、足りない部分を表現しよう！」という荒業です。</p>
+
+<p>具体的には、Unicodeは予め２つの1024個の領域を確保し、その組み合わせの1,024 * 1,024 = 1,048,576通りで足りない部分を表現しようと決めました。その２つの領域をハイサロゲート(High Surrogate)とローサロゲート(Low Surrogate)、そのペアのことをサロゲートペア(Surrogate Pair)と呼びます。最近ではHighとLowだと分かりにくいので、リーディングサロゲート(Leading Surrogate)とトレイリングサロゲート(Trailing Surrogate)と呼ぶことのほうが多い気がします。</p>
+
+<p>サロゲートペアの1個めと2個めは、それぞれ別の領域が割当らているので、順番がひっくり返ることはありません。つまり文字列を頭から読んでいる途中で、いきなりローサロゲートに出くわすことはなくて、かならずハイサロゲートとその直後にローサロゲートという順番でやってきます。片方が存在しないサロゲート（ハイサロゲートのみ、またはローサロゲートのみ）や順番が入れ替わったサロゲートペア（ローサロゲートの後にハイサロゲート）はUnicode的に正しくない文字列となります。</p>
+
+<p>実際に変換する場合は、APIを呼んでください。Javaならこんな感じ。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span>　　　　<span class="n">Character</span><span class="o">.</span><span class="na">toCodePoint</span><span class="o">(</span><span class="n">highSurrogate</span><span class="o">,</span> <span class="n">lowSurrogate</span><span class="o">);</span>  <span class="c1">// サロゲートペアからコードポイントへ</span>
+　　　　<span class="kt">char</span><span class="o">[]</span> <span class="n">chs</span> <span class="o">=</span> <span class="o">{</span><span class="n">Character</span><span class="o">.</span><span class="na">highSurrogate</span><span class="o">(</span><span class="n">cp</span><span class="o">),</span> <span class="n">Character</span><span class="o">.</span><span class="na">lowSurroage</span><span class="o">(</span><span class="n">cp</span><span class="o">)}</span>  <span class="c1">// コードポイントからサロゲートペアへ</span>
+</pre></div></div>
+
+<p>これを無視すると・・・</p>
+
+<ul>
+<li>文字数カウンターで１文字多く表示されてしまう。</li>
+<li>部分文字列を取得する際に、運悪くサロゲートペアの間で切っちゃうと、中途半端な文字が残ってしまう。</li>
+<li>他のエンコード(UTF-8とか)に変換するときにに、サロゲートペアのままエンコードしちゃうと壊れた文字が出力されてしまう。</li>
+</ul>
+
+<p>なんかが起こってしまいますね。</p>
+
+<h1>
+<span id="カラー絵文字フォントの互換性" class="fragment"></span><a href="#%E3%82%AB%E3%83%A9%E3%83%BC%E7%B5%B5%E6%96%87%E5%AD%97%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%81%AE%E4%BA%92%E6%8F%9B%E6%80%A7"><i class="fa fa-link"></i></a>カラー絵文字フォントの互換性</h1>
+
+<p>最近のEmojiブームは、iOSがカラー絵文字を表示し始めたあたりからでしょうか。<br>
+文字と言うからには、それはフォントファイルを使って描かれているのですが、ではなぜ突然フォントは白黒からカラーの文字を描けるようになったのでしょうか？<br>
+結論から言うと、既存のテクノロジーの上に新しい仕組みを作ったからなのです。ただ・・・この業界でありがちなのですが、各社各様の仕様がありまして、単にフォントファイルを持ってくれば描いてくれる、といった代物ではありません。</p>
+
+<p>例えば、Androidでは<a href="https://www.google.com/get/noto/help/emoji/" rel="nofollow noopener" target="_blank">Noto Color Emoji</a>というカラー絵文字用のフォントが採用されています。このNoto Color Emojiが、どうやってカラー絵文字を実装しているかというと・・・単にPNGファイルが埋め込まれています。実際grepしたらPNGって文字が見えます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/77369e52f6107953be03a73ccc8c57fb25cbd838/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f63653039626134342d303537322d306562392d303038352d3661613335346134356464312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/77369e52f6107953be03a73ccc8c57fb25cbd838/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f63653039626134342d303537322d306562392d303038352d3661613335346134356464312e706e67" alt="Screenshot from 2017-11-13 19-43-28.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/ce09ba44-0572-0eb9-0085-6aa354a45dd1.png"></a></p>
+
+<p>最近では使われることは少なくなりましたが、昔はビットマップフォントと言われる、白黒の絵が実際にフォントファイルの中に入っている形式のフォントファイルがあったのです。Noto Color Emojiはこれを拡張してPNGファイルを埋め込めるようにしたものです。実際の規格は<a href="https://www.microsoft.com/typography/otspec/cbdt.htm" rel="nofollow noopener" target="_blank">こちら</a>。<br>
+じゃあこれを別のプラットフォームに持っていったら、動くのかというと・・・動いたり動かなかったりします。例えばWindowsでは<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/mt765165(v=vs.85).aspx#what_kinds_of_color_fonts_does_windows_support_" rel="nofollow noopener" target="_blank">Windows 10 Anniversary Update</a>から動作するようですが、それ以前のWindowsでは動かなさそうです。</p>
+
+<p>Androidは、KitKat以降のデバイスであれば、Noto Color Emojiを読み込ませて表示させることができます。<br>
+これはAndroidが<a href="https://www.freetype.org/" rel="nofollow noopener" target="_blank">FreeType</a>と呼ばれるオープンソースのライブラリを採用しており、これのバージョン2.5で絵文字フォントを表示させることができるようになったからです。<br>
+（注：一部制限があります。実際に古いAndroidで最新の絵文字を使用する際は<a href="https://developer.android.com/guide/topics/ui/look-and-feel/emoji-compat.html" rel="nofollow noopener" target="_blank">EmojiCompat</a>を利用してください。一部の絵文字が表示されません。）<br>
+Linux上で動作するChromeも同様の理由でカラー絵文字を表示できます。</p>
+
+<p>ここまで読んでくださった方の何人かは「なんでPNGなんだよ、拡大したら汚くなるじゃないか。」という疑問をもったかもしれません。<br>
+おっしゃるとおりです。元データが画像なので、拡大していくとどうしても境界がぼやけてきてしまいます。多分これが一番実装が簡単だったからじゃないでしょうか。</p>
+
+<p>どうしてもベクターデータが良いという方は、<a href="https://www.microsoft.com/typography/otspec/svg.htm" rel="nofollow noopener" target="_blank">SVGを埋め込む</a>とか、<a href="https://www.microsoft.com/typography/otspec/cpal.htm" rel="nofollow noopener" target="_blank">カラーパレットを使う(COLR/CPAL)</a>みたいな規格もあります。<br>
+ですが、これらは今の所FreeTypeでは動かないです。</p>
+
+<h1>
+<span id="カラーそれとも白黒" class="fragment"></span><a href="#%E3%82%AB%E3%83%A9%E3%83%BC%E3%81%9D%E3%82%8C%E3%81%A8%E3%82%82%E7%99%BD%E9%BB%92"><i class="fa fa-link"></i></a>カラー？それとも白黒？</h1>
+
+<p>最近の絵文字はカラフルです。例えば砂時計（⏳：U+231B)は今記事を書いているLinux Chrome上では白黒ですが、今手元のAndroidで表示させたところカラーになりました。<br>
+<a href="https://camo.qiitausercontent.com/a1ee2e7ba5e8a9c452db20cb0d694794ae072dd2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f64313834663233622d323730332d636563332d656639652d3036383236623762383031662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a1ee2e7ba5e8a9c452db20cb0d694794ae072dd2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f64313834663233622d323730332d636563332d656639652d3036383236623762383031662e706e67" alt="Screenshot from 2017-11-13 21-09-53.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/d184f23b-2703-cec3-ef9e-06826b7b801f.png"></a><br>
+<a href="https://camo.qiitausercontent.com/29b3ba2a6dd1e7ca3cfbb4a804cdd20fbace26b0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f39336132616564632d343366612d376235372d306438392d6433666266656337346261632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/29b3ba2a6dd1e7ca3cfbb4a804cdd20fbace26b0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f39336132616564632d343366612d376235372d306438392d6433666266656337346261632e706e67" alt="emoji.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/93a2aedc-43fa-7b57-0d89-d3fbfec74bac.png"></a></p>
+
+<p>一方で白黒のままの絵文字もあります。では絵文字をカラーで表示するか、白黒で表示するかの決定は誰がやってるのでしょうか。<br>
+それも実はUnicodeがやっています。ここにカラーか白黒かのどちらで表示させるべきかのリストを公開されています。<br>
+<a href="http://www.unicode.org/Public/emoji/6.0/emoji-data.txt" class="autolink" rel="nofollow noopener" target="_blank">http://www.unicode.org/Public/emoji/6.0/emoji-data.txt</a><br>
+一部を抜粋します。<br>
+<a href="https://camo.qiitausercontent.com/1c99d2b4ac182c191b04f9196e028e35716bdb9b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f63366236363961322d383332302d626136642d316335392d3865393630383539333230652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1c99d2b4ac182c191b04f9196e028e35716bdb9b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f63366236363961322d383332302d626136642d316335392d3865393630383539333230652e706e67" alt="Screenshot from 2017-11-13 21-03-42.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/c6b669a2-8320-ba6d-1c59-8e960859320e.png"></a></p>
+
+<p>この表のたとえば１列目は「コードポイントU+231AからU+231Bまで、Emoji_Presentationの属性である。」という意味になります。この"Emoji_Presentation"という属性のついたコードポイントは、カラーで表示しなくてはなりません。</p>
+
+<p>「Unicodeなど知らん！俺は全部カラーで表示させたい！」とか「白黒の文字こそ至高だ！カラーなど許さん！」という方がいらっしゃった場合もUnicodeはちゃんと方法を用意しています。</p>
+
+<p><strong>Unicode:「絵文字を全部カラーにしたいと申すか。ではお主の使用している言語の設定を絵文字に切り替えるのだ！」</strong></p>
+
+<p>「何言ってんの？」ってなったあなた、大丈夫です。私も最初「何言ってんの？」って思いました。実は絵文字用の言語(厳密には文字種ですが）ってあるんです！<br>
+<a href="http://unicode.org/iso15924/iso15924-codes.html" class="autolink" rel="nofollow noopener" target="_blank">http://unicode.org/iso15924/iso15924-codes.html</a><br>
+ここにあるZsym、もしくはZsyeをLanguage Tagに指定すると絵文字の表示方法が変わります。具体的にはこんな感じ。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span>        <span class="n">TextView</span> <span class="n">emojiDefault</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">emojiDefault</span><span class="o">);</span>
+        <span class="n">emojiDefault</span><span class="o">.</span><span class="na">setTextLocale</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">forLanguageTag</span><span class="o">(</span><span class="s">"ja-Zsye-JP"</span><span class="o">));</span>
+
+        <span class="n">TextView</span> <span class="n">textDefault</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">textDefault</span><span class="o">);</span>
+        <span class="n">textDefault</span><span class="o">.</span><span class="na">setTextLocale</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">forLanguageTag</span><span class="o">(</span><span class="s">"ja-Zsym-JP"</span><span class="o">));</span>
+</pre></div></div>
+
+<p>表示させてみるとこんな感じ。<br>
+<a href="https://camo.qiitausercontent.com/1253edeb4266290970dd734bb0bb82b605672b15/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f64333965333438662d663734362d333437322d333764382d6135643932343931663637322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1253edeb4266290970dd734bb0bb82b605672b15/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f64333965333438662d663734362d333437322d333764382d6135643932343931663637322e706e67" alt="emoji.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/d39e348f-f746-3472-37d8-a5d92491f672.png"></a><br>
+砂時計(⏳:U+231B)はカラーがデフォルト、左上矢印(↖:U+2196)は白黒がデフォルトです。</p>
+
+<p>「いやいや、まてまて、言語設定に絵文字を使ったら、本来の言語設定に使えないじゃないか」。</p>
+
+<p>おっしゃるとおりです。そんなあなたにおすすめなのがこちら、<em><a href="http://unicode.org/reports/tr51/#Emoji_Locale_Extension" rel="nofollow noopener" target="_blank">Emoji locale extension</a></em>です。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span>        <span class="n">TextView</span> <span class="n">defaultPresentation</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">defaultPresentation</span><span class="o">);</span>
+        <span class="n">defaultPresentation</span><span class="o">.</span><span class="na">setTextLocale</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">forLanguageTag</span><span class="o">(</span><span class="s">"en-US-u-em-default"</span><span class="o">));</span>
+
+        <span class="n">TextView</span> <span class="n">emojiDefault</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">emojiDefault</span><span class="o">);</span>
+        <span class="n">emojiDefault</span><span class="o">.</span><span class="na">setTextLocale</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">forLanguageTag</span><span class="o">(</span><span class="s">"en-US-u-em-emoji"</span><span class="o">));</span>
+
+        <span class="n">TextView</span> <span class="n">textDefault</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">textDefault</span><span class="o">);</span>
+        <span class="n">textDefault</span><span class="o">.</span><span class="na">setTextLocale</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">forLanguageTag</span><span class="o">(</span><span class="s">"en-US-u-em-text"</span><span class="o">));</span>
+</pre></div></div>
+
+<p>表示させてみると<br>
+<a href="https://camo.qiitausercontent.com/64efbc636d7a6d4524147f636c91adeef22208ee/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f65396239656432322d316562642d646432662d376432382d3262303662313934373265342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/64efbc636d7a6d4524147f636c91adeef22208ee/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f65396239656432322d316562642d646432662d376432382d3262303662313934373265342e706e67" alt="emoji.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/e9b9ed22-1ebd-dd2f-7d28-2b06b19472e4.png"></a><br>
+っとなります。。。言語ってなんだっけ・・・</p>
+
+<p>あ、当然ですが、デバイスにフォントがなかったら、いくら設定を変えても出てこないです。念の為・・・</p>
+
+<p>注：この機能はAndroidだとOreo(API26)から使えます。また、この機能は優先度がかなり低めに設定されているため、一部の絵文字はカラーを指定しても白黒で出てくることがあります。必ずカラーで表示させたい場合は後述の異体字セレクタを使用するのをオススメします。</p>
+
+<h1>
+<span id="絵文字用の異体字セレクタemoji-variation-selectorとは" class="fragment"></span><a href="#%E7%B5%B5%E6%96%87%E5%AD%97%E7%94%A8%E3%81%AE%E7%95%B0%E4%BD%93%E5%AD%97%E3%82%BB%E3%83%AC%E3%82%AF%E3%82%BFemoji-variation-selector%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>絵文字用の異体字セレクタ(Emoji Variation Selector)とは</h1>
+
+<p>一個前のセクションで絵文字のカラーか白黒かについて説明したんですが、</p>
+
+<ul>
+<li>設定が「全部カラー」か「全部白黒」は極端すぎて使い勝手が悪い。個別にカラーか白黒か選べるようにしてくれ</li>
+<li>カラーの絵文字と白黒の絵文字を同時に表示させたいんだが、どうすればいいんだ。</li>
+</ul>
+
+<p>って思った方もいたでしょう。<br>
+そんなこともあろうかと、Unicodeはちゃんと文字単位で表示を変える方法を用意しています！それも昔からある方法で！<br>
+それは日本人の方には馴染みのあるものかもしれません。「異体字セレクタ(Variation Selector)」です。</p>
+
+<p>。。。たぶん普通の人はピンとこないですよね。<br>
+あれです、「わたなべ」さんの漢字でいろいろある「邉」の字を表現するための、あれです。<br>
+Unicodeは文字を定義しているので、どの「邉」も文字としては同じなので、同じコードポイントのU+9089が割り当てられました。<br>
+でも「俺の"なべ"の字は、それじゃないんだけど・・・」っていう問題を解決するために、特殊な文字を後ろにつけて、形を変えられるようになってるんです。</p>
+
+<p><a href="https://camo.qiitausercontent.com/734c87260ed63465d8477e5638fd9b9d117aea68/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f64366364333339362d366662652d353235392d353666662d6232396464373861353731342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/734c87260ed63465d8477e5638fd9b9d117aea68/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f64366364333339362d366662652d353235392d353666662d6232396464373861353731342e706e67" alt="emoji.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/d6cd3396-6fbe-5259-56ff-b29dd78a5714.png"></a></p>
+
+<p>この文字列のユニコード列は順に</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>U+6E21 U+9089 U+3055 U+3093
+U+6E21 U+9089 U+E0104 U+3055 U+3093
+</pre></div></div>
+
+<p>上の例だと、U+E0104という異体字セレクタが、邉(U+9089)の直後にあります。IVSは(Ideographic Variation Selectorの略です）<br>
+ちなみにこの異体字セレクタは、U+FFFFを超えているので、Javaなんかで使用する際は上で説明したようにサロゲートペアにしないといけません。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span>        <span class="n">TextView</span> <span class="n">tv</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">textView</span><span class="o">);</span>
+        <span class="n">tv</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"\u6E21\u9089\uDB40\uDD04\u3055\u3093"</span><span class="o">);</span>  <span class="c1">// U+E0104 = \uDB40\uDD04</span>
+</pre></div></div>
+
+<p>これと同じことが、絵文字でできるようになっています。U+FE0EとU+FE0Fの２つは、絵文字用の異体字セレクタとして登録されていて、U+FE0Eが後ろについている絵文字は白黒に、U+FE0Fが後ろについている絵文字はカラーになります。これは先程の言語設定よりも優先されます。（当然ですがフォントが存在しなければ白黒になってしまいます）</p>
+
+<p><a href="https://camo.qiitausercontent.com/6827b50019aa9858ca5d7603b4bdc6cc4ec5b6d7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f39316664353339372d343734382d663537632d666335382d3964316338613731663636362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/6827b50019aa9858ca5d7603b4bdc6cc4ec5b6d7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f39316664353339372d343734382d663537632d666335382d3964316338613731663636362e706e67" alt="emoji.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/91fd5397-4748-f57c-fc58-9d1c8a71f666.png"></a></p>
+
+<p>上記の文字列のユニコード列は順に</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>U+231B U+2196
+U+231B U+FE0F U+2196 U+FE0F
+U+231B U+FE0E U+2196 U+FE0E
+</pre></div></div>
+
+<p>となっています。</p>
+
+<h1>
+<span id="合成絵文字" class="fragment"></span><a href="#%E5%90%88%E6%88%90%E7%B5%B5%E6%96%87%E5%AD%97"><i class="fa fa-link"></i></a>合成絵文字</h1>
+
+<p>さて、ここまでは絵文字1個あたり1コードポイントでした。まぁ後ろに異体字セレクタがついたとしても2コードポイントでした。<br>
+ここからは割と「どうしてこうなった・・・」感のある合成絵文字の紹介をしていきます。これらは複数の絵文字を組み合わせることで別の絵文字になる奇抜な奴らです。</p>
+
+<h2>
+<span id="keycap" class="fragment"></span><a href="#keycap"><i class="fa fa-link"></i></a>KeyCap</h2>
+
+<p>数字(1:U+0031 から 9:U+0039, #:U+0023)の後ろにU+20E3をつけるとボタンになります。<br>
+<a href="https://camo.qiitausercontent.com/7975a5ecb9546ef02c6c40dea3ba2ff7e41d3731/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f39663631346166312d323238642d393461612d363035652d3432333663313136336435622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7975a5ecb9546ef02c6c40dea3ba2ff7e41d3731/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f39663631346166312d323238642d393461612d363035652d3432333663313136336435622e706e67" alt="emoji.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/9f614af1-228d-94aa-605e-4236c1163d5b.png"></a></p>
+
+<h2>
+<span id="emoji-modifier" class="fragment"></span><a href="#emoji-modifier"><i class="fa fa-link"></i></a>Emoji Modifier</h2>
+
+<p>人っぽい絵文字（例えば走ってる人:U+1F3C3)の後ろに肌色選択セレクタ(Skin Tone Selector)をつけると、肌の色が変わります。<br>
+<a href="https://camo.qiitausercontent.com/b1d6ac0061c192e8f7dd3d9da60c45b2cde4d886/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f38316435366666312d393235352d326634642d616633352d3834313539346162396237642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b1d6ac0061c192e8f7dd3d9da60c45b2cde4d886/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f38316435366666312d393235352d326634642d616633352d3834313539346162396237642e706e67" alt="emoji.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/81d56ff1-9255-2f4d-af35-841594ab9b7d.png"></a></p>
+
+<h2>
+<span id="旗" class="fragment"></span><a href="#%E6%97%97"><i class="fa fa-link"></i></a>旗</h2>
+
+<p>U+1F1E6..U+1F1FFをアルファベットに見立て、2文字国コードを作ることで国旗になります。例えば、J + P = JPみたいな。<br>
+<a href="https://camo.qiitausercontent.com/0e2343227e54cb11b913701c19f307ccc44e51b6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f66623165633237312d613437612d646335612d393736372d6334623639313462393433332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/0e2343227e54cb11b913701c19f307ccc44e51b6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f66623165633237312d613437612d646335612d393736372d6334623639313462393433332e706e67" alt="emoji.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/fb1ec271-a47a-dc5a-9767-c4b6914b9433.png"></a></p>
+
+<h2>
+<span id="zwjシーケンス" class="fragment"></span><a href="#zwj%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9"><i class="fa fa-link"></i></a>ZWJシーケンス</h2>
+
+<p>複数の絵文字をZWJ(Zero Width Joiner)という見えない文字で繋いで別の絵文字にしてしまう。例えば、「男の人＋ZWJ＋パレット＝男性の画家」 みたいなかんじ。<br>
+<a href="https://camo.qiitausercontent.com/b8c62d5f7d16443abe0c2f94125a5b27a948f6c2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f31646130383364662d653831352d643333622d336563332d3064666231386265346437632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b8c62d5f7d16443abe0c2f94125a5b27a948f6c2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f31646130383364662d653831352d643333622d336563332d3064666231386265346437632e706e67" alt="emoji.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/1da083df-e815-d33b-3ec3-0dfb18be4d7c.png"></a></p>
+
+<p>ZWJシーケンスは「どんな組み合わせでもいいの？」っていう疑問が湧くと思います。<br>
+答えは「ZWJの前後の文字がEmoji属性であれば、どんな組み合わせでも良い」です。当然Unicodeとして正しいシーケンスである、というだけで、実際に表示されるかどうかはフォント次第です。Microsoftの<a href="https://blog.emojipedia.org/ninja-cat-the-windows-only-emoji/" rel="nofollow noopener" target="_blank">NinjaCat</a>とかが有名ですね。</p>
+
+<h2>
+<span id="絵文字タグシーケンス" class="fragment"></span><a href="#%E7%B5%B5%E6%96%87%E5%AD%97%E3%82%BF%E3%82%B0%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9"><i class="fa fa-link"></i></a>絵文字タグシーケンス</h2>
+
+<p>旗と同じようにU+E0061..U+E007Aをアルファベットに見立て、絵文字を構成します。今のところイギリスのイングランドの旗などに使われています。<br>
+旗(🏴:U+1F3F4)の後ろにgbengとつなげ、最後に終端を表す文字(U+E007F)を加えて出来上がります。gbはGreat Britain, engはEnglandを表しています。</p>
+
+<p><a href="https://camo.qiitausercontent.com/37025e42e0c9aa42e0996f72b1b743ea1d709f93/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f30393966666332352d353962342d376335332d343162622d3862663434643630303063652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/37025e42e0c9aa42e0996f72b1b743ea1d709f93/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f30393966666332352d353962342d376335332d343162622d3862663434643630303063652e706e67" alt="1510796551.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/099ffc25-59b4-7c53-41bb-8bf44d6000ce.png"></a></p>
+
+<p>などなど・・・</p>
+
+<p>このように、もはや1個の絵文字は、1コードポイントではないのです。絵文字タグシーケンスに至っては7コードポイント、UTF-16なら14文字、UTF-8なら28バイトも消費して1個の絵文字を表示します。贅沢ですね〜<br>
+もし部分文字列を取り出すときに、このような合成文字の途中で切ってしまうと、変な文字が残ったりするかもしれません。でもこれはSurrogate Pairみたいに、どこ切ってよいかどうかはすぐにはわかりません。そこで登場するのが次のグラフィムクラスターです。</p>
+
+<h1>
+<span id="グラフィムクラスターgrapheme-clusterとは" class="fragment"></span><a href="#%E3%82%B0%E3%83%A9%E3%83%95%E3%82%A3%E3%83%A0%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%BCgrapheme-cluster%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>グラフィムクラスター(Grapheme Cluster)とは</h1>
+
+<p>前のセクションで、もはや絵文字は1コードポイントではないと説明しました。つまり、何も考えずに部分文字列を取り出すコードを書くと、絵文字のど真ん中でブチッってやってしまう可能性があるのです。これに関連するお気に入りの面白いバグがあるので紹介します。<br>
+<a href="https://camo.qiitausercontent.com/9179b383570b4324570e64866d77f0bed0bdf26f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f66396333353464612d616531312d643133632d326664662d3832396464383039343032642e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/9179b383570b4324570e64866d77f0bed0bdf26f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f66396333353464612d616531312d643133632d326664662d3832396464383039343032642e676966" alt="output.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/f9c354da-ae11-d13c-2fdf-829dd809402d.gif"></a><br>
+これはEditTextに、前のセクションで説明した国旗の絵文字のうち、イスラエルの国旗(IL)を大量に並べて、デリートキーを連打しているだけです。別にコピペを連打しているわけではないですし、Javaコードは一切書いていないです。なのになぜか、突然国旗がリヒテンシュタイン(LI)に変わっている、そしてまたもとに戻っている。<br>
+Android M以前で発生するバグなのですが、感が鋭い方は気づいたかもしれません。そう、国旗の絵文字にはサロゲートペアと違い、ペアのうち最初に来る文字と、あとに来る文字の区別がないんです。そんな状態で最初の1コードポイントを削除してしまうと、ILの繰り返しだったものが、突然LIの繰り返し、つまりリヒテンシュタインの国旗の繰り返しになってしまったのです。</p>
+
+<p>わかりやすく図式すると</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>コードポイント列： ILILILILILILILILILILIL
+Androidはこう考える：[IL][IL][IL][IL][IL]...
+
+先頭の1コードポイント削除
+
+コードポイント列： LILILILILILILILILILIL
+Androidはこう考える：[LI][LI][LI][LI][LI]...
+</pre></div></div>
+
+<p>これは旗の絵文字の規格の不完全さもあるとは思いますが、問題の根本はデリートキーが、間違った文字数を消しているのが原因です。じゃあ正しい文字数っていくつなの？っという疑問に対するUnicodeの答えが<a href="http://unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries" rel="nofollow noopener" target="_blank">グラフィムクラスター(Grapheme Cluster)</a>です。</p>
+
+<p>Unicodeは、グラフィムクラスターのことをこう言っています。</p>
+
+<blockquote>
+<p>It is important to recognize that what the user thinks of as a “character”—a basic unit of a writing system for a language—may not be just a single Unicode code point. Instead, that basic unit may be made up of multiple Unicode code points. To avoid ambiguity with the computer use of the term character, this is called a user-perceived character. For example, “G” + acute-accent is a user-perceived character: users think of it as a single character, yet is actually represented by two Unicode code points. These user-perceived characters are approximated by what is called a grapheme cluster, which can be determined programmatically. <a href="http://unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries" rel="nofollow noopener" target="_blank">UAX #29</a></p>
+</blockquote>
+
+<p>ザックリいうと、ユーザーが考える「1文字」っていうのは複数のコードポイントからできてることもあるので、プログラム上の「1文字」とは別に「ユーザーの考える1文字」っていうのを定義するね。と言っています。</p>
+
+<p>日本語にも実は例があります。ひらがなの「が」です。Unicodeではこの「が」は2通りの表記の方法があるんです。1コードポイントで表記する「が:U+304C」と、「か:U+304B」に濁点「゙:U+3099」がついた「が:U+304B U+3099」の2つです。Macが主に後者を使いますね。でも多分普段文字を書いていて、「か」と濁点の間にカーソルが置けたり、「が」をデリートキーで消そうとしたら濁点だけが残ったりすると、なんとなく「コレジャナイ感」がありますよね。これはユーザーは「が」を1文字としてみており、「か」と濁点の2文字だとは考えていないからです。</p>
+
+<p>同じことが絵文字にも言えます。「男性+ZWJ+パレット」の組み合わせが一個の「男性の画家」の絵文字である以上、これを男性とパレットの2文字（もしくはZWJを入れて3文字）として考えるのはナンセンスです。なのでデリートキーやカーソルはこれら3つのコードポイントが一つの文字であるかのように扱います。</p>
+
+<p>最初の旗が切り替わるバグのケースでは、グラフィムクラスターは<code>[IL][IL][IL][IL]</code>のように分解されますので、デリートキーで消すのは2コードポイントとなります。なので旗はリヒテンシュタインにはならず、イスラエルの旗が１個だけ消えるような動作をします。</p>
+
+<p>実際にグラフィムクラスターがどう定義され、実装されているかは触れませんが、これは結局のところデータベースから文字情報を引っ張ってこないといけないので、素直にICUなどのライブラリを使うのが良いかと思います。</p>
+
+<p>AndroidだとICU4Jが使えるので、<a href="https://developer.android.com/reference/android/icu/text/BreakIterator.html#getCharacterInstance(android.icu.util.ULocale)" rel="nofollow noopener" target="_blank">このへん</a>が良いかと思います。</p>
+
+<h1>
+<span id="バックスペースの動作" class="fragment"></span><a href="#%E3%83%90%E3%83%83%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E5%8B%95%E4%BD%9C"><i class="fa fa-link"></i></a>バックスペースの動作</h1>
+
+<p>前のセクションで、デリートキーが何文字消すかについてのUnicodeの答えを説明しました。ではバックスペースはどうなのでしょう。</p>
+
+<p>実は私の知る限りUnicodeは「よしなにやってね」以上のことを言ってない気がします。<br>
+「バックスペースは、デリートキーと同じく、直前のグラフィムクラスターの切れ目まででいいんじゃね？」って思われるかもしれません。<br>
+大体の場合それでOKです。ですが、バックスペースの場合は「正しくないUnicodeシーケンスのときに、正しい部分まで消してしまう」リスクがあります。</p>
+
+<p>例えば、Key Capの絵文字の例に考えてみましょう。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>1 + KEYCAP(U+20E3)
+</pre></div></div>
+
+<p>これは正しいUnicodeシーケンスです。もしKEYCAPの後ろにカーソルが合って、バックスペースが押されたら、全部消して問題ないでしょう。<br>
+では</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>1 + KEYCAP + KEYCAP
+</pre></div></div>
+
+<p>の場合はどうでしょう。これはUnicode的には正しくないです。そしてデバイス上では<br>
+<a href="https://camo.qiitausercontent.com/8a8019a2c8c909a0e4876398ddbc570db3056b28/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f34333937636238652d303135612d383035382d336530342d3565346366366534613933342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/8a8019a2c8c909a0e4876398ddbc570db3056b28/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135363539302f34333937636238652d303135612d383035382d336530342d3565346366366534613933342e706e67" alt="emoji.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/156590/4397cb8e-015a-8058-3e04-5e4cf6e4a934.png"></a><br>
+このように表示されています。もしカーソルが最後のKEYCAPの後ろに合った場合、バックスペースが押されると、どんな結果を期待するでしょう。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>1 + KEYCAP
+</pre></div></div>
+
+<p>おそらく、後ろの四角だけ消えて、最初の絵文字は残っていてほしいと思うでしょう。ですがグラフィムクラスターのルールを適用すると、この2つに見える文字は一つのクラスターに属するのです。つまりバックスペースですべて消えてしまいます。<br>
+この状況で最後のKEYCAPだけを消すためには、グラフィムクラスターに頼らない新たな方法が必要です。<br>
+そして、おそらくそれはまだ統一的な手法は提案されていないと思います。</p>
+
+<p>一番安全なのは、自力でバックスペースを実装しようとせず、OSに任せるのが良いとおもいます。<br>
+どうしても自力で実装したいというのであれば、Androidの実装は<a href="https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/text/method/BaseKeyListener.java" rel="nofollow noopener" target="_blank">この辺</a>にあるみたいです。</p>
+
+<h1>
+<span id="さいごに" class="fragment"></span><a href="#%E3%81%95%E3%81%84%E3%81%94%E3%81%AB"><i class="fa fa-link"></i></a>さいごに</h1>
+
+<p>ここで紹介した技術は、実は絵文字専用に開発されたものはカラー絵文字フォントくらいで、それ意外の技術は昔からあるものなのです。<br>
+例えばZWJは本来はアラビア語の字形選択用、グラフィムクラスターは、これがないとハングルやタイ語で大変なことになってしまいます。<br>
+サロゲートペアに限らず、絵文字を契機に、開発者のみなさんが世界中の多様な言語を表示する技術に興味を持ってくだされば幸いです。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

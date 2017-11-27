@@ -1,0 +1,914 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (amay077)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (amay077 さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>amay077さんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>119</kbd>
+		<a target="_blank" href="https://qiita.com/amay077/items/45b1ad4b9c5d3a03cf9c">Xamarin 使いが Kotlin のマルチプラットフォーム対応コードを読んだ感想</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-05 13:29:46</center>
+	</td>
+	<td style="width:200px;">
+		@amay077<br />(Nepula,Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8227/profile-images/1473680950">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[C#]</b> <b>[Kotlin]</b> <b>[Xamarin]</b> <b>[JetBrains]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Kotlin のマルチプラットフォーム対応、アツいですね。</p>
+
+<ul>
+<li><a href="https://techbooster.org/android/17997/" rel="nofollow noopener" target="_blank">KotlinConf 2017 Keynote レポート | TechBooster</a></li>
+<li><a href="https://github.com/JetBrains/kotlinconf-app" rel="nofollow noopener" target="_blank">JetBrains/kotlinconf-app: KotlinConf Schedule Application</a></li>
+</ul>
+
+<p>上の kotlinconf-app の対応プラットフォームは、</p>
+
+<ul>
+<li>サーバーサイド（Kotlin for Server-side, Ktor）</li>
+<li>Webページ(Kotlin/JS, React) </li>
+<li>Android(Kotlin/JVM)</li>
+<li>iOS(Kotlin/Native)</li>
+</ul>
+
+<p>となっています、すご！</p>
+
+<h2>
+<span id="xamarin-と比べてどうよ" class="fragment"></span><a href="#xamarin-%E3%81%A8%E6%AF%94%E3%81%B9%E3%81%A6%E3%81%A9%E3%81%86%E3%82%88"><i class="fa fa-link"></i></a>Xamarin と比べてどうよ？</h2>
+
+<p>普段 Xamarin を使用して Android/iOS アプリを開発しているので、クロスプラットフォームアプリ開発技術が増えて嬉しい限り。<br>
+しかも Kotlin で書けるのはとてもよいですね。<br>
+正直、C# よりも Kotlin の方が、書いていて気持ちよいですよね。</p>
+
+<p>Kotlin のマルチプラットフォーム対応におけるトピックは２つ。</p>
+
+<ol>
+<li>Kotlin/Native による iOS ネイティブアプリのビルドが可能</li>
+<li>"Common Module" と呼ばれる手法で、プラットフォーム毎の処理を共通化できる</li>
+</ol>
+
+<p>これらについて、 Xamarin と比較しながら見ていきましょうか。</p>
+
+<h2>
+<span id="1-kotlinnative-による-ios-ネイティブアプリのビルドが可能" class="fragment"></span><a href="#1-kotlinnative-%E3%81%AB%E3%82%88%E3%82%8B-ios-%E3%83%8D%E3%82%A4%E3%83%86%E3%82%A3%E3%83%96%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E3%81%8C%E5%8F%AF%E8%83%BD"><i class="fa fa-link"></i></a>1. Kotlin/Native による iOS ネイティブアプリのビルドが可能</h2>
+
+<p>これは LLVM 技術を利用して、Kotlin のソースコードから iOS のネイティブバイナリを出力する、というものです。LLVM を使用していることから、iOS 以外にも対応可能とされています。</p>
+
+<p><a href="https://github.com/JetBrains/kotlinconf-app/blob/master/ios/src/main/kotlin/ui/AppDelegate.kt" rel="nofollow noopener" target="_blank">Kotlin/Native(iOS)のソースコード</a> からは、 <code>AppDelegate</code> や <code>UIResponder</code> などの CocoaTouch フレームワークの API が Kotlin から使えることが分かります。</p>
+
+<p>さてこの Kotlin/Native、 Xamarin では Xamarin.iOS の AOT(Ahead of Time Compile)で実現していることに近いです。<br>
+（Xamarin.iOS の場合、C# のソースコードは中間言語に変換され、デバッグ時はそれが使用される、リリースビルドでは中間言語からネイティブバイナリに”事前”コンパイルされる、という手法なので少し異なります。）</p>
+
+<ul>
+<li><a href="http://www.buildinsider.net/mobile/insidexamarin/05" rel="nofollow noopener" target="_blank">Xamarin.iOSの仕組みとアプリケーションの構成 - Build Insider</a></li>
+<li><a href="https://developer.xamarin.com/guides/ios/under_the_hood/architecture/" rel="nofollow noopener" target="_blank">iOS Architecture - Xamarin</a></li>
+</ul>
+
+<p>また、Swift/Obj-C でない言語から CocoaTouch の API を直接呼ぶ、という意味では、</p>
+
+<ul>
+<li>RoboVM - Java から CocoaTouch の API が呼べた(後に Xamarin が買収して消滅)</li>
+<li>
+<a href="http://www.rubymotion.com/" rel="nofollow noopener" target="_blank">RubyMotion</a> - Ruby から CocoaTouch の API が呼べる（最近話題にならないね）</li>
+</ul>
+
+<p>などがあり、類似の仕組みを採用していると思われます。</p>
+
+<p>このような「プラットフォーム固有のAPIを、インターフェースを(極力)変えずに他の言語(ここではKotlin)から呼べるようにする」ことを「薄いラッパーを提供する」と私が勝手に言っており、その薄いラッパーがあるが故に、</p>
+
+<ul>
+<li>プラットフォームのAPI知識がそのまま活かせる</li>
+<li>同じ言語で開発できるしデバッグできる</li>
+</ul>
+
+<p>というメリットを生みます。</p>
+
+<h2>
+<span id="2-common-module-と呼ばれる手法でプラットフォーム毎の処理を共通化できる" class="fragment"></span><a href="#2-common-module-%E3%81%A8%E5%91%BC%E3%81%B0%E3%82%8C%E3%82%8B%E6%89%8B%E6%B3%95%E3%81%A7%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E6%AF%8E%E3%81%AE%E5%87%A6%E7%90%86%E3%82%92%E5%85%B1%E9%80%9A%E5%8C%96%E3%81%A7%E3%81%8D%E3%82%8B"><i class="fa fa-link"></i></a>2. "Common Module" と呼ばれる手法で、プラットフォーム毎の処理を共通化できる</h2>
+
+<p>1 は "iOS の API が Kotlin から呼べる" のみであって、これだけではコード共通化に寄与しません。</p>
+
+<p>コード共通化の "手法" を提供するのがこの Common Module です。<br>
+これは、プラットフォーム毎に異なるAPIに対して、共通のAPIを定義し、それにプラットフォーム固有の実装を注入する、というものです。</p>
+
+<p>kotlinconf-app のソースを例に説明してみると、日付を扱う <code>Date</code> クラスを Common Module を使って作っています。</p>
+
+<p>まず、共通のAPIとしての <code>Date</code> クラスを common プロジェクト? に定義しています。<a href="https://github.com/JetBrains/kotlinconf-app/blob/master/common/src/main/kotlin/com/jetbrains/kotlinconf/Date.kt" rel="nofollow noopener" target="_blank">実際のコード</a> の転載がこちら。</p>
+
+<div class="code-frame" data-lang="kotlin"><div class="highlight"><pre><span></span><span class="k">package</span> <span class="nn">org.jetbrains.kotlinconf</span>
+
+<span class="n">expect</span> <span class="k">class</span> <span class="nc">Date</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">fun</span> <span class="nf">getDate</span><span class="p">():</span> <span class="n">Int</span>
+    <span class="k">fun</span> <span class="nf">getMonth</span><span class="p">():</span> <span class="n">Int</span>
+    <span class="k">fun</span> <span class="nf">getFullYear</span><span class="p">():</span> <span class="n">Int</span>
+    <span class="k">fun</span> <span class="nf">getHours</span><span class="p">():</span> <span class="n">Int</span>
+    <span class="k">fun</span> <span class="nf">getMinutes</span><span class="p">():</span> <span class="n">Int</span>
+    <span class="k">fun</span> <span class="nf">getTime</span><span class="p">():</span> <span class="n">Number</span>
+<span class="p">}</span>
+
+<span class="n">expect</span> <span class="k">operator</span> <span class="k">fun</span> <span class="nf">Date</span><span class="p">.</span><span class="n">compareTo</span><span class="p">(</span><span class="n">otherDate</span><span class="p">:</span> <span class="n">Date</span><span class="p">):</span> <span class="n">Int</span>
+
+<span class="n">expect</span> <span class="k">fun</span> <span class="nf">parseDate</span><span class="p">(</span><span class="n">dateString</span><span class="p">:</span> <span class="n">String</span><span class="p">):</span> <span class="n">Date</span>
+<span class="n">expect</span> <span class="k">fun</span> <span class="nf">Date</span><span class="p">.</span><span class="n">toReadableDateString</span><span class="p">():</span> <span class="n">String</span>
+<span class="n">expect</span> <span class="k">fun</span> <span class="nf">Date</span><span class="p">.</span><span class="n">toReadableTimeString</span><span class="p">():</span> <span class="n">String</span>
+
+<span class="k">fun</span> <span class="nf">Date</span><span class="p">.</span><span class="n">toReadableDateTimeString</span><span class="p">()</span> <span class="p">=</span> <span class="s">"${toReadableDateString()} ${toReadableTimeString()}"</span>
+</pre></div></div>
+
+<p><code>getDate</code> や <code>parseDate</code> など、ありがちなメソッドが定義されていますが、ここに実装はなく、代わりに見慣れないキーワード <code>expect</code> が付いています。</p>
+
+<p><code>expect</code> は、「プラットフォーム毎に実装が期待されるモノ」を示すキーワードだと私は解釈しました。</p>
+
+<p>では実装はどこにあるのか？と探してみると、Android (というかJVM)での実装が <a href="https://github.com/JetBrains/kotlinconf-app/blob/master/common-jvm/src/main/kotlin/JvmDate.kt" rel="nofollow noopener" target="_blank"><code>common-jvm/src/main/kotlin/JvmDate.kt</code></a> に見つかります。</p>
+
+<div class="code-frame" data-lang="kotlin"><div class="highlight"><pre><span></span><span class="k">package</span> <span class="nn">org.jetbrains.kotlinconf</span>
+
+<span class="k">import</span> <span class="nn">java.text.SimpleDateFormat</span>
+<span class="k">import</span> <span class="nn">java.util.*</span>
+<span class="k">import</span> <span class="nn">java.util.Calendar.*</span>
+
+<span class="n">actual</span> <span class="k">class</span> <span class="nc">Date</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="k">val</span> <span class="py">calendar</span><span class="p">:</span> <span class="n">Calendar</span>
+
+    <span class="n">actual</span> <span class="k">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">calendar</span> <span class="p">=</span> <span class="n">Calendar</span><span class="p">.</span><span class="n">getInstance</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="k">constructor</span><span class="p">(</span><span class="n">date</span><span class="p">:</span> <span class="n">java</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">Date</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">calendar</span> <span class="p">=</span> <span class="n">Calendar</span><span class="p">.</span><span class="n">getInstance</span><span class="p">().</span><span class="n">apply</span> <span class="p">{</span>
+            <span class="n">time</span> <span class="p">=</span> <span class="n">date</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">val</span> <span class="py">date</span><span class="p">:</span> <span class="n">java</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">Date</span> <span class="k">get</span><span class="p">()</span> <span class="p">=</span> <span class="n">calendar</span><span class="p">.</span><span class="n">time</span>
+
+    <span class="n">actual</span> <span class="k">fun</span> <span class="nf">getDate</span><span class="p">()</span> <span class="p">=</span> <span class="n">calendar</span><span class="p">[</span><span class="n">DAY_OF_MONTH</span><span class="p">]</span>
+    <span class="n">actual</span> <span class="k">fun</span> <span class="nf">getMonth</span><span class="p">()</span> <span class="p">=</span> <span class="n">calendar</span><span class="p">[</span><span class="n">MONTH</span><span class="p">]</span>
+    <span class="n">actual</span> <span class="k">fun</span> <span class="nf">getFullYear</span><span class="p">()</span> <span class="p">=</span> <span class="n">calendar</span><span class="p">[</span><span class="n">YEAR</span><span class="p">]</span>
+    <span class="n">actual</span> <span class="k">fun</span> <span class="nf">getHours</span><span class="p">()</span> <span class="p">=</span> <span class="n">calendar</span><span class="p">[</span><span class="n">HOUR_OF_DAY</span><span class="p">]</span>
+    <span class="n">actual</span> <span class="k">fun</span> <span class="nf">getMinutes</span><span class="p">()</span> <span class="p">=</span> <span class="n">calendar</span><span class="p">[</span><span class="n">MINUTE</span><span class="p">]</span>
+    <span class="n">actual</span> <span class="k">fun</span> <span class="nf">getTime</span><span class="p">():</span> <span class="n">Number</span> <span class="p">=</span> <span class="n">calendar</span><span class="p">.</span><span class="n">timeInMillis</span>
+
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">equals</span><span class="p">(</span><span class="n">other</span><span class="p">:</span> <span class="n">Any</span><span class="p">?):</span> <span class="n">Boolean</span> <span class="p">=</span> <span class="n">other</span> <span class="k">is</span> <span class="n">Date</span> <span class="p">&amp;&amp;</span> <span class="n">other</span><span class="p">.</span><span class="n">calendar</span><span class="p">.</span><span class="n">time</span> <span class="p">==</span> <span class="n">calendar</span><span class="p">.</span><span class="n">time</span>
+<span class="p">}</span>
+
+<span class="err">＜以下省略＞</span>
+</pre></div></div>
+
+<p>Android では Java SE API が使用できるので、 <code>java.util.Date</code> や <code>java.util.Calendar</code> を使用して実装をしています。 expect に対してこちらには <code>actual</code> というキーワードが付いていますね。</p>
+
+<p>さらに、 <a href="https://github.com/JetBrains/kotlinconf-app/blob/master/common-jvm/build.gradle" rel="nofollow noopener" target="_blank"><code>common-jvm/build.gradle</code></a> には、</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="n">apply</span> <span class="n">plugin</span><span class="o">:</span> <span class="err">'</span><span class="n">kotlin</span><span class="o">-</span><span class="n">platform</span><span class="o">-</span><span class="n">jvm</span><span class="err">'</span>
+<span class="n">apply</span> <span class="n">plugin</span><span class="o">:</span> <span class="err">'</span><span class="n">kotlinx</span><span class="o">-</span><span class="n">serialization</span><span class="err">'</span>
+
+<span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span> <span class="s">"org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"</span>
+    <span class="n">compile</span> <span class="s">"org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"</span>
+    <span class="n">testCompile</span> <span class="s">"junit:junit:4.12"</span>
+    <span class="n">testCompile</span> <span class="s">"org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"</span>
+    <span class="n">testCompile</span> <span class="s">"org.jetbrains.kotlin:kotlin-test:$kotlin_version"</span>
+    <span class="n">expectedBy</span> <span class="nf">project</span><span class="o">(</span><span class="s">":common"</span><span class="o">)</span>
+<span class="o">}</span>
+
+<span class="err">＜</span><span class="n">以下省略</span><span class="err">＞</span>
+</pre></div></div>
+
+<p><code>expectedBy project(":common")</code> という記述があり、これが「common プロジェクトで期待された実際のコードである」ことを定義しています。これがビルドシステムによって解釈され、空っぽの <code>common/Date</code>  クラスが <code>common-jvm/Date</code> クラスに置き換えられるのでしょう。</p>
+
+<p>同じように iOS 側の Date の実装も…と思ったのですがみつからず（ない？）、さらに他の Date 実装として JavaScript(Kotlin/JS) 側での actual な Date が <a href="https://github.com/JetBrains/kotlinconf-app/blob/master/common-js/src/main/kotlin/JsDate.kt" rel="nofollow noopener" target="_blank"><code>common-js/src/main/kotlin/JsDate.kt</code></a> にありました。</p>
+
+<div class="code-frame" data-lang="kotlin"><div class="highlight"><pre><span></span><span class="k">package</span> <span class="nn">org.jetbrains.kotlinconf</span>
+
+<span class="n">actual</span> <span class="k">external</span> <span class="k">class</span> <span class="nc">Date</span> <span class="p">{</span>
+    <span class="n">actual</span> <span class="k">constructor</span><span class="p">()</span>
+    <span class="k">constructor</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Number</span><span class="p">)</span>
+
+    <span class="n">actual</span> <span class="k">fun</span> <span class="nf">getDate</span><span class="p">():</span> <span class="n">Int</span>
+    <span class="n">actual</span> <span class="k">fun</span> <span class="nf">getMonth</span><span class="p">():</span> <span class="n">Int</span>
+    <span class="n">actual</span> <span class="k">fun</span> <span class="nf">getFullYear</span><span class="p">():</span> <span class="n">Int</span>
+    <span class="n">actual</span> <span class="k">fun</span> <span class="nf">getHours</span><span class="p">():</span> <span class="n">Int</span>
+    <span class="n">actual</span> <span class="k">fun</span> <span class="nf">getMinutes</span><span class="p">():</span> <span class="n">Int</span>
+
+    <span class="n">actual</span> <span class="k">fun</span> <span class="nf">getTime</span><span class="p">():</span> <span class="n">Number</span>
+
+    <span class="k">companion</span> <span class="k">object</span> <span class="err">{</span>
+        <span class="k">fun</span> <span class="nf">parse</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">String</span><span class="p">):</span> <span class="n">Number</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="err">＜以下省略＞</span>
+</pre></div></div>
+
+<p>Kotlin/JS では JavaScript の標準APIである <code>Date</code> クラスを使って実装をしていますね。</p>
+
+<p>このように共通な <code>Date</code> クラスを作っておくと、そのクラスは共通なロジック内で使用可能になります。ロジック内で <code>isJVM ? java.util.Date() : isJS ? js.Date() : error</code> (やべ Kotlin に三項演算子ないんだった)などとプラットフォームごとに分岐しなくても、expect な <code>Date</code> クラスの actual な実装は、各プラットフォーム向けのビルド時?に置換されます。</p>
+
+<p>では Xamarin ではどうでしょうか？<br>
+Xamarin というか .NET の世界では、 <strong>Bait and switch</strong> というテクニックが一般的なものとして知られています。考え方は Common Module と同じで、「APIが定義されているだけの空っぽのモジュール」を "おとり" にして、「プラットフォーム固有の実装がされた実際のモジュール」 を "喰わせる(=置換する)"、というものです。</p>
+
+<ul>
+<li><a href="https://log.paulbetts.org/the-bait-and-switch-pcl-trick/" rel="nofollow noopener" target="_blank">The Bait and Switch PCL Trick</a></li>
+<li><a href="http://ticktack.hatenablog.jp/entry/2016/04/08/180321" rel="nofollow noopener" target="_blank">Plugins for Xamarinを作ろう！ - ぴーさんログ</a></li>
+<li><a href="https://blog.fenrir-inc.com/jp/2015/12/xamarin_plugin.html" rel="nofollow noopener" target="_blank">共有コードからネイティブ依存処理が使える！PCLを使ったXamarinライブラリ作成テクニック (フェンリル | デベロッパーズブログ)</a></li>
+</ul>
+
+<p>Xamarin 向けはもちろん、複数プラットフォーム対応をうたう .NET 製ライブラリの多くはこのテクニックを使って作られています。ただし Bait and switch はビルドシステムやIDEのサポートがあるわけではない、ただのファイル置換を利用したtrickなので、 <code>expect</code> や <code>actual</code> といったキーワードが用意されている Kotlin のそれの方がより洗練されていると言えます。</p>
+
+<h2>
+<span id="共通化するためにものすごくたくさんの-common-module-を作らなければならない" class="fragment"></span><a href="#%E5%85%B1%E9%80%9A%E5%8C%96%E3%81%99%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AB%E3%82%82%E3%81%AE%E3%81%99%E3%81%94%E3%81%8F%E3%81%9F%E3%81%8F%E3%81%95%E3%82%93%E3%81%AE-common-module-%E3%82%92%E4%BD%9C%E3%82%89%E3%81%AA%E3%81%91%E3%82%8C%E3%81%B0%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>共通化するために、ものすごくたくさんの Common Module を作らなければならない？</h2>
+
+<p>はい、その通りだと思われます。</p>
+
+<p>マルチプラットフォームで動作可能な API は現在のところ <a href="https://kotlinlang.org/api/latest/jvm/stdlib/index.html" rel="nofollow noopener" target="_blank">Kotlin の標準API</a> だけだと推測されます（それらも全てが使えるかは分からないですし）。<br>
+実際、「日付」という基本的なクラスでさえ、 Common Module を自作しなければならない、まだ始まったばかりの状態ですから、今マルチプラットフォーム Kotlin を採用したらほとんどの機能は Common Module を作成しなければならないでしょう。</p>
+
+<p>今後、一般的なクラスやよく使用される機能が、Kotlin標準APIセットに拡充されて（あるいは別のライブラリが作られて）、マルチプラットフォーム対応が進むと思われます。</p>
+
+<p>そんな 一般的なクラス、よく使われる機能などが体系的にまとめられて、マルチプラットフォームに対応しているのが <strong>.NET Standard</strong> です。これは、古くは 非Windows向けの.NET Framework である Mono の登場からそれを基盤とした Xamarin や Unity などの隆盛、Linux でも動作する .NET Core のリリースを経て生まれた <strong>共通API セットの仕様</strong> です。</p>
+
+<ul>
+<li><a href="https://docs.microsoft.com/ja-jp/dotnet/standard/net-standard" rel="nofollow noopener" target="_blank">.NET Standard | Microsoft Docs</a></li>
+<li><a href="http://www.atmarkit.co.jp/ait/articles/1707/28/news033.html" rel="nofollow noopener" target="_blank">特集：マイクロソフトテクノロジーの現在と未来：.NET Standardとは (1/3) - ＠IT</a></li>
+</ul>
+
+<p>Kotlin がこれから「共通APIセットの仕様」を考えていくなら、いっそ .NET Standard に乗っかってくれればいいのになーと Xamarin 使いとしては思うわけですが、</p>
+
+<blockquote class="twitter-tweet">
+<p>kotlin標準ライブラリ拡充しなきゃ→仕様考えるの面倒じゃね？→ここに.NET Standardというものがあります→もうこれに沿えばいいんじゃね？→Kotlin .NET のできあがりっ、COOL!<br>って世界線に入る条件を教えて未来のenoさん <a href="https://t.co/VMXjHwn2pz" rel="nofollow noopener" target="_blank">https://t.co/VMXjHwn2pz</a></p>— あめい@ハイドラ待ち (@amay077) <a href="https://twitter.com/amay077/status/926685937819684864?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年11月4日</a>
+</blockquote>
+
+
+
+<blockquote class="twitter-tweet">
+<p>わたしの予知能力では、Java派「iOSでもRoboVMの実装を使い回せば…」Swift派「Swift for AndroidでFoundationを使い回せば…」C# 派「Xamarinなりe4kなりでSystem.*を使えば…」で標準ライブラリ統一戦争になる未来までしか(ry <a href="https://t.co/qNVyfXwMlo" rel="nofollow noopener" target="_blank">https://t.co/qNVyfXwMlo</a></p>— Atsushi Eno (@atsushieno) <a href="https://twitter.com/atsushieno/status/926687187239804929?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年11月4日</a>
+</blockquote>
+
+
+
+<p>まあ、 .NET Standard で統一されたらそれこそ .NET のディストピアなので、この混沌の現状こそが我々の望んでいた世界なのかもですね。</p>
+
+<h2>
+<span id="開発ツールはどうなるんでしょう" class="fragment"></span><a href="#%E9%96%8B%E7%99%BA%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AF%E3%81%A9%E3%81%86%E3%81%AA%E3%82%8B%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%E3%81%86"><i class="fa fa-link"></i></a>開発ツールはどうなるんでしょう？</h2>
+
+<p>Android は Android Studio を使うわけですけど、 Kotlin/Native や Kotlin/JS は何をつかうのでしょう？ やっぱり <a href="https://www.jetbrains.com/idea/" rel="nofollow noopener" target="_blank">IntelliJ IDEA</a> でしょうか。JetBrains としてはここでマネーを得たい考えなのでしょうかねー。</p>
+
+<p>オープンソースプロダクトの開発者さんは、 「JetBrains のOSS開発者向けライセンス」を得るチャンスがあるので、これを機に取得してみてもよいと思います。</p>
+
+<ul>
+<li><a href="https://blog.amay077.net/blog/2017/10/01/renuew_jetbrains_opensource_lisence_2017/" rel="nofollow noopener" target="_blank">JetBrains OpenSource License を更新しました - Experiments Never Fail</a></li>
+</ul>
+
+<p>（ Kotlin/Native の IDE は <a href="https://www.jetbrains.com/clion/" rel="nofollow noopener" target="_blank">CLion</a> のようですね。もちろん <a href="http://kotlinlang.org/docs/reference/native-overview.html" rel="nofollow noopener" target="_blank">現段階の情報</a> では。）</p>
+
+<p>※JetBrains OpenSource License は、OSS向けのライセンスですので、OSS活動以外での利用はできません、念のため。</p>
+
+<blockquote class="twitter-tweet">
+<p>「JetBrains のOSS開発者向けライセンス」というか「OSSプロジェクト向けライセンス」なので、OSSプロジェクト以外には使えませんので悪しからず</p>— 山本 ユースケ (@yusuke) <a href="https://twitter.com/yusuke/status/927366201746976768?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年11月6日</a>
+</blockquote>
+
+
+
+<h2>
+<span id="welcome-to-cross-platform-world" class="fragment"></span><a href="#welcome-to-cross-platform-world"><i class="fa fa-link"></i></a>Welcome to Cross-Platform World</h2>
+
+<p>ということで Kotlin のマルチプラットフォーム対応についての感想を Xamarin と比べる形で書いてみました。<br>
+Xamarin のそれに比べて Kotlin が秀でているのは、</p>
+
+<ul>
+<li>Kotlin という C# よりもモダンな言語が使用できる</li>
+<li>Kotlin/JS で Webアプリ もカバーする</li>
+</ul>
+
+<p>という点でしょうか。特に後者は Microsoft としては TypeScript を持っているので C# がここに踏み込むことはなさそうです(<a href="https://www.hanselman.com/blog/NETAndWebAssemblyIsThisTheFutureOfTheFrontend.aspx" rel="nofollow noopener" target="_blank">WebAssembly はあると思う</a>)。 Microsoft 自身も Skype アプリを刷新した際に <a href="https://github.com/Microsoft/reactxp" rel="nofollow noopener" target="_blank">ReactXP</a> という React/JS ベースのライブラリを使用している理由として「Xamarin は Webアプリの助けにはならないから」と <a href="https://microsoft.github.io/reactxp/blog/2017/04/06/introducing-reactxp.html" rel="nofollow noopener" target="_blank">言って</a> います。 </p>
+
+<p>このようにクロスプラットフォーム開発ツールといっても、それぞれ得意分野や可・不可領域があり、また現在できることを把握し、将来性を予想しつつ、共通化コードを最大化したいという欲求と戦う必要があります。</p>
+
+<p>ここまで読まれた方なら言わずもがなですが、Kotlin のマルチプラットフォーム対応でも「iOSの知識が必要ない」なんてことは口が裂けても言えないわけで、個別のプラットフォームの知識を習得した上で、それらを共通化するための手法・テクニックを学び、実戦する必要があります。</p>
+
+<p>ということで、 <a href="/AyaseSH" class="user-mention js-hovercard" title="AyaseSH" data-hovercard-target-type="user" data-hovercard-target-name="AyaseSH">@AyaseSH</a> さんのツイートをお借りして締めます、「ようこそクロスプラットフォームへ！」。</p>
+
+<blockquote class="twitter-tweet">
+<p>Kotlin でクロスプラットフォームになったことで （辛いことが共有できる）仲間が増えたとしか思わないなー。ようこそクロスプラットフォームへ。</p>— オータガー@ざまりんフレンズ (@AyaseSH) <a href="https://twitter.com/AyaseSH/status/926636856627699717?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年11月4日</a>
+</blockquote>
+
+
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>amay077さんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>23</kbd>
+		<a target="_blank" href="https://qiita.com/amay077/items/85b6b9e302374a6c8ae5">2017年冬から始める ReactiveProperty + Xamarin.Forms</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-22 03:53:10</center>
+	</td>
+	<td style="width:200px;">
+		@amay077<br />(Nepula,Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8227/profile-images/1473680950">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Android]</b> <b>[C#]</b> <b>[iOS]</b> <b>[.NET]</b> <b>[Xamarin]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>つい最近まで PCL な Xamarin.Forms では、 ReactiveProperty の 2.x 系しか使えないと思っていたのですが、いろいろな方の協力で使える方法が分かったので示しておきます。</p>
+
+<p>今から ReactiveProperty を（Xamarin で）使ってみたいぞ、という人向けのクイックスタートも兼ねて。</p>
+
+<h2>
+<span id="1-ソリューションを作る" class="fragment"></span><a href="#1-%E3%82%BD%E3%83%AA%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>1. ソリューションを作る</h2>
+
+<p>Visual Studio for Mac で行きます。</p>
+
+<p>新しいソリューションから、 アプリ - 空白フォームのアプリ を選んで、適当な名前で作成します。ここでは 「ReactivePropertySample」 としますね。</p>
+
+<p><a href="https://camo.qiitausercontent.com/afccffe5965e9dc1e9af2ffb66fcf47dfad219cb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f38636664656235332d633964352d313133342d623964372d3034326133613966353533362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/afccffe5965e9dc1e9af2ffb66fcf47dfad219cb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f38636664656235332d633964352d313133342d623964372d3034326133613966353533362e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/8cfdeb53-c9d5-1134-b9d7-042a3a9f5536.png"></a></p>
+
+<h2>
+<span id="2-pcl-のプロファイルを-44-に変える" class="fragment"></span><a href="#2-pcl-%E3%81%AE%E3%83%97%E3%83%AD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92-44-%E3%81%AB%E5%A4%89%E3%81%88%E3%82%8B"><i class="fa fa-link"></i></a>2. PCL のプロファイルを "44" に変える</h2>
+
+<p>ソリューションが作成できたら、３つあるプロジェクトの中のコアプロジェクト(.Droid や .iOS のついてないもの)を選択して右クリック → 「オプション」を開きます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/b544ff849755c401f8870bb0852c50a6faae328d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f37643538663361652d363634312d613037392d386665312d3038373730613663336264642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/b544ff849755c401f8870bb0852c50a6faae328d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f37643538663361652d363634312d613037392d386665312d3038373730613663336264642e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/7d58f3ae-6641-a079-8fe1-08770a6c3bdd.png"></a></p>
+
+<p>ダイアログから、「ビルド」 → 「全般」を選択して、Target Framework の 「.NET ポータブル」の横にある「変更」を押し、プロファイルを <strong>「PCL 4.6 - Profile44」</strong> に変更して OK を押します。対応プラットフォームから Windows Phone のチェックが外れますが <strong>まったく問題ありません</strong> 。</p>
+
+<p><a href="https://camo.qiitausercontent.com/e9b1717be5b8a37e3520226d939e167dac0bcb49/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f36326132306566392d316131362d343166392d386334642d3762653530643461336333312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e9b1717be5b8a37e3520226d939e167dac0bcb49/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f36326132306566392d316131362d343166392d386334642d3762653530643461336333312e706e67" alt="snap1.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/62a20ef9-1a16-41f9-8c4d-7be50d4a3c31.png"></a></p>
+
+<h2>
+<span id="3-systemruntimeinteropservicesruntimeinformation-の-nuget-パッケージを追加する" class="fragment"></span><a href="#3-systemruntimeinteropservicesruntimeinformation-%E3%81%AE-nuget-%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>3. System.Runtime.InteropServices.RuntimeInformation の nuget パッケージを追加する</h2>
+
+<p><a href="/yamachu" class="user-mention js-hovercard" title="yamachu" data-hovercard-target-type="user" data-hovercard-target-name="yamachu">@yamachu</a> さんが書かれた、</p>
+
+<ul>
+<li><a href="http://teitoku-window.hatenablog.com/entry/2017/11/18/185501" rel="nofollow noopener" target="_blank">XamarinなどのPCLプロジェクトにSystem.Reactiveを導入しようとすると失敗することへの対策 - 窓を作っては壊していた人のブログ</a></li>
+</ul>
+
+<p>の通りです。ReactiveProperty 3.x が依存している System.Reactive をインストールするには、まず <br>
+System.Runtime.InteropServices.RuntimeInformation を入れる必要があります。</p>
+
+<p>コアプロジェクトを選択して、 メニュー → プロジェクト → Nuget パッケージの追加 とし、右上検索ボックスに "System.Runtime.InteropServices.RuntimeInformation" をタイプして絞り込みます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/42cda93722071edc5f328adee4456b84c63e497a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f38643631666334372d623036392d613835302d383733622d3832346338633163326266322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/42cda93722071edc5f328adee4456b84c63e497a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f38643631666334372d623036392d613835302d383733622d3832346338633163326266322e706e67" alt="snap2.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/8d61fc47-b069-a850-873b-824c8c1c2bf2.png"></a></p>
+
+<p>見つかったら、右下の追加ボタンでインストールします。現在の最新バージョンは 4.3.0 です。</p>
+
+<h2>
+<span id="4-systemreactive-の-nuget-パッケージを追加する" class="fragment"></span><a href="#4-systemreactive-%E3%81%AE-nuget-%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>4. System.Reactive の nuget パッケージを追加する</h2>
+
+<p>次に、ReactiveProperty 3.x が依存している System.Reactive をインストールします（いきなり ReactiveProperty を入れてもよいのかもだけど、まあ順番にやってみましょう）。</p>
+
+<p>方法は 3. と同じです。 nuget のダイアログボックスで System.Reactive とタイプして、結果から選択して追加します（雑になってきたｗ）。</p>
+
+<p><a href="https://camo.qiitausercontent.com/3b674807ef61e8d469a7a2ce5cf7ed2c451f6e15/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f35326166643437622d353939382d366163332d393064382d6333386334376661366166652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/3b674807ef61e8d469a7a2ce5cf7ed2c451f6e15/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f35326166643437622d353939382d366163332d393064382d6333386334376661366166652e706e67" alt="snap3.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/52afd47b-5998-6ac3-90d8-c38c47fa6afe.png"></a></p>
+
+<h2>
+<span id="5-reactiveproperty-の-nuget-パッケージを追加する" class="fragment"></span><a href="#5-reactiveproperty-%E3%81%AE-nuget-%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>5. ReactiveProperty の nuget パッケージを追加する</h2>
+
+<p>ついに ReactiveProperty のインストールです。 3. 4. と同じ方法で追加しましょう（雑）。</p>
+
+<p><a href="https://camo.qiitausercontent.com/fedc9440a74c846f65463d4357c363a95aa2b524/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f34323930326562302d396632392d306533622d653962302d3564303064306162373032312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/fedc9440a74c846f65463d4357c363a95aa2b524/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f34323930326562302d396632392d306533622d653962302d3564303064306162373032312e706e67" alt="snap4.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/42902eb0-9f29-0e3b-e9b0-5d00d0ab7021.png"></a></p>
+
+<p>バージョン 3.x 系をついにいれる事ができました。現在の最新stableは 3.6.0 です。</p>
+
+<p>できてしまえば簡単ですが、この方法に辿りつくまでに多くの労力と時間とご協力をいただきました。みなさまありがとうございました。</p>
+
+<blockquote class="twitter-tweet">
+<p>うーん，なんというか微妙なハックですけど，System.Runtime.InteropServices.RuntimeInformation 4.0.0(Reactive 3.1.1が依存しているバージョン)の依存にMicrosoft.NETCore.Platformsが含まれていて，そのせいでPCLのでの展開が出来ないんじゃないかなぁと睨んでいます．</p>— 留まり奈緒 (@y_chu5) <a href="https://twitter.com/y_chu5/status/931805975878582274?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年11月18日</a>
+</blockquote>
+
+
+
+<blockquote class="twitter-tweet">
+<p>PCL Profile111 が Windows Phone を含んでるならそのせいですね</p>— かずき@66.8kg (@okazuki) <a href="https://twitter.com/okazuki/status/932919102351450112?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">2017年11月21日</a>
+</blockquote>
+
+
+
+<h2>
+<span id="reactiveproperty-を使ってみよう" class="fragment"></span><a href="#reactiveproperty-%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>ReactiveProperty を使ってみよう</h2>
+
+<p>せっかくいれたのでちゃちゃっと使ってみましょう。<br>
+ぜんぶコアプロジェクトでやります。</p>
+
+<h3>
+<span id="i-mainviewmodel-を作る" class="fragment"></span><a href="#i-mainviewmodel-%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>I. MainViewModel を作る</h3>
+
+<p><code>MainViewModel</code> というクラスを作って、次のように書きます。</p>
+
+<div class="code-frame" data-lang="csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Reactive.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Reactive.Bindings</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">ReactivePropertySample</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">MainViewModel</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="n">ReactiveProperty</span><span class="p">&lt;</span><span class="kt">long</span><span class="p">&gt;</span> <span class="n">Counter</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="k">public</span> <span class="nf">MainViewModel</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Counter</span> <span class="p">=</span> <span class="n">Observable</span><span class="p">.</span><span class="n">Interval</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="n">FromSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">)).</span><span class="n">ToReactiveProperty</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><code>Counter</code> という変更通知プロパティを ReactiveProperty を使ってつくります。<br>
+Reactive Extensions の機能を使って、「１秒おきに１ずつカウントアップ」していきます。</p>
+
+<h3>
+<span id="ii-画面pageとバインドする" class="fragment"></span><a href="#ii-%E7%94%BB%E9%9D%A2page%E3%81%A8%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>II. 画面(Page)とバインドする</h3>
+
+<p>プロジェクトを作った時に <code>ReactivePropertySamplePage.xaml</code> という画面ができていると思うので、それを編集します。 XAML の編集だけでいきましょう。</p>
+
+<div class="code-frame" data-lang="xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;ContentPage</span> 
+    <span class="na">xmlns=</span><span class="s">"http://xamarin.com/schemas/2014/forms"</span>
+    <span class="na">xmlns:x=</span><span class="s">"http://schemas.microsoft.com/winfx/2009/xaml"</span>
+    <span class="na">xmlns:local=</span><span class="s">"clr-namespace:ReactivePropertySample"</span> 
+    <span class="na">x:Class=</span><span class="s">"ReactivePropertySample.ReactivePropertySamplePage"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;ContentPage.BindingContext&gt;</span>
+        <span class="nt">&lt;local:MainViewModel</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/ContentPage.BindingContext&gt;</span>
+
+    <span class="nt">&lt;Label</span> <span class="na">Text=</span><span class="s">"{Binding Counter.Value}"</span> 
+        <span class="na">VerticalOptions=</span><span class="s">"Center"</span> 
+        <span class="na">HorizontalOptions=</span><span class="s">"Center"</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/ContentPage&gt;</span>
+</pre></div></div>
+
+<p><code>&lt;ContentPage.BindingContext&gt;</code> で、 <code>MainViewModel</code> をバインド対象としています。<br>
+そして、ラベルの Text に <code>"{Binding Counter.Value}"</code> と書くことで、 Counter 値をデータバインドしています。 <strong>.Value を付けるのを忘れずに！</strong>（と言っても忘れるんだよ、分かる。みんなやってる。）</p>
+
+<h3>
+<span id="iii-動かす" class="fragment"></span><a href="#iii-%E5%8B%95%E3%81%8B%E3%81%99"><i class="fa fa-link"></i></a>III. 動かす</h3>
+
+<p>OK, これで完成です。 Android でも iOS でも動きます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/a62c5b67fb1bf3a8f7158e5ecf718a2e9b63dc9c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f30313636626462642d633065302d346336662d383238392d3439666563393133333562662e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a62c5b67fb1bf3a8f7158e5ecf718a2e9b63dc9c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f30313636626462642d633065302d346336662d383238392d3439666563393133333562662e676966" alt="Untitled2.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/0166bdbd-c0e0-4c6f-8289-49fec91335bf.gif"></a></p>
+
+<p>文字ちっさ！</p>
+
+<h2>
+<span id="まとめ" class="fragment"></span><a href="#%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>まとめ</h2>
+
+<p>最新の環境で ReactiveProperty を使う方法を紹介しました。</p>
+
+<p>ReactiveProperty は、Reactive Extension のパワーを View とのデータバインディングにそのまま活用できる、現代においては必須のライブラリです。<br>
+もちろん、変更通知プロパティを手書きする手間をなくす目的で使うのもよいですね。</p>
+
+<p>「ReactiveProperty のここがすごい！」というのをもう少し、別記事で紹介していきたいと思います。</p>
+
+<p>ちなみに、コアプロジェクトが PCL でなく .NET Standard なら、もうちょっといろいろ楽…なハズ！それについては誰かが書いてくれることを望みます <img alt=":pray:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f64f.png" title=":pray:" width="20"> </p>
+
+<h2>
+<span id="おまけ" class="fragment"></span><a href="#%E3%81%8A%E3%81%BE%E3%81%91"><i class="fa fa-link"></i></a>おまけ</h2>
+
+<p>これだけなのにインストールされたパッケージ群がえらいことになった。。。。</p>
+
+<p><a href="https://camo.qiitausercontent.com/18d4e4b155c989c440dc7e9d53d67e16cd1fa94c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f63663431663331332d396162372d326264312d353733362d6638353531643730313032392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/18d4e4b155c989c440dc7e9d53d67e16cd1fa94c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f63663431663331332d396162372d326264312d353733362d6638353531643730313032392e706e67" alt="snap5.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/cf41f313-9ab7-2bd1-5736-f8551d701029.png"></a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>amay077さんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>6</kbd>
+		<a target="_blank" href="https://qiita.com/amay077/items/dd656981c62fa9af02e7">.NET で(空間)幾何学形状の演算や判定を行うなら NetTopologySuite(NTS) がオススメ</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-26 03:23:47</center>
+	</td>
+	<td style="width:200px;">
+		@amay077<br />(Nepula,Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8227/profile-images/1473680950">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[C#]</b> <b>[.NET]</b> <b>[geo]</b> <b>[Xamarin]</b> <b>[geometry]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>何度か紹介してるかもだけど、 ちょっと使う機会があったので改めて。</p>
+
+<ul>
+<li><a href="https://github.com/NetTopologySuite/NetTopologySuite" rel="nofollow noopener" target="_blank">NetTopologySuite/NetTopologySuite: A .NET GIS solution that is fast and reliable for the .NET platform.</a></li>
+</ul>
+
+<p>NetTopologySuite、通称 "NTS" は、 JTS - Java Topology Suite を .NET へ移植したものです。</p>
+
+<p>この JTS は、他にも各言語へ移植されています、次に一覧を載せときますね。</p>
+
+<ul>
+<li>.NET(C#) - <a href="https://github.com/NetTopologySuite/NetTopologySuite" rel="nofollow noopener" target="_blank">NetTopologySuite/NetTopologySuite: A .NET GIS solution that is fast and reliable for the .NET platform.</a>
+</li>
+<li>C++ - <a href="http://trac.osgeo.org/geos/" rel="nofollow noopener" target="_blank">GEOS</a>
+</li>
+<li>JavaScript - <a href="https://github.com/bjornharrtell/jsts" rel="nofollow noopener" target="_blank">bjornharrtell/jsts: JavaScript Topology Suite</a>
+</li>
+</ul>
+
+<p>JTS は、 PostgreSQL や Solr、 Elasticsearch などにも採用されている十分に「枯れた」ライブラリで、その .NET 移植である NTS も十分に枯れています。</p>
+
+<p>今回は、試しに Xamarin Workbooks で、サクッとその機能を試してみます。</p>
+
+<p>Xamarin Workbooks の新規ドキュメントで Nuget Packages に "NetTopologySuite" を追加し、次のコードをタイプします。</p>
+
+<div class="code-frame" data-lang="csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">NetTopologySuite.Geometries</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">NetTopologySuite.IO</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">NetTopologySuite.Operation.Distance</span><span class="p">;</span>
+
+<span class="kt">var</span> <span class="n">wktReader</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WKTReader</span><span class="p">();</span>
+<span class="kt">var</span> <span class="n">polyline</span> <span class="p">=</span> <span class="n">wktReader</span><span class="p">.</span><span class="n">Read</span><span class="p">(</span><span class="s">"LINESTRING(10 5, 15 10, 20 7)"</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">point</span> <span class="p">=</span> <span class="n">wktReader</span><span class="p">.</span><span class="n">Read</span><span class="p">(</span><span class="s">"POINT(16 6)"</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">distance</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DistanceOp</span><span class="p">(</span><span class="n">polyline</span><span class="p">,</span> <span class="n">point</span><span class="p">);</span>
+
+<span class="kt">var</span> <span class="n">nearestLocation</span> <span class="p">=</span> <span class="n">distance</span><span class="p">.</span><span class="n">NearestLocations</span><span class="p">();</span>
+<span class="n">nearestLocation</span><span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+</pre></div></div>
+
+<p>で、実行っぽいボタンを押す、または cmd+enter を押すとコードが実行され、最下行の結果がインタラクティブに表示されます。下図のような感じで。</p>
+
+<p><a href="https://camo.qiitausercontent.com/72ab9eaedfc2870dfde23c294a1274edab4c285c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f34303939633431392d306362342d313230382d613765352d3030626161343134373030362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/72ab9eaedfc2870dfde23c294a1274edab4c285c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f34303939633431392d306362342d313230382d613765352d3030626161343134373030362e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/4099c419-0cb4-1208-a7e5-00baa4147006.png"></a></p>
+
+<p>ここでは <code>DistanceOp</code> という演算クラスを使って (10, 5) - (15, 10) - (20 7) から成る線分（ポリライン、 NTS では LineString という） と (16, 6) の点との最も近い点(NearestLocations)を得ます。</p>
+
+<p>結果は２つの GeometoryLocation があり、1つ目はポリラインの中でポイントと最も近い線分上の座標(Coordinate)、最も近い頂点インデックス(SegmentIndex)などが含まれます。２つ目はPointの中でポリラインと最も近い点なのでPointそのものです。</p>
+
+<p>NTS/JTS の機能は膨大で、まともなドキュメントもないので初見で機能を探すのも大変なのですが、 API ドキュメントや UnitTest を眺めるといろいろ知ることができます。図形の演算、判定で困ったらアテにしてみるとよいでしょう。</p>
+
+<p>Xamarin Workbooks を使うのは久しぶりですが、 nuget package の追加が簡単にできるようになって、使いやすくなってますね。<br>
+座標値がグラフィカルに可視化できたらなおよいですが、きっと方法がありそうですね。</p>
+
+<p>NTS のような単純なライブラリなら、 Xamarin Workbooks を使ってサクッと試すことができるので、活用していきたいものです。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>amay077さんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/amay077/items/4b6924cbe8d73a74e56c">Kotlin製のAndroidアプリを Visual Studio Mobile Center でビルドして DeployGate にアップロードする</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-18 17:35:19</center>
+	</td>
+	<td style="width:200px;">
+		@amay077<br />(Nepula,Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8227/profile-images/1473680950">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Android]</b> <b>[VisualStudio]</b> <b>[DeployGate]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>タイトル長いｗ</p>
+
+<h2>
+<span id="vsmc-とは" class="fragment"></span><a href="#vsmc-%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>VSMC とは</h2>
+
+<p>Visual Studio Mobile Center(以下 VSMC) は Microsoft が提供している CI サービスです。</p>
+
+<ul>
+<li><a href="https://codezine.jp/article/detail/10095" rel="nofollow noopener" target="_blank">iOS／Androidアプリの開発を支援する「Visual Studio Mobile Center （preview）」を使ってみよう (1/5)：CodeZine（コードジン）</a></li>
+</ul>
+
+<p>あまり知られていないでしょうが、 Java/Kotlin で書かれた普通の Android アプリもビルドできます。（そしてもちろん Swift 製の iOS アプリも対応してます。あと React Native もな。）</p>
+
+<p>Kotlin/Java な Android Studio プロジェクトのレポジトリを VSMC に設定してやるだけでビルドまではできるのでなんにも難しいことはないです。</p>
+
+<ul>
+<li><a href="https://dev.classmethod.jp/smartphone/visual-studio-mobile-center-ios-app-build/" rel="nofollow noopener" target="_blank">Visual Studio Mobile CenterでiOSアプリをビルドしてみた ｜ Developers.IO</a></li>
+</ul>
+
+<p>今日のメインは、VSMC でもようやくビルド後にスクリプトを実行させることができるようになったので、その紹介です。</p>
+
+<h2>
+<span id="vsmc-がビルドスクリプトに対応した" class="fragment"></span><a href="#vsmc-%E3%81%8C%E3%83%93%E3%83%AB%E3%83%89%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%81%AB%E5%AF%BE%E5%BF%9C%E3%81%97%E3%81%9F"><i class="fa fa-link"></i></a>VSMC がビルドスクリプトに対応した</h2>
+
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/mobile-center/build/custom/scripts/" rel="nofollow noopener" target="_blank">Build Scripts ｜ Visual Studio Mobile Center ｜ Microsoft Docs</a></li>
+</ul>
+
+<p>これによると、プロジェクトのレポジトリに、特定のスクリプトファイルを入れておくと、ビルド後（やビルド前）に、そのスクリプトファイルを実行してくれる、というものです。</p>
+
+<p>現在は、３つのトリガに対応していて、それぞれ次に示すファイル名のスクリプトファイルをリポジトリのプロジェクトディレクトリにおいておきます。</p>
+
+<ul>
+<li>Post-clone(クローン後) - <code>mobile-center-post-clone.sh</code> </li>
+<li>Pre-build(ビルド前) - <code>mobile-center-pre-build.sh</code>
+</li>
+<li>Post-build(ビルド後) - <code>mobile-center-post-build.sh</code>
+</li>
+</ul>
+
+<p>プロジェクトディレクトリとは、Android Studio プロジェクトの場合、プロジェクトの <code>build.gradle</code> がある場所、大抵は <code>app</code> ディレクトリになります（下図参照）。</p>
+
+<p><a href="https://camo.qiitausercontent.com/e9f662e76754dd82bdbd83d47e43721715dc25f5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f38633535396534642d353363392d383536372d636432642d3366383738353663626662392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e9f662e76754dd82bdbd83d47e43721715dc25f5/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f38633535396534642d353363392d383536372d636432642d3366383738353663626662392e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/8c559e4d-53c9-8567-cd2d-3f87856cbfb9.png"></a></p>
+
+<p>試しにビルドされた apk ファイルを DeployGate にアップロードする、というのをやってみます。<br>
+VSMC にもアプリの配信機能はありますが、社内で既に DeployGate を使っているし、DeployGate の方が専用アプリが用意されていてβテストサービスとしては勝っているので、今回例としました。</p>
+
+<p>まず、当然ながら DeployGate 側の準備が必要です。ユーザー登録をして、手動でビルドした apk を DeployGate にアップロードしておきます。</p>
+
+<p>そして、次のようなファイルを <code>mobile-center-post-build.sh</code> というファイル名で <code>app</code> ディレクトリの中に入れておきます。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="nb">echo</span> <span class="s2">"Upload to DeployGate"</span>
+
+curl <span class="se">\</span>
+  -F <span class="s2">"token={deploygateのAPI key}"</span> <span class="se">\</span>
+  -F <span class="s2">"file=@</span><span class="nv">$MOBILECENTER_OUTPUT_DIRECTORY</span><span class="s2">/app-release.apk"</span> <span class="se">\</span>
+  -F <span class="s2">"message=build by Visual Studio Mobile Center - #</span><span class="nv">$MOBILECENTER_BUILD_ID</span><span class="s2">"</span> <span class="se">\</span>
+  https://deploygate.com/api/users/<span class="o">{</span>deploygateのユーザーID<span class="o">}</span>/apps
+</pre></div></div>
+
+<p><code>{deploygateのAPI key}</code> には、DeployGate のアカウント設定のページから API key の値を転記します。<br>
+<code>{deploygateのユーザーID}</code> には、DeployGate に作成したユーザーのユーザーID を転記します（正しければ上記のURLが存在するはず）。<br>
+<code>file=</code> に記述した <code>app-release.apk</code> は、ビルド構成（Build Variant）が release の場合です。デバッグの場合は <code>app-debug.apk</code> になるはずです（未確認）。</p>
+
+<p><code>mobile-center-post-build.sh</code> をコミット、プッシュして VSMC の Build Configulation を見ると「Build scripts」 の項目に <strong>Post-build</strong> とチェックされ、正しく認識できていることがわかります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/f4184dfb88e20c7658d56abd3fa90ace15edde8c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f33636431623039322d366462632d313636612d326262332d3066336462316233306162302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f4184dfb88e20c7658d56abd3fa90ace15edde8c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f33636431623039322d366462632d313636612d326262332d3066336462316233306162302e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/3cd1b092-6dbc-166a-2bb3-0f3db1b30ab0.png"></a></p>
+
+<p>あとは、 apk への署名を忘れないようにしましょう。Sign builds を On にして、 keystore ファイルなどを指定します。<br>
+社内配布であればデバッグ時と同じいいやってことで、開発用PCに入っている(Mac なら <code>~/.android/</code> にある) <code>debug.keystore</code> をアップロード、入力項目は次のとおりです。</p>
+
+<ul>
+<li>Keystore password: android</li>
+<li>Key alias: androiddebugkey</li>
+<li>Key password: android</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/f3d71ff7ecfea59cf4311dca38b3f404c0237a94/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f31343335383766302d353763302d393136642d646362372d6536333764623736363035302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f3d71ff7ecfea59cf4311dca38b3f404c0237a94/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f31343335383766302d353763302d393136642d646362372d6536333764623736363035302e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/143587f0-57c0-916d-dcb7-e637db766050.png"></a></p>
+
+<p>設定できたら、「Save &amp; Build」 を押すと、ビルドが開始され、ビルドログを見るとスクリプトが実行されていることが確認できます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/11fbbdcc189897fb521198823eca86b7c2a96395/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f62343132353062352d353731342d356234302d333834342d3461346237373639623033662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/11fbbdcc189897fb521198823eca86b7c2a96395/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f62343132353062352d353731342d356234302d333834342d3461346237373639623033662e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/b41250b5-5714-5b40-3844-4a4b7769b03f.png"></a></p>
+
+<h2>
+<span id="これで勝つる" class="fragment"></span><a href="#%E3%81%93%E3%82%8C%E3%81%A7%E5%8B%9D%E3%81%A4%E3%82%8B"><i class="fa fa-link"></i></a>これで勝つる？</h2>
+
+<p>よっしゃー！これでスクリプトさえ書けば Bitrise や CircleCI 並みになんでもできるぞー、と思いました。</p>
+
+<p><del>が、 <strong>スクリプトファイルをリポジトリに含める</strong> のが作動条件なので、今回試したような 「DeployGate へのアップロード」というシナリオでは DeployGate の API key をリポジトリに含めることになってしまい、これは推奨されることではありません（公開リポジトリではご法度モノ）。</del></p>
+
+<p><del>なんという「Microsoft、分かってない」感。なんでこんな仕様にしたのでしょう。<br>
+VSMC はプライベートリポジトリ推奨なのでしょうか…。私はプライベートなアプリのビルドを、Bitrise の無料プランでぶん回していたらビルド時間制限の上限に達してしまったので VSMC に移行してきたのですが、そういうシナリオなのでしょうか。</del></p>
+
+<p><del>早いとこカスタムな Environment variables を作れるようにして欲しいところです。</del></p>
+
+<p>やっと VSMC も環境変数(Environment variables)に対応しました。<br>
+これで API Key などを切り離して管理でき、ビルドプロセスの中で注入できます。</p>
+
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/mobile-center/build/custom/variables/" rel="nofollow noopener" target="_blank">Environment Variables / Microsoft Docs</a></li>
+</ul>
+
+<p>これの使い方は別途書く予定。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>amay077さんの<br />5位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/amay077/items/5b2cbde9e06184166f35">Mapbox GL JS をデバッグするまで</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-21 23:49:58</center>
+	</td>
+	<td style="width:200px;">
+		@amay077<br />(Nepula,Inc. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/8227/profile-images/1473680950">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[geo]</b> <b>[mapbox]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h2>
+<span id="mapbox-なにそれ" class="fragment"></span><a href="#mapbox-%E3%81%AA%E3%81%AB%E3%81%9D%E3%82%8C"><i class="fa fa-link"></i></a>Mapbox なにそれ？</h2>
+
+<ul>
+<li>Google Maps JavaScript API みたいなもん</li>
+<li>こういうの → <a href="https://www.mapbox.com/mapbox-gl-js/examples/" rel="nofollow noopener" target="_blank">Display a map | Mapbox</a>
+</li>
+<li>要は地図を表示・操作するためのオープンソース JavaScript ライブラリ</li>
+<li>類似のライブラリとして OpenLayers, leaflet などがある</li>
+<li>上記との違いは「ベクトルタイル」を「WebGL」で描画するものであるということ</li>
+<li>"GL" とは WebGL を差しており、姉妹ライブラリとして Mapbox GL Native がある（こちらはモバイルやデスクトップの "ネイティブ" アプリ用であり、OpenGL を使用している）。</li>
+</ul>
+
+<p>つまり、 Google Maps JavaScript API 以外の方法で、Google Maps のようなベクトル地図レンダリングをしたければ、Mapbox GL JS を使うのが現在の事実上唯一の方法である。</p>
+
+<h2>
+<span id="何をしらべたいのあるいは何を調べてないの" class="fragment"></span><a href="#%E4%BD%95%E3%82%92%E3%81%97%E3%82%89%E3%81%B9%E3%81%9F%E3%81%84%E3%81%AE%E3%81%82%E3%82%8B%E3%81%84%E3%81%AF%E4%BD%95%E3%82%92%E8%AA%BF%E3%81%B9%E3%81%A6%E3%81%AA%E3%81%84%E3%81%AE"><i class="fa fa-link"></i></a>何をしらべたいの？（あるいは何を調べてないの？）</h2>
+
+<ul>
+<li>ライブラリの使い方は調べてない（ってか Google Maps とそんなに変わらないはず）</li>
+<li>Mapbox GL JS の（非同期な）地図データ取得の仕組み</li>
+<li>Mapbox GL JS の高速な描画の仕組み</li>
+</ul>
+
+<p>今回は、その足がかりとして、Mapbox GL JS のデバッグ環境を作ります。</p>
+
+<h2>
+<span id="調べたわたしは" class="fragment"></span><a href="#%E8%AA%BF%E3%81%B9%E3%81%9F%E3%82%8F%E3%81%9F%E3%81%97%E3%81%AF"><i class="fa fa-link"></i></a>調べたわたしは</h2>
+
+<ul>
+<li>JavaScript 力はあんまりない</li>
+<li>WebGL やったことない</li>
+<li>OpenGL もない</li>
+<li>Mapbox GL Native のソースを追ってみたが C++14 が分からずあきらめた</li>
+</ul>
+
+<p>大丈夫か・・・？</p>
+
+<h2>
+<span id="デバッグ環境を作る" class="fragment"></span><a href="#%E3%83%87%E3%83%90%E3%83%83%E3%82%B0%E7%92%B0%E5%A2%83%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>デバッグ環境を作る</h2>
+
+<h3>
+<span id="用意するものというか私の環境" class="fragment"></span><a href="#%E7%94%A8%E6%84%8F%E3%81%99%E3%82%8B%E3%82%82%E3%81%AE%E3%81%A8%E3%81%84%E3%81%86%E3%81%8B%E7%A7%81%E3%81%AE%E7%92%B0%E5%A2%83"><i class="fa fa-link"></i></a>用意するもの(というか私の環境)</h3>
+
+<ul>
+<li>
+<a href="https://github.com/mapbox/mapbox-gl-js" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/mapbox/mapbox-gl-js</a> のローカルクローン</li>
+<li>macOS</li>
+<li>Xcode（入ってた)</li>
+<li>homebrew</li>
+<li>yarn とかいうやつ（homebrew で入れる）</li>
+<li>node.js(v4.0以上)</li>
+<li>Visual Studio Code (デバッグするのに使う。VSCodeと略すかも)</li>
+<li>Debugger for Chrome (Visual Studio Code の拡張機能)</li>
+</ul>
+
+<p>すでに「yarn って何？」というレベルです・・・。</p>
+
+<h3>
+<span id="デバッグ環境を作る手順1mapboxのセットアップ" class="fragment"></span><a href="#%E3%83%87%E3%83%90%E3%83%83%E3%82%B0%E7%92%B0%E5%A2%83%E3%82%92%E4%BD%9C%E3%82%8B%E6%89%8B%E9%A0%861mapbox%E3%81%AE%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97"><i class="fa fa-link"></i></a>デバッグ環境を作る手順1(mapboxのセットアップ)</h3>
+
+<p><a href="https://github.com/mapbox/mapbox-gl-js/blob/master/CONTRIBUTING.md" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/mapbox/mapbox-gl-js/blob/master/CONTRIBUTING.md</a> に丁寧に書いてあることの写しだけど。</p>
+
+<ol>
+<li>Xcode Command Line Tools を入れる(入ってた。けど一度 Xcode を起動て License に agree しないといけなかった）</li>
+<li>
+<code>brew install node</code> で node をインストール（以前 anyenv/ndenv で入れてあったので余裕）</li>
+<li>
+<code>brew install yarn</code> で yarn というやつを入れる</li>
+<li>
+<code>cd mapbox-gl-js</code> でクローンしたリポジトリに移動して、 <code>yarn install</code> で何かをインストールする（何？）</li>
+<li>
+<a href="https://www.mapbox.com/studio/account/tokens/" class="autolink" rel="nofollow noopener" target="_blank">https://www.mapbox.com/studio/account/tokens/</a> で、 Mapbox の API キーを生成する。Mapbox アカウントがなければ同じく作る</li>
+<li>
+<a href="https://github.com/mapbox/mapbox-gl-js/blob/master/CONTRIBUTING.md#serving-the-debug-page" rel="nofollow noopener" target="_blank">Serving the Debug Page</a> にあるように <code>MAPBOX_ACCESS_TOKEN=pk.iEkc36fR… yarn run start-debug</code> を実行する</li>
+</ol>
+
+<p>んでブラウザで <a href="http://localhost:9966/debug" class="autolink" rel="nofollow noopener" target="_blank">http://localhost:9966/debug</a> にアクセスすると、地図が表示されるはずである。</p>
+
+<p>この状態で、 Chrome のデベロッパーツールでデバッグできるけど、効率上げるために Visual Studio Code を使う。その手順が以下。</p>
+
+<h3>
+<span id="デバッグ環境を作る手順2vscodeのセットアップ" class="fragment"></span><a href="#%E3%83%87%E3%83%90%E3%83%83%E3%82%B0%E7%92%B0%E5%A2%83%E3%82%92%E4%BD%9C%E3%82%8B%E6%89%8B%E9%A0%862vscode%E3%81%AE%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97"><i class="fa fa-link"></i></a>デバッグ環境を作る手順2(VSCodeのセットアップ)</h3>
+
+<ul>
+<li><a href="https://ics.media/entry/11356" rel="nofollow noopener" target="_blank">Visual Studio Codeを使いこなせ！ Chromeと接続してJSをデバッグする方法 - ICS MEDIA</a></li>
+<li><a href="https://github.com/Microsoft/vscode-chrome-debug#launch" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/Microsoft/vscode-chrome-debug#launch</a></li>
+</ul>
+
+<p>を参考に。</p>
+
+<ol>
+<li>VSCode で mapbox-gl-js のフォルダを開く</li>
+<li>メニュー → デバッグ → 構成の追加 とすると <code>.vscode/launch.json</code> が生成されるので、下記の <code>launch.json</code> のように記述する</li>
+<li>前述の <code>MAPBOX_ACCESS_TOKEN=pk.iEkc36fR… yarn run start-debug</code> をしたまま、VSCode のメニュー → デバッグ → デバッグの開始（F5 でもおｋ）すると、新しいタブに地図が表示される。</li>
+</ol>
+
+<div class="code-frame" data-lang="json"><div class="highlight"><pre><span></span><span class="err">//</span> <span class="err">launch.json</span>
+<span class="p">{</span>
+    <span class="nt">"version"</span><span class="p">:</span> <span class="s2">"0.2.0"</span><span class="p">,</span>
+    <span class="nt">"configurations"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">"type"</span><span class="p">:</span> <span class="s2">"chrome"</span><span class="p">,</span>
+            <span class="nt">"request"</span><span class="p">:</span> <span class="s2">"launch"</span><span class="p">,</span>
+            <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Launch Chrome against localhost"</span><span class="p">,</span>
+            <span class="nt">"url"</span><span class="p">:</span> <span class="s2">"http://localhost:9966/debug/"</span><span class="p">,</span>
+            <span class="nt">"webRoot"</span><span class="p">:</span> <span class="s2">"${workspaceRoot}"</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p><a href="https://camo.qiitausercontent.com/7e9c2c0f155d901c931a0740873ebe0dfb8171ac/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f65393432313464392d653332352d383931302d346430392d3537666663393066393331342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7e9c2c0f155d901c931a0740873ebe0dfb8171ac/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f65393432313464392d653332352d383931302d346430392d3537666663393066393331342e706e67" alt="how_to_debugging_mapbox_gl_js_01.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/e94214d9-e325-8910-4d09-57ffc90f9314.png"></a></p>
+
+<h3>
+<span id="試しにデバッグしてみる" class="fragment"></span><a href="#%E8%A9%A6%E3%81%97%E3%81%AB%E3%83%87%E3%83%90%E3%83%83%E3%82%B0%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B"><i class="fa fa-link"></i></a>試しにデバッグしてみる</h3>
+
+<p><code>src/render/draw_line.js</code> の 14行目あたりにブレークポイントを置いてみる（F9 で）。F5 でデバッグ開始する。</p>
+
+<p>地図が表示される過程でブレークポイントで一時停止し、その箇所の「変数」「ウオッチ」「コールスタック」などが見られる。下図は、 <code>drawLine</code> 関数の <code>coords</code> 変数の中身を表示しているところ。描画するラインの頂点が確認できる。</p>
+
+<p><a href="https://camo.qiitausercontent.com/1ded6ae9a259d9b90b7624e772928468a5fcb978/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f32376266663661642d303235342d636661632d646365372d3764636436656634383263632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1ded6ae9a259d9b90b7624e772928468a5fcb978/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f32376266663661642d303235342d636661632d646365372d3764636436656634383263632e706e67" alt="how_to_debugging_mapbox_gl_js_02.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/27bff6ad-0254-cfac-dce7-7dcd6ef482cc.png"></a></p>
+
+<p>ちなみに、この <code>drawLine</code> 関数をスキップ（すぐに <code>return</code>）すると、次図のようにラインが描画されない地図になる。</p>
+
+<p><a href="https://camo.qiitausercontent.com/1d11198b7840abdece5a85287e71425760410609/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f65646532663266612d333539662d313165622d336336312d6163336661626364393836332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1d11198b7840abdece5a85287e71425760410609/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f383232372f65646532663266612d333539662d313165622d336336312d6163336661626364393836332e706e67" alt="how_to_debugging_mapbox_gl_js_03.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/8227/ede2f2fa-359f-11eb-3c61-ac3fabcd9863.png"></a></p>
+
+<p>「デバッグするまで」としてはこんな感じで。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

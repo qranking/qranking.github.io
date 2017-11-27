@@ -1,0 +1,433 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (alclimb)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (alclimb さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>alclimbさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>87</kbd>
+		<a target="_blank" href="https://qiita.com/alclimb/items/455dad20ae7c9e12a8b2">サーバーサイド不要説 ～ Angular&amp;Firebaseを使ってがっつりサーバーレスなWEBサービスを開発・運用したノウハウ</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-04 12:17:27</center>
+	</td>
+	<td style="width:200px;">
+		@alclimb<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/67192/profile-images/1481275877">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[Web]</b> <b>[angular]</b> <b>[Firebase]</b> <b>[frontend]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="one-はじめに" class="fragment"></span><a href="#one-%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a><img alt=":one:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/31-fe0f-20e3.png" title=":one:" width="20"> はじめに</h1>
+
+<p>「Angular」と「Firebase」を使って<strong>サーバーレス</strong>なWEBサービスの開発・運用したノウハウを紹介します。<br>
+この記事では詳細な技術的なことにはあまり触れず、「<strong>どんな技術を使用してWEBサービスを作ろうか</strong>」を検討している人向けに記載しています。<br>
+みなさんのサービス開発時の検討材料になれば幸いです。</p>
+
+<h2>
+<span id="angularとは" class="fragment"></span><a href="#angular%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>Angularとは</h2>
+
+<p>Googleによって開発が進められているJavaScript(TypeScript)フレームワークです。SPA(シングルページアプリケーション)が容易に作成できます。</p>
+
+<h2>
+<span id="firebaseとは" class="fragment"></span><a href="#firebase%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>Firebaseとは</h2>
+
+<p>Googleによって開発が進められているWEBサービスやモバイルアプリに必要なサーバー処理を提供するmBaasサービスです。</p>
+
+<h2>
+<span id="開発したサービス" class="fragment"></span><a href="#%E9%96%8B%E7%99%BA%E3%81%97%E3%81%9F%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9"><i class="fa fa-link"></i></a>開発したサービス</h2>
+
+<p><a href="https://wehub.fun" rel="nofollow noopener" target="_blank"></a><a href="https://wehub.fun" class="autolink" rel="nofollow noopener" target="_blank">https://wehub.fun</a> ちゃっかり紹介。誰でも記事を作成・共有できるサービスです。<br>
+技術的にはGoogleアカウントでの<strong>ユーザー認証</strong>や、<strong>記事データの保持・共有</strong>などの処理をサーバーサイドプログラムを書かずに実現しています。</p>
+
+<h1>
+<span id="two-要件" class="fragment"></span><a href="#two-%E8%A6%81%E4%BB%B6"><i class="fa fa-link"></i></a><img alt=":two:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/32-fe0f-20e3.png" title=":two:" width="20"> 要件</h1>
+
+<p>以下の要件を満たせるものを目指しました。</p>
+
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th style="text-align: left">要件</th>
+<th style="text-align: left">実現方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align: left">WEB上でアプリ並みの操作性を実現したい</td>
+<td style="text-align: left">Angularでシングルページアプリケーション(SPA)を作成<br>Angular/Materialで各種コンポーネント部品を利用</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align: left">PC/タブレット/スマホに対応したい</td>
+<td style="text-align: left">angular/flex-layoutを使用してレスポンシブデザインに対応</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align: left">フロントエンド開発に専念して、バックエンド開発をしたくない</td>
+<td style="text-align: left">バックエンド開発の代わりにFirebaseを使ったmBaasサービスを利用</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align: left">WEBサービスとモバイルアプリを1つのソースコードで管理したい</td>
+<td style="text-align: left">PhoneGapやCordovaを使ってWEBアプリをAndroid/iOS向けにアプリを作成</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="three-環境" class="fragment"></span><a href="#three-%E7%92%B0%E5%A2%83"><i class="fa fa-link"></i></a><img alt=":three:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/33-fe0f-20e3.png" title=":three:" width="20"> 環境</h1>
+
+<h2>
+<span id="開発環境" class="fragment"></span><a href="#%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83"><i class="fa fa-link"></i></a>開発環境</h2>
+
+<p>開発に使用した各種ツールや環境です。メジャーで安定した開発が続けられるものを基準に採用しています。</p>
+
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th style="text-align: left">項目</th>
+<th style="text-align: left">Ver.</th>
+<th style="text-align: left">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align: left">Visual Studio Code</td>
+<td style="text-align: left">1.17.2</td>
+<td style="text-align: left">Microsoft製のテキストエディター</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align: left">Node.js</td>
+<td style="text-align: left">6.11.3</td>
+<td style="text-align: left">JavaScript開発環境</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align: left">npm</td>
+<td style="text-align: left">3.10.10</td>
+<td style="text-align: left">Node.jsのパッケージ(ライブラリ)管理マネージャー</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align: left">TypeScript</td>
+<td style="text-align: left">2.5.3</td>
+<td style="text-align: left">Microsoft製のオープンソースのプログラミング言語</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align: left">angular-cli</td>
+<td style="text-align: left">1.4</td>
+<td style="text-align: left">Google製のangularを爆速で開発するためのツール</td>
+</tr>
+</tbody>
+</table>
+
+<p>※ 開発環境のOSはWindowsですが、macOSやLinuxでも同じものが使用できます。</p>
+
+<h2>
+<span id="要素技術ライブラリ" class="fragment"></span><a href="#%E8%A6%81%E7%B4%A0%E6%8A%80%E8%A1%93%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA"><i class="fa fa-link"></i></a>要素技術(ライブラリ)</h2>
+
+<p>作成したWEBサービスに利用した要素技術(ライブラリ)の一覧です。こちらもメジャーで安定した開発が続けられるものを基準に採用しています。現時点でほぼ最新のバージョンを使用しています。</p>
+
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th style="text-align: left">項目</th>
+<th style="text-align: left">Ver.</th>
+<th style="text-align: left">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align: left">angular</td>
+<td style="text-align: left">4.4</td>
+<td style="text-align: left">Googleによって開発が進められているJavaScript(TypeScript)フレームワーク</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align: left">angular/material</td>
+<td style="text-align: left">2.0.0-beta.12</td>
+<td style="text-align: left">Angular用のMaterialデザインのライブラリ</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align: left">angular/flex-layout</td>
+<td style="text-align: left">2.0.0-beta.9</td>
+<td style="text-align: left">Angular用のレイアウトのライブラリ</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align: left">firebase</td>
+<td style="text-align: left">4.6</td>
+<td style="text-align: left">Googleによって開発が進められているWEBサービスやモバイルアプリに必要なサーバー処理を提供するmBaasサービスを利用するためのライブラリ</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align: left">marked</td>
+<td style="text-align: left">0.3</td>
+<td style="text-align: left">Markdown文字列をHTMLに変換するライブラリ</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align: left">moment</td>
+<td style="text-align: left">2.18</td>
+<td style="text-align: left">日時処理を便利にしてくれるライブラリ</td>
+</tr>
+</tbody>
+</table>
+
+<p>※ betaバージョンが入っていますので突然の仕様変更や不具合が存在する可能性があります。<br>
+※ 現在のWEB環境はリリース版となっていても脆弱性の修正や仕様変更などはつきものなため、個人的にはbeta版であろうと開発が活発でオープンなものであれば気にしていません。</p>
+
+<h2>
+<span id="運用環境" class="fragment"></span><a href="#%E9%81%8B%E7%94%A8%E7%92%B0%E5%A2%83"><i class="fa fa-link"></i></a>運用環境</h2>
+
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th style="text-align: left">項目</th>
+<th style="text-align: left">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align: left">Firebase Hosting</td>
+<td style="text-align: left">いわゆるWEBサーバー。HTML/CSS/JavaScriptなどの静的ファイルを設置</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align: left">Firebase Authentication</td>
+<td style="text-align: left">ユーザー認証に関する機能<br>メールアドレスやGoogleアカウントによる認証</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align: left">Firebase Storage</td>
+<td style="text-align: left">画像などのユーザーファイルをアップロードして管理する</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align: left">Firebase Cloud Firestore</td>
+<td style="text-align: left">記事データなど動的に作成されるデータ類を保持する<br>なお同様の目的を果たせるものとして「Firebase Realtime Database」がありますが、これからはじめる方はFirestoreをお勧めします。</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align: left">Firebase Cloud Functions</td>
+<td style="text-align: left">サーバー側で行いたい処理がある場合にJavaScriptの関数をサーバー側に設置可能<br>例：<a href="https://github.com/firebase/functions-samples/tree/master/stripe" rel="nofollow noopener" target="_blank">ユーザーからの支払い処理</a>など</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align: left">Google Search Console</td>
+<td style="text-align: left">検索エンジンへの対応</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align: left">Google Analytics</td>
+<td style="text-align: left">アクセス解析</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<span id="four-プチノウハウ" class="fragment"></span><a href="#four-%E3%83%97%E3%83%81%E3%83%8E%E3%82%A6%E3%83%8F%E3%82%A6"><i class="fa fa-link"></i></a><img alt=":four:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/34-fe0f-20e3.png" title=":four:" width="20"> プチノウハウ</h1>
+
+<h2>
+<span id="検索エンジン対応1" class="fragment"></span><a href="#%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3%E5%AF%BE%E5%BF%9C1"><i class="fa fa-link"></i></a>検索エンジン対応1</h2>
+
+<p>検索エンジンはキーワードと対応するページを紐づけます。SPAではシングルページという名の通りページが1つとなるため検索エンジンとの相性はよくありません。<br>
+そこで、angularのrouter機能を使いURLと表示する内容を連動させることでこの問題を解決します。</p>
+
+<div class="code-frame" data-lang="ts">
+<div class="code-lang"><span class="bold">app-routing.module.ts｜ルーティング設定例</span></div>
+<div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">NgModule</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'@angular/core'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Routes</span><span class="p">,</span> <span class="nx">RouterModule</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'@angular/router'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">HomeComponent</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./pages/home/home.component'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">FeedbackComponent</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./pages/feedback/feedback.component'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">WatchComponent</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./pages/watch/watch.component'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">MySettingsComponent</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./pages/my-settings/my-settings.component'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">MyArticlesComponent</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./pages/my-articles/my-articles.component'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">PostComponent</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./pages/post/post.component'</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">routes</span>: <span class="kt">Routes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nx">path</span><span class="o">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="nx">component</span>: <span class="kt">HomeComponent</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nx">path</span><span class="o">:</span> <span class="s1">'feedback'</span><span class="p">,</span>
+        <span class="nx">component</span>: <span class="kt">FeedbackComponent</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nx">path</span><span class="o">:</span> <span class="s1">'watch/:id'</span><span class="p">,</span>
+        <span class="nx">component</span>: <span class="kt">WatchComponent</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nx">path</span><span class="o">:</span> <span class="s1">'my/settings'</span><span class="p">,</span>
+        <span class="nx">component</span>: <span class="kt">MySettingsComponent</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nx">path</span><span class="o">:</span> <span class="s1">'my/articles'</span><span class="p">,</span>
+        <span class="nx">component</span>: <span class="kt">MyArticlesComponent</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nx">path</span><span class="o">:</span> <span class="s1">'my/post'</span><span class="p">,</span>
+        <span class="nx">component</span>: <span class="kt">PostComponent</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nx">path</span><span class="o">:</span> <span class="s1">'my/edit/:id'</span><span class="p">,</span>
+        <span class="nx">component</span>: <span class="kt">PostComponent</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">];</span>
+
+<span class="kd">@NgModule</span><span class="p">({</span>
+    <span class="nx">imports</span><span class="o">:</span> <span class="p">[</span><span class="nx">RouterModule</span><span class="p">.</span><span class="nx">forRoot</span><span class="p">(</span><span class="nx">routes</span><span class="p">)],</span>
+    <span class="nx">exports</span><span class="o">:</span> <span class="p">[</span><span class="nx">RouterModule</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">AppRoutingModule</span> <span class="p">{</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="検索エンジン対応2" class="fragment"></span><a href="#%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3%E5%AF%BE%E5%BF%9C2"><i class="fa fa-link"></i></a>検索エンジン対応2</h2>
+
+<p>昔のクローラー(検索エンジン)はSPAなどのJavaScriptなどで動的にDOMが書き換わった文章を読めませんでしたが、現在のGoogleのクローラーはある程度は動的にDOMが書き換わっても対応できるようです。</p>
+
+<p>しかし、現在のクローラーでも最新のJavaScript規格に対応していないようですのでshimを入れています。</p>
+
+<div class="code-frame" data-lang="html">
+<div class="code-lang"><span class="bold">index.html｜headに追加</span></div>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/shim.min.js"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="検索エンジン対応3---未対応" class="fragment"></span><a href="#%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3%E5%AF%BE%E5%BF%9C3---%E6%9C%AA%E5%AF%BE%E5%BF%9C"><i class="fa fa-link"></i></a>検索エンジン対応3 - (未対応)</h2>
+
+<p><code>Angular Universal</code> というSSR(サーバーサイドレンダリング)によって、SPA(シングルページアプリケーション)をサーバー上で実行しDOMを生成して、クライアントには完成したDOMを返す技術があります。<br>
+クライアント(クローラー)側で動的にDOMが書き換わらないため、検索エンジンにとっては最も好ましいといえます。</p>
+
+<p>ただ、私の環境ではrxjsのObservable.fromPromiseでエラーが発生してしまう問題を解決できなかったため現在は未対応の状態です。</p>
+
+<p>※ 「検索エンジン対応1,2」のみで、Googleのクローラーからはインデックスされていますので、Angular-Universalによるサーバーサイドレンダリングの対応は<strong>とりあえず不要</strong>と言えそうです。</p>
+
+<h2>
+<span id="google-analytics-対応" class="fragment"></span><a href="#google-analytics-%E5%AF%BE%E5%BF%9C"><i class="fa fa-link"></i></a>Google Analytics 対応</h2>
+
+<p>コンテンツが動的に読み込まれてアドレスバーの URL が更新された時点で、トラッカーに保存されているデータも更新する必要があります。<br>
+<a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications?hl=ja" class="autolink" rel="nofollow noopener" target="_blank">https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications?hl=ja</a><br>
+<a href="https://qiita.com/Akira-Isegawa/items/845aee44d79197e9844f" class="autolink" id="reference-1e1174d3d7d2b7857d58">https://qiita.com/Akira-Isegawa/items/845aee44d79197e9844f</a></p>
+
+<div class="code-frame" data-lang="bash">
+<div class="code-lang"><span class="bold">コマンド｜TypeScript用の定義ファイルを追加</span></div>
+<div class="highlight"><pre><span></span>npm install --save-dev @types/google.analytics
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="html">
+<div class="code-lang"><span class="bold">index.html｜headに追加</span></div>
+<div class="highlight"><pre><span></span>    <span class="c">&lt;!-- Google Analytics --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://www.googletagmanager.com/gtag/js?id=UA-*********-1"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="ts">
+<div class="code-lang"><span class="bold">app-routing.module.ts</span></div>
+<div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'google.analytics'</span><span class="p">;</span>
+
+<span class="c1">// Google Analytics の初期化コード</span>
+<span class="nb">window</span><span class="p">[</span><span class="s1">'dataLayer'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">window</span><span class="p">[</span><span class="s1">'dataLayer'</span><span class="p">]</span> <span class="o">||</span> <span class="p">[];</span>
+<span class="kd">function</span> <span class="nx">gtag</span><span class="p">(</span><span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">)</span> <span class="p">{</span> <span class="nb">window</span><span class="p">[</span><span class="s1">'dataLayer'</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span> <span class="p">}</span>
+<span class="nx">gtag</span><span class="p">(</span><span class="s1">'js'</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
+<span class="nx">gtag</span><span class="p">(</span><span class="s1">'config'</span><span class="p">,</span> <span class="s1">'UA-*********-1'</span><span class="p">);</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="ts">
+<div class="code-lang"><span class="bold">app-routing.module.ts</span></div>
+<div class="highlight"><pre><span></span><span class="kr">export</span> <span class="kr">class</span> <span class="nx">AppRoutingModule</span> <span class="p">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * DIコンストラクタ</span>
+<span class="cm">     */</span>
+    <span class="kr">public</span> <span class="kr">constructor</span><span class="p">(</span><span class="nx">router</span>: <span class="kt">Router</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">// ルーターイベントを取得</span>
+        <span class="nx">router</span><span class="p">.</span><span class="nx">events</span>
+            <span class="c1">// NavigationEndイベントだけにする</span>
+            <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">e</span> <span class="k">instanceof</span> <span class="nx">NavigationEnd</span><span class="p">)</span>
+
+            <span class="c1">// NavigationEnd型に変換</span>
+            <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">e</span> <span class="kr">as</span> <span class="nx">NavigationEnd</span><span class="p">)</span>
+
+            <span class="c1">// イベント購読</span>
+            <span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="c1">// トラッカーを更新</span>
+                <span class="nx">ga</span><span class="p">(</span><span class="s1">'set'</span><span class="p">,</span> <span class="s1">'page'</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
+
+                <span class="c1">// PV送信</span>
+                <span class="nx">ga</span><span class="p">(</span><span class="s1">'send'</span><span class="p">,</span> <span class="s1">'pageview'</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
+            <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="five-終わりに" class="fragment"></span><a href="#five-%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a><img alt=":five:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/35-fe0f-20e3.png" title=":five:" width="20"> 終わりに</h1>
+
+<p>記事自体のクオリティがかなり荒く申し訳ないですが何方かの参考になれば幸いです。<br>
+まずは何かアプトプットするということが大事かと思いましたのでご容赦を^^</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

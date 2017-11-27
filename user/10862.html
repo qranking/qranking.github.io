@@ -1,0 +1,980 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (tamikura@github)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (tamikura@github さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>tamikura@githubさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>241</kbd>
+		<a target="_blank" href="https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb">脱Word、脱Markdown、asciidocでドキュメント作成する際のアレコレ</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-30 04:44:08</center>
+	</td>
+	<td style="width:200px;">
+		@tamikura@github<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10862/profile-images/1509837660">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Markdown]</b> <b>[asciidoctor]</b> <b>[asciidoc]</b> <b>[asciidoctor-pdf]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h2>
+<span id="asciidocとは" class="fragment"></span><a href="#asciidoc%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>asciidocとは</h2>
+
+<ul>
+<li>asciidocはMarkdownなどのような軽量マークアップ言語の一つで、Webページなどをプレーンテキストで記述することができる(拡張子は.adoc)</li>
+</ul>
+
+<h2>
+<span id="asciidocを使うようになった経緯" class="fragment"></span><a href="#asciidoc%E3%82%92%E4%BD%BF%E3%81%86%E3%82%88%E3%81%86%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%9F%E7%B5%8C%E7%B7%AF"><i class="fa fa-link"></i></a>asciidocを使うようになった経緯</h2>
+
+<ul>
+<li>これまではWordで機能仕様書とか書いていたが、Wordは重い、変更場所が分からない、複数人同時に修正とか面倒で、いい加減Wordを使うのは止めたくなった</li>
+<li>なので軽量マークアップ言語にしよう、一番メジャー？なMarkdownにしたら、以下の制約とかでいくらなんでもイマイチ。。
+
+<ul>
+<li>表でセルの結合ができない</li>
+<li>表のセル内で箇条書きができない</li>
+<li>目次が作れない</li>
+<li>文字に色がつけられない</li>
+<li>上記に対応しようとすると、プラグインやらMarkdown亜種がいろいろ。。</li>
+</ul>
+</li>
+<li>そこで、Markdownより表現方法が豊富なasciidocを使用し、実際に使って、特徴・課題を挙げてみた。</li>
+</ul>
+
+<h2>
+<span id="asciidoctor-asciidoctor-pdfとは" class="fragment"></span><a href="#asciidoctor-asciidoctor-pdf%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>asciidoctor, asciidoctor-pdfとは</h2>
+
+<ul>
+<li>asciidoctor・・・asciidocファイルをHTMLファイルに変換するruby製ツール</li>
+<li>asciidoctor-pdf・・・asciidocファイルをPDFファイルに変換するruby製ツール</li>
+</ul>
+
+<h2>
+<span id="asciidoctorで作成したhtml例" class="fragment"></span><a href="#asciidoctor%E3%81%A7%E4%BD%9C%E6%88%90%E3%81%97%E3%81%9Fhtml%E4%BE%8B"><i class="fa fa-link"></i></a>asciidoctorで作成したHTML例</h2>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">sample.adoc</span></div>
+<div class="highlight"><pre><span></span>:lang: ja
+:doctype: book
+:toc: left
+:toclevels: 3
+:toc-title: 目次
+:sectnums:
+:sectnumlevels: 4
+:sectlinks:
+:imagesdir: ./_images
+:icons: font
+:source-highlighter: coderay
+:example-caption: 例
+:table-caption: 表
+:figure-caption: 図
+:docname: = asciidocの使い方
+:author: asciidoc事業部 開発１グループ
+:revnumber: 0.1
+:revdate: 2017/10/25
+
+= asciidocの使い方
+
+== asciidocとは？
+
+asciidocとは [blue]#軽量マークアップ言語# です
+
+詳しくは&lt;&lt;can_asciidoc,asciidocでできること&gt;&gt;を参照
+
+[[can_asciidoc]]
+== asciidocでできること
+
+.コードハイライト
+[source, json]
+{
+  "hoge" : "fuga",
+  "foo" : [1,2,3]
+}
+
+.結合＋箇条書例
+[cols="1,2a,3a"]
+|====
+|列1|列2|列3
+3+|3列結合
+.2+|2行縦結合|b-1|c-2
+|b-2|
+* c-3
+* c-4
+|====
+
+[NOTE]
+====
+* format="csv"ではできません
+====
+
+=== asciidoctorだとPlantUMLでシーケンス図作成
+
+[plantuml]
+----
+actor ユーザー as user
+user -&gt; ログイン : ログインする
+ログイン --&gt; user:
+----
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/9ab29fb93ce2048282d90d98b5a41870256914f0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f39656364643234392d623731612d633031312d336234302d6639346462313732653332332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/9ab29fb93ce2048282d90d98b5a41870256914f0/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f39656364643234392d623731612d633031312d336234302d6639346462313732653332332e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/9ecdd249-b71a-c011-3b40-f94db172e323.png"></a></p>
+
+<h2>
+<span id="環境構築windows" class="fragment"></span><a href="#%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89windows"><i class="fa fa-link"></i></a>環境構築(Windows)</h2>
+
+<h3>
+<span id="asciidoctor-asciidoctor-pdfのインストール" class="fragment"></span><a href="#asciidoctor-asciidoctor-pdf%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><i class="fa fa-link"></i></a>asciidoctor, asciidoctor-pdfのインストール</h3>
+
+<ol>
+<li>ruby(2.2以上)をインストール
+
+<ul>
+<li><a href="https://rubyinstaller.org/downloads/" class="autolink" rel="nofollow noopener" target="_blank">https://rubyinstaller.org/downloads/</a></li>
+</ul>
+</li>
+<li>コマンドプロンプトで以下を実行</li>
+</ol>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>gem install asciidoctor             # asciidoctorのインストール
+gem install --pre asciidoctor-pdf   # asciidoctor-pdfのインストール
+gem install coderay                 # コードのシンタックスハイライト用
+gem install asciidoctor-pdf-cjk     # PDF変換のレイアウト崩れ対応
+gem install asciidoctor-diagram     # PlantUMLなどの図を使用
+</pre></div></div>
+
+<h3>
+<span id="asciidocファイルをhtml-pdf変換" class="fragment"></span><a href="#asciidoc%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92html-pdf%E5%A4%89%E6%8F%9B"><i class="fa fa-link"></i></a>asciidocファイルをHTML, PDF変換</h3>
+
+<ul>
+<li>HTMLファイル変換</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>asciidoctor test.adoc
+=&gt; test.htmlが作成される
+</pre></div></div>
+
+<ul>
+<li>PDFファイル変換</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>asciidoctor-pdf test.adoc
+=&gt; test.pdfが作成される
+</pre></div></div>
+
+<ul>
+<li>複数ファイルまとめて変換</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>asciidoctor *.adoc
+asciidoctor-pdf *.adoc
+</pre></div></div>
+
+<ul>
+<li>asciidoctor-pdf-cjk や asciidoctor-diagramを使う場合(-rをつける)</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>asciidoctor     -r asciidoctor-pdf-cjk -r asciidoctor-diagram test.adoc
+asciidoctor-pdf -r asciidoctor-pdf-cjk -r asciidoctor-diagram test.adoc
+</pre></div></div>
+
+<h3>
+<span id="asciidocファイルをブラウザで表示" class="fragment"></span><a href="#asciidoc%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%A7%E8%A1%A8%E7%A4%BA"><i class="fa fa-link"></i></a>asciidocファイルをブラウザで表示</h3>
+
+<p>Firefoxとかchromeでもプラグインを入れることでレンダリング可能</p>
+
+<ul>
+<li>Firefox plugin
+
+<ul>
+<li><a href="https://addons.mozilla.org/ja/firefox/addon/asciidoctorjs-live-preview/" class="autolink" rel="nofollow noopener" target="_blank">https://addons.mozilla.org/ja/firefox/addon/asciidoctorjs-live-preview/</a></li>
+</ul>
+</li>
+<li>chrome plugin
+
+<ul>
+<li><a href="https://chrome.google.com/webstore/detail/asciidoctorjs-live-previe/iaalpfgpbocpdfblpnhhgllgbdbchmia" class="autolink" rel="nofollow noopener" target="_blank">https://chrome.google.com/webstore/detail/asciidoctorjs-live-previe/iaalpfgpbocpdfblpnhhgllgbdbchmia</a></li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="asciidocファイルをプレビューできるエディタ" class="fragment"></span><a href="#asciidoc%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E3%83%97%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF"><i class="fa fa-link"></i></a>asciidocファイルをプレビューできるエディタ</h3>
+
+<p>以下のエディタを使用すると、リアルタイムでプレビューできるので便利</p>
+
+<ul>
+<li>Asciidoc FX
+
+<ul>
+<li><a href="http://asciidocfx.com/" class="autolink" rel="nofollow noopener" target="_blank">http://asciidocfx.com/</a></li>
+</ul>
+</li>
+<li>Atom
+
+<ul>
+<li><a href="https://atom.io/" class="autolink" rel="nofollow noopener" target="_blank">https://atom.io/</a></li>
+<li>インストール後にプラグインを入れることで、プレビュー(<code>Ctrl + Shfit + A</code>)が可能</li>
+</ul>
+</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>  apm install language-asciidoc
+  apm install asciidoc-preview
+</pre></div></div>
+
+<h3>
+<span id="worddocxをasciidocファイルに変換する" class="fragment"></span><a href="#worddocx%E3%82%92asciidoc%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AB%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>Word(docx)をasciidocファイルに変換する</h3>
+
+<p><code>pandoc</code>というツールを使うと変換できる<br>
+そこそこいい感じに変換してくれる</p>
+
+<ol>
+<li>pandocインストール
+
+<ul>
+<li>リンク先にWindowsのインストーラダウンロードページがある</li>
+<li><a href="http://pandoc.org/installing.html" class="autolink" rel="nofollow noopener" target="_blank">http://pandoc.org/installing.html</a></li>
+</ul>
+</li>
+<li>コマンドプロンプトで実行</li>
+</ol>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>pandoc --from=docx --to=asciidoc --wrap=none --atx-headers --normalize --extract-media=extracted-media input.docx &gt; output.adoc
+</pre></div></div>
+
+<h3>
+<span id="plantumlなどの図を表示するための環境構築" class="fragment"></span><a href="#plantuml%E3%81%AA%E3%81%A9%E3%81%AE%E5%9B%B3%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89"><i class="fa fa-link"></i></a>PlantUMLなどの図を表示するための環境構築</h3>
+
+<p>PlantUMLなどの図を記述するにはasciidoctor-diagramが必要だが、<br>
+それ以外にもJava + Graphvizのインストールが必要（<code>gem install Graphviz</code>ではダメだった）</p>
+
+<ul>
+<li>asciidoctor-diagramのインストール</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>gem install asciidoctor-diagram
+</pre></div></div>
+
+<ul>
+<li>Javaのインストール</li>
+<li>Graphvizのインストール 
+
+<ul>
+<li><a href="http://www.graphviz.org/Download_windows.php" class="autolink" rel="nofollow noopener" target="_blank">http://www.graphviz.org/Download_windows.php</a></li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="tips" class="fragment"></span><a href="#tips"><i class="fa fa-link"></i></a>TIPS</h2>
+
+<h3>
+<span id="文字の色を変える変わらない" class="fragment"></span><a href="#%E6%96%87%E5%AD%97%E3%81%AE%E8%89%B2%E3%82%92%E5%A4%89%E3%81%88%E3%82%8B%E5%A4%89%E3%82%8F%E3%82%89%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>文字の色を変える（変わらない）</h3>
+
+<p>色を変える場合、<code>[color]#文字#</code>とかになるが、#が１つの場合は前後にスペースが無いと色が変わらない<br>
+スペースが無い場合は<strong>##を2つ入れないといけない</strong></p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">color.adoc</span></div>
+<div class="highlight"><pre><span></span>// 前後にスペースがあるので#１つでOK
+asciidocとは [blue]#軽量マークアップ言語# です
+
+// 前後にスペースが無いので#１つだと色は変わらない
+asciidocとは[blue]#軽量マークアップ言語#です
+
+// 前後にスペースが無い場合、##だとOK
+asciidocとは[blue]##軽量マークアップ言語##です
+
+</pre></div>
+</div>
+
+<ul>
+<li><p>HTML<br>
+<a href="https://camo.qiitausercontent.com/94ab89b93cd54344e22adefab882d39215628bc6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f36653934633136622d353566382d313065382d373033302d3263623939663738333835362e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/94ab89b93cd54344e22adefab882d39215628bc6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f36653934633136622d353566382d313065382d373033302d3263623939663738333835362e6a706567" alt="color_html.jpg" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/6e94c16b-55f8-10e8-7030-2cb99f783856.jpeg"></a></p></li>
+<li><p>PDF<br>
+<a href="https://camo.qiitausercontent.com/a4441f5780e0fa740ee8c29d0fb593639b469070/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f35643930313935342d623739392d663465382d643363642d3839323330303261333730632e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a4441f5780e0fa740ee8c29d0fb593639b469070/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f35643930313935342d623739392d663465382d643363642d3839323330303261333730632e6a706567" alt="color_pdf.jpg" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/5d901954-b799-f4e8-d3cd-8923002a370c.jpeg"></a></p></li>
+<li>
+<p>PDFはasciidoctor-pdfのバグなのか変わらない。。。</p>
+
+<ul>
+<li><a href="http://gozuk16.hatenablog.com/entry/2016/08/01/180402" class="autolink" rel="nofollow noopener" target="_blank">http://gozuk16.hatenablog.com/entry/2016/08/01/180402</a></li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<span id="目次を使う設定する" class="fragment"></span><a href="#%E7%9B%AE%E6%AC%A1%E3%82%92%E4%BD%BF%E3%81%86%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>目次を使う・設定する</h3>
+
+<ul>
+<li>
+<code>:toc:</code>で目次を使用することが可能(HTML/PDF)
+
+<ul>
+<li>
+<code>top</code>, <code>left</code>, <code>right</code>等で表示する箇所の指定も可能（個人的には常に表示される<code>left(right)</code>がオススメ）</li>
+</ul>
+</li>
+<li>
+<code>:toc: left</code>を付けた結果</li>
+</ul>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">toc.adoc</span></div>
+<div class="highlight"><pre><span></span>:toc: left
+
+= asciidocの使い方
+
+== asciidocとは？
+
+=== asciidoctorとは？
+
+==== asciidoctorのメリット
+
+==== asciidoctorのデメリット
+
+=== asciidoctor-pdfとは？
+
+== asciidoc記法
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/f5a87cdfe1f977267cbe9ff00e3a7b205037614b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f36363333383939302d613630302d363832372d313966622d3132376636653963646433362e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f5a87cdfe1f977267cbe9ff00e3a7b205037614b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f36363333383939302d613630302d363832372d313966622d3132376636653963646433362e6a706567" alt="toc_left.jpg" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/66338990-a600-6827-19fb-127f6e9cdd36.jpeg"></a></p>
+
+<ul>
+<li>
+<code>:sectnums:</code>を付けると、セクションが自動的にナンバリングされるのでつけたほうが良い
+
+<ul>
+<li>PDF変換だと「Chapter」という文字が勝手に入るので、HTMLとセクション名を合わせる場合は<code>:chapter-label:</code>を入れると消える</li>
+</ul>
+</li>
+<li>目次名はデフォルトで「Table of Contents」なので、<code>:toc-title:</code>で「目次」とか指定したほうが良い</li>
+<li>
+<code>:sectnums:</code>と<code>:toc-title: 目次</code>を追加した結果</li>
+</ul>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">sectnums.adoc</span></div>
+<div class="highlight"><pre><span></span>:toc: left
+:sectnums:
+:toc-title: 目次
+:chapter-label:
+
+= asciidocの使い方
+
+== asciidocとは？
+
+=== asciidoctorとは？
+
+==== asciidoctorのメリット
+
+==== asciidoctorのデメリット
+
+=== asciidoctor-pdfとは？
+
+== asciidoc記法
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/ab38419fa1bfc0dcaf9d27f8b2e6c5afd5862c3c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f62326235643035332d383731662d303734622d346466362d3939383164373936386635662e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ab38419fa1bfc0dcaf9d27f8b2e6c5afd5862c3c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f62326235643035332d383731662d303734622d346466362d3939383164373936386635662e6a706567" alt="toc_sectnum.jpg" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/b2b5d053-871f-074b-4df6-9981d7968f5f.jpeg"></a></p>
+
+<ul>
+<li>
+<code>:toclevels:</code>で表示する階層を指定可能（デフォルト2,最大5）</li>
+<li>
+<code>:toclevels: 3</code>にした結果</li>
+</ul>
+
+<div class="code-frame" data-lang="">
+<div class="code-lang"><span class="bold">toclevels.adoc</span></div>
+<div class="highlight"><pre><span></span>:toc: left
+:sectnums:
+:toc-title: 目次
+:toclevels: 3
+
+= asciidocの使い方
+
+== asciidocとは？
+
+=== asciidoctorとは？
+
+==== asciidoctorのメリット
+
+==== asciidoctorのデメリット
+
+=== asciidoctor-pdfとは？
+
+== asciidoc記法
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/4f139f36fab1bb96857e1c8bbdb374363c1832a6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f66363966346566642d383235642d303064372d376166632d6537643033353030303062622e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/4f139f36fab1bb96857e1c8bbdb374363c1832a6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f66363966346566642d383235642d303064372d376166632d6537643033353030303062622e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/f69f4efd-825d-00d7-7afc-e7d0350000bb.png"></a></p>
+
+<h3>
+<span id="コードをシンタックスハイライトする" class="fragment"></span><a href="#%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>コードをシンタックスハイライトする</h3>
+
+<p>例えば、jsonをシンタックスハイライトしたい場合<br>
+単純に<code>[source, json]</code>と記述してもハイライトしてくれない<br>
+「coderay」などのライブラリ＆定義が必要</p>
+
+<ul>
+<li>coderayのインストール</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>gem install coderay
+</pre></div></div>
+
+<ul>
+<li>adocファイルに定義＆記述</li>
+</ul>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">source-highlighter.adoc</span></div>
+<div class="highlight"><pre><span></span>:source-highlighter: coderay
+
+[source, json]
+{
+  "hoge" : "fuga",
+  "foo" : [1,2,3]
+}
+</pre></div>
+</div>
+
+<ul>
+<li>対策後</li>
+</ul>
+
+<div class="code-frame" data-lang="json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">"hoge"</span> <span class="p">:</span> <span class="s2">"fuga"</span><span class="p">,</span>
+  <span class="nt">"foo"</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="自動でセクションにアンカーを付ける" class="fragment"></span><a href="#%E8%87%AA%E5%8B%95%E3%81%A7%E3%82%BB%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AB%E3%82%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%82%92%E4%BB%98%E3%81%91%E3%82%8B"><i class="fa fa-link"></i></a>自動でセクションにアンカーを付ける</h3>
+
+<p>目次には自動的にアンカーが付くが、本文には付かないので、<code>:sectlinks:</code>をつけることで自動的にアンカーが付与される。</p>
+
+<h3>
+<span id="内部のセクションをリンクする" class="fragment"></span><a href="#%E5%86%85%E9%83%A8%E3%81%AE%E3%82%BB%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E3%83%AA%E3%83%B3%E3%82%AF%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>内部のセクションをリンクする</h3>
+
+<p><code>[[&lt;アンカー名&gt;]]</code>という形でアンカー名を指定することが可能。<br>
+そのアンカーにリンクを貼るには<code>&lt;&lt;&lt;アンカー名&gt;,&lt;リンク名&gt;&gt;&gt;</code>で指定可能</p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">internal_link.adoc</span></div>
+<div class="highlight"><pre><span></span>asciidoctorは、asciidocファイルをHTMLファイルに変換するruby製ツールです。
+
+詳しくは&lt;&lt;what_is_asciidoctor,asciidoctorとは？&gt;&gt;を参照
+
+[[what_is_asciidoctor]]
+== asciidoctorとは？
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/a29c0ac0c3174331d9204722cd9dcb9da13f4146/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f61616561393236362d333331352d333365632d653163662d6265653761333736643162302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/a29c0ac0c3174331d9204722cd9dcb9da13f4146/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f61616561393236362d333331352d333365632d653163662d6265653761333736643162302e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/aaea9266-3315-33ec-e1cf-bee7a376d1b0.png"></a></p>
+
+<h3>
+<span id="表のセルを結合する" class="fragment"></span><a href="#%E8%A1%A8%E3%81%AE%E3%82%BB%E3%83%AB%E3%82%92%E7%B5%90%E5%90%88%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>表のセルを結合する</h3>
+
+<p>数値のあとに<code>+</code>を入れると結合になる。数値の前に<code>.</code>があれば縦方向への結合で、なければ横方向の結合となる。</p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">cellspan.adoc</span></div>
+<div class="highlight"><pre><span></span>|====
+|列1|列2|列3
+3+|3列結合
+.2+|2行縦結合|b-1|c-2
+|b-2|c-2
+.2+|2行縦+2列結合の組み合わせ 2+|b-3
+|b-4|c-4
+|====
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/131a89db7243cfe775a6ed18a9e17a6f191bf051/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f34643530666436362d303434332d393539652d323461352d3631616333373838353365342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/131a89db7243cfe775a6ed18a9e17a6f191bf051/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f34643530666436362d303434332d393539652d323461352d3631616333373838353365342e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/4d50fd66-0443-959e-24a5-61ac378853e4.png"></a></p>
+
+<h3>
+<span id="表のセル内で箇条書きにする" class="fragment"></span><a href="#%E8%A1%A8%E3%81%AE%E3%82%BB%E3%83%AB%E5%86%85%E3%81%A7%E7%AE%87%E6%9D%A1%E6%9B%B8%E3%81%8D%E3%81%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>表のセル内で箇条書きにする</h3>
+
+<p><code>cols</code>に<code>a</code>を付けると、asciidoc形式になるので、箇条書きとかができる。</p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">list.adoc</span></div>
+<div class="highlight"><pre><span></span>[cols="1,5a"]
+|====
+|No|項目
+|1|対応ブラウザ
+
+* Firefox
+* Chrome
+* edge
+|2| 対応OS
+
+. Windows
+. Linux
+. Mac
+|====
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/c8becb4f9403c00272cf0259fefe8e6bd52f1351/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f66383933663433312d653265342d633836642d626135632d6635653061623932353434362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/c8becb4f9403c00272cf0259fefe8e6bd52f1351/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f66383933663433312d653265342d633836642d626135632d6635653061623932353434362e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/f893f431-e2e4-c86d-ba5c-f5e0ab925446.png"></a></p>
+
+<p>補足：<code>format="csv"</code>ではできない模様</p>
+
+<h3>
+<span id="条件によって表示非表示にする" class="fragment"></span><a href="#%E6%9D%A1%E4%BB%B6%E3%81%AB%E3%82%88%E3%81%A3%E3%81%A6%E8%A1%A8%E7%A4%BA%E9%9D%9E%E8%A1%A8%E7%A4%BA%E3%81%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>条件によって表示・非表示にする</h3>
+
+<p><code>ifdef ～ endif</code>を使うことで可能<br>
+これにより、チーム用・お客様提出用という感じに分けることが可能</p>
+
+<ul>
+<li>表示させない(<code>env-external</code>が無い)
+
+<ul>
+<li>
+<code>env-external</code>は例で、値は何でもよい</li>
+</ul>
+</li>
+</ul>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">invisible.adoc</span></div>
+<div class="highlight"><pre><span></span>ifdef::env-external[]
+  この文章はお客様用です
+endif::[]
+</pre></div>
+</div>
+
+<ul>
+<li>表示させる(<code>env-external</code>がある)</li>
+</ul>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">visible.adoc</span></div>
+<div class="highlight"><pre><span></span>:env-external:
+
+ifdef::env-external[]
+  この文章はお客様用です
+endif::[]
+</pre></div>
+</div>
+
+<h3>
+<span id="コマンドラインで属性を渡す" class="fragment"></span><a href="#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E3%81%A7%E5%B1%9E%E6%80%A7%E3%82%92%E6%B8%A1%E3%81%99"><i class="fa fa-link"></i></a>コマンドラインで属性を渡す</h3>
+
+<p>先ほどの<code>env-external</code>ように、adoc内に記述せず、条件によって値を変えたい場合、コマンドラインで属性を渡すことも可能</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>asciidoctor -a env-external test.adoc
+</pre></div></div>
+
+<p>属性名だけでなく、値を渡したい場合、<code>属性名=値</code>で指定する<br>
+既にadocファイルに同一の属性が記述されている場合、コマンドラインで渡した値が優先される</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>asciidoctor -a toc-title=mokuji test.adoc
+</pre></div></div>
+
+<h3>
+<span id="脚注のアイコンを出す" class="fragment"></span><a href="#%E8%84%9A%E6%B3%A8%E3%81%AE%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E3%82%92%E5%87%BA%E3%81%99"><i class="fa fa-link"></i></a>脚注のアイコンを出す</h3>
+
+<p>adocファイル上だとアイコンが出るのに、HTML/PDFだと出ない</p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">icon.adoc</span></div>
+<div class="highlight"><pre><span></span>[NOTE]
+====
+* デフォルトでは[NOTE]が出ません
+====
+
+[CAUTION]
+====
+* デフォルトでは[CAUTION]が出ません
+====
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/489de8c4f4b3b078a35d429dff30c4e93906fb6a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f37633333623730372d363932332d646566342d343065342d3363613031656161663262352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/489de8c4f4b3b078a35d429dff30c4e93906fb6a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f37633333623730372d363932332d646566342d343065342d3363613031656161663262352e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/7c33b707-6923-def4-40e4-3ca01eaaf2b5.png"></a></p>
+
+<p><code>:icons: font</code>を記述すると表示される</p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">icon-font.adoc</span></div>
+<div class="highlight"><pre><span></span>
+:icons: font
+
+[NOTE]
+====
+* デフォルトでは[NOTE]が出ません
+====
+
+[CAUTION]
+====
+* デフォルトでは[CAUTION]が出ません
+====
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/e244216804ec050f295149b10950c35c1cbb96e6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f65616263346562382d326431342d373765312d646536382d3235346633356461376538332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e244216804ec050f295149b10950c35c1cbb96e6/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f65616263346562382d326431342d373765312d646536382d3235346633356461376538332e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/eabc4eb8-2d14-77e1-de68-254f35da7e83.png"></a></p>
+
+<h3>
+<span id="バージョン最終更新日などを表示する" class="fragment"></span><a href="#%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E6%9C%80%E7%B5%82%E6%9B%B4%E6%96%B0%E6%97%A5%E3%81%AA%E3%81%A9%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>バージョン、最終更新日などを表示する</h3>
+
+<p><code>:author:</code>, <code>:revnumber:</code>, <code>:revdate:</code>を定義する。</p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">revnumber.adoc</span></div>
+<div class="highlight"><pre><span></span>:author: asciidoc事業部 開発１グループ
+:revnumber: 0.1
+:revdate: 2017/10/25
+
+= asciidocの使い方
+</pre></div>
+</div>
+
+<ul>
+<li>HTMLの場合（一番上に表示）</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/694229efc32e821d80f047ae8e3a894a243961c4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f33343134656165642d363666652d303536642d356139392d3561346263633834393632652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/694229efc32e821d80f047ae8e3a894a243961c4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f33343134656165642d363666652d303536642d356139392d3561346263633834393632652e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/3414eaed-66fe-056d-5a99-5a4bcc84962e.png"></a></p>
+
+<ul>
+<li>PDFの場合（表紙に表示）</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/ba1391db767a6e68bb5b83314262a90802b38de2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f34316530646436362d626230622d316537352d396666642d3838386131386334393834332e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ba1391db767a6e68bb5b83314262a90802b38de2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f34316530646436362d626230622d316537352d396666642d3838386131386334393834332e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/41e0dd66-bb0b-1e75-9ffd-888a18c49843.png"></a></p>
+
+<h3>
+<span id="plantumlなどを記述する" class="fragment"></span><a href="#plantuml%E3%81%AA%E3%81%A9%E3%82%92%E8%A8%98%E8%BF%B0%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>PlantUMLなどを記述する</h3>
+
+<p>PlantUML(テキストでUMLを記述できるツール）を埋め込むことが可能</p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">plantuml.adoc</span></div>
+<div class="highlight"><pre><span></span>.シーケンス図
+[plantuml]
+----
+actor ユーザー as user
+user -&gt; ログイン : ログインする
+ログイン --&gt; user:
+----
+
+.クラス図
+[plantuml]
+----
+class Animal {
+  int age
+  run()
+}
+
+class Cat extends Animal {
+}
+
+class Dog extends Animal {
+}
+----
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/17c9eeb6e3aaa14ffc3f4dfa3569888a4b58866b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f61366635306337612d346661632d616432382d666432622d3833633832666534353633362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/17c9eeb6e3aaa14ffc3f4dfa3569888a4b58866b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f61366635306337612d346661632d616432382d666432622d3833633832666534353633362e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/a6f50c7a-4fac-ad28-fd2b-83c82fe45636.png"></a></p>
+
+<ul>
+<li>
+<code>asciidoc-diagram</code>を使っているので、PDF/HTML変換時は指定しないと表示されない</li>
+</ul>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>asciidoctor -r asciidoctor-diagram sample.asoc
+</pre></div></div>
+
+<ul>
+<li>PlantUML以外にも<code>ditaa</code>、<code>graphviz</code>などにも対応</li>
+</ul>
+
+<h3>
+<span id="例表画像に説明文キャプションを付ける" class="fragment"></span><a href="#%E4%BE%8B%E8%A1%A8%E7%94%BB%E5%83%8F%E3%81%AB%E8%AA%AC%E6%98%8E%E6%96%87%E3%82%AD%E3%83%A3%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E4%BB%98%E3%81%91%E3%82%8B"><i class="fa fa-link"></i></a>例・表・画像に説明文（キャプション）を付ける</h3>
+
+<p>example, table, imageなどにはその上に<code>.&lt;文字&gt;</code>をつけることで、説明文をつけることができる（ナンバリングもされる）<br>
+<code>:example-caption:</code>、<code>:table-caption:</code>で、<code>:figure-caption:</code>、プレフィックスも指定可能</p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">example-caption.adoc</span></div>
+<div class="highlight"><pre><span></span>:example-caption: 例
+
+.参考
+====
+asciidocの例です
+
+====
+
+.参考
+====
+asciidocの例です２
+====
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/f8d1dbc323ec64efa87c5eb69d680195d35604e2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f36646138663266352d656535662d646564372d326264622d6464373532363939633738642e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/f8d1dbc323ec64efa87c5eb69d680195d35604e2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f36646138663266352d656535662d646564372d326264622d6464373532363939633738642e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/6da8f2f5-ee5f-ded7-2bdb-dd752699c78d.png"></a></p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">table-caption.adoc</span></div>
+<div class="highlight"><pre><span></span>:table-caption: 表
+
+.OS一覧
+|======
+|No|OS
+|1|Windows
+|2|Linux
+|======
+
+.OS一覧
+|======
+|No|OS
+|1|Android
+|2|iOS
+|======
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/554a7904274b9a3b96c54657bc953f3bf2a43e58/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f30343834326561312d623063642d366461372d346339302d6334616638323331313834382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/554a7904274b9a3b96c54657bc953f3bf2a43e58/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f30343834326561312d623063642d366461372d346339302d6334616638323331313834382e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/04842ea1-b0cd-6da7-4c90-c4af82311848.png"></a></p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">image-caption.adoc</span></div>
+<div class="highlight"><pre><span></span>
+:figure-caption: 図
+
+.脚注(NOTE)
+image::icon_note.jpg[]
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/7275fdd45f49646914d1c07d3a965e425652f2d7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f33336363626662322d343564652d613334322d306164342d3638323161306331663363352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7275fdd45f49646914d1c07d3a965e425652f2d7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f33336363626662322d343564652d613334322d306164342d3638323161306331663363352e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/33ccbfb2-45de-a342-0ad4-6821a0c1f3c5.png"></a></p>
+
+<h3>
+<span id="ファイルを取り込む" class="fragment"></span><a href="#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E5%8F%96%E3%82%8A%E8%BE%BC%E3%82%80"><i class="fa fa-link"></i></a>ファイルを取り込む</h3>
+
+<p><code>include::</code>を使用することで別ファイルを取り込むことができる<br>
+adocファイルが大きくなって分割したい時や、csvやソースなどadocとは別ファイルを管理したい時に便利</p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">include.adoc</span></div>
+<div class="highlight"><pre><span></span>// adocファイルの取込み
+include::other.adoc
+
+// csvをテーブルに取込み
+[format="csv"]
+|===
+include::_includes/other.csv[]
+|===
+
+// ソースコードを取込み
+[source,ruby]
+----
+include::_includes/other.rb[]
+----
+
+// PlantUMLを取込み
+[plantuml]
+----
+include::_includes/sequence.puml[]
+----
+
+</pre></div>
+</div>
+
+<p><code>lindes</code>でincludeする範囲を指定したり、<code>:includedir:</code>でincludeするフォルダをまとめて指定することも可能</p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">lines.adoc</span></div>
+<div class="highlight"><pre><span></span>:includedir: _includes
+
+// _includes/other.csvの1～3行目を表示
+[format="csv"]
+|===
+include::{includedir}/other.csv[lines=1..3]
+|===
+
+</pre></div>
+</div>
+
+<h3>
+<span id="htmlのスタイルcssを設定する" class="fragment"></span><a href="#html%E3%81%AE%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%ABcss%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>HTMLのスタイル(CSS)を設定する</h3>
+
+<p><code>:stylesdir:</code>でCSSのフォルダを<code>:stylesheet:</code>でCSSファイルを指定可能</p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">html-style.adoc</span></div>
+<div class="highlight"><pre><span></span>:stylesdir: stylesheets/
+:stylesheet: asciidoctor-default.css
+</pre></div>
+</div>
+
+<p>何も指定していないとき、Windowsの場合は以下に入っているので、cssファイルをコピーして編集すると良い</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span># ruby2.4で、ascidoctorのバージョンが1.5.6.1の場合
+C:\Ruby24\lib\ruby\gems\2.4.0\gems\asciidoctor-1.5.6.1\data\stylesheets\asciidoctor-default.css
+</pre></div></div>
+
+<h3>
+<span id="pdfのスタイルを設定する" class="fragment"></span><a href="#pdf%E3%81%AE%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>PDFのスタイルを設定する</h3>
+
+<p>PDFのスタイルは設定ファイル(yaml)として定義する<br>
+<code>:pdf-style:</code>で設定ファイルの指定が可能</p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">pdf-style.adoc</span></div>
+<div class="highlight"><pre><span></span>:pdf-style: themes/default-theme.yml
+</pre></div>
+</div>
+
+<p>何も指定していないとき、Windowsの場合は以下に入っているので、yamlファイルをコピーして編集すると良い</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span># ruby2.4で、ascidoctor-pdfのバージョンが1.5.0.alpha16の場合
+C:\Ruby24\lib\ruby\gems\2.4.0\gems\asciidoctor-pdf-1.5.0.alpha.16\data\themes\default-theme.yml
+</pre></div></div>
+
+<h3>
+<span id="pdfのフッタにcopyrightを入れる" class="fragment"></span><a href="#pdf%E3%81%AE%E3%83%95%E3%83%83%E3%82%BF%E3%81%ABcopyright%E3%82%92%E5%85%A5%E3%82%8C%E3%82%8B"><i class="fa fa-link"></i></a>PDFのフッタに「Copyright」を入れる</h3>
+
+<p>企業のドキュメントなどは「Copyright」表記を入れることが多いので、<br>
+pdfのスタイル設定のフッタに記述することで対応可能</p>
+
+<div class="code-frame" data-lang="adoc">
+<div class="code-lang"><span class="bold">test.adoc</span></div>
+<div class="highlight"><pre><span></span>:pdf-style: themes/default-theme.yml
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="yaml">
+<div class="code-lang"><span class="bold">default-theme.yml</span></div>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">footer</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">font_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$base_font_size_small</span>
+  <span class="l l-Scalar l-Scalar-Plain">border_color</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dddddd</span>
+  <span class="l l-Scalar l-Scalar-Plain">border_width</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.25</span>
+  <span class="l l-Scalar l-Scalar-Plain">height</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$base_line_height_length * 2.5</span>
+  <span class="l l-Scalar l-Scalar-Plain">line_height</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+  <span class="l l-Scalar l-Scalar-Plain">padding</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$base_line_height_length / 2</span><span class="p p-Indicator">,</span> <span class="nv">1</span><span class="p p-Indicator">,</span> <span class="nv">0</span><span class="p p-Indicator">,</span> <span class="nv">1</span><span class="p p-Indicator">]</span>
+  <span class="l l-Scalar l-Scalar-Plain">vertical_align</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">top</span>
+  <span class="l l-Scalar l-Scalar-Plain">recto</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">right</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">content</span><span class="p p-Indicator">:</span> <span class="s">'{page-number}</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">{page-count}'</span>
+    <span class="l l-Scalar l-Scalar-Plain">center</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">content</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Copyright (C) adoc company CO.,LTD. All right reserved.</span>
+  <span class="l l-Scalar l-Scalar-Plain">verso</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">right</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">content</span><span class="p p-Indicator">:</span> <span class="s">'{page-number}</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">{page-count}'</span>
+    <span class="l l-Scalar l-Scalar-Plain">center</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">content</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Copyright (C) adoc company CO.,LTD. All right reserved.</span>
+</pre></div>
+</div>
+
+<p><a href="https://camo.qiitausercontent.com/ecea1634a222dc94b1ce2ad7999f90bf82257518/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f39343337343364612d663966322d393365622d393761372d6533623664663565343261612e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ecea1634a222dc94b1ce2ad7999f90bf82257518/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f39343337343364612d663966322d393365622d393761372d6533623664663565343261612e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/943743da-f9f2-93eb-97a7-e3b6df5e42aa.png"></a></p>
+
+<h3>
+<span id="半角全角が混じるとスペースがおかしくなるasciidoctor-pdf" class="fragment"></span><a href="#%E5%8D%8A%E8%A7%92%E5%85%A8%E8%A7%92%E3%81%8C%E6%B7%B7%E3%81%98%E3%82%8B%E3%81%A8%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%8C%E3%81%8A%E3%81%8B%E3%81%97%E3%81%8F%E3%81%AA%E3%82%8Basciidoctor-pdf"><i class="fa fa-link"></i></a>半角・全角が混じるとスペースがおかしくなる(asciidoctor-pdf)</h3>
+
+<p>半角・全角が混じるとスペースがおかしくなる。</p>
+
+<ul>
+<li>スペースがおかしい例</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/e909d1f930f7615bcc9c42347e430a43d3d3da35/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f64346638386436392d316266352d666362312d656137632d3836326333363436353361662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e909d1f930f7615bcc9c42347e430a43d3d3da35/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f64346638386436392d316266352d666362312d656137632d3836326333363436353361662e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/d4f88d69-1bf5-fcb1-ea7c-862c364653af.png"></a></p>
+
+<p>対策としては、「asciidoctor-pdf-cjk」を入れると大体解消</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>gem install asciidoctor-pdf-cjk
+</pre></div></div>
+
+<p>さらに、PDF変換のときに「-r asciidoctor-pdf-cjk」指定しないといけない</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>asciidoctor-pdf -r asciidoctor-pdf-cjk test.asc
+</pre></div></div>
+
+<ul>
+<li>適用後の例</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/1865e2fa2597269db9e810539b5e38b4b230b3b4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f38376331346238332d386263302d643061322d623633642d3865633831666632623965302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/1865e2fa2597269db9e810539b5e38b4b230b3b4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f38376331346238332d386263302d643061322d623633642d3865633831666632623965302e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/87c14b83-8bc0-d0a2-b63d-8ec81ff2b9e0.png"></a></p>
+
+<h2>
+<span id="asciidoctor-pdfの課題" class="fragment"></span><a href="#asciidoctor-pdf%E3%81%AE%E8%AA%B2%E9%A1%8C"><i class="fa fa-link"></i></a>asciidoctor-pdfの課題</h2>
+
+<h3>
+<span id="文字の色が変えられない" class="fragment"></span><a href="#%E6%96%87%E5%AD%97%E3%81%AE%E8%89%B2%E3%81%8C%E5%A4%89%E3%81%88%E3%82%89%E3%82%8C%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>文字の色が変えられない</h3>
+
+<ul>
+<li>asiciidoctor-pdfのバグ？</li>
+</ul>
+
+<h3>
+<span id="が表示されない" class="fragment"></span><a href="#%E3%81%8C%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>「※」が表示されない</h3>
+
+<p>デフォルトフォントに「※」が入っていない。<br>
+fontsフォルダに「※」が入ったフォントファイルを入れればＯＫ</p>
+
+<ul>
+<li>HTML(※が出る）</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/aacfb0b2bf55b36b73a4e306d4e39afd0a2c8030/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f64666530643438372d613535322d653266642d376465342d3264313063316464623433652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/aacfb0b2bf55b36b73a4e306d4e39afd0a2c8030/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f64666530643438372d613535322d653266642d376465342d3264313063316464623433652e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/dfe0d487-a552-e2fd-7de4-2d10c1ddb43e.png"></a></p>
+
+<ul>
+<li>PDF(※が出ない）</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/2f4d79b4e276a68e7eaa141acc68c1267b91b818/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f32613966363935312d313363652d363735662d623432302d6663353238343261613761312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/2f4d79b4e276a68e7eaa141acc68c1267b91b818/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303836322f32613966363935312d313363652d363735662d623432302d6663353238343261613761312e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10862/2a9f6951-13ce-675f-b420-fc52842aa7a1.png"></a></p>
+
+<h2>
+<span id="参考資料" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E8%B3%87%E6%96%99"><i class="fa fa-link"></i></a>参考資料</h2>
+
+<ul>
+<li><a href="https://takumon.github.io/asciidoc-syntax-quick-reference-japanese-translation/" rel="nofollow noopener" target="_blank">Asciidoctor クリックリファレンス（日本語）</a></li>
+<li><a href="http://asciidoctor.org/docs/user-manual/" rel="nofollow noopener" target="_blank">Asciidoctor User Manual</a></li>
+<li><a href="https://github.com/asciidoctor/asciidoctor-pdf" rel="nofollow noopener" target="_blank">Asciidoctor pdf</a></li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

@@ -1,0 +1,807 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (castaneai)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (castaneai さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>castaneaiさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>666</kbd>
+		<a target="_blank" href="https://qiita.com/castaneai/items/da6baec750370689e2fa">良いエラーメッセージの書き方</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-01 02:20:20</center>
+	</td>
+	<td style="width:200px;">
+		@castaneai<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10713/profile-images/1489427173">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[error]</b> <b>[programming]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>エラーには大抵「エラーメッセージ」が付いています。<br>
+自分は過去に、エラーメッセージの内容を雑にしてしまい後悔することがよくありました。<br>
+その経験から、良いエラーメッセージの書き方を考えました。</p>
+
+<h2>
+<span id="エラーメッセージを2つに分類する" class="fragment"></span><a href="#%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8%E3%82%922%E3%81%A4%E3%81%AB%E5%88%86%E9%A1%9E%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>エラーメッセージを2つに分類する</h2>
+
+<p>まず、エラーメッセージといっても次の2つのパターンで大きく異なってきます。</p>
+
+<ul>
+<li>(1) ユーザーが見るエラーメッセージ</li>
+<li>(2) 開発者が見るエラーメッセージ</li>
+</ul>
+
+<h2>
+<span id="1-ユーザーが見るエラーメッセージ" class="fragment"></span><a href="#1-%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%81%8C%E8%A6%8B%E3%82%8B%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8"><i class="fa fa-link"></i></a>(1) ユーザーが見るエラーメッセージ</h2>
+
+<h3>
+<span id="内部実装のことは書かないようにする" class="fragment"></span><a href="#%E5%86%85%E9%83%A8%E5%AE%9F%E8%A3%85%E3%81%AE%E3%81%93%E3%81%A8%E3%81%AF%E6%9B%B8%E3%81%8B%E3%81%AA%E3%81%84%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>内部実装のことは書かないようにする</h3>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">NG</td>
+<td style="text-align: left">MySQLのクエリ実行に失敗しました 'SELECT * FROM ...'</td>
+</tr>
+<tr>
+<td style="text-align: left">OK</td>
+<td style="text-align: left">検索処理でエラーが発生しました</td>
+</tr>
+</tbody>
+</table>
+
+<p>ソースコードの何処か～や、何のライブラリで～といったプログラマーしかわからない情報は書かないようにします。<br>
+ユーザー側からすると、謎の英語の羅列が出てきたりしてなんだか怖いですし、悪意のあるユーザーに<strong>不正行為のためのヒントを与えてしまう可能性があり危険です</strong></p>
+
+<p>たとえば、上の「わるい例」では MySQL を使っていることや、どのようなSQL文を実行しているか、テーブル名は…といった情報が見えてしまっているので攻撃のヒントを与えてしまうかもしれません。</p>
+
+<p>もちろん、開発者だけが見られるエラーメッセージの場合は逆になります。（詳しくは後に）</p>
+
+<h3>
+<span id="ユーザーの入力が原因の場合はっきりと理由を書く" class="fragment"></span><a href="#%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%81%AE%E5%85%A5%E5%8A%9B%E3%81%8C%E5%8E%9F%E5%9B%A0%E3%81%AE%E5%A0%B4%E5%90%88%E3%81%AF%E3%81%A3%E3%81%8D%E3%82%8A%E3%81%A8%E7%90%86%E7%94%B1%E3%82%92%E6%9B%B8%E3%81%8F"><i class="fa fa-link"></i></a>ユーザーの入力が原因の場合、はっきりと理由を書く</h3>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">NG</td>
+<td style="text-align: left">入力欄が不正です</td>
+</tr>
+<tr>
+<td style="text-align: left">OK</td>
+<td style="text-align: left">ユーザーIDは4文字以上の英数字で入力してください</td>
+</tr>
+</tbody>
+</table>
+
+<p>ユーザーの入力内容が原因の場合、「何が悪かったのか」具体的に出してくれないとユーザーはイライラしてしまいます。</p>
+
+<h2>
+<span id="2-開発者が見るエラーメッセージ" class="fragment"></span><a href="#2-%E9%96%8B%E7%99%BA%E8%80%85%E3%81%8C%E8%A6%8B%E3%82%8B%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8"><i class="fa fa-link"></i></a>(2) 開発者が見るエラーメッセージ</h2>
+
+<p>開発者用のエラーメッセージは、ユーザー用とは違って<strong>不具合が起きた場所をできるだけすばやく特定するために、詳しく、具体的にします</strong></p>
+
+<h3>
+<span id="エラーに関わる値を具体的に出す" class="fragment"></span><a href="#%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%AB%E9%96%A2%E3%82%8F%E3%82%8B%E5%80%A4%E3%82%92%E5%85%B7%E4%BD%93%E7%9A%84%E3%81%AB%E5%87%BA%E3%81%99"><i class="fa fa-link"></i></a>エラーに関わる値を具体的に出す</h3>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">NG</td>
+<td style="text-align: left">config file not found</td>
+</tr>
+<tr>
+<td style="text-align: left">OK</td>
+<td style="text-align: left">config file not found: /path/to/config.ini</td>
+</tr>
+</tbody>
+</table>
+
+<p>たとえば、「設定ファイルが見つかりませんでした」と言われても「どこの設定ファイルを開こうとしてエラーになったの・・？」と困惑してしまいます。<br>
+また、期待した値と実際の値が違った場合は、<strong>xxを期待したが、実際はyyだったのでエラーになりました</strong> というところまで具体的に出しているとわかりやすいです。</p>
+
+<h3>
+<span id="原因を特定しやすくしてくれる一文を入れる" class="fragment"></span><a href="#%E5%8E%9F%E5%9B%A0%E3%82%92%E7%89%B9%E5%AE%9A%E3%81%97%E3%82%84%E3%81%99%E3%81%8F%E3%81%97%E3%81%A6%E3%81%8F%E3%82%8C%E3%82%8B%E4%B8%80%E6%96%87%E3%82%92%E5%85%A5%E3%82%8C%E3%82%8B"><i class="fa fa-link"></i></a>原因を特定しやすくしてくれる一文を入れる</h3>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">NG</td>
+<td style="text-align: left">table "users" not found</td>
+</tr>
+<tr>
+<td style="text-align: left">OK</td>
+<td style="text-align: left">table "users" not found. have you init db?</td>
+</tr>
+</tbody>
+</table>
+
+<p>起こったことを伝えることは重要ですが、さらに<strong>「原因はxxなのでは？」「～～を忘れていませんか？」</strong>という提案が入っていると「あぁ～そうか忘れてた！！」って気づきやすいと思います。</p>
+
+<h3>
+<span id="正しい文法でなくても英語を使う" class="fragment"></span><a href="#%E6%AD%A3%E3%81%97%E3%81%84%E6%96%87%E6%B3%95%E3%81%A7%E3%81%AA%E3%81%8F%E3%81%A6%E3%82%82%E8%8B%B1%E8%AA%9E%E3%82%92%E4%BD%BF%E3%81%86"><i class="fa fa-link"></i></a>正しい文法でなくても、英語を使う</h3>
+
+<p>これは好みが分かれそうなところですが、自分は自身しか使わないようなものでもエラーメッセージは英語で書くようにしています。<br>
+その理由はこんなところです。2つ目はとても個人的な理由ですが・・</p>
+
+<ul>
+<li>文字エンコーディング関連の問題にぶつかる可能性がある</li>
+<li>vimで日本語入力に切り替えるのがしんどい</li>
+</ul>
+
+<p>しかし、普段日本語を書いていると英語でメッセージを書くのは難しいです。そこで、自分は<strong>文法は気にせずに書く</strong>ようにしています。<br>
+正しい文法よりも、<strong>何が起きたのか分かれば十分</strong>と思っています。</p>
+
+<p>たとえば、 <code>user(id=1) register fail</code> というエラーメッセージは（おそらく）文法的には変ですが、「ユーザー（ID: 1）、登録、失敗」という単語から何が起きたかはつかめます。</p>
+
+<h3>
+<span id="エラーに至るまでの履歴スタックトレース等を表示する" class="fragment"></span><a href="#%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%AB%E8%87%B3%E3%82%8B%E3%81%BE%E3%81%A7%E3%81%AE%E5%B1%A5%E6%AD%B4%E3%82%B9%E3%82%BF%E3%83%83%E3%82%AF%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B9%E7%AD%89%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>エラーに至るまでの履歴（スタックトレース等）を表示する</h3>
+
+<p>開発者としては、エラーが発生した際に「どのような経緯でエラーになったのか」が知れると非常に有用です。<br>
+大抵のプログラミング実行環境では、スタックトレースを表示する処理が用意されているので、開発者用エラーメッセージにはつけておくと良いでしょう。</p>
+
+<h3>
+<span id="複数あるものは自身を識別する値を一緒に表示する" class="fragment"></span><a href="#%E8%A4%87%E6%95%B0%E3%81%82%E3%82%8B%E3%82%82%E3%81%AE%E3%81%AF%E8%87%AA%E8%BA%AB%E3%82%92%E8%AD%98%E5%88%A5%E3%81%99%E3%82%8B%E5%80%A4%E3%82%92%E4%B8%80%E7%B7%92%E3%81%AB%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>複数あるものは、自身を識別する値を一緒に表示する</h3>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">NG</td>
+<td style="text-align: left">user register fail</td>
+</tr>
+<tr>
+<td style="text-align: left">OK</td>
+<td style="text-align: left">[ID: 12345]user register fail</td>
+</tr>
+</tbody>
+</table>
+
+<p>登録ユーザーや、マルチスレッドといった複数存在するものを扱っている場合、<strong>「エラーが発生したのは複数あるうちのどの個体か」</strong>を知ることで超探しやすくなります。<br>
+ユーザーIDや、スレッドID、IPアドレスなど個体を特定できるものはできるだけ一緒に入れましょう。</p>
+
+<h3>
+<span id="発生時刻を細かく表示する" class="fragment"></span><a href="#%E7%99%BA%E7%94%9F%E6%99%82%E5%88%BB%E3%82%92%E7%B4%B0%E3%81%8B%E3%81%8F%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>発生時刻を細かく表示する</h3>
+
+<p>気がついたらエラーメッセージがたくさん出ていた、という状況の場合<strong>「いつ発生したエラーなのか」</strong>は重要な情報になります。<br>
+特に長時間起動するサーバー等ではログに複数のエラーメッセージが並ぶこともよくあるので、秒より細かい単位までしっかり時刻を表示しておくと良いでしょう。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>castaneaiさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
+		<a target="_blank" href="https://qiita.com/castaneai/items/7815f3563b256ae9b18d">goroutine を安全に止める方法</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-16 19:59:40</center>
+	</td>
+	<td style="width:200px;">
+		@castaneai<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10713/profile-images/1489427173">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Go]</b> <b>[golang]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>メインの処理から、無限ループするgoroutineを止める、といった例で考えます。</p>
+
+<div class="code-frame" data-lang="go"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">go</span> <span class="nx">loop</span><span class="p">()</span>
+
+    <span class="c1">// loopが終わるのを待つ何らかの処理</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+
+<span class="c1">// 無限ループする関数</span>
+<span class="kd">func</span> <span class="nx">loop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="nb">println</span><span class="p">(</span><span class="s">"loop..."</span><span class="p">)</span>
+        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h2>
+<span id="1つの-goroutine-を止める" class="fragment"></span><a href="#1%E3%81%A4%E3%81%AE-goroutine-%E3%82%92%E6%AD%A2%E3%82%81%E3%82%8B"><i class="fa fa-link"></i></a>1つの goroutine を止める</h2>
+
+<p>まずは、goroutineが1つの場合から考えます。</p>
+
+<p>goroutineに「止まれ」と命令を送っても、その瞬間安全に止まるとは限らないので、「無事に止まったよ」という通知をgoroutineから貰うまで待つ必要があります。</p>
+
+<p>ここでは、「止まれ」命令＝<strong>stop</strong>、 「止まったよ」通知＝<strong>done</strong> という名前で扱います。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">順序</th>
+<th style="text-align: left">call場所</th>
+<th style="text-align: left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">1</td>
+<td style="text-align: left">main</td>
+<td style="text-align: left">goroutine 開始</td>
+</tr>
+<tr>
+<td style="text-align: left">2</td>
+<td style="text-align: left">main</td>
+<td style="text-align: left">stop 通知送る</td>
+</tr>
+<tr>
+<td style="text-align: left">3</td>
+<td style="text-align: left">goroutine</td>
+<td style="text-align: left">stop 通知受け取り、ループから脱出</td>
+</tr>
+<tr>
+<td style="text-align: left">4</td>
+<td style="text-align: left">goroutine</td>
+<td style="text-align: left">脱出時に done 通知を送る</td>
+</tr>
+<tr>
+<td style="text-align: left">5</td>
+<td style="text-align: left">main</td>
+<td style="text-align: left">done 通知を待ってから、終了する</td>
+</tr>
+</tbody>
+</table>
+
+<p>という流れになるため、2つのchannelをつくります</p>
+
+<ul>
+<li>(main) -&gt; (goroutine) に停止通知を送るchannel</li>
+<li>(goroutine) -&gt; (main) に完了通知を送るchannel</li>
+</ul>
+
+<div class="code-frame" data-lang="go"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">"time"</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">stopCh</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+    <span class="nx">doneCh</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+
+    <span class="k">go</span> <span class="nx">loop</span><span class="p">(</span><span class="nx">stopCh</span><span class="p">,</span> <span class="nx">doneCh</span><span class="p">)</span>
+
+    <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+    <span class="nb">println</span><span class="p">(</span><span class="s">"request stop."</span><span class="p">)</span>
+    <span class="nb">close</span><span class="p">(</span><span class="nx">stopCh</span><span class="p">)</span>
+
+    <span class="c1">// loopが完了するまで待つ</span>
+    <span class="o">&lt;-</span><span class="nx">doneCh</span>
+    <span class="nb">println</span><span class="p">(</span><span class="s">"loop done."</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// stopCh: 外部からこのloopを止めたい という通知をするchannel</span>
+<span class="c1">// doneCh: 内部からこのloopが完了した という通知をするchannel</span>
+<span class="kd">func</span> <span class="nx">loop</span><span class="p">(</span><span class="nx">stopCh</span><span class="p">,</span> <span class="nx">doneCh</span> <span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span> <span class="p">{</span>
+    <span class="c1">// リソースの解放が必要であれば、ここでする</span>
+    <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span> <span class="nb">close</span><span class="p">(</span><span class="nx">doneCh</span><span class="p">)</span> <span class="p">}()</span>
+
+    <span class="c1">// 無限ループ</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="nb">println</span><span class="p">(</span><span class="s">"loop..."</span><span class="p">)</span>
+        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">stopCh</span><span class="p">:</span>
+            <span class="nb">println</span><span class="p">(</span><span class="s">"stop request received."</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="c1">// default: 重要！！</span>
+            <span class="c1">// これがないと、stopChを待ち続けてしまうので、loopが続行できなくなる</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>出力</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>(goroutine) loop...
+(goroutine) loop...
+(goroutine) loop...
+(main) stop request sent.
+(goroutine) stop request received.
+(main) loop done.
+</pre></div></div>
+
+<h3>
+<span id="ポイント" class="fragment"></span><a href="#%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>ポイント</h3>
+
+<ul>
+<li>完了通知を送る際、 channel にダミーの値を送る必要はなく、 close() でよい</li>
+<li>
+<strong>select</strong> に <strong>default:</strong> をつけるとブロッキングしない <strong>select</strong> になる</li>
+</ul>
+
+<h2>
+<span id="複数の-goroutine-を止める" class="fragment"></span><a href="#%E8%A4%87%E6%95%B0%E3%81%AE-goroutine-%E3%82%92%E6%AD%A2%E3%82%81%E3%82%8B"><i class="fa fa-link"></i></a>複数の goroutine を止める</h2>
+
+<p>goroutine の数が1つであれば、channel でも良いですが、複数の goroutine の完了を待つのであれば、 <a href="https://golang.org/pkg/sync/#WaitGroup" rel="nofollow noopener" target="_blank">sync.WaitGroup</a> が良いです。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">順序</th>
+<th style="text-align: left">call場所</th>
+<th style="text-align: left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">1</td>
+<td style="text-align: left">main</td>
+<td style="text-align: left">goroutine 1 開始 (waitGroup +1)</td>
+</tr>
+<tr>
+<td style="text-align: left">2</td>
+<td style="text-align: left">main</td>
+<td style="text-align: left">goroutine 2 開始 (waitGroup +1)</td>
+</tr>
+<tr>
+<td style="text-align: left">3</td>
+<td style="text-align: left">main</td>
+<td style="text-align: left">stop 通知送る</td>
+</tr>
+<tr>
+<td style="text-align: left">4</td>
+<td style="text-align: left">goroutine 1</td>
+<td style="text-align: left">stop 通知受け取り、ループから脱出 (waitGroup -1)</td>
+</tr>
+<tr>
+<td style="text-align: left">5</td>
+<td style="text-align: left">goroutine 2</td>
+<td style="text-align: left">stop 通知受け取り、ループから脱出 (waitGroup -1)</td>
+</tr>
+<tr>
+<td style="text-align: left">6</td>
+<td style="text-align: left">main</td>
+<td style="text-align: left">WaitGroupが 0 になったので終了</td>
+</tr>
+</tbody>
+</table>
+
+<div class="code-frame" data-lang="go"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">"time"</span>
+    <span class="s">"sync"</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">stopCh</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+    <span class="nx">wg</span> <span class="o">:=</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">{}</span>
+
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">loop</span><span class="p">(</span><span class="nx">stopCh</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">wg</span><span class="p">)</span>
+
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">loop</span><span class="p">(</span><span class="nx">stopCh</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">wg</span><span class="p">)</span>
+
+    <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+    <span class="nb">println</span><span class="p">(</span><span class="s">"(main) request stop."</span><span class="p">)</span>
+    <span class="nb">close</span><span class="p">(</span><span class="nx">stopCh</span><span class="p">)</span>
+
+    <span class="c1">// loopが完了するまで待つ</span>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+    <span class="nb">println</span><span class="p">(</span><span class="s">"(main) all loops done."</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// stopCh: 外部からこのloopを止めたい という通知をするchannel</span>
+<span class="c1">// wg: このloopが完了したら Done() を呼び出す</span>
+<span class="kd">func</span> <span class="nx">loop</span><span class="p">(</span><span class="nx">stopCh</span> <span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// リソースの解放が必要であれば、ここでする</span>
+    <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span> <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span> <span class="p">}()</span>
+
+    <span class="c1">// 無限ループ</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="nb">println</span><span class="p">(</span><span class="s">"(goroutine) loop..."</span><span class="p">)</span>
+        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">stopCh</span><span class="p">:</span>
+            <span class="nb">println</span><span class="p">(</span><span class="s">"(goroutine) stop request received."</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="c1">// default: 重要！！</span>
+            <span class="c1">// これがないと、stopChを待ち続けてしまうので、loopが続行できなくなる</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>出力</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>(goroutine) loop...
+(goroutine) loop...
+(goroutine) loop...
+(goroutine) loop...
+(goroutine) loop...
+(goroutine) loop...
+(main) request stop.
+(goroutine) stop request received.
+(goroutine) stop request received.
+(main) all loops done.
+</pre></div></div>
+
+<h2>
+<span id="エラーを取りたい場合" class="fragment"></span><a href="#%E3%82%A8%E3%83%A9%E3%83%BC%E3%82%92%E5%8F%96%E3%82%8A%E3%81%9F%E3%81%84%E5%A0%B4%E5%90%88"><i class="fa fa-link"></i></a>エラーを取りたい場合</h2>
+
+<p>Wait() した際に、どこかの goroutine 内部で最後に起こったエラーを取得したい場合<br>
+<a href="https://godoc.org/golang.org/x/sync/errgroup" rel="nofollow noopener" target="_blank">errGroup パッケージ</a> が使えます。</p>
+
+<div class="code-frame" data-lang="go"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">"time"</span>
+    <span class="s">"golang.org/x/sync/errgroup"</span>
+    <span class="s">"errors"</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">stopCh</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+    <span class="nx">eg</span> <span class="o">:=</span> <span class="nx">errgroup</span><span class="p">.</span><span class="nx">Group</span><span class="p">{}</span>
+
+    <span class="nx">eg</span><span class="p">.</span><span class="nx">Go</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">loop</span><span class="p">(</span><span class="nx">stopCh</span><span class="p">)</span>
+    <span class="p">})</span>
+
+    <span class="nx">eg</span><span class="p">.</span><span class="nx">Go</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">loop</span><span class="p">(</span><span class="nx">stopCh</span><span class="p">)</span>
+    <span class="p">})</span>
+
+    <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+    <span class="nb">println</span><span class="p">(</span><span class="s">"(main) request stop."</span><span class="p">)</span>
+    <span class="nb">close</span><span class="p">(</span><span class="nx">stopCh</span><span class="p">)</span>
+
+    <span class="c1">// loopのどれかが最初にエラーを返した時点でWaitが完了する</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">eg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">();</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nb">println</span><span class="p">(</span><span class="s">"(main) error!"</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nb">println</span><span class="p">(</span><span class="s">"(main) all loops done."</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// stopCh: 外部からこのloopを止めたい という通知をするchannel</span>
+<span class="kd">func</span> <span class="nx">loop</span><span class="p">(</span><span class="nx">stopCh</span> <span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="c1">// リソースの解放が必要であれば、ここでする</span>
+
+    <span class="c1">// 無限ループ</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="nb">println</span><span class="p">(</span><span class="s">"(goroutine) loop..."</span><span class="p">)</span>
+        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">stopCh</span><span class="p">:</span>
+            <span class="nb">println</span><span class="p">(</span><span class="s">"(goroutine) stop request received."</span><span class="p">)</span>
+            <span class="c1">// エラーを返した時点で errGroup に通知される</span>
+            <span class="k">return</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">"stop"</span><span class="p">)</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="c1">// default: 重要！！</span>
+            <span class="c1">// これがないと、stopChを待ち続けてしまうので、loopが続行できなくなる</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h2>
+<span id="context-パッケージ" class="fragment"></span><a href="#context-%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8"><i class="fa fa-link"></i></a>context パッケージ</h2>
+
+<p>最近導入された<a href="">context パッケージ</a>は、非同期処理をキャンセルする方法を提供します。<br>
+この仕組みを使って、goroutine に対してキャンセルを送信することで通知することもできます。</p>
+
+<p>contextパッケージについては、以下のサイト等を読むとわかりやすいです。</p>
+
+<ul>
+<li><a href="http://deeeet.com/writing/2016/07/22/context/" rel="nofollow noopener" target="_blank">Go1.7のcontextパッケージ</a></li>
+</ul>
+
+<h2>
+<span id="参考にしたページ" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E3%81%AB%E3%81%97%E3%81%9F%E3%83%9A%E3%83%BC%E3%82%B8"><i class="fa fa-link"></i></a>参考にしたページ</h2>
+
+<ul>
+<li><a href="https://stackoverflow.com/questions/6807590/how-to-stop-a-goroutine" rel="nofollow noopener" target="_blank">how to stop a goroutine</a></li>
+<li><a href="https://github.com/lestrrat/go-slides/blob/master/2014-yapcasia-go-for-perl-mongers/main.slide" rel="nofollow noopener" target="_blank">Go For Perl Mongers</a></li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>castaneaiさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>3</kbd>
+		<a target="_blank" href="https://qiita.com/castaneai/items/bf8a0c38b5df4b75db60">Python3 の少し複雑な型ヒントの具体例</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-16 17:02:03</center>
+	</td>
+	<td style="width:200px;">
+		@castaneai<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10713/profile-images/1489427173">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[python3]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Python3.5から導入されたうれしい型ヒント機能ですが、「このような型はどうやって定義すれば？」と思うことがあったので、メモしました。<br>
+（ジェネリクスについては難しいので、今回はなしで・・）</p>
+
+<h2>
+<span id="str-または-bytes-のようなorの型ヒント" class="fragment"></span><a href="#str-%E3%81%BE%E3%81%9F%E3%81%AF-bytes-%E3%81%AE%E3%82%88%E3%81%86%E3%81%AAor%E3%81%AE%E5%9E%8B%E3%83%92%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a><code>str</code> または <code>bytes</code> のようなORの型ヒント</h2>
+
+<p><code>Union[str, bytes]</code> のように <code>Union</code> を使えば可能です。</p>
+
+<div class="code-frame" data-lang="python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">src</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]):</span>
+    <span class="o">...</span>
+</pre></div></div>
+
+<h2>
+<span id="ファイルのように扱える-file-like-object-の型ヒント" class="fragment"></span><a href="#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB%E6%89%B1%E3%81%88%E3%82%8B-file-like-object-%E3%81%AE%E5%9E%8B%E3%83%92%E3%83%B3%E3%83%88"><i class="fa fa-link"></i></a>ファイルのように扱える (file-like object) の型ヒント</h2>
+
+<div class="code-frame" data-lang="python"><div class="highlight"><pre><span></span><span class="c1"># file-like object型ヒント</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="nb">file</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">IO</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="c1"># テキストであることを明示</span>
+<span class="k">def</span> <span class="nf">func_text</span><span class="p">(</span><span class="nb">file</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="c1"># バイナリであることを明示 </span>
+<span class="k">def</span> <span class="nf">func_binary</span><span class="p">(</span><span class="nb">file</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">BinaryIO</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div></div>
+
+<h2>
+<span id="c-の-typedef-のように別名をつける型エイリアス" class="fragment"></span><a href="#c-%E3%81%AE-typedef-%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB%E5%88%A5%E5%90%8D%E3%82%92%E3%81%A4%E3%81%91%E3%82%8B%E5%9E%8B%E3%82%A8%E3%82%A4%E3%83%AA%E3%82%A2%E3%82%B9"><i class="fa fa-link"></i></a>C の typedef のように別名をつける（型エイリアス）</h2>
+
+<div class="code-frame" data-lang="python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">typing</span> 
+
+<span class="c1"># typing module の中にあるものは代入で別名をつけることができます</span>
+<span class="n">AppSetting</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span>
+</pre></div></div>
+
+<h2>
+<span id="継承した型をつくる-newtype" class="fragment"></span><a href="#%E7%B6%99%E6%89%BF%E3%81%97%E3%81%9F%E5%9E%8B%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B-newtype"><i class="fa fa-link"></i></a>継承した型をつくる (NewType)</h2>
+
+<p>型エイリアスは別名をつけるだけですが、NewTypeはサブクラスのような扱いになります</p>
+
+<div class="code-frame" data-lang="python"><div class="highlight"><pre><span></span><span class="c1"># str, int のようなビルトインの型でも可能です</span>
+<span class="n">UserID</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">NewType</span><span class="p">(</span><span class="s1">'UserID'</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+</pre></div></div>
+
+<h2>
+<span id="参考リンク" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E3%83%AA%E3%83%B3%E3%82%AF"><i class="fa fa-link"></i></a>参考リンク</h2>
+
+<ul>
+<li><a href="https://docs.python.jp/3/library/typing.html" rel="nofollow noopener" target="_blank">typing — 型ヒントのサポート</a></li>
+<li><a href="https://stackoverflow.com/questions/38569401/type-hint-for-a-file-or-file-like-object" rel="nofollow noopener" target="_blank">Type hint for a file or file-like object?</a></li>
+<li><a href="https://qiita.com/icoxfog417/items/c17eb042f4735b7924a3" id="reference-62c786e6a62fa449d7c3">Pythonではじまる、型のある世界</a></li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>castaneaiさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
+		<a target="_blank" href="https://qiita.com/castaneai/items/0e87c406b04cee16d9a4">mitmproxy に独自の content view を追加する</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-16 20:45:17</center>
+	</td>
+	<td style="width:200px;">
+		@castaneai<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/10713/profile-images/1489427173">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[mitmproxy]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h2>
+<span id="content-view-とは" class="fragment"></span><a href="#content-view-%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>content view とは</h2>
+
+<p><a href="https://mitmproxy.org/" rel="nofollow noopener" target="_blank">mitmproxy</a> はHTMLのリクエスト・レスポンスの中身を表示する際に、表示する形式を選ぶことができます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/5d83bafee71f6bfbb425e965bb17203685e9025e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303731332f65666130316432382d666361392d613531382d623432632d3538613461353461336431302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/5d83bafee71f6bfbb425e965bb17203685e9025e/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303731332f65666130316432382d666361392d613531382d623432632d3538613461353461336431302e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10713/efa01d28-fca9-a518-b42c-58a4a54a3d10.png"></a></p>
+
+<p>この形式ごとに表示する仕組みを mitmproxy では <strong>content view</strong> と呼びます。</p>
+
+<p>html, css, json など基本的なものは標準で用意されています。</p>
+
+<h2>
+<span id="独自の-content-view-を作る" class="fragment"></span><a href="#%E7%8B%AC%E8%87%AA%E3%81%AE-content-view-%E3%82%92%E4%BD%9C%E3%82%8B"><i class="fa fa-link"></i></a>独自の content view を作る</h2>
+
+<p>mimproxy はPythonで拡張できるので、オリジナルの <strong>content view</strong> も作れちゃいます！</p>
+
+<p><a href="https://github.com/mitmproxy/mitmproxy/blob/master/examples/simple/custom_contentview.py" rel="nofollow noopener" target="_blank">公式のgithubリポジトリに実例がある</a><br>
+ので、そのコードを例に解説します。</p>
+
+<p>この例は<strong>「リクエスト・レスポンスの中身の大文字小文字を入れ替えて表示」</strong>というものです。</p>
+
+<div class="code-frame" data-lang="python">
+<div class="code-lang"><span class="bold">custom_contentview.py</span></div>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mitmproxy</span> <span class="kn">import</span> <span class="n">contentviews</span>
+
+
+<span class="c1"># contentviews.View を継承したクラスを作る</span>
+<span class="k">class</span> <span class="nc">ViewSwapCase</span><span class="p">(</span><span class="n">contentviews</span><span class="o">.</span><span class="n">View</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"swapcase"</span>
+
+    <span class="c1"># CUIで起動した際に、この表示を適用するショートカットキーを指定</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"swap case text"</span><span class="p">,</span> <span class="s2">"z"</span><span class="p">)</span>
+
+    <span class="n">content_types</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"text/plain"</span><span class="p">]</span>
+
+    <span class="c1"># ここにメインの中身書き換え処理をいれる</span>
+    <span class="c1"># data: リクエスト・レスポンスの中身</span>
+    <span class="c1"># metadata: metadata["headers"] でHTTPヘッダを見ることができる</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">metadata</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"case-swapped text"</span><span class="p">,</span> <span class="n">contentviews</span><span class="o">.</span><span class="n">format_text</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">swapcase</span><span class="p">())</span>
+
+
+<span class="n">view</span> <span class="o">=</span> <span class="n">ViewSwapCase</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+    <span class="n">contentviews</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">done</span><span class="p">():</span>
+    <span class="n">contentviews</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="load-と-start" class="fragment"></span><a href="#load-%E3%81%A8-start"><i class="fa fa-link"></i></a>load と start</h2>
+
+<p>自分の手元のmitmproxyではこのままでは上手く読み込めませんでした。<br>
+mitmproxyのソースコードを見て色々やった結果 <code>def load(l)</code> を <code>def start()</code> に変えることで読み込みに成功しました。</p>
+
+<div class="code-frame" data-lang="diff"><div class="highlight"><pre><span></span><span class="gd">-def load(l):</span>
+<span class="gi">+def start():</span>
+    contentviews.add(view)
+</pre></div></div>
+
+<p>mitmproxyのgithubをみると、途中で <code>start</code> から <code>load</code> に書き換えられているので、動かしているバージョンの違いみたいですね。</p>
+
+<ul>
+<li>
+<a href="https://github.com/mitmproxy/mitmproxy/commit/65f0885bd6809966f694d1ffb965401b8ab2cffc" rel="nofollow noopener" target="_blank">addon loader: add boot_into, which replaces returning from start()</a>
+</li>
+</ul>
+
+<h2>
+<span id="拡張スクリプトを入れた状態で起動する" class="fragment"></span><a href="#%E6%8B%A1%E5%BC%B5%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%82%92%E5%85%A5%E3%82%8C%E3%81%9F%E7%8A%B6%E6%85%8B%E3%81%A7%E8%B5%B7%E5%8B%95%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>拡張スクリプトを入れた状態で起動する</h2>
+
+<p><code>mitmproxy</code> （または <code>mitmweb</code>, <code>mitmdump</code>）コマンドの引数に <code>-s</code> をつけてスクリプトファイルのパスを追加すればOKです。</p>
+
+<p>自分は Windows 環境で <code>mitmproxy</code> が使えないため <code>mitmweb</code> を使ってます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>mitmweb -s custom_contentview.py
+</pre></div></div>
+
+<p>これで、リクエスト・レスポンスの形式選択に <strong>swapcase</strong> が追加されていたら成功です。</p>
+
+<p><a href="https://camo.qiitausercontent.com/249c795db408fac996f45376cdd26b2a9ef0fee7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303731332f39363037343832622d626661302d396261632d336638612d3737323532383666663731352e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/249c795db408fac996f45376cdd26b2a9ef0fee7/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f31303731332f39363037343832622d626661302d396261632d336638612d3737323532383666663731352e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/10713/9607482b-bfa0-9bac-3f8a-7725286ff715.png"></a></p>
+
+<h2>
+<span id="参考リンク" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E3%83%AA%E3%83%B3%E3%82%AF"><i class="fa fa-link"></i></a>参考リンク</h2>
+
+<ul>
+<li>
+<a href="http://docs.mitmproxy.org/en/stable/scripting/overview.html" rel="nofollow noopener" target="_blank">Overview — mitmproxy 2.0.2 documentation</a>
+</li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

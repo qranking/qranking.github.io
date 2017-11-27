@@ -1,0 +1,533 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (lamrongol)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (lamrongol さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>lamrongolさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>202</kbd>
+		<a target="_blank" href="https://qiita.com/lamrongol/items/8a339721ee20a1c81e3c">オブジェクト指向とは結局何なのか あるいはプログラミングをする上で気をつけるべきたった一つのこと</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-30 00:00:08</center>
+	</td>
+	<td style="width:200px;">
+		@lamrongol<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/49529/profile-images/1473691764">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Java]</b> <b>[オブジェクト指向]</b> <b>[設計]</b> <b>[デザインパターン]</b> <b>[新人プログラマ応援]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="はじめに" class="fragment"></span><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>はじめに</h1>
+
+<p>プログラミングを勉強していればオブジェクト指向という言葉を1度は聞いたことがあるでしょう。しかしこのオブジェクト指向、かなり古くからあり現在でも大勢の人が使用しているにも関わらず何を意味しているかイマイチわかりません。あるページを見ると「カプセル化」「継承」「ポリモーフィズム」の要素を持つものと書いてある。しかし<a href="https://ubiteku.oinker.me/2016/05/09/what-is-oo-all-about/" rel="nofollow noopener" target="_blank">オブジェクト指向の提唱者はメッセージングと言っている</a>。<a href="https://ja.wikipedia.org/wiki/%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%8C%87%E5%90%91%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" rel="nofollow noopener" target="_blank">Wikipedia</a>を見ても背景が長々と続きいくつも種類があると書いてあってハッキリしない。</p>
+
+<p>結局以下のような変数とメソッドが固まってるものという漠然とした理解になってる人が多いと思います（全く初耳という人は<a href="https://qiita.com/lamrongol/items/74f62fcbea9cf7e96c4d" id="reference-cd762fcb6045e78fa093">補足</a>を先にお読み下さい）。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SandBox</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">hoge</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">fuga</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>
+
+    <span class="kt">int</span> <span class="nf">foo</span><span class="o">(){</span>
+        <span class="k">return</span> <span class="n">hoge</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kt">int</span> <span class="nf">bar</span><span class="o">(){</span>
+        <span class="k">return</span> <span class="n">fuga</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div></div>
+
+<p>しかし自分が趣味でも業務でもプログラミングを続けてきてわかったのは、結局オブジェクト指向、というか「プログラミングは○○であるべき」系の言説というのは<strong>ある一つの目的</strong>のために存在しており、それがわかればオブジェクト指向や「わかりやすい変数名をつけよう」などのプログラミング技法はたちどころに導かれるということです。</p>
+
+<h1>
+<span id="リーダブルコード" class="fragment"></span><a href="#%E3%83%AA%E3%83%BC%E3%83%80%E3%83%96%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89"><i class="fa fa-link"></i></a>リーダブルコード</h1>
+
+<p>自分が趣味でプログラミングを始めた頃なぜオブジェクト指向で作ったりする必要があるのかわかりませんでした。また、「わかりやすい変数名をつけよう」などの注意書きも理解しつつも重要とは思いませんでした。実際のところ、これらは短くて自分だけが使うプログラムなら必要ありません。例えばあるフォルダ内のファイル名を一括変更（先頭に[既読]とつける）したい場合こんなコードで十分です。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"C:\\Users\\admin\\Documents\\ss"</span><span class="o">);</span>
+<span class="k">for</span><span class="o">(</span><span class="n">File</span> <span class="n">f</span> <span class="o">:</span> <span class="n">a</span><span class="o">.</span><span class="na">listFiles</span><span class="o">()){</span>
+    <span class="n">File</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="s">"[既読]"</span><span class="o">+</span><span class="n">f</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+    <span class="n">f</span><span class="o">.</span><span class="na">renameTo</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div></div>
+
+<p>わざわざオブジェクトを作る必要はありません。わかりやすい変数名を付ける必要もありません。1回使うだけで自分にさえわかればいいからそんなことをしても面倒なだけです。</p>
+
+<p>ではなぜオブジェクト指向や変数名の付け方などが侃々諤々の議論になるかというと、それは<strong>長期間多人数</strong>で開発するプログラムを対象としているからです。業務で開発されるプログラムというのは、大きな会社で多人数で作られ何年間にもわたって調整を加えられます。だからこそ他の人が読んでも理解できるコードで、変更を加えても思わぬところに影響が出ないように疎結合（意味は後で説明します）な必要があるのです。なお、「自分は趣味で一人で作ってるだけだから関係ないな」と思ったらそれは間違いで、半年も空けば過去の自分が書いたコードの意味を忘れてしまうのでやっぱりわかりやすく疎結合に書く必要があります。</p>
+
+<p>要するにオブジェクト指向や「わかりやすい変数名をつけよう」などのプログラミング技法は<strong>「他人（将来の自分含む）が読み書きしやすいコードを書く」</strong>ためにあるのです。</p>
+
+<h1>
+<span id="ではオブジェクト指向とは" class="fragment"></span><a href="#%E3%81%A7%E3%81%AF%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%8C%87%E5%90%91%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>ではオブジェクト指向とは</h1>
+
+<p>自分なりに説明すると、オブジェクト指向とは<strong>「他人（将来の自分含む）が読み書きしやすいコードを書く」ためにカプセル化などのルールを守った上でデータや機能のまとまり（クラス）を作ること</strong>です。<br>
+これだけだとわからないと思うので例としてJavaのArrayListクラスを見てみましょう。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"C"</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"A"</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">));</span><span class="c1">//C</span>
+</pre></div></div>
+
+<p>Javaを知らない人でも（英語がわかるなら）このコードを読めば「listに"C"と"A"を加えて0番目の要素を取得してるんだな」とわかると思います。こんな風に<strong>クラスの中身を見なくてもコードの意味していることがわかる</strong>ことが重要で以下で説明するものも全てこのためにあります。なぜなら大会社が作ってるプログラムは場合によっては数百万行とかになるのでいちいちすべてのコードを把握するのは不可能だから（そしてもちろん小規模なプログラムでも把握しなければいけないコードが少ないほうが望ましいから）です。</p>
+
+<h2>
+<span id="カプセル化" class="fragment"></span><a href="#%E3%82%AB%E3%83%97%E3%82%BB%E3%83%AB%E5%8C%96"><i class="fa fa-link"></i></a>カプセル化</h2>
+
+<p>オブジェクト指向のもっとも重要な特長がカプセル化です。これは「ユーザーが使うのに必要な部分だけ可視化してそれ以外は隠す」ということです。プログラミング言語的に言えば<strong>public（公開）</strong>と<strong>private（非公開）</strong>を適切に設定することです。<br>
+例えばArrayListクラスは実は内部ではensureCapacityInternal()やgrow()などのメソッドがあり複雑な処理をしてるのですが、リストを使う側には関係ないのでprivate（非公開）になっていて、add()やget()などのユーザーが使うメソッドのみpublic（公開）になってます。これによりArrayListは内部を知らなくても簡単に使える安全なクラスになっているのです。</p>
+
+<p>もっとわかりやすく言えば、例えば電卓です。あなたは電卓内部の電子回路がどんなふうになっているか知っているでしょうか？<br>
+ほとんどの人はそんなもの知りません。しかし電卓は誰でも使うことができます。内部の電子回路はprivate（非公開）でボタンや表示画面はpublic（公開）だからです。もし電卓がケースに覆われておらず電子回路が露出していたらどうでしょう。ものすごく電子回路に詳しい人なら自分なりに改造して自分用の特殊な電卓にする事もできるかもしれません。しかしほとんどの人にとってそれは理解不能で、うっかり触ったりして不具合の原因になるのが関の山です。だから外部の操作を受け付ける部分だけpublic（公開）にして電子回路など内部の直接触れる必要がない、触れるべきではない部分はprivate（非公開）にしているのです。これが<strong>カプセル化</strong>です。<br>
+あえて電卓をプログラム風に書くならこんな感じになるでしょう。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Calculator</span><span class="o">{</span>
+    <span class="cm">/** ボタン「1」はpublic（公開） */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">button1</span><span class="o">(){</span>
+        <span class="c1">//処理</span>
+    <span class="o">}</span>
+    <span class="cm">/** ボタン「2」はpublic（公開） */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">button2</span><span class="o">(){</span>
+        <span class="c1">//処理        </span>
+    <span class="o">}</span>
+
+    <span class="o">...</span><span class="c1">//以下続く</span>
+
+    <span class="cm">/** 内部で行う計算処理はprivate（非公開） */</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="nf">calculate</span><span class="o">(){</span>
+        <span class="c1">//処理        </span>
+    <span class="o">}</span>
+
+    <span class="cm">/** 結果の表示はpublic（公開） */</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">showResult</span><span class="o">(){</span>
+        <span class="c1">//処理        </span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div></div>
+
+<p>こう考えていくと「カプセル化」は日常生活にあまねく存在していることがわかります。テレビのリモコンがどんな信号を発信しているか知らなくてもテレビは操作できる。エンジンの設計図を知らなくても車は運転できる。年末調整の詳細を知らなくても経理部に書類を提出すれば年末調整してもらえる。こんな風に「内部は知らなくても何をすればどういう結果が返ってくるかわかる」というブラックボックスにすることで複雑な社会でも生きていけるし、大規模なプログラムも簡単に理解可能な形になるのです。<br>
+冒頭でオブジェクト指向の提唱者は「メッセージング」と言っているという話をしましたが、外部の人が「メッセージ」を送って返ってくる「メッセージ」を受け取るだけで<strong>内部を知らなくても</strong>プログラミングできることが肝なのです。</p>
+
+<h2>
+<span id="密結合と疎結合" class="fragment"></span><a href="#%E5%AF%86%E7%B5%90%E5%90%88%E3%81%A8%E7%96%8E%E7%B5%90%E5%90%88"><i class="fa fa-link"></i></a>密結合と疎結合</h2>
+
+<p>各要素の結びつきが強いのが密結合、弱いのが疎結合です。一般に密結合のものをクラスにまとめてクラス間は疎結合なのが良いとされます。<br>
+例えば電卓クラスに日付計算のためのコードがあったらどうでしょう。「なんでもできるクラスのほうがいいじゃん！」と思う人もいるかもしれませんが日付計算は年月日を分けて計算したり曜日を出したりうるう年を考慮したりと通常の数値計算とはかなり異なります。そのため電卓クラスの中に日付計算のためのコードもあるとクラス内部を編集するとき互いに無関係なメソッドや変数が出てきて混乱してしまいます。使う側も同様です。素直に電卓クラスと日付計算クラスに分けたほうがいいでしょう。<br>
+そしてクラス間は疎結合にします。例えば電卓クラスの状態が日付計算クラスの挙動に影響を与えるようになっていたら電卓クラスを直しただけのつもりなのに日付計算クラスにまで影響を与えてしまい思わぬバグが出てしまうかもしれません。もしどうしても電卓クラスの状態によって日付計算クラスの挙動を変えたいなら電卓クラスから必要なパラメータを取得するメソッドを作り、日付計算クラスにそれを受け取るメソッドを作って連携を「見える化」しましょう。</p>
+
+<h2>
+<span id="ポリモーフィズム多態性" class="fragment"></span><a href="#%E3%83%9D%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%95%E3%82%A3%E3%82%BA%E3%83%A0%E5%A4%9A%E6%85%8B%E6%80%A7"><i class="fa fa-link"></i></a>ポリモーフィズム（多態性）</h2>
+
+<p>ポリモーフィズムとは外面は同じにして内部の処理は多様に変更できることです。例えばテレビのリモコンを考えてください。シャープやパナソニックなどいろんな会社がテレビを作っていてリモコンも内部の電子回路などは異なりますが、チャンネル切り替えボタンや音量の上下ボタンが有ることは共通していて、動作も同じです。このように内部の実装は異なっても「どんな機能を持つのか」という外面は共通させられるのが<strong>ポリモーフィズム</strong>です。<br>
+もしリモコンをプログラム風に書くなら以下のような<a href="https://qiita.com/lamrongol/items/74f62fcbea9cf7e96c4d#%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9interface" id="reference-cd762fcb6045e78fa093">インターフェース(interface)</a>になるでしょう。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">RemoteController</span><span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">channel1</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">channel2</span><span class="o">();</span>
+    <span class="o">...</span><span class="c1">//以下続く</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">volumuUp</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">volumuDown</span><span class="o">();</span>
+    <span class="o">...</span><span class="c1">//以下続く    </span>
+<span class="o">}</span>
+</pre></div></div>
+
+<p>こうすると書く人には「内部の実装は各自変えて良いがこういう機能を持つことは約束してくれ」と伝えられますし、ユーザーはどのメーカーかを気にせずリモコンとして同じように使えます。<br>
+具体的なプログラムで言うと、例えばJavaのArrayListクラスとLinkedListクラスがこれに当たります。詳しい話はアルゴリズム関係の本を読んでほしいと思いますが、前者は値の取得は高速だが要素の挿入や削除は低速、後者はその逆という特徴があります。しかしどちらもListインターフェースを継承してるので<strong>内部の実装と関係なく</strong>add()やget()メソッドでリストとして同じように使えることがわかるのです。</p>
+
+<p>ところでオブジェクト指向をやっている人は「インターフェースの継承はわかったけどクラスの継承は？」と思うかもしれませんが、クラスの継承は親クラスの詳細を知らないと思わぬ挙動をしたり、階層が深くなると変数が多階層に散らばって追うのが大変になったり、同じ名前の変数が重複して混乱するなどの問題があるのであまり使わないほうがいいです。実際<a href="https://www.javaworld.com/article/2073649/core-java/why-extends-is-evil.html" rel="nofollow noopener" target="_blank">Javaの生みの親もクラスの継承(extends)はできるだけ避けるべきだと言っています</a>。</p>
+
+<h1>
+<span id="実践編" class="fragment"></span><a href="#%E5%AE%9F%E8%B7%B5%E7%B7%A8"><i class="fa fa-link"></i></a>実践編</h1>
+
+<p>では以上のことを踏まえて簡単なオブジェクト指向プログラミングをしてみましょう。言語はJavaですがJavaを知らない人にもわかるように書きます。作るのは「期間」を計算するプログラムです。例えば「2ヶ月18日」働いた後「1ヶ月4日」働いたら合計「3ヶ月22日」働いたと出力するプログラムです。<br>
+ただし、30日を1ヶ月と換算します。つまり、「1ヶ月24日」働いて「3ヶ月15日」働いたら、合計は「4ヶ月39日」ですが、30日は1ヶ月と換算するので日数から30を引いて月に1を足し、「5ヶ月9日」と出力します。</p>
+
+<p>オブジェクト指向なしにプログラムを書くと以下のようになります。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">monthNum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">dayNum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+<span class="c1">//1ヶ月24日働く</span>
+<span class="n">monthNum</span> <span class="o">=</span> <span class="n">monthNum</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+<span class="n">dayNum</span> <span class="o">=</span> <span class="n">dayNum</span> <span class="o">+</span> <span class="mi">24</span><span class="o">;</span>
+<span class="c1">////30日を1ヶ月換算</span>
+<span class="n">monthNum</span> <span class="o">=</span> <span class="n">monthNum</span> <span class="o">+</span> <span class="n">dayNum</span><span class="o">/</span><span class="mi">30</span><span class="o">;</span>
+<span class="n">dayNum</span> <span class="o">=</span> <span class="n">dayNum</span><span class="o">%</span><span class="mi">30</span><span class="o">;</span>
+
+<span class="c1">//3ヶ月15日働く</span>
+<span class="n">monthNum</span> <span class="o">=</span> <span class="n">monthNum</span> <span class="o">+</span> <span class="mi">3</span><span class="o">;</span>
+<span class="n">dayNum</span> <span class="o">=</span> <span class="n">dayNum</span> <span class="o">+</span> <span class="mi">15</span><span class="o">;</span>
+<span class="c1">////30日を1ヶ月換算</span>
+<span class="n">monthNum</span> <span class="o">=</span> <span class="n">monthNum</span> <span class="o">+</span> <span class="n">dayNum</span><span class="o">/</span><span class="mi">30</span><span class="o">;</span>
+<span class="n">dayNum</span> <span class="o">=</span> <span class="n">dayNum</span><span class="o">%</span><span class="mi">30</span><span class="o">;</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((</span><span class="n">monthNum</span><span class="o">/</span><span class="mi">12</span><span class="o">)+</span><span class="s">"年"</span><span class="o">+(</span><span class="n">monthNum</span><span class="o">%</span><span class="mi">12</span><span class="o">)+</span><span class="s">"ヶ月"</span><span class="o">+</span><span class="n">dayNum</span><span class="o">+</span><span class="s">"日"</span><span class="o">);</span><span class="c1">//0年5ヶ月9日          </span>
+</pre></div></div>
+
+<p>これでも計算はできますが、コードがごちゃごちゃしてますしコピペミスでバグが発生するかもしれません。そこでDuration（「期間」という意味）クラスを使って以下のようなコードにしてみましょう。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="n">Duration</span> <span class="n">durationSum</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Duration</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+
+<span class="c1">//1ヶ月24日働く</span>
+<span class="n">Duration</span> <span class="n">duration1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Duration</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">24</span><span class="o">);</span>
+<span class="n">durationSum</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">duration1</span><span class="o">);</span>
+
+<span class="c1">//3ヶ月15日働く</span>
+<span class="n">Duration</span> <span class="n">duration2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Duration</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">15</span><span class="o">);</span>
+<span class="n">durationSum</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">duration2</span><span class="o">);</span>
+
+<span class="c1">//自動的にtoString()が呼ばれる</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">durationSum</span><span class="o">);</span><span class="c1">//0年5ヶ月9日</span>
+</pre></div></div>
+
+<p>どうでしょうか。（英語がわかれば）読むだけでわかるスッキリしたコードになったと思います。Durationクラス自体は以下のようにします。</p>
+
+<div class="code-frame" data-lang="java">
+<div class="code-lang"><span class="bold">Duration.java</span></div>
+<div class="highlight"><pre><span></span><span class="cm">/** 「期間」クラス。DAY_OF_MONTH日数は1ヶ月と自動的に換算する */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Duration</span> <span class="o">{</span>
+  <span class="cm">/** 1ヶ月とみなす日数 */</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DAY_OF_MONTH</span> <span class="o">=</span> <span class="mi">30</span><span class="o">;</span>  
+
+  <span class="c1">//ユーザーが勝手に変更できないようにprivate（非公開）にする</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">monthNum</span><span class="o">;</span><span class="c1">//月数</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">dayNum</span><span class="o">;</span><span class="c1">//日数</span>
+
+  <span class="cm">/** monthNumヶ月dayNum日 */</span>
+  <span class="kd">public</span> <span class="nf">Duration</span><span class="o">(</span><span class="kt">int</span> <span class="n">monthNum</span><span class="o">,</span> <span class="kt">int</span> <span class="n">dayNum</span><span class="o">){</span>
+    <span class="c1">//DAY_OF_MONTH(30)日は1ヶ月換算</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">monthNum</span> <span class="o">=</span> <span class="n">monthNum</span> <span class="o">+</span> <span class="n">dayNum</span><span class="o">/</span><span class="n">DAY_OF_MONTH</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">dayNum</span> <span class="o">=</span> <span class="n">dayNum</span> <span class="o">%</span> <span class="n">DAY_OF_MONTH</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="n">Duration</span> <span class="n">duration</span><span class="o">){</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">monthNum</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">monthNum</span> <span class="o">+</span> <span class="n">duration</span><span class="o">.</span><span class="na">getMonthNum</span><span class="o">();</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">dayNum</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">dayNum</span> <span class="o">+</span> <span class="n">duration</span><span class="o">.</span><span class="na">getDayNum</span><span class="o">();</span>
+
+    <span class="c1">//DAY_OF_MONTH(30)日は1ヶ月換算</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">monthNum</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">monthNum</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">dayNum</span><span class="o">/</span><span class="n">DAY_OF_MONTH</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">dayNum</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">dayNum</span> <span class="o">%</span> <span class="n">DAY_OF_MONTH</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="c1">//ユーザーはセットはできないが取得はできるようにpublic（公開）にする</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getMonthNum</span><span class="o">(){</span>
+    <span class="k">return</span> <span class="n">monthNum</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getDayNum</span><span class="o">(){</span>
+    <span class="k">return</span> <span class="n">dayNum</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">(){</span>
+      <span class="k">return</span> <span class="o">(</span><span class="n">monthNum</span><span class="o">/</span><span class="mi">12</span><span class="o">)+</span><span class="s">"年"</span><span class="o">+(</span><span class="n">monthNum</span><span class="o">%</span><span class="mi">12</span><span class="o">)+</span><span class="s">"ヶ月"</span><span class="o">+</span><span class="n">dayNum</span><span class="o">+</span><span class="s">"日"</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+
+<p>コード中にも書いてますが、解説を加えていきます。<br>
+まず期間を表すクラスなので何ヶ月何日かを保持するため<code>monthNum</code>, <code>dayNum</code>フィールドを保持してますが、コンストラクタや<code>add()</code>メソッドでは<code>dayNum</code>が30を超えてもそれを自動的に1ヶ月換算するように制御をかけています。そのため、ユーザーがこの制御を破って勝手に<code>dayNum</code>に30以上の数を入れないようにprivate（非公開）にしています。一方取得自体は自由にしてもらって構わないため、<code>getMonthNum()</code>, <code>getDayNum()</code>メソッドはpublic（公開）にしています（<strong>カプセル化</strong>）。<br>
+次に、「1ヶ月とみなす日数」は期間にかかわらず30日固定で共通のため、<code>DAY_OF_MONTH</code>は<a href="https://qiita.com/lamrongol/items/74f62fcbea9cf7e96c4d#final%E4%BF%AE%E9%A3%BE%E5%AD%90" id="reference-cd762fcb6045e78fa093">final</a>で<a href="https://qiita.com/lamrongol/items/74f62fcbea9cf7e96c4d#static%E4%BF%AE%E9%A3%BE%E5%AD%90" id="reference-cd762fcb6045e78fa093">static（静的）</a>にしています。そして何日間を1ヶ月と換算するかはユーザーにわかるようにしたいため、public（公開）にしています。<br>
+最後に、<code>toString()</code>メソッドを実装しています。Javaは全てのクラスがObjectクラスを継承していて、<code>toString()</code>はそれが持っているメソッドです。これを実装することで自分が作成したクラスでもデバッグモードや<code>System.out.println(obj);</code>で人間が見たときにわかりやすいように表示されます。<code>toString()</code>というメソッドは共通していてどのように表示するかはクラスによって実装が異なるので一種の<strong>ポリモーフィズム</strong>です。</p>
+
+<h1>
+<span id="最後に" class="fragment"></span><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB"><i class="fa fa-link"></i></a>最後に</h1>
+
+<p>最初の方にも書いたようにプログラミングで重要なのは<strong>「他人（将来の自分含む）が読み書きしやすいコードを書く」</strong>ことです。オブジェクト指向に限らずプログラミング技法を学ぶときやプログラムを書くときは「それは本当に他人（将来の自分含む）が読めて改変が容易なコードか？」を考えるようにしてください。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>lamrongolさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/lamrongol/items/74f62fcbea9cf7e96c4d">オブジェクト指向とは結局何なのか 補足</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-30 00:00:37</center>
+	</td>
+	<td style="width:200px;">
+		@lamrongol<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/49529/profile-images/1473691764">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Java]</b> <b>[オブジェクト指向]</b> <b>[設計]</b> <b>[デザインパターン]</b> <b>[新人プログラマ応援]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>以下では<a href="https://qiita.com/lamrongol/items/8a339721ee20a1c81e3c" id="reference-f8802c27447e673b445d">オブジェクト指向とは結局何なのか あるいはプログラミングをする上で気をつけるべきたった一つのこと</a>で説明の都合上詳細を書けなかった部分について補足します。</p>
+
+<h1>
+<span id="オブジェクト指向って具体的に何" class="fragment"></span><a href="#%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%8C%87%E5%90%91%E3%81%A3%E3%81%A6%E5%85%B7%E4%BD%93%E7%9A%84%E3%81%AB%E4%BD%95"><i class="fa fa-link"></i></a>オブジェクト指向って具体的に何</h1>
+
+<p>順番が逆の気もしますが「オブジェクト指向」が初耳の人のために具体的な例を出してイメージをつかんでもらいます。言語はJavaですがJavaを知らなくても何となく分かるように書きます。オブジェクト指向とは（即物的に言えば）データとそれに関わるメソッドを<strong>クラス(class)</strong>にまとめてプログラミングすることです。<br>
+例えば友達の情報を管理するために以下のような「友人」クラスを考えてみましょう。</p>
+
+<div class="code-frame" data-lang="java">
+<div class="code-lang"><span class="bold">Friend.java</span></div>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Friend</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span><span class="c1">//名前</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">phoneNumber</span><span class="o">;</span><span class="c1">//電話番号</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">mailAddress</span><span class="o">;</span><span class="c1">//メールアドレス</span>
+
+    <span class="kd">public</span> <span class="nf">Friend</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">phoneNumber</span><span class="o">,</span> <span class="n">String</span> <span class="n">mailAddress</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//thisは自身を意味する</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">phoneNumber</span> <span class="o">=</span> <span class="n">phoneNumber</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">mailAddress</span> <span class="o">=</span> <span class="n">mailAddress</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/** 連絡先を出力 */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">outputContact</span><span class="o">(){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"電話番号："</span><span class="o">+</span><span class="n">phoneNumber</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"メール："</span><span class="o">+</span><span class="n">mailAddress</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+
+<p>このクラスでは<code>name</code>, <code>phoneNumber</code>, <code>mailAddress</code>という3つの<strong>フィールド</strong>を持っていて、それを用いた<strong>メソッド</strong><code>outputContact()</code>が存在します。<br>
+クラス名と同じ名前のメソッド<code>Friend(String name, String phoneNumber, String mailAddress)</code>は<strong>コンストラクタ</strong>と呼ばれ以下のように使います。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="n">Friend</span> <span class="n">tanaka</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Friend</span><span class="o">(</span><span class="s">"田中一郎"</span><span class="o">,</span> <span class="s">"03-444-444"</span><span class="o">,</span> <span class="s">"tanaka@qmail.com"</span><span class="o">);</span>
+</pre></div></div>
+
+<p>Friendコンストラクタを見ればわかるように、このコードでは<code>name</code>フィールドに"田中一郎"、<code>phoneNumber</code>フィールドに"03-444-444"、<code>mailAddress</code>フィールドに"<a href="mailto:tanaka@qmail.com" class="autolink">tanaka@qmail.com</a>"をセットしています。<br>
+そして以下のようにメソッドを呼び出すと連絡先が表示されます。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="n">tanaka</span><span class="o">.</span><span class="na">outputContact</span><span class="o">();</span>
+<span class="cm">/*</span>
+<span class="cm">田中一郎</span>
+<span class="cm">電話番号：03-444-444</span>
+<span class="cm">メール：tanaka@qmail.com</span>
+<span class="cm">*/</span>
+</pre></div></div>
+
+<p>このようにクラスというのは「それがどんな情報を持つべきか」（ここでは名前と電話番号とメールアドレス）、「それがどんな機能を持つか」（ここでは連絡先の出力）を定義した<strong>設計図</strong>で、それに対してnewでコンストラクタを呼び出して実際にデータを入れて実体化したものを<strong>インスタンス</strong>と言います。<br>
+このようにクラスを作ることの利点の一つはデータと機能をひとまとめにしていくつも作れることです。もしクラスを使わない場合、友人が何人もいるとするとこんなコードになってしまいます。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="n">String</span> <span class="n">tanakaName</span> <span class="o">=</span> <span class="s">"田中一郎"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">tanakaPhoneNumber</span> <span class="o">=</span> <span class="s">"03-444-444"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">tanakaMailAddress</span> <span class="o">=</span> <span class="s">"tanaka@qmail.com"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">yamadaName</span> <span class="o">=</span> <span class="s">"山田太郎"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">yamadaPhoneNumber</span> <span class="o">=</span> <span class="s">"03-555-555"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">yamadaMailAddress</span> <span class="o">=</span> <span class="s">"yamada@qmail.com"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">suzukiName</span> <span class="o">=</span> <span class="s">"鈴木花子"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">suzukiPhoneNumber</span> <span class="o">=</span> <span class="s">"03-666-666"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">suzukiMailAddress</span> <span class="o">=</span> <span class="s">"suzuki@qmail.com"</span><span class="o">;</span>
+<span class="c1">//以下続く...</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">tanakaName</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"電話番号："</span><span class="o">+</span><span class="n">tanakaPhoneNumber</span><span class="o">);</span>      
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"メール："</span><span class="o">+</span><span class="n">tanakaMailAddress</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">yamadaName</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"電話番号："</span><span class="o">+</span><span class="n">yamadaPhoneNumber</span><span class="o">);</span>      
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"メール："</span><span class="o">+</span><span class="n">yamadaMailAddress</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">suzukiName</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"電話番号："</span><span class="o">+</span><span class="n">suzukiPhoneNumber</span><span class="o">);</span>     
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"メール："</span><span class="o">+</span><span class="n">suzukiMailAddress</span><span class="o">);</span>
+<span class="c1">//以下続く...</span>
+</pre></div></div>
+
+<p>わかりにくくて面倒ですね。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="n">Friend</span> <span class="n">tanaka</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Friend</span><span class="o">(</span><span class="s">"田中一郎"</span><span class="o">,</span> <span class="s">"03-444-444"</span><span class="o">,</span> <span class="s">"tanaka@qmail.com"</span><span class="o">);</span>
+<span class="n">Friend</span> <span class="n">yamada</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Friend</span><span class="o">(</span><span class="s">"山田太郎"</span><span class="o">,</span> <span class="s">"03-555-555"</span><span class="o">,</span> <span class="s">"yamada@qmail.com"</span><span class="o">);</span>
+<span class="n">Friend</span> <span class="n">suzuki</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Friend</span><span class="o">(</span><span class="s">"鈴木花子"</span><span class="o">,</span> <span class="s">"03-666-666"</span><span class="o">,</span> <span class="s">"suzuki@qmail.com"</span><span class="o">);</span>
+<span class="c1">//以下続く...</span>
+<span class="n">tanaka</span><span class="o">.</span><span class="na">outputContact</span><span class="o">();</span>
+<span class="n">yamada</span><span class="o">.</span><span class="na">outputContact</span><span class="o">();</span>
+<span class="n">suzuki</span><span class="o">.</span><span class="na">outputContact</span><span class="o">();</span>
+<span class="c1">//以下続く...</span>
+</pre></div></div>
+
+<p>と書ければスッキリします。<br>
+ところで上記のフィールドとメソッドを見ると<code>name</code>などのフィールドは<strong>private</strong>、<code>outputContact()</code>メソッドは<strong>public</strong>というのが冒頭についています。これらは<strong>修飾子</strong>と呼ばれ、privateは「非公開」という意味でそのクラス内部からのみアクセスでき、publicは「公開」という意味で外部からもアクセスできることを意味します。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">tanaka</span><span class="o">.</span><span class="na">name</span><span class="o">);</span><span class="c1">//privateなのでエラー</span>
+<span class="n">tanaka</span><span class="o">.</span><span class="na">outputContact</span><span class="o">();</span><span class="c1">//publicなので実行できる。</span>
+</pre></div></div>
+
+<p>なぜこんな修飾子が存在するかは<a href="https://qiita.com/lamrongol/items/8a339721ee20a1c81e3c">本編</a>を御覧ください。</p>
+
+<h1>
+<span id="インターフェースinterface" class="fragment"></span><a href="#%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9interface"><i class="fa fa-link"></i></a>インターフェース(interface)</h1>
+
+<p>上でクラスは「それがどんな情報を持つべきか、それがどんな機能を持つかを定義した設計図」と書きましたが、<strong>インターフェース(interface)</strong>は「それがどんな機能を持つべきか」だけを定義した一種の抽象化されたクラスです。<br>
+例えば友達以外に仕事仲間のデータも管理しようと思ったとします。しかしどちらの場合も連絡先の出力メソッドがあるべきだと思うなら以下のようなインターフェースを作りましょう。</p>
+
+<div class="code-frame" data-lang="java">
+<div class="code-lang"><span class="bold">Human.java</span></div>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Human</span> <span class="o">{</span>
+    <span class="cm">/** 連絡先を出力 */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">outputContact</span><span class="o">();</span>    
+<span class="o">}</span>
+</pre></div>
+</div>
+
+<p>これは「<code>Human</code>は連絡先の出力メソッドを持つべきだ」ということを意味します。インターフェースはどんなメソッドがあるべきかを定義するだけなので、実装は<strong>implements</strong>キーワードを使って<strong>継承</strong>されたクラスで行われます。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Friend</span> <span class="kd">implements</span> <span class="n">Human</span><span class="o">{</span>
+    <span class="o">...</span><span class="c1">//（中略）</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">outputContact</span><span class="o">(){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"電話番号："</span><span class="o">+</span><span class="n">phoneNumber</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"メール："</span><span class="o">+</span><span class="n">mailAddress</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="cm">/** 同僚 */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Colleague</span> <span class="kd">implements</span> <span class="n">Human</span><span class="o">{</span>
+    <span class="o">...</span><span class="c1">//（中略）</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">outputContact</span><span class="o">(){</span>
+        <span class="c1">//（処理内容）</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div></div>
+
+<p>なお、メソッドを継承して上書きすることを<strong>オーバーライド(Override)</strong>と言います。</p>
+
+<h1>
+<span id="final修飾子" class="fragment"></span><a href="#final%E4%BF%AE%E9%A3%BE%E5%AD%90"><i class="fa fa-link"></i></a>final修飾子</h1>
+
+<p>Javaのfinalは「それで終わり、決まり」という意味の修飾子です。これがつけられた変数は値を一度入れたら変更できません。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="kt">int</span> <span class="n">CONST_VARIABLE</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+<span class="n">CONST_VARIABLE</span> <span class="o">=</span> <span class="mi">50</span><span class="o">;</span><span class="c1">//finalなのに値を変更しようとしたのでエラー</span>
+</pre></div></div>
+
+<p>このように値を変更できない変数を「定数」と呼びます。慣習的に大文字と"_"（アンダーバー）で名前をつけるようになっています。<br>
+ではなぜ値を変更できない「変数」を作る必要があるのでしょう？ それはわかりやすいコードにするためです。例えば以下のようなコードがあったとしましょう。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">price</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="mf">1.08</span><span class="o">;</span>
+</pre></div></div>
+
+<p>2017年11月現在なら「消費税率を掛けてるんだな」とわかるかもしれませんが、将来消費税率が変わった後でこのコードを読む人はなぜ1.08を掛けてるのかわからないかもしれません。<br>
+しかし以下のようなコードならどうでしょう。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="kt">double</span> <span class="n">CONSUMPTION_TAX_RATE</span> <span class="o">=</span> <span class="mf">0.08</span><span class="o">;</span><span class="c1">//消費税率</span>
+<span class="kt">double</span> <span class="n">price</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="o">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">CONSUMPTION_TAX_RATE</span><span class="o">);</span>
+</pre></div></div>
+
+<p>これなら「.08」の部分が消費税率を意味していることがわかるので、消費税率が変更された未来の人にも理解できて改変できるコードになります。</p>
+
+<h1>
+<span id="static修飾子" class="fragment"></span><a href="#static%E4%BF%AE%E9%A3%BE%E5%AD%90"><i class="fa fa-link"></i></a>static修飾子</h1>
+
+<p>Javaのstaticは「静的」という意味です。上記の<code>Friend</code>クラスの<code>name</code>フィールドのように、newで「動的（「静的」の反対）」に生成された各インスタンスごとに異なるものではなく、クラス共通であることを意味します。<br>
+例えばもしFriendクラスに以下のようなコードがあったら、</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Friend</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">hoge</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">fuga</span><span class="o">(){</span>
+        <span class="k">return</span> <span class="mi">20</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">//（以下省略）</span>
+<span class="o">}</span>
+</pre></div></div>
+
+<p>以下のようにクラス共通で、new（インスタンス化）しなくても使えることになります。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="n">Friend</span> <span class="n">yamada</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Friend</span><span class="o">(</span><span class="s">"山田太郎"</span><span class="o">,</span> <span class="s">"03-555-555"</span><span class="o">,</span> <span class="s">"yamada@qmail.com"</span><span class="o">);</span>
+<span class="n">Friend</span> <span class="n">suzuki</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Friend</span><span class="o">(</span><span class="s">"鈴木花子"</span><span class="o">,</span> <span class="s">"03-666-666"</span><span class="o">,</span> <span class="s">"suzuki@qmail.com"</span><span class="o">);</span>
+
+<span class="c1">//インスタンスが違っても共通</span>
+<span class="n">yamada</span><span class="o">.</span><span class="na">hoge</span> <span class="o">=</span> <span class="mi">30</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">yamada</span><span class="o">.</span><span class="na">hoge</span><span class="o">);</span><span class="c1">//30</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">suzuki</span><span class="o">.</span><span class="na">hoge</span><span class="o">);</span><span class="c1">//30</span>
+
+<span class="c1">//そもそもインスタンスを生成しなくても使える</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Friend</span><span class="o">.</span><span class="na">hoge</span><span class="o">);</span><span class="c1">//30</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Friend</span><span class="o">.</span><span class="na">fuga</span><span class="o">());</span><span class="c1">//20</span>
+</pre></div></div>
+
+<p>ただ……この内staticフィールドについては上記のfinalをつけないで使用するのは避けたほうがいいでしょう。<a href="https://qiita.com/lamrongol/items/8a339721ee20a1c81e3c">本編</a>にも書いたように、オブジェクト指向はクラス内部を知らなくても使えることが利点です。例えば<code>Friend tanaka = new Friend("田中一郎", "03-444-444", "tanaka@qmail.com");</code>なら明示的に与えたデータ（"田中一郎", "03-444-444", "<a href="mailto:tanaka@qmail.com" class="autolink">tanaka@qmail.com</a>"）とそれに対して処理を加えたデータしか保持してないと想定してコードを書くわけです。しかし、staticフィールドが存在するとそれが全く別の場所で書き換えられており想定したのと異なる挙動をする可能性があり、オブジェクト指向の利点を活かせなくなってしまいます。<br>
+一方メソッドはstaticにできるなら可能な限りstaticにしたほうがいいです。例えば電話番号が正しい形式（「xxx-xxxx-xxxx」（数字とハイフンの連続））になっているか<a href="http://www.mnet.ne.jp/%7Enakama/" rel="nofollow noopener" target="_blank">正規表現</a>で調べるメソッドがあったら、staticにした方が「特定の人物（インスタンス）に依存するわけではない」ことがわかるので余計な混乱を招かなくてすみます。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Friend</span> <span class="o">{</span>
+    <span class="o">...</span><span class="c1">//（中略）</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isValidPhoneNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">phoneNumber</span><span class="o">){</span>
+        <span class="n">Pattern</span> <span class="n">p</span> <span class="o">=</span> <span class="n">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="s">"^[0-9]+-[0-9]+-[0-9]+$"</span><span class="o">);</span>
+        <span class="n">Matcher</span> <span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">matcher</span><span class="o">(</span><span class="n">phoneNumber</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="na">matches</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div></div>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Friend</span><span class="o">.</span><span class="na">isValidPhoneNumber</span><span class="o">(</span><span class="s">"03-444-444"</span><span class="o">));</span><span class="c1">//正しい形式のためtrue</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Friend</span><span class="o">.</span><span class="na">isValidPhoneNumber</span><span class="o">(</span><span class="s">"03-44a-444"</span><span class="o">));</span><span class="c1">//記入ミスのためfalse</span>
+</pre></div></div>
+
+<p>なお、上でfinalでないstaticフィールドは使うべきでないと書きましたが、クラス共通の定数をstatic finalで定義するのはわかりやすくなるので推奨されるべきです。</p>
+
+<div class="code-frame" data-lang="java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Friend</span> <span class="o">{</span>
+    <span class="o">...</span><span class="c1">//（中略）</span>
+    <span class="cm">/** 電話番号の形式 */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Pattern</span> <span class="n">PHONE_NUMBER_PATTERN</span> <span class="o">=</span> <span class="n">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="s">"^[0-9]+-[0-9]+-[0-9]+$"</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isValidPhoneNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">phoneNumber</span><span class="o">){</span>
+        <span class="n">Matcher</span> <span class="n">m</span> <span class="o">=</span> <span class="n">PHONE_NUMBER_PATTERN</span><span class="o">.</span><span class="na">matcher</span><span class="o">(</span><span class="n">phoneNumber</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="na">matches</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div></div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

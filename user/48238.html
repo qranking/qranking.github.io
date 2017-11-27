@@ -1,0 +1,346 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (y_hokkey)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (y_hokkey さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>y_hokkeyさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>187</kbd>
+		<a target="_blank" href="https://qiita.com/y_hokkey/items/055e335b9d6d6f77c7ad">同僚のコードレビューでこんなにクラスの設計が良くなったという話</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-10 14:25:04</center>
+	</td>
+	<td style="width:200px;">
+		@y_hokkey<br />(LIG INC. 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/48238/profile-images/1511487513">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[TypeScript]</b> <b>[QiitaAPI]</b> <b>[コードレビュー]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>弊社では、案件とは関係のないプロジェクトでも業務時間中にみんなにコードレビューを依頼できる時間が確保されています(参加は任意)。案件のコードレビューを依頼したり、ちょっとした個人の制作物を見てらったりと使い方は色々です。</p>
+
+<p>先日、TypeScriptの練習に<a href="https://media-massage.net/qiita-widget-js/" rel="nofollow noopener" target="_blank">QiitaのAPIを叩いていて記事を表示するブログウィジェット</a>を作成しました。このウィジェットのレビューを依頼したところ、クラスの設計について具体的な指摘と、それに対する改善を経験できたのでこの記事に記載します。</p>
+
+<h2>
+<span id="今回作ったqiitawidgetの要件" class="fragment"></span><a href="#%E4%BB%8A%E5%9B%9E%E4%BD%9C%E3%81%A3%E3%81%9Fqiitawidget%E3%81%AE%E8%A6%81%E4%BB%B6"><i class="fa fa-link"></i></a>今回作ったQiitaWidgetの要件</h2>
+
+<ul>
+<li>Qiitaの公式APIV2から記事とユーザー情報を取得し、HTMLテンプレートに表示する</li>
+<li>投稿の合計いいね数を算出するために、あるユーザーの投稿を全件取得する
+
+<ul>
+<li>(このために複数回リクエストの送信とレスポンスデータの結合を行う)</li>
+</ul>
+</li>
+<li>パラメータによってユーザー、いいね数によるソート、表示件数、ランダム表示の有無などをカスタマイズできる</li>
+<li>ajaxライブラリに<a href="https://www.npmjs.com/package/axios" rel="nofollow noopener" target="_blank">axios</a>を使う／jQueryを使わない</li>
+<li>APIの制限を回避するために、レスポンスデータをブラウザにキャッシュする機能がある</li>
+<li>TypeScriptで実装する
+
+<ul>
+<li> any型の使用は最小限にする</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="レビュー時点での設計" class="fragment"></span><a href="#%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E6%99%82%E7%82%B9%E3%81%A7%E3%81%AE%E8%A8%AD%E8%A8%88"><i class="fa fa-link"></i></a>レビュー時点での設計</h2>
+
+<p>レビュー時点でのクラスの設計をゆるく図にまとめました。</p>
+
+<p><a href="https://camo.qiitausercontent.com/18582737364d2f17d87bd645487dfa63c6e53259/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34383233382f32383564353364322d623239312d663339302d646630632d6364663836366332323230632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/18582737364d2f17d87bd645487dfa63c6e53259/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34383233382f32383564353364322d623239312d663339302d646630632d6364663836366332323230632e706e67" alt="スクリーンショット 2017-10-10 0.22.12.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/48238/285d53d2-b291-f390-df0c-cdf866c2220c.png"></a></p>
+
+<p>おおまかな処理の流れは</p>
+
+<ol>
+<li>
+<code>QiitaWidget</code>が<code>CachedApiConfCreator</code>でGETのためのパラメータを作成</li>
+<li>
+<code>CachedApi</code>から<code>CachedResponse</code>の型でレスポンスを受け取る</li>
+<li>
+<code>QiitaPresenter</code>へレスポンスを渡して描画してもらう</li>
+</ol>
+
+<p>……というものです。実装の詳細はGitHubの過去履歴を参照してください。</p>
+
+<ul>
+<li><a href="https://github.com/hokkey/qiita-widget-js/tree/0.0.3/src/lib" rel="nofollow noopener" target="_blank">qiita-widget-js/src/lib at 0.0.3 · hokkey/qiita-widget-js</a></li>
+</ul>
+
+<h2>
+<span id="レビューによる指摘" class="fragment"></span><a href="#%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AB%E3%82%88%E3%82%8B%E6%8C%87%E6%91%98"><i class="fa fa-link"></i></a>レビューによる指摘</h2>
+
+<p><a href="https://camo.qiitausercontent.com/0c86915b6c47e4a0e6f7bb0dafd9f615d31c26a8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34383233382f35356432353738642d613936382d303962392d656163342d6235333137396661396536632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/0c86915b6c47e4a0e6f7bb0dafd9f615d31c26a8/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34383233382f35356432353738642d613936382d303962392d656163342d6235333137396661396536632e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/48238/55d2578d-a968-09b9-eac4-b53179fa9e6c.png"></a></p>
+
+<ul>
+<li>防御的な引数の型チェックが多いが、TypeScriptならもっと引数を信頼していい</li>
+<li>QiitaPresenterはビューの表示に特化し、データの整形などを行うべきではない</li>
+<li>キャッシュ機能を自前で実装しているが、既存のライブラリがあるのでそれを使った方がよい
+
+<ul>
+<li>さらに、CachedApiという名前から職務が想像しにくい</li>
+</ul>
+</li>
+<li>QiitaWidget内にAPI絡みの詳細な実装を入れない方が良い</li>
+</ul>
+
+<h3>
+<span id="防御的な引数の型チェックが多いがtypescriptならもっと引数を信頼していい" class="fragment"></span><a href="#%E9%98%B2%E5%BE%A1%E7%9A%84%E3%81%AA%E5%BC%95%E6%95%B0%E3%81%AE%E5%9E%8B%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%81%8C%E5%A4%9A%E3%81%84%E3%81%8Ctypescript%E3%81%AA%E3%82%89%E3%82%82%E3%81%A3%E3%81%A8%E5%BC%95%E6%95%B0%E3%82%92%E4%BF%A1%E9%A0%BC%E3%81%97%E3%81%A6%E3%81%84%E3%81%84"><i class="fa fa-link"></i></a>防御的な引数の型チェックが多いが、TypeScriptならもっと引数を信頼していい</h3>
+
+<p>普段JavaScriptで実装する際、パラメータに想定外のデータ型が入るのが嫌で型チェックをかける癖がありました。</p>
+
+<div class="code-frame" data-lang="typescript">
+<div class="code-lang"><span class="bold">CachedApiConfCreator.ts</span></div>
+<div class="highlight"><pre><span></span><span class="kr">static</span> <span class="nx">validateConf</span><span class="p">(</span><span class="nx">conf</span>: <span class="kt">CachedApiConf</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isType</span><span class="p">(</span><span class="nx">conf</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="s1">'string'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">'id must be a string!'</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isType</span><span class="p">(</span><span class="nx">conf</span><span class="p">.</span><span class="nx">endpoint</span><span class="p">,</span> <span class="s1">'string'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">'endpoint must be a string!'</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isType</span><span class="p">(</span><span class="nx">conf</span><span class="p">.</span><span class="nx">axiosRequestConfig</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">,</span> <span class="s1">'number'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">'page param is not available!'</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isType</span><span class="p">(</span><span class="nx">conf</span><span class="p">.</span><span class="nx">axiosRequestConfig</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">per_page</span><span class="p">,</span> <span class="s1">'number'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">'per_page param is not available!'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<ul>
+<li><a href="https://github.com/hokkey/qiita-widget-js/blob/0.0.3/src/lib/CachedApiConfCreator.ts" rel="nofollow noopener" target="_blank">qiita-widget-js/CachedApiConfCreator.ts at 0.0.3 · hokkey/qiita-widget-js</a></li>
+</ul>
+
+<p>しかし、TypeScriptであれば引数の型はインタフェースで保証できるため、コンパイルが通っているのであれば余計な型チェックは不要でした。ブラウザ実行時に想定と異なる型で値が渡る可能性のあるところにだけ型チェックがあれば良いと思います。</p>
+
+<h3>
+<span id="qiitapresenterはビューの表示に特化しデータの整形を行うべきではない" class="fragment"></span><a href="#qiitapresenter%E3%81%AF%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AE%E8%A1%A8%E7%A4%BA%E3%81%AB%E7%89%B9%E5%8C%96%E3%81%97%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%95%B4%E5%BD%A2%E3%82%92%E8%A1%8C%E3%81%86%E3%81%B9%E3%81%8D%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>QiitaPresenterはビューの表示に特化し、データの整形を行うべきではない</h3>
+
+<p>QiitaPresenterは、受け取ったレスポンンスデータをビューに展開する責務を負ったクラスとして設計しました。「表示のための整形であればQiitaPresenter内で処理するべきかな?」という気持ちでQiitaPresenter内へ記事配列のソートやシャッフルといった機能を実装してありました。</p>
+
+<div class="code-frame" data-lang="typescript">
+<div class="code-lang"><span class="bold">QiitaPresenter.ts</span></div>
+<div class="highlight"><pre><span></span><span class="kr">private</span> <span class="nx">createTargetArticleList</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">source</span>: <span class="kt">T</span><span class="p">[],</span> <span class="nx">orders</span>: <span class="kt">number</span><span class="p">[])</span><span class="o">:</span> <span class="nx">T</span><span class="p">[]</span> <span class="p">{</span>
+  <span class="c1">// Sort the list if not it using shuffle</span>
+  <span class="kd">let</span> <span class="nx">articles</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">conf</span><span class="p">.</span><span class="nx">sortByLike</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">conf</span><span class="p">.</span><span class="nx">useShuffle</span><span class="p">)</span>
+    <span class="o">?</span> <span class="nx">Util</span><span class="p">.</span><span class="nx">sortArray</span><span class="p">(</span><span class="nx">source</span><span class="p">,</span> <span class="s1">'likes_count'</span><span class="p">)</span>
+    <span class="o">:</span> <span class="nx">source</span>
+  <span class="p">;</span>
+
+  <span class="c1">// Create a list of required articles</span>
+  <span class="nx">articles</span> <span class="o">=</span> <span class="nx">orders</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">val</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">source</span><span class="p">[</span><span class="nx">val</span><span class="p">];</span>
+  <span class="p">});</span>
+
+  <span class="c1">// Sort the list if it using shuffle</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">conf</span><span class="p">.</span><span class="nx">sortByLike</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">conf</span><span class="p">.</span><span class="nx">useShuffle</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">Util</span><span class="p">.</span><span class="nx">sortArray</span><span class="p">(</span><span class="nx">articles</span><span class="p">,</span> <span class="s1">'likes_count'</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">articles</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<ul>
+<li><a href="https://github.com/hokkey/qiita-widget-js/blob/0.0.3/src/lib/QiitaPresenter.ts" rel="nofollow noopener" target="_blank">qiita-widget-js/QiitaPresenter.ts at 0.0.3 · hokkey/qiita-widget-js</a></li>
+</ul>
+
+<p>しかし、QiitaPresenterはビューの表示に特化するべきで、データ自体を加工するのは外部で行うべきという指摘を受けました。なるべく<strong>クラス1つあたりの責務を小さく設定する</strong>のがベターということでした。</p>
+
+<h3>
+<span id="キャッシュ機能を自前で実装しているが既存のライブラリがあるのでそれを使った方がよい" class="fragment"></span><a href="#%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E6%A9%9F%E8%83%BD%E3%82%92%E8%87%AA%E5%89%8D%E3%81%A7%E5%AE%9F%E8%A3%85%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8C%E6%97%A2%E5%AD%98%E3%81%AE%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%81%8C%E3%81%82%E3%82%8B%E3%81%AE%E3%81%A7%E3%81%9D%E3%82%8C%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%96%B9%E3%81%8C%E3%82%88%E3%81%84"><i class="fa fa-link"></i></a>キャッシュ機能を自前で実装しているが、既存のライブラリがあるのでそれを使った方がよい</h3>
+
+<p>axiosそれ自体にはキャッシュ機能がありません。そのため、レスポンスデータを日付付きでlocalStorageへ保存したり読み込んだりするCachedResponseというクラスを作っていました。</p>
+
+<ul>
+<li><a href="https://github.com/hokkey/qiita-widget-js/blob/0.0.3/src/lib/CachedResponse.ts" rel="nofollow noopener" target="_blank">qiita-widget-js/CachedResponse.ts at 0.0.3 · hokkey/qiita-widget-js</a></li>
+</ul>
+
+<p>しかし、レビュアーからは「ググったら既存のライブラリがあったからそれ使ったら?」という指摘が……。たしかに、axios自体にキャッシュ機能はありませんでしたが、axiosのAdapterとしてaxios-cache-adapterというライブラリが公開されていました。</p>
+
+<ul>
+<li><a href="https://www.npmjs.com/package/axios-cache-adapter" rel="nofollow noopener" target="_blank">axios-cache-adapter</a></li>
+</ul>
+
+<p>どう考えても自分の雑な実装よりも信頼性に優れていて実装も隠蔽できるため、そちらを採用するように変更しました。</p>
+
+<p>教訓としては<strong>一般的な機能は既存のライブラリがないかまず探してみる</strong>ということに尽きると思います。</p>
+
+<h3>
+<span id="qiitawidget内にapi絡みの詳細な実装を入れない方が良い" class="fragment"></span><a href="#qiitawidget%E5%86%85%E3%81%ABapi%E7%B5%A1%E3%81%BF%E3%81%AE%E8%A9%B3%E7%B4%B0%E3%81%AA%E5%AE%9F%E8%A3%85%E3%82%92%E5%85%A5%E3%82%8C%E3%81%AA%E3%81%84%E6%96%B9%E3%81%8C%E8%89%AF%E3%81%84"><i class="fa fa-link"></i></a>QiitaWidget内にAPI絡みの詳細な実装を入れない方が良い</h3>
+
+<p>CachedApiクラスは汎用を意図していたため、次ページのリクエストや、複数ページのレスポンスの結合といった処理はQiitaWidgetクラス内で行っていました。</p>
+
+<div class="code-frame" data-lang="typescript">
+<div class="code-lang"><span class="bold">QiitaWidget.ts</span></div>
+<div class="highlight"><pre><span></span><span class="c1">// 記事がなくなるか、最大試行回数に到達するまでリクエストを続ける</span>
+<span class="kr">private</span> <span class="nx">async</span> <span class="nx">fetchList</span><span class="p">()</span><span class="o">:</span> <span class="nx">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nx">counter</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">conf</span><span class="p">.</span><span class="nx">maxRequest</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">fetchOnce</span><span class="p">())</span> <span class="p">{</span>
+      <span class="nx">counter</span><span class="o">++</span><span class="p">;</span>
+      <span class="k">continue</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">private</span> <span class="nx">async</span> <span class="nx">fetchOnce</span><span class="p">()</span><span class="o">:</span> <span class="nx">Promise</span><span class="o">&lt;</span><span class="kr">boolean</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">res</span>: <span class="kt">CachedResponse</span><span class="o">&lt;</span><span class="nx">QiitaResponse</span><span class="p">.</span><span class="nx">Article</span><span class="p">[]</span><span class="o">&gt;</span> <span class="o">=</span>
+    <span class="nx">await</span> <span class="nx">CachedApi</span><span class="p">.</span><span class="nx">get</span><span class="o">&lt;</span><span class="nx">QiitaResponse</span><span class="p">.</span><span class="nx">Article</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">apiConfCreator</span><span class="p">.</span><span class="nx">getNextConf</span><span class="p">());</span>
+
+  <span class="c1">// 記事数0：ループ終了</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 記事数がperPage未満：結果を追加してループ終了</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">conf</span><span class="p">.</span><span class="nx">perPage</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">dataList</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">dataList</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 記事数がperPageと同値以上：結果を追加してループ継続</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">dataList</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">dataList</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<ul>
+<li><a href="https://github.com/hokkey/qiita-widget-js/blob/0.0.3/src/lib/QiitaWidget.ts" rel="nofollow noopener" target="_blank">qiita-widget-js/QiitaWidget.ts at 0.0.3 · hokkey/qiita-widget-js</a></li>
+</ul>
+
+<p>レビュアーからは「APIとの通信 + 全件取る処理を他へ分けた方が良い」、「fetchOnceが副作用とbooleanの戻り値の両方の仕事を持っているのが良くない」「fetchOnceという名前も微妙」という指摘を受けました。</p>
+
+<blockquote>
+<p>APIとの通信 + 全件取る処理を他へ分けた方が良い</p>
+</blockquote>
+
+<p>これが問題としては一番大きく、QiitaWidgetはマネージャー的な役割に徹し、詳細な実装はQiitaWidgetの外側に出した方が良いということでした。</p>
+
+<blockquote>
+<p>fetchOnceが副作用とbooleanの戻り値の両方の仕事を持っているのが良くない<br>
+fetchOnceという名前も微妙</p>
+</blockquote>
+
+<p>もっともですが実装中には気付けませんでした。こういった客観的な指摘が得られるのがコードレビューの良いところだと思います。</p>
+
+<h2>
+<span id="改善結果" class="fragment"></span><a href="#%E6%94%B9%E5%96%84%E7%B5%90%E6%9E%9C"><i class="fa fa-link"></i></a>改善結果</h2>
+
+<h3>
+<span id="型チェックの除去" class="fragment"></span><a href="#%E5%9E%8B%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%81%AE%E9%99%A4%E5%8E%BB"><i class="fa fa-link"></i></a>型チェックの除去</h3>
+
+<blockquote>
+<p>防御的な引数の型チェックが多いが、TypeScriptならもっと引数を信頼していい</p>
+</blockquote>
+
+<p>引数の型はインタフェースで定義されているため、型チェックを外しました。ただし、数値の最大値・最小値といった内容の検証は残している箇所があります。</p>
+
+<h3>
+<span id="axios-cache-adapterの導入" class="fragment"></span><a href="#axios-cache-adapter%E3%81%AE%E5%B0%8E%E5%85%A5"><i class="fa fa-link"></i></a>axios-cache-adapterの導入</h3>
+
+<blockquote>
+<p>キャッシュ機能を自前で実装しているが、既存のライブラリがあるのでそれを使った方がよい</p>
+</blockquote>
+
+<p>キャッシュ機能を外部ライブラリで賄えるようになったため、CachedApi、CachedResponseといったクラスは廃止しました。これにより<strong>コード内でキャッシュを気にすることが完全に不要</strong>となりました。</p>
+
+<h3>
+<span id="qiitawidgetとqiitapresenterの機能を新クラスへ分離" class="fragment"></span><a href="#qiitawidget%E3%81%A8qiitapresenter%E3%81%AE%E6%A9%9F%E8%83%BD%E3%82%92%E6%96%B0%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%B8%E5%88%86%E9%9B%A2"><i class="fa fa-link"></i></a>QiitaWidgetとQiitaPresenterの機能を新クラスへ分離</h3>
+
+<blockquote>
+<p>QiitaPresenterはビューの表示に特化し、データの整形を行うべきではない</p>
+</blockquote>
+
+<p>旧QiitaWidgetの処理の一部と、旧QiitaPresenterの行っていたデータ操作的な処理を新たにQiitaItemsとしてまとめなおしました。QiitaItemsの責務はレスポンスデータのリクエスト／格納と、QiitaPresenter用のデータの整形／出力です。</p>
+
+<ul>
+<li><a href="https://github.com/hokkey/qiita-widget-js/blob/0.3.2/lib/QiitaItems.ts" rel="nofollow noopener" target="_blank">qiita-widget-js/QiitaItems.ts at 0.3.2 · hokkey/qiita-widget-js</a></li>
+</ul>
+
+<p>これにより、QiitaPresenterはデータの表示に特化し、QiitaWidgetは直接レスポンスデータを操作する必要がなくなりました。</p>
+
+<blockquote>
+<p>QiitaWidget内にAPI絡みの詳細な実装を入れない方が良い</p>
+</blockquote>
+
+<p>旧QiitaWidgetと旧CachedApiParamCreatorの機能を統合したQiitaItemsApiを新たに作成しました。責務はデータの取得と、GETパラメータの管理機能です。</p>
+
+<ul>
+<li><a href="https://github.com/hokkey/qiita-widget-js/blob/0.3.2/lib/QiitaItemsApi.ts" rel="nofollow noopener" target="_blank">qiita-widget-js/QiitaItemsApi.ts at 0.3.2 · hokkey/qiita-widget-js</a></li>
+</ul>
+
+<p>前項の変更と併せ、QiitaWidgetの責務が非常にシンプルになりました。</p>
+
+<ul>
+<li><a href="https://github.com/hokkey/qiita-widget-js/blob/0.3.2/lib/QiitaWidget.ts" rel="nofollow noopener" target="_blank">qiita-widget-js/QiitaWidget.ts at 0.3.2 · hokkey/qiita-widget-js</a></li>
+</ul>
+
+<blockquote>
+<p>fetchOnceが副作用とbooleanの戻り値の両方の仕事を持っているのが良くない</p>
+</blockquote>
+
+<p>こちらは、booleanを返す機能と、レスポンスをプロパティに追加する機能にきっちり分けました。</p>
+
+<h2>
+<span id="改善後の設計" class="fragment"></span><a href="#%E6%94%B9%E5%96%84%E5%BE%8C%E3%81%AE%E8%A8%AD%E8%A8%88"><i class="fa fa-link"></i></a>改善後の設計</h2>
+
+<p>全体的にクラスの責務がより細分化され、役割がはっきりした設計となりました。</p>
+
+<p><a href="https://camo.qiitausercontent.com/60fab1f58f1d0cdf9e605eff3b2ea865c378a30b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34383233382f66356262643432392d646661352d613963662d373139302d3963623739643866363033302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/60fab1f58f1d0cdf9e605eff3b2ea865c378a30b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f34383233382f66356262643432392d646661352d613963662d373139302d3963623739643866363033302e706e67" alt="image.png" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/48238/f5bbd429-dfa5-a9cf-7190-9cb79d8f6030.png"></a></p>
+
+<ul>
+<li><a href="https://github.com/hokkey/qiita-widget-js/tree/0.3.2/lib" rel="nofollow noopener" target="_blank">qiita-widget-js/lib at 0.3.2 · hokkey/qiita-widget-js</a></li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

@@ -1,0 +1,619 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (vimyum)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (vimyum さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>vimyumさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>536</kbd>
+		<a target="_blank" href="https://qiita.com/vimyum/items/8b7548ca8cf45383c5b0">わずか300円でIoTボタンを作る方法</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-07 03:04:41</center>
+	</td>
+	<td style="width:200px;">
+		@vimyum<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/160451/profile-images/1506421538">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Node.js]</b> <b>[RaspberryPi]</b> <b>[bluetooth]</b> <b>[IoT]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="こんなの見つけたよ" class="fragment"></span><a href="#%E3%81%93%E3%82%93%E3%81%AA%E3%81%AE%E8%A6%8B%E3%81%A4%E3%81%91%E3%81%9F%E3%82%88"><i class="fa fa-link"></i></a>こんなの見つけたよ</h1>
+
+<p>100円ショップで物色していたら、こんなものを見つけたよ。100円ショップなのに300円※だったけど、いろいろ遊べそうなので思わず衝動買いしてしまったよ。 (※あとで<a href="https://www.amazon.co.jp/Bluetooth-%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%B3%E7%94%A8-%E3%82%AB%E3%83%A1%E3%83%A9%E3%83%AA%E3%83%A2%E3%82%B3%E3%83%B3-Shutter-ABS3-BLK/dp/B00JX70WK4" rel="nofollow noopener" target="_blank">Amazon</a>をみてみたら1円から売ってました<img alt=":cry:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f622.png" title=":cry:" width="20">）<br>
+<a href="https://camo.qiitausercontent.com/e0754eb112419d03f944a5a7b8454ddde6442cf1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f64366537306134652d316532312d376266622d663835632d3932356637333565326263302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/e0754eb112419d03f944a5a7b8454ddde6442cf1/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f64366537306134652d316532312d376266622d663835632d3932356637333565326263302e706e67" width="40%" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/160451/d6e70a4e-1e21-7bfb-f85c-925f735e2bc0.png"></a></p>
+
+<p>Bluetoothでスマホにコマンドを送れるってことは、スマホではなくラズパイとBluetoothでつなげられれば、物理ボタンとWebを連携させるIoTっぽいことができそうだね。例えばボタンを押すとAmazonで注文できるなんちゃってDashボタンとか。今回は、LINEにメッセージをPush通知するLINEボタンをつくってみるよ。</p>
+
+<h1>
+<span id="準備するもの" class="fragment"></span><a href="#%E6%BA%96%E5%82%99%E3%81%99%E3%82%8B%E3%82%82%E3%81%AE"><i class="fa fa-link"></i></a>準備するもの</h1>
+
+<ul>
+<li>Raspberry-Pi3 (BluetoothがついてればOK)</li>
+<li>リモートシャッター (AB Shutter 3)</li>
+</ul>
+
+<h1>
+<span id="つくりかた" class="fragment"></span><a href="#%E3%81%A4%E3%81%8F%E3%82%8A%E3%81%8B%E3%81%9F"><i class="fa fa-link"></i></a>つくりかた</h1>
+
+<h2>
+<span id="ラズパイとリモートシャッターとの接続" class="fragment"></span><a href="#%E3%83%A9%E3%82%BA%E3%83%91%E3%82%A4%E3%81%A8%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%B7%E3%83%A3%E3%83%83%E3%82%BF%E3%83%BC%E3%81%A8%E3%81%AE%E6%8E%A5%E7%B6%9A"><i class="fa fa-link"></i></a>ラズパイとリモートシャッターとの接続</h2>
+
+<p>まずはラズパイとリモートシャッターをBluetoothでペアリングするよ。Bluetoothを使うために必要なパッケージをラズパイにインストールだ。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>sudo apt-get install bluez bluetooth libbluetooth-dev build-essential
+</pre></div></div>
+
+<p>次はbluetoothのペアリングだ。リモートシャッターは側面のスイッチをオンにするとしばらくペアリング待ち状態になるよ。ラズパイにて<code>bluetoothctl</code>コマンドでペアリングしよう。名前が<code>AB Shutter3</code>となっているデバイスがリモートシャッターだ。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ bluetoothctl
+<span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># power on</span>
+<span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># scan on　←リモートシャッターをペアリング待ちにしておく</span>
+...
+Device FF:FF:7F:F1:XX:XX AB Shutter3 ←これがリモートシャッター
+...
+<span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># info FF:FF:7F:F1:XX:XX</span>
+Device FF:FF:7F:F1:XX:XX
+    Name: AB Shutter3       
+    Alias: AB Shutter3       
+    Appearance: 0x03c1
+    Icon: input-keyboard
+    Paired: yes
+    Trusted: yes
+    Blocked: no
+    Connected: no
+    LegacyPairing: no
+    UUID: Generic Access Profile    <span class="o">(</span><span class="m">00001800</span>-0000-1000-8000-00805f9b34fb<span class="o">)</span>
+    UUID: Generic Attribute Profile <span class="o">(</span><span class="m">00001801</span>-0000-1000-8000-00805f9b34fb<span class="o">)</span>
+    UUID: Device Information        <span class="o">(</span>0000180a-0000-1000-8000-00805f9b34fb<span class="o">)</span>
+    UUID: Battery Service           <span class="o">(</span>0000180f-0000-1000-8000-00805f9b34fb<span class="o">)</span>
+    UUID: Human Interface Device    <span class="o">(</span><span class="m">00001812</span>-0000-1000-8000-00805f9b34fb<span class="o">)</span>
+    Modalias: usb:v248Ap8266d0001
+<span class="o">[</span>bluetooh<span class="o">]</span><span class="c1"># pair F:FF:7F:F1:XX:XX</span>
+</pre></div></div>
+
+<h2>
+<span id="ボタン操作の検知" class="fragment"></span><a href="#%E3%83%9C%E3%82%BF%E3%83%B3%E6%93%8D%E4%BD%9C%E3%81%AE%E6%A4%9C%E7%9F%A5"><i class="fa fa-link"></i></a>ボタン操作の検知</h2>
+
+<p>ペアリングが完了したら、今度はリモートシャッターのボタンの操作を検知するプログラムを開発するぞ！<img alt=":muscle_tone2:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f4aa-1f3fc.png" title=":muscle_tone2:" width="20">、、と思ったら、すでに完成しているものをGitHubで見つけてしまった。。「<a href="https://github.com/kinnalru/bluebutton" rel="nofollow noopener" target="_blank">bluebutton</a>」というソフトウェアだ。長押しと通常押しも見分けられるようだ。Ruby2以上が必要なのでさっそくインストールしよう。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>sudo apt-get install ruby
+sudo gem install bluebutton
+</pre></div></div>
+
+<p>設定ファイルにてボタンを押されたときの動作を自分で決めることができるようだ。<code>~/config/bluebutton</code>というファイル名で下記のファイルをつくったよ。</p>
+
+<div class="code-frame" data-lang="ini"><div class="highlight"><pre><span></span><span class="na">keyup</span><span class="o">=</span><span class="s">curl -XPOST 'https://my-app.now.sh/postLineMessage'</span>
+<span class="na">keydown</span><span class="o">=</span><span class="s">echo DOWN</span>
+<span class="na">longup</span><span class="o">=</span><span class="s">echo LONG UP</span>
+<span class="na">longdown</span><span class="o">=</span><span class="s">echo LONG DOWN</span>
+</pre></div></div>
+
+<p>ボタンが押されて離された時に、LINEへの投稿をトリガするAPI(<code>https://my-app.now.sh</code>)を叩く設定だよ。このAPIは次回以降で作っていくよ。それ以外の動作（ボタン長押しなど）は画面にログを出力するだけだよ。</p>
+
+<div class="code-frame" data-lang="起動"><div class="highlight"><pre><span></span>$ bluebutton -d="Shutter3" -c ~/config/bluebutton
+</pre></div></div>
+
+<p>これで、リモートシャッターのボタンを押すとAPIにリクエストを投げるようになったよ。ボタン操作が認識されているか動作確認をしてみよう。</p>
+
+<p><a href="https://camo.qiitausercontent.com/bef3c0fbeec36321f4c14ec014051b13654d32c2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f66363437303965302d313164622d373239382d353639382d6563633635626561303138332e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/bef3c0fbeec36321f4c14ec014051b13654d32c2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f66363437303965302d313164622d373239382d353639382d6563633635626561303138332e676966" alt="Graphics Interchange Format（GIF）-2C5CA608C17A-1.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/160451/f64709e0-11db-7298-5698-ecc65bea0183.gif"></a></p>
+
+<p>上の画像では、ラズパイにMacからログインしてbluebuttonの実行画面を表示させてるよ。10mくらい離れてもボタン操作を検知してくれたよ。<br>
+次回は、Node.jsをつかってLINEボットに投稿するAPIを開発、Now.shにデプロイし、IoTボタンを完成させるよ。</p>
+
+<h2>
+<span id="追記" class="fragment"></span><a href="#%E8%BF%BD%E8%A8%98"><i class="fa fa-link"></i></a>追記</h2>
+
+<ul>
+<li><p>LINE Botに通知するための<a href="https://qiita.com/vimyum/items/2226daa74444575811b5" id="reference-688b85869f1b104a992b">続きの記事</a>を書いたよ。でも、あまりIoTボタンとは関係ないよ。。</p></li>
+<li><p>ボタン操作が検知されたかどうかわかりづらいとのご指摘があるし、実際そのとおりだ。僕はラズパイにスピーカーを繋いで、ボタン操作検知時にラズパイに喋らせているよ。</p></li>
+</ul>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ npm install openjtalk
+</pre></div></div>
+
+<div class="code-frame" data-lang="js">
+<div class="code-lang"><span class="bold">speak.js</span></div>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">OpenJTalk</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'openjtalk'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">mei</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OpenJTalk</span><span class="p">();</span>
+<span class="nx">mei</span><span class="p">.</span><span class="nx">talk</span><span class="p">(</span><span class="s1">'ボタンが押されたよ'</span><span class="p">,</span> <span class="mi">250</span><span class="p">);</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="text">
+<div class="code-lang"><span class="bold">config/bluebutton</span></div>
+<div class="highlight"><pre><span></span>keyup=node ~/speak.js &amp;&amp; curl -XPOST https://xxx.now.sh -d '{msg: "xx"}'
+</pre></div>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>vimyumさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
+		<a target="_blank" href="https://qiita.com/vimyum/items/4451ce84f7b552e1b3f0">とってもお手軽なロボット教材を作るよ（Scratch + Mabeee)</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-22 12:52:48</center>
+	</td>
+	<td style="width:200px;">
+		@vimyum<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/160451/profile-images/1506421538">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Node.js]</b> <b>[Scratch]</b> <b>[IoT]</b> <b>[MaBeee]</b> <b>[STEM]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="ロボット教材つくるよ" class="fragment"></span><a href="#%E3%83%AD%E3%83%9C%E3%83%83%E3%83%88%E6%95%99%E6%9D%90%E3%81%A4%E3%81%8F%E3%82%8B%E3%82%88"><i class="fa fa-link"></i></a>ロボット教材つくるよ！</h1>
+
+<p>小学１年生の息子をロボット格闘技「<a href="http://robo-one.com" rel="nofollow noopener" target="_blank">ロボワン</a>」の予選に連れて行ったら、すっかりロボットの魅力にとりつかれてしまったよ<img alt=":robot:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f916.png" title=":robot:" width="20">　彼のお気に入りロボは「<a href="http://robo-one.com/rankings/view/127" rel="nofollow noopener" target="_blank">シンプルファイター</a>」とのことで、家でも弟を相手にロボットになりきってロボワンごっこざんまいだ。<br>
+「自分でもロボットをつくって<a href="http://www.robotyuenchi.com/staff.html" rel="nofollow noopener" target="_blank">岡本先生</a>に弟子入りしたい！」というので、親としては「<a href="https://www.lego.com/ja-jp/products/themes/mindstorms" rel="nofollow noopener" target="_blank">LEGO マインドストーム</a>」でも買ってあげようかな？とも思ったけど、、、まずは親がDIYの姿勢を見せるべく、家にあるもの(＋α)で、お手軽なロボット教材を作ってみることにしたよ。 I <img alt=":hearts:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/2665-fe0f.png" title=":hearts:" width="20"> STEM!!</p>
+
+<h1>
+<span id="使うもの作るもの" class="fragment"></span><a href="#%E4%BD%BF%E3%81%86%E3%82%82%E3%81%AE%E4%BD%9C%E3%82%8B%E3%82%82%E3%81%AE"><i class="fa fa-link"></i></a>使うもの・作るもの</h1>
+
+<p>少し前に「<a href="http://amzn.asia/1LObN2p0" rel="nofollow noopener" target="_blank">はじめてのプログラミング</a>」という本を息子に買ってあげたので、なんとなくScratchには興味を持っているようだ。また、過去に衝動的に２本も買ってしまったIoT乾電池「<a href="https://mabeee.mobi" rel="nofollow noopener" target="_blank">Mabeee</a>」が机の引き出しに眠っているので、これも使うよ！</p>
+
+<ul>
+<li>プログラミング教材 Scratch2.0(オフライン版）</li>
+<li>IoT乾電池 Mabeee ２本</li>
+</ul>
+
+<p>また、みんな大好き100円ショップで以下のものを揃えたよ！<br>
+  * プチ電車　２台（モーター付きの駆動車）<br>
+  * リモートシャッター</p>
+
+<p>プチ電車は台車部分（モーター＆ギア＆タイヤ）が欲しいだけなので、裸にしたよ。（図右下）</p>
+
+<p><a href="https://camo.qiitausercontent.com/5006018addefcca18e918b30ad8749b8bb5413fb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f62666632343032332d366264652d623630382d323931312d3065366232373965653134612e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/5006018addefcca18e918b30ad8749b8bb5413fb/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f62666632343032332d366264652d623630382d323931312d3065366232373965653134612e6a706567" alt="IMG_8327.JPG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/160451/bff24023-6bde-b608-2911-0e6b279ee14a.jpeg"></a></p>
+
+<p>これらを使って、<strong>「Scratchでプログラミング可能なロボットカー」</strong>を作るよ！</p>
+
+<h1>
+<span id="仕組み" class="fragment"></span><a href="#%E4%BB%95%E7%B5%84%E3%81%BF"><i class="fa fa-link"></i></a>仕組み</h1>
+
+<p>ScratchにはHTTP拡張機能があり、これを使うとHTTPリクエストを投げるブロックが簡単につくれるんだ。また、MabeeeはMac向けにREST APIでMabeeeが操作できる「<a href="https://github.com/novars-jp/MaBeeeMacApp" rel="nofollow noopener" target="_blank">MaBeeeMacApp</a>」を提供しているよ。これを連携させればScratchからMabeeeを制御することができそうだね。<br>
+さらに、「<a href="https://qiita.com/vimyum/items/8b7548ca8cf45383c5b0" id="reference-a6546d5eb56cc9e2ec56">わずか300円でIoTボタンを作る方法</a>」に書いた方法と組み合わせることでリモートシャッターとScratchも連携できそうだ。</p>
+
+<p>これらの連携により、<strong>「リモートシャッターのボタンを押す→Scratchでかいたプログラムが実行→ScratchのプログラムでMabeeeを制御してロボットカーが動作」</strong>ということをするよ。</p>
+
+<p>なお、Scratchから直接MabeeeMacAppにリクエストを投げるにはメッセージ形式などが違うので、ScrathとMabeeeMacAppの間にAPIサーバを立てるよ。APIサーバはMabeeeの初期処理（スキャン、接続）も担当するよ。</p>
+
+<h1>
+<span id="つくりかた" class="fragment"></span><a href="#%E3%81%A4%E3%81%8F%E3%82%8A%E3%81%8B%E3%81%9F"><i class="fa fa-link"></i></a>つくりかた</h1>
+
+<h2>
+<span id="scratchにオリジナルブロックを追加" class="fragment"></span><a href="#scratch%E3%81%AB%E3%82%AA%E3%83%AA%E3%82%B8%E3%83%8A%E3%83%AB%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E3%82%92%E8%BF%BD%E5%8A%A0"><i class="fa fa-link"></i></a>Scratchにオリジナルブロックを追加</h2>
+
+<p>Qiita記事「<a href="https://qiita.com/memakura/items/fb48d7f6fb6b4b88b5bb" id="reference-0cce262bc5ba849473eb">Python で軽量サーバを作って Scratch 2 のHTTP拡張を待ち受けてみる</a>」を参考に、以下のファイル(<code>mabeee.s2e</code>)を作成するよ。</p>
+
+<div class="code-frame" data-lang="json"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">"extensionName"</span><span class="p">:</span> <span class="s2">"cheap IoT"</span><span class="p">,</span>
+    <span class="nt">"extensionPort"</span><span class="p">:</span> <span class="mi">12345</span><span class="p">,</span>
+    <span class="nt">"blockSpecs"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s2">" "</span><span class="p">,</span> <span class="s2">"でんち %m.mabeeeId をうごかす"</span><span class="p">,</span> <span class="s2">"start"</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+        <span class="p">[</span><span class="s2">" "</span><span class="p">,</span> <span class="s2">"でんち %m.mabeeeId をとめる"</span><span class="p">,</span> <span class="s2">"stop"</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+        <span class="p">[</span><span class="s2">" "</span><span class="p">,</span> <span class="s2">"でんち %m.mabeeeId のはやさを %n にする"</span><span class="p">,</span> <span class="s2">"setSpeed"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">"b"</span><span class="p">,</span> <span class="s2">"準備ができた"</span><span class="p">,</span> <span class="s2">"ready"</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">"b"</span><span class="p">,</span> <span class="s2">"ボタンがおされた"</span><span class="p">,</span> <span class="s2">"push"</span><span class="p">],</span>
+    <span class="p">],</span>  
+    <span class="nt">"menus"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"mabeeeId"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> 
+    <span class="p">},</span>  
+<span class="p">}</span>
+</pre></div></div>
+
+<p><code>extensionPort</code>にはAPIサーバのポート番号を設定するよ。ScrachのHTTP拡張はAPIサーバの<code>/poll</code>に対して定期的にリクエストを投げてポーリングする仕様なんだ。下はコメント付きの抜粋だよ。詳細はこちらの<a href="https://wiki.scratch.mit.edu/w/images/ExtensionsDoc.HTTP-9-11.pdf" rel="nofollow noopener" target="_blank">解説PDF</a>を参照だ。</p>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="s2">" "</span><span class="p">,</span>  <span class="c1">// 種別：ScarachからAPIに対してリクエストを送信するブロック</span>
+  <span class="s2">"でんち %m.mabeeeId のはやさを %n にする"</span><span class="p">,</span> <span class="c1">//%mは"menus"からプルダウン選択、%nは数値入力</span>
+  <span class="s2">"setSpeed"</span><span class="p">,</span> <span class="c1">// APIのパス。この場合、localhost:12345/start/%m/%n　にリクエスト。</span>
+  <span class="mi">1</span><span class="p">,</span> <span class="mi">50</span> <span class="c1">// %m、%nのデフォルト値</span>
+<span class="p">],</span>
+<span class="p">[</span> <span class="s2">"b"</span><span class="p">,</span> <span class="c1">// 種別：ポーリングのボディに含まれる値(boolean)を取得するブロック</span>
+  <span class="s2">"準備ができた"</span><span class="p">,</span> 
+  <span class="s2">"ready"</span>　<span class="c1">// ポーリング時に取得する名前</span>
+<span class="p">],</span>
+</pre></div></div>
+
+<p>作成したファイルをScrachに読み込むよ。左上のメニュー「ファイル」をShiftキーを押しながらクリックすると、裏メニュー？的に「じっけんてきなHTTPかくちょうをよみこむ」が表示されるから、ここから作成したファイルを読み込もう。すると、「そのた」ブロックとして定義したブロックが表示さるよ。</p>
+
+<p><a href="https://camo.qiitausercontent.com/767374b53150ad9e279859dd4fec093383ad22d3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f32373566323532322d346631622d666536362d333166612d3061333339653065353138392e706e67" target="_blank" rel="nofollow noopener"><img width="703" alt="スクリーンショット 2017-10-22 9.20.18.png" src="https://camo.qiitausercontent.com/767374b53150ad9e279859dd4fec093383ad22d3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f32373566323532322d346631622d666536362d333166612d3061333339653065353138392e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/160451/275f2522-4f1b-fe66-31fa-0a339e0e5189.png"></a></p>
+
+<h2>
+<span id="mabeeemacappを準備" class="fragment"></span><a href="#mabeeemacapp%E3%82%92%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>MaBeeeMacAppを準備</h2>
+
+<p><a href="https://github.com/novars-jp/MaBeeeMacApp" rel="nofollow noopener" target="_blank">こちらのサイト</a>からダウンロードしてね。解凍してダブルクリックするだけで実行できるよ。実行後はステータスバーに電池マークが表示されるよ。時々おちるから、ステータスバーを確認しよう。</p>
+
+<h2>
+<span id="scratchからのリクエストをmabeemacappにわたすapiサーバー" class="fragment"></span><a href="#scratch%E3%81%8B%E3%82%89%E3%81%AE%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%92mabeemacapp%E3%81%AB%E3%82%8F%E3%81%9F%E3%81%99api%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC"><i class="fa fa-link"></i></a>ScratchからのリクエストをMabeeMacAppにわたすAPIサーバー</h2>
+
+<p>APIサーバでは主に３つのことを担当するよ。</p>
+
+<ul>
+<li>ScratchからのAPIリクエストを変換してMabeeeMacAppに送信</li>
+<li>初期処理（MabeeeMacAppとMabeeeとの接続など）を実施し、完了をScratchに通知</li>
+<li>リモートシャッターのボタンが押されたことをScratchに通知</li>
+</ul>
+
+<p>APIサーバでは、起動時にMabeeeデバイスのスキャン・接続を行うよ。接続が完了するとScratchからのポーリングに対して変数<code>ready</code>を<code>true</code>で応答するようにしているよ。これでScratchの「準備ができた」ブロックを監視してMabeeeとの接続処理が完了したか判定できるね。<br>
+また、リモートシャッターからAPIリクエストが来た場合は、ポーリングに対して変数<code>push</code>を<code>true</code>で応答するよ。同様にScratchの「ボタンがおされた」ブロックを監視してリモートシャッターのボタンが押されたかどうか判定できるね。</p>
+
+<p>ポーリングに対する応答は具体的には下記のようなコードになるよ(Node.js + Express)。</p>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="c1">// Scratchによるポーリングへの応答</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/poll'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// レポーターブロックへ値を返す</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="sb">`ready </span><span class="si">${</span><span class="nx">isReady</span><span class="si">}</span><span class="err">\</span><span class="sb">npush </span><span class="si">${</span><span class="nx">isPush</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+
+</pre></div></div>
+
+<p>APIサーバー全体の<a href="https://gist.github.com/vimyum/d5469c14204132891a1adb595f7eb183" rel="nofollow noopener" target="_blank">ソースコード</a>はGistに上げておくよ。</p>
+
+<h2>
+<span id="リモートシャッターのボタン操作をscratchに通知する" class="fragment"></span><a href="#%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%B7%E3%83%A3%E3%83%83%E3%82%BF%E3%83%BC%E3%81%AE%E3%83%9C%E3%82%BF%E3%83%B3%E6%93%8D%E4%BD%9C%E3%82%92scratch%E3%81%AB%E9%80%9A%E7%9F%A5%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>リモートシャッターのボタン操作をScratchに通知する</h2>
+
+<p><a href="https://qiita.com/vimyum/items/8b7548ca8cf45383c5b0">わずか300円でIoTボタンを作る方法</a>」で、リモートシャッターのボタンを押すとHTTPリクエストをなげる方法をかいたね。先ほどのAPIサーバにリクエストを投げて、APIサーバではポーリングに応答する値を変えるため、<code>isPush</code>変数をtrueにしているよ。</p>
+
+<h1>
+<span id="完成scratchでプログラムできるロボットカーred_car" class="fragment"></span><a href="#%E5%AE%8C%E6%88%90scratch%E3%81%A7%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E3%81%A7%E3%81%8D%E3%82%8B%E3%83%AD%E3%83%9C%E3%83%83%E3%83%88%E3%82%AB%E3%83%BCred_car"><i class="fa fa-link"></i></a>完成！Scratchでプログラムできるロボットカー<img alt=":red_car:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f697.png" title=":red_car:" width="20">！</h1>
+
+<p>うごかす車体は100円ショップで買って来たプチ電車を裸にして、適当に切ったダンボールにはめ込めば完成だ。左右の電車をバラバラに制御できるから、方向転換も自由自在だ。<br>
+<a href="https://camo.qiitausercontent.com/7c0bec863ad8e447a3258e37faa9ec80ad3f3ea4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f36336231626235612d633030332d616434392d373631642d3966316565333737633363302e6a706567" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/7c0bec863ad8e447a3258e37faa9ec80ad3f3ea4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f36336231626235612d633030332d616434392d373631642d3966316565333737633363302e6a706567" alt="IMG_8335.JPG" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/160451/63b1bb5a-c003-ad49-761d-9f1ee377c3c0.jpeg"></a></p>
+
+<p>あとは、Scratchでお試しプログラムを書いてみるよ。はじめてScratchを使ったけど、雰囲気でなんとなくかけちゃうよ。Scratchすごい！<br>
+<a href="https://camo.qiitausercontent.com/f3580e1bceb812bd13f7e5e7b80e7df3f95bf284/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f38393931633039622d646630652d376439362d353830372d3864613564653033336665302e706e67" target="_blank" rel="nofollow noopener"><img width="471" alt="スクリーンショット 2017-10-21 14.59.49.png" src="https://camo.qiitausercontent.com/f3580e1bceb812bd13f7e5e7b80e7df3f95bf284/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f38393931633039622d646630652d376439362d353830372d3864613564653033336665302e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/160451/8991c09b-df0e-7d96-5807-8da5de033fe0.png"></a></p>
+
+<p>実際に動かした様子！再起動とか不要でScratchに書いたプログラムがすぐにロボットカーに反映されるのでとっても楽しいです <img alt=":smile:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f604.png" title=":smile:" width="20"> </p>
+
+<p></p><blockquote class="twitter-tweet">
+<p>Scratchでロボットカー<a href="https://t.co/Pqq8bEwod7" rel="nofollow noopener" target="_blank">pic.twitter.com/Pqq8bEwod7</a></p>— sagara (@vimyum) <a href="https://twitter.com/vimyum/status/921940456526643201?ref_src=twsrc%5Etfw" rel="nofollow noopener" target="_blank">October 22, 2017</a>
+</blockquote> 
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>vimyumさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>8</kbd>
+		<a target="_blank" href="https://qiita.com/vimyum/items/2226daa74444575811b5">Now.shを使って15分でLINE Botをデプロイする</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-12 00:09:51</center>
+	</td>
+	<td style="width:200px;">
+		@vimyum<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/160451/profile-images/1506421538">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Node.js]</b> <b>[IoT]</b> <b>[linebot]</b> <b>[LINEmessagingAPI]</b> <b>[now.sh]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="tldr" class="fragment"></span><a href="#tldr"><i class="fa fa-link"></i></a>TL;DR</h1>
+
+<p>「<a href="https://qiita.com/vimyum/items/8b7548ca8cf45383c5b0" id="reference-c98f7133e70ec3530745">わずか300円でIoTボタンを作る方法</a>」の続きだよ。のんびりしていたら既にバックエンドまで実装済みの記事「<a href="https://qiita.com/a_halka/items/050e81f6ef09546f5c4b#_reference-b5da9c4c66b173a070c4" id="reference-9de984eb5710860b8935">通知が飛ぶIoTボタンを作ってみた</a>」があがってるけど、気にしないで続きを書くよ。今回はあまりIoTボタンとは関係ない内容なので、先に伝えたいことを書くよ。</p>
+
+<ul>
+<li>Now.shはNode.jsが今すぐ簡単に使える素敵なPaaSだよ</li>
+<li>標準でHTTPSが使えるのでLINE Bot開発に最適だ</li>
+<li>LINE Botをデプロイするには、<code>SECRETS</code>や<code>FROZEN</code>を考慮しよう</li>
+</ul>
+
+<p>ちなみに先のIoTボタンからLINEに通知したいだけならBotを使わずに、LINE Notifyを使った方が簡単だよ。</p>
+
+<h1>
+<span id="準備-line-messaging-api利用登録" class="fragment"></span><a href="#%E6%BA%96%E5%82%99-line-messaging-api%E5%88%A9%E7%94%A8%E7%99%BB%E9%8C%B2"><i class="fa fa-link"></i></a>準備 (LINE Messaging API利用登録）</h1>
+
+<p>まずはLINE Messaging APIの利用登録をするよ。LINE記事「<a href="https://qiita.com/yoshizaki_kkgk/items/bd4277d3943200beab26" id="reference-4225136fff1abf6c5049">LINE BOTの作り方を世界一わかりやすく解説（１）【アカウント準備編】</a>」や、「<a href="https://bita.jp/dml/line-messaging-api-exp" rel="nofollow noopener" target="_blank">わずか5分。新LINE Messaging APIでbotを作ってみた手順全公開</a>」がわかりやすい！<br>
+これらの記事の手順にしたがって<code>Channel Secret</code>と<code>Channel Access Token</code>を入手しよう。 </p>
+
+<h1>
+<span id="nowsh" class="fragment"></span><a href="#nowsh"><i class="fa fa-link"></i></a>Now.sh</h1>
+
+<p>Now.shはNode.jsのアプリをとても簡単な動かせるPaaSだよ。アカウント作成からドメイン取得まですべて簡単なCLIコマンドでできる尖がったサービスだ。利用にあたってユーザ情報登録やトークン取得も不要で爆速だ。ただし、無料で使えるOSSプランの場合、下記２点は要注意だ。</p>
+
+<ul>
+<li>
+<strong>ソースコードは全て公開</strong>されるよ。</li>
+<li>データの永続化の仕組みは提供しないよ。</li>
+</ul>
+
+<p>Qiitaにも紹介記事「<a href="https://qiita.com/aggre/items/f0cb9f8b8e8c54768e50" id="reference-398d92c3121ec65b25d4">Now でクラウドの複雑さから解放されよう、今すぐに</a>」があるので見てみよう。</p>
+
+<h1>
+<span id="nowshでline-bot" class="fragment"></span><a href="#nowsh%E3%81%A7line-bot"><i class="fa fa-link"></i></a>Now.shでLINE Bot</h1>
+
+<h2>
+<span id="事前準備" class="fragment"></span><a href="#%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99"><i class="fa fa-link"></i></a>事前準備</h2>
+
+<p>Now.shで使えるNode.jsの最新バージョンは<code>8.0.0</code>だ(2017/10月現在)。Node.jsのインストール方法は省略！Now.shのCLIはnpmでインストールできるよ。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ npm install -g now
+</pre></div></div>
+
+<p>Now.shは<code>package.json</code>があるディレクトリをPaaSにデプロイするよ。<code>package.json</code>を作成し、今回のアプリに必要なパッケージ(LINE SDKとExpress)もインストールだ。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ mkdir myapp
+$ <span class="nb">cd</span> my app
+$ npm -y init
+$ npm install @line/bot-sd express
+</pre></div></div>
+
+<p>アプリを起動するための設定をpackage.jsonに追加するよ。今回はアプリのファイル名を<code>index.js</code>にするよ。</p>
+
+<div class="code-frame" data-lang="vim">
+<div class="code-lang"><span class="bold">package.json</span></div>
+<div class="highlight"><pre><span></span>〜略〜
+<span class="c">"scripts": {</span>
+<span class="c">     "start": "node index.js",</span>
+ }
+</pre></div>
+</div>
+
+<h2>
+<span id="コピペデプロイ" class="fragment"></span><a href="#%E3%82%B3%E3%83%94%E3%83%9A%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4"><i class="fa fa-link"></i></a>コピペ＆デプロイ</h2>
+
+<p>LINE Botの本体<code>index.js</code>にはとりあえず<a href="https://github.com/line/line-bot-sdk-nodejs/blob/master/examples/echo-bot/index.js" rel="nofollow noopener" target="_blank">公式のサンプルEcho bot</a>をコピペするよ。</p>
+
+<div class="code-frame" data-lang="js">
+<div class="code-lang"><span class="bold">index.js</span></div>
+<div class="highlight"><pre><span></span><span class="s1">'use strict'</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">line</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@line/bot-sdk'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span> 
+    <span class="nx">channelAccessToken</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">CHANNEL_ACCESS_TOKEN</span><span class="p">,</span>
+    <span class="nx">channelSecret</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">CHANNEL_SECRET</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">line</span><span class="p">.</span><span class="nx">Client</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/webhook'</span><span class="p">,</span> <span class="nx">line</span><span class="p">.</span><span class="nx">middleware</span><span class="p">(</span><span class="nx">config</span><span class="p">),</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nb">Promise</span>
+        <span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">handleEvent</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">result</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="kd">function</span> <span class="nx">handleEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">type</span> <span class="o">!==</span> <span class="s1">'message'</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nx">type</span> <span class="o">!==</span> <span class="s1">'text'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+    <span class="p">}</span>   
+    <span class="kr">const</span> <span class="nx">echo</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'text'</span><span class="p">,</span> <span class="nx">text</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nx">text</span> <span class="p">};</span>
+
+    <span class="k">return</span> <span class="nx">client</span><span class="p">.</span><span class="nx">replyMessage</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">replyToken</span><span class="p">,</span> <span class="nx">echo</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`listening on </span><span class="si">${</span><span class="nx">port</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+
+<p>あとは下記のコマンドでデプロイするだけだ。初回はメールアドレスの入力を求められるので、有効なメールアドレスを入力するよ。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ now
+&gt; No existing credentials found. Please log in:
+&gt; We sent an email to XXX@gmail.com. Please follow the steps provided
+  inside it and make sure the security code matches Suspicious Ant.
+</pre></div></div>
+
+<p>こんな感じのメールが届くのでリンクをクリックすれば認証は完了だ。</p>
+
+<div class="code-frame" data-lang="text">
+<div class="code-lang"><span class="bold">mail</span></div>
+<div class="highlight"><pre><span></span>Hi!
+
+Login attempt from XXXX, Japan
+Verify that the provided security code matches Suspicious Ant before proceeding. 
+Then please follow this link to verify your email address.
+</pre></div>
+</div>
+
+<p>再び<code>now</code>コマンドを実行するとアプリがデプロイされるよ。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ now
+&gt; Deploying ~/work/Now/linebot under XXX@gmail.com
+&gt; Using Node.js <span class="m">8</span>.4.0 <span class="o">(</span>default<span class="o">)</span>
+&gt; Ready! https://xxx-abcyezicoh.now.sh <span class="o">[</span>1s<span class="o">]</span>
+&gt; Synced <span class="m">3</span> files <span class="o">(</span><span class="m">10</span>.02KB<span class="o">)</span> <span class="o">[</span>14s<span class="o">]</span>
+&gt; Initializing…
+&gt; Building
+...
+&gt; Deployment complete!
+</pre></div></div>
+
+<p>コマンド実行時に画面に表示されたURLでアプリにアクセスできるよ。LINE BotはSSL証明書が必要だけど、Now.shはHTTPSで提供されるから問題なしだ。ポート番号はコード中では3000番で指定したけど、デプロイ後は80番でアクセスできるよ。</p>
+
+<h2>
+<span id="botのために" class="fragment"></span><a href="#bot%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>Botのために</h2>
+
+<h3>
+<span id="url固定" class="fragment"></span><a href="#url%E5%9B%BA%E5%AE%9A"><i class="fa fa-link"></i></a>URL固定</h3>
+
+<p>アプリのURLはデプロイのたびに変更されるんだ。LINE botのwebhookに指定するためにはデプロイバージョンに関わらず固定化されたURLを使いたいよね。Now.shではURLに好きなAlias(下の例では<code>https://myapp.now.sh</code>)をつけられるよ。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span> $ now alias set https://xxx-abcyezicoh.now.sh myapp
+</pre></div></div>
+
+<p>他にも<code>package.json</code>に<a href="https://zeit.co/docs/features/configuration#%22alias%22-(string%7Carray)" rel="nofollow noopener" target="_blank">aliasの設定をする方法</a>もあるよ。</p>
+
+<h3>
+<span id="アクセストークンなど秘密の情報" class="fragment"></span><a href="#%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%83%88%E3%83%BC%E3%82%AF%E3%83%B3%E3%81%AA%E3%81%A9%E7%A7%98%E5%AF%86%E3%81%AE%E6%83%85%E5%A0%B1"><i class="fa fa-link"></i></a>アクセストークンなど秘密の情報</h3>
+
+<p>Now.shの無料プランではソースコードはすべて公開されてしまうよ。だからアクセストークンなどの秘密の情報をコードに直書きすることは絶対ダメだね。<br>
+これを解決するためにNow.shでは<code>Secrets</code>を提供しているよ。秘密の情報をNow.shに<code>Secrets</code>として保存しておき、<code>Secrets</code>と環境変数を対応づけてデプロイできるんだ。</p>
+
+<div class="code-frame" data-lang="bash"><div class="highlight"><pre><span></span>$ now secret add line-toke XXXX-XXXX-XXXX
+$ now secret add line-secret YYYY-YYYY-YYYY
+$ now -e <span class="nv">CHANNEL_ACCESS_TOKEN</span><span class="o">=</span>@line-token -e <span class="nv">CHANNEL_SECRET</span><span class="o">=</span>@line-secret
+</pre></div></div>
+
+<p>上の例では、秘密の値(<code>XXXX-XXXX-XXXX</code>)を<code>line-token</code>として<code>Secrets</code>に登録し、これをアプリ内から環境変数<code>CHANNEL_ACCESS_TOKEN</code>としてアクセスできるようにしているよ。</p>
+
+<h3>
+<span id="keep-alive" class="fragment"></span><a href="#keep-alive"><i class="fa fa-link"></i></a>Keep-Alive</h3>
+
+<p>Now.shは、一定期間アクセスがないと<code>FROZEN</code>状態に入ってしまうよ。<code>FROZEN</code>状態でリクエストが来ると、ふたたび<code>READY</code>状態になりリクエストを受け付けるようになるけど、<code>FROZEN</code>状態時に来たリクエストは処理できないんだ。<br>
+だから<code>FROZEN</code>状態にならないように定期的にKeepAliveリクエストを送信しないといけないよ。<br>
+cron.dで定期的に<code>curl</code>を叩いてもいいし、IFTTTの<code>Date&amp;Timer</code>と<code>Webhook</code>を利用しても良いね。</p>
+
+<h2>
+<span id="完成" class="fragment"></span><a href="#%E5%AE%8C%E6%88%90"><i class="fa fa-link"></i></a>完成</h2>
+
+<p>これでLINE Botが完成だよ<img alt=":raised_hands_tone2:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f64c-1f3fc.png" title=":raised_hands_tone2:" width="20">　本題だった「IoTボタンからのリクエストに応じてBotでメッセージを通知」には、先ほどのEcho Botサンプルにちょっと手を加えればOKだ。</p>
+
+<p><a href="https://camo.qiitausercontent.com/8bc7ffd4d981bb99a7801d6e98c4883c676faf73/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f61376538653135612d343564652d663636622d646164622d3534323136663663626130662e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/8bc7ffd4d981bb99a7801d6e98c4883c676faf73/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f61376538653135612d343564652d663636622d646164622d3534323136663663626130662e676966" alt="button-line.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/160451/a7e8e15a-45de-f66b-dadb-54216f6cba0f.gif"></a></p>
+
+<p>ソースコードは<a href="https://github.com/vimyum/linebot-for-nowsh" rel="nofollow noopener" target="_blank">GitHub</a>に上げておくよ。LINEグループに参加した際にグループIDを記憶し、WebAPIにリクエストが来たら記憶したグループID宛にメッセージを投げているよ。詳しい説明は<a href="https://github.com/vimyum/linebot-for-nowsh/blob/master/index.js" rel="nofollow noopener" target="_blank">コード中</a>にコメントで書いておくよ。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>vimyumさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>2</kbd>
+		<a target="_blank" href="https://qiita.com/vimyum/items/6831c4caba56504f4bf0">RevealjsとWeb Speech APIでプレゼンスライドを賭博黙示録にしよう！</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-02 23:53:33</center>
+	</td>
+	<td style="width:200px;">
+		@vimyum<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/160451/profile-images/1506421538">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[JavaScript]</b> <b>[reveal.js]</b> <b>[音声認識]</b> <b>[teratail]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="元ネタ" class="fragment"></span><a href="#%E5%85%83%E3%83%8D%E3%82%BF"><i class="fa fa-link"></i></a>元ネタ</h1>
+
+<p>teratailさんとIBMさんから「<a href="https://www.ibm.com/developerworks/jp/cloud/library/angular/" rel="nofollow noopener" target="_blank">Angular + Watson でプレゼンスライドを奇妙な冒険にしよう！</a>」という記事が公開されていたよ。プレゼン内にてWatsonで音声認識をして、特定ワードに反応して「ド・ド・ド・ド」エフェクトを表示するみたいだ。クイズ王にも勝っちゃうWatsonをスライドにつかっちゃうなんて贅沢なプレゼンだー！すてきだね！</p>
+
+<p><a href="https://public.dhe.ibm.com/software/dw/jp/cloud/angular/jojo.gif" rel="nofollow noopener" target="_blank"><img src="https://camo.qiitausercontent.com/542cea08eccc15c74bb98a4faf621def4c231e72/68747470733a2f2f7075626c69632e6468652e69626d2e636f6d2f736f6674776172652f64772f6a702f636c6f75642f616e67756c61722f6a6f6a6f2e676966" alt="引用画像" title="Angular + Watson でプレゼンスライドを奇妙な冒険にしよう！" data-canonical-src="https://public.dhe.ibm.com/software/dw/jp/cloud/angular/jojo.gif"></a></p>
+
+<h1>
+<span id="やりたいこと" class="fragment"></span><a href="#%E3%82%84%E3%82%8A%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>やりたいこと</h1>
+
+<p>でも、Watsonはネットにつながないと使えないから、発表時にネットワークが弱いと怖いよね。それにWatsonさんを使うのにアカウントを作ったりとか多少手間がかかるね。<br>
+そこで、Web Speech APIの出番だ。Web Speech APIのSpeech Recognition APIを使うと、ブラウザの機能としてローカルで音声認識ができるよ。また、Reveal.jsをつかうとブラウザでプレゼンができるので、この２つを使えばteratail×IBMさんと同じことができそうだ。Web Speech APIの<a href="http://caniuse.com/#search=Speech%20Recognition%20API" rel="nofollow noopener" target="_blank">ブラウザ対応状況</a>は芳しくないけど、プレゼン用途ならブラウザも自分で選べるから問題なし！</p>
+
+<p><a href="https://camo.qiitausercontent.com/0d497f4df57c72e10a8409f6be24f62cd264d99c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f39386636386130642d336430662d323265362d613937372d3466383863623331333763382e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/0d497f4df57c72e10a8409f6be24f62cd264d99c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3136303435312f39386636386130642d336430662d323265362d613937372d3466383863623331333763382e676966" width="70%" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/160451/98f68a0d-3d0f-22e6-a977-4f88cb3137c8.gif"></a></p>
+
+<h1>
+<span id="やりかた" class="fragment"></span><a href="#%E3%82%84%E3%82%8A%E3%81%8B%E3%81%9F"><i class="fa fa-link"></i></a>やりかた</h1>
+
+<p>Web Speech APIはHTTPSまたはローカルのWebサーバからでないと使えないからハードルが高いと思われがちだけど、Reveal.jsならばローカルからの配信（grunt serve)なので、最初にマイクの許可さえOKすればすぐに使えるんだ。<br>
+ただ、そのまま使うと、一度音声を認識後に停止してしまうので、こちらの「<a href="http://jellyware.jp/kurage/iot/webspeechapi.html" rel="nofollow noopener" target="_blank">Jellyware: Web Speech APIで途切れない音声認識</a>」にあるように、録音が止まるたびに音声認識を再実行してあげよう。<br>
+また、Reveal.jsのスライドの操作は<code>Reveal.next()</code>や<code>Reveal.slide()</code>でできるよ。<a href="https://github.com/hakimel/reveal.js/#api" rel="nofollow noopener" target="_blank">API一覧</a>をみて音声認識の結果に応じて呼び出してあげよう。<br>
+音声認識＋スライド操作の部分は先ほどの「<a href="http://jellyware.jp/kurage/iot/webspeechapi.html" rel="nofollow noopener" target="_blank">Jellyware: Web Speech APIで途切れない音声認識</a>」にあるソースコードほぼそのままで使えるよ。<br>
+上のGIF画像の例では、「スライド」「前」「後」という言葉に反応したページ移動と、「ざわ」という言葉に反応したエフェクトを実装しているよ。</p>
+
+<div class="code-frame" data-lang="js"><div class="highlight"><pre><span></span><span class="nx">recognition</span><span class="p">.</span><span class="nx">onresult</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">results</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">resultIndex</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">results</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">results</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">isFinal</span><span class="p">)</span> <span class="p">{</span>
+
+ 　　　<span class="c1">// ここにキーワードチェックを追加したよ</span>
+      <span class="kd">let</span> <span class="nx">script</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">0</span><span class="p">].</span><span class="nx">transcript</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">script</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/スライド/</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">script</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/次/</span><span class="p">))</span> <span class="p">{</span>
+           <span class="nx">Reveal</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">script</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/前/</span><span class="p">)){</span>
+           <span class="nx">Reveal</span><span class="p">.</span><span class="nx">prev</span><span class="p">();</span>
+        <span class="p">}</span> 
+</pre></div></div>
+
+<p>Web Recognition API、はじめて使ってみたけど認識率もそれなりに良くいろいろ使えそうだ。「ゴールデンカムイ」もしっかり認識したよ。<br>
+音声認識のクラウドサービスはいろいろあるけど、簡単な処理ならばぜひWeb Recognition APIを使ってみよう<img alt=":blush:" class="emoji" height="20" src="https://cdn.qiita.com/emoji/twemoji/unicode/1f60a.png" title=":blush:" width="20"></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

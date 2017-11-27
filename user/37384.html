@@ -1,0 +1,973 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (yoshi-taka)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (yoshi-taka さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>yoshi-takaさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>94</kbd>
+		<a target="_blank" href="https://qiita.com/yoshi-taka/items/35d3ed126f4d45e9662d">大規模データ移行の失敗を防ぎたい。計画やプログラム、インフラの注意点と、ありがちなこと</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-22 23:27:21</center>
+	</td>
+	<td style="width:200px;">
+		@yoshi-taka<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/37384/profile-images/1473687407">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[MySQL]</b> <b>[DB]</b> <b>[データベース]</b> <b>[データ移行]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>仕事柄、大規模なデータ移行を何度か経験してきました。</p>
+
+<p>データ移行、特にDBのマイグレーションでもなく、<br>
+システム移行のときのようなデータ構造の変更を伴う際には気をつけることがたくさんあります。</p>
+
+<p>クラウドではだいぶ楽になりますが、<br>
+特にオンプレミスで検討せざるを得ない皆さんに気をつけないといけない点を共有します。</p>
+
+<h1>
+<span id="スケジューリング編" class="fragment"></span><a href="#%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E7%B7%A8"><i class="fa fa-link"></i></a>スケジューリング編</h1>
+
+<h2>
+<span id="最初から検討し始めよう" class="fragment"></span><a href="#%E6%9C%80%E5%88%9D%E3%81%8B%E3%82%89%E6%A4%9C%E8%A8%8E%E3%81%97%E5%A7%8B%E3%82%81%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>最初から検討し始めよう</h2>
+
+<p>開発プロジェクトにおいて<a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20080303/295281/" rel="nofollow noopener" target="_blank">システム移行だけで4割の工数がかかる</a>と言われています。<br>
+しかし、新規システム部分の開発で頭が一杯になっていると、重要度の割に移行部分が後回しにされがちです。<br>
+移行用プログラム、移行用サーバ手配はもちろん、新規、既存システムへの影響も検討しないといけません。<br>
+できればプロジェクト開始時から人をアサインして計画を立てていきましょう。<br>
+移行自体が一つの開発プロジェクト相当です。頑張りましょう。</p>
+
+<h3>
+<span id="ありがちなこと" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>後半になって移行計画を立てたら、計画上どう考えても間に合わないので延期になった</li>
+<li>サービスインまでの計画に移行用プログラム開発の時間がなく、結果バグだらけ、移行作業の属人化などなど</li>
+<li>移行部分の各リソースが確保できず、緊急で手配して予算超過した</li>
+</ul>
+
+<h2>
+<span id="移行タイミングを分割しよう" class="fragment"></span><a href="#%E7%A7%BB%E8%A1%8C%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%82%92%E5%88%86%E5%89%B2%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>移行タイミングを分割しよう</h2>
+
+<p>規模が大きい場合、一度に全部移行するより、数回にわけて徐々に移行しましょう。<br>
+まとめて一回にしてしまうと失敗時のリカバリに時間がかかります。<br>
+データに限らず一般論として、規模が大きなものはできるだけ分割して移行したほうがよいです。</p>
+
+<p>ビッグバン方式は控えめに。</p>
+
+<h3>
+<span id="ありがちなこと-1" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-1"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>トラブルでシステム停止時間が当初想定の数倍になった</li>
+<li>大きすぎてそもそも計画が立てることが難しい</li>
+</ul>
+
+<h2>
+<span id="切り戻し計画を立てよう" class="fragment"></span><a href="#%E5%88%87%E3%82%8A%E6%88%BB%E3%81%97%E8%A8%88%E7%94%BB%E3%82%92%E7%AB%8B%E3%81%A6%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>切り戻し計画を立てよう</h2>
+
+<p>残念ながらトラブルは発生します。すぐに戻せるよう計画を立てましょう。<br>
+いつまで頑張るか、あらかじめ決めておき、その時間を過ぎたら躊躇なく戻しましょう。</p>
+
+<p>人生諦めが肝心です。</p>
+
+<h3>
+<span id="ありがちなこと-2" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-2"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>トラブル対応がダラダラと伸びて、影響が大きくなる</li>
+<li>関係者への周知が漏れる</li>
+<li>移行中に更新されたデータが切り戻しの際に漏れてデータ欠損発生</li>
+</ul>
+
+<h2>
+<span id="リハーサルしよう" class="fragment"></span><a href="#%E3%83%AA%E3%83%8F%E3%83%BC%E3%82%B5%E3%83%AB%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>リハーサルしよう</h2>
+
+<p>新、旧両方の仕様が必要で、移行用ツールも準備しないといけないデータ移行は課題が山積みです。<br>
+本番同等のリハーサルで課題を潰しましょう。</p>
+
+<p>最低2回はしたほうがよいです。1回目は問題洗い出し、2回目は1回目の問題が解決できたか。<br>
+切り戻しについてもリハーサルすることを忘れないように。</p>
+
+<h3>
+<span id="ありがちなこと-3" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-3"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>当初に見積もった作業時間より大幅に伸びる
+エラーが出まくる</li>
+<li>サーバにつながらない</li>
+<li>当日の移行作業タスクに穴がある</li>
+<li>リハーサルできなかった部分でサービスイン当日に大失敗</li>
+<li>リハーサルまでに移行プログラムのテストまで終わらせていない</li>
+</ul>
+
+<h2>
+<span id="みんなを巻き込もう" class="fragment"></span><a href="#%E3%81%BF%E3%82%93%E3%81%AA%E3%82%92%E5%B7%BB%E3%81%8D%E8%BE%BC%E3%82%82%E3%81%86"><i class="fa fa-link"></i></a>みんなを巻き込もう</h2>
+
+<p>データ移行ではほぼ確実にデータ修正が入るので、<br>
+既存システムの利用者に影響が出ます。<br>
+利用者を巻き込みましょう。</p>
+
+<p>また移行用プログラムを動かすだけでも、<br>
+インフラ、ネットワークエンジニアの力を借りることになります。<br>
+早めにお話しましょう。</p>
+
+<h3>
+<span id="ありがちなこと-4" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-4"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>利用者側の改修が直前になって発生</li>
+<li>インフラの手配が遅れ、実行環境が準備できずスケジュール遅延</li>
+</ul>
+
+<h1>
+<span id="既存データの内容編" class="fragment"></span><a href="#%E6%97%A2%E5%AD%98%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%86%85%E5%AE%B9%E7%B7%A8"><i class="fa fa-link"></i></a>既存データの内容編</h1>
+
+<h2>
+<span id="既存データを一通り目視確認しよう" class="fragment"></span><a href="#%E6%97%A2%E5%AD%98%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%B8%80%E9%80%9A%E3%82%8A%E7%9B%AE%E8%A6%96%E7%A2%BA%E8%AA%8D%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>既存データを一通り目視確認しよう</h2>
+
+<p>既存データには、必ず当初の想定から外れたデータが入っています。<br>
+これは自然の摂理です。</p>
+
+<p>全件確認が最も確実ですが、<br>
+件数からみて難しそうならサンプリングや統計をとってデータを目視確認しましょう。<br>
+実際のデータを一覧化して眺めると、いろいろなことがわかってきます。</p>
+
+<h3>
+<span id="ありがちなこと-5" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-5"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>移行プログラムを流すたびにエラーが起きる</li>
+<li>データを確認したところ既存システムのバグが新たに見つかり時間を取られる</li>
+<li>謎の値がやけに多い</li>
+</ul>
+
+<h2>
+<span id="想定を定義して全件確認しよう" class="fragment"></span><a href="#%E6%83%B3%E5%AE%9A%E3%82%92%E5%AE%9A%E7%BE%A9%E3%81%97%E3%81%A6%E5%85%A8%E4%BB%B6%E7%A2%BA%E8%AA%8D%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>想定を定義して全件確認しよう</h2>
+
+<p>例えばIDなら文字列型...だけではなく、<br>
+桁数、IDの形式といったものを定義し(型システム..?)、全データをチェックしましょう。<br>
+Check制約が効いていたとしても、<br>
+「このデータがこれなら、こちらのデータはこうなってないといけない」といったものもあるかもしれません。<br>
+全カラムに対して定義内に収まるか確認することをおすすめします。</p>
+
+<h3>
+<span id="ありがちなこと-6" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-6"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>桁数がおかしいデータがある</li>
+<li>データが空</li>
+<li>なんじゃこりゃ</li>
+</ul>
+
+<h2>
+<span id="データの分布濃度を確認しよう" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%88%86%E5%B8%83%E6%BF%83%E5%BA%A6%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>データの分布（濃度）を確認しよう</h2>
+
+<p>各カラムにおいて、ある特定のデータがやたら多いことがあります。<br>
+想定より多い場合、特殊な用途として使われている可能性を考慮しないといけません。<br>
+仮の例として、<br>
+「顧客IDのうち上3桁000が多い。実は、普段はE2Cの業務だが法人対応のため法人顧客000にして運用している。」<br>
+といったように、機能不足を運用でカバーしている可能性があります。<br>
+他にはデフォルト値や管理アカウントを指しているかもしれません。<br>
+その他の問題として、データが偏っていると、新しいシステムでの検索速度に影響が出てしまいます。<br>
+インデックス(または相当のなにか)を使った動作が遅くなるためです。</p>
+
+<h3>
+<span id="ありがちなこと-7" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-7"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>ばらつきのあるはずのデータがばらついていない</li>
+<li>選択式のデータの比率が想定と異なる</li>
+</ul>
+
+<h2>
+<span id="空データデフォルト値" class="fragment"></span><a href="#%E7%A9%BA%E3%83%87%E3%83%BC%E3%82%BF%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E5%80%A4"><i class="fa fa-link"></i></a>空データ、デフォルト値</h2>
+
+<p>デフォルト値や空文字、空白、nullについて、現行システムと新システムで扱いが違う場合は要注意です。<br>
+動作が変わるのに誰も気づいていないかもしれません。</p>
+
+<h3>
+<span id="ありがちなこと-8" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-8"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>デフォルト値が新旧で異なるが誰も気づいていない</li>
+<li>空文字やnullの扱いが新旧で異なるが誰も気づいていない</li>
+</ul>
+
+<h2>
+<span id="文字集合に気をつけよう" class="fragment"></span><a href="#%E6%96%87%E5%AD%97%E9%9B%86%E5%90%88%E3%81%AB%E6%B0%97%E3%82%92%E3%81%A4%E3%81%91%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>文字集合に気をつけよう</h2>
+
+<p>既存と新規のデータベースとプログラム、加えて移行プログラムではどんな文字を扱うか答えられますか？<br>
+日本語？日本語ってなんだろう。<br>
+認識を合わせないと文字化けが発生してしまいます。<br>
+なお、コンソールやエディタ、フロント画面で表示されるテキストは、想定通りとは限りません。</p>
+
+<h3>
+<span id="ありがちなこと-9" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-9"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>CP932で拡張された文字が移行できない(丸囲いの1、「﨑」といった一部の異体字、「☃」など)</li>
+<li>絵文字🍣などUnicodeのいろいろな闇文字が移行できない</li>
+<li>エディタ上の表示とバイナリ表示が異なる</li>
+<li>フリー入力欄として登録済みの文字が。。</li>
+</ul>
+
+<h2>
+<span id="せっかくなのでデータをきれいにしてみよう" class="fragment"></span><a href="#%E3%81%9B%E3%81%A3%E3%81%8B%E3%81%8F%E3%81%AA%E3%81%AE%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E3%81%8D%E3%82%8C%E3%81%84%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>せっかくなのでデータをきれいにしてみよう</h2>
+
+<p>普段の業務ではおかしいデータを直す機会はなかなかありません。<br>
+せっかくなのでデータ移行のタイミングでクレンジングしてみましょう。</p>
+
+<h3>
+<span id="ありがちなこと-10" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-10"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>本番データなのにテスト時にできたデータだらけ</li>
+<li>よくみたら検証用データなので消せない</li>
+</ul>
+
+<h1>
+<span id="移行プログラム編" class="fragment"></span><a href="#%E7%A7%BB%E8%A1%8C%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E7%B7%A8"><i class="fa fa-link"></i></a>移行プログラム編</h1>
+
+<h2>
+<span id="開発ステージング環境を用意しよう" class="fragment"></span><a href="#%E9%96%8B%E7%99%BA%E3%82%B9%E3%83%86%E3%83%BC%E3%82%B8%E3%83%B3%E3%82%B0%E7%92%B0%E5%A2%83%E3%82%92%E7%94%A8%E6%84%8F%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>開発、ステージング環境を用意しよう</h2>
+
+<p>移行プログラムもそれ自体テストが必要です。<br>
+また、既存システムの開発とステージングのデータも移行するべきです。<br>
+環境を用意しましょう。</p>
+
+<h2>
+<span id="データ移行時間を見積もろう" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E7%A7%BB%E8%A1%8C%E6%99%82%E9%96%93%E3%82%92%E8%A6%8B%E7%A9%8D%E3%82%82%E3%82%8D%E3%81%86"><i class="fa fa-link"></i></a>データ移行時間を見積もろう</h2>
+
+<p>データ移行プログラムの実行完了まで果たして現実的な時間で終わるでしょうか？<br>
+開発やステージングから見積ったとしても、データ件数や偏り、サーバースペックも違うので参考になりません。<br>
+チューニングは必須ですし、プログラム実行より前にできるタスクを洗い上げて移行時間を短縮しましょう。</p>
+
+<h3>
+<span id="ありがちなこと-11" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-11"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>本番だとデータ移行プログラムが数十時間かかる</li>
+<li>データ移行日より前に作業可能なタスクを洗い出していない</li>
+</ul>
+
+<h2>
+<span id="パフォーマンスをあげよう" class="fragment"></span><a href="#%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E3%82%92%E3%81%82%E3%81%92%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>パフォーマンスをあげよう</h2>
+
+<p>移行プログラムはOLAP的な大容量データ操作になるため、<br>
+WebアプリケーションのようなOLTP処理とポイントが異なる部分があります。<br>
+地道に改善していきましょう。プログラムを並列に動かしてもOKですよ。</p>
+
+<h3>
+<span id="ありがちなこと-12" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-12"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>データ移行元、移行先、移行用環境についてOLAP処理向けのパフォーマンスチューニングしていない</li>
+<li>プログラム上で全データを一括で取得してしまい、メモリがパンクする</li>
+<li>移行用プログラムで新しく必要になりそうなインデックスがデータ取得元にない</li>
+<li>データ取得元で全件ソートしている。ソート不要なのにソートしている
+
+<ul>
+<li>特にMySQLの場合、ソート時に使う一時テーブルの使用量が多すぎると<br>
+一時テーブルがMyISAM(5.7からはInnoDB)化し、ディスク容量を激しく消費するリスクがあります</li>
+</ul>
+</li>
+<li>1つのトランザクションで全データを一括投入してしまい、処理が終わらない</li>
+</ul>
+
+<h2>
+<span id="ログを厚めに出そう" class="fragment"></span><a href="#%E3%83%AD%E3%82%B0%E3%82%92%E5%8E%9A%E3%82%81%E3%81%AB%E5%87%BA%E3%81%9D%E3%81%86"><i class="fa fa-link"></i></a>ログを厚めに出そう</h2>
+
+<p>時間がかかるデータ移行処理。<br>
+ログがないと今どこまで進んだのかわかりません。<br>
+エラー時にどこで間違ったのかもわかりません。<br>
+移行プログラムに関しては、ログローテーションがほぼ不要なこともあり、<br>
+本番でもINFOレベルのログを全部出すつもりで。</p>
+
+<h3>
+<span id="ありがちなこと-13" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-13"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>ログがなくて今何が起きているかわからない</li>
+<li>ログがなくて何が起きたのかわからない</li>
+<li>どこで失敗したのかわからない</li>
+</ul>
+
+<h2>
+<span id="中間ファイルを作ろう" class="fragment"></span><a href="#%E4%B8%AD%E9%96%93%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86"><i class="fa fa-link"></i></a>中間ファイルを作ろう</h2>
+
+<p>エラー時に全作業のやり直しは避けたいところ。<br>
+データ加工時に中間ファイルを作っておけば、その中間ファイルから作業をやり直すことができます。<br>
+中間ファイル自体をチェックすることでエラーの原因追求もできます。</p>
+
+<h3>
+<span id="ありがちなこと-14" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-14"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>処理に失敗したので一からデータ移行やり直し</li>
+<li>移行プログラムのうちどこで誤ったのかわからない</li>
+</ul>
+
+<h2>
+<span id="データの互換性を確認しよう" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E4%BA%92%E6%8F%9B%E6%80%A7%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>データの互換性を確認しよう</h2>
+
+<p>既存のデータを新システムに投入できるようにすることは、<br>
+移行プログラムの存在意義である以上できているはずです。<br>
+ただし、既存と新システムを並行稼動させるときは、<br>
+新データの形式(長さ、文字集合などなど)が既存システムにも適合できるようにしないといけません。</p>
+
+<h3>
+<span id="ありがちなこと-15" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-15"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>旧データより新データのほうが受け入れ可能な文字列長が長いため、既存システムに新データを投入することが出来ない</li>
+<li>ユニーク制約に引っかかる</li>
+</ul>
+
+<h2>
+<span id="データベースのマイグレーション" class="fragment"></span><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E3%83%9E%E3%82%A4%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>データベースのマイグレーション</h2>
+
+<p>システム移行ともに、普段なかなかできないDBMSのバージョンアップやソフトウェア自体を変更することが多いはずです。<br>
+各DBMSのマニュアルやガイドを参考にして、粛々と行いましょう。</p>
+
+<h3>
+<span id="ありがちなこと-16" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-16"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>暗黙のデフォルト処理にハマる</li>
+<li>マニュアルを読まない</li>
+</ul>
+
+<h2>
+<span id="移行済みデータを全件検証しよう" class="fragment"></span><a href="#%E7%A7%BB%E8%A1%8C%E6%B8%88%E3%81%BF%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%A8%E4%BB%B6%E6%A4%9C%E8%A8%BC%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>移行済みデータを全件検証しよう</h2>
+
+<p>バグ、仕様誤りにより、投入したデータが想定通りになってないことはよくあります。<br>
+検証までがデータ移行です。</p>
+
+<h3>
+<span id="ありがちなこと-17" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-17"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>データ項目が空になっている</li>
+<li>件数がおかしい</li>
+<li>デフォルト値の考慮漏れ（既存、新規、移行プログラム）</li>
+</ul>
+
+<h2>
+<span id="etlツールやデータフローツールを使ってみよう" class="fragment"></span><a href="#etl%E3%83%84%E3%83%BC%E3%83%AB%E3%82%84%E3%83%87%E3%83%BC%E3%82%BF%E3%83%95%E3%83%AD%E3%83%BC%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>ETLツールやデータフローツールを使ってみよう</h2>
+
+<p>上記のような仕組みは、自分たちで実装するより既存のツールを流用したほうがQCDすべて確保できると思います。<br>
+クラウドベンダーのツールやOSSのETLツールを検討しましょう</p>
+
+<h2>
+<span id="普通のアプリケーションとなるべく同じようにしよう" class="fragment"></span><a href="#%E6%99%AE%E9%80%9A%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%A8%E3%81%AA%E3%82%8B%E3%81%B9%E3%81%8F%E5%90%8C%E3%81%98%E3%82%88%E3%81%86%E3%81%AB%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>普通のアプリケーションとなるべく同じようにしよう</h2>
+
+<p>使い捨てとは言え、移行プログラムも一つのシステムである以上、普通のシステムと同じ部分で問題が発生します。</p>
+
+<ul>
+<li>自動デプロイ</li>
+<li>集計処理</li>
+<li>ログ確認</li>
+</ul>
+
+<p>手のかからない範囲で自動化しましょう。</p>
+
+<h3>
+<span id="ありがちなこと-18" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-18"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>手作業の誤りで作業やり直し</li>
+<li>デプロイが苦行</li>
+<li>ログ確認が苦行</li>
+<li>テスト、レビューしてない</li>
+<li>障害フローがない</li>
+</ul>
+
+<h1>
+<span id="移行インフラ編" class="fragment"></span><a href="#%E7%A7%BB%E8%A1%8C%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9%E7%B7%A8"><i class="fa fa-link"></i></a>移行インフラ編</h1>
+
+<h2>
+<span id="専用の環境を手配しよう" class="fragment"></span><a href="#%E5%B0%82%E7%94%A8%E3%81%AE%E7%92%B0%E5%A2%83%E3%82%92%E6%89%8B%E9%85%8D%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>専用の環境を手配しよう</h2>
+
+<p>データを全件移行することから、移行プログラムは重くなりがちです。<br>
+流用や相乗りは避け、プログラムを動かす前に新しい環境を準備しておきましょう。<br>
+プログラムが正しく動くか検証を忘れずに。</p>
+
+<h3>
+<span id="ありがちなこと-19" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-19"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>CPU、メモリ、ディスク、ネットワーク...サーバーのスペックがなにもかも足りない</li>
+<li>ネットワークがつながらない</li>
+<li>そもそもサーバーがない</li>
+</ul>
+
+<h2>
+<span id="監視しよう" class="fragment"></span><a href="#%E7%9B%A3%E8%A6%96%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>監視しよう</h2>
+
+<p>移行プログラムは使い捨てとはいえ、<br>
+重い処理なので監視しないと危険です。<br>
+どれくらいサーバのリソースを利用するかも含め、<br>
+通常のモニタリングと同じぐらいの精度を目標にしたいところ。<br>
+移行元データを取得する際は、既存システムに影響がないかも監視しましょう。</p>
+
+<h3>
+<span id="ありがちなこと-20" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-20"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>データ移行の負荷で既存システムに影響出まくり</li>
+<li>移行関係のデータのせいでディスクフルになりサーバ作り直し</li>
+<li>監視はあるけど通知がないのでずっとグラフを見てないといけない</li>
+</ul>
+
+<h2>
+<span id="バックアップを取ろう" class="fragment"></span><a href="#%E3%83%90%E3%83%83%E3%82%AF%E3%82%A2%E3%83%83%E3%83%97%E3%82%92%E5%8F%96%E3%82%8D%E3%81%86"><i class="fa fa-link"></i></a>バックアップを取ろう</h2>
+
+<p>サーバ障害や手順ミスにより、移行中のデータが消えてしまう。<br>
+そんなことになる前に、バックアップをとりましょう。<br>
+特に移行プログラムの作りが甘いときは、運用でカバーすることが多いので危険です。</p>
+
+<h3>
+<span id="ありがちなこと-21" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-21"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>移行元データが吹っ飛んだので移行やり直しができない</li>
+<li>移行用データが吹っ飛んだ</li>
+<li>調査用に一時的に作ったファイルが吹っ飛んだ</li>
+</ul>
+
+<h2>
+<span id="セキュリティを確保しよう" class="fragment"></span><a href="#%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%82%92%E7%A2%BA%E4%BF%9D%E3%81%97%E3%82%88%E3%81%86"><i class="fa fa-link"></i></a>セキュリティを確保しよう</h2>
+
+<p>データ移行全般において、調査や集計によりデータがあちこちに散らばりがちです。<br>
+セキュリティを忘れないようにしましょう。<br>
+あまりやりすぎると移行が進まないのでほどほどに。</p>
+
+<h3>
+<span id="ありがちなこと-22" class="fragment"></span><a href="#%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A1%E3%81%AA%E3%81%93%E3%81%A8-22"><i class="fa fa-link"></i></a>ありがちなこと</h3>
+
+<ul>
+<li>一時ファイルや集計ファイルがPC、共有サーバといったあちこちに散らかっている</li>
+</ul>
+
+<h1>
+<span id="参考にすべき資料" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E3%81%AB%E3%81%99%E3%81%B9%E3%81%8D%E8%B3%87%E6%96%99"><i class="fa fa-link"></i></a>参考にすべき資料</h1>
+
+<p><a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20080303/295290/" rel="nofollow noopener" target="_blank">最後の難関 システム移行</a>ぐらいで、<br>
+データ移行そのものはあまり情報がありません。<br>
+書籍も少ないような気がします。秘伝の技ですね。</p>
+
+<p>DBマイグレーションだけならそれなりに情報がありますが、<br>
+技術上解決できる問題なので、そこで詰まることは少ないと思います。</p>
+
+<p>データ移行とは直接関係しませんが、<br>
+ビッグデータのETL関係の資料は、<br>
+移行プログラム関係の一部のトピックと関連があり、ためになります。</p>
+
+<h2>
+<span id="関連記事" class="fragment"></span><a href="#%E9%96%A2%E9%80%A3%E8%A8%98%E4%BA%8B"><i class="fa fa-link"></i></a>関連記事</h2>
+
+<ul>
+<li><a href="https://qiita.com/yoshi-taka/items/3628c5d4240fbff02134" id="reference-4a2ae2f3ac540c4b6642">SELECT権限だけでmysqldumpできることがある - Qiita</a></li>
+<li><a href="https://qiita.com/yoshi-taka/items/94467014ec7e9e3e8ec8" id="reference-cb01b7bc99974da8dd90">MySQL権限一覧をきれいに作る方法と、rootユーザー以外で棚卸しする方法 - Qiita</a></li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>yoshi-takaさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/yoshi-taka/items/60ac03a5b27680316fd9">新しくCSVファイルを利用せざるを得ないときのチェックリスト</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-18 10:29:42</center>
+	</td>
+	<td style="width:200px;">
+		@yoshi-taka<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/37384/profile-images/1473687407">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[CSV]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>CSVは誰かがフォーマットを厳密に定義してるわけでないので、認識相違が多めです。<br>
+以下のような部分を考えましょう。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">ポイント</th>
+<th style="text-align: left">例</th>
+<th style="text-align: left">メモ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">改行コード</td>
+<td style="text-align: left"><ul>
+<li>CR+LF(Windows主流)</li>
+<li>LF(Unix主流)</li>
+</ul></td>
+<td style="text-align: left">CRLFが無難。</td>
+</tr>
+<tr>
+<td style="text-align: left">文字コード</td>
+<td style="text-align: left"><ul>
+<li>UTF-8</li>
+<li>CP932</li>
+<li>Shift_JIS</li>
+<li>EUC-JP</li>
+</ul></td>
+<td style="text-align: left">WindowsでもUTF-8がおすすめ。<br>UTF-8が主流だからというのは当然として、特にVistaからJIS第三第四水準文字がUnicodeで入力できるので入力値に存在する可能性がある。<p>文字コード決めの考慮点</p>
+<ul>
+<li>JIS第三第四水準文字を利用するか</li>
+<li>Windowsの場合は拡張文字を利用するか</li>
+<li>emojiはどうか</li>
+</ul>まず使わないがShift_JISやEUC-JPも2004版で第三第四水準相当になる。</td>
+</tr>
+<tr>
+<td style="text-align: left">区切り文字</td>
+<td style="text-align: left"><ul>
+<li>カンマ</li>
+<li>タブ</li>
+</ul></td>
+<td style="text-align: left">項目にカンマが含まれる可能性があるのでタブのほうがおすすめ。<br>またスプレッドシートではタブの方が扱いやすいのもポイント。</td>
+</tr>
+<tr>
+<td style="text-align: left">ヘッダー</td>
+<td style="text-align: left"><ul>
+<li>あり</li>
+<li>なし</li>
+</ul></td>
+<td style="text-align: left">合意しておくこと。あったほうが内容確認時に便利</td>
+</tr>
+<tr>
+<td style="text-align: left">途中の空行</td>
+<td style="text-align: left"><ul>
+<li>あり(完全に空）</li>
+<li>あり（カンマだけ）</li>
+<li> なし</li>
+</ul></td>
+<td style="text-align: left">プログラム上でおかしくなる可能性</td>
+</tr>
+<tr>
+<td style="text-align: left">最終行</td>
+<td style="text-align: left"><ul>
+<li>改行つける</li>
+<li>改行つけない</li>
+</ul></td>
+<td style="text-align: left">プログラム上でおかしくなる可能性</td>
+</tr>
+<tr>
+<td style="text-align: left">項目内改行</td>
+<td style="text-align: left"><ul>
+<li>あり</li>
+<li>なし</li>
+</ul></td>
+<td style="text-align: left">なるべくなしにしたい。ありの場合で Excelを使ったとき、項目内改行の改行コードはCRである。</td>
+</tr>
+<tr>
+<td style="text-align: left">空データ</td>
+<td style="text-align: left"><ul>
+<li>ありえる</li>
+<li>なし</li>
+</ul></td>
+<td style="text-align: left">CSVというより一般常識。あとファイル作るか作らないかも。ヘッダーも注意。</td>
+</tr>
+<tr>
+<td style="text-align: left">記号、制御文字</td>
+<td style="text-align: left"><ul>
+<li>入ってくる</li>
+<li>入ってこない</li>
+</ul></td>
+<td style="text-align: left">これも常識</td>
+</tr>
+<tr>
+<td style="text-align: left">ユーザーがExcelでみたり操作するか</td>
+<td style="text-align: left"><ul>
+<li>する</li>
+<li>しない</li>
+</ul></td>
+<td style="text-align: left">様々なExcelトラップがある。0はじまり文字列の0が表示上消えたり、勝手に日付として解釈したり。<br>そのためユーザーに良い開き方を教えたり項目内容を工夫したりする必要がある。</td>
+</tr>
+<tr>
+<td style="text-align: left">項目をダブルクオートでくくるか</td>
+<td style="text-align: left"><ul>
+<li>くくる</li>
+<li>くくらない</li>
+</ul></td>
+<td style="text-align: left">くくる場合はさらに考える事が<ul>
+<li>一部項目だけくくる</li>
+<li>ダブルクオート内のダブルクオートはどうするか</li>
+<li>シングルクオートでくくる</li>
+<li>項目が空データの場合はくくるかくくらないか</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p>ファイルは結合度が高く、データ連携としては原始的です。<br>
+そもそもCSVで渡す必要性を考えつつ、素直に作りましょう。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>yoshi-takaさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/yoshi-taka/items/b23fb3bcdd2b42c93feb"> 障害やエラー、接続不能時の問い合わせ。その時のヒアリングシート例</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-02 01:44:02</center>
+	</td>
+	<td style="width:200px;">
+		@yoshi-taka<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/37384/profile-images/1473687407">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[障害対応]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>問い合わせをする際や、逆に受ける際のテンプレートとして使ってください。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">質問</th>
+<th style="text-align: left">補足</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left">どこからどこに対するアクセスでしょうか？<br>どこ経由でしょうか？</td>
+<td style="text-align: left">できればサーバー単位、IP単位など</td>
+</tr>
+<tr>
+<td style="text-align: left">前まで問題なかったでしょうか？<br>いつから問題が発生しましたか？</td>
+<td style="text-align: left">最近どこかに何か修正や変更があったのかも？<br>ほとんどの障害は何かが変わったことが起因となります</td>
+</tr>
+<tr>
+<td style="text-align: left">常にその問題が発生していますか？</td>
+<td style="text-align: left">発生したりしなかったりの場合は、原因がまた異なります</td>
+</tr>
+<tr>
+<td style="text-align: left">再現方法はありますか？</td>
+<td style="text-align: left">再現できると解決に近くなります</td>
+</tr>
+<tr>
+<td style="text-align: left">正常な動きだとどうなりますか？</td>
+<td style="text-align: left">事実確認1</td>
+</tr>
+<tr>
+<td style="text-align: left">今回の動きはどうなっていますか？</td>
+<td style="text-align: left">事実確認2</td>
+</tr>
+<tr>
+<td style="text-align: left">今までに何を確認しましたか？</td>
+<td style="text-align: left">アプリ同士がつながらない？何かコマンドがつながらない？<br>同じ作業を省くため、できるだけ詳細に事実をお願いします。</td>
+</tr>
+<tr>
+<td style="text-align: left">ログやレスポンスは見ましたか？</td>
+<td style="text-align: left">ヒントになります</td>
+</tr>
+<tr>
+<td style="text-align: left">エラーのスクリーンショット/ログを見せてください</td>
+<td style="text-align: left">実物があるとコミュニケーションロスが減ります</td>
+</tr>
+<tr>
+<td style="text-align: left">他にもなにかが起きてますか？</td>
+<td style="text-align: left">ヒントになります</td>
+</tr>
+<tr>
+<td style="text-align: left">ご自身の考えるきっかけ</td>
+<td style="text-align: left">ヒントになります</td>
+</tr>
+<tr>
+<td style="text-align: left">逆に、問題ない部分はどこでしょうか</td>
+<td style="text-align: left">違いが重要。逆に重要</td>
+</tr>
+<tr>
+<td style="text-align: left">症状が大きくなったり小さくなったりするときはありますか？</td>
+<td style="text-align: left">ヒントになります</td>
+</tr>
+<tr>
+<td style="text-align: left">今、何か応急処置をしていますか？</td>
+<td style="text-align: left">ヒントになります</td>
+</tr>
+<tr>
+<td style="text-align: left">お困り度、ユーザー影響など</td>
+<td style="text-align: left">優先度に影響します</td>
+</tr>
+<tr>
+<td style="text-align: left">対応方法に対する要望</td>
+<td style="text-align: left">あれば。</td>
+</tr>
+</tbody>
+</table>
+
+<p>上記のような点を考慮した報告があると調査がスムーズになるでしょう。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>yoshi-takaさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/yoshi-taka/items/155f9f8d486acffd51b5">日付要件で障害を起こして辛い思いをしないためのtips集</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-29 10:08:00</center>
+	</td>
+	<td style="width:200px;">
+		@yoshi-taka<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/37384/profile-images/1473687407">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[日付]</b> <b>[日付計算]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>Septemberは7なのに9月、Octoberは8なのに10月。<br>
+日付は身近なものではありますが、<br>
+過去の歴史やしがらみから認識誤りが発生しやすい分野です。</p>
+
+<h2>
+<span id="簡単なチェック" class="fragment"></span><a href="#%E7%B0%A1%E5%8D%98%E3%81%AA%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF"><i class="fa fa-link"></i></a>簡単なチェック</h2>
+
+<ul>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled>日付や期間について、複数パターンの図を描いて合意したか<br>
+</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled>日付や期間について、複数パターンの実例を書いて合意したか<br>
+</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled>期間について、いつ始まり、いつ終わるか秒単位で合意したか<br>
+</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled>ひと月あたりの日数の違いは考慮しているか<br>
+1/31, 2/28, 3/31...</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled>うるう年は考慮しているか<br>
+</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled><code>24:00</code>をまわった場合は前日分と当日分、どちらとしてカウントするか<br>
+</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled>営業日ベースか、日数ベースか<br>
+</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled>その仕様は試験 / 検証可能か<br>
+</li>
+</ul>
+
+<h2>
+<span id="日付や期間について図と実例で合意したか" class="fragment"></span><a href="#%E6%97%A5%E4%BB%98%E3%82%84%E6%9C%9F%E9%96%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E5%9B%B3%E3%81%A8%E5%AE%9F%E4%BE%8B%E3%81%A7%E5%90%88%E6%84%8F%E3%81%97%E3%81%9F%E3%81%8B"><i class="fa fa-link"></i></a>日付や期間について、図と実例で合意したか</h2>
+
+<p>ある日の夜間、1週間後とは具体的に何月何日の何時何分何秒...<del>地球が何回回ったとき</del>でしょうか？<br>
+例えば3/3から3日間とすると、終わりは3/6まで？ 3/5まで？ 3/6の23:59:59.9999まで？始まりは？<br>
+だいたい関係者間で認識がずれているので、図や実例をいろんなパターンで書いてみましょう。</p>
+
+<h2>
+<span id="月と年日数が安定しない" class="fragment"></span><a href="#%E6%9C%88%E3%81%A8%E5%B9%B4%E6%97%A5%E6%95%B0%E3%81%8C%E5%AE%89%E5%AE%9A%E3%81%97%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>月と年：日数が安定しない</h2>
+
+<p>期間1ヶ月で！ → 31日ある月もあれば、30日の月もあり、28日しかない月もある。<br>
+30日合計分と31日合計分を比較すると、1日だけの違いとはいえ約3%のずれがあります。</p>
+
+<h3>
+<span id="ラウンドトリップ問題" class="fragment"></span><a href="#%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%89%E3%83%88%E3%83%AA%E3%83%83%E3%83%97%E5%95%8F%E9%A1%8C"><i class="fa fa-link"></i></a>ラウンドトリップ問題</h3>
+
+<p>1/31の1ヶ月後は? 2/28?  さらにそこから1ヶ月戻すとどうなる？<br>
+法令による業務仕様の場合、その法令の解釈も検証する必要があります。<br>
+1年も注意が必要です。うるう年を忘れずに。</p>
+
+<h3>
+<span id="対応例" class="fragment"></span><a href="#%E5%AF%BE%E5%BF%9C%E4%BE%8B"><i class="fa fa-link"></i></a>対応例：</h3>
+
+<ul>
+<li>うまくカレンダー通りにする</li>
+<li>365日で固定させる</li>
+<li>360日(30日 × 12ヶ月)で固定させる</li>
+</ul>
+
+<h2>
+<span id="1日の定義どこからどこまでか" class="fragment"></span><a href="#1%E6%97%A5%E3%81%AE%E5%AE%9A%E7%BE%A9%E3%81%A9%E3%81%93%E3%81%8B%E3%82%89%E3%81%A9%E3%81%93%E3%81%BE%E3%81%A7%E3%81%8B"><i class="fa fa-link"></i></a>"1日"の定義：どこからどこまでか</h2>
+
+<p>1日分も簡単そうで紛らわしいです。</p>
+
+<ul>
+<li>あるタイミングから24時間</li>
+<li>その日の<code>24:00</code>まで</li>
+</ul>
+
+<p>おそらくどちらかだと思います。<br>
+なお、消費者向けのアプリケーションの場合、<br>
+24時を超えてもアクセスはたくさん来ます。<br>
+特に主な顧客が国内の場合、<code>24:00</code>をまわった分は当日分と翌日分、どちらとしてカウントするか決めておきましょう。</p>
+
+<h3>
+<span id="参考" class="fragment"></span><a href="#%E5%8F%82%E8%80%83"><i class="fa fa-link"></i></a>参考</h3>
+
+<p><a href="https://ja.wikipedia.org/wiki/30%E6%99%82%E9%96%93%E5%88%B6" rel="nofollow noopener" target="_blank">30時間制 – Wikipedia</a></p>
+
+<h2>
+<span id="営業日ベース-vs-日数ベース" class="fragment"></span><a href="#%E5%96%B6%E6%A5%AD%E6%97%A5%E3%83%99%E3%83%BC%E3%82%B9-vs-%E6%97%A5%E6%95%B0%E3%83%99%E3%83%BC%E3%82%B9"><i class="fa fa-link"></i></a>営業日ベース vs 日数ベース</h2>
+
+<p>社内業務系の場合、平日のみ(営業日)で日数を数えることはよくあります。<br>
+この場合祝日のマスタ管理が必要になります。<br>
+必要なら日本以外の祝日も管理しましょう。</p>
+
+<h2>
+<span id="試験--検証可能か" class="fragment"></span><a href="#%E8%A9%A6%E9%A8%93--%E6%A4%9C%E8%A8%BC%E5%8F%AF%E8%83%BD%E3%81%8B"><i class="fa fa-link"></i></a>試験 / 検証可能か</h2>
+
+<p>3日後に動作する仕様を試験するのに、本当に3日待たないといけない仕様になっていませんか？<br>
+だからといってOSの日付を操作してなんとかしようすると、様々な部分がおかしくなります。<br>
+日付周りはパラメータなどの何らかの形でコントロールできるとうれしいですね。<br>
+システム的には<code>now()</code>といった状態依存のメソッドの乱用は控えるとよいでしょう</p>
+
+<p>わかりやすい例</p>
+
+<ul>
+<li><a href="https://codeiq.jp/magazine/2013/11/1475/" class="autolink" rel="nofollow noopener" target="_blank">https://codeiq.jp/magazine/2013/11/1475/</a></li>
+<li><a href="https://nekoya.github.io/blog/2013/07/09/what-time-is-it/" class="autolink" rel="nofollow noopener" target="_blank">https://nekoya.github.io/blog/2013/07/09/what-time-is-it/</a></li>
+</ul>
+
+<h2>
+<span id="細かいもの" class="fragment"></span><a href="#%E7%B4%B0%E3%81%8B%E3%81%84%E3%82%82%E3%81%AE"><i class="fa fa-link"></i></a>細かいもの</h2>
+
+<h3>
+<span id="サマータイム" class="fragment"></span><a href="#%E3%82%B5%E3%83%9E%E3%83%BC%E3%82%BF%E3%82%A4%E3%83%A0"><i class="fa fa-link"></i></a>サマータイム</h3>
+
+<p>海外向けのフロントエンドを作る場合は考慮を忘れずに</p>
+
+<h3>
+<span id="時差" class="fragment"></span><a href="#%E6%99%82%E5%B7%AE"><i class="fa fa-link"></i></a>時差</h3>
+
+<p>昼にメールを送ったつもりが現地の深夜に届くかもしれません。</p>
+
+<h3>
+<span id="年号" class="fragment"></span><a href="#%E5%B9%B4%E5%8F%B7"><i class="fa fa-link"></i></a>年号</h3>
+
+<p>Web系なら年号を使っているとしてもフロントエンドでの変換ぐらいなので問題ないでしょう。<br>
+システム関連携で年号を保持しているとつらいですね。<br>
+個人的には新年号がJISやunicodeに加わるか気になります。<br>
+㍾　㍽　㍼　㍻　の次。</p>
+
+<h3>
+<span id="以下の話はしません" class="fragment"></span><a href="#%E4%BB%A5%E4%B8%8B%E3%81%AE%E8%A9%B1%E3%81%AF%E3%81%97%E3%81%BE%E3%81%9B%E3%82%93"><i class="fa fa-link"></i></a>以下の話はしません</h3>
+
+<ul>
+<li>太陽太陰暦による春節の算出</li>
+<li>修正ユリウス暦のうるう年算出</li>
+<li>天文時</li>
+<li>イラン歴</li>
+</ul>
+
+<h2>
+<span id="その他システム的観点" class="fragment"></span><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E7%9A%84%E8%A6%B3%E7%82%B9"><i class="fa fa-link"></i></a>その他システム的観点</h2>
+
+<h3>
+<span id="うるう秒" class="fragment"></span><a href="#%E3%81%86%E3%82%8B%E3%81%86%E7%A7%92"><i class="fa fa-link"></i></a>うるう秒</h3>
+
+<p>最近はntpサーバがよしなにしてくれます。<br>
+よしなにしていない場合は注意</p>
+
+<h3>
+<span id="unixtime" class="fragment"></span><a href="#unixtime"><i class="fa fa-link"></i></a>unixtime</h3>
+
+<p>2038年問題はよく知られていますが、日付同士を加算しても起こりえます。<br>
+その場合は<code>(日付A + 日付B) / 2</code>ではなく、<code>(日付A / 2) + (日付B / 2)</code>に。</p>
+
+<h3>
+<span id="タイムゾーン" class="fragment"></span><a href="#%E3%82%BF%E3%82%A4%E3%83%A0%E3%82%BE%E3%83%BC%E3%83%B3"><i class="fa fa-link"></i></a>タイムゾーン</h3>
+
+<p>OS、言語、ライブラリ、ミドルウェアごとに<br>
+どのタイムゾーンを扱っているのか、扱えるのかが異なる可能性があります。<br>
+わからなくなったら全部書き出してみましょう。</p>
+
+<h2>
+<span id="最後に" class="fragment"></span><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB"><i class="fa fa-link"></i></a>最後に</h2>
+
+<p>要件の誤りはテストではなかなか見つかりません。<br>
+認知の問題で一番検討が難しいのでみなさん頑張りましょう。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

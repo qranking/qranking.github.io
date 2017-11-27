@@ -1,0 +1,204 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (inoue0426)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (inoue0426 さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>inoue0426さんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>587</kbd>
+		<a target="_blank" href="https://qiita.com/inoue0426/items/071c127428112f498421">Google製可視化OSSのFacetsがめっちゃ便利だから使ってみてくれ</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-18 23:28:57</center>
+	</td>
+	<td style="width:200px;">
+		@inoue0426<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/53633/profile-images/1496315669">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Python]</b> <b>[google]</b> <b>[機械学習]</b> <b>[可視化]</b> <b>[DataVisualization]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="facetsとは" class="fragment"></span><a href="#facets%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>Facetsとは</h1>
+
+<h3>
+<span id="facetsとはgoogle製の可視化ツールです" class="fragment"></span><a href="#facets%E3%81%A8%E3%81%AFgoogle%E8%A3%BD%E3%81%AE%E5%8F%AF%E8%A6%96%E5%8C%96%E3%83%84%E3%83%BC%E3%83%AB%E3%81%A7%E3%81%99"><i class="fa fa-link"></i></a>Facetsとは、Google製の可視化ツールです。</h3>
+
+<p>データセットの可視化を素早く簡単に行うことが出来ます。<br>
+<a href="http://paiza.hatenablog.com/entry/2017/07/24/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E3%82%92%E5%8F%AF%E8%A6%96%E5%8C%96%E3%81%99%E3%82%8B%E3%80%8CFacets%E3%80%8D%E3%81%A7%E9%81%8A%E3%82%93" rel="nofollow noopener" target="_blank">機械学習のデータセットを可視化する「Facets」で遊んでみた</a><br>
+<a href="http://forest.watch.impress.co.jp/docs/news/1070947.html" rel="nofollow noopener" target="_blank">Google、機械学習のデータセットを視覚化するオープンソースツール「Facets」を公開</a></p>
+
+<p>機械学習を行う時、前処理の前にデータの可視化を一通り行うことは多いと思います。<br>
+この時用いられる可視化ツールとしては、Redash・Pandasなどが多く使われています。<br>
+上記2つのツールはとても便利ですが、RedashはSQLを、PandasはPythonを少し書かないといけません。</p>
+
+<p>Facetsなら上記2つより簡単に、素早くデータの可視化を行うことが出来ます！</p>
+
+<p>では、以下から導入・簡単な説明をします。</p>
+
+<hr>
+
+<p>Facetsを使う前に、まずJupyterとPandasをインストールします。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>pip install jupyter
+pip install pandas
+</pre></div></div>
+
+<p>これだけで基本は大丈夫ですが、詳しくは以下をどうぞ↓</p>
+
+<p><a href="http://qiita.com/icoxfog417/items/175f69d06f4e590face9" id="reference-878ec7f4b79f60dd9e06">はじめるJupyter Notebook</a></p>
+
+<h5>
+<span id="追記2017928" class="fragment"></span><a href="#%E8%BF%BD%E8%A8%982017928"><i class="fa fa-link"></i></a>追記(2017/9/28)</h5>
+
+<hr>
+
+<p>pipからjupiterをインストールした場合、</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>jupyter nbextension install facets-dist/
+</pre></div></div>
+
+<p>を行うことでjupiter上でfacets-distを動かすことが可能になります。</p>
+
+<p>またラボ等の共用サーバーで動かす場合、</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>jupyter nbextension install facets-dist/ --user
+</pre></div></div>
+
+<p>で個別に行うことが出来ます。</p>
+
+<hr>
+
+<p>次にFacets本体をgit cloneして Facetsのディレクトリに移動します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>git clone https://github.com/PAIR-code/facets
+cd facets
+</pre></div></div>
+
+<p>Facetsの中には</p>
+
+<ul>
+<li>facets_dive</li>
+<li>facets_overview</li>
+</ul>
+
+<p>という2つのディレクトリが入っています。<br>
+facets_diveは多次元のデータををインタラクティブに探索することが、facets_overviewではデータセットの概要や、2つ以上のデータセットの比較を行うことが出来ます。</p>
+
+<p>今回はよく用いるであろう、facets_diveを使ってみます。<br>
+cdでディレクトリに移動し、以下のコマンドを打ちます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>cd facets_dive
+jupyter notebook
+</pre></div></div>
+
+<p>するとブラウザ上にいつものJupyterの画面が出てくると思います。</p>
+
+<p><a href="https://camo.qiitausercontent.com/e82fe863eaeaaa81ae89e74e0a2c25260a910c6a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35333633332f33663135386462652d616438382d623136352d316234642d3665373263626263363362332e706e67" target="_blank" rel="nofollow noopener"><img width="1236" alt="スクリーンショット 2017-09-18 23.00.05.png" src="https://camo.qiitausercontent.com/e82fe863eaeaaa81ae89e74e0a2c25260a910c6a/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35333633332f33663135386462652d616438382d623136352d316234642d3665373263626263363362332e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/53633/3f158dbe-ad88-b165-1b4d-6e72cbbc63b3.png"></a></p>
+
+<p>ここで、Dive_demo.ipynbを選択します。<br>
+いつも通り Shift+Enter を押します。</p>
+
+<p>たぶんここでこんなエラーが出るかと思われます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>[W 22:40:58.498 NotebookApp] IOPub data rate exceeded.
+    The notebook server will temporarily stop sending output
+    to the client in order to avoid crashing it.
+    To change this limit, set the config variable
+    `--NotebookApp.iopub_data_rate_limit`.
+</pre></div></div>
+
+<p>可視化を行う場合データが大きすぎてたまに怒られることがあります。<br>
+これを治すために一旦ターミナルに戻って以下のコマンドを打ちます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>jupyter notebook --generate-config
+</pre></div></div>
+
+<p>これでJupyterのconfigが出来ました。<br>
+以下のコマンドで.jupyter/jupyter_notebook_config.pyを開きます。（エディタはなんでも良いです。）</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>nvim .jupyter/jupyter_notebook_config.py 
+</pre></div></div>
+
+<p>ここに書かれているc.NotebookApp.iopub_data_rate_limit = 1000000の部分をコメントアウトを消して1000000の部分をより大きな数字に変更します。</p>
+
+<p><a href="https://stackoverflow.com/questions/43288550/iopub-data-rate-exceeded-when-viewing-image-in-jupyter-notebook/43420383#43420383" rel="nofollow noopener" target="_blank">IOPub data rate exceeded when viewing image in Jupyter notebook</a></p>
+
+<p>これを行いもう一度Jupyterを開いて Dive_demo.ipynb にて Shift+Enter を押すと動くと思います。<br>
+するとこんな画面が出てきます。</p>
+
+<p><a href="https://camo.qiitausercontent.com/18efbd481efa23c3c4fa254868614e13a82d0fe3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35333633332f34666266653932352d363662612d356464622d643762632d3165366265316238353430622e676966" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/18efbd481efa23c3c4fa254868614e13a82d0fe3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35333633332f34666266653932352d363662612d356464622d643762632d3165366265316238353430622e676966" alt="movie.gif" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/53633/4fbfe925-66ba-5ddb-d7bc-1e6be1b8540b.gif"></a></p>
+
+<p>こんな感じ。<br>
+インタラクティブにデータを見られることがわかっていただけたと思います。</p>
+
+<p>実際のデータを扱いたい場合、以下の部分でPandasなどを用いてデータを読み込み、JSONにパースすることで使えるようになります。<br>
+データはSQL,CSVなどなんでも大丈夫です！<br>
+ぜひ使ってみてください！</p>
+
+<div class="code-frame" data-lang="py3"><div class="highlight"><pre><span></span>
+<span class="n">jsonstr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">"https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.test"</span><span class="p">,</span>
+    <span class="n">names</span><span class="o">=</span><span class="n">features</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">'\s*,\s*'</span><span class="p">,</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s1">'python'</span><span class="p">,</span>
+    <span class="n">skiprows</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">na_values</span><span class="o">=</span><span class="s2">"?"</span><span class="p">)</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">'records'</span><span class="p">)</span>
+
+</pre></div></div>
+
+<h5>
+<span id="追記2017928-1" class="fragment"></span><a href="#%E8%BF%BD%E8%A8%982017928-1"><i class="fa fa-link"></i></a>追記(2017/9/28)</h5>
+
+<hr>
+
+<p>facets_overviewを使いたい場合、上記の内容に加えProtocol Buffersのpython runtime libraryをインストールすればOKです。<br>
+<a href="https://github.com/google/protobuf" rel="nofollow noopener" target="_blank">google/protobuf</a><br>
+ドキュメントにインストール法は記載されているため、そちらをご確認ください。<br>
+<a href="https://github.com/google/protobuf/tree/master/python" rel="nofollow noopener" target="_blank">google/protobuf/python</a></p>
+
+<hr>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

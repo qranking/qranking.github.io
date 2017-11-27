@@ -1,0 +1,1257 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (MoriokaReimen)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (MoriokaReimen さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>MoriokaReimenさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>223</kbd>
+		<a target="_blank" href="https://qiita.com/MoriokaReimen/items/5c4256ef620499a88bb3">Linuxのプロセス間通信</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-07 20:21:25</center>
+	</td>
+	<td style="width:200px;">
+		@MoriokaReimen<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/77676/profile-images/1473700905">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[C]</b> <b>[C++]</b> <b>[Linux]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="この記事について" class="fragment"></span><a href="#%E3%81%93%E3%81%AE%E8%A8%98%E4%BA%8B%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>この記事について</h1>
+
+<p>LinuxのIPC（プロセス間通信）を紹介します。</p>
+
+<h1>
+<span id="プロセス間通信とは" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E9%96%93%E9%80%9A%E4%BF%A1%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>プロセス間通信とは</h1>
+
+<p>Inter Process Communication(IPC)はプログラムの実行単位であるプロセスの間で行われるデータ交換のことを指します。プロセスの依存関係は可能な限り疎結合になるようOSで管理されています。そのため、IPCはLinux OSの機能を経由して行う必要があります。<br>
+OSがプロセスに提供するデータ交換の方法はひとつだけではありません。それぞれ特徴のある多彩な方法を提供しています。<br>
+ここで紹介するのは以下の5つです。</p>
+
+<ol>
+<li>共有メモリー</li>
+<li>セマフォ</li>
+<li>マップドメモリー</li>
+<li>パイプ</li>
+<li>ソケット通信</li>
+</ol>
+
+<p>（他にありましたらコメントで教えていただければ幸いです。）</p>
+
+<p>それでは、見ていきましょう。</p>
+
+<h1>
+<span id="共有メモリ" class="fragment"></span><a href="#%E5%85%B1%E6%9C%89%E3%83%A1%E3%83%A2%E3%83%AA"><i class="fa fa-link"></i></a>共有メモリ</h1>
+
+<p>プロセス間で同じメモリを共有します。<br>
+共有メモリの最大の利点はそのアクセススピードにあります。<br>
+一度共有メモリを生成してしまえばカーネルの機能を利用せずにアクセスすることができるため、プロセス内にある普通のメモリと同じ速度でアクセスできます。<br>
+このアクセス速度のメリットが必要になるような処理性能が求められるソフトウェアではこの方法がよく使われます。<br>
+一方、２つのプロセスから同時に書き込みを行うと競合が発生します。<br>
+共有メモリにはこの競合を防ぐ相互排他機構が組み込まれていません。<br>
+自分で用意する必要があります。</p>
+
+<p>共有メモリを使ったサンプルコードをいかに示します。<br>
+process_aで共有メモリを確保して文字列"Hello World!"を共有メモリに書き込みます。<br>
+共有メモリに書き込まれたデータはprocess_bで読み取れてコンソールにプリントされます。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">process_a.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/shm.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/stat.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/ipc.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="cm">/* セグメントIDの生成 */</span>
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">file_path</span><span class="p">(</span><span class="s">"./key_data.dat"</span><span class="p">);</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+    <span class="k">const</span> <span class="k">auto</span> <span class="n">key</span> <span class="o">=</span> <span class="n">ftok</span><span class="p">(</span><span class="n">file_path</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">id</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">==</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Failed to acquire key"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* セグメントの割当 */</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">shared_segment_size</span> <span class="o">=</span> <span class="mh">0x6400</span><span class="p">;</span>
+    <span class="k">const</span> <span class="k">auto</span> <span class="n">segment_id</span> <span class="o">=</span> <span class="n">shmget</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">shared_segment_size</span><span class="p">,</span>
+                                   <span class="n">IPC_CREAT</span> <span class="o">|</span> <span class="n">IPC_EXCL</span> <span class="o">|</span> <span class="n">S_IRUSR</span> <span class="o">|</span> <span class="n">S_IWUSR</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">==</span><span class="n">segment_id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">segment_id</span> <span class="o">&lt;&lt;</span> <span class="s">" :Failed to acquire segment"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* キーとセグメントIDの表示 */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"キー："</span> <span class="o">&lt;&lt;</span> <span class="n">key</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"セグメントID："</span> <span class="o">&lt;&lt;</span> <span class="n">segment_id</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="cm">/* 共有メモリにアタッチ */</span>
+    <span class="kt">char</span><span class="o">*</span> <span class="k">const</span> <span class="n">shared_memory</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">shmat</span><span class="p">(</span><span class="n">segment_id</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">printf</span> <span class="p">(</span><span class="s">"shared memory attached at address %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">shared_memory</span><span class="p">);</span>
+
+    <span class="cm">/* 共有メモリへの書込み */</span>
+    <span class="n">sprintf</span> <span class="p">(</span><span class="n">shared_memory</span><span class="p">,</span> <span class="s">"Hello, world."</span><span class="p">);</span>
+
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Hit any key when ready to close shared memory"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">.</span><span class="n">get</span><span class="p">();</span>
+
+    <span class="cm">/* 共有メモリのデタッチ */</span>
+    <span class="n">shmdt</span><span class="p">(</span><span class="n">shared_memory</span><span class="p">);</span>
+    <span class="cm">/* 共有メモリの解放 */</span>
+    <span class="n">shmctl</span> <span class="p">(</span><span class="n">segment_id</span><span class="p">,</span> <span class="n">IPC_RMID</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">process_b.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/shm.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/stat.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="cm">/* セグメントIDの生成 */</span>
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">file_path</span><span class="p">(</span><span class="s">"./key_data.dat"</span><span class="p">);</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+    <span class="k">const</span> <span class="k">auto</span> <span class="n">key</span> <span class="o">=</span> <span class="n">ftok</span><span class="p">(</span><span class="n">file_path</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">id</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">==</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Failed to acquire key"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+    <span class="cm">/* 共有メモリにアタッチ */</span>
+    <span class="k">const</span> <span class="k">auto</span> <span class="n">segment_id</span> <span class="o">=</span> <span class="n">shmget</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="k">const</span> <span class="n">shared_memory</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">shmat</span><span class="p">(</span><span class="n">segment_id</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">printf</span> <span class="p">(</span><span class="s">"shared memory attached at address %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">shared_memory</span><span class="p">);</span>
+
+    <span class="cm">/* 共有メモリの読み込み */</span>
+    <span class="n">printf</span> <span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">shared_memory</span><span class="p">);</span>
+
+    <span class="cm">/* 共有メモリのデタッチ */</span>
+    <span class="n">shmdt</span><span class="p">(</span><span class="n">shared_memory</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="プロセス間通信に関わるlinuxのコマンド" class="fragment"></span><a href="#%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E9%96%93%E9%80%9A%E4%BF%A1%E3%81%AB%E9%96%A2%E3%82%8F%E3%82%8Blinux%E3%81%AE%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89"><i class="fa fa-link"></i></a>プロセス間通信に関わるLinuxのコマンド</h2>
+
+<p>プロセス間通信のプログラムを作成するときに必要なコマンドを紹介します。<br>
+ひとつはipcsコマンド。<br>
+プロセス間通信の状態を表示します。</p>
+
+<div class="code-frame" data-lang="console"><div class="highlight"><pre><span></span><span class="gp">kei@Glou-Glou:~/src/ipc/shared_memory$</span> ipcs
+
+<span class="go">------ メッセージキュー --------</span>
+<span class="go">キー     msqid      所有者  権限     使用済みバイト数 メッセージ</span>
+
+<span class="go">------ 共有メモリセグメント --------</span>
+<span class="go">キー     shmid      所有者  権限     バイト  nattch     状態      </span>
+<span class="go">0x00000000 884736     kei        600        16777216   2                       </span>
+<span class="go">0x00000000 1409025    kei        600        268435456  2          対象       </span>
+<span class="go">0x00000000 819202     kei        600        524288     2          対象</span>
+
+<span class="go">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~省略~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    </span>
+
+<span class="go">------ セマフォ配列 --------</span>
+<span class="go">キー     semid      所有者  権限     nsems     </span>
+
+</pre></div></div>
+
+<p>次にipcrmコマンドを紹介します。<br>
+確保された共有リソースを解放します。</p>
+
+<div class="code-frame" data-lang="console"><div class="highlight"><pre><span></span><span class="gp">kei@Glou-Glou:~/src/ipc/shared_memory$</span> ipcrm shm &lt;shmid&gt;
+</pre></div></div>
+
+<h1>
+<span id="セマフォ" class="fragment"></span><a href="#%E3%82%BB%E3%83%9E%E3%83%95%E3%82%A9"><i class="fa fa-link"></i></a>セマフォ</h1>
+
+<p>セマフォは整数型のデータを親子関係の無いプロセス間で共有します。<br>
+複数プロセスの同時アクセスを制御する機構を持っていますが、整数型のデータしか扱えないというのが難点です。<br>
+主な用途としては共有メモリの相互排他に使われます。<br>
+以下が、セマフォの用いたサンプルコードです。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">process_a.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;sys/ipc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;sys/sem.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">union</span> <span class="n">semun</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">semid_ds</span> <span class="o">*</span><span class="n">buf</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="kt">int</span> <span class="o">*</span><span class="n">array</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">seminfo</span> <span class="o">*</span><span class="n">__buf</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">enum</span> <span class="n">SEMAPHORE_OPERATION</span>
+<span class="p">{</span>
+    <span class="n">UNLOCK</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">WAIT</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">LOCK</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="cm">/* セマフォの確保 */</span>
+    <span class="k">const</span> <span class="kt">key_t</span> <span class="n">key</span> <span class="o">=</span> <span class="mi">112</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">sem_flags</span> <span class="o">=</span> <span class="mo">0666</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">sem_id</span> <span class="o">=</span> <span class="n">semget</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sem_flags</span> <span class="o">|</span> <span class="n">IPC_CREAT</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">==</span> <span class="n">sem_id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Failed to acquire semapore"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* セマフォの初期化 */</span>
+    <span class="k">union</span> <span class="n">semun</span> <span class="n">argument</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">argument</span><span class="p">.</span><span class="n">array</span> <span class="o">=</span> <span class="n">values</span><span class="p">;</span>
+    <span class="n">semctl</span><span class="p">(</span><span class="n">sem_id</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SETALL</span><span class="p">,</span> <span class="n">argument</span><span class="p">);</span>
+
+    <span class="cm">/* プロセスBの実行を待つ */</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Waiting for post operation..."</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">sembuf</span> <span class="n">operations</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="n">operations</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sem_num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">operations</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sem_op</span> <span class="o">=</span> <span class="n">WAIT</span><span class="p">;</span>
+    <span class="n">operations</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sem_flg</span> <span class="o">=</span> <span class="n">SEM_UNDO</span><span class="p">;</span>
+    <span class="n">semop</span><span class="p">(</span><span class="n">sem_id</span><span class="p">,</span> <span class="n">operations</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="cm">/* セマフォの解放 */</span>
+    <span class="k">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">semctl</span><span class="p">(</span><span class="n">sem_id</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">IPC_RMID</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">==</span> <span class="n">result</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Failed to close semaphore"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">process_b.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;sys/ipc.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;sys/sem.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">union</span> <span class="n">semun</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">semid_ds</span> <span class="o">*</span><span class="n">buf</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="kt">int</span> <span class="o">*</span><span class="n">array</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">seminfo</span> <span class="o">*</span><span class="n">__buf</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">enum</span> <span class="n">SEMAPHORE_OPERATION</span>
+<span class="p">{</span>
+    <span class="n">UNLOCK</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">WAIT</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">LOCK</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="cm">/* セマフォの確保 */</span>
+    <span class="k">const</span> <span class="kt">key_t</span> <span class="n">key</span> <span class="o">=</span> <span class="mi">112</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">sem_flags</span> <span class="o">=</span> <span class="mo">0666</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">sem_id</span> <span class="o">=</span> <span class="n">semget</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sem_flags</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">==</span> <span class="n">sem_id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Failed to acquire semapore"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Unlock semaphore"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="cm">/* セマフォにポスト */</span>
+    <span class="n">sembuf</span> <span class="n">operations</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="n">operations</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sem_num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">operations</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sem_op</span> <span class="o">=</span> <span class="n">UNLOCK</span><span class="p">;</span>
+    <span class="n">operations</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sem_flg</span> <span class="o">=</span> <span class="n">SEM_UNDO</span><span class="p">;</span>
+    <span class="n">semop</span><span class="p">(</span><span class="n">sem_id</span><span class="p">,</span> <span class="n">operations</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="マップドメモリー" class="fragment"></span><a href="#%E3%83%9E%E3%83%83%E3%83%97%E3%83%89%E3%83%A1%E3%83%A2%E3%83%AA%E3%83%BC"><i class="fa fa-link"></i></a>マップドメモリー</h1>
+
+<p>複数のプロセスがファイルを介して通信します。<br>
+ファイルのアクセスの時にメモリマッピングを行い処理を高速化させます。<br>
+メモリマッピングとはファイルやデバイスなどをあたかもメモリのようにアクセスできるよう仮想アドレス空間にマップすることを指します。<br>
+これにより、シリアライズなしでファイルにデータを配置することができます。</p>
+
+<p>それでは、メモリマップを使ったプロセス間通信のサンプルコードを以下に示します。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">process_a.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;fcntl.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;sys/mman.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;sys/stat.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+
+<span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">FILE_LENGTH</span> <span class="o">=</span> <span class="mh">0x100</span><span class="p">;</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">FILE_NAME</span><span class="p">(</span><span class="s">"./data.dat"</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="cm">/* Prepare a file large enough to hold an unsigned integer. */</span>
+    <span class="k">auto</span> <span class="n">fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="n">FILE_NAME</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">O_RDWR</span> <span class="o">|</span> <span class="n">O_CREAT</span><span class="p">,</span> <span class="n">S_IRUSR</span> <span class="o">|</span> <span class="n">S_IWUSR</span><span class="p">);</span>
+    <span class="n">lseek</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">FILE_LENGTH</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">SEEK_SET</span><span class="p">);</span>
+    <span class="n">write</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">lseek</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_SET</span><span class="p">);</span>
+    <span class="cm">/* Create the memory mapping. */</span>
+    <span class="kt">char</span><span class="o">*</span> <span class="k">const</span> <span class="n">file_memory</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">mmap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">FILE_LENGTH</span><span class="p">,</span> <span class="n">PROT_WRITE</span><span class="p">,</span> <span class="n">MAP_SHARED</span><span class="p">,</span> <span class="n">fd</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+    <span class="cm">/* Write a random integer to memory-mapped area. */</span>
+    <span class="n">sprintf</span><span class="p">(</span><span class="n">file_memory</span><span class="p">,</span> <span class="s">"%s"</span><span class="p">,</span> <span class="s">"Hello World!"</span><span class="p">);</span>
+    <span class="cm">/* Release the memory (unnecessary because the program exits). */</span>
+    <span class="n">munmap</span> <span class="p">(</span><span class="n">file_memory</span><span class="p">,</span> <span class="n">FILE_LENGTH</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">process_b.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;fcntl.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;sys/mman.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;sys/stat.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+
+<span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">FILE_LENGTH</span> <span class="o">=</span> <span class="mh">0x100</span><span class="p">;</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">FILE_NAME</span><span class="p">(</span><span class="s">"./data.dat"</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="cm">/* Open the file. */</span>
+    <span class="k">auto</span> <span class="n">fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="n">FILE_NAME</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">O_RDWR</span><span class="p">,</span> <span class="n">S_IRUSR</span> <span class="o">|</span> <span class="n">S_IWUSR</span><span class="p">);</span>
+    <span class="cm">/* Create the memory mapping. */</span>
+    <span class="kt">char</span><span class="o">*</span> <span class="k">const</span> <span class="n">file_memory</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">mmap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">FILE_LENGTH</span><span class="p">,</span> <span class="n">PROT_READ</span> <span class="o">|</span> <span class="n">PROT_WRITE</span><span class="p">,</span> <span class="n">MAP_SHARED</span><span class="p">,</span> <span class="n">fd</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+    <span class="cm">/* Read the integer, print it out, and double it. */</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">file_memory</span><span class="p">);</span>
+
+    <span class="cm">/* Release the memory (unnecessary because the program exits). */</span>
+    <span class="n">munmap</span><span class="p">(</span><span class="n">file_memory</span><span class="p">,</span> <span class="n">FILE_LENGTH</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="パイプ" class="fragment"></span><a href="#%E3%83%91%E3%82%A4%E3%83%97"><i class="fa fa-link"></i></a>パイプ</h1>
+
+<p>パイプは親子関係にあるプロセス間の一方向の通信を実現します。<br>
+コマンドラインでお馴染みでしょう。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>$ ps aux | grep apache
+</pre></div></div>
+
+<p><code>ps aux</code>の実行結果をパイプ<code>|</code>を通じて<code>grep</code>コマンドで渡されます。<br>
+しかし、このパイプ厄介なのがプロセス間に親子関係が必要になるということです。<br>
+process_aプログラムがprocess_bプログラムを起動してパイプを通じてデータの交換を行うサンプルプログラムを作成しようとしましたが、うまく行きませんでした。<br>
+できる方がいらっしゃいましたらコメント欄でお知らせください。</p>
+
+<h1>
+<span id="fifo" class="fragment"></span><a href="#fifo"><i class="fa fa-link"></i></a>FIFO</h1>
+
+<p>別名named pipedと呼ばれています。ファイルシステム上で名前を持つパイプです。<br>
+親子関係がなくても全てのプロセスがFIFOを作成、アクセス、削除することができます。<br>
+このFIFOは<code>mkfifo</code>コマンドでコンソールから作成することもできます。</p>
+
+<div class="code-frame" data-lang="console"><div class="highlight"><pre><span></span><span class="gp">$</span> mkfifo ./fifo.tmp
+</pre></div></div>
+
+<p>作成されたFIFOは普通のファイルのようにアクセスすることができます。</p>
+
+<div class="code-frame" data-lang="console">
+<div class="code-lang"><span class="bold">FIFOに書き込み</span></div>
+<div class="highlight"><pre><span></span><span class="gp">$</span> cat &gt; fifo.tmp
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="console">
+<div class="code-lang"><span class="bold">FIFOを読み込み</span></div>
+<div class="highlight"><pre><span></span><span class="gp">$</span> cat fifo.tmp
+</pre></div>
+</div>
+
+<p>以下、FIFOでデータを交換するサンプルコードです。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">process_a.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;fcntl.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/stat.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+
+<span class="k">const</span> <span class="kt">size_t</span> <span class="nf">BUFFER_SIZE</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ファイルディスクリプタ</span>
+    <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>
+
+    <span class="c1">// FIFOの作成</span>
+    <span class="c1">// mkfifo(&lt;pathname&gt;, &lt;permission&gt;)</span>
+    <span class="n">mkfifo</span><span class="p">(</span><span class="s">"/tmp/myfifo"</span><span class="p">,</span> <span class="mo">0666</span><span class="p">);</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">);</span>
+    <span class="c1">// 書き込み専用でFIFOを開く</span>
+    <span class="n">fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="s">"/tmp/myfifo"</span><span class="p">,</span> <span class="n">O_WRONLY</span><span class="p">);</span>
+
+    <span class="c1">// メッセージの書き込み</span>
+    <span class="n">write</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">message</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">message</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">process_b.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;fcntl.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/stat.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+
+<span class="k">const</span> <span class="kt">size_t</span> <span class="nf">BUFFER_SIZE</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ファイルディスクリプタ</span>
+    <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>
+
+    <span class="c1">// FIFOの作成</span>
+    <span class="c1">// mkfifo(&lt;pathname&gt;, &lt;permission&gt;)</span>
+    <span class="n">mkfifo</span><span class="p">(</span><span class="s">"/tmp/myfifo"</span><span class="p">,</span> <span class="mo">0666</span><span class="p">);</span>
+
+    <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="n">BUFFER_SIZE</span><span class="p">];</span>
+    <span class="c1">// 読み込み専用でFIFOを開く</span>
+    <span class="n">fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="s">"/tmp/myfifo"</span><span class="p">,</span> <span class="n">O_RDONLY</span><span class="p">);</span>
+    <span class="n">read</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">str</span><span class="p">,</span> <span class="n">BUFFER_SIZE</span><span class="p">);</span>
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+
+    <span class="c1">// 読み込んだ内容の表示</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">message</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>FIFOは複数のプロセスから読み書きできます。複数同時のアクセスは自動的に排他処理されます。</p>
+
+<h1>
+<span id="ソケット通信" class="fragment"></span><a href="#%E3%82%BD%E3%82%B1%E3%83%83%E3%83%88%E9%80%9A%E4%BF%A1"><i class="fa fa-link"></i></a>ソケット通信</h1>
+
+<p>ソケットは依存関係のないプロセス間での通信を実現します。<br>
+加えて、他の方法にはないメリットがあります。それは、他のマシンにあるプロセスと通信できることです。<br>
+以下が、ソケットを使用したサンプルコードです。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">process_a.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;sys/un.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">server</span> <span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">client_socket</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">const</span> <span class="kt">size_t</span> <span class="n">MAX_SIZE</span> <span class="o">=</span> <span class="mi">128</span><span class="p">;</span>
+        <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="n">MAX_SIZE</span><span class="p">];</span>
+        <span class="n">read</span><span class="p">(</span><span class="n">client_socket</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">MAX_SIZE</span><span class="p">);</span>
+        <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">message</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+            <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="s">"This line must not be executed."</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">socket_name</span><span class="p">(</span><span class="s">"my_socket"</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">socket_fd</span><span class="p">;</span>
+    <span class="n">sockaddr_un</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">client_sent_quit_message</span><span class="p">;</span>
+    <span class="cm">/* ソケットを作成 */</span>
+    <span class="n">socket_fd</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">PF_LOCAL</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="cm">/* サーバーとして設定 */</span>
+    <span class="n">name</span><span class="p">.</span><span class="n">sun_family</span> <span class="o">=</span> <span class="n">AF_LOCAL</span><span class="p">;</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">name</span><span class="p">.</span><span class="n">sun_path</span><span class="p">,</span> <span class="n">socket_name</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="n">bind</span><span class="p">(</span><span class="n">socket_fd</span><span class="p">,</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">sockaddr</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">),</span> <span class="n">SUN_LEN</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">));</span>
+    <span class="cm">/* ソケットを開く */</span>
+    <span class="n">listen</span><span class="p">(</span><span class="n">socket_fd</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+    <span class="cm">/* 接続されたらメッセージが届くまで待機 */</span>
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="n">sockaddr_un</span> <span class="n">client_name</span><span class="p">;</span>
+        <span class="kt">socklen_t</span> <span class="n">client_name_len</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">client_socket_fd</span><span class="p">;</span>
+        <span class="cm">/* 接続があるまで待機 */</span>
+        <span class="n">client_socket_fd</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">socket_fd</span><span class="p">,</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">sockaddr</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">client_name</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">client_name_len</span><span class="p">);</span>
+        <span class="cm">/* メッソージを受け取る */</span>
+        <span class="n">client_sent_quit_message</span> <span class="o">=</span> <span class="n">server</span><span class="p">(</span><span class="n">client_socket_fd</span><span class="p">);</span>
+        <span class="cm">/* 切断する*/</span>
+        <span class="n">close</span><span class="p">(</span><span class="n">client_socket_fd</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">client_sent_quit_message</span><span class="p">);</span>
+    <span class="cm">/* ソケットを閉じる */</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">socket_fd</span><span class="p">);</span>
+    <span class="n">unlink</span><span class="p">(</span><span class="n">socket_name</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">process_b.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;sys/un.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+
+<span class="cm">/* Write TEXT to the socket given by file descriptor SOCKET_FD. */</span>
+<span class="kt">int</span> <span class="nf">write_text</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">socket_fd</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">message</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/* Write the string. */</span>
+    <span class="n">write</span><span class="p">(</span><span class="n">socket_fd</span><span class="p">,</span> <span class="n">message</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">message</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">socket_name</span><span class="p">(</span><span class="s">"my_socket"</span><span class="p">);</span>
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"Hello World!!"</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">socket_fd</span><span class="p">;</span>
+    <span class="n">sockaddr_un</span> <span class="n">name</span><span class="p">;</span>
+    <span class="cm">/* ソケットを作成する */</span>
+    <span class="n">socket_fd</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">PF_LOCAL</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="cm">/* ソケット名を設定 */</span>
+    <span class="n">name</span><span class="p">.</span><span class="n">sun_family</span> <span class="o">=</span> <span class="n">AF_LOCAL</span><span class="p">;</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">name</span><span class="p">.</span><span class="n">sun_path</span><span class="p">,</span> <span class="n">socket_name</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="cm">/* ソケットを接続 */</span>
+    <span class="n">connect</span><span class="p">(</span><span class="n">socket_fd</span><span class="p">,</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">sockaddr</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">),</span> <span class="n">SUN_LEN</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">));</span>
+    <span class="cm">/* メッセージを送信 */</span>
+    <span class="n">write_text</span><span class="p">(</span><span class="n">socket_fd</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">socket_fd</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="結論" class="fragment"></span><a href="#%E7%B5%90%E8%AB%96"><i class="fa fa-link"></i></a>結論</h1>
+
+<p>ざっと、Linuxで提供されているIPCの方法を紹介してきました。<br>
+これだけ方法があるとどれを使ったらいいか迷うと思います。<br>
+そこがプログラマの腕の見せ所です。<br>
+どの方法も一長一短あります。ソフトウェアの制約の下、どれが最適な方法なのを考え選択していきましょう。</p>
+
+<h1>
+<span id="参考文献" class="fragment"></span><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><i class="fa fa-link"></i></a>参考文献</h1>
+
+<ul>
+<li>
+<a href="https://stackoverflow.com/questions/5656530/how-to-use-shared-memory-with-linux-in-c" rel="nofollow noopener" target="_blank">How to use shared memory with Linux in C</a><br>
+共有メモリの例プログラム作成の参考にしました。</li>
+<li>
+<a href="https://stackoverflow.com/questions/2068498/how-to-choose-the-key-for-inter-processes-communication-in-linux" rel="nofollow noopener" target="_blank">How to choose the “Key” for inter-processes communication in Linux?</a>
+共有メモリのキーの生成方法について参考にさせていただきました。</li>
+<li><p><a href="https://users.cs.cf.ac.uk/Dave.Marshall/C/node27.html" rel="nofollow noopener" target="_blank"> Programming in C UNIX System Calls and Subroutines using C</a><br>
+こちらも共有メモリのプログラムのサンプル作成に折に参考にさせていただきました。</p></li>
+<li><p><a href="http://www.geeksforgeeks.org/named-pipe-fifo-example-c-program/" rel="nofollow noopener" target="_blank">Named Pipe or FIFO with example C program</a><br>
+FIFIのサンプルプログラム作成に参考にしました。</p></li>
+<li><p><a href="https://www.amazon.co.jp/dp/B0039KOA0O/ref=dp-kindle-redirect?_encoding=UTF8&amp;btkr=1" rel="nofollow noopener" target="_blank">Advanced Linux Programming</a> <br>
+この記事の大部分はこの書籍の第5章を翻訳・アレンジして書いています。</p></li>
+<li><p><a href="http://www.binarytides.com/socket-programming-c-linux-tutorial/" rel="nofollow noopener" target="_blank">Socket programming in C on Linux – tutorial</a> <br>
+Socket通信のプログラムの参考にさせていただきました。</p></li>
+</ul>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>MoriokaReimenさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>13</kbd>
+		<a target="_blank" href="https://qiita.com/MoriokaReimen/items/c12cd791228254a95040">C++イディオム（第一回）</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-24 17:28:16</center>
+	</td>
+	<td style="width:200px;">
+		@MoriokaReimen<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/77676/profile-images/1473700905">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[C++]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="この記事について" class="fragment"></span><a href="#%E3%81%93%E3%81%AE%E8%A8%98%E4%BA%8B%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>この記事について</h1>
+
+<p>C++のイディオムを紹介していきます。全12回を予定していますが私のやる気と根気でいつまで続くかわかりません。</p>
+
+<h1>
+<span id="construct-on-first-use" class="fragment"></span><a href="#construct-on-first-use"><i class="fa fa-link"></i></a>Construct on First Use</h1>
+
+<p>静的オブジェクトは注意して扱わないと初期化される前に使用されることがあります。例を挙げると以下のような状況です。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">acccess_before_init.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">class</span> <span class="nc">StaticObject</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">StaticObject</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"StaticObject::StaticObject()"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">callMethod</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"StaticObject::callMethod()"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">MyClass</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="n">StaticObject</span> <span class="n">object_</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">MyClass</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"MyClass::MyClass()"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="n">object_</span><span class="p">.</span><span class="n">callMethod</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="n">MyClass</span> <span class="n">my_class</span><span class="p">;</span> <span class="c1">// !初期化されたないobjectにアクセス</span>
+<span class="n">StaticObject</span> <span class="n">MyClass</span><span class="o">::</span><span class="n">object_</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"main"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="plain">
+<div class="code-lang"><span class="bold">実行結果</span></div>
+<div class="highlight"><pre><span></span>MyClass::MyClass()
+StaticObject::callMethod()
+StaticObject::StaticObject()
+main
+</pre></div>
+</div>
+
+<p><a href="https://wandbox.org/permlink/jTzgof9gBYWIWLF5" class="autolink" rel="nofollow noopener" target="_blank">https://wandbox.org/permlink/jTzgof9gBYWIWLF5</a></p>
+
+<p>静的なオブジェクトへアクセスを関数でラップすることで、このような初期化がすんでいないオブジェクトへのアクセスを防ぐことができます。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">solution.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">class</span> <span class="nc">StaticObject</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">StaticObject</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"StaticObject::StaticObject()"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">callMethod</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"StaticObject::callMethod()"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">MyClass</span>
+<span class="p">{</span>
+    <span class="n">StaticObject</span><span class="o">&amp;</span> <span class="n">Object</span><span class="p">()</span>
+    <span class="p">{</span>
+         <span class="k">static</span> <span class="n">StaticObject</span> <span class="n">object_</span><span class="p">;</span>
+         <span class="k">return</span> <span class="n">object_</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">MyClass</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"MyClass::MyClass()"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="n">Object</span><span class="p">().</span><span class="n">callMethod</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="n">MyClass</span> <span class="n">my_class</span><span class="p">;</span> <span class="c1">// !初期化されたないobjectにアクセス</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"main"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<div class="code-frame" data-lang="plain">
+<div class="code-lang"><span class="bold">実行結果</span></div>
+<div class="highlight"><pre><span></span>MyClass::MyClass()
+StaticObject::StaticObject()
+StaticObject::callMethod()
+main
+</pre></div>
+</div>
+
+<p><a href="https://wandbox.org/permlink/D0qt8hbo265gwHKb" class="autolink" rel="nofollow noopener" target="_blank">https://wandbox.org/permlink/D0qt8hbo265gwHKb</a></p>
+
+<h1>
+<span id="construction-tracker" class="fragment"></span><a href="#construction-tracker"><i class="fa fa-link"></i></a>Construction Tracker</h1>
+
+<p>コンストラクタでのメンバの初期化の際に例外が発生する場合があります。tryとcatchでくくることで例外を適切に処理できますが、ときどき困った問題が起きることがあります。<br>
+例えば以下のような場合です。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">untracked_exception.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">A</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+    <span class="p">{</span>
+
+         <span class="cm">/* 初期化に失敗したら例外を投げる */</span>
+         <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">"A Error"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">B</span>
+<span class="p">{</span>
+    <span class="n">B</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+    <span class="p">{</span>
+         <span class="cm">/* 初期化に失敗したら例外を投げる */</span>
+         <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">"B Error"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">MyClass</span>
+<span class="p">{</span>
+    <span class="n">A</span> <span class="n">a_</span><span class="p">;</span>
+    <span class="n">B</span> <span class="n">b_</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">MyClass</span><span class="p">()</span> <span class="o">:</span> <span class="n">a_</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">b_</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="n">MyClass</span> <span class="n">object</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">catch</span><span class="p">(...)</span>
+    <span class="p">{</span>
+     <span class="cm">/* Aの例外？それともBの例外？ */</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>MyClassのコンストラクタでメンバが初期化されています。初期化に失敗した際に例外を投げるのですが、例外の型が同じのためa_の初期化に失敗したのか、b_の初期化に失敗したのかわかりません。<br>
+この問題を解決するイディオムがConstruction Trackerです。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">untracked_exception.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">A</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+    <span class="p">{</span>
+
+         <span class="cm">/* 初期化に失敗したら例外を投げる */</span>
+         <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">"A Error"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">B</span>
+<span class="p">{</span>
+    <span class="n">B</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+    <span class="p">{</span>
+         <span class="cm">/* 初期化に失敗したら例外を投げる */</span>
+         <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">"B Error"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">MyClass</span>
+<span class="p">{</span>
+    <span class="n">A</span> <span class="n">a_</span><span class="p">;</span>
+    <span class="n">B</span> <span class="n">b_</span><span class="p">;</span>
+    <span class="k">enum</span> <span class="n">TrakcerType</span><span class="p">{</span><span class="n">NONE</span><span class="p">,</span> <span class="n">ONE</span><span class="p">,</span> <span class="n">TWO</span><span class="p">};</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">MyClass</span><span class="p">(</span><span class="n">TrackerType</span> <span class="n">tracker</span><span class="o">=</span><span class="n">NONE</span><span class="p">)</span>
+    <span class="k">try</span>
+    <span class="o">:</span> <span class="n">a_</span><span class="p">((</span><span class="n">tracker</span> <span class="o">=</span> <span class="n">ONE</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span> <span class="n">b_</span><span class="p">((</span><span class="n">tracker</span> <span class="o">=</span> <span class="n">TWO</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="cm">/* 正常な初期化処理 */</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">exception</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">tracker</span><span class="o">==</span><span class="n">ONE</span><span class="p">){</span>
+            <span class="cm">/* a_の初期化に失敗した時の処理 */</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="n">MyClass</span> <span class="n">object</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">catch</span><span class="p">(...)</span>
+    <span class="p">{</span>
+     <span class="cm">/* Aの例外？それともBの例外？ */</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>変数trackerを参照することでどのメンバ変数の初期化に失敗したかがわかります。</p>
+
+<h1>
+<span id="copy-and-swap" class="fragment"></span><a href="#copy-and-swap"><i class="fa fa-link"></i></a>Copy and Swap</h1>
+
+<p>例外安全な代入演算処理を実装することを目的としたイディオムです。<br>
+２つのオブジェクトを入れ替えるswap関数を経由してコピーすることで<br>
+1. 例外発生時に元のオブジェクトが保たれること、<br>
+2. コードの重複を回避<br>
+3. 自己代入の発生<br>
+この3つの問題を回避することができます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>class MyClass
+{
+    Memory* memory_;
+public:
+    MyClass() : memory_(new Memory)
+    {
+    }
+    MyClass(const MyClass&amp; rhs)
+    {
+     /* コピーコンストラクタ */
+    }
+    ~MyClass()
+    {
+        delete memory_;
+    }
+    MyClass&amp; operator=(MyClass rhs)
+    {
+        swap(*this, rhs);
+    }
+    friend void swap(MyClass&amp; lhs, MyClass&amp; rhs)
+    {
+        std::swap(lhs.memory_, rhs.memory_);
+        return;
+    }
+};
+</pre></div></div>
+
+<h1>
+<span id="copy-on-write" class="fragment"></span><a href="#copy-on-write"><i class="fa fa-link"></i></a>Copy-on-write</h1>
+
+<p>通称牛(COW)イディオム。オブジェクトのコピーをする際のオーバーヘッドを回避するため、遅延評価を使うことによってコピーに対して変更を加えた時のみ深いコピーを行います。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">cow.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyClass</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">data_</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">MyClass</span><span class="p">()</span><span class="o">:</span> <span class="n">data_</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="n">MyClass</span><span class="p">(</span><span class="k">const</span> <span class="n">MyClass</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">shallow_copy</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="n">rhs</span><span class="p">);</span> <span class="c1">// 浅いコピー</span>
+    <span class="p">}</span>
+
+    <span class="k">friend</span> <span class="kt">void</span> <span class="n">shallow_copy</span><span class="p">(</span><span class="n">MyClass</span><span class="o">&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">MyClass</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+   <span class="p">{</span>
+        <span class="n">lhs</span><span class="p">.</span><span class="n">data_</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">data_</span><span class="p">;</span>
+   <span class="p">}</span>
+
+   <span class="kt">void</span> <span class="n">modifyData</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">num</span><span class="p">)</span>
+   <span class="p">{</span>
+       <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">data_</span><span class="p">);</span>
+       <span class="k">this</span><span class="o">-&gt;</span><span class="n">data_</span><span class="p">.</span><span class="n">swap</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="n">temp</span><span class="p">));</span> <span class="c1">// 変更があった時に深いコピーを実行する。</span>
+       <span class="o">*</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">data_</span><span class="p">)</span> <span class="o">+=</span> <span class="n">num</span><span class="p">;</span>
+   <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="empty-base-optimization" class="fragment"></span><a href="#empty-base-optimization"><i class="fa fa-link"></i></a>Empty Base Optimization</h1>
+
+<p>下の空のクラスのサイズはどのくらいでしょうか？</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">empty.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Empty</span> <span class="p">{};</span>
+</pre></div>
+</div>
+
+<p>空っぽなので0と答える人が多いのではないでしょうか？<br>
+では、0の場合以下のプログラムはどうなるのでしょうか？</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">empty_array.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="n">Empty</span> <span class="n">empties</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%p"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">empties</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+</pre></div>
+</div>
+
+<p>サイズが0だと配列のメモリ配置が定義できなくなります。そのため、C++では空のクラスでも少なくとも1バイトのサイズを持ちます。<br>
+そのため、空のクラスを要素にもつクラス持つとクラスのメモリ上のサイズは大きくなります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>class Empty
+{
+public:
+    void emptyMethod();
+};
+
+class MyClass
+{
+    Empty empty_; // 1バイト大きくなる。
+public:
+/* 省略 */
+};
+</pre></div></div>
+
+<p>空のクラスをメンバにしただけなのにクラスのサイズが大きくなってしまう。なんか、嫌ですね。<br>
+そういう時は、空のクラスを継承しましょう。<br>
+継承した場合はサイズが変化しません。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>class Empty
+{
+public:
+    void emptyMethod();
+};
+
+class MyClass : Empty // サイズは変化しない。
+{
+public:
+/* 省略 */
+};
+</pre></div></div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>MoriokaReimenさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/MoriokaReimen/items/cf492903ac93c613a3e1">C++イディオム第2回</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-27 21:49:35</center>
+	</td>
+	<td style="width:200px;">
+		@MoriokaReimen<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/77676/profile-images/1473700905">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[C++]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;">
+<h1>
+<span id="この記事について" class="fragment"></span><a href="#%E3%81%93%E3%81%AE%E8%A8%98%E4%BA%8B%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><i class="fa fa-link"></i></a>この記事について</h1>
+
+<p>評判が良かったので第2回。気合が続いたら3回めがあるかも。</p>
+
+<h1>
+<span id="erase-remove" class="fragment"></span><a href="#erase-remove"><i class="fa fa-link"></i></a>Erase-Remove</h1>
+
+<p>STLのコンテナで特定の要素を削除するコードを書いて下さい。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">erase.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span>
+<span class="cm">/* aに要素を加えるコードを省略 */</span>
+<span class="n">std</span><span class="o">::</span><span class="n">remove</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+
+<p>これで、消えたかというとそうではありません。<br>
+実はremove関数は特定の要素をコンテナの後ろに追いやったあと、先頭の特定の要素へのイテレータを返しているだけだからです。<br>
+ほんとに消すにはこのイディオムErase-Removeを使います。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">erase-remove.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span>
+<span class="cm">/* aに要素を加えるコードを省略 */</span>
+<span class="n">a</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">remove</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">100</span><span class="p">),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="execute-around-pointer" class="fragment"></span><a href="#execute-around-pointer"><i class="fa fa-link"></i></a>Execute-Around Pointer</h1>
+
+<p>スマートポインターはオブジェクトのライフタイムが尽きた時に自動的に確保されたリソースを削除します。コンストラクタとデストラクタ、演算子のオーバライドをうまく使った書き方で実装されています。<br>
+この書き方を応用すると、クラスのメンバ関数が実行された時に特定の処理を実行するスマートポインタが実装できます。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">execute-around.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExecutePointer</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">class</span> <span class="nc">proxy</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+          <span class="n">proxy</span> <span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">v</span><span class="p">)</span> <span class="o">:</span> <span class="n">vect</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+              <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Before size is: "</span> <span class="o">&lt;&lt;</span> <span class="n">vect</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">();</span>
+          <span class="p">}</span>
+          <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">*</span> <span class="k">operator</span> <span class="o">-&gt;</span> <span class="p">()</span> <span class="p">{</span>
+              <span class="k">return</span> <span class="n">vect</span><span class="p">;</span>
+          <span class="p">}</span>
+          <span class="o">~</span><span class="n">proxy</span> <span class="p">()</span> <span class="p">{</span>
+              <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"After size is: "</span> <span class="o">&lt;&lt;</span> <span class="n">vect</span><span class="o">-&gt;</span><span class="n">size</span> <span class="p">();</span>
+          <span class="p">}</span>
+   <span class="k">private</span><span class="o">:</span>
+          <span class="n">vector</span> <span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">vect</span><span class="p">;</span>
+   <span class="p">};</span>
+   <span class="n">ExecutePointer</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">v</span><span class="p">)</span> <span class="o">:</span> <span class="n">vect</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{}</span>
+   <span class="n">proxy</span> <span class="k">operator</span> <span class="o">-&gt;</span> <span class="p">()</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="n">proxy</span> <span class="p">(</span><span class="n">vect</span><span class="p">);</span>
+   <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+   <span class="n">vector</span> <span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">vect</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ExecutePointer</span> <span class="n">vector</span><span class="p">(</span><span class="k">new</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">);</span>
+
+    <span class="n">vector</span><span class="o">-&gt;</span><span class="n">push_back</span> <span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">vector</span><span class="o">-&gt;</span><span class="n">push_back</span> <span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="final-class" class="fragment"></span><a href="#final-class"><i class="fa fa-link"></i></a>Final Class</h1>
+
+<p>JavaやC#で提供されているそれ以上の継承を防ぐクラスをエミュレートするイディオムです。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">FinalClass.cpp</span></div>
+<div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">Finalize</span>
+<span class="p">{</span>
+    <span class="o">~</span><span class="n">Finalize</span><span class="p">()</span> <span class="p">{}</span>
+    <span class="k">friend</span> <span class="k">class</span> <span class="nc">sealed</span><span class="p">;</span> 
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">sealed</span> <span class="o">:</span> <span class="k">virtual</span> <span class="n">Finalize</span>
+<span class="p">{</span>
+<span class="cm">/* 省略 */</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Forbidden</span> <span class="o">:</span> <span class="k">public</span> <span class="n">sealed</span>
+<span class="p">{</span>
+<span class="cm">/* 省略 */</span>
+<span class="c1">//! これはインスタンス化できない</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+
+<p>friendによりsealedのみデストラクタにアクセスが許可されています。<br>
+そのためsealedはインスタンス化できますが、Forbiddenはできません。<br>
+残念ながら、エミュレートなのでJavaやC#のファイナルクラスと異なる点があります。<br>
+このイディオムの場合Forbiddenがインスタンス化されない限りエラーが発生しません。<br>
+さらに、クラスがインスタンス化されなくても存在できる静的メンバ変数・関数は継承することができてしまいます。</p>
+
+<h1>
+<span id="friendship-and-attorney-client" class="fragment"></span><a href="#friendship-and-attorney-client"><i class="fa fa-link"></i></a>Friendship and Attorney-Client</h1>
+
+<p>友情と代理人と客。響きはいいけどよく意味のわからない名前ですね。<br>
+このイディオムはfriendクラスの欠点を補うためのイディオムです。<br>
+friendクラスを使うと他のクラスからfriendで紐付けられたクラスの全てのプライベートメンバにアクセスすることができるようになります。<br>
+しかし、この<strong>全て</strong>というのが問題です。細かいアクセス制限を設けることができません。<br>
+そこで、代理人を挟んでアクセス制限を設けます。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">attorney-clien.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Client</span>
+<span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">b</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">c</span><span class="p">;</span>
+    <span class="k">friend</span> <span class="k">class</span> <span class="nc">Attorney</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Attorney</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+     <span class="k">static</span> <span class="kt">int</span> <span class="n">readA</span><span class="p">(</span><span class="k">const</span> <span class="n">Client</span><span class="o">&amp;</span> <span class="n">client</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 変数aのreadアクセス許可</span>
+         <span class="k">return</span> <span class="n">client</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+     <span class="p">}</span>
+     <span class="k">static</span> <span class="kt">void</span> <span class="n">writeB</span><span class="p">(</span><span class="n">Client</span><span class="o">&amp;</span> <span class="n">client</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 変数bのwriteアクセス許可</span>
+         <span class="n">c</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+     <span class="p">}</span>
+     <span class="k">static</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">read_writeC</span><span class="p">(</span><span class="n">Client</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="n">client</span><span class="p">.</span><span class="n">c</span><span class="p">;</span>
+     <span class="p">}</span>
+<span class="k">friend</span> <span class="k">class</span> <span class="nc">MyClass</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>
+<span class="c1">// Attorneyクラスのプライベートに制限されたアクセス可能</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+
+<h1>
+<span id="include-guard-macro" class="fragment"></span><a href="#include-guard-macro"><i class="fa fa-link"></i></a>Include Guard Macro</h1>
+
+<p>知ってる。みんな知ってる。ヘッダファイルの二重読み込みを防ぐためのイディオム。<br>
+ごめんなさい。知ってるよね。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">include_guard.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="cp">#ifndef HEADER_NAME</span>
+<span class="cp">#define HEADER_NAME</span>
+<span class="cm">/* 実装 */</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+
+<p>全てというわけではありませんが今日ではほとんどのコンパイラが二重読み込みを防止専用のマクロ命令があります。</p>
+
+<div class="code-frame" data-lang="c++">
+<div class="code-lang"><span class="bold">pragma.cpp</span></div>
+<div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
+</pre></div>
+</div>
+
+<p>後者のほうが書く量が少ないです。違いはそれだけ。後者を使いましょう。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>

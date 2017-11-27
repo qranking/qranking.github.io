@@ -1,0 +1,2320 @@
+<html>
+	<head><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110075493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-110075493-1');
+</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6168511236629369",
+    enable_page_level_ads: true
+  });
+</script>
+
+		<meta charset="UTF-8" />
+		<title>Qiita Ranking (gomi_ningen)</title>
+		<link rel="stylesheet" type="text/css" href="../qranking.css">
+	</head>
+	<body>
+<div class="headerContainer">
+<h1>Qiitaいいね数ランキング (gomi_ningen さんの投稿分)</h1>
+</div><!--class="headerContainer"-->
+<p><a href="#" onclick="javascript:window.history.back(-1);return false;">[戻る]</a></p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>が同じ値の場合は投稿日時の新しいものが上位としています。</p>
+<p><i><img width="16" height="16" src="../thumb-up-120px.png" /></i>がついていない記事は表示していません。</p>
+<table border="1">
+<tr>
+	<td rowspan="3"><center>gomi_ningenさんの<br />1位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>549</kbd>
+		<a target="_blank" href="https://qiita.com/gomi_ningen/items/b8c9c5c11aee91be820e">iOSアプリ開発の全体像</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-18 18:19:33</center>
+	</td>
+	<td style="width:200px;">
+		@gomi_ningen<br />(ラビットハウス社勤務 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/56771/profile-images/1473694109">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[Objective-C]</b> <b>[iPhone]</b> <b>[Xcode]</b> <b>[iOS]</b> <b>[Swift]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>　超技術書展で頒布したiOSアプリ開発の全体像をだらだら書いた本を記事として公開。<br>
+ただのポエムです。</p>
+
+<p>　2年くらいまえに、SwiftもObjCも一切書いたことないし、アプリも一回も作ったことがない状況でiOSアプリを作ってリリースするミッションのお仕事が降ってきたので、そのときにこんな情報があったら全体が見通せて、気持ち的に楽だったなと思った内容をまとめました</p>
+
+<h1>
+<span id="1-iosアプリ開発を取り巻く環境" class="fragment"></span><a href="#1-ios%E3%82%A2%E3%83%97%E3%83%AA%E9%96%8B%E7%99%BA%E3%82%92%E5%8F%96%E3%82%8A%E5%B7%BB%E3%81%8F%E7%92%B0%E5%A2%83"><i class="fa fa-link"></i></a>1. iOSアプリ開発を取り巻く環境</h1>
+
+<p>　iOSアプリ開発には、基本的にmacOSを搭載したコンピューターとXcodeとよばれるソフトウェアが必要です。もともと主にObjective-Cという言語が使われるケースがほとんどでしたが、2014年6月にAppleがプログラミング言語Swiftを発表して以後の新規開発には、ほとんどの場合Swiftが採用されているようです。またSwiftは、Objective-Cのコードと共存できるため、もともとObjective-Cで開発されていたアプリを徐々にSwiftに移行しているという話もよく聞きます。</p>
+
+<p>　ただし、広告やSNSなどのSDKや、幅広く使われることが予想されていて安定性が必要なライブラリについては、依然としてAPIが安定しているObjective-Cで開発が行われているケースが多いと感じます。裏を返すとSwiftは言語としてまだ成熟していないということです。Swift2系までではマイナーバージョンアップデートでも、激しい破壊的変更が行われていました。Swift3系ではある程度落ち着きは見えますが、安定しているとは言い難い状況ではあります。それでもObjective-Cに比べて平易な構文、オプショナルやクロージャといったモダンな言語機能、そして静的型付けによる安全なプログラミングなど、得られる恩恵が大きいのは確かです。</p>
+
+<h2>
+<span id="11-ios-xcode-swift-macosのアップデート" class="fragment"></span><a href="#11-ios-xcode-swift-macos%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88"><i class="fa fa-link"></i></a>1.1. iOS, Xcode, Swift, macOSのアップデート</h2>
+
+<p>　Appleは定期的にiOSのメジャーバージョンアップデートをリリースしています。またSwiftのアップデートもさかんに行われています。これらに対応するためにはXcodeの更新が必要になるケースが多いです。Xcodeはファイルサイズが大きく、回線速度にもよりますがダウンロードに数十分、圧縮ファイルの解凍にまた数十分かかります。さらに、新しいXcodeを入れるには、新しいmacOSを入れなければならないことが多々あります。macOSの更新に1〜2時間かかることが珍しくありません。</p>
+
+<p>　実際のところ、こうした大きな更新があると最悪、半日ほど開発がストップしてしまいます。また、これらの作業は開発者やCIサーバーも含め全体のマシンでやる必要があり、考慮に入っていないと意外に手痛い時間のロスとなります。</p>
+
+<p>　これまでの動向では、Swift下位バージョンの切り捨ては早く、新しいバージョンに素早く追従しないと最新のXcodeではビルドができないなどの問題が発生する可能性があります。Swiftを利用すると決めた時点で、遅くとも2〜3ヶ月以内に最新のSwiftバージョンでビルドできる状態に持っていくような開発体制をとれるよう、あらかじめ開発工数のバッファをとることを強くおすすめします。</p>
+
+<h2>
+<span id="12-xamarinという選択肢" class="fragment"></span><a href="#12-xamarin%E3%81%A8%E3%81%84%E3%81%86%E9%81%B8%E6%8A%9E%E8%82%A2"><i class="fa fa-link"></i></a>1.2. Xamarinという選択肢</h2>
+
+<p>　iOSアプリ開発にはSwiftやObjective-C以外の言語を使うこともできます。その中でも代表的なものが、クロスプラットフォーム開発ツールのXamarinです。これによりC#やF#といった言語でのiOSアプリ開発が可能になります。これらは言語としては安定していて、C#はエンタープライズ方面での実績も十分にあります。またIDEとしてVisual StudioやXamarin Studioなどを利用することができます。ストーリーボードなどのUIコンポーネントを見た目通りに配置しながら画面を作るためのツールInterface Builder相当のことも、これらのIDEで実現可能です。</p>
+
+<p>　Xamarin社はMicrosoft社に買収され、現在個人での利用や特定の条件下において無料で開発環境を手にすることができるようになり、徐々に普及している段階の技術です。とはいえ、すでにフェンリル社が開発を行なったNHK紅白歌合戦のアプリなどで十分な実績があり、実用に耐えうるものといってよいでしょう。</p>
+
+<h3>
+<span id="xamariniosとxamarinforms" class="fragment"></span><a href="#xamarinios%E3%81%A8xamarinforms"><i class="fa fa-link"></i></a>Xamarin.iOSとXamarin.Forms</h3>
+
+<p>　XamarinのなかでもXamarin.iOSとXamarin.Formsという2つのAPI群の選択肢があります。</p>
+
+<p>　Xamarin.iOSはiOS SDKのAPIとほとんど1対1に対応しており、SwiftやObjective-Cと似たような感覚でアプリを構成することができます。一方、Xamarin.Formsは各プラットフォームのAPIを抽象化したものを使ってアプリを構成していくため、Xamarin.Formsに特化した知識をつける必要があります。その代わり、1つのコードから複数のプラットフォームをターゲットとしたアプリを作成することができ、開発効率の向上やマルチプラットフォーム間での実装のズレを防げるといったメリットがあります。</p>
+
+<h2>
+<span id="13-react-nativeという選択肢" class="fragment"></span><a href="#13-react-native%E3%81%A8%E3%81%84%E3%81%86%E9%81%B8%E6%8A%9E%E8%82%A2"><i class="fa fa-link"></i></a>1.3. React Nativeという選択肢</h2>
+
+<p>　Xamarin以外にもクロスプラットフォーム開発ツールとしてFacebookが推し進めるReact Nativeという技術があります。すでにInstagram, airbnb, Facebook Messengerなど大きなアプリですでに利用されています。各プラットフォームにおけるUIコンポーネントを抽象化したReactコンポーネントを組み合わせてアプリを構成するという思想を持っています。おおよそReact.jsと同じような形でアプリケーションを構成することができます。最近流行りのReact+Redux構成を取ることもできるため、JavaScriptに詳しい方はチャレンジしてみるのもありかもしれません。</p>
+
+<h2>
+<span id="14-iosアプリ開発未経験者がとるべき選択肢" class="fragment"></span><a href="#14-ios%E3%82%A2%E3%83%97%E3%83%AA%E9%96%8B%E7%99%BA%E6%9C%AA%E7%B5%8C%E9%A8%93%E8%80%85%E3%81%8C%E3%81%A8%E3%82%8B%E3%81%B9%E3%81%8D%E9%81%B8%E6%8A%9E%E8%82%A2"><i class="fa fa-link"></i></a>1.4 iOSアプリ開発未経験者がとるべき選択肢</h2>
+
+<p>　iOSアプリ開発においては、基本的にiOS SDKの基本的な振る舞いを理解することは必須であるため、経験者がひとりもいないチームでの開発はObjective-CかSwiftを採用するのが良いでしょう。当然ながら書籍や情報の量、サポートできる人材の量も一番多いです。iOSアプリ開発経験者がいるのであれば、どの方法を選んでも良いと思いますが、Xamarin.Formsを選んだ場合には、iOS SDKを直接触った場合とかなり勝手が異なるはずなので、十分な技術調査・検討を行ってから採用することを強くお勧めします。</p>
+
+<h1>
+<span id="2-iosアプリ開発の流れ" class="fragment"></span><a href="#2-ios%E3%82%A2%E3%83%97%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AE%E6%B5%81%E3%82%8C"><i class="fa fa-link"></i></a>2. iOSアプリ開発の流れ</h1>
+
+<p>　iOSアプリはおおまかに「企画」「要件定義」「設計」「実装」という流れで開発を進めていくことが多いでしょう。最終的にはAppleによる審査を経てApp Storeでの公開が可能になります。この審査は他のプラットフォームに比べて厳しく、単純で機能が少ないアプリはAppleによりリジェクトされる可能性が高いです。例えばアプリ開発の練習として簡単な電卓などを作っても、App Store上には類似のアプリが無数にあるため、公開できない可能性があるということになります。</p>
+
+<h2>
+<span id="21-企画" class="fragment"></span><a href="#21-%E4%BC%81%E7%94%BB"><i class="fa fa-link"></i></a>2.1. 企画</h2>
+
+<p>　アプリを通してどのようなユーザーにどのような体験を与えたいのか、ターゲットユーザーと実現したいことを明確にする必要があります。似たようなアプリがある場合は、それらの調査を行い、どのように差別化を図りたいのかを検討すると良いでしょう。また「App Store審査ガイドライン」に違反する内容のアプリはたとえ出来上がっていてもApp Storeに出すことができない可能性が高いため、企画を始める段階からある程度を考慮することを強くお勧めします。特にアプリ内課金を導入する際にはAppleの審査はよりいっそう厳しくなるため、審査ガイドラインに沿った形に企画を着地させる必要があります。</p>
+
+<h2>
+<span id="22-要件定義デザイン" class="fragment"></span><a href="#22-%E8%A6%81%E4%BB%B6%E5%AE%9A%E7%BE%A9%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3"><i class="fa fa-link"></i></a>2.2. 要件定義/デザイン</h2>
+
+<p>　おおまかな企画が定まったら、アプリをどのように構成するのかを考えるフェーズに入ります。ユーザーにアプリの中をどのように回遊してもらい、どのような体験を提供するのかを具体化させていきます。また提供するコンテンツやアクションの階層構造/論理構造をはっきりとさせておくと、要件やデザインに落とし込むときに混乱を防ぐことができるので、この段階で整理しておくといいでしょう。例えば電子書籍リーダーを作る場合は、本一覧がベースの階層となり、1つ深い階層にシリーズが存在します。さらにシリーズには複数の本が紐づくといった具合です。</p>
+
+<p>　おおまかにやりたいことが見えてきたら、プロトタイプを作成してみましょう。紙ベースで画面を描いたり、矢印で動きを表現したりといった簡単なもので構いません。またAdobe Experience Design(XD)などを使うとより高度なプロトタイピングが行えます。実装コードを書かずにおおまかな動きを見ることができるため、複数のチームメンバ間でイメージを共有するにはうってつけのツールだといえます。iOSアプリの細かなデザインについての話は3章に記します。</p>
+
+<h2>
+<span id="23-設計実装" class="fragment"></span><a href="#23-%E8%A8%AD%E8%A8%88%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>2.3. 設計/実装</h2>
+
+<p>　要件がある程度定まったら、アプリの技術的な設計フェーズに入ります。また特に要件のなかで実現が難しい点があれば、本当に実現可能なのか検証してみる必要があります。具体的な話は4章以降に記していきます。</p>
+
+<h2>
+<span id="24-ベータテストと品質保証" class="fragment"></span><a href="#24-%E3%83%99%E3%83%BC%E3%82%BF%E3%83%86%E3%82%B9%E3%83%88%E3%81%A8%E5%93%81%E8%B3%AA%E4%BF%9D%E8%A8%BC"><i class="fa fa-link"></i></a>2.4. ベータテストと品質保証</h2>
+
+<p>　開発中はCrashlytics BetaやDeployGate、小規模であれば自前でのAd-Hoc配信などを通して開発チーム内でドッグフーディングを行うことにより、アプリの不具合検出や改善などを行います。また、ある程度の状態まで達したら開発に携わっていない第三者にも利用してもらい、フィードバックをもらえるようにしておくと、開発チームでは気づけない問題が発見できるでしょう。</p>
+
+<p>　いよいよリリースしても問題ないという段階が近づいてきたら、アプリの動作確認項目一覧表などを作り第三者にチェックをお願いすると、より安定したアプリをストアに出すことができると思います。これは一般的に品質保証（QA）のステップとよばれることが多いです。</p>
+
+<h2>
+<span id="25-審査提出とリジェクト対応" class="fragment"></span><a href="#25-%E5%AF%A9%E6%9F%BB%E6%8F%90%E5%87%BA%E3%81%A8%E3%83%AA%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E5%AF%BE%E5%BF%9C"><i class="fa fa-link"></i></a>2.5. 審査提出とリジェクト対応</h2>
+
+<p>　大きなアプリとなると一発で審査をパスするのは難しく、Appleから何らかの指摘を受けてリジェクトされると思っておいたほうがよいでしょう。あらかじめリジェクトされることを想定して、ある程度アプリが出来上がってきたら、とりあえず審査に出してみるのも戦略のひとつです。これによりリジェクト対応のための仕様変更が生じる点を早めに知ることができます。</p>
+
+<h2>
+<span id="26-リリース" class="fragment"></span><a href="#26-%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9"><i class="fa fa-link"></i></a>2.6. リリース</h2>
+
+<p>　審査に通過したら晴れてアプリをApp Storeにリリースすることができます。審査提出時にはリリースタイミングのオプションがあり、そこで指定されたとおりにリリースが行われます。オプションは以下の通りです。</p>
+
+<ul>
+<li>手動でリリース: 審査通過後、リリースボタンを押したタイミングでリリースされる</li>
+<li>自動でリリース: 審査通過後、自動でリリースされる</li>
+<li>指定時刻以降に自動でリリース: 審査通過後、指定の時刻を過ぎたタイミングでリリースされる</li>
+</ul>
+
+<p>　なお、オプションはiTunes Connectというアプリの管理に使われているサービスの仕様変更によって変わる可能性があります。</p>
+
+<h1>
+<span id="3-iosアプリのデザイン" class="fragment"></span><a href="#3-ios%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3"><i class="fa fa-link"></i></a>3. iOSアプリのデザイン</h1>
+
+<p>　iOSアプリのUI/UXに関してはAppleが公式に「iOSヒューマンインターフェースガイドライン」を制定しています。ガイドラインに沿わないデザインや実装を行うと一部は審査でリジェクトされる可能性があるため、開発を始める前にざっくりと目を通しておくとよいでしょう。ここではアプリ全体のデザインに影響してくるポイントを数点、記述します。</p>
+
+<h2>
+<span id="31-なるべく標準uiに沿ったデザインにする" class="fragment"></span><a href="#31-%E3%81%AA%E3%82%8B%E3%81%B9%E3%81%8F%E6%A8%99%E6%BA%96ui%E3%81%AB%E6%B2%BF%E3%81%A3%E3%81%9F%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%81%AB%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>3.1. なるべく標準UIに沿ったデザインにする</h2>
+
+<p>　特段デザインにこだわりがなければ、iOSのメールやSafari、設定画面などの標準的なアプリに沿った形でUIコンポーネントを利用し、画面を構成していくのがよいでしょう。UIコンポーネントを過剰にカスタムして使うと、場合によってはユーザーがどのように利用すればよいのか迷ってしまう可能性があります。また、iOSバージョン間で見た目や振る舞いを統一するのが難しくなり、最悪の場合は特定バージョンにおいて期待した動作を提供できなかったり、クラッシュを引き起こしたりする原因にもなります。</p>
+
+<h2>
+<span id="32-アプリ内の画面遷移" class="fragment"></span><a href="#32-%E3%82%A2%E3%83%97%E3%83%AA%E5%86%85%E3%81%AE%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB"><i class="fa fa-link"></i></a>3.2 アプリ内の画面遷移</h2>
+
+<p>　アプリを作る際に1画面だけで構成することは非常に稀で、ほとんどの場合には画面を遷移させる必要が出てくるでしょう。iOSの画面遷移には、主に次の2つのパターンが存在します。</p>
+
+<ul>
+<li>プッシュ遷移</li>
+<li>モーダル遷移</li>
+</ul>
+
+<p>　プッシュ遷移とはiOSの設定画面などで見られる右方向に階層構造を掘るように遷移するタイプのものを指します。この遷移は、スワイプで戻ることができ、コンテンツ階層間の移動をスムーズに行うのに適しています。この階層構造は、提供するコンテンツの階層構造と揃えてあげるのが一般的で、ユーザーにも理解しやすい形になるでしょう。たとえば音楽プレイヤーであるiTunesアプリは、ライブラリ→プレイリスト一覧→プレイリスト→楽曲というコンテンツ階層構造になっています。当たり前のことではありますが、きちんと分類して構成されているアプリは意外に多くありません。アプリデザインの構成を考える際に同時に提供するコンテンツ階層構造を整理することは、きっとデザインをする上でも役に立つことでしょう。</p>
+
+<p>　一方、モーダル遷移は、ビューが現れている間はその要素内でしか操作ができないようなものを指します。例えば、iOSのSafariのブックマーク一覧はこのタイプの遷移をします。また注意喚起のダイアログなどもモーダル遷移にあたります。何かオプションを指定したり選択したりする際に使われる傾向にあります。しかし、モーダルを閉じるには基本的にはタップをする必要があるため、ユーザーに煩わしさを感じさせてしまう可能性が高まります。最近は、モーダルビューを前の画面の上に浮いた状態で表示し、モーダル画面自体をスワイプすることで閉じる実装も目立つようになってきました。これにより閉じるためにタップをしなければならない問題が解消され、モーダル遷移に対するストレスを緩和させることができるため、可能であればそういった実装も考えてみると良いかもしれません。</p>
+
+<h2>
+<span id="33-デバイスの大型化とデザイン" class="fragment"></span><a href="#33-%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9%E3%81%AE%E5%A4%A7%E5%9E%8B%E5%8C%96%E3%81%A8%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3"><i class="fa fa-link"></i></a>3.3. デバイスの大型化とデザイン</h2>
+
+<p>　iPhone 6 PLUSの登場時には、そのデバイスの大きさに随分と驚いた方も多いのではないでしょうか。実際iPhone 5のデバイスサイズは4インチであったのに対して、iPhone 7 PLUSでは5.5インチになっています。解像度も高くなり表示領域が増え、デザイン表現の幅が広がったのは間違いありません。</p>
+
+<p>　しかし、デバイスが大型化する一方で、人間の手の大きさは変わっていない点には注意する必要があります。右手でデバイスを操作する場合、左上や左下に配置したボタンなどには指が届きにくく、アプリのスムーズな操作の妨げになります。以前はモーダル画面の閉じるボタンを左上に配置するケースが目立っていたのですが、近年は右上や右下などに配置されているのをよく見ます。また、先述したとおり、モーダル画面自体を上下にスワイプすると閉じることができるように構成されているものもよく見ます。本質的には触り心地が良い形に画面を構成していければ、きっと良いアプリになるのではないかと考えています。</p>
+
+<h1>
+<span id="4-アプリをどのように構成すれば良いのか" class="fragment"></span><a href="#4-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E3%81%A9%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8C%E3%81%B0%E8%89%AF%E3%81%84%E3%81%AE%E3%81%8B"><i class="fa fa-link"></i></a>4. アプリをどのように構成すれば良いのか</h1>
+
+<p>　初めてアプリ開発をする際に何に気をつければよいのか、とても不安になる気持ちは非常にわかります。筆者も初めてアプリを構成する際に何かアプリ開発特有の構成・設計を取る必要があるのではないかと思い調査をしました。結局のところネイティブアプリは、裏で処理をしつつも、ユーザーの入力を常に待ち受けつづける必要があるため、UIスレッドをブロックしないように注意するという点に注意していれば、一般的なプログラミングとほとんどかわらないと思います。したがって基本的なプログラミングができる方は何も心配せず、以前から実践していた技法を使いアプリを構成することができるでしょう。</p>
+
+<p>　iOSアプリ開発が本当に初めてである場合は、まずラベル（UILabel）、ボタン（UIButton）、テキストフィールド（UITextField）、画像（UIImage）などの基本的なコンポーネントの使い方を覚えると良いでしょう。続いて複雑なビューを構成する基本的な要素であるスタック（UIStackView）、テーブル（UITableView）、コレクション（UICollectionView）、スクロール（UIScrollView）、タブ（UITabBar）の使い方を学ぶと、自分の思い描いたビューを実現するための下地が整うのではないでしょうか。</p>
+
+<h2>
+<span id="41-複雑な設計を採用する前に考えたいこと" class="fragment"></span><a href="#41-%E8%A4%87%E9%9B%91%E3%81%AA%E8%A8%AD%E8%A8%88%E3%82%92%E6%8E%A1%E7%94%A8%E3%81%99%E3%82%8B%E5%89%8D%E3%81%AB%E8%80%83%E3%81%88%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>4.1. 複雑な設計を採用する前に考えたいこと</h2>
+
+<p>　近年、iOSアプリ開発をする上でどのような設計手法を取るかというような話題をよくみかけます。「iOSクリーンアーキテクチャ」や「ヘキサゴナルアーキテクチャ」など熱心に議論が行われています。これらの議論や記事ではアプリの規模感についての前提が共有されていなケースが多く、場合によっては過剰な構成となり、コードの可読性や開発のスピードを下げてしまうこともあるでしょう。開発メンバー間で考え方も一致させていく必要があり、本当に必要なものが何なのかを見極めることが非常に重要です。</p>
+
+<p>　iOSアプリのコードベースは往々にしてそれほど大規模なものにはならず、だいたい1万〜2万行程度で構成されることが多いと思います。アプリ全体のアーキテクチャパターンを考えることは確かに大切なことですが、私自身はSOLID原則やDRY原則、YAGNI原則などのシンプルで基本的なプログラミング原則を意識してコーディングしていくように心がけています。アーキテクチャのたくさんの決まりごとを意識しつづけるのは難しいことです。少数のシンプルで明確な決まりごとを意識していると実は自ずと、本に書かれているようなアーキテクチャになっていることは多々ありますし、そもそも複雑なアーキテクチャの根底思想にはシンプルな原理原則があることが多いと思います。</p>
+
+<h2>
+<span id="42-ライブラリの選定" class="fragment"></span><a href="#42-%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%81%AE%E9%81%B8%E5%AE%9A"><i class="fa fa-link"></i></a>4.2. ライブラリの選定</h2>
+
+<p>　アプリのすべてのコードを自前で書くことは稀で、多くの場合オープンソースライブラリの助けを借りることになると思います。ライブラリをうまく使いこなせば大幅に開発期間を短縮することができ、場合によっては多くの人に使われたり、メンテナンスされているため、一人で書いたものに比べ品質の高いコードを利用することができるなどというメリットもあるでしょう。</p>
+
+<p>　ただし、Swiftのライブラリについては、今後予想される言語自体のアップデートに継続的に対応させる必要があります。過去に大きな変更が幾度も入ったため、GitHubでStarがたくさんついていて、多くの開発者が利用しているライブラリでも、最新の言語バージョンにアップデート対応がされず、放置されていることは珍しくありません。利用する前に、メンテナンスが継続して行われているかをGitHubのPulseなどで確認しておくことをおすすめします。また、メンテナンスが止まってしまった場合、公開リポジトリからフォークして、自分でメンテナンスしていく覚悟が必要です。</p>
+
+<p>　これはSwiftのライブラリに限ったことではないですが、基本的にはコードの8割程度をざっくりと斜め読みし、コードの設計・品質・メンテナビリティ・適切なテストが存在するかなどを確認してから依存を決めると失敗がないと思います。また利用した各ライブラリのライセンスを遵守し、必要であれば必ずライセンス表記をしましょう。</p>
+
+<h2>
+<span id="43-ライブラリへの依存" class="fragment"></span><a href="#43-%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%81%B8%E3%81%AE%E4%BE%9D%E5%AD%98"><i class="fa fa-link"></i></a>4.3. ライブラリへの依存</h2>
+
+<p>　ライブラリを導入すると一口に言ってもいろいろなやり方があります。たとえば秘匿情報などを管理できるキーチェーンにアクセスするライブラリを使うことを想定してみましょう。何も考えずにViewControllerの必要な箇所でライブラリをimportして依存コードをばらまいていくというやり方は、最初の実装者にとっては一番手が抜けて楽かもしれません。しかしこれには大きな問題があります。ものにもよるとは思いますが、おそらくライブラリを利用している周辺のコードは似たような実装が繰り返し登場しているのではないでしょうか？またライブラリのインターフェースが変更されたり、利用するライブラリを差し替えたりする場合、あちこちに散らばったコードに手を加える必要がでてきます。</p>
+
+<p>　したがって、個人的にはライブラリを利用する際にはなるべく依存コードを記述する範囲を狭くするように意識することが多いです。大半の場合はひとつのクラスの中に閉じ込めることができるはずで、その上でプロトコルを切り、実装クラスを差し替えられるような構造にするのが好みです。こうすることによってライブラリを差し替えたり、自前の実装に切り替えたりするなどの対応も容易になります。またテストの書きやすさにも繋がる場合もあると思います。</p>
+
+<h1>
+<span id="5-アプリと非同期処理" class="fragment"></span><a href="#5-%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A8%E9%9D%9E%E5%90%8C%E6%9C%9F%E5%87%A6%E7%90%86"><i class="fa fa-link"></i></a>5. アプリと非同期処理</h1>
+
+<p>　ユーザーインターフェースの存在するアプリは常にユーザーからの入力を受け付ける状態を保たなければならないという制約があります。したがって、何か重たい処理をするときは別のスレッドに仕事を任せる必要があります。この重い処理にはどんなものがあるでしょうか。例えばサーバーにデータを取得する際はリクエストを送ってからレスポンスが帰ってくるまで時間がかかります。この間ユーザーの入力を一切受け付けないアプリは控えめにいって最悪でしょう。また画像の変換や複雑な計算などはユーザーからのアプリへの入力をブロックしてしまいます。</p>
+
+<p>　これを避けるためには、重たい処理はユーザーからの入力を受け付ける担当とは別のものに任せればよいでしょう。ユーザーからの入力を受け付けている窓口はメインスレッドとよばれています。対してその裏で処理を行なっているものをバックグラウンドスレッドとよんでいます。また、あるタスクの実行を止めずに別の処理を行うことを非同期処理と言います。iOSアプリ開発において非同期処理はスレッドを利用して実現されていますが、Swift, Objective-Cからは開発者が直接スレッドを触ることなく非同期処理を取り扱える仕組みが用意されています。それがGrand Central Dispatch（GCD）とオペレーションキューになります。それぞれどのようなものかざっくりと特徴をみていきます。また、Appleが公式で提供している「並列プログラミングガイド」および「スレッドプログラミングガイド」を参照するとコードレベルの技術詳細に迫ることができると思いますので、ご覧ください。</p>
+
+<h2>
+<span id="51-grand-central-dispatchgcd" class="fragment"></span><a href="#51-grand-central-dispatchgcd"><i class="fa fa-link"></i></a>5.1. Grand Central Dispatch（GCD）</h2>
+
+<p>　GCDを利用する場合もオペレーションキューを使う場合も、基本的にはキューにジョブを積むというのが基本的な実装内容になると思います。ではこの2つの何が違うのかというと、用意されているキューの種類とジョブをクロージャで渡すのか、オブジェクトで渡すのかという点になります。</p>
+
+<p>　GCDには、キューイングされた処理を逐次実行していく直列ディスパッチキュー（Serial Dispatch Queue）と並列に実行していくのが並列ディスパッチキュー（Concurrent Dispatch Queue）が用意されています。さらに特別なキューとしてメインスレッドで行いたいタスクをキューイングするためのメインディスパッチキューというものが用意されています。メインスレッドはひとつしかなく、並列にできないので当たり前ではあるのですが、これは構造的には直列ディスパッチキューになります。</p>
+
+<p>　さて、実際のアプリの中でこれらがどのように利用されるかを少し想像してみましょう。例えばボタンを押したイベントを皮切りにサーバーにHTTP通信を走らせ、その結果をテキストボックスに表示するケースを考えてみましょう。最初にメインスレッドがボタンの押下イベントを受け付け、イベントハンドラを呼び出します。続いて、イベントハンドラは並列ディスパッチキューにクロージャをわたして、あとの処理をバックグラウンドスレッドにお任せします。このように、裏側で行わせたい仕事をキューに積んで放置することにより、ユーザーからの入力を受け付けられる体制に即座に戻ります。一方、バックグラウンドスレッドではどのようなことが行われているでしょうか。並列ディスパッチキューに渡されたクロージャの中身をみてみましょう。まずHTTPリクエストをサーバーに送るでしょう。そしてレスポンスが帰ってきたら、そのデータをよしなに加工して、テキストボックスに反映させる必要があります。このときに注意が必要で、基本的にUIコンポーネントを更新する際はメインスレッドでやる必要があります。したがって、加工し終わったデータの準備ができたら、今度はメインスレッドに処理を行わせるための直列ディスパッチキュー（DispatchQueue.main）にクロージャでお仕事を渡します。お仕事内容は単純にデータをテキストボックスに反映させるだけです。</p>
+
+<h2>
+<span id="52-オペレーションキュー" class="fragment"></span><a href="#52-%E3%82%AA%E3%83%9A%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AD%E3%83%A5%E3%83%BC"><i class="fa fa-link"></i></a>5.2. オペレーションキュー</h2>
+
+<p>　オペレーションキューを用いる非同期処理では、タスクを表現したデータ構造であるOperationを作り、キューに渡していくという流れになります。したがってあらかじめタスクを仕込んでおいて一気に並列/直列で実行するなどということが可能です。実際のところGCDのラッパーでしかないため動作原理はほぼほぼ同じになります。しかし、クロージャではなくタスクというオブジェクトを引き回せることでより柔軟で複雑なプログラミングが可能になると思います。</p>
+
+<h2>
+<span id="53-スレッドセーフな実装" class="fragment"></span><a href="#53-%E3%82%B9%E3%83%AC%E3%83%83%E3%83%89%E3%82%BB%E3%83%BC%E3%83%95%E3%81%AA%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>5.3. スレッドセーフな実装</h2>
+
+<p>　複数のスレッド間で共有されるオブジェクトは不正な状態になる可能性をはらんでいます。不変なオブジェクトであれば問題はないですが、状態を持つオブジェクトには不正な状態になることを防ぐための実装を施してあげる必要があります。一般にマルチスレッド間でのオブジェクト共有に対して安全であることをスレッドセーフな実装とよんでいます。スレッドセーフな実装を実現させるためのツールにはアトミック操作とメモリバリア、ロック、条件変数などがあります。それぞれ特徴が異なっており、用途に適したものを利用する必要があります。詳細についてはAppleが公式で提供している「スレッドプログラミングガイド」を読むと良いと思います。</p>
+
+<h1>
+<span id="6-アプリ内通信のこれから" class="fragment"></span><a href="#6-%E3%82%A2%E3%83%97%E3%83%AA%E5%86%85%E9%80%9A%E4%BF%A1%E3%81%AE%E3%81%93%E3%82%8C%E3%81%8B%E3%82%89"><i class="fa fa-link"></i></a>6. アプリ内通信のこれから</h1>
+
+<p>　多くのアプリではウェブAPIを利用したり、画像/音声/動画リソースをインターネット上から取得します。これからSwift/Objective-Cで開発をはじめようという方はどのようにしてHTTPリクエストを走らせるのかという点が気になるのではないでしょうか。</p>
+
+<p>　ネットで検索をするとAFNetworkingやAlamofireといったライブラリの名前がヒットすると思います。しかし個人的には標準で提供されているURLSessionで十分足りると考えています。複雑なPOSTリクエストの組み立てなどには一部ライブラリの助けがあると楽をすることができるかもしれませんが、それを除けばライブラリに実装されている機能を利用する機会はそれほど多くないでしょう。通信ライブラリに限らない話ですが、本当にそのライブラリを導入する必要があるのか、よく検討してみてください。</p>
+
+<h2>
+<span id="61-app-transport-security" class="fragment"></span><a href="#61-app-transport-security"><i class="fa fa-link"></i></a>6.1. App Transport Security</h2>
+
+<p>　App Transport Security（ATS）とはiOS9.0以降で導入されたサーバークライアント間でのセキュアな通信を保証するための仕組みです。Appleが推奨するTLSバージョンと暗号スイート、サーバー証明書とそのハッシュアルゴリズム、サーバー証明書の署名キーを満たしていない場合に接続エラーとなります。</p>
+
+<p>　2017年4月現在ではATSに対応することは必須ではなく、HTTP通信やAppleの推奨条件を満たさないHTTPS通信を行いたい場合は、Info.plistに設定を追加することでATSによる接続エラーを回避することができます。しかしながら、AppleはATSに正当な理由なく対応していないアプリをリジェクトするとの予告を出しており、今後アプリ開発をしていく上ではこれに対応することはほぼ間違いなく必須条件となるでしょう。</p>
+
+<p>　少なくとも自前で立てているサーバーと通信を行う場合は、Appleが定めた推奨条件に対応させましょう。ただし自分の管理外サーバーとの通信を行う場合は、ATSに対応しない正当な理由として認められるようです。</p>
+
+<h2>
+<span id="62-apiクライアントは人間の書くものではない" class="fragment"></span><a href="#62-api%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%81%AF%E4%BA%BA%E9%96%93%E3%81%AE%E6%9B%B8%E3%81%8F%E3%82%82%E3%81%AE%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>6.2. APIクライアントは人間の書くものではない</h2>
+
+<blockquote>
+<p>注意：この文章は今年の2月くらいに書いたものです</p>
+</blockquote>
+
+<p>　大半のアプリではREST APIを叩き、そのレスポンスをもとにビューを更新するなどの処理が入るのではないでしょうか。こんなときにはAPIクライアントの実装が必要になるでしょう。</p>
+
+<p>　残念ながらSwiftでAPIクライアントを書く作業はSwiftyではありません。URLSessionを用いてレスポンスを取得し、正常なリソースが得られたらJSONなりXMLなりをパースしてJSONObjectを手に入れます。続いてJSONObjectの各キーから値を取り出してSwiftで定義したエンティティの構造体にマッピングします。JavaやC#などを使うとシリアライズやデシリアライズの工程はだいたい手で書く必要はなく、十分に実績のあるライブラリが自動的にやってくれるため、とてもSwiftyなのですが、Swiftには現在そのような機能を実現するライブラリは存在しないようにみえます。またあらかじめスキーマが決まっているエンティティの構造体を書くのも非常に面倒臭い作業で自動化したい機運が高まります。</p>
+
+<p>　APIクライアントのレイヤーを自動で解決するための方法はいくつかあります。ひとつ目はSwaggerというREST API作成のためのフレームワークを利用する手法です。仕様を表現したYAMLファイルから自動でAPIクライアントのコードを生成できるのが特徴です。</p>
+
+<p>　またREST APIからは外れますが、Protocol Buffersを使うことによりデシリアライズやエンティティの作成を自動化できます。こちらはサーバー側から送出されるレスポンスもProtocol Buffersに対応させなければならないため、自前のサーバーを利用したアプリ作成のときに使える手段となります。サーバーとクライアント間の通信も含めて、すべて自動でコード生成したい場合はRPCフレームワークのgRPCの利用を検討してみてください。</p>
+
+<h1>
+<span id="7-ユーザーに笑顔を届けるまでがios開発" class="fragment"></span><a href="#7-%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%81%AB%E7%AC%91%E9%A1%94%E3%82%92%E5%B1%8A%E3%81%91%E3%82%8B%E3%81%BE%E3%81%A7%E3%81%8Cios%E9%96%8B%E7%99%BA"><i class="fa fa-link"></i></a>7. ユーザーに笑顔を届けるまでがiOS開発</h1>
+
+<p>　Appleによる過酷なダンジョンを切り抜けついに審査を切り抜けたみなさんは、ついにリリースボタンを押すことになるでしょう。いままで開発をすすめてきたメンバーと一緒にリリースボタンを押すとウェイ感がでてとてもエモいので是非おためしください。</p>
+
+<h2>
+<span id="71-appstoreのねぼすけ" class="fragment"></span><a href="#71-appstore%E3%81%AE%E3%81%AD%E3%81%BC%E3%81%99%E3%81%91"><i class="fa fa-link"></i></a>7.1. AppStoreのねぼすけ</h2>
+
+<p>　さて、時間はお昼の12時、無事リリースボタンを押した我々はAppStoreに飛び、アプリをダウンロードしてみようと試みます。しかしながら、アプリは見当たりません。Appleの実装はとてもlazy（怠惰）なのでリリースボタンを押してから反映までに30〜60分程度要すると思っていただいてよいでしょう。もし決まった時間にプレスリリースやSNSなどでリリース告知をする際には、あらかじめこっそりとアプリをリリースして、AppStoreに反映させておくのが良いと思います。</p>
+
+<p>　そんなこんなでアプリは13時にはストアに反映されていたとしましょう。ところがtwitterでエゴサするとダウンロードがうまくできないとの酷評が。リリースと同時につけられる1ツ星評価。実際のところ何が原因か分かっていないのですが、お昼の時間帯などはAppStoreからのダウンロードがうまくいかないときがあるようで、個人的にはリリースはアプリのユーザーがアクティブでなくなってくる時間帯にするようにしています。個人的にはAppStoreのアプリ配信サーバーを増強してほしいという気持ちをここに掲載させていただきます。</p>
+
+<h2>
+<span id="72-俺たちの闘いはこれからだ" class="fragment"></span><a href="#72-%E4%BF%BA%E3%81%9F%E3%81%A1%E3%81%AE%E9%97%98%E3%81%84%E3%81%AF%E3%81%93%E3%82%8C%E3%81%8B%E3%82%89%E3%81%A0"><i class="fa fa-link"></i></a>7.2. 俺たちの闘いはこれからだ！</h2>
+
+<p>　アプリをリリースして、開発を終わらせるぞ！そう思っていた時期が私にもありました。しかしアプリ開発はリリースしてからが本番です。まずは多くのユーザーに使ってもらうためにきっと様々な仕掛けが必要でしょう。また発生させてしまった不具合の対応や、アプリをさらに快適に利用できるような新機能の提供などやることはたくさんあるはずです。そう、俺たちの闘いはこれからだ！</p>
+
+<hr>
+
+<p>ソースコードが一切でてきてないのでこのエントリは Qiita 運営に消されそう</p>
+
+<p>現場からは以上です</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>gomi_ningenさんの<br />2位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>121</kbd>
+		<a target="_blank" href="https://qiita.com/gomi_ningen/items/c796c08fe672610beecf">RxSwift の Observable とは何か</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-09-16 10:53:15</center>
+	</td>
+	<td style="width:200px;">
+		@gomi_ningen<br />(ラビットハウス社勤務 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/56771/profile-images/1473694109">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[iOS]</b> <b>[ReactiveExtensions]</b> <b>[Rx]</b> <b>[Swift]</b> <b>[RxSwift]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><blockquote>
+<p>この記事は、2017/09/15〜17 に早稲田大学 理工学部 西早稲田キャンパスで開催される <strong>iOSDC Japan 2017</strong> で行われる<strong><a href="https://iosdc.jp/2017/node/1348" rel="nofollow noopener" target="_blank">セッション「RxSwiftのObservableとは何か」</a></strong>の発表原稿、およびその補足資料です。</p>
+</blockquote>
+
+<ul>
+<li>スライドはこちらです ➡︎ <a href="https://www.slideshare.net/gomi_ningen/rxswiftobservable-iosdc-japan-2017" class="autolink" rel="nofollow noopener" target="_blank">https://www.slideshare.net/gomi_ningen/rxswiftobservable-iosdc-japan-2017</a>
+</li>
+<li>あわせて読みたい ➡︎ <a href="http://qiita.com/gomi_ningen/items/dc08a8a5514be9aa0eb2" class="autolink" id="reference-b73e16e81e1b239086c2">http://qiita.com/gomi_ningen/items/dc08a8a5514be9aa0eb2</a>
+</li>
+</ul>
+
+<p>なお、本文に先立ち注意事項を掲載しておきます。</p>
+
+<p><strong>注意事項</strong></p>
+
+<ul>
+<li>以下の内容を理解しなくても RxSwift は十分使えるライブラリです
+
+<ul>
+<li>まだ Rx 系のライブラリを使ったことがない方は、まずライブラリを使ってみてください</li>
+<li>Qiitaの記事を読むのもよいですが、<strong><a href="https://github.com/ReactiveX/RxSwift" rel="nofollow noopener" target="_blank">公式のドキュメント</a>や<a href="https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Examples.md" rel="nofollow noopener" target="_blank">Example</a></strong>が充実しているのでそちらを読みながら、<strong>まずはコードを書いてみることを強くお勧めします。</strong>意外に簡単に使いどころが理解できるようになると思います。</li>
+</ul>
+</li>
+<li>記事の内容的には Rx 系ライブラリの利用経験がなくても分かるように書いたつもりです</li>
+<li>以下の実装は RxSwift のものであり、他言語の Rx ライブラリとは実装が異なる場合があります</li>
+</ul>
+
+<h1>
+<span id="1rxswiftとは" class="fragment"></span><a href="#1rxswift%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>1.RxSwiftとは？</h1>
+
+<p>　<strong>ReactiveExtensions(Rx)</strong> とは一体何をするライブラリなのでしょうか？ <a href="http://reactivex.io/" rel="nofollow noopener" target="_blank">ReactiveX</a> のWebページ冒頭や <a href="https://github.com/ReactiveX/RxSwift/blob/master/README.md" rel="nofollow noopener" target="_blank">RxSwiftの README</a> にはこのように書かれています</p>
+
+<blockquote>
+<ul>
+<li>An API for asynchronous programming with observable streams.（Observable を用いた非同期プログラミングのためのAPI）</li>
+<li>Rx is a generic abstraction of computation expressed through Observable interface. （Rxは Observable を用いて計算を抽象化します）</li>
+</ul>
+</blockquote>
+
+<p>　どちらにも <code>Observable</code> というキーワードが登場しています。このことから、Rx を理解するためには、<code>Observable</code> について理解する必要がありそうだということがお分りいただけるかと思います。</p>
+
+<p>実際に Rx は、主に以下の3つの要素から構成されていると言ってよいでしょう。</p>
+
+<ol>
+<li>
+<strong>Observable</strong> (<code>Observable</code>, <code>Observer</code>, <code>Disposable</code>, etc...)</li>
+<li>
+<strong>Operator</strong> (<code>map</code>, <code>flatMap</code>, <code>filter</code>, etc...)</li>
+<li>
+<strong>Scheduler</strong> (<code>MainScheduler</code>, <code>ConcurrentDispatchQueueScheduler</code>, etc...)</li>
+</ol>
+
+<p>　本セッションでは、このうち <code>Observable</code> にスポットライトをあて、その実装を俯瞰していくことによって Rx への理解を深めることを目的としてお話を進めていきます。</p>
+
+<p>　しばしば、Rx のストリームは「川である」といったように様々なものの例えで表現されることがあります。またリアクティブプログラミングとは〜のようなものであるといった記事がネット上にはたくさん存在します。こうした、あいまいでつかみどころのない例え話や解説記事から一歩足を踏み入れて、コードレベルで振る舞いを理解することにチャレンジしてみませんか。</p>
+
+<p>　実装を知ることは、 RxSwift をはじめとした Rx 系ライブラリを活用する手助けになるだけでなく、ソフトウェアを設計する上でのひとつの大きな指針を手にいれることにも繋がると、私は考えています。</p>
+
+<h1>
+<span id="2-observerパターンとそのバリエーション" class="fragment"></span><a href="#2-observer%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%81%A8%E3%81%9D%E3%81%AE%E3%83%90%E3%83%AA%E3%82%A8%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3"><i class="fa fa-link"></i></a>2. Observerパターンとそのバリエーション</h1>
+
+<h2>
+<span id="21-observer-パターンの問題意識" class="fragment"></span><a href="#21-observer-%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%81%AE%E5%95%8F%E9%A1%8C%E6%84%8F%E8%AD%98"><i class="fa fa-link"></i></a>2.1. Observer パターンの問題意識</h2>
+
+<p>　Rx の <code>Observable</code> の実装を見ていく前に、ひとつの問題について考えてみましょう。</p>
+
+<blockquote>
+<p><strong>Q1. 「A に変化が生じたら B に伝えたい」とき、どうすればよいでしょうか？</strong> </p>
+</blockquote>
+
+<p>現実世界に置き換えると、以下のように例えられると思います。</p>
+
+<ul>
+<li>【例1】 自分の予定が変わったので（状態変化）、お店に予約キャンセルの連絡をする（通知）</li>
+<li>【例2】 従業員は体調が悪くなったので（状態変化）、上司に会社を休む連絡をする（通知）</li>
+</ul>
+
+<p>　実際にこのようなケースの場合、自分が相手の連絡先を保持して、連絡をとる（相手に通知する）ことになるかと思います。【例2】のケースを考えると、普通従業員は上司の連絡先をあらかじめ保持していて、適切なタイミングでお休みの連絡を入れるのではないでしょうか。これはプログラミングの世界でも一緒で、「A に変化が生じたら B に伝えたい」ときには、「A が B の参照を保持しておき、状態変化時に通知する」という構造になります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/d434371db7331734a0364016c7d6469bcf96c667/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f32316166623261362d653439612d336539392d333531342d3437643463323138373564392e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d434371db7331734a0364016c7d6469bcf96c667/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f32316166623261362d653439612d336539392d333531342d3437643463323138373564392e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/56771/21afb2a6-e49a-3e99-3514-47d4c21875d9.png"></a></p>
+
+<p>　【例2】のパターンをコードで表現すると以下のようになると思います。Playgroudで動作するコードですのでお試しください。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">Notify.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Member</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">boss</span><span class="p">:</span> <span class="n">Boss</span>
+    <span class="kd">public</span> <span class="kd">var</span> <span class="nv">isFine</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">true</span> <span class="p">{</span>
+        <span class="kr">didSet</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="n">boss</span><span class="p">.</span><span class="n">notify</span><span class="p">()</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">init</span><span class="p">(</span><span class="n">boss</span><span class="p">:</span> <span class="n">Boss</span><span class="p">)</span> <span class="p">{</span> <span class="kc">self</span><span class="p">.</span><span class="n">boss</span> <span class="p">=</span> <span class="n">boss</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Boss</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">notify</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">NSLog</span><span class="p">(</span><span class="s">"誰かから通知が来たよ"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nv">boss1</span> <span class="p">=</span> <span class="n">Boss</span><span class="p">()</span>
+<span class="kd">var</span> <span class="nv">member1</span> <span class="p">=</span> <span class="n">Member</span><span class="p">(</span><span class="n">boss</span><span class="p">:</span> <span class="n">boss1</span><span class="p">)</span>
+<span class="n">member1</span><span class="p">.</span><span class="n">isFine</span> <span class="p">=</span> <span class="kc">true</span>  <span class="c1">//=&gt; ログ出力される</span>
+<span class="n">member1</span><span class="p">.</span><span class="n">isFine</span> <span class="p">=</span> <span class="kc">false</span> <span class="c1">//=&gt; ログ出力される</span>
+</pre></div>
+</div>
+
+<p>　この実装は、問題を解決できており、完全に正しい実装です。与えられた前提条件に対して設計上の問題点はありません。さて、これを踏まえて考える問題をもう少し複雑にしてみましょう。</p>
+
+<blockquote>
+<p><strong>Q2. 「通知元（A）の状態変化を、複数の通知先（B, C, D...）に伝えたい」とき、どうすればよいでしょうか？</strong> </p>
+</blockquote>
+
+<p>　基本的に A が B, C, D の参照を保持するという点については変わりませんが、B, C, D に通知をする際のインターフェースが同じであるとは限りません。これは現実に例えば、友人数人と遊ぶ約束をしていて、遅刻しそうなとき、B さんは twitter、C さんは 電話、D さんはメールで連絡しなければいけないといったような状況です。</p>
+
+<p><a href="https://camo.qiitausercontent.com/178445c5878c5594f139b7f70f3d8e81a44261f4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f38663633666230302d626261362d343939352d343066312d3730333034653032353830302e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/178445c5878c5594f139b7f70f3d8e81a44261f4/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f38663633666230302d626261362d343939352d343066312d3730333034653032353830302e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/56771/8f63fb00-bba6-4995-40f1-70304e025800.png"></a></p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">Notify2.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">b</span><span class="p">:</span> <span class="n">B</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">c</span><span class="p">:</span> <span class="n">C</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">d</span><span class="p">:</span> <span class="n">D</span>
+    <span class="kd">public</span> <span class="kd">var</span> <span class="nv">isFine</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">true</span> <span class="p">{</span>
+        <span class="kr">didSet</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="p">{</span>
+                <span class="n">b</span><span class="p">.</span><span class="n">notifyByTwitter</span><span class="p">()</span>
+                <span class="n">c</span><span class="p">.</span><span class="n">notifyByTelephone</span><span class="p">()</span>
+                <span class="n">d</span><span class="p">.</span><span class="n">notifyByEmail</span><span class="p">()</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">init</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">B</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="n">C</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="n">D</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">b</span> <span class="p">=</span> <span class="n">b</span><span class="p">;</span> <span class="kc">self</span><span class="p">.</span><span class="n">c</span> <span class="p">=</span> <span class="n">c</span><span class="p">;</span> <span class="kc">self</span><span class="p">.</span><span class="n">d</span> <span class="p">=</span> <span class="n">d</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">B</span> <span class="p">{</span> <span class="kd">func</span> <span class="nf">notifyByTwitter</span><span class="p">()</span> <span class="p">{</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">"連絡がきた"</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+<span class="kd">class</span> <span class="nc">C</span> <span class="p">{</span> <span class="kd">func</span> <span class="nf">notifyByTelephone</span><span class="p">()</span> <span class="p">{</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">"連絡がきた"</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+<span class="kd">class</span> <span class="nc">D</span> <span class="p">{</span> <span class="kd">func</span> <span class="nf">notifyByEmail</span><span class="p">()</span> <span class="p">{</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">"連絡がきた"</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="22-pull-型-observer-パターン" class="fragment"></span><a href="#22-pull-%E5%9E%8B-observer-%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3"><i class="fa fa-link"></i></a>2.2. pull 型 Observer パターン</h2>
+
+<p>先にみた構造には、以下のような問題点があります。</p>
+
+<ol>
+<li>通知先のオブジェクトが変更されたとき、通知元の実装も変更しなければならない</li>
+<li>通知先のオブジェクトの種類が増えるとき、通知元の実装も追加しなければならない</li>
+</ol>
+
+<p>　2つの問題は通知元のオブジェクトが、通知先のオブジェクトの詳細を知りすぎているということに起因しています。通知元は、通知先の参照をどうあがいても保持する必要がありますが、通知先の詳細を知ったまま保持する必要性はありません。</p>
+
+<p>　つまり、通知元は、通知先の状態遷移を伝えるためのインターフェースだけを知っていればよいことになります。友人一般を表す <code>Friend</code> という名前で protocol を切り、通知を受け入れるメソッド <code>notify</code> を定義しておくと、B, C, D はそれぞれ下図のような構造にできるでしょう。</p>
+
+<p><a href="https://camo.qiitausercontent.com/0c474410a6c7ad472cc85946ac1e721817f5d364/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f66316333333162302d313839342d663061632d373530362d3737653564356164313333342e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/0c474410a6c7ad472cc85946ac1e721817f5d364/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f66316333333162302d313839342d663061632d373530362d3737653564356164313333342e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/56771/f1c331b0-1894-f0ac-7506-77e5d5ad1334.png"></a></p>
+
+<p>　この形にすることにより、通知元の A のほうも 友人への参照を個別の型で保持するのではなく、<code>[Friend]</code> という配列で保持することができるようになりました。配列で保持しているので <code>Friend</code> プロトコルを実装した新たなインスタンスを容易に受け入れることができる構造となりました。また配列から要素の削除も容易に行えるため、通知を取りやめることも実現できる構造になっています。</p>
+
+<p>　A が新たな Friend のインスタンスを受け入れるメソッドを <code>subscribe</code>、逆に取り除くメソッドを <code>unsubscribe</code> と命名すると以下の図のように単純に構造を表現できます</p>
+
+<p><a href="https://camo.qiitausercontent.com/6df26b922ca4c736f3cf315a38f9568c153330c2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f34366639366635332d623831632d313937342d616639332d3065343862313537643232662e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/6df26b922ca4c736f3cf315a38f9568c153330c2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f34366639366635332d623831632d313937342d616639332d3065343862313537643232662e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/56771/46f96f53-b81c-1974-af93-0e48b157d22f.png"></a></p>
+
+<p>　ここまでの検討をまとめれば「通知元の状態変化を、複数の通知先に伝えたい」場合に、通知元と通知先が持っていてほしいインターフェース仕様が導けるでしょう。それぞれ次のようになります。</p>
+
+<ul>
+<li>通知元（Observable=観測可能なオブジェクト）は次の2つのメソッドを持っていてほしい
+
+<ul>
+<li>通知先（Observer=観測者）への通知を開始するためのメソッド（subscribe）</li>
+<li>通知先（Observer=観測者）への通知を終了するためのメソッド（unsubscribe）</li>
+</ul>
+</li>
+<li>通知先（Obseerver=観測者）は次の1つのメソッドを持っていてほしい
+
+<ul>
+<li>通知を受け付けるメソッド（notify）</li>
+</ul>
+</li>
+</ul>
+
+<p>クラス図にまとめると以下のような形になります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/6d4439cd2fee3c350f3222dcfcc8ac75854ecd35/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f38373131343532382d343834332d666462632d633063352d3366386561346262343763382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/6d4439cd2fee3c350f3222dcfcc8ac75854ecd35/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f38373131343532382d343834332d666462632d633063352d3366386561346262343763382e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/56771/87114528-4843-fdbc-c0c5-3f8ea4bb47c8.png"></a></p>
+
+<p>この構造は、<strong>pull型 Observer パターン<sup id="fnref1"><a href="#fn1" rel="footnote" title="Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides (1994). Design Patterns: Elements of Reusable Object-Oriented Software.">1</a></sup></strong>と呼ばれています。Swiftで表現すると、やや制約のあるコードですが以下のように表現できます。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">PullObserver.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">protocol</span> <span class="nc">Observable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">(</span><span class="n">obs</span><span class="p">:</span> <span class="n">Observer</span><span class="p">)</span>
+    <span class="kd">func</span> <span class="nf">unsubscribe</span><span class="p">(</span><span class="n">obs</span><span class="p">:</span> <span class="n">Observer</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConcreteObservable</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">observers</span><span class="p">:</span> <span class="p">[</span><span class="n">Observer</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="kd">public</span> <span class="kd">var</span> <span class="nv">isHoge</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span> <span class="p">{</span>
+        <span class="kr">didSet</span> <span class="p">{</span> <span class="n">observers</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">x</span> <span class="k">in</span> <span class="n">x</span><span class="p">.</span><span class="n">notify</span><span class="p">()</span> <span class="p">}</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">(</span><span class="n">obs</span><span class="p">:</span> <span class="n">Observer</span><span class="p">)</span> <span class="p">{</span> <span class="n">observers</span> <span class="o">+=</span> <span class="p">[</span><span class="n">obs</span><span class="p">]</span> <span class="p">}</span>
+    <span class="n">pubilc</span> <span class="kd">func</span> <span class="nf">unsubscribe</span><span class="p">(</span><span class="n">obs</span><span class="p">:</span> <span class="n">Observer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">observers</span> <span class="p">=</span> <span class="n">observers</span><span class="p">.</span><span class="bp">filter</span> <span class="p">{</span> <span class="n">x</span> <span class="k">in</span>
+            <span class="c1">// this means reference equality</span>
+            <span class="nb">ObjectIdentifier</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">ObjectIdentifier</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="nc">Observer</span><span class="p">:</span> <span class="kd">class</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">notify</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConcreteObserver</span><span class="p">:</span> <span class="n">Observer</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">notify</span><span class="p">()</span> <span class="p">{</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">"通知を受けた"</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 以下のように playground でお試しできます</span>
+<span class="kd">let</span> <span class="nv">v1</span> <span class="p">=</span> <span class="n">ConcreteObservable</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nv">obs1</span> <span class="p">=</span> <span class="n">ConcreteObserver</span><span class="p">()</span>
+<span class="n">v1</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">obs</span><span class="p">:</span> <span class="n">obs1</span><span class="p">)</span>
+<span class="n">v1</span><span class="p">.</span><span class="n">isHoge</span> <span class="p">=</span> <span class="kc">false</span> <span class="c1">//=&gt; ログ出力される</span>
+<span class="n">v1</span><span class="p">.</span><span class="n">isHoge</span> <span class="p">=</span> <span class="kc">true</span>  <span class="c1">//=&gt; ログ出力される</span>
+<span class="n">v1</span><span class="p">.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">obs</span><span class="p">:</span> <span class="n">obs1</span><span class="p">)</span>
+<span class="n">v1</span><span class="p">.</span><span class="n">isHoge</span> <span class="p">=</span> <span class="kc">false</span> <span class="c1">//=&gt; ログ出力されない</span>
+</pre></div>
+</div>
+
+<p>　C# で表現すると以下のようなコードになります。C#を読んだことがない方でも、言語の違いを飛び越えてほぼ同じような表現が可能であることがわかるのではないでしょうか。</p>
+
+<div class="code-frame" data-lang="csharp">
+<div class="code-lang"><span class="bold">PullObserver.cs</span></div>
+<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nn">DotNetObservable</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">interface</span> <span class="n">IObservable</span>
+    <span class="p">{</span>
+        <span class="k">void</span> <span class="nf">Subscribe</span><span class="p">(</span><span class="n">IObserver</span> <span class="n">obs</span><span class="p">);</span>
+        <span class="k">void</span> <span class="nf">Unsubscribe</span><span class="p">(</span><span class="n">IObserver</span> <span class="n">obs</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">ConcreteObservable</span> <span class="p">:</span> <span class="n">IObservable</span>
+    <span class="p">{</span>
+        <span class="k">readonly</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">IObserver</span><span class="p">&gt;</span> <span class="n">observers</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">IObserver</span><span class="p">&gt;();</span>
+        <span class="kt">bool</span> <span class="n">isHoge</span><span class="p">;</span>
+        <span class="kt">bool</span> <span class="n">IsHoge</span>
+        <span class="p">{</span>
+            <span class="k">get</span> <span class="p">=&gt;</span> <span class="n">isHoge</span><span class="p">;</span>
+            <span class="k">set</span>
+            <span class="p">{</span>
+                <span class="n">isHoge</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+                <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">obs</span> <span class="k">in</span> <span class="n">observers</span><span class="p">)</span> <span class="n">obs</span><span class="p">.</span><span class="n">Notify</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">Subscribe</span><span class="p">(</span><span class="n">IObserver</span> <span class="n">obs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">observers</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">obs</span><span class="p">);</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">Unsubscribe</span><span class="p">(</span><span class="n">IObserver</span> <span class="n">obs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">observers</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">obs</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">interface</span> <span class="n">IObserver</span>
+    <span class="p">{</span>
+        <span class="k">void</span> <span class="nf">Notify</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">ConcreteObserver</span> <span class="p">:</span> <span class="n">IObserver</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">Notify</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"通知された"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<h3>
+<span id="pull-型-observer-パターンについてのまとめ" class="fragment"></span><a href="#pull-%E5%9E%8B-observer-%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>pull 型 Observer パターンについてのまとめ</h3>
+
+<p>やや長くなったので、ここで pull 型 Observer パターンについてまとめておきましょう。pull 型Observerパターンは、「複数の異なる通知先に状態変化を通知したい」という問題の解決策として以下のような構造や特徴を持ちます。</p>
+
+<ol>
+<li>通知元（Observable）は、通知先（Observer）に共通したプロトコルを持つインスタンスをコレクションとして持ち、状態遷移時にそれぞれに通知する</li>
+<li>
+<code>Observer</code> は、 <code>Observable</code> からなんらかの変化が発生したという情報だけを <code>notify()</code> メソッド経由で受け取れる</li>
+<li>
+<code>Observer</code> は、必要に応じて <code>Observable</code> の値を問い合わせる（このあたりが pull 型と呼ばれる所以）</li>
+</ol>
+
+<h2>
+<span id="23-push-型-observer-パターン" class="fragment"></span><a href="#23-push-%E5%9E%8B-observer-%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3"><i class="fa fa-link"></i></a>2.3. push 型 Observer パターン</h2>
+
+<p>　pull 型の Observer パターンを用いた場合、<code>Observer</code> は <code>Observable</code> の状態が更新されたという事実を知ることができますが、どのような値に更新されたのかは、 <code>Observable</code> のプロパティなどを参照しにいかなければ知ることができません。したがって、現実的には更新された値を参照するために、<code>Observer</code> も <code>Observable</code> の参照を何らかの方法で取得できる状況にする必要があり、相互参照する構造になってしまいます。</p>
+
+<p>　この問題を解決するために、<code>notify</code> 時に更新後の値を渡してしまう構造にしたものが <strong>push 型 Observer パターン</strong> になります。構造は以下のようになります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/60dc9bc8665a7cf404ec89b282144836615d4f6b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f62663162326636302d643230362d663863612d343264312d3031626535346234663439382e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/60dc9bc8665a7cf404ec89b282144836615d4f6b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f62663162326636302d643230362d663863612d343264312d3031626535346234663439382e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/56771/bf1b2f60-d206-f8ca-42d1-01be54b4f498.png"></a></p>
+
+<p>　図中で interface が<strong>型パラメータ（generic type parameter）</strong>を持つ箇所がありますが、Swift の protocol は型パラメータを持てず、<strong>関連型（associated type, abstract type member）</strong> しかもてない仕様があり<sup id="fnref2"><a href="#fn2" rel="footnote" title="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Generics.html">2</a></sup>、この図をストレートにコードに落とし込むことができません。したがって、ひとまず C# で表現するならば以下のようなコードになります。</p>
+
+<div class="code-frame" data-lang="csharp">
+<div class="code-lang"><span class="bold">PushObserver.cs</span></div>
+<div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">DotNetObservable</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">interface</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+    <span class="p">{</span>
+        <span class="k">void</span> <span class="nf">Subscribe</span><span class="p">(</span><span class="n">IObserver</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">obs</span><span class="p">);</span>
+        <span class="k">void</span> <span class="nf">Unsubscribe</span><span class="p">(</span><span class="n">IObserver</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">obs</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">BooleanObservable</span> <span class="p">:</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span>
+    <span class="p">{</span>
+        <span class="k">readonly</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">IObserver</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;&gt;</span> <span class="n">observers</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">IObserver</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;&gt;();</span>
+        <span class="kt">bool</span> <span class="n">t</span><span class="p">;</span>
+        <span class="kt">bool</span> <span class="n">TValue</span>
+        <span class="p">{</span>
+            <span class="k">get</span> <span class="p">=&gt;</span> <span class="n">t</span><span class="p">;</span>
+            <span class="k">set</span>
+            <span class="p">{</span>
+                <span class="n">t</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+                <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">obs</span> <span class="k">in</span> <span class="n">observers</span><span class="p">)</span> <span class="n">obs</span><span class="p">.</span><span class="n">Notify</span><span class="p">(</span><span class="k">value</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">Subscribe</span><span class="p">(</span><span class="n">IObserver</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span> <span class="n">obs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">observers</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">obs</span><span class="p">);</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">Unsubscribe</span><span class="p">(</span><span class="n">IObserver</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span> <span class="n">obs</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">observers</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">obs</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">interface</span> <span class="n">IObserver</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+    <span class="p">{</span>
+        <span class="k">void</span> <span class="nf">Notify</span><span class="p">(</span><span class="n">T</span> <span class="n">t</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">BooleanObserver</span> <span class="p">:</span> <span class="n">IObserver</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">Notify</span><span class="p">(</span><span class="kt">bool</span> <span class="n">t</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"通知された"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>Swift で表現するならば、ちょっと迂回して以下の図のような構造となるでしょう。</p>
+
+<p><a href="https://camo.qiitausercontent.com/ba191ab05b9a7b8e0f00f5074f3ec497558f48b2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f33643966646432352d316236372d313835652d333137372d3465613866333734363961322e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ba191ab05b9a7b8e0f00f5074f3ec497558f48b2/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f33643966646432352d316236372d313835652d333137372d3465613866333734363961322e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/56771/3d9fdd25-1b67-185e-3177-4ea8f37469a2.png"></a></p>
+
+<p>　Swiftには抽象クラスというものは存在しませんが、擬似的に abstract method 内 で <code>fatalError()</code> を返すことを抽象クラスである印として、次のようにコードに落とし込めます。この技法は RxSwift のコード内部でも使われています<sup id="fnref3"><a href="#fn3" rel="footnote" title="https://github.com/ReactiveX/RxSwift/blob/007af77912b39d84857a8e90eecdd02dd20164de/RxSwift/Rx.swift#L36">3</a></sup>。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">PushObserver.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">protocol</span> <span class="nc">ObserverType</span><span class="p">:</span> <span class="kd">class</span> <span class="p">{</span>
+    <span class="n">associatedtype</span> <span class="n">E</span>
+    <span class="kd">func</span> <span class="nf">notify</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">E</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="nc">ObseravbleType</span> <span class="p">{</span>
+    <span class="n">associatedtype</span> <span class="n">E</span>
+    <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">&lt;</span><span class="n">O</span><span class="p">:</span> <span class="n">ObserverType</span><span class="p">&gt;(</span><span class="n">obs</span><span class="p">:</span> <span class="n">O</span><span class="p">)</span> <span class="k">where</span> <span class="n">O</span><span class="p">.</span><span class="n">E</span> <span class="p">==</span> <span class="n">E</span>
+    <span class="kd">func</span> <span class="nf">unsubscribe</span><span class="p">&lt;</span><span class="n">O</span><span class="p">:</span> <span class="n">ObserverType</span><span class="p">&gt;(</span><span class="n">obs</span><span class="p">:</span> <span class="n">O</span><span class="p">)</span> <span class="k">where</span> <span class="n">O</span><span class="p">.</span><span class="n">E</span> <span class="p">==</span> <span class="n">E</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Observable</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;:</span> <span class="n">ObseravbleType</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="n">E</span> <span class="p">=</span> <span class="n">Element</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">&lt;</span><span class="n">O</span><span class="p">:</span> <span class="n">ObserverType</span><span class="p">&gt;(</span><span class="n">obs</span><span class="p">:</span> <span class="n">O</span><span class="p">)</span> <span class="k">where</span> <span class="n">O</span><span class="p">.</span><span class="n">E</span> <span class="p">==</span> <span class="n">E</span> <span class="p">{</span>
+        <span class="bp">fatalError</span><span class="p">(</span><span class="s">"not implemented"</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">unsubscribe</span><span class="p">&lt;</span><span class="n">O</span><span class="p">:</span> <span class="n">ObserverType</span><span class="p">&gt;(</span><span class="n">obs</span><span class="p">:</span> <span class="n">O</span><span class="p">)</span> <span class="k">where</span> <span class="n">O</span><span class="p">.</span><span class="n">E</span> <span class="p">==</span> <span class="n">E</span> <span class="p">{</span>
+        <span class="bp">fatalError</span><span class="p">(</span><span class="s">"not implemented"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BooleanObservable</span><span class="p">:</span> <span class="n">Observable</span><span class="p">&lt;</span><span class="nb">Bool</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">observers</span><span class="p">:</span> <span class="p">[</span><span class="nb">ObjectIdentifier</span><span class="p">:</span><span class="n">AnonymousObserver</span><span class="p">&lt;</span><span class="nb">Bool</span><span class="p">&gt;]</span> <span class="p">=</span> <span class="p">[:]</span>
+    <span class="kd">public</span> <span class="kd">var</span> <span class="nv">isHoge</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span> <span class="p">{</span> 
+        <span class="kr">didSet</span> <span class="p">{</span> <span class="n">observers</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">x</span> <span class="k">in</span> <span class="n">x</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">notify</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">isHoge</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kd">public</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">&lt;</span><span class="n">O</span><span class="p">&gt;(</span><span class="n">obs</span><span class="p">:</span> <span class="n">O</span><span class="p">)</span> <span class="k">where</span> <span class="n">O</span> <span class="p">:</span> <span class="n">ObserverType</span><span class="p">,</span> <span class="n">O</span><span class="p">.</span><span class="n">E</span> <span class="p">==</span> <span class="nb">Bool</span> <span class="p">{</span>
+        <span class="n">observers</span><span class="p">[</span><span class="nb">ObjectIdentifier</span><span class="p">(</span><span class="n">obs</span><span class="p">)]</span> <span class="p">=</span> <span class="n">AnonymousObserver</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span> <span class="n">obs</span><span class="p">.</span><span class="n">notify</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">unsubscribe</span><span class="p">&lt;</span><span class="n">O</span><span class="p">&gt;(</span><span class="n">obs</span><span class="p">:</span> <span class="n">O</span><span class="p">)</span> <span class="k">where</span> <span class="n">O</span> <span class="p">:</span> <span class="n">ObserverType</span><span class="p">,</span> <span class="n">O</span><span class="p">.</span><span class="n">E</span> <span class="p">==</span> <span class="nb">Bool</span> <span class="p">{</span>
+        <span class="n">observers</span><span class="p">[</span><span class="nb">ObjectIdentifier</span><span class="p">(</span><span class="n">obs</span><span class="p">)]</span> <span class="p">=</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AnonymousObserver</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;:</span> <span class="n">ObserverType</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="n">E</span> <span class="p">=</span> <span class="n">Element</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="n">Handler</span> <span class="p">=</span> <span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">handler</span><span class="p">:</span> <span class="n">Handler</span>
+
+    <span class="kd">public</span> <span class="kd">init</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="n">Handler</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">handler</span> <span class="p">=</span> <span class="n">handler</span>
+    <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">notify</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">E</span><span class="p">)</span> <span class="p">{</span> <span class="n">handler</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nv">observable</span> <span class="p">=</span> <span class="n">BooleanObservable</span><span class="p">()</span>
+<span class="kd">var</span> <span class="nv">observer</span> <span class="p">=</span> <span class="n">AnonymousObserver</span><span class="p">&lt;</span><span class="nb">Bool</span><span class="p">&gt;(</span><span class="n">handler</span><span class="p">:</span> <span class="p">{</span> <span class="n">x</span> <span class="k">in</span> <span class="n">NSLog</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="p">})</span>
+
+<span class="n">observable</span><span class="p">.</span><span class="n">isHoge</span> <span class="p">=</span> <span class="kc">false</span>   <span class="c1">//=&gt; ログ出力されない</span>
+<span class="n">observable</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">obs</span><span class="p">:</span> <span class="n">observer</span><span class="p">)</span>
+<span class="n">observable</span><span class="p">.</span><span class="n">isHoge</span> <span class="p">=</span> <span class="kc">true</span>   <span class="c1">//=&gt; ログ出力される</span>
+<span class="n">observable</span><span class="p">.</span><span class="n">isHoge</span> <span class="p">=</span> <span class="kc">false</span>  <span class="c1">//=&gt; ログ出力される</span>
+<span class="n">observable</span><span class="p">.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">obs</span><span class="p">:</span> <span class="n">observer</span><span class="p">)</span>
+<span class="n">observable</span><span class="p">.</span><span class="n">isHoge</span> <span class="p">=</span> <span class="kc">true</span>   <span class="c1">//=&gt; ログ出力されない</span>
+</pre></div>
+</div>
+
+<p>　こうして、私たちは「通知元の状態変化を、複数の通知先に伝えたい」という問題を解決する実装パターンである <strong>push 型 Observer パターン</strong>を手にすることができました。 protocol が型パラメータを持てないという制約を回避するためにやや遠回りで苦しい実装をしましたが、構造的には C# のものと同じです。</p>
+
+<h1>
+<span id="3-rxswift-の-observer-observable-の実装" class="fragment"></span><a href="#3-rxswift-%E3%81%AE-observer-observable-%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>3. RxSwift の Observer, Observable の実装</h1>
+
+<p>　さて、ここからはいよいよ RxSwift の <code>Observable</code> についてみていきます。基本的に push 型 Observer パターンと同じ構造になりますが、3つ異なる点があります。</p>
+
+<ol>
+<li>notify 時に値を <code>.next</code>, <code>.error</code>, <code>.completed</code> という文脈につつむ enum <code>Event</code> にラップして渡している</li>
+<li>
+<code>.next</code> 以外の値が飛んだ場合に、以後イベントは飛ばなくなる</li>
+<li>
+<code>unsubscribe</code> の責務を <code>Disposable</code> に分離している</li>
+</ol>
+
+<p>まずは前者から見ていきましょう。</p>
+
+<p><a href="https://camo.qiitausercontent.com/d952650ccf102192393fae3948290d165604d603/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f61623635396666372d383739622d646538382d353430642d3632383565343030396161372e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/d952650ccf102192393fae3948290d165604d603/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f61623635396666372d383739622d646538382d353430642d3632383565343030396161372e706e67" alt="" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/56771/ab659ff7-879b-de88-540d-6285e4009aa7.png"></a></p>
+
+<h2>
+<span id="31-event-の実装" class="fragment"></span><a href="#31-event-%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>3.1. Event の実装</h2>
+
+<p>　<strong>RxSwift の <code>Observable</code> は変化した値(next)に加えて、エラー(error)と完了(completed)という文脈を <code>Observer</code> に通知することができます。</strong>その文脈を表現するのが <code>Event</code> という enum です。実装が単純なので、コードをみたほうが理解がはやいでしょう。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">Event.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Event</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">next</span><span class="p">(</span><span class="n">Element</span><span class="p">)</span>
+    <span class="k">case</span> <span class="n">error</span><span class="p">(</span><span class="n">Error</span><span class="p">)</span>
+    <span class="k">case</span> <span class="n">completed</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>また通知に関してもう一つだけ push 型　Observerパターンにはないルールがあります。それは <strong>「<code>next</code> 以外の値が飛んだ場合に、以後イベントは飛ばなくなる」</strong>というルールです。これは RxSwift のソースコード内で以下のように表現されています。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">EventExtension.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">extension</span> <span class="nc">Event</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">var</span> <span class="nv">isStopEvent</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="kc">self</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">next</span><span class="p">:</span> <span class="k">return</span> <span class="kc">false</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">error</span><span class="p">,</span> <span class="p">.</span><span class="n">completed</span><span class="p">:</span> <span class="k">return</span> <span class="kc">true</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="32-disposable-プロトコルの定義" class="fragment"></span><a href="#32-disposable-%E3%83%97%E3%83%AD%E3%83%88%E3%82%B3%E3%83%AB%E3%81%AE%E5%AE%9A%E7%BE%A9"><i class="fa fa-link"></i></a>3.2. Disposable プロトコルの定義</h2>
+
+<p>　続いて <code>Disposable</code> プロトコルの定義についてみていきましょう。これも先に見た push 型の Observer パターンには存在しないものになります。このプロトコルは単純に<strong>「push 型の Observer パターンの <code>unsubscribe</code> の役割をオブジェクトとして切り出した」</strong>ものになります。したがって、<code>unsubscribe</code> を発火させる単純なメソッド <code>dispose</code> のみを持つシンプルなインターフェースとなります。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">Disposable.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">protocol</span> <span class="nc">Disposable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">dispose</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>このプロトコルの実装（具体的には <code>SubscriptionDisposable</code> など）については、ReactiveExtensions の <code>Observable</code> の本質とは少し離れ、かなり Swift という言語やメモリモデルに依存したものになるため、ひとまず後回しにして他の実装をみていくことにしましょう。</p>
+
+<h2>
+<span id="33-observertype-observabletype-プロトコルの定義" class="fragment"></span><a href="#33-observertype-observabletype-%E3%83%97%E3%83%AD%E3%83%88%E3%82%B3%E3%83%AB%E3%81%AE%E5%AE%9A%E7%BE%A9"><i class="fa fa-link"></i></a>3.3. ObserverType, ObservableType プロトコルの定義</h2>
+
+<p>ObserverType, ObservableType プロトコルの定義については、ほとんど push 型の Observer パターンとかわりありません。変化しているのは「値がイベントという文脈付きで通知される」という点だけです。文脈がついているため、いままで <code>notify</code> と命名していた箇所が <code>on</code> という名前に変わっています。これは、引数に enum 値として <code>.next(Element)</code>, <code>.error(Error)</code>, <code>.completed</code> が渡ると考えると自然な命名ですね。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">ObserverObservable.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">protocol</span> <span class="nc">ObservableType</span> <span class="p">{</span>
+    <span class="n">associatedtype</span> <span class="n">E</span>
+    <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">&lt;</span><span class="n">O</span><span class="p">:</span> <span class="n">ObserverType</span><span class="p">&gt;(</span><span class="kc">_</span> <span class="n">observer</span><span class="p">:</span> <span class="n">O</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Disposable</span> <span class="k">where</span> <span class="n">O</span><span class="p">.</span><span class="n">E</span> <span class="p">==</span> <span class="n">E</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="nc">ObserverType</span> <span class="p">{</span>
+    <span class="n">associatedtype</span> <span class="n">E</span>
+    <span class="kd">func</span> <span class="nf">on</span><span class="p">(</span><span class="kc">_</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">&lt;</span><span class="n">E</span><span class="p">&gt;)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>　また、<code>ObserverType</code> には便利な拡張メソッドとして <code>onNext(Element)</code>, <code>onError(Error)</code>, <code>onCompleted</code> が生えています。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">ObserverExtensions.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">extension</span> <span class="nc">ObserverType</span> <span class="p">{</span>    
+    <span class="kd">public</span> <span class="kr">final</span> <span class="kd">func</span> <span class="nf">onNext</span><span class="p">(</span><span class="kc">_</span> <span class="n">element</span><span class="p">:</span> <span class="n">E</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">on</span><span class="p">(.</span><span class="n">next</span><span class="p">(</span><span class="n">element</span><span class="p">))</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kr">final</span> <span class="kd">func</span> <span class="nf">onCompleted</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">on</span><span class="p">(.</span><span class="n">completed</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kr">final</span> <span class="kd">func</span> <span class="nf">onError</span><span class="p">(</span><span class="kc">_</span> <span class="n">error</span><span class="p">:</span> <span class="n">Swift</span><span class="p">.</span><span class="n">Error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">on</span><span class="p">(.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="34-observable-の実装" class="fragment"></span><a href="#34-observable-%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>3.4. Observable の実装</h2>
+
+<p>　つづいて Observable の実装についてみていきましょう。 基本的に <code>ObservableType</code> の関連型（associated type）を、型パラメータに引き上げる以外のことはやっていません。Swift には抽象クラスや抽象メソッドという言語機能が存在しないため、その意志を込めて <code>Never</code> 型を返すメソッドを呼び出しているのが特徴的です。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">Observable.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Observable</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;:</span> <span class="n">ObservableType</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="n">E</span> <span class="p">=</span> <span class="n">Element</span>
+
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">&lt;</span><span class="n">O</span><span class="p">:</span> <span class="n">ObserverType</span><span class="p">&gt;(</span><span class="kc">_</span> <span class="n">observer</span><span class="p">:</span> <span class="n">O</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Disposable</span> <span class="k">where</span> <span class="n">O</span><span class="p">.</span><span class="n">E</span> <span class="p">==</span> <span class="n">E</span> <span class="p">{</span>
+        <span class="n">abstractMethod</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// 抽象メソッドを表現するための苦肉の策</span>
+<span class="kd">func</span> <span class="nf">abstractMethod</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">Never</span> <span class="p">{</span>
+    <span class="bp">fatalError</span><span class="p">(</span><span class="s">"abstract method"</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="35-anonymousobserver-の実装" class="fragment"></span><a href="#35-anonymousobserver-%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>3.5. AnonymousObserver の実装</h2>
+
+<p><code>AnonymousObserver</code> に関しても push 型 Observer パターンをベースに<strong>「<code>next</code> 以外の値が飛んだ場合に、以後イベントは飛ばなくなる」</strong>というルールが追加した実装に変更します。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">AnonymousObserver.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">AnonymousObserver</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;:</span> <span class="n">ObserverType</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="n">E</span> <span class="p">=</span> <span class="n">Element</span>
+    <span class="kd">typealias</span> <span class="n">EventHandler</span> <span class="p">=</span> <span class="p">(</span><span class="n">Event</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;)</span> <span class="p">-&gt;</span> <span class="nb">Void</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">eventHandler</span><span class="p">:</span> <span class="n">EventHandler</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">isStopped</span><span class="p">:</span> <span class="nb">Int32</span> <span class="p">=</span> <span class="mi">0</span> <span class="c1">//=&gt; means AtomicInt</span>
+
+    <span class="kd">public</span> <span class="kd">init</span><span class="p">(</span><span class="kc">_</span> <span class="n">eventHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="n">EventHandler</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">eventHandler</span> <span class="p">=</span> <span class="n">eventHandler</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">on</span><span class="p">(</span><span class="kc">_</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;)</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">next</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">isStopped</span> <span class="p">==</span> <span class="mi">0</span> <span class="p">{</span> <span class="n">eventHandler</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">error</span><span class="p">,</span> <span class="p">.</span><span class="n">completed</span><span class="p">:</span>
+            <span class="k">if</span> <span class="o">!</span><span class="n">OSAtomicCompareAndSwap32Barrier</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">&amp;</span><span class="n">isStopped</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+            <span class="n">eventHandler</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>　Swift では <code>Bool</code> を参照し、条件次第で異なる値を代入する操作はアトミックではないため、その代わりのフラグとして <code>Int32</code> が利用されています。また、 <code>OSAtomicCompareAndSwap32Barrier</code> は、値と変数を比較して等しい場合に、新しい値を代入する操作をアトミックに行うものです。この場合 <code>isStopped</code> が 0 と等しいか比較をして真であれば 1 に差し替えるという操作をアトミックに行います。このあたりは <code>AnonymousObserver</code> の本質的な部分でないため、難しければ理解しなくても大丈夫です。</p>
+
+<h2>
+<span id="36-rxswift-の-observable-についてのまとめ" class="fragment"></span><a href="#36-rxswift-%E3%81%AE-observable-%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>3.6. RxSwift の Observable についてのまとめ</h2>
+
+<p>　歴史的経緯はどうだったのか知りませんが、Rx の基本的なインターフェースである <code>Observable</code>, <code>Observer</code> については以下のように説明できると思います（※筆者は歴史的経緯は知らないので実際の流れは違うかもしれません）。</p>
+
+<ol>
+<li>push 型 Observer パターンが基本的な出発点</li>
+<li>通知する値に <code>.next</code>, <code>.error</code>, <code>.completed</code> という文脈をつけた <code>Event</code> が通知の対象物になっているのが特徴的</li>
+<li>また <code>.next</code> 以外の値が通知されると以降、イベントは送られない（ストリームが閉じる）</li>
+<li>購読解除の仕組みを <code>Disposable</code> に分離しているのが特徴的</li>
+</ol>
+
+<p>　以上を踏まえると <code>Observable</code>, <code>Observer</code> といったインターフェースを自然に導き出すことができると思います。ここまでくれば、<code>Observable</code> はもはや「川」といったあいまいなものではなく、よりビビッドに振る舞いを捉えることができるようになっているのではないでしょうか。</p>
+
+<h1>
+<span id="4-subject-と-disposable-を実装する" class="fragment"></span><a href="#4-subject-%E3%81%A8-disposable-%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>4. Subject と Disposable を実装する</h1>
+
+<p>　これまで観測可能な値(<code>Observable</code>)と、その状態変化を観測するオブジェクト(<code>Observer</code>)について詳しく見てきましたが、ReactiveExtensions にはそのどちらの役割も持つオブジェクトが存在します。それが、<code>Subject</code> です。代表的なものに <code>BehaviorSubject</code>, <code>PublishSubject</code> などがあります。</p>
+
+<p>　<code>Observable</code> であり、かつ <code>Observer</code> であるということは単純に以下のような <code>SubjectType</code> プロトコルに落とし込むことができます。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">SubjectType.swift</span></div>
+<div class="highlight"><pre><span></span><span class="c1">// 通知元にも通知先にもなりうるオブジェクトを表す</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="nc">SubjectType</span><span class="p">:</span> <span class="n">ObservableType</span> <span class="p">{</span> <span class="c1">// 普段は Observable としてふるまう</span>
+    <span class="kd">typealias</span> <span class="n">SubjectObserverType</span><span class="p">:</span> <span class="n">ObserverType</span>
+
+    <span class="kd">func</span> <span class="nf">asObserver</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">SubjectObserverType</span> <span class="c1">// 必要なときに SubjectObserverType に変換できる</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<h2>
+<span id="41-publishsubject-のふるまい" class="fragment"></span><a href="#41-publishsubject-%E3%81%AE%E3%81%B5%E3%82%8B%E3%81%BE%E3%81%84"><i class="fa fa-link"></i></a>4.1. PublishSubject のふるまい</h2>
+
+<p>　<code>Observable</code> は、 <code>subscribe(Observer)</code> メソッドによって受け入れた <code>Observer</code> にイベント発生時に通知をするという働きをします。 <code>Observer</code> は発生したイベント値の通知を受け入れる <code>on(Event&lt;T&gt;)</code> というメソッドを持っています。</p>
+
+<p>　<code>PublishSubject</code> は <code>Subject</code> であるため、 <code>on(Event&lt;T&gt;)</code> と <code>subscribe(Observer)</code> 双方のメソッドを持っています。ベーシックな使い方としては、 <code>PublishSubject</code> にあらかじめ <code>Observer</code> を <code>Subscribe</code> させておき、<code>on(Event&lt;T&gt;)</code> を読んだときに通知させるというものになります。これは先にみてきた Observer パターンと全く同じ構図になります。 <code>PublishSubject</code> というと得体の知れないものに聞こえるかも知れませんが、実態はこれまで散々見てきた Observer パターンのなかの Observable 具象クラスそのものと同じ立ち位置であるといえば、わかりやすいのではないかと思います。実際に動かしたいコードのイメージは以下のようになります。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">PublishSubjectClientCode.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nv">isHoge</span> <span class="p">=</span> <span class="n">PublishSubject</span><span class="p">&lt;</span><span class="nb">Bool</span><span class="p">&gt;()</span>
+<span class="kd">var</span> <span class="nv">observer</span> <span class="p">=</span> <span class="n">AnonymousObserver</span><span class="p">&lt;</span><span class="nb">Bool</span><span class="p">&gt;({</span> <span class="n">event</span> <span class="k">in</span>
+    <span class="k">switch</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="p">.</span><span class="n">next</span><span class="p">(</span><span class="kd">var</span> <span class="nv">value</span><span class="p">):</span> <span class="n">NSLog</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+    <span class="k">case</span> <span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="kd">var</span> <span class="nv">error</span><span class="p">):</span> <span class="n">NSLog</span><span class="p">(</span><span class="n">error</span><span class="p">.</span><span class="n">localizedDescription</span><span class="p">)</span>
+    <span class="k">case</span> <span class="p">.</span><span class="n">completed</span><span class="p">:</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">"completed"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+<span class="kd">var</span> <span class="nv">disopsable</span> <span class="p">=</span> <span class="n">isHoge</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">observer</span><span class="p">)</span>
+<span class="n">isHoge</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="n">Event</span><span class="p">.</span><span class="n">next</span><span class="p">(</span><span class="kc">true</span><span class="p">))</span>   <span class="c1">//=&gt; [LOG] `true`</span>
+<span class="n">isHoge</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="n">Event</span><span class="p">.</span><span class="n">next</span><span class="p">(</span><span class="kc">false</span><span class="p">))</span>  <span class="c1">//=&gt; [LOG] `false`</span>
+<span class="n">disopsable</span><span class="p">.</span><span class="n">dispose</span><span class="p">()</span>
+<span class="n">isHoge</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="n">Event</span><span class="p">.</span><span class="n">next</span><span class="p">(</span><span class="kc">true</span><span class="p">))</span>   <span class="c1">//=&gt; ログ出力されない</span>
+</pre></div>
+</div>
+
+<p>　push 型 Observer パターンでもみた風景ですね。これを実現するためには素直に Observable のインターフェースを実装していけば良いはずなので、書き出しは以下のような形になるかと思います。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">PublishSubjectBeta.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PublishSubject</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;:</span> <span class="n">Observable</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;,</span> <span class="n">SubjectType</span><span class="p">,</span> <span class="n">ObserverType</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="n">SubjectObserverType</span> <span class="p">=</span> <span class="n">PublishSubject</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;</span>
+    <span class="kd">var</span> <span class="nv">observers</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="n">AnonymousObserver</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;]</span> <span class="p">=</span> <span class="p">[:]</span>
+
+    <span class="kd">public</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">&lt;</span><span class="n">O</span><span class="p">&gt;</span>
+    <span class="p">(</span><span class="kc">_</span> <span class="n">observer</span><span class="p">:</span> <span class="n">O</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Disposable</span> <span class="k">where</span> <span class="n">O</span> <span class="p">:</span> <span class="n">ObserverType</span><span class="p">,</span> <span class="n">O</span><span class="p">.</span><span class="n">E</span> <span class="p">==</span> <span class="n">Element</span> <span class="p">{</span>
+        <span class="c1">// dictionary にしないと O : ObserverType, O.E == Element が</span>
+        <span class="c1">// Equatable じゃないので削除（unsubscribe）できなくなる</span>
+        <span class="kd">let</span> <span class="nv">key</span> <span class="p">=</span> <span class="n">UUID</span><span class="p">().</span><span class="n">uuidString</span>
+        <span class="n">observers</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="p">=</span> <span class="n">AnonymousObserver</span><span class="p">(</span><span class="n">observer</span><span class="p">.</span><span class="n">on</span><span class="p">)</span>
+        <span class="bp">fatalError</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">on</span><span class="p">(</span><span class="kc">_</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;)</span> <span class="p">{</span> <span class="n">observers</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">x</span> <span class="k">in</span> <span class="n">x</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">asObserver</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">PublishSubject</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">self</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>　ほぼ push 型 Observer パターンのときと同様です。しかしながら、まだ <code>Disposable</code> の具象クラスを実装していないため、<code>subscribe</code> の戻り値を生成できず、ひとまず <code>Never</code> 型を返す <code>fatalError</code> をよんでいます。直近の課題は、<code>subscribe</code> で返すべき <code>SubscriptionDisposable</code> というクラスを実装するというものになります。</p>
+
+<h2>
+<span id="42-subscriptiondisposable-の実装" class="fragment"></span><a href="#42-subscriptiondisposable-%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>4.2 SubscriptionDisposable の実装</h2>
+
+<p>　ここでの <code>Disposable</code> の責務は端的に言えば 「<code>unsubscribe</code> を呼び出す」というものになります。したがってまず、<code>PublishSubject</code> 自体に <code>unsubscribe</code> メソッドを生やしてしまいましょう。外部へは <code>Disposable</code> プロトコルで渡るため、internal スコープ内に <code>unsubscribe</code> メソッドを持つことを伝えるための <code>UnsubscribeType</code> というプロトコルも同時に切ると、以下のような形になります。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">PublishSubjectBeta2.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">protocol</span> <span class="nc">UnsubscribeType</span><span class="p">:</span> <span class="kd">class</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">unsubscribe</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PublishSubject</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;:</span>
+<span class="n">Observable</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;,</span> <span class="n">SubjectType</span><span class="p">,</span> <span class="n">ObserverType</span><span class="p">,</span> <span class="n">UnsubscribeType</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="n">SubjectObserverType</span> <span class="p">=</span> <span class="n">PublishSubject</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;</span>
+    <span class="kd">var</span> <span class="nv">observers</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="n">AnonymousObserver</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;]</span> <span class="p">=</span> <span class="p">[:]</span>
+
+    <span class="kd">public</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">&lt;</span><span class="n">O</span><span class="p">&gt;</span>
+    <span class="p">(</span><span class="kc">_</span> <span class="n">observer</span><span class="p">:</span> <span class="n">O</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Disposable</span> <span class="k">where</span> <span class="n">O</span> <span class="p">:</span> <span class="n">ObserverType</span><span class="p">,</span> <span class="n">O</span><span class="p">.</span><span class="n">E</span> <span class="p">==</span> <span class="n">Element</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">key</span> <span class="p">=</span> <span class="n">UUID</span><span class="p">().</span><span class="n">uuidString</span>
+        <span class="n">observers</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="p">=</span> <span class="n">AnonymousObserver</span><span class="p">(</span><span class="n">observer</span><span class="p">.</span><span class="n">on</span><span class="p">)</span>
+        <span class="c1">//=&gt; unsubscribe が以下のように実装されたので、key と 自分自身への弱参照を保持するオブジェクトを返せばよい</span>
+        <span class="bp">fatalError</span><span class="p">()</span> 
+    <span class="p">}</span>
+
+    <span class="kd">internal</span> <span class="kd">func</span> <span class="nf">unsubscribe</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span> <span class="n">observers</span><span class="p">.</span><span class="n">removeValue</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">on</span><span class="p">(</span><span class="kc">_</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;)</span> <span class="p">{</span> <span class="n">observers</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">x</span> <span class="k">in</span> <span class="n">x</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>    
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">asObserver</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">PublishSubject</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">self</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>　<code>unsubscribe</code> がこのように実装されたため、<code>subscribe</code> ではこのオブジェクトへの弱参照と、引数で受け入れた observer に対応するキーを保持したオブジェクトを作ればよいことになります。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">SubscriptionDisposable.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">struct</span> <span class="nc">SubscriptionDisposable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;:</span> <span class="n">Disposable</span> <span class="p">{</span>
+    <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">ref</span><span class="p">:</span> <span class="n">UnsubscribeType</span><span class="p">?</span>
+    <span class="kd">let</span> <span class="nv">key</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">ref</span><span class="p">:</span> <span class="n">UnsubscribeType</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">ref</span> <span class="p">=</span> <span class="n">ref</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">key</span> <span class="p">=</span> <span class="n">key</span>
+    <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">dispose</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">ref</span><span class="p">?.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>　こうして購読解除の仕組みを <code>Disposable</code> に閉じ込めることができました。<code>Disposable</code> は <code>unsubscribe</code> を発火させたい <code>Observable</code> を弱参照で持っているため、<code>Diposable</code> を扱うクラスと <code>Obseravble</code> の依存関係を晴れて参照レベルで断ち切ることができました。</p>
+
+<h2>
+<span id="43-publishsubject-と-subscribedisposable" class="fragment"></span><a href="#43-publishsubject-%E3%81%A8-subscribedisposable"><i class="fa fa-link"></i></a>4.3. PublishSubject と SubscribeDisposable</h2>
+
+<p>　最後に <code>PublishSubject</code> の <code>fatalError()</code> だった箇所を修正して、ひとまず PublishSubject としてのふるまいを実装できたことになります。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">PublishSubject.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PublishSubject</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;:</span>
+<span class="n">Observable</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;,</span> <span class="n">SubjectType</span><span class="p">,</span> <span class="n">ObserverType</span><span class="p">,</span> <span class="n">UnsubscribeType</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">typealias</span> <span class="n">SubjectObserverType</span> <span class="p">=</span> <span class="n">PublishSubject</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;</span>
+    <span class="kd">var</span> <span class="nv">observers</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="n">AnonymousObserver</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;]</span> <span class="p">=</span> <span class="p">[:]</span>
+
+    <span class="kd">public</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">subscribe</span><span class="p">&lt;</span><span class="n">O</span><span class="p">&gt;</span>
+    <span class="p">(</span><span class="kc">_</span> <span class="n">observer</span><span class="p">:</span> <span class="n">O</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Disposable</span> <span class="k">where</span> <span class="n">O</span> <span class="p">:</span> <span class="n">ObserverType</span><span class="p">,</span> <span class="n">O</span><span class="p">.</span><span class="n">E</span> <span class="p">==</span> <span class="n">Element</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">key</span> <span class="p">=</span> <span class="n">UUID</span><span class="p">().</span><span class="n">uuidString</span>
+        <span class="n">observers</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="p">=</span> <span class="n">AnonymousObserver</span><span class="p">(</span><span class="n">observer</span><span class="p">.</span><span class="n">on</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">SubscriptionDisposable</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;(</span><span class="n">ref</span><span class="p">:</span> <span class="kc">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">internal</span> <span class="kd">func</span> <span class="nf">unsubscribe</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span> <span class="n">observers</span><span class="p">.</span><span class="n">removeValue</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">on</span><span class="p">(</span><span class="kc">_</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;)</span> <span class="p">{</span> <span class="n">observers</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">x</span> <span class="k">in</span> <span class="n">x</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">asObserver</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">PublishSubject</span><span class="p">&lt;</span><span class="n">Element</span><span class="p">&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">self</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">SubscriptionDisposable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;:</span> <span class="n">Disposable</span> <span class="p">{</span>
+    <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">ref</span><span class="p">:</span> <span class="n">UnsubscribeType</span><span class="p">?</span>
+    <span class="kd">let</span> <span class="nv">key</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">ref</span><span class="p">:</span> <span class="n">UnsubscribeType</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">ref</span> <span class="p">=</span> <span class="n">ref</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">key</span> <span class="p">=</span> <span class="n">key</span>
+    <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">dispose</span><span class="p">()</span> <span class="p">{</span> <span class="n">ref</span><span class="p">?.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>　これは RxSwift の実装と完全には一致しないのですが、本質的にはこのような構造を持つと思います。</p>
+
+<h2>
+<span id="44-余談-停止したストリームの-subscribe-と-nopdisposable" class="fragment"></span><a href="#44-%E4%BD%99%E8%AB%87-%E5%81%9C%E6%AD%A2%E3%81%97%E3%81%9F%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%A0%E3%81%AE-subscribe-%E3%81%A8-nopdisposable"><i class="fa fa-link"></i></a>4.4. （余談） 停止したストリームの subscribe と NopDisposable</h2>
+
+<p>　<code>.error</code>, <code>.completed</code> が飛んだあとに <code>Observable</code> を <code>subscribe</code> しても、以後イベントは飛ばないため意味がありません。このとき <code>subscribe</code> は <code>observer</code> コレクションへの追加を行わない実装になっており、コレクションからの削除を実行するためのオブジェクトである <code>Disposable</code> は何もしなくてもよいことになります。これに対応して、RxSwift には何もしない <code>Disposable</code> の実装として <code>NopDisposable</code> が用意されています。コードは非常に単純で次のとおりになります。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">NopDisposable.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">struct</span> <span class="nc">NopDisposable</span> <span class="p">:</span> <span class="n">Disposable</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">()</span> <span class="p">{}</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">dispose</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>実際の <code>PublishSubject</code> にはストリームが止まった以後の <code>subscribe</code> 時には <code>SubscriptionDisposable</code> ではなく <code>NopDisposable</code> が返されていますので興味のある方はみてみると良いと思います。</p>
+
+<h2>
+<span id="45-余談-スレッドセーフにするために" class="fragment"></span><a href="#45-%E4%BD%99%E8%AB%87-%E3%82%B9%E3%83%AC%E3%83%83%E3%83%89%E3%82%BB%E3%83%BC%E3%83%95%E3%81%AB%E3%81%99%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AB"><i class="fa fa-link"></i></a>4.5. （余談） スレッドセーフにするために</h2>
+
+<p>　これまで実装した <code>PublishSubject</code> は <code>subscribe</code>, <code>dispose</code>, <code>on</code> の呼び出しに対してスレッドセーフではありません。RxSwift では <code>RecursiveLock</code> を使ってスレッドセーフとなるような記述が入っています。使い方は簡単で、以下のようなものです。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">Lock1.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nv">lock</span> <span class="p">=</span> <span class="bp">NSRecursiveLock</span><span class="p">()</span>
+<span class="n">lock</span><span class="p">.</span><span class="n">lock</span><span class="p">()</span>
+<span class="cm">/*</span>
+<span class="cm"> ここに排他したい処理を書く</span>
+<span class="cm"> */</span>
+<span class="n">lock</span><span class="p">.</span><span class="n">unlock</span><span class="p">()</span>
+</pre></div>
+</div>
+
+<p>　RxSwift 内では特に以下のような書き方が目立ちます。これは排他したい区間（クリティカルセクション）での例外発生時にロックが解除されないことを防ぐ意図があると思われます。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">Lock2.swift</span></div>
+<div class="highlight"><pre><span></span><span class="err">何かのスコープ</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">lock</span> <span class="p">=</span> <span class="bp">NSRecursiveLock</span><span class="p">()</span>
+    <span class="n">lock</span><span class="p">.</span><span class="n">lock</span><span class="p">()</span>
+    <span class="k">defer</span> <span class="p">{</span> <span class="n">lock</span><span class="p">.</span><span class="n">unlock</span><span class="p">()</span> <span class="p">}</span> 
+    <span class="cm">/*</span>
+<span class="cm">     ここに排他したい処理を書く</span>
+<span class="cm">     */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>興味のある方は、このあたりも意識しながら、ソースコードを読んでみると良いと思います。</p>
+
+<h2>
+<span id="46-余談-bag-の実装" class="fragment"></span><a href="#46-%E4%BD%99%E8%AB%87-bag-%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>4.6. （余談） Bag の実装</h2>
+
+<p>　observer を追加/削除できるコレクションとして今回は <code>UUID#uuidString</code> をキーとして [String:ObserverType] という dictionary を用いましたが、実際には <code>insert</code> 時にそれに対応するキーを発行してくれる Key-Value ストア <code>Bag</code> が用いられています。</p>
+
+<div class="code-frame" data-lang="swift">
+<div class="code-lang"><span class="bold">Bag.swift</span></div>
+<div class="highlight"><pre><span></span><span class="kd">struct</span> <span class="nc">BagKey</span><span class="p">:</span> <span class="nb">Hashable</span> <span class="p">{</span>
+    <span class="n">fileprivate</span> <span class="kd">let</span> <span class="nv">rawValue</span><span class="p">:</span> <span class="nb">UInt64</span>
+    <span class="kd">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">{</span> <span class="k">return</span> <span class="n">rawValue</span><span class="p">.</span><span class="n">hashValue</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="p">==(</span><span class="n">lhs</span><span class="p">:</span> <span class="n">BagKey</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">BagKey</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span> <span class="k">return</span> <span class="n">lhs</span><span class="p">.</span><span class="n">rawValue</span> <span class="p">==</span> <span class="n">rhs</span><span class="p">.</span><span class="n">rawValue</span> <span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">Bag</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="n">KeyType</span> <span class="p">=</span> <span class="n">BagKey</span>
+    <span class="kd">typealias</span> <span class="n">Entry</span> <span class="p">=</span> <span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">BagKey</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span>
+    <span class="n">fileprivate</span> <span class="kd">var</span> <span class="nv">nextKey</span><span class="p">:</span> <span class="n">BagKey</span> <span class="p">=</span> <span class="n">BagKey</span><span class="p">(</span><span class="n">rawValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nv">dictionary</span><span class="p">:</span> <span class="p">[</span><span class="n">BagKey</span><span class="p">:</span><span class="n">T</span><span class="p">]</span> <span class="p">=</span> <span class="p">[:]</span>
+
+    <span class="kd">init</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+
+    <span class="kr">mutating</span> <span class="kd">func</span> <span class="nf">insert</span><span class="p">(</span><span class="kc">_</span> <span class="n">element</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">BagKey</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">key</span> <span class="p">=</span> <span class="n">_nextKey</span>
+        <span class="n">nextKey</span> <span class="p">=</span> <span class="n">BagKey</span><span class="p">(</span><span class="n">rawValue</span><span class="p">:</span> <span class="n">nextKey</span><span class="p">.</span><span class="n">rawValue</span> <span class="o">&amp;+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="p">=</span> <span class="n">element</span>
+        <span class="k">return</span> <span class="n">key</span>
+    <span class="p">}</span>
+
+    <span class="kr">mutating</span> <span class="kd">func</span> <span class="nf">removeAll</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">dictionary</span><span class="p">.</span><span class="bp">removeAll</span><span class="p">(</span><span class="n">keepingCapacity</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kr">mutating</span> <span class="kd">func</span> <span class="nf">removeKey</span><span class="p">(</span><span class="kc">_</span> <span class="n">key</span><span class="p">:</span> <span class="n">BagKey</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">dictionary</span><span class="p">.</span><span class="n">removeValue</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">forEach</span><span class="p">(</span><span class="kc">_</span> <span class="n">action</span><span class="p">:</span> <span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="k">in</span> <span class="n">dictionary</span><span class="p">.</span><span class="n">values</span> <span class="p">{</span>
+            <span class="n">action</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>　ご覧の通り <code>insert</code> された順に単純に 0 オリジンで key が発行される仕組みです。<code>&amp;+</code> は加算に用いるオーバーフロー演算子で、オーバーフローを許容してくれます。実際の RxSwift の <code>Bag</code> の実装はもう少し工夫をして、要素が少ないときに最適化がかかるようなコードになっているようですが、本質を取り出すとこのような実装になるかと思います。実際のコードを読むときはこのあたりの大枠を知っているほうがコードリーディングしやすいと思いますので、ここに記載しておきます。</p>
+
+<h1>
+<span id="5-まとめ" class="fragment"></span><a href="#5-%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>5. まとめ</h1>
+
+<ul>
+<li>RxSwift は Observer パターンからの発展を考えることによりインターフェースやその実装を導くことができました</li>
+<li>一見複雑そうに見える構造も、要求される仕様から自ずと導かれるインターフェースとなっていることがわかったのではないでしょうか</li>
+<li>設計は基本的に問題を解決するものであり、問題を正しく見抜いたり、設定したりすることが、必要な解を見出す近道になるのではないでしょうか</li>
+<li>複雑そうに見えるパターンも単純な原理原則に分解できるケースが多いのではないでしょうか</li>
+</ul>
+
+<p>というような偉そうなことをいってまとめとしたいと思います。これからもどのような設計がどのような状況で必要なのかを引き続き考えていきたいと思います。RxSwift はそのヒントを与えてくれる良質なコードとなっていると個人的には思います。</p>
+
+<h1>
+<span id="6-ライセンス表記" class="fragment"></span><a href="#6-%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9%E8%A1%A8%E8%A8%98"><i class="fa fa-link"></i></a>6. ライセンス表記</h1>
+
+<p>RxSwift は MIT ライセンスで公開されています。記事内のコードはライセンスに基づき、そのまま掲載している箇所や改変して掲載している箇所があります。</p>
+
+<blockquote>
+<p>The MIT License Copyright © 2015 Krunoslav Zaher All rights reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</blockquote>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p><a href="">Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides (1994). Design Patterns: Elements of Reusable Object-Oriented Software.</a> <a href="#fnref1">↩</a></p>
+</li>
+
+<li id="fn2">
+<p><a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Generics.html" class="autolink" rel="nofollow noopener" target="_blank">https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Generics.html</a> <a href="#fnref2">↩</a></p>
+</li>
+
+<li id="fn3">
+<p><a href="https://github.com/ReactiveX/RxSwift/blob/007af77912b39d84857a8e90eecdd02dd20164de/RxSwift/Rx.swift#L36" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/ReactiveX/RxSwift/blob/007af77912b39d84857a8e90eecdd02dd20164de/RxSwift/Rx.swift#L36</a> <a href="#fnref3">↩</a></p>
+</li>
+
+</ol>
+</div>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>gomi_ningenさんの<br />3位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>9</kbd>
+		<a target="_blank" href="https://qiita.com/gomi_ningen/items/6cd01881a02f342de93a">Xamarin.iOSでのストーリーボードを使わない開発</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-17 02:37:08</center>
+	</td>
+	<td style="width:200px;">
+		@gomi_ningen<br />(ラビットハウス社勤務 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/56771/profile-images/1473694109">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[C#]</b> <b>[iOS]</b> <b>[Storyboard]</b> <b>[InterfaceBuilder]</b> <b>[Xamarin]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>　Visual Studio で Xamarin.iOS のプロジェクトを作成すると、ストーリーボードなどという忌まわしいものがデフォルトで作成されてしまい非常に厳しい気持ちになります。この記事では、それらを削除して、コードでUIを構成していくためのステップを説明します。3分ほど作業をすれば邪魔なものが消えてなくなってくれます。</p>
+
+<h2>
+<span id="1-mainstoryboard-を削除" class="fragment"></span><a href="#1-mainstoryboard-%E3%82%92%E5%89%8A%E9%99%A4"><i class="fa fa-link"></i></a>1. <code>Main.storyboard</code> を削除</h2>
+
+<p><a href="https://camo.qiitausercontent.com/8a25e5fcdd20e6bd02a3a14d5a6bdf826ff5d803/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f34356139303165382d393266302d626263312d646135352d6266303939366437333065632e706e67" target="_blank" rel="nofollow noopener"><img width="490" src="https://camo.qiitausercontent.com/8a25e5fcdd20e6bd02a3a14d5a6bdf826ff5d803/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f34356139303165382d393266302d626263312d646135352d6266303939366437333065632e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/56771/45a901e8-92f0-bbc1-da55-bf0996d730ec.png"></a></p>
+
+<h2>
+<span id="2-viewcontrollerdesignercs-を削除" class="fragment"></span><a href="#2-viewcontrollerdesignercs-%E3%82%92%E5%89%8A%E9%99%A4"><i class="fa fa-link"></i></a>2. <code>ViewController.designer.cs</code> を削除</h2>
+
+<p><a href="https://camo.qiitausercontent.com/d70b28e4888557995856aca7e8b5a3672ea06d4f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f37393338306230662d393961382d666530622d353733382d3539646431376435303762392e706e67" target="_blank" rel="nofollow noopener"><img width="531" src="https://camo.qiitausercontent.com/d70b28e4888557995856aca7e8b5a3672ea06d4f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f37393338306230662d393961382d666530622d353733382d3539646431376435303762392e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/56771/79380b0f-99a8-fe0b-5738-59dd17d507b9.png"></a></p>
+
+<h2>
+<span id="3-viewcontroller-の余計なコードを削除する" class="fragment"></span><a href="#3-viewcontroller-%E3%81%AE%E4%BD%99%E8%A8%88%E3%81%AA%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E5%89%8A%E9%99%A4%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>3. ViewController の余計なコードを削除する</h2>
+
+<p><code>ViewController</code> が partial class である必要がなくなったので、partial キーワードを消します。合わせて <code>IntPtr</code> を引数にとるコンストラクタも不要になりました。</p>
+
+<div class="code-frame" data-lang="diff"><div class="highlight"><pre><span></span>using System;
+
+using UIKit;
+
+namespace Pawotter.iOS
+{
+<span class="gd">-   public partial class ViewController : UIViewController</span>
+<span class="gi">+   public class ViewController : UIViewController</span>
+    {
+<span class="gd">-       protected ViewController(IntPtr handle) : base(handle)</span>
+<span class="gd">-       {</span>
+<span class="gd">-           // Note: this .ctor should not contain any initialization logic.</span>
+<span class="gd">-       }</span>
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            // Perform any additional setup after loading the view, typically from a nib.
+        }
+
+        public override void DidReceiveMemoryWarning()
+        {
+            base.DidReceiveMemoryWarning();
+            // Release any cached data, images, etc that aren't in use.
+        }
+    }
+}
+</pre></div></div>
+
+<h2>
+<span id="4-infoplist-の-main-interface-を削除" class="fragment"></span><a href="#4-infoplist-%E3%81%AE-main-interface-%E3%82%92%E5%89%8A%E9%99%A4"><i class="fa fa-link"></i></a>4. <code>Info.plist</code> の Main Interface を削除</h2>
+
+<p><a href="https://camo.qiitausercontent.com/471215b6d23912669a8b4b9154854e85971b8e9c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f32666565663934352d666636362d316137612d383062642d3934323264316363333439642e706e67" target="_blank" rel="nofollow noopener"><img width="593" src="https://camo.qiitausercontent.com/471215b6d23912669a8b4b9154854e85971b8e9c/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f35363737312f32666565663934352d666636362d316137612d383062642d3934323264316363333439642e706e67" data-canonical-src="https://qiita-image-store.s3.amazonaws.com/0/56771/2feef945-ff66-1a7a-80bd-9422d1cc349d.png"></a></p>
+
+<h2>
+<span id="5-appdelegate-に-viewcontroller-を表示するコードを追加" class="fragment"></span><a href="#5-appdelegate-%E3%81%AB-viewcontroller-%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E8%BF%BD%E5%8A%A0"><i class="fa fa-link"></i></a>5. AppDelegate に ViewController を表示するコードを追加</h2>
+
+<div class="code-frame" data-lang="diff"><div class="highlight"><pre><span></span>using Foundation;
+using UIKit;
+
+namespace Pawotter.iOS
+{
+    [Register("AppDelegate")]
+    public class AppDelegate : UIApplicationDelegate
+    {
+        public override UIWindow Window { get; set; }
+
+        public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
+        {
+<span class="gi">+           Window = new UIWindow(UIScreen.MainScreen.Bounds);</span>
+<span class="gi">+           var vc = new UIViewController();</span>
+<span class="gi">+           vc.View.BackgroundColor = UIColor.Orange;</span>
+<span class="gi">+           Window.RootViewController = vc;</span>
+<span class="gi">+           Window.MakeKeyAndVisible();</span>
+            return true;
+        }
+    }
+}
+</pre></div></div>
+
+<h2>
+<span id="6-動くサンプル" class="fragment"></span><a href="#6-%E5%8B%95%E3%81%8F%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB"><i class="fa fa-link"></i></a>6. 動くサンプル</h2>
+
+<p>GitHub で公開しているので適当にどうぞ: <a href="https://github.com/pawotter/Xamarin.iOS.NonStoryboard" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/pawotter/Xamarin.iOS.NonStoryboard</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>gomi_ningenさんの<br />4位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>5</kbd>
+		<a target="_blank" href="https://qiita.com/gomi_ningen/items/7d2cbebea988ef8eb9c6">DelegatingHandlerを用いた快適なiOSアプリのHTTP通信周辺環境の整備</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-21 17:09:02</center>
+	</td>
+	<td style="width:200px;">
+		@gomi_ningen<br />(ラビットハウス社勤務 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/56771/profile-images/1473694109">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[iPhone]</b> <b>[C#]</b> <b>[iOS]</b> <b>[Xamarin]</b> <b>[Swift]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>　昨今のネイティブクライアントアプリで、 HTTP 通信を行わないものはないと言っても過言ではないくらい、アプリ開発の基本中の基本だと思います。きっと、開発を行う中で HTTP 通信の前後に色々な処理を挟んでみたいという気持ちが湧いてくるのではないでしょうか。たとえば以下のような話です。</p>
+
+<ol>
+<li>リクエストの内容をログ出力したい</li>
+<li>電波状況が悪いときはリクエストを走らせないようにしたい</li>
+<li>通信中はネットワークアクティビティインジケータを走らせたい</li>
+</ol>
+
+<p>　そんなときに <code>System.Net.Http.DelegatingHandler</code> はとても便利な代物です。公式のドキュメントはこちら: <a href="https://msdn.microsoft.com/ja-jp/library/system.net.http.delegatinghandler(v=vs.110).aspx" class="autolink" rel="nofollow noopener" target="_blank">https://msdn.microsoft.com/ja-jp/library/system.net.http.delegatinghandler(v=vs.110).aspx</a></p>
+
+<h2>
+<span id="1-http-リクエストのログ出力" class="fragment"></span><a href="#1-http-%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%81%AE%E3%83%AD%E3%82%B0%E5%87%BA%E5%8A%9B"><i class="fa fa-link"></i></a>1. HTTP リクエストのログ出力</h2>
+
+<p>　たとえば、Http リクエストの内容をログ出力したいとすれば、以下のような簡単な <code>DelegatingHandler</code> のサブクラスを作ってあげるとよいでしょう。</p>
+
+<div class="code-frame" data-lang="csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System.Net.Http</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Pawotter.Net.Http</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">HttpNetworkActivityDelegatingHandler</span> <span class="p">:</span> <span class="n">DelegatingHandler</span>
+    <span class="p">{</span>
+        <span class="k">protected</span> <span class="k">override</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">HttpResponseMessage</span><span class="p">&gt;</span> <span class="n">SendAsync</span><span class="p">(</span><span class="n">HttpRequestMessage</span> <span class="n">request</span><span class="p">,</span> <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">CancellationToken</span> <span class="n">cancellationToken</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+            <span class="k">return</span> <span class="k">base</span><span class="p">.</span><span class="n">SendAsync</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">cancellationToken</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<p>　実用的には <code>Console.WriteLine</code> をクリティカルセクションに配置したほうが良いかもしれませんが、ひとまずこのような単純なコードでリクエストの手前に処理を挟むことができました。使い方は、単純にこれを <code>System.Net.Http.HttpClient</code> のコンストラクタに渡すだけです。これで全てのリクエストの内容がログ出力されます。</p>
+
+<div class="code-frame" data-lang="csharp"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">httpClient</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HttpClient</span><span class="p">(</span><span class="k">new</span> <span class="n">HttpNetworkActivityDelegatingHandler</span><span class="p">());</span>
+<span class="kt">var</span> <span class="n">res</span> <span class="p">=</span> <span class="k">await</span> <span class="n">httpClient</span><span class="p">.</span><span class="n">GetAsync</span><span class="p">(</span><span class="s">"http://gochiusa.com"</span><span class="p">);</span>
+</pre></div></div>
+
+<h2>
+<span id="2-圏外時にリクエストを送らない" class="fragment"></span><a href="#2-%E5%9C%8F%E5%A4%96%E6%99%82%E3%81%AB%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%92%E9%80%81%E3%82%89%E3%81%AA%E3%81%84"><i class="fa fa-link"></i></a>2. 圏外時にリクエストを送らない</h2>
+
+<p>Reachability を使えば簡単です。</p>
+
+<div class="code-frame" data-lang="csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System.Net.Http</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">SystemConfiguration</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Pawotter.Net.Http</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">HttpNetworkActivityDelegatingHandler</span> <span class="p">:</span> <span class="n">DelegatingHandler</span>
+    <span class="p">{</span>
+        <span class="k">protected</span> <span class="k">override</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">HttpResponseMessage</span><span class="p">&gt;</span> <span class="n">SendAsync</span><span class="p">(</span><span class="n">HttpRequestMessage</span> <span class="n">request</span><span class="p">,</span> <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">CancellationToken</span> <span class="n">cancellationToken</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">reachability</span> <span class="p">=</span> <span class="k">new</span> <span class="n">NetworkReachability</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">RequestUri</span><span class="p">.</span><span class="n">AbsoluteUri</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">reachability</span><span class="p">.</span><span class="n">TryGetFlags</span><span class="p">(</span><span class="k">out</span> <span class="kt">var</span> <span class="n">flags</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">flags</span><span class="p">.</span><span class="n">HasFlag</span><span class="p">(</span><span class="n">NetworkReachabilityFlags</span><span class="p">.</span><span class="n">Reachable</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">Exception</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="k">base</span><span class="p">.</span><span class="n">SendAsync</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">cancellationToken</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h2>
+<span id="3-通信中にネットワークアクティビティインジケータを回す" class="fragment"></span><a href="#3-%E9%80%9A%E4%BF%A1%E4%B8%AD%E3%81%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%B1%E3%83%BC%E3%82%BF%E3%82%92%E5%9B%9E%E3%81%99"><i class="fa fa-link"></i></a>3. 通信中にネットワークアクティビティインジケータを回す</h2>
+
+<p>　ネットワークアクティビティインジケータの管理、非常にめんどうですよね。通信が同時に複数走るのはザラなので、そのあたりを考慮する必要があると思います。だいたい皆さん同じような実装をすると思うのですが、今走っている通信の数が正であれば、インジケータを回しっぱなしにして、0になったら止めるみたいなカウンターを作るのではないかなと思います。ひとまずステップをわけて実装を見ていきます。</p>
+
+<h3>
+<span id="31-networkactivityindicator-の抽象化" class="fragment"></span><a href="#31-networkactivityindicator-%E3%81%AE%E6%8A%BD%E8%B1%A1%E5%8C%96"><i class="fa fa-link"></i></a>3.1. NetworkActivityIndicator の抽象化</h3>
+
+<p>　ネットワークアクティビティマネージャは基本的に ON/OFF のインターフェースさえ持っていれば十分でしょう。それぞれ<code>Activate()</code>, <code>Inactivate()</code> という名前のメソッドとします。実装クラスは、<code>UIApplication</code> インスタンスを外から受け取り、<code>Activate()</code>, <code>Inactivate()</code> のタイミングで <code>NetworkActivityIndicatorVisible</code> の値に <code>true</code>, <code>false</code> をぶち込んであげれば良いという話になります。</p>
+
+<div class="code-frame" data-lang="csharp"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nn">Pawotter.NetworkActivityManager</span>
+<span class="p">{</span>
+    <span class="k">interface</span> <span class="n">IIndicator</span>
+    <span class="p">{</span>
+        <span class="k">void</span> <span class="nf">Activate</span><span class="p">();</span>
+        <span class="k">void</span> <span class="nf">Inactivate</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">NetworkActivityIndicator</span> <span class="p">:</span> <span class="n">IIndicator</span>
+    <span class="p">{</span>
+        <span class="k">readonly</span> <span class="n">UIApplication</span> <span class="n">application</span><span class="p">;</span>
+
+        <span class="k">internal</span> <span class="nf">NetworkActivityIndicator</span><span class="p">(</span><span class="n">UIApplication</span> <span class="n">application</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="n">application</span> <span class="p">=</span> <span class="n">application</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">void</span> <span class="n">IIndicator</span><span class="p">.</span><span class="n">Activate</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">application</span><span class="p">.</span><span class="n">NetworkActivityIndicatorVisible</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="k">void</span> <span class="n">IIndicator</span><span class="p">.</span><span class="n">Inactivate</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">application</span><span class="p">.</span><span class="n">NetworkActivityIndicatorVisible</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="32-走っているリクエストをカウントするクラスの作成" class="fragment"></span><a href="#32-%E8%B5%B0%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%92%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%99%E3%82%8B%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%AE%E4%BD%9C%E6%88%90"><i class="fa fa-link"></i></a>3.2. 走っているリクエストをカウントするクラスの作成</h3>
+
+<p>　同時に走っているリクエストが1つ以上ある場合に <code>IIndicator</code> の <code>Activate()</code> を呼び出し、通信が走っていない状態になるとき <code>Inactivate()</code> を呼び出す簡単なカウンタークラスを作りましょう。</p>
+
+<p>　このカウンタークラスは、通信開始時には <code>Attach()</code>、 終了時には <code>Detach()</code> を呼ぶ簡単なインターフェースを持つことになるでしょう。それぞれインターフェースと実装コードは以下のようになると思います。</p>
+
+<div class="code-frame" data-lang="csharp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Pawotter.NetworkActivityManager</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">interface</span> <span class="n">IActivityManager</span>
+    <span class="p">{</span>
+        <span class="k">void</span> <span class="nf">Attach</span><span class="p">();</span>
+        <span class="k">void</span> <span class="nf">Detach</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// &lt;summary&gt;</span>
+    <span class="c1">/// このクラスは、アクティビティが存在する（正の値をとる）ときに Indicator を Activate します。</span>
+    <span class="c1">/// また、アクティビティが存在しない（0をとる）ときに Indicator を Inactivate します。</span>
+    <span class="c1">/// &lt;/summary&gt;</span>
+    <span class="k">sealed</span> <span class="k">class</span> <span class="nc">AnyActivityIndicatorManager</span> <span class="p">:</span> <span class="n">IActivityManager</span>
+    <span class="p">{</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 同時に実行されているアクティビティの数</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="kt">int</span> <span class="n">count</span><span class="p">;</span>
+
+        <span class="k">readonly</span> <span class="n">IIndicator</span> <span class="n">indicator</span><span class="p">;</span>
+        <span class="k">readonly</span> <span class="n">Object</span> <span class="n">thisObject</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Object</span><span class="p">();</span>
+
+        <span class="k">internal</span> <span class="nf">AnyActivityIndicatorManager</span><span class="p">(</span><span class="n">IIndicator</span> <span class="n">indicator</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="n">indicator</span> <span class="p">=</span> <span class="n">indicator</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// アクティビティカウントが0から1へと変化するときに indicator を Activate します</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="k">void</span> <span class="n">IActivityManager</span><span class="p">.</span><span class="n">Attach</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">lock</span> <span class="p">(</span><span class="n">thisObject</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span> <span class="n">indicator</span><span class="p">.</span><span class="n">Activate</span><span class="p">();</span>
+                <span class="n">Interlocked</span><span class="p">.</span><span class="n">Increment</span><span class="p">(</span><span class="k">ref</span> <span class="n">count</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// アクティビティカウントが1から0へと変化するときに indicator を Inactivate します</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="k">void</span> <span class="n">IActivityManager</span><span class="p">.</span><span class="n">Detach</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">lock</span> <span class="p">(</span><span class="n">thisObject</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="p">==</span> <span class="m">1</span><span class="p">)</span> <span class="n">indicator</span><span class="p">.</span><span class="n">Inactivate</span><span class="p">();</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="n">Interlocked</span><span class="p">.</span><span class="n">Decrement</span><span class="p">(</span><span class="k">ref</span> <span class="n">count</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h3>
+<span id="33-delegatinghandler-の実装" class="fragment"></span><a href="#33-delegatinghandler-%E3%81%AE%E5%AE%9F%E8%A3%85"><i class="fa fa-link"></i></a>3.3. DelegatingHandler の実装</h3>
+
+<p>　準備ができたので、今まで作ったものを利用してネットワークアクティビティインジケータを通信が走っているときにクルクルまわす <code>DelegatingHandler</code> を実装しましょう。以下のようになります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>using System.Net.Http;
+
+namespace Pawotter.NetworkActivityManager
+{
+    public class HttpNetworkActivityDelegatingHandler : DelegatingHandler
+    {
+        protected async override System.Threading.Tasks.Task&lt;HttpResponseMessage&gt; SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
+        {
+            NetworkActivityManager.Instance.Attach();
+            try
+            {
+                return await base.SendAsync(request, cancellationToken);
+            }
+            finally
+            {
+                NetworkActivityManager.Instance.Detach();
+            }
+        }
+    }
+}
+</pre></div></div>
+
+<p>　コード全体を GitHub で公開しているので使いたい方はどうぞ。MITライセンスです。 Xamarin.iOSに依存するパッケージの nuget への放流方法イマイチよくわからんので有識者の方、教えていただけると嬉しいです</p>
+
+<ul>
+<li>Repository: <a href="https://github.com/pawotter/NetworkActivityManager" class="autolink" rel="nofollow noopener" target="_blank">https://github.com/pawotter/NetworkActivityManager</a>
+</li>
+</ul>
+
+<h3>
+<span id="34-swift-での実現方法" class="fragment"></span><a href="#34-swift-%E3%81%A7%E3%81%AE%E5%AE%9F%E7%8F%BE%E6%96%B9%E6%B3%95"><i class="fa fa-link"></i></a>3.4. Swift での実現方法</h3>
+
+<p>　URLSessionラップして、自分で HttpClient 作ればできるよ。実装はだいたい同じ。実装的にもパフォーマンス的にも改善の余地があるコードですが、わかりやすく伝えるとするならば以下のような実装コードになる気がします。</p>
+
+<div class="code-frame" data-lang="swift"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kr">final</span> <span class="kd">class</span> <span class="nc">ActivityIndicatorManager</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">count</span><span class="p">:</span> <span class="nb">UInt32</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">application</span><span class="p">:</span> <span class="bp">UIApplication</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">lock</span><span class="p">:</span> <span class="bp">NSRecursiveLock</span> <span class="p">=</span> <span class="bp">NSRecursiveLock</span><span class="p">()</span>
+
+    <span class="kd">public</span> <span class="kd">init</span><span class="p">(</span><span class="n">application</span><span class="p">:</span> <span class="bp">UIApplication</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">application</span> <span class="p">=</span> <span class="n">application</span>
+        <span class="bp">count</span> <span class="p">=</span> <span class="mi">0</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">activate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">lock</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span> <span class="k">defer</span> <span class="p">{</span> <span class="n">lock</span><span class="p">.</span><span class="n">unlock</span><span class="p">()</span> <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">count</span> <span class="p">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">application</span><span class="p">.</span><span class="n">isNetworkActivityIndicatorVisible</span> <span class="p">=</span> <span class="kc">true</span>
+        <span class="p">}</span>
+        <span class="bp">count</span> <span class="p">=</span> <span class="bp">count</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">inactivate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">lock</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span> <span class="k">defer</span> <span class="p">{</span> <span class="n">lock</span><span class="p">.</span><span class="n">unlock</span><span class="p">()</span> <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">count</span> <span class="p">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">application</span><span class="p">.</span><span class="n">isNetworkActivityIndicatorVisible</span> <span class="p">=</span> <span class="kc">false</span>
+        <span class="p">}</span>
+        <span class="bp">count</span> <span class="p">=</span> <span class="bp">count</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div>
+
+<h2>
+<span id="5-おわりに" class="fragment"></span><a href="#5-%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB"><i class="fa fa-link"></i></a>5. おわりに</h2>
+
+<p>DelegatingHandler ベンリすぎワロタ。あとこれを使うとリトライ処理とかも挟めてとってもベンリ&amp;ベンリです。良いですね〜。</p>
+
+<p>個人ブログにも載せてます: <a href="http://53ningen.com/http-delegating-handler/" class="autolink" rel="nofollow noopener" target="_blank">http://53ningen.com/http-delegating-handler/</a></p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>gomi_ningenさんの<br />5位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>4</kbd>
+		<a target="_blank" href="https://qiita.com/gomi_ningen/items/aa6a7892cd6c1c1c3059">Route53へのDNSとドメインの移行</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-10-30 06:50:15</center>
+	</td>
+	<td style="width:200px;">
+		@gomi_ningen<br />(ラビットハウス社勤務 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/56771/profile-images/1473694109">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[AWS]</b> <b>[route53]</b> <b>[Terraform]</b> <b>[Hashicorp]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><p>次のものを AWS に移行しました。</p>
+
+<ul>
+<li>ドメイン移管(53ningen.com): ムームードメインから Route 53 へ</li>
+<li>ドメインネームサーバー移行: ムームードメインから Route 53 へ</li>
+</ul>
+
+<p>また、もとの運用では存在しなかった、次のようなものを導入しました。</p>
+
+<ul>
+<li>L7ヘルスチェック</li>
+<li>DNSフェイルオーバー</li>
+</ul>
+
+<p>この資料は自分向けの作業ログであるため、実際には各ステップ冒頭に記された公式ドキュメントを理解した上で読むことを強く推奨します。</p>
+
+<h3>
+<span id="手元環境" class="fragment"></span><a href="#%E6%89%8B%E5%85%83%E7%92%B0%E5%A2%83"><i class="fa fa-link"></i></a>手元環境</h3>
+
+<p>　作業は基本的には terraform を使って行いました。ただし、ドメインの移管に関しては Route 53 のマネジメントコンソールとムームードメインのコントロールパネルを操作する必要があります。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>% terraform -v
+Terraform v0.10.7
+</pre></div></div> 
+
+<h1>
+<span id="1-dns-を-route-53-へ移行" class="fragment"></span><a href="#1-dns-%E3%82%92-route-53-%E3%81%B8%E7%A7%BB%E8%A1%8C"><i class="fa fa-link"></i></a>1. DNS を Route 53 へ移行</h1>
+
+<p>　ドメインも Route 53 に移管しますが、その際に元のレジストラ（ムームードメイン）が提供するネームサーバーからドメインが削除されてしまうので、前もって DNS を Route 53 に切り替えておきます。</p>
+
+<h2>
+<span id="11-ホストゾーンhosted-zoneの作成" class="fragment"></span><a href="#11-%E3%83%9B%E3%82%B9%E3%83%88%E3%82%BE%E3%83%BC%E3%83%B3hosted-zone%E3%81%AE%E4%BD%9C%E6%88%90"><i class="fa fa-link"></i></a>1.1. ホストゾーン(Hosted Zone)の作成</h2>
+
+<p>公式ドキュメント: <a href="http://docs.aws.amazon.com/ja_jp/Route53/latest/DeveloperGuide/MigratingDNS.html" rel="nofollow noopener" target="_blank">既存ドメインの DNS サービスを Amazon Route 53 に移行する</a></p>
+
+<p>　ホストゾーンとはドメインに紐づくリソースレコードのセットです。おおよそゾーンファイルと対応していると考えて良いと思います。実際にゾーンファイルを取り込むこともできるようです（公式ドキュメント: <a href="http://docs.aws.amazon.com/ja_jp/Route53/latest/DeveloperGuide/resource-record-sets-creating-import.html" rel="nofollow noopener" target="_blank">ゾーンファイルをインポートしてリソースレコードセットを作成する</a>）。</p>
+
+<p>　ホストゾーンには、パブリックなものとVPC向けのプライベートなものがあります。マネジメントコンソールからドメイン名を入力すれば作成が完了しますが、今回はこのリソースを <code>terraform</code> で管理します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>resource "aws_route53_zone" "main" {
+   name = "53ningen.com"
+}
+</pre></div></div> 
+
+<p><code>terraform plan</code> は以下のとおり</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  + aws_route53_zone.main
+      id:             &lt;computed&gt;
+      comment:        "Managed by Terraform"
+      force_destroy:  "false"
+      name:           "53ningen.com"
+      name_servers.#: &lt;computed&gt;
+      vpc_region:     &lt;computed&gt;
+      zone_id:        &lt;computed&gt;
+
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+</pre></div></div> 
+
+<p>　<code>terraform apply</code> してホストゾーンを作成すると <code>SOA レコード</code> と <code>NS レコード</code> も自動的に作成されます。今回はドメイン名とIPアドレスを紐づけるために <code>A レコード</code> の追加が必要になります。そのため、その記述を追加します。メールサーバーの移行が必要であれば <code>MX レコード</code>、サブドメインなどの運用をやっているのであれば <code>CNAME レコード</code> など適当な感じに必要なものも移行しておきましょう。ひとまず今回は <code>A レコード</code> のみを作ります（Route 53 が対応しているDNSリソースは <a href="http://docs.aws.amazon.com/ja_jp/Route53/latest/DeveloperGuide/ResourceRecordTypes.html" rel="nofollow noopener" target="_blank">サポートされる DNS リソースレコードタイプ</a> を参照）。<code>terraform apply</code> を実行するとレコードが作成されます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  + aws_route53_record.www
+      id:                 &lt;computed&gt;
+      fqdn:               &lt;computed&gt;
+      name:               "53ningen.com"
+      records.#:          "1"
+      records.2910563735: "******************"
+      ttl:                "300"
+      type:               "A"
+      zone_id:            "******************"
+</pre></div></div> 
+
+<h2>
+<span id="12-dnsの変更" class="fragment"></span><a href="#12-dns%E3%81%AE%E5%A4%89%E6%9B%B4"><i class="fa fa-link"></i></a>1.2. DNSの変更</h2>
+
+<p>　マネジメントコンソールの NS レコード欄の DNS サーバーを、ムームードメインのコントロールパネルで指定します。反映が有効になるまで少し(TTL分)時間がかかるため、少し待って <code>dig</code> で確認すると良いとおもいます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>% dig 53ningen.com +trace
+
+; &lt;&lt;&gt;&gt; DiG 9.8.3-P1 &lt;&lt;&gt;&gt; 53ningen.com +trace
+;; global options: +cmd
+.           171428  IN  NS  b.root-servers.net.
+.           171428  IN  NS  c.root-servers.net.
+.           171428  IN  NS  d.root-servers.net.
+.           171428  IN  NS  e.root-servers.net.
+.           171428  IN  NS  f.root-servers.net.
+.           171428  IN  NS  g.root-servers.net.
+.           171428  IN  NS  h.root-servers.net.
+.           171428  IN  NS  i.root-servers.net.
+.           171428  IN  NS  j.root-servers.net.
+.           171428  IN  NS  k.root-servers.net.
+.           171428  IN  NS  l.root-servers.net.
+.           171428  IN  NS  m.root-servers.net.
+.           171428  IN  NS  a.root-servers.net.
+;; Received 508 bytes from 192.168.1.1#53(192.168.1.1) in 75 ms
+
+com.            172800  IN  NS  d.gtld-servers.net.
+com.            172800  IN  NS  l.gtld-servers.net.
+com.            172800  IN  NS  a.gtld-servers.net.
+com.            172800  IN  NS  g.gtld-servers.net.
+com.            172800  IN  NS  b.gtld-servers.net.
+com.            172800  IN  NS  f.gtld-servers.net.
+com.            172800  IN  NS  c.gtld-servers.net.
+com.            172800  IN  NS  h.gtld-servers.net.
+com.            172800  IN  NS  j.gtld-servers.net.
+com.            172800  IN  NS  e.gtld-servers.net.
+com.            172800  IN  NS  i.gtld-servers.net.
+com.            172800  IN  NS  k.gtld-servers.net.
+com.            172800  IN  NS  m.gtld-servers.net.
+;; Received 506 bytes from 2001:500:2::c#53(2001:500:2::c) in 179 ms
+
+53ningen.com.       172800  IN  NS  ns-1431.awsdns-50.org.
+53ningen.com.       172800  IN  NS  ns-771.awsdns-32.net.
+53ningen.com.       172800  IN  NS  ns-2010.awsdns-59.co.uk.
+53ningen.com.       172800  IN  NS  ns-393.awsdns-49.com.
+;; Received 199 bytes from 192.43.172.30#53(192.43.172.30) in 258 ms
+
+53ningen.com.       300 IN  A   153.126.136.244
+53ningen.com.       172800  IN  NS  ns-1431.awsdns-50.org.
+53ningen.com.       172800  IN  NS  ns-2010.awsdns-59.co.uk.
+53ningen.com.       172800  IN  NS  ns-393.awsdns-49.com.
+53ningen.com.       172800  IN  NS  ns-771.awsdns-32.net.
+;; Received 183 bytes from 2600:9000:5301:8900::1#53(2600:9000:5301:8900::1) in 112 ms
+</pre></div></div> 
+
+<h2>
+<span id="13-コストの計算" class="fragment"></span><a href="#13-%E3%82%B3%E3%82%B9%E3%83%88%E3%81%AE%E8%A8%88%E7%AE%97"><i class="fa fa-link"></i></a>1.3. コストの計算</h2>
+
+<p>公式ドキュメント: <a href="https://aws.amazon.com/jp/route53/pricing/" rel="nofollow noopener" target="_blank">料金</a></p>
+
+<p>　お仕事ならこの計算作業する前にやるべきですが、個人のお遊びサーバーなので作業後に計算しました。</p>
+
+<ul>
+<li>ホストゾーン
+
+<ul>
+<li>0.50 USD（ホストゾーンごと）/月 – 最初の25のホストゾーン</li>
+<li>0.10 USD（ホストゾーンごと）/月 – それ以上のホストゾーン</li>
+</ul>
+</li>
+<li>標準的クエリ
+
+<ul>
+<li>0.400 USD（100 万クエリごと） – 最初の 10 億クエリ/月</li>
+<li>0.200 USD（100 万クエリごと） – 10 億クエリ以上/月</li>
+</ul>
+</li>
+</ul>
+
+<p>おおよそ 1ホストゾーン + 最初の10億クエリ = 0.50 + 0.40 = 0.90 USD</p>
+
+<h2>
+<span id="14-ヘルスチェックの設定-optional" class="fragment"></span><a href="#14-%E3%83%98%E3%83%AB%E3%82%B9%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%81%AE%E8%A8%AD%E5%AE%9A-optional"><i class="fa fa-link"></i></a>1.4. ヘルスチェックの設定 （Optional）</h2>
+
+<p>公式ドキュメント: <a href="http://docs.aws.amazon.com/ja_jp/Route53/latest/DeveloperGuide/dns-failover.html" rel="nofollow noopener" target="_blank">Amazon Route 53 ヘルスチェックの作成と DNS フェイルオーバーの設定</a></p>
+
+<p>　ヘルスチェック（L7）とDNSフェイルオーバーが利用できます。ヘルスチェックで障害を検知した場合に Cloudwatch Alarm と連携をさせたり、DNSフェイルオーバーを利用して待機系に参照を向けたりすることが可能です。</p>
+
+<p>　ひとまずベーシックなウェブサーバーのヘルスチェックは以下のように設定できます。その他諸々 terraform を利用する際にオプション記述については terraform 公式ドキュメント: <a href="https://www.terraform.io/docs/providers/aws/r/route53_health_check.html" rel="nofollow noopener" target="_blank">aws_route53_health_check</a> を参照してください。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>resource "aws_route53_health_check" "www" {
+  reference_name    = "www"
+  ip_address        = "153.126.136.244"
+  port              = 80
+  type              = "HTTP"
+  resource_path     = "/"
+  failure_threshold = "3"
+  request_interval  = "30"
+  measure_latency   = true
+
+  tags = {
+    Name = "www"
+  }
+}
+</pre></div></div> 
+
+<p>ヘルスチェックに関しては、</p>
+
+<ul>
+<li>AWSエンドポイント
+
+<ul>
+<li>ヘルスチェック 1 件につき 0.50 USD*/月</li>
+<li>オプション機能 1 件につき 1.00 USD/月</li>
+</ul>
+</li>
+<li>AWS以外のエンドポイント:
+
+<ul>
+<li>ヘルスチェック 1 件につき 0.75 USD*/月</li>
+<li>オプション機能 1 件につき 2.00 USD/月</li>
+</ul>
+</li>
+<li>任意のヘルスチェック機能は以下の通りです。
+
+<ul>
+<li>HTTPS</li>
+<li>文字列マッチング</li>
+<li>短インターバル</li>
+<li>レイテンシー計測</li>
+</ul>
+</li>
+</ul>
+
+<p>となっています。</p>
+
+<blockquote>
+<p>「AWS エンドポイント」とは、AWS の中で稼働するリソース（たとえば Amazon EC2 インスタンス）のうち、ヘルスチェックと同じ AWS アカウントの中でプロビジョニングされるか、ヘルスチェックと同じアカウントが請求先となっているものを指します。計算済みヘルスチェックとメトリクスベースのヘルスチェックは AWS エンドポイントのヘルスチェックとして請求されます。Elastic Load Balancing のリソースまたは Amazon S3 ウェブサイトバケットがエンドポイントであるヘルスチェックについては、お客様への請求は発生しません。Elastic Load Balancing のリソースおよび Amazon S3 ウェブサイトバケットをエンドポイントとするヘルスチェックについては、AWS によって自動的にプロビジョニングされ、Amazon Route 53 の一部として追加料金なしでご利用いただけます。</p>
+</blockquote>
+
+<h2>
+<span id="15-dnsフェイルオーバーの設定-optional" class="fragment"></span><a href="#15-dns%E3%83%95%E3%82%A7%E3%82%A4%E3%83%AB%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC%E3%81%AE%E8%A8%AD%E5%AE%9A-optional"><i class="fa fa-link"></i></a>1.5 DNSフェイルオーバーの設定 （Optional）</h2>
+
+<p>公式ドキュメント: <a href="http://docs.aws.amazon.com/ja_jp/Route53/latest/DeveloperGuide/dns-failover-configuring.html" rel="nofollow noopener" target="_blank">DNS フェイルオーバーの設定</a><br>
+terraform 公式ドキュメント: <a href="https://www.terraform.io/docs/providers/aws/r/route53_record.html" rel="nofollow noopener" target="_blank">aws_route53_record</a></p>
+
+<p>　ヘルスチェックを入れたついでに、障害発生時に S3 の静的ホスティング機能 + Cloudfront によるメンテナンスページのほうへ参照を向けるようなDNSフェイルオーバー設定を入れてみます。DNSフェイルオーバー設定については無料で利用することができます。最終的な構成図は以下のような形になります。</p>
+
+<p><a href="https://camo.qiitausercontent.com/369dce7301ce55dd7f256251f44cf1aec606797e/687474703a2f2f35336e696e67656e2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031372f31302f38343135323430352d373032372d646131632d626162612d3535353563623535383433392d31303234783931362e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/369dce7301ce55dd7f256251f44cf1aec606797e/687474703a2f2f35336e696e67656e2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031372f31302f38343135323430352d373032372d646131632d626162612d3535353563623535383433392d31303234783931362e706e67" alt="" width="640" height="573" data-canonical-src="http://53ningen.com/wp-content/uploads/2017/10/84152405-7027-da1c-baba-5555cb558439-1024x916.png"></a><br>
+　<br>
+　ディザスタリカバリを想定した構成として、ap-northeast-1 リージョンで稼働させるアプリケーションサーバーに対して、メンテナンスページを静的ホスティングする際の S3 リージョンは地理・物理的に違う系統の適当なリージョンを選択します。今回は us-east-1 を選択しました。</p>
+
+<p>　S3 の前段に置いた Cloudfront は主に S3 からの配信をキャッシュする役割と、メンテナンスを表すステータスコード 503 でリソースを返す役割を持っています。S3 バケットの作成とファイルの配置、静的ホスティング機能の有効化および Cloudfront の設定は以下のように terraform で記述することができます。</p>
+
+<p>terraform 公式ドキュメント: <a href="https://www.terraform.io/docs/providers/aws/r/s3_bucket.html" rel="nofollow noopener" target="_blank">aws_s3_bucket</a><br>
+terraform 公式ドキュメント: <a href="https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html" rel="nofollow noopener" target="_blank">aws_cloudfront_distribution</a></p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>provider "aws" {
+  region = "us-east-1"
+  alias  = "us-east-1"
+}
+
+resource "aws_s3_bucket" "error" {
+  provider = "aws.us-east-1"
+  bucket   = "error.53ningen.com"
+  acl      = "public-read"
+  policy   = "${file("./policies/error.53ningen.com_s3_policy.json")}"
+
+  website {
+    index_document = "index.html"
+    error_document = "error.html"
+  }
+}
+
+resource "aws_s3_bucket_object" "error_html" {
+  provider     = "aws.us-east-1"
+  bucket       = "${aws_s3_bucket.error.bucket}"
+  content_type = "text/html"
+  key          = "error.html"
+  source       = "./resources/error.html"
+  etag         = "${md5(file("./resources/error.html"))}"
+}
+
+resource "aws_cloudfront_distribution" "error_s3_distribution" {
+  origin {
+    domain_name = "${aws_s3_bucket.error.bucket_domain_name}"
+    origin_id   = "S3-error.53ningen.com"
+  }
+
+  custom_error_response {
+    error_code            = "404"
+    response_code         = "503"
+    response_page_path    = "/error.html"
+    error_caching_min_ttl = "300"
+  }
+
+  enabled             = true
+  is_ipv6_enabled     = true
+  default_root_object = "index.html"
+
+  default_cache_behavior {
+    allowed_methods  = ["GET", "HEAD"]
+    cached_methods   = ["GET", "HEAD"]
+    target_origin_id = "S3-error.53ningen.com"
+
+    forwarded_values {
+      query_string = true
+
+      cookies {
+        forward = "none"
+      }
+    }
+
+    viewer_protocol_policy = "allow-all"
+    min_ttl                = 0
+    default_ttl            = 3600
+    max_ttl                = 86400
+  }
+
+  price_class = "PriceClass_All"
+
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+    }
+  }
+
+  tags {
+    Environment = "production"
+  }
+
+  viewer_certificate {
+    cloudfront_default_certificate = true
+  }
+}
+</pre></div></div> 
+
+<p><code>resources/error</code> には、適当なメンテナンス表示 html ファイルを、 <code>policies/maintenance.53ningen.com_s3_policy.json</code> には以下のようにバケットのファイルの読み取りを許可するポリシーを配置します。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>{
+  "Version":"2012-10-17",
+  "Statement":[
+    {
+      "Sid":"PublicReadForGetBucketObjects",
+      "Effect":"Allow",
+      "Principal": "*",
+      "Action":["s3:GetObject"],
+      "Resource":["arn:aws:s3:::error.53ningen.com/*"]
+    }
+  ]
+}
+</pre></div></div> 
+
+<p>つづいて Route 53 ホストゾーンにフェイルオーバーの設定をします。通常時は既存の A レコードが有効になるようにしつつ、ヘルスチェックに失敗した場合にメンテナンスページを静的にホスティングしている S3 のほうに参照を向けるような設定を入れます。また ttl を最初の設定より短く 60 秒に変更します。 terraform を用いて次のように記述できます。</p>
+
+<div class="code-frame" data-lang="text"><div class="highlight"><pre><span></span>resource "aws_route53_record" "www" {
+  zone_id = "${aws_route53_zone.main.zone_id}"
+  name    = "53ningen.com"
+  type    = "A"
+  ttl     = "60"
+  records = ["153.126.136.244"]
+
+  health_check_id = "${aws_route53_health_check.www.id}"
+  set_identifier  = "www"
+
+  failover_routing_policy {
+    type = "PRIMARY"
+  }
+}
+
+resource "aws_route53_record" "www-error" {
+  zone_id = "${aws_route53_zone.main.zone_id}"
+  name    = "53ningen.com"
+  type    = "A"
+
+  alias = {
+    name = "${aws_cloudfront_distribution.error_s3_distribution.domain_name}"
+
+    # cloudfront hosted_zone_id
+    zone_id                = "Z2FDTNDATAQYW2"
+    evaluate_target_health = false
+  }
+
+  set_identifier = "www-secondary"
+
+  failover_routing_policy {
+    type = "SECONDARY"
+  }
+}
+</pre></div></div> 
+
+<p>　最後に動作確認として、動いているウェブサーバーを停止し、きちんとメンテナンス表示に切り替わるか確認します。またウェブサーバーを起動したときに、ヘルスチェックが通るようになり、きちんとアプリケーションサーバーに参照が戻るかも合わせてチェックしておきましょう。</p>
+
+<h1>
+<span id="2-ドメインを-route-53-に移管する" class="fragment"></span><a href="#2-%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%92-route-53-%E3%81%AB%E7%A7%BB%E7%AE%A1%E3%81%99%E3%82%8B"><i class="fa fa-link"></i></a>2. ドメインを Route 53 に移管する</h1>
+
+<p>公式ドキュメント: <a href="http://docs.aws.amazon.com/ja_jp/Route53/latest/DeveloperGuide/domain-transfer.html" rel="nofollow noopener" target="_blank">ドメインの移管</a></p>
+
+<p>ムームードメインで購入した 53ningen.com ドメインを Route 53 に移管します。ステップとしては以下のとおりです。</p>
+
+<ol>
+<li>WHOIS 情報としてレジストラの情報を代理公開している場合は、ムームードメインのコントロールパネルから自分のものに変更する</li>
+<li>確認のメールが飛んでくるので踏む</li>
+<li>AUTH_CODE をメモ</li>
+<li>Route 53 の <code>Domain registration</code> から <code>Transfer Domain to Route 53</code> に進みドメイン名を入力</li>
+<li>AUTH_CODE を入力</li>
+<li>移管後のDNSとして先ほど作った Route 53 の Hosted Zone を指定する</li>
+<li>AWSから移管確認のメールが飛んでくるので踏む</li>
+<li>そのうち移管が完了する </li>
+</ol>
+
+<blockquote>
+<p>Waiting for the current registrar to complete the transfer (step 7 of 14)<br>
+ドメインが移管の要件を満たしているか現在のレジストラが確認しています。このステップは、ドメインの TLD に応じて最大 10 日かかる場合があります。</p>
+</blockquote>
+
+<p>結構待ったりいろんな確認メールのリンクを踏んだりする必要がありますが、あまりテクニカルな手順はないはず...。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+<table border="1">
+<tr>
+	<td rowspan="3"><center>gomi_ningenさんの<br />6位</center></td>
+	<td colspan="4">
+		<kbd><i><img alt="いいね" width="16" height="16" src="../thumb-up-120px.png" /></i>1</kbd>
+		<a target="_blank" href="https://qiita.com/gomi_ningen/items/5b23be2df8c42a199703">Model-View-Controller(MVC) 再考</a>
+	</td>
+</tr>
+<tr>
+	<td style="width:100px;"><center>投稿日時</center></td>
+	<td style="width:200px;"><center>投稿者</center></td>
+	<td style="width:150px;"><center>タグ</center></td>
+	<td style="width:350px;"><center>本文</center></td>
+</tr>
+<tr>
+	<td style="width:100px;">
+		<!--投稿日時--><center>2017-11-25 15:56:41</center>
+	</td>
+	<td style="width:200px;">
+		@gomi_ningen<br />(ラビットハウス社勤務 所属)<br><img width="80" height="80" src="https://qiita-image-store.s3.amazonaws.com/0/56771/profile-images/1473694109">
+	</td>
+	<td style="width:150px;">
+		<!--タグ-->
+		<center><b>[プログラミング]</b> <b>[mvc]</b> <b>[アーキテクチャ]</b> <b>[POSA]</b> <b>[PoEAA]</b> </center>
+	</td>
+	<td style="width:350px;">
+		<!--本文-->
+		<div style="width:350px;height:150px;overflow-x:hidden;overflow-y:scroll;"><blockquote>
+<p>MVCについて色々な文献をあたり、色々なことが書いてあったので自分用にまとめた。みなさんは各本などを読んでください。</p>
+</blockquote>
+
+<h1>
+<span id="mvc-とはなにか" class="fragment"></span><a href="#mvc-%E3%81%A8%E3%81%AF%E3%81%AA%E3%81%AB%E3%81%8B"><i class="fa fa-link"></i></a>MVC とはなにか?</h1>
+
+<h2>
+<span id="どの文献を参照しても共通していること" class="fragment"></span><a href="#%E3%81%A9%E3%81%AE%E6%96%87%E7%8C%AE%E3%82%92%E5%8F%82%E7%85%A7%E3%81%97%E3%81%A6%E3%82%82%E5%85%B1%E9%80%9A%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8"><i class="fa fa-link"></i></a>どの文献を参照しても共通していること</h2>
+
+<ul>
+<li>ユーザーインターフェースを持つアプリケーションを Model/View/Controller の3つにの部分に分離する</li>
+</ul>
+
+<h2>
+<span id="解釈が難しい点" class="fragment"></span><a href="#%E8%A7%A3%E9%87%88%E3%81%8C%E9%9B%A3%E3%81%97%E3%81%84%E7%82%B9"><i class="fa fa-link"></i></a>解釈が難しい点</h2>
+
+<ul>
+<li>モデル・ビュー・コントローラの責務と関係
+
+<ul>
+<li>特にコントローラの責務</li>
+<li>コントローラとビューの関係性</li>
+</ul>
+</li>
+<li>各プラットフォームにおいて、上記の責務をどう実装に落とし込むのか
+
+<ul>
+<li>ほんとうにビューとコントローラは分離できるのか？</li>
+<li>そもそもビューとコントローラを分離する利点は？</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<span id="そもそも分離とは" class="fragment"></span><a href="#%E3%81%9D%E3%82%82%E3%81%9D%E3%82%82%E5%88%86%E9%9B%A2%E3%81%A8%E3%81%AF"><i class="fa fa-link"></i></a>そもそも分離とは?</h2>
+
+<p>Model-View-Controller に分離するパターンを見ていくが、クラスに分割するだけが分離に相当するわけではない</p>
+
+<ul>
+<li>サブルーチン・メソッド</li>
+<li>クラス</li>
+<li>パッケージ</li>
+<li>モジュール</li>
+</ul>
+
+<h1>
+<span id="poeaa-における-mvc-の説明" class="fragment"></span><a href="#poeaa-%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B-mvc-%E3%81%AE%E8%AA%AC%E6%98%8E"><i class="fa fa-link"></i></a>PoEAA における MVC の説明</h1>
+
+<p>UIの相互作用を3つの明確な役割に分割するパターンを「モデルビューコントローラ」とよぶ。</p>
+
+<p><a href="https://camo.qiitausercontent.com/03bf353f8dfb61e665042afeab6c2f800239e6f8/687474703a2f2f35336e696e67656e2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031352f31322f6d76632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/03bf353f8dfb61e665042afeab6c2f800239e6f8/687474703a2f2f35336e696e67656e2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031352f31322f6d76632e706e67" alt="mvc" width="410" height="240" data-canonical-src="http://53ningen.com/wp-content/uploads/2015/12/mvc.png"></a></p>
+
+<p>ViewとControllerは互いに依存してよい。ViewとControllerはそれぞれ、Modelに依存してよい。</p>
+
+<h2>
+<span id="パターンの仕組み" class="fragment"></span><a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF"><i class="fa fa-link"></i></a>パターンの仕組み</h2>
+
+<p>　モデルはUIに関わらないドメインについてのデータやふるまいが表現されたオブジェクト。ビューはUIの中でモデルを表現する。ビューは情報の表示だけを責務として負う。コントローラは、ユーザーからの入力を受け取り、モデルを操作して、ビューを適切に更新する。このようにUIはビューとコントローラの協調によって構成される。</p>
+
+<h3>
+<span id="プレゼンテーションとモデルの分離" class="fragment"></span><a href="#%E3%83%97%E3%83%AC%E3%82%BC%E3%83%B3%E3%83%86%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%A8%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E5%88%86%E9%9B%A2"><i class="fa fa-link"></i></a>プレゼンテーションとモデルの分離</h3>
+
+<p>　根本的にプレゼンテーションとモデルは異なる関心事を持っている。ビューはどのように良いUIを提供するかということに興味があり、モデルはどんなロジックでデータを取り扱おうかということに関心がある。したがって分離を行い、各関心事に応じて構造化するために分離を行う。</p>
+
+<p>　非ビジュアルなオブジェクトは、ビジュアルなオブジェクトよりテストがしやすい。当たり前のことではあるが、プレゼンテーションとモデルを分離することにより、ドメインロジックのテストは容易になる。</p>
+
+<p>　プレゼンテーションはモデルに依存するが、モデルはプレゼンテーションに依存しないようにする。こうすることによりモデルを構成するときに、どんなプレゼンテーションから使われるかということを全く意識しなくてすむようになる。また、これによりモデルを利用して新たなプレゼンテーションを追加することが容易にもなる。</p>
+
+<h4>
+<span id="複数のウィンドウを持ったクライアントにおける問題" class="fragment"></span><a href="#%E8%A4%87%E6%95%B0%E3%81%AE%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%92%E6%8C%81%E3%81%A3%E3%81%9F%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%95%8F%E9%A1%8C"><i class="fa fa-link"></i></a>複数のウィンドウを持ったクライアントにおける問題</h4>
+
+<p>　複数のウィンドウを持つリッチクライアントでは、あるモデルを参照する複数のプレゼンテーションが同時に表示される可能性がある。その際、ユーザーが１つのプレゼンテーションを更新したら、その変更は伝播されなければならない。モデルがプレゼンテーションに依存を作らずにこのようなことを実現するためには、オブザーバーパターンの実装が必要になる。プレゼンテーションはモデルのオブザーバーとして動作させ、モデルが変化するごとにイベントが発生して、情報が更新されるされる仕組みを実現する必要がある。</p>
+
+<h3>
+<span id="ビューとコントローラの分離" class="fragment"></span><a href="#%E3%83%93%E3%83%A5%E3%83%BC%E3%81%A8%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%A9%E3%81%AE%E5%88%86%E9%9B%A2"><i class="fa fa-link"></i></a>ビューとコントローラの分離</h3>
+
+<p>　こちらは、プレゼンテーションとモデルの分離に比べると重要度は下がる。例えば、編集可能な振る舞いと編集不可能な振る舞いを同時にサポートをしたいときに、ビューとコントローラを分離したいといったモチベーションが生じる。1つのビューに対して、2つのコントローラを作ることにより対応できるが、通常はそのような分離は行われていない。</p>
+
+<p>　プラットフォームによってはUIにおける入力と出力はしばしば不可分であり、GUIフレームワークではビューとコントローラを組み合わせていることが多い。Webインターフェースではコントローラとビューの分離が行われることが多い。</p>
+
+<h2>
+<span id="パターンを用いるタイミング" class="fragment"></span><a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%82%92%E7%94%A8%E3%81%84%E3%82%8B%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0"><i class="fa fa-link"></i></a>パターンを用いるタイミング</h2>
+
+<p>　モデルビューコントローラは、プレゼンテーションとモデルおよび、ビューとコントローラの分離に特徴がある。前者については非常に重要で、ほとんどの場合、分離をすべきである。後者についてはわりあい重要ではなく、必要なときにだけ分離をすることを推奨する。ネイティブクライアントにおいて、分離することはほとんどないが、ウェブフロントエンドにおいて、ビューとコントローラを分離することは珍しくない。</p>
+
+<h1>
+<span id="posaにおける-mvc-の捉え方" class="fragment"></span><a href="#posa%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B-mvc-%E3%81%AE%E6%8D%89%E3%81%88%E6%96%B9"><i class="fa fa-link"></i></a>POSAにおける MVC の捉え方</h1>
+
+<p>UIは複数の見た目を用意したり、特定の人に向けたものを用意する必要があったりと、要求により変更が加わる傾向が強い。アプリケーションのコアはこうしたUIの変更の影響を受けるように作るべきでない。更新頻度の少ないロジックはプレゼンテーションから分離されている方が良い。UIの変更は簡単かつ、局所的であるべきだ。しかし、変更が容易なUI層を実現するためにサービスの品質を落とすわけにはいかない。いつでもアプリケーションの状態を反映したUIを維持すべきであり、状態の変化には素早く反応しなくてはならない。したがって、インタラクティブなアプリケーションは、処理・入力・出力の３つの構成要素に分解できる。これら3つの整合性は、変更を通知する仕組みにより保証していく（この点はMicrosoftの記事のactive型のほうをさしているのかな、と思う）。</p>
+
+<p>アプリケーションのコアはモデルとしてカプセル化して、UIの見た目の振る舞いに関する実装から独立させるべきである。ビューはこうしてできたモデルの一側面を切り取って表示する。コントローラーはユーザーからの入力を受け取り、モデルやビューと協調する。ユーザーがアプリケーションに入力を与える受け口は、もっぱらコントローラーの役割となる。モデルに変更が生じたときには、すべてのビューとコントローラーに変更を伝え、それぞれの状態を適切かつ迅速に更新するようにする。これによりモデル、ビュー、コントローラーの協調を実現している。</p>
+
+<p>MVCは、それぞれのオブジェクトの独立した開発をサポートするために、異なる頻度で変更される傾向があるアプリケーションの責務を分離する。モデルはインタラクティブなアプリケーションのコア機能を定義しまう。したがって、その内部構造はアプリケーション固有のドメインの責務に強く依存する。しばしば、モデルは複数個のドメインオブジェクト[POSA]に分離され、それぞれに責務を持つ。モデルの実装は特定のデータフォーマット、ビューやコントローラーのAPIに依存してはならず、UIが変更されたときにモデルを変更しなければならないようなことは避けなければならない。</p>
+
+<p>アプリケーションのUIに表示される情報の各部分は、モデルのそれぞれのデータを取得して、表示する形式に変換する機能も含めて、ビューのなかにカプセル化する。これにより、モデルなどに影響を与えることなく、ビューに変更を入れることができるようになる。ビューに関する典型的なパターンとして、テンプレート・ビューとトランスフォーム・ビュー[POSA]の2つがある。テンプレート・ビューは、あらかじめ定義されている出力形式にモデルの情報を差し込んであげることにより、ビューを構成する。また、トランスフォーム・ビューは、モデルから取得する各データ要素をレンダリングすることによって、出力を作成する。各ビューは、モデルの状態を操作するために1つないし、複数のコントローラーと紐付いている。またコントローラーはキーボードやマウスなどから入力を受信する。コントローラーには次の3つのパターンがある。</p>
+
+<ul>
+<li>UIの特定の機能に関連付けられているコントローラー</li>
+<li>特定のフォームやページからの要求をすべて処理するページ・コントローラー</li>
+<li>モデル上のすべての要求を処理するフロントコントローラー</li>
+</ul>
+
+<p>モデルが様々な機能を持っているとすれば、機能ごとにコントローラーを作るのが一番良いだろう。フォームやページベースのUIを持つ場合はページコントローラーが適切だ。また、アプリケーションがそれぞれのリクエストごとに違ったUIを提供するような場合には、フロントコントローラーが最も有用です。WebアプリケーションにおけるHTTPプロトコルなどがこれに相当します。</p>
+
+<p>コントローラーから発行されるリクエストはコマンドオブジェクト[POSA]にカプセル化され、コマンドプロセッサー[POSA]に渡り実行される。こうすることによりビューとモデルを透過的に更新することができる。さらに、リクエストを第1級オブジェクトとして扱うことができるようになり、アンドゥ・リドゥや実行のスケジューリングなど一般的なアプリケーションの動作をサポートする手助けにもなる。</p>
+
+<p>ワークフロー駆動型のアプリケーションにおいて、どのようなコマンド作成すればよいのか疑念がある場合は、アプリケーション・コントローラーを用いるとよい。これはモデルの内部状態への依存を回避するのに役立つ。ほとんどのアプリケーションでは、複数のコントローラーが同時にアクティブな状態となる。しかしながら、ユーザーの入力は特定のコントローラーで処理される。すべてのコントローラーを単純に束ねるチェイン・オブ・レスポンシビリティ[POSA]により、ある入力がどのコントローラーに割り当てられるべきかをシンプルに解決することができる。</p>
+
+<p>デバイスの低レベルなAPIやグラフィカルなライブラリにアクセスする際に、ラッパー・ファサード[POSA]を使うと、ビューとコントローラーをシステムのプラットフォームから独立した状態にすることができる。またデータ・トランスファー・オブジェクト[POSA]を使うと、ビューやコントローラーがモデルから取得したデータをカプセル化するのに役立ちます。</p>
+
+<p>モデルがUIからの独立性を失わずにMVCの各オブジェクトが効率よく協調するためには、オブザーバ[POSA]を用いて結合する必要がある。コントローラーとビューがオブザーバーとなり、モデルがその対象となる。モデルの状態が変化したら、登録されているビューやコントローラーに通知を行う。通知を受けたビューやコントローラーはそれぞれ適切なモデルからデータを受け取り、自身の状態を更新する。</p>
+
+<h1>
+<span id="msdnのmvc記事まとめ" class="fragment"></span><a href="#msdn%E3%81%AEmvc%E8%A8%98%E4%BA%8B%E3%81%BE%E3%81%A8%E3%82%81"><i class="fa fa-link"></i></a>MSDNのMVC記事まとめ</h1>
+
+<p><a href="https://msdn.microsoft.com/en-us/library/ff649643.aspx" rel="nofollow noopener" target="_blank">MSDN</a>の記事がわかりやすかったのでまとめた</p>
+
+<h2>
+<span id="背景" class="fragment"></span><a href="#%E8%83%8C%E6%99%AF"><i class="fa fa-link"></i></a>背景</h2>
+
+<ul>
+<li>コンピュータシステムの多くは <strong>データ</strong> を取ってきて、 <strong>ユーザ</strong> に表示する</li>
+<li>
+<strong>ユーザがデータを変更</strong>したら、 <strong>データストア</strong> の内容を更新することもある</li>
+</ul>
+
+<p>そのため、データストアとUI間のデータの流れに目がいきがちであり、パフォーマンスのため、またはコード量を減らすために、しばしばその処理を密結合にしてしまうことがある。</p>
+
+<h3>
+<span id="このアプローチには２つ問題点がある" class="fragment"></span><a href="#%E3%81%93%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AD%E3%83%BC%E3%83%81%E3%81%AB%E3%81%AF%EF%BC%92%E3%81%A4%E5%95%8F%E9%A1%8C%E7%82%B9%E3%81%8C%E3%81%82%E3%82%8B"><i class="fa fa-link"></i></a>このアプローチには２つ問題点がある。</h3>
+
+<ul>
+<li>UIはデータストアと比較して頻繁に変更が入る傾向にある</li>
+<li>複雑なアプリケーションでは、単にデータストアからデータを送受信するだけでなく、複雑なビジネスロジックが存在する傾向にある</li>
+</ul>
+
+<h2>
+<span id="問題" class="fragment"></span><a href="#%E5%95%8F%E9%A1%8C"><i class="fa fa-link"></i></a>問題</h2>
+
+<p>ドメインロジックとUIの変更をそれぞれ手軽に独立して行えるようにするためには、Webアプリケーションをどのようにモジュール化すれば良いのだろうか</p>
+
+<h2>
+<span id="前提" class="fragment"></span><a href="#%E5%89%8D%E6%8F%90"><i class="fa fa-link"></i></a>前提</h2>
+
+<p>問題を解決する際に、次のようなことを考慮する必要がある</p>
+
+<ul>
+<li>UIロジックはビジネスロジックに比べて頻繁に変更が入る傾向に有る
+
+<ul>
+<li>特にWebアプリケーションにおいては顕著</li>
+<li>例えば、新しい画面が追加されたり、すでに存在するページのレイアウトが変更されたりすることが多い</li>
+<li>したがって、サーバー側に処理をまとめたシステム（シンクライアントシステム）は、アプリケーションを再配布しなくて済む</li>
+<li>プレゼンテーションコードとビジネスロジックがひとつのオブジェクトとして結合している場合、UIだけを変更したくてもビジネスロジックを含んだオブジェクトを変更しなければならない</li>
+<li>これはUIの些細な変更であっても、エラーを誘発したり、再テストが必要だったりすることを意味する。</li>
+</ul>
+</li>
+<li>場合によっては、アプリケーションは同じデータを異なる形で表示することがある
+
+<ul>
+<li>例えば、アナリストはスプレットシートを好み、マネージャは円グラフを望むことがある</li>
+<li>またそれらを同時に表示することも十分に考えられる</li>
+<li>もしユーザがデータに変更を加えた場合、すべてのビューに反映されるべき</li>
+</ul>
+</li>
+<li>デザインと複雑なビジネスロジックを作る作業は全く異なるスキルであり、両方のスキルを持ち合わせる人は滅多にいない
+
+<ul>
+<li>そこで、これらの作業はバラバラに実行できることが望ましい。</li>
+</ul>
+</li>
+<li>プレゼンテーションはデータソースからデータを取得し、データをフォーマットして表示する
+
+<ul>
+<li>表示されたデータに応じてユーザーはなんらかのアクションを行い、そこからうまれた変更を反映させるためにビジネスロジックへ制御が渡る</li>
+</ul>
+</li>
+<li>WebアプリケーションはHTTPのステートレス性の上で、異なるアクションを実現しなければならない</li>
+<li>UI層のコードは、ビジネスロジックと比較して、デバイスに依存する傾向にある
+
+<ul>
+<li>したがって、もしプラウザベースのアプリケーションからモバイル端末などに移植したい場合はUI層のコードを置き換える必要がでてくる</li>
+<li>UIに関するコードとビジネスロジックを分離しておくことは、移植を素早く行えるようにしたり、移植後のビジネスロジック層のエラーを減らしたりすることに役立つ</li>
+</ul>
+</li>
+<li>UI層のテストは難しくて、実行に時間がかかる傾向にある。したがってUI層と直接結びついているコードを減らすことはテスタビリティ向上につながる。</li>
+</ul>
+
+<h2>
+<span id="解決策" class="fragment"></span><a href="#%E8%A7%A3%E6%B1%BA%E7%AD%96"><i class="fa fa-link"></i></a>解決策</h2>
+
+<p>Model-View-Controllerパターンは、ドメインモデル、プレゼンテーション、ユーザーからの入力に対するアクションの３つのパートに分離をする[<a href="http://st-www.cs.illinois.edu/users/smarch/st-docs/mvc.html" rel="nofollow noopener" target="_blank">Burbeck92</a>]。</p>
+
+<ul>
+<li>
+<strong>Model:</strong> モデルは状態に応じたアプリケーションドメインの振る舞いを扱い、主にControllerからの操作に応じて状態を変化させる。</li>
+<li>
+<strong>View:</strong> ビューは表示される情報を扱う</li>
+<li>
+<strong>Controller:</strong> マウスやキーボードなどのユーザからの操作を解釈して、モデルやビューに適切に伝える</li>
+</ul>
+
+<p><a href="https://camo.qiitausercontent.com/ea1e6ec951f61affb31b0b3b635655d7d3ab129b/687474703a2f2f35336e696e67656e2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031362f30312f6d76632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/ea1e6ec951f61affb31b0b3b635655d7d3ab129b/687474703a2f2f35336e696e67656e2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031362f30312f6d76632e706e67" alt="mvc" width="169" height="146" data-canonical-src="http://53ningen.com/wp-content/uploads/2016/01/mvc.png"></a></p>
+
+<ul>
+<li>ビューとコントローラーはモデルに依存してよい</li>
+<li>モデルはどちらにも依存してはいけない
+
+<ul>
+<li>これにより、モデル層とプレゼンテーション層のビルドやテストをバラバラに行うことができるようになる</li>
+</ul>
+</li>
+<li>ビューとコントローラーの分離はリッチクライアントアプリケーションでは二の次となる
+
+<ul>
+<li>実際のところ多くのUIフレームワークではひとつのオブジェクトにビューとコントローラーの責務をおいているものが多い</li>
+<li>一方、Webアプリケーションにおいてはビュー（ブラウザ）とコントローラー（HTTPリクエストをさばくサーバーサイドコンポーネント）は明確に分かれている。</li>
+</ul>
+</li>
+</ul>
+
+<p>Model-View-Controller はUIロジックとビジネスロジックを分離するための基本的なデザインパターンである。有名であるがゆえに、多くの間違った説明がなされている。</p>
+
+<p>特に Controller は色々な文脈で異なる説明がなされている。ただし、Webアプリケーションにおいてはビューとコントローラーは明確に分かれているために、こういった曖昧さを解消するためには丁度良い。</p>
+
+<h3>
+<span id="passive型-mvc" class="fragment"></span><a href="#passive%E5%9E%8B-mvc"><i class="fa fa-link"></i></a>passive型 MVC</h3>
+
+<p>Steve Burbeckは、In Application Programming in Smalltalk-80: How to use Model-View-Controllerの中で passive 型と active 型の2種類の MVC のかたちについて説明している。</p>
+
+<p>passive型MVCはあるコントローラがモデルを排他的に制御するときに用いることができる。コントローラはモデルを変更し、ビューにモデルが変更されたので内容を更新する必要があることを伝える。このやり方だと、モデルはビューやコントローラと完全に独立した形になり、モデルはビューに変更を伝える手段がない状態になる。HTTPプロトコルなどがこのパターンに合致する。ブラウザがサーバーから更新を受け取るための、この上なくシンプルな方法である。ブラウザはユーザからの入力に応じてビューを表示するが、サーバー上のデータの変化を検出することはできない。ユーザが明示的に更新を問い合わせる必要が有る。</p>
+
+<p><a href="https://camo.qiitausercontent.com/6159c578a6a2147bc5e5eaed115bd75ed09457c4/687474703a2f2f35336e696e67656e2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031362f30312f706173736976652e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/6159c578a6a2147bc5e5eaed115bd75ed09457c4/687474703a2f2f35336e696e67656e2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031362f30312f706173736976652e706e67" alt="passive" width="320" height="245" data-canonical-src="http://53ningen.com/wp-content/uploads/2016/01/passive.png"></a></p>
+
+<h3>
+<span id="active型-mvc" class="fragment"></span><a href="#active%E5%9E%8B-mvc"><i class="fa fa-link"></i></a>active型 MVC</h3>
+
+<p>active 型はコントローラが関わらなくてもモデルの状態が変化する際に用いられる。このモデルの変化は他の入力ソースからデータの変更が発生してしまう場合に起こりうる。基本的にはその変更はビューに反映されるべきである。電光掲示板を作るときにはこうしなければならないだろう。表示内容に変更があった場合、データ取ってきてビューに反映させる必要がありそうである。</p>
+
+<p>しかし、MVCパターンを用いる大きな目的のひとつに、モデルとビューを分離するというものがあったことを思い出そう。モデルがビューに変更を通知するとなると、ふつうにやれば依存関係が発生してしまう。そこでGoFのObserverパターンを思い出そう。これはオブジェクト同士の依存を避けつつも、変更を通知することを実現するデザインパターンである。それぞれのビューはObservarインターフェースを実装して、モデルを購読する。モデルが変更されたら、登録されているすべての observer に通知を行うという仕組みになる。このやり方はしばしば、publish-subscribe と呼ばれる。モデルはビューに関する情報は一切必要としない。たとえば、メニューのオプションを使えなくする必要があるなど、コントローラーがモデルの変更通知を必要とする場合、すべてのコントローラはobserverインターフェースを実装する必要がある。また、たくさんのビューがある場合、それぞれ異なる領域ごとにモデルを定義し、各ビューは関心のあるモデルのみを subscribe すると良いでしょう。</p>
+
+<p><a href="https://camo.qiitausercontent.com/16c37c66810d0f0f29c3f429779285176ea1c831/687474703a2f2f35336e696e67656e2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031362f30312f6d76632d312e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/16c37c66810d0f0f29c3f429779285176ea1c831/687474703a2f2f35336e696e67656e2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031362f30312f6d76632d312e706e67" alt="mvc" width="516" height="270" data-canonical-src="http://53ningen.com/wp-content/uploads/2016/01/mvc-1.png"></a></p>
+
+<p><a href="https://camo.qiitausercontent.com/cb5c675c79abe1f73ff4e7d8b23a9ad5ee638c51/687474703a2f2f35336e696e67656e2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031362f30312f6163746976656d76632e706e67" target="_blank" rel="nofollow noopener"><img src="https://camo.qiitausercontent.com/cb5c675c79abe1f73ff4e7d8b23a9ad5ee638c51/687474703a2f2f35336e696e67656e2e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031362f30312f6163746976656d76632e706e67" alt="activemvc" width="445" height="290" data-canonical-src="http://53ningen.com/wp-content/uploads/2016/01/activemvc.png"></a></p>
+
+<h2>
+<span id="もたらされる影響" class="fragment"></span><a href="#%E3%82%82%E3%81%9F%E3%82%89%E3%81%95%E3%82%8C%E3%82%8B%E5%BD%B1%E9%9F%BF"><i class="fa fa-link"></i></a>もたらされる影響</h2>
+
+<h3>
+<span id="mvcのもたらす恩恵" class="fragment"></span><a href="#mvc%E3%81%AE%E3%82%82%E3%81%9F%E3%82%89%E3%81%99%E6%81%A9%E6%81%B5"><i class="fa fa-link"></i></a>MVCのもたらす恩恵</h3>
+
+<ul>
+<li>
+<strong>複数のビューをサポートできる</strong>: モデルとビューが分離されているため、モデルからビューへ直接の参照は存在しない。したがって、同時に同じデータを様々なビューで表示することができる。これはWebアプリケーションにおける複数のページは同じモデルオブジェクトを使っていることがあることからもわかるだろう。またユーザがページの見た目を変更できるようなWebアプリケーションの存在からも理解することができるだろ。そういったページは同じモデルから得られた同じデータを、異なる方法で表示することができている。</li>
+<li>
+<strong>変更に強くなる</strong>: UIはビジネスロジックと比較して変更が生じやすい。ユーザは異なる配色やフォントやレイアウトを好むかもしれないし、デバイスに特化したインターフェースを望むかもしれない。モデルがビューに依存していないので、新しいビューのセットをシステムに追加しても、モデルは何の影響も受けない。結果として、変更の影響はビューだけに限られる。この部分をさらに細分化したパターンとして Page Controller と Front Controller というパターンがある。</li>
+</ul>
+
+<h3>
+<span id="mvcのもたらす弊害" class="fragment"></span><a href="#mvc%E3%81%AE%E3%82%82%E3%81%9F%E3%82%89%E3%81%99%E5%BC%8A%E5%AE%B3"><i class="fa fa-link"></i></a>MVCのもたらす弊害</h3>
+
+<ul>
+<li>
+<strong>複雑になる</strong>: MVCパターンは遠回りなやり方であり、システムを複雑にする。またデバッグの難しいイベント駆動なコードベースになる傾向にある。</li>
+<li>
+<strong>頻繁な更新に対するコストが大きい</strong>: モデルとビューを切り離すことは重要だが、決してモデルがビューの存在を無視してよいということではない。モデルが頻繁に更新を行うような場合、ビューにそれを反映させるコストは大きなものとなるだろう。特にグラフィカルなユーザーインターフェースにおいては顕著になる。このような10教科ではビューは描画に失敗することもあるだろう。したがってモデルを作成するときにはビューを念頭に置くことは重要だ。場合によってはモデルの複数の変更をまとめてビューに通知するなどということも必要なはずである。</li>
+</ul>
+
+<h3>
+<span id="document-view-パターン" class="fragment"></span><a href="#document-view-%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3"><i class="fa fa-link"></i></a>Document-View パターン</h3>
+
+<p><strong>Model-View-Controllerの責務分離は行ったまま、ViewとControllerを結合</strong> したものを Document-View パターンとよんでいる。今日の、多くのGUIプラットフォームではこのパターンが用いられている。VC++のMFCなどはこのパターンの実例のひとつになる。</p>
+</div>
+	</td>
+</tr>
+</table>
+<br />
+	</body>
+</html>
